@@ -32,7 +32,7 @@ Cada briefing novo deve declarar `audience_segment`, `audience_intent` e `experi
 |---|---:|
 | Reviews e análises técnicas do portfólio | 35% |
 | Comparações entre produtos do portfólio | 25% |
-| Corridas e campeonatos | 25% |
+| Corridas e campeonatos | 25%: 4 pautas profissionais + 4 pautas para participar a cada ciclo de 30 dias |
 | Lançamentos, mercado e notícias das marcas vendidas | 10% |
 | Conteúdo básico | até 5% |
 
@@ -85,6 +85,8 @@ Análise documental nunca pode ser apresentada como experiência própria.
 
 ## Corridas e campeonatos
 
+O pilar tem duas trilhas independentes. `professional-coverage` cobre o esporte profissional; `participant-calendar` ajuda o leitor a encontrar e avaliar provas no Brasil. As duas usam a mesma categoria pública, mas não compartilham formato, intenção de audiência nem gate de fontes. A operação detalhada está em `docs/editorial/race-program.md`.
+
 ### Prévia
 
 - posição da prova no calendário;
@@ -104,6 +106,15 @@ Análise documental nunca pode ser apresentada como experiência própria.
 - equipamentos de marcas do portfólio em destaque;
 - impacto na classificação e na temporada;
 - próximas provas.
+
+### Calendário para participar
+
+- data, cidade, estado, modalidade e nível da prova;
+- situação da inscrição, prazo e link oficial quando confirmados;
+- categorias, filiação e elegibilidade;
+- distância, altimetria, regulamento e logística apenas quando publicados;
+- adiamentos e cancelamentos destacados;
+- informação ausente rotulada como “Inscrição ainda não confirmada na fonte oficial”.
 
 ## Lançamentos e notícias
 
@@ -128,3 +139,4 @@ O blog deve declarar que é o canal editorial oficial da TheBiker e que selecion
 - [ ] O texto tem profundidade adequada ao público avançado.
 - [ ] A conclusão explica para quem o produto faz sentido.
 - [ ] A revisão humana foi concluída.
+- [ ] Em corrida, o evento existe no registro, a fonte oficial foi revista nas últimas 24 horas e a trilha/formato estão corretos.

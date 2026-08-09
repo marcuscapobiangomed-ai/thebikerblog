@@ -2472,6 +2472,77 @@ button.comparison-slot { width: 100%; font: inherit; cursor: pointer; }
 .footer-privacy-button:hover { color: var(--accent); }
 .footer-bottom { color: #999; border-top-color: #e8e8e8; }
 .tag { color: var(--accent-dark); background: rgba(200, 0, 0, 0.08); }
+
+/* Hub de corridas: cobertura profissional e calendário participativo. */
+.race-hub { background: #f7f5f2; }
+.race-hub-hero {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(125deg, #25040a 0%, #741827 58%, #9d2336 100%);
+  color: #fff;
+}
+.race-hub-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 0 auto;
+  width: 42%;
+  background: repeating-linear-gradient(118deg, transparent 0 34px, rgba(255,255,255,0.05) 35px 36px);
+  pointer-events: none;
+}
+.race-hub-hero-inner { position: relative; z-index: 1; padding-top: 72px; padding-bottom: 76px; }
+.race-hub-kicker,
+.race-section-heading span {
+  display: block;
+  margin-bottom: 14px;
+  color: #e8b9c1;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.race-hub-hero h1 {
+  max-width: 820px;
+  margin: 0;
+  color: #fff;
+  font-family: var(--font-heading);
+  font-size: clamp(2.65rem, 6vw, 5.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.045em;
+  text-transform: uppercase;
+}
+.race-hub-hero p { max-width: 660px; margin: 26px 0 0; color: rgba(255,255,255,0.82); font-size: 1.05rem; line-height: 1.65; }
+.race-hub-tracks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin-top: -24px; position: relative; z-index: 2; }
+.race-track-card { min-height: 238px; padding: 30px; background: #fff; border-top: 4px solid var(--accent); box-shadow: 0 16px 40px rgba(31,5,10,0.1); }
+.race-track-card > span { color: var(--accent); font-family: var(--font-mono); font-size: 0.76rem; font-weight: 800; }
+.race-track-card h2 { margin: 18px 0 12px; color: #171717; font-family: var(--font-heading); font-size: 1.45rem; text-transform: uppercase; }
+.race-track-card p { max-width: 520px; margin: 0 0 22px; color: #5b5757; line-height: 1.65; }
+.race-track-card a { color: var(--accent-dark); font-size: 0.72rem; font-weight: 800; letter-spacing: 0.08em; text-decoration: none; text-transform: uppercase; }
+.race-hub-content { padding-top: 72px; padding-bottom: 80px; }
+.race-content-section + .race-content-section { margin-top: 84px; padding-top: 72px; border-top: 1px solid #dcd7d3; }
+.race-section-heading { display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, 460px); gap: 40px; align-items: end; margin-bottom: 32px; }
+.race-section-heading span { margin-bottom: 8px; color: var(--accent-dark); }
+.race-section-heading h2 { margin: 0; color: #171717; font-family: var(--font-heading); font-size: clamp(1.9rem, 4vw, 3.1rem); letter-spacing: -0.035em; text-transform: uppercase; }
+.race-section-heading p { margin: 0; color: #686363; line-height: 1.65; }
+.race-article-grid:empty { display: none; }
+.race-empty-state { padding: 30px 32px; background: #ece8e3; border-left: 4px solid var(--accent); }
+.race-empty-state strong { display: block; color: #2a2425; font-family: var(--font-heading); font-size: 1rem; letter-spacing: 0.03em; text-transform: uppercase; }
+.race-empty-state p { margin: 8px 0 0; color: #686363; line-height: 1.6; }
+.race-source-note { background: #171313; color: #fff; }
+.race-source-note .container { display: grid; grid-template-columns: 220px minmax(0, 720px); gap: 36px; align-items: start; padding-top: 34px; padding-bottom: 36px; }
+.race-source-note strong { color: #e8b9c1; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; }
+.race-source-note p { margin: 0; color: rgba(255,255,255,0.72); line-height: 1.65; }
+
+@media (max-width: 720px) {
+  .race-hub-hero-inner { padding-top: 52px; padding-bottom: 58px; }
+  .race-hub-hero p { font-size: 0.94rem; }
+  .race-hub-tracks { grid-template-columns: 1fr; gap: 14px; margin-top: -16px; }
+  .race-track-card { min-height: 0; padding: 24px; }
+  .race-hub-content { padding-top: 54px; padding-bottom: 60px; }
+  .race-content-section + .race-content-section { margin-top: 58px; padding-top: 52px; }
+  .race-section-heading { grid-template-columns: 1fr; gap: 14px; }
+  .race-source-note .container { grid-template-columns: 1fr; gap: 12px; }
+}
+
 .post-title,
 .page-title,
 .product-title { font-family: var(--font-heading); text-transform: uppercase; }

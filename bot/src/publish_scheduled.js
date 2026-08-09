@@ -1,7 +1,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { CampaignSchema, publicCampaignSummary } from "./automation/campaign.js";
+import { CampaignSchema, publicCampaignSummary, racePublicationSourceIsFresh } from "./automation/campaign.js";
 import { validateImageManifestV2 } from "./validation/image-manifest-v2.js";
 import { assertMarkdownPublicationGates } from "./validation/markdown-publication-gates.js";
 
@@ -51,6 +51,9 @@ export async function publishScheduled({ now = new Date(), dryRun = false, root 
       throw new Error(`Publicacao bloqueada: campanha possui lacuna em ${date}`);
     }
     return { status: "idle", date, message: "Data fora da campanha ativa" };
+  }
+  if (!racePublicationSourceIsFresh(item, now)) {
+    throw new Error(`Publicacao bloqueada: pauta de corrida ${item.id} sem fonte oficial verificada nas ultimas 24 horas`);
   }
   if (!item.postPath) throw new Error(`Pauta ${item.id} esta agendada sem postPath`);
   if (item.imageStatus !== "approved" || !item.imageManifestPath) {

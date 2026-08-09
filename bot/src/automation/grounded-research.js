@@ -1,7 +1,7 @@
 import { validateResearch } from '../schemas/research.schema.js'
 
 const PRODUCT_DOMAINS = ['thebikershop.com.br', 'scott-sports.com', 'syncros.com', 'bike.shimano.com', 'si.shimano.com', 'sram.com', 'rockshox.com', 'ridefox.com', 'maxxis.com', 'oggi.com.br']
-const SPORT_DOMAINS = ['uci.org', 'olympics.com']
+const SPORT_DOMAINS = ['uci.org', 'cbc.esp.br', 'ucimtbworldseries.com', 'olympics.com']
 const PORTFOLIO_CATEGORY_URLS = {
   'manutencao-ajustes': 'https://thebikershop.com.br/componentes/',
   componentes: 'https://thebikershop.com.br/componentes/',
@@ -9,7 +9,7 @@ const PORTFOLIO_CATEGORY_URLS = {
   review: 'https://thebikershop.com.br/bikes/',
   comparativo: 'https://thebikershop.com.br/bikes/',
   lancamentos: 'https://thebikershop.com.br/bikes/',
-  competicoes: 'https://www.thebiker.com.br/',
+  competicoes: 'https://thebikershop.com.br/',
 }
 
 const CURATED_TOPIC_EVIDENCE = [
@@ -179,18 +179,30 @@ function internalResearch({ item, internalEvidence, today, contentType, reason, 
   })
 }
 
+export function contentTypeForCampaignItem(item) {
+  if (item.category === 'competicoes') return ({
+    preview: 'previa-corrida',
+    recap: 'resumo-corrida',
+    'weekly-roundup': 'resumo-corrida',
+    'calendar-roundup': 'calendario-provas',
+    'event-guide': 'guia-prova',
+    'registration-alert': 'guia-prova',
+  }[item.race?.format] || 'previa-corrida')
+  return {
+    'manutencao-ajustes': 'guia-tecnico', engenharia: 'guia-tecnico', componentes: 'guia-tecnico', review: 'review',
+    comparativo: 'comparativo', lancamentos: 'lancamento'
+  }[item.category]
+}
+
 export class GroundedResearcher {
   constructor(env = process.env, fetchImpl = fetch) {
     this.env = env
     this.fetch = fetchImpl
   }
 
-  async research({ item, internalEvidence, today }) {
+  async research({ item, internalEvidence, raceEvents = [], today }) {
     const provider = this.env.RESEARCH_PROVIDER || 'groq'
-    const contentType = {
-      'manutencao-ajustes': 'guia-tecnico', engenharia: 'guia-tecnico', componentes: 'guia-tecnico', review: 'review',
-      comparativo: 'comparativo', lancamentos: 'lancamento', competicoes: item.id.includes('preparacao') ? 'previa-corrida' : 'resumo-corrida'
-    }[item.category]
+    const contentType = contentTypeForCampaignItem(item)
     const raceCoverage = item.category === 'competicoes'
     const prompt = [
       'Pesquise para o blog oficial da TheBiker. Responda somente em JSON válido.',
@@ -200,6 +212,9 @@ export class GroundedResearcher {
       'Seja conciso: retorne no máximo 8 fatos confirmados, 5 fontes e 3 limitações.',
       `Título: ${item.title}`,
       `Resumo editorial: ${item.summary}`,
+      `Trilha de corrida: ${item.race?.track || 'não aplicável'}`,
+      `Formato de corrida: ${item.race?.format || 'não aplicável'}`,
+      `Eventos pré-verificados no registro editorial: ${JSON.stringify(raceEvents)}`,
       `Data: ${today}`,
       `Evidência de portfólio TheBiker obrigatória: ${JSON.stringify(portfolioEvidenceFor(item, today))}`,
       `Conteúdo interno já validado: ${JSON.stringify(compactEvidence(internalEvidence))}`,

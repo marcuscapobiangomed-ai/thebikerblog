@@ -104,7 +104,7 @@ function validateFrontmatter(content, fileName) {
   }
 
   // Valida content_type
-  if (fm.content_type && !["review", "comparativo", "guia-de-compra", "guia-tecnico", "guia-turistico", "noticia", "lancamento", "previa-corrida", "resumo-corrida"].includes(fm.content_type)) {
+  if (fm.content_type && !["review", "comparativo", "guia-de-compra", "guia-tecnico", "guia-turistico", "noticia", "lancamento", "previa-corrida", "resumo-corrida", "calendario-provas", "guia-prova"].includes(fm.content_type)) {
     logWarning(fileName, `content_type não padronizado: "${fm.content_type}"`);
   }
 

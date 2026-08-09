@@ -46,7 +46,7 @@ const rows = listMarkdown(postsDir).map((file) => {
   const isPublished = parsed.data.published !== false;
   const isInactiveDirectory = relative.includes("/archived/") || relative.includes("/drafts/");
   const declaresDraft = parsed.data.status === "draft" || parsed.data.editorial_status === "draft";
-  const isRaceCoverage = ["previa-corrida", "resumo-corrida"].includes(String(parsed.data.content_type || ""));
+  const isRaceCoverage = ["previa-corrida", "resumo-corrida", "calendario-provas", "guia-prova"].includes(String(parsed.data.content_type || ""));
   const unsafeCompetitorMention = brands.mentionedCompetitors.length > 0 && !isRaceCoverage;
   let disposition = "reestruturar";
   const commercialList = /\b(melhor|melhores|onde comprar|vale o investimento|qual escolher)\b/iu.test(String(parsed.data.title || ""));
