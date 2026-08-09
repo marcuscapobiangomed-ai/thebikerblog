@@ -132,7 +132,7 @@ A Syncros, marca proprietária da Scott, projeta essas rodas especificamente par
 
 A Addict RC 20 é indicada para ciclistas que competem ou treinam com foco em performance e buscam uma bicicleta de carbono de alto nível com grupo eletrônico, mas não querem pagar o preço do Dura-Ace. É ideal para quem participa de provas de estrada, critérios, gran fondos competitivos e treinos intensos em grupo. O quadro HMX Carbon oferece a mesma rigidez e resposta da RC Pró, e o Ultegra Di2 entrega trocas precisas e confiáveis.
 
-As rodas de 40 mm são versáteis o suficiente para a maioria dos percursos, e o peso de 7,3 kg é competitivo para subidas. Ciclistas que valorizam a integração estética e a tecnologia de ponta também encontrarão na RC 20 um conjunto moderno e coeso. Além disso, a possibilidade de atualização futura para rodas mais leves ou um <a href="https://thebikershop.com.br/componentes/medidor-de-potencia/" class="thebiker-product-link" target="_blank" rel="noopener">medidor de potência</a> torna a RC 20 uma plataforma sólida para evolução. Em resumo, é a bike para o ciclista que quer o máximo de performance sem entrar na faixa de preço dos modelos topo de linha.
+As rodas de 40 mm são versáteis o suficiente para a maioria dos percursos, e o peso de 7,3 kg é competitivo para subidas. Ciclistas que valorizam a integração estética e recursos técnicos atuais também encontrarão na RC 20 um conjunto moderno e coeso. Além disso, a possibilidade de atualização futura para rodas mais leves ou um <a href="https://thebikershop.com.br/componentes/medidor-de-potencia/" class="thebiker-product-link" target="_blank" rel="noopener">medidor de potência</a> torna a RC 20 uma plataforma sólida para evolução. Em resumo, é a bike para o ciclista que quer o máximo de performance sem entrar na faixa de preço dos modelos topo de linha.
 
 ## Quando a Addict RC 20 pode não ser a melhor opção
 
@@ -142,7 +142,7 @@ Outro ponto é o custo: R$ 67.999 é um investimento alto, e ciclistas que não 
 
 ## Pontos fortes que saltam da especificação
 
-O primeiro ponto forte é o quadro HMX Carbon, o mesmo da RC Pró, que garante rigidez e leveza de alto nível. O segundo é o grupo Ultegra Di2, que oferece trocas eletrônicas de última geração com custo-benefício imbatível. As rodas Syncros Capital 1.0 40 Disc são outro destaque: perfil versátil de 40 mm, construção específica para a Addict e pneus Continental Grand Prix TR de 30 mm, que entregam performance e conforto.
+O primeiro ponto forte é o quadro HMX Carbon, o mesmo da RC Pró, que garante rigidez e leveza de alto nível. O segundo é o grupo Ultegra Di2, que oferece trocas eletrônicas atuais com uma relação equilibrada entre especificação e preço dentro da linha. As rodas Syncros Capital 1.0 40 Disc são outro destaque: perfil versátil de 40 mm, construção específica para a Addict e pneus Continental Grand Prix TR de 30 mm, que entregam performance e conforto.
 
 O peso declarado de 7,3 kg é competitivo para a categoria, e a integração total de cabos confere um visual limpo e aerodinâmico. A gancheira UDH é um detalhe moderno que facilita a reposição e futuras atualizações de transmissão. Por fim, o preço de R$ 67.999 a posiciona como a opção mais acessível para entrar na linha Addict RC com grupo eletrônico, custando R$ 41.991 a menos que a RC Pró.
 
