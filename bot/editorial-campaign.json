@@ -388,17 +388,35 @@
     {
       "day": 12,
       "publishDate": "2026-08-19",
-      "id": "youtube-tendencias-tecnicas-do-ciclismo-como-separar-evidencia-aplicacao",
-      "title": "Tendências técnicas do ciclismo: como separar evidência, aplicação e apelo de mercado",
-      "summary": "Criar resposta técnica original para ciclista intermediário ou avançado, com método e limitações declarados. Sinal observado: 3.071 visualizações globais do vídeo; 1.796 por dia; encontrado em 1 busca(s) configurada(s) para o Brasil.",
-      "category": "lancamentos",
-      "freshness": "event-driven",
-      "status": "blocked",
+      "id": "ciclocross-regulamento-preparacao",
+      "title": "Ciclocross: regulamento, pneus e preparação da bike para prova",
+      "summary": "Compare critérios técnicos que as competições de ciclocross aplicam à bike, e saiba como orientar a escolha de pneus e geometria para prova.",
+      "category": "competicoes",
+      "freshness": "evergreen",
+      "status": "scheduled",
       "productIds": [],
+      "postPath": "_posts/drafts/2026-08-19-ciclocross-regulamento-preparacao.md",
       "imageAssetIds": [],
       "attempts": 1,
-      "lastAttemptAt": "2026-08-09T09:43:04.905Z",
-      "blockReason": "STATUS: REVISÃO FINAL REPROVADA\nNota 85; bloqueadores: nota abaixo do mínimo"
+      "lastAttemptAt": "2026-08-09T13:52:49.906Z",
+      "aiReview": {
+        "score": 85,
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "premiumEditUsed": true,
+        "providers": {
+          "factSheet": "deepseek",
+          "draft": "gemini",
+          "critique": "deepseek",
+          "final": "deepseek",
+          "finalAudit": "deepseek",
+          "finalRepair": "deepseek"
+        },
+        "generatedAt": "2026-08-09T13:52:49.906Z"
+      },
+      "imageManifestPath": "assets/img/posts/ciclocross-regulamento-preparacao/image-manifest.json",
+      "imageStatus": "approved",
+      "imageValidatedAt": "2026-08-09T13:54:43.220Z"
     },
     {
       "day": 13,
@@ -637,12 +655,6 @@
   ],
   "reserves": [
     {
-      "id": "ciclocross-regulamento-preparacao",
-      "title": "Ciclocross: regulamento, pneus e preparação da bike para prova",
-      "summary": "Compare critérios técnicos que as competições de ciclocross aplicam à bike, e saiba como orientar a escolha de pneus e geometria para prova.",
-      "category": "competicoes"
-    },
-    {
       "id": "medidor-potencia-pedal-eixo",
       "title": "Medidor de potência: base no pedal ou no eixo? O que muda no treino",
       "summary": "Diferenças práticas entre medidores instalados no pedal, eixo ou spider, considerando leitura, calibração e uso em treinos. Sem rankings de marcas.",
@@ -653,6 +665,24 @@
       "title": "Serviço de garfo e amortecedor: quando trocar óleo e vedação",
       "summary": "Sinais de que a suspensão precisa de serviço interno, como perda de amortecimento e vazamento de óleo. Inclui cuidados com vedação.",
       "category": "manutencao-ajustes"
+    },
+    {
+      "id": "reserva-diagnostico-ruidos-bike",
+      "title": "Diagnóstico de ruídos na bicicleta: método por carga, frequência e interface",
+      "summary": "Protocolo técnico para isolar ruídos de transmissão, cockpit, rodas e quadro sem substituir componentes por tentativa e erro.",
+      "category": "manutencao-ajustes"
+    },
+    {
+      "id": "reserva-pressao-pneus-terreno",
+      "title": "Pressão de pneus por terreno: como testar sem transformar sensação em dado",
+      "summary": "Método de campo para ajustar pressão, registrar comportamento e separar aderência, suporte lateral, impacto e resistência ao rolamento.",
+      "category": "engenharia"
+    },
+    {
+      "id": "reserva-cabos-mangueiras-roteamento",
+      "title": "Cabos e mangueiras: roteamento, atrito e sinais de montagem que pedem correção",
+      "summary": "Leitura técnica de curvas, fixações, contato com o quadro e interferências que alteram comando, ruído e durabilidade.",
+      "category": "componentes"
     }
   ]
 }

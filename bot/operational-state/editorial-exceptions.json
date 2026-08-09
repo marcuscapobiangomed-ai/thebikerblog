@@ -240,6 +240,30 @@
         "title": "Bike de fábrica vs. bike de competição: o que realmente muda na prática"
       },
       "reason": "STATUS: REVISÃO FINAL REPROVADA\nNota 85; bloqueadores: O artigo não inclui URL oficial do produto ou categoria na TheBiker, impedindo a confirmação do portfólio."
+    },
+    {
+      "recordedAt": "2026-08-09T13:52:49.129Z",
+      "campaignId": "thebiker-rolling-2026-08-08",
+      "replacedItem": {
+        "day": 12,
+        "publishDate": "2026-08-19",
+        "id": "youtube-tendencias-tecnicas-do-ciclismo-como-separar-evidencia-aplicacao",
+        "title": "Tendências técnicas do ciclismo: como separar evidência, aplicação e apelo de mercado",
+        "summary": "Criar resposta técnica original para ciclista intermediário ou avançado, com método e limitações declarados. Sinal observado: 3.071 visualizações globais do vídeo; 1.796 por dia; encontrado em 1 busca(s) configurada(s) para o Brasil.",
+        "category": "lancamentos",
+        "freshness": "event-driven",
+        "status": "blocked",
+        "productIds": [],
+        "imageAssetIds": [],
+        "blockReason": "STATUS: REVISÃO FINAL REPROVADA\nNota 85; bloqueadores: nota abaixo do mínimo",
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-09T09:43:04.905Z"
+      },
+      "replacement": {
+        "id": "ciclocross-regulamento-preparacao",
+        "title": "Ciclocross: regulamento, pneus e preparação da bike para prova"
+      },
+      "reason": "STATUS: REVISÃO FINAL REPROVADA\nNota 85; bloqueadores: nota abaixo do mínimo"
     }
   ]
 }
