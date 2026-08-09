@@ -50,11 +50,11 @@
       "summary": "Diagnóstico técnico de direção, movimento central, cubos e pivôs antes da substituição.",
       "category": "manutencao-ajustes",
       "freshness": "evergreen",
-      "status": "scheduled",
+      "status": "published",
       "productIds": [
         "kit-de-rolamentos-direcao-scott-foil"
       ],
-      "postPath": "_posts/drafts/2026-08-09-reserva-rolamentos-diagnostico.md",
+      "postPath": "_posts/2026-08-09-reserva-rolamentos-diagnostico.md",
       "imageManifestPath": "assets/img/posts/reserva-rolamentos-diagnostico/image-manifest.json",
       "imageStatus": "approved",
       "imageAssetIds": [
@@ -75,7 +75,8 @@
           "bufferFinalAudit": "deepseek"
         },
         "generatedAt": "2026-08-05T15:25:40.344Z"
-      }
+      },
+      "publishedAt": "2026-08-09T15:35:02.322Z"
     },
     {
       "day": 3,
@@ -396,7 +397,10 @@
       "status": "scheduled",
       "productIds": [],
       "postPath": "_posts/drafts/2026-08-19-ciclocross-regulamento-preparacao.md",
+      "imageManifestPath": "assets/img/posts/ciclocross-regulamento-preparacao/image-manifest.json",
+      "imageStatus": "approved",
       "imageAssetIds": [],
+      "imageValidatedAt": "2026-08-09T13:54:43.220Z",
       "attempts": 1,
       "lastAttemptAt": "2026-08-09T13:52:49.906Z",
       "aiReview": {
@@ -413,10 +417,7 @@
           "finalRepair": "deepseek"
         },
         "generatedAt": "2026-08-09T13:52:49.906Z"
-      },
-      "imageManifestPath": "assets/img/posts/ciclocross-regulamento-preparacao/image-manifest.json",
-      "imageStatus": "approved",
-      "imageValidatedAt": "2026-08-09T13:54:43.220Z"
+      }
     },
     {
       "day": 13,

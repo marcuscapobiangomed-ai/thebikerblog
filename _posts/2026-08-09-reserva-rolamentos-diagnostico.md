@@ -1,6 +1,6 @@
 ---
 layout: post
-published: false
+published: true
 title: "Rolamentos sob carga: como localizar folga e contaminação"
 slug: "rolamentos-sob-carga-diagnostico"
 date: 2026-08-09
@@ -44,8 +44,8 @@ promoted_brands: ["TheBiker"]
 context_only_brands: []
 portfolio_evidence_url: "https://thebikershop.com.br/"
 portfolio_verified_at: "2026-08-05"
-editorial_status: "reviewed"
-status: "scheduled"
+editorial_status: "published"
+status: "published"
 sources:
   - name: "TheBiker — Bicicleta Infantil Oggi Hacker 24 - Cinza e Amarelo"
     type: "store"
