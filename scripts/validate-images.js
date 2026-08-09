@@ -121,7 +121,7 @@ function validatePost(postPath) {
     if (manifest.schemaVersion !== 2 || manifest.status !== "approved" || manifest.editorialUse !== "publishable") {
       errors.push(`${rel}: imagem ativa exige manifesto v2 aprovado e publicável`);
     }
-    if (!manifest.source || !["thebiker", "manufacturer"].includes(manifest.source.type)) {
+    if (!manifest.source || !["thebiker", "manufacturer", "own-production"].includes(manifest.source.type)) {
       errors.push(`${rel}: fonte visual ativa não autorizada (${manifest.source?.type || "indefinida"})`);
     }
     const digest = crypto.createHash("sha256").update(fs.readFileSync(imgPath)).digest("hex");

@@ -102,8 +102,6 @@ scheduled.items[0].postPath = `_posts/drafts/${scheduled.items[0].publishDate}-s
 assert.equal(selectPublicationCandidate(scheduled, scheduled.items[0].publishDate).day, 1);
 assert.equal(publicCampaignSummary(scheduled).items[0].title, scheduled.items[0].title);
 const imageConfig = {
-  minimumSourceWidth: 360,
-  minimumSourceHeight: 280,
   minimumPublishableLongEdge: 1600,
   minimumPublishableShortEdge: 800,
 };
@@ -111,10 +109,10 @@ assert.deepEqual(classifyOfficialImageQuality({ width: 2000, height: 1200 }, ima
   qualityTier: "high-definition",
   outputFormat: "png",
 });
-assert.deepEqual(classifyOfficialImageQuality({ width: 1024, height: 1024 }, imageConfig), {
-  qualityTier: "standard",
-  outputFormat: "webp",
-});
+assert.throws(
+  () => classifyOfficialImageQuality({ width: 1024, height: 1024 }, imageConfig),
+  /resolução insuficiente/,
+);
 assert.throws(
   () => classifyOfficialImageQuality({ width: 320, height: 200 }, imageConfig),
   /resolução insuficiente/,

@@ -4,7 +4,7 @@ published: true
 title: "Câmbio eletrônico sob carga: ajuste e diagnóstico do Shimano Di2"
 slug: "cambio-eletronico-ajuste-diagnostico"
 date: 2026-08-08
-last_modified_at: 2026-08-05
+last_modified_at: 2026-08-09
 author: "Equipe TheBiker"
 reviewed_by: "TheBiker AI Editorial Gate"
 content_type: "guia-tecnico"
@@ -32,12 +32,12 @@ image: "/assets/img/posts/cambio-eletronico-ajuste-diagnostico/hero-1600.webp"
 image_mobile: "/assets/img/posts/cambio-eletronico-ajuste-diagnostico/hero-800.webp"
 thumbnail: "/assets/img/posts/cambio-eletronico-ajuste-diagnostico/card-640.webp"
 image_manifest_version: 2
-image_asset_type: "official-product-photo"
+image_asset_type: "technical-diagram"
 image_status: "approved"
-image_alt: "Bateria Sram AXS em fotografia oficial da TheBiker Shop"
-image_caption: "Bateria Sram AXS, conforme catálogo oficial da TheBiker Shop."
-image_credit: "TheBiker Shop"
-image_license: "Uso editorial no blog oficial TheBiker"
+image_alt: "Capa técnica TheBiker sobre ajuste e diagnóstico do Shimano Di2"
+image_caption: "Capa técnica produzida para o conteúdo editorial TheBiker."
+image_credit: "TheBiker"
+image_license: "Propriedade editorial TheBiker"
 affiliate_links: false
 editorial_scope: "portfolio"
 promoted_brands: ["Shimano"]

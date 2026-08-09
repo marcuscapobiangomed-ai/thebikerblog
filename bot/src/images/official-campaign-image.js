@@ -18,15 +18,14 @@ export function classifyOfficialImageQuality(metadata, config) {
   const height = metadata.height || 0;
   const longEdge = Math.max(width, height);
   const shortEdge = Math.min(width, height);
-  const minimumLongEdge = Math.max(config.minimumSourceWidth || 0, config.minimumSourceHeight || 0);
-  const minimumShortEdge = Math.min(config.minimumSourceWidth || 0, config.minimumSourceHeight || 0);
+  const minimumLongEdge = config.minimumPublishableLongEdge;
+  const minimumShortEdge = config.minimumPublishableShortEdge;
   if (longEdge < minimumLongEdge || shortEdge < minimumShortEdge) {
     throw new Error(`resolução insuficiente para o padrão editorial: ${width}x${height}`);
   }
-  const highDefinition = longEdge >= config.minimumPublishableLongEdge && shortEdge >= config.minimumPublishableShortEdge;
   return {
-    qualityTier: highDefinition ? "high-definition" : "standard",
-    outputFormat: highDefinition ? "png" : "webp",
+    qualityTier: "high-definition",
+    outputFormat: "png",
   };
 }
 
