@@ -1,5 +1,13 @@
 const CONTENT_TYPE_RULES = [
   {
+    type: "calendario-provas",
+    match: /(calendário|agenda).*(provas|corridas|inscrições).*(brasil|brasileiro|participar)/i,
+  },
+  {
+    type: "guia-prova",
+    match: /(guia|inscrição|participar|retirada de kit|regulamento).*(prova|corrida|campeonato)/i,
+  },
+  {
     type: "previa-corrida",
     match: /(prévia|proxima corrida|próxima corrida|percurso|favoritos|agenda).*(corrida|prova|campeonato|tour|giro|volta|clássica)/i,
   },
@@ -108,6 +116,8 @@ export function buildUserPrompt({ topic, researchData, contentType, template, to
     lancamento: 1200,
     "previa-corrida": 1400,
     "resumo-corrida": 1500,
+    "calendario-provas": 1200,
+    "guia-prova": 1400,
   }[contentType] || 900;
   const minimumWordsPerSection = Math.ceil(minimumWords / Math.max(template.structure.length, 1));
 
@@ -139,9 +149,9 @@ export function buildUserPrompt({ topic, researchData, contentType, template, to
     '  "faq": [{ "question": "Pergunta real e específica", "answer": "Resposta sustentada pelas fontes e pelo corpo visível" }],',
     '  "slug": "slug-em-kebab-case",',
     '  "category": "reviews | comparativos | guias-de-compra | guia-tecnico | noticias | lancamentos | corridas | campeonatos | mercado",',
-    '  "content_type": "review | comparativo | guia-de-compra | guia-tecnico | noticia | lancamento | previa-corrida | resumo-corrida",',
+    '  "content_type": "review | comparativo | guia-de-compra | guia-tecnico | noticia | lancamento | previa-corrida | resumo-corrida | calendario-provas | guia-prova",',
     '  "audience_segment": "core_technical_cyclists | professional_reference_users | committed_progression_cyclists",',
-    '  "audience_intent": "technical_learning | solve_problem | compare_products | purchase_consideration | follow_market_competition | plan_ride",',
+    '  "audience_intent": "technical_learning | solve_problem | compare_products | purchase_consideration | follow_market_competition | find_race_to_enter | plan_ride",',
     '  "experience_level_target": "intermediate | advanced | professional | intermediate_advanced | mixed_progression",',
     '  "review_method": "desk-research | hands-on-test",',
     '  "tested_by_thebikerblog": false,',
@@ -193,7 +203,7 @@ export function buildUserPrompt({ topic, researchData, contentType, template, to
     "A resposta direta deve resolver a intenção principal sem depender do restante do artigo e sem introduzir fatos ausentes das fontes.",
     "FAQ é opcional: use somente perguntas respondidas de forma explícita no corpo; nunca crie FAQ apenas para schema.",
     "Em reviews, comparativos, guias, notícias e lançamentos, context_only_brands deve ser sempre um array vazio; não inclua ali as marcas factuais dos componentes do produto.",
-    "Somente prévias e resumos de corrida podem preencher context_only_brands, quando a menção factual for indispensável.",
+    "Somente conteúdos de corrida podem preencher context_only_brands, quando a menção factual for indispensável.",
     "Para produto exato, lançamento ou corrida real, aiGeneratedAllowed deve ser false.",
     "Fallback de sistema só pode usar editorialUse draft-only.",
   ].join("\n");
@@ -209,6 +219,8 @@ export function buildRepairPrompt({ topic, rawText, validationError, contentType
     lancamento: 1200,
     "previa-corrida": 1400,
     "resumo-corrida": 1500,
+    "calendario-provas": 1200,
+    "guia-prova": 1400,
   }[contentType] || 900;
   const repairTargetWords = Math.ceil(minimumWords * 1.15);
   return [

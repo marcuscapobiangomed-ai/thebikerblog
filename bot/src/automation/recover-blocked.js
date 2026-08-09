@@ -6,6 +6,8 @@ const TRANSIENT = /timeout|timed out|aborted|429|rate limit|temporar|econnreset|
 const FINALIZATION = /^Valida(?:ção|cao) final:/i
 
 const RECOVERY_RESERVES = [
+  { id: 'reserva-radar-profissional-oficial', title: 'Radar profissional: próxima prova com calendário e resultados oficialmente verificáveis', summary: 'Reserva de cobertura profissional que só avança depois de ser vinculada a um evento e a fontes oficiais revalidadas.', category: 'competicoes', race: { track: 'professional-coverage', format: 'weekly-roundup', eventIds: [], sourceStatus: 'pending' } },
+  { id: 'reserva-calendario-participativo-oficial', title: 'Calendário brasileiro de provas: atualização com inscrições e mudanças verificadas', summary: 'Reserva participativa que permanece pendente até receber eventos oficiais, situação de inscrição e checagem recente das fontes.', category: 'competicoes', race: { track: 'participant-calendar', format: 'calendar-roundup', eventIds: [], sourceStatus: 'pending' } },
   { id: 'reserva-diagnostico-ruidos-bike', title: 'Diagnóstico de ruídos na bicicleta: método por carga, frequência e interface', summary: 'Protocolo técnico para isolar ruídos de transmissão, cockpit, rodas e quadro sem substituir componentes por tentativa e erro.', category: 'manutencao-ajustes' },
   { id: 'reserva-pressao-pneus-terreno', title: 'Pressão de pneus por terreno: como testar sem transformar sensação em dado', summary: 'Método de campo para ajustar pressão, registrar comportamento e separar aderência, suporte lateral, impacto e resistência ao rolamento.', category: 'engenharia' },
   { id: 'reserva-inspecao-pos-chuva', title: 'Inspeção pós-chuva: os pontos que concentram contaminação, corrosão e desgaste', summary: 'Rotina técnica depois de treinos molhados, priorizando rolamentos, transmissão, freios, suspensão e interfaces do quadro.', category: 'manutencao-ajustes' },
@@ -25,7 +27,8 @@ function reserveToItem(reserve, blocked) {
     title: reserve.title,
     summary: reserve.summary,
     category: reserve.category,
-    freshness: ['review', 'comparativo', 'lancamentos'].includes(reserve.category) ? 'revalidate-24h' : 'evergreen',
+    ...(reserve.race ? { race: structuredClone(reserve.race) } : {}),
+    freshness: reserve.category === 'competicoes' ? 'event-driven' : ['review', 'comparativo', 'lancamentos'].includes(reserve.category) ? 'revalidate-24h' : 'evergreen',
     status: 'planned',
     productIds: [],
     imageAssetIds: [],
@@ -33,9 +36,11 @@ function reserveToItem(reserve, blocked) {
   }
 }
 
-function nextReserve(campaign) {
+function nextReserve(campaign, blocked) {
   const used = new Set(campaign.items.map((item) => item.id))
-  return campaign.reserves.find((item) => !used.has(item.id)) || RECOVERY_RESERVES.find((item) => !used.has(item.id)) || null
+  const available = [...campaign.reserves, ...RECOVERY_RESERVES].filter((item, index, items) => !used.has(item.id) && items.findIndex((candidate) => candidate.id === item.id) === index)
+  if (blocked.race) return available.find((item) => item.race?.track === blocked.race.track) || null
+  return available.find((item) => item.category !== 'competicoes') || null
 }
 
 export function recoverBlockedCampaign(campaignInput, { now = new Date(), maximumTransientAttempts = 2 } = {}) {
@@ -58,7 +63,7 @@ export function recoverBlockedCampaign(campaignInput, { now = new Date(), maximu
     delete blocked.blockReason
     return { campaign: CampaignSchema.parse(campaign), result: { status: 'retry', itemId: blocked.id, attempts: blocked.attempts || 0 }, exception: null }
   }
-  const reserve = nextReserve(campaign)
+  const reserve = nextReserve(campaign, blocked)
   if (!reserve) return { campaign, result: { status: 'blocked', itemId: blocked.id, reason: 'Nenhuma pauta-reserva disponível' }, exception: null }
   const exception = { recordedAt: now.toISOString(), campaignId: campaign.id, replacedItem: blocked, replacement: { id: reserve.id, title: reserve.title }, reason }
   campaign.items[blocked.day - 1] = reserveToItem(reserve, blocked)

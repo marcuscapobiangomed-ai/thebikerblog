@@ -94,10 +94,14 @@
     {
       "day": 12,
       "publishDate": "2026-08-19",
-      "title": "Tendências técnicas do ciclismo: como separar evidência, aplicação e apelo de mercado",
-      "summary": "Criar resposta técnica original para ciclista intermediário ou avançado, com método e limitações declarados. Sinal observado: 3.071 visualizações globais do vídeo; 1.796 por dia; encontrado em 1 busca(s) configurada(s) para o Brasil.",
-      "category": "lancamentos",
-      "status": "planned"
+      "title": "Calendário de provas no Brasil: o que está confirmado entre agosto e setembro de 2026",
+      "summary": "Agenda prática com provas oficialmente listadas, modalidade, local e estado conhecido das inscrições, sem preencher lacunas com dados não confirmados.",
+      "category": "competicoes",
+      "status": "planned",
+      "race": {
+        "track": "participant-calendar",
+        "format": "calendar-roundup"
+      }
     },
     {
       "day": 13,
@@ -118,10 +122,14 @@
     {
       "day": 15,
       "publishDate": "2026-08-22",
-      "title": "Freios de bicicleta: diagnóstico, ajuste e controle térmico",
-      "summary": "Criar resposta técnica original para ciclista intermediário ou avançado, com método e limitações declarados. Sinal observado: 937 visualizações globais do vídeo; 79 por dia; encontrado em 1 busca(s) configurada(s) para o Brasil.",
-      "category": "componentes",
-      "status": "planned"
+      "title": "Mundial de MTB 2026 em Val di Sole: modalidades, contexto técnico e o que acompanhar",
+      "summary": "Prévia profissional baseada no calendário UCI, com modalidades, contexto competitivo e pontos técnicos a observar; percurso e largadas só entram após confirmação oficial.",
+      "category": "competicoes",
+      "status": "planned",
+      "race": {
+        "track": "professional-coverage",
+        "format": "preview"
+      }
     },
     {
       "day": 16,
@@ -142,10 +150,14 @@
     {
       "day": 18,
       "publishDate": "2026-08-25",
-      "title": "Suspensão traseira com link: como a alavancagem altera a curva de resposta",
-      "summary": "Entenda como a disposição dos links muda a progressão da suspensão e a sensação de apoio em diferentes fases do curso. Sem valores genéricos.",
-      "category": "engenharia",
-      "status": "planned"
+      "title": "Brasileiro de MTB XCM 2026 em Castro Alves: guia do evento para quem pretende participar",
+      "summary": "Guia participativo com data e local do calendário CBC, separando fatos confirmados de inscrição, regulamento, categorias e logística ainda pendentes.",
+      "category": "competicoes",
+      "status": "planned",
+      "race": {
+        "track": "participant-calendar",
+        "format": "event-guide"
+      }
     },
     {
       "day": 19,
@@ -166,10 +178,14 @@
     {
       "day": 21,
       "publishDate": "2026-08-28",
-      "title": "Rodas sem câmara: volume de selante e sinais de ressecamento",
-      "summary": "Como determinar a quantidade, validade e compatibilidade do selante para evitar vazamentos lentos em rodas sem câmara. Sem prometer soluções milagrosas.",
-      "category": "manutencao-ajustes",
-      "status": "planned"
+      "title": "Mundial de MTB 2026: boletim técnico, disputas em andamento e leituras sem exagero",
+      "summary": "Cobertura profissional durante o evento com resultados já oficializados, dinâmica das modalidades e análise técnica; nada de classificar rumores como fato.",
+      "category": "competicoes",
+      "status": "planned",
+      "race": {
+        "track": "professional-coverage",
+        "format": "weekly-roundup"
+      }
     },
     {
       "day": 22,
@@ -190,18 +206,26 @@
     {
       "day": 24,
       "publishDate": "2026-08-31",
-      "title": "Pastilhas de freio: orgânicas ou sinterizadas para o clima brasileiro",
-      "summary": "Diferenças de modulação, ruído e durabilidade entre pastilhas orgânicas e sinterizadas em condições quentes e úmidas. Critérios de escolha.",
-      "category": "componentes",
-      "status": "planned"
+      "title": "Mundial de MTB 2026: resultados confirmados e as decisões técnicas que definiram Val di Sole",
+      "summary": "Resumo profissional pós-prova com resultados oficiais, movimentos decisivos e leitura técnica, sem atribuir equipamento ou estratégia sem fonte verificável.",
+      "category": "competicoes",
+      "status": "planned",
+      "race": {
+        "track": "professional-coverage",
+        "format": "recap"
+      }
     },
     {
       "day": 25,
       "publishDate": "2026-09-01",
-      "title": "Bateria de bike elétrica: armazenamento e autonomia na prática",
-      "summary": "Boas práticas de carregamento e armazenamento de baterias, com foco em calor e umidade. Como interpretar a autonomia informada pelo fabricante.",
-      "category": "manutencao-ajustes",
-      "status": "planned"
+      "title": "Provas de ciclismo no Brasil em setembro de 2026: calendário oficial e situação das inscrições",
+      "summary": "Atualização do calendário participativo com MTB e estrada, mostrando apenas datas oficialmente listadas e rotulando inscrições sem confirmação como pendentes.",
+      "category": "competicoes",
+      "status": "planned",
+      "race": {
+        "track": "participant-calendar",
+        "format": "calendar-roundup"
+      }
     },
     {
       "day": 26,
@@ -214,10 +238,14 @@
     {
       "day": 27,
       "publishDate": "2026-09-03",
-      "title": "Torque e pasta de montagem: como evitar trincas em componentes leves",
-      "summary": "Pontos críticos que exigem torque-calibrado e como a pasta de montagem modifica o atrito. Sem valores absolutos, pois cada componente tem sua especificação.",
-      "category": "manutencao-ajustes",
-      "status": "planned"
+      "title": "Brasileiro de Estrada Masters e Sub-30: o que confirmar antes da inscrição e da viagem",
+      "summary": "Guia para o ciclista avaliar filiação, categorias, prazo, regulamento e logística usando a página oficial, com alerta explícito para qualquer link ainda não confirmado.",
+      "category": "competicoes",
+      "status": "planned",
+      "race": {
+        "track": "participant-calendar",
+        "format": "event-guide"
+      }
     },
     {
       "day": 28,
@@ -230,10 +258,14 @@
     {
       "day": 29,
       "publishDate": "2026-09-05",
-      "title": "Relação de marchas: coroa compacta ou supercompacta para subidas brasileiras",
-      "summary": "Avalie o comportamento de diferentes combinações de coroa e cassete em aclives, considerando peso, cadência e terreno. Sem valores fixos de fábrica.",
-      "category": "comparativo",
-      "status": "planned"
+      "title": "Radar profissional: Volta de Santa Catarina e Internacional Estrada Real XCC em setembro",
+      "summary": "Boletim de cobertura profissional com status oficial, resultados disponíveis e contexto técnico das provas, sem inventar percurso, escalação ou transmissão.",
+      "category": "competicoes",
+      "status": "planned",
+      "race": {
+        "track": "professional-coverage",
+        "format": "weekly-roundup"
+      }
     },
     {
       "day": 30,

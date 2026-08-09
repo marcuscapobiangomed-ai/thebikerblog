@@ -4,6 +4,7 @@ import { fileURLToPath } from 'url'
 import { AIProvider } from './gemini.js'
 import { CampaignSchema, publicCampaignSummary, selectProductionCandidate } from './automation/campaign.js'
 import { GroundedResearcher } from './automation/grounded-research.js'
+import { RaceProgramSchema, validateRaceEditorialStructure } from './automation/race-program.js'
 
 const defaultRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..')
 
@@ -60,13 +61,26 @@ export async function runCampaignProducer({ root = defaultRoot, env = process.en
   if (env.AUTOMATION_DRY_RUN === 'true') return { status: 'ready', itemId: item.id }
   const today = now.toISOString().slice(0, 10)
   try {
+    let raceEvents = []
+    if (item.category === 'competicoes') {
+      const raceProgram = RaceProgramSchema.parse(JSON.parse(await fs.readFile(path.join(root, '_data/race-events.json'), 'utf8')))
+      validateRaceEditorialStructure(campaign, raceProgram)
+      const byId = new Map(raceProgram.events.map((event) => [event.id, event]))
+      raceEvents = item.race.eventIds.map((id) => byId.get(id)).filter(Boolean)
+      if (raceEvents.length !== item.race.eventIds.length || raceEvents.length === 0) throw new Error('Pauta de corrida sem evento oficial completo no registro editorial')
+    }
     const knowledge = await knowledgeEvidence(root, item)
     if (item.productIds.length === 0 && knowledge.inferredProductIds.length > 0) item.productIds = knowledge.inferredProductIds
     item.attempts = (item.attempts || 0) + 1
     item.lastAttemptAt = now.toISOString()
     item.status = 'researching'
     await persist(root, campaign)
-    const research = await researcher.research({ item, internalEvidence: knowledge.evidence, today })
+    const research = await researcher.research({ item, internalEvidence: knowledge.evidence, raceEvents, today })
+    if (item.category === 'competicoes') {
+      if (!Array.isArray(research.sources) || research.sources.length === 0) throw new Error('Pesquisa de corrida sem fontes oficiais rastreáveis')
+      item.race.sourceStatus = 'verified'
+      item.race.sourceVerifiedAt = now.toISOString()
+    }
     const researchDir = path.join(root, 'content/research/campaign')
     await fs.mkdir(researchDir, { recursive: true })
     await fs.writeFile(path.join(researchDir, `${item.id}.json`), JSON.stringify(research, null, 2) + '\n')
@@ -94,6 +108,7 @@ export async function runCampaignProducer({ root = defaultRoot, env = process.en
     return { status: 'validation', itemId: item.id, postPath, researchPath: `content/research/campaign/${item.id}.json` }
   } catch (error) {
     item.status = 'blocked'
+    if (item.race) item.race.sourceStatus = 'blocked'
     item.blockReason = String(error.message || error).slice(0, 700)
     await persist(root, campaign)
     throw error

@@ -28,6 +28,8 @@ export const ALLOWED_CONTENT_TYPES = [
   "lancamento",
   "previa-corrida",
   "resumo-corrida",
+  "calendario-provas",
+  "guia-prova",
 ];
 
 export const ALLOWED_AUDIENCE_SEGMENTS = [
@@ -42,6 +44,7 @@ export const ALLOWED_AUDIENCE_INTENTS = [
   "compare_products",
   "purchase_consideration",
   "follow_market_competition",
+  "find_race_to_enter",
   "plan_ride",
 ];
 

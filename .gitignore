@@ -10,3 +10,5 @@ _generated/
 output/
 tmp/
 data/price-audit-log.json
+.vercel
+.env*

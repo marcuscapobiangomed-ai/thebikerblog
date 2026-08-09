@@ -248,6 +248,34 @@ export const TEMPLATES = {
       "Apresentar fontes oficiais sob um intertítulo editorial específico",
     ],
   },
+
+  "calendario-provas": {
+    label: "Calendário de provas para participar (3.10)",
+    structure: [
+      "Recorte de datas, regiões e modalidades cobertas",
+      "Tabela de provas confirmadas em fonte oficial",
+      "Estado das inscrições e prazo conhecido",
+      "Categorias, filiação e elegibilidade confirmadas",
+      "Informações ainda não publicadas pela organização",
+      "Como conferir mudanças, adiamentos e cancelamentos",
+      "Critérios para escolher a prova adequada ao perfil",
+      "Apresentar fontes oficiais sob um intertítulo editorial específico",
+    ],
+  },
+
+  "guia-prova": {
+    label: "Guia de prova para o participante (3.11)",
+    structure: [
+      "O evento, a modalidade e o nível de disputa",
+      "Data, cidade e situação oficial da prova",
+      "Inscrição, prazo, categorias e elegibilidade",
+      "Percurso, distância e altimetria quando confirmados",
+      "Regulamento, equipamentos obrigatórios e segurança",
+      "Logística de viagem, retirada de kit e horários confirmados",
+      "Checklist do que precisa ser revalidado antes do pagamento",
+      "Apresentar fontes oficiais sob um intertítulo editorial específico",
+    ],
+  },
 };
 
 export function getTemplate(type) {
@@ -262,6 +290,8 @@ export function getTemplate(type) {
     lancamento: "lancamento",
     "previa-corrida": "previa-corrida",
     "resumo-corrida": "resumo-corrida",
+    "calendario-provas": "calendario-provas",
+    "guia-prova": "guia-prova",
   };
 
   const key = aliases[type] || type;
