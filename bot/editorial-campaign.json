@@ -21,8 +21,10 @@
       "postPath": "_posts/2026-08-08-cambio-eletronico-ajuste-diagnostico.md",
       "imageManifestPath": "assets/img/posts/cambio-eletronico-ajuste-diagnostico/image-manifest.json",
       "imageStatus": "approved",
-      "imageAssetIds": [],
-      "imageValidatedAt": "2026-08-09T11:34:55.259Z",
+      "imageAssetIds": [
+        "thebiker-bateria-sram-axs-eaa649bc43"
+      ],
+      "imageValidatedAt": "2026-08-09T12:32:09.198Z",
       "publishedAt": "2026-08-08T15:33:02.861Z",
       "attempts": 0,
       "aiReview": {
