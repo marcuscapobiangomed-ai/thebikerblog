@@ -14,7 +14,7 @@
     "check:claims": "npm --prefix bot run check:claims",
     "audit:editorial": "npm --prefix bot run audit:editorial",
     "audit:seo": "node scripts/audit-seo.mjs",
-    "test": "npm --prefix bot test && node scripts/test-calculators.mjs && node scripts/test-homepage-recent.mjs && node scripts/test-editorial-intelligence.mjs && node scripts/test-monthly-campaign.mjs && node scripts/test-campaign-recovery.mjs && node scripts/test-audience-strategy.mjs",
+    "test": "npm --prefix bot test && node scripts/test-calculators.mjs && node scripts/test-homepage-recent.mjs && node scripts/test-editorial-intelligence.mjs && node scripts/test-monthly-campaign.mjs && node scripts/test-campaign-recovery.mjs && node scripts/test-audience-strategy.mjs && node scripts/test-primary-navigation.mjs",
     "test:analytics": "node scripts/test-analytics-tracking.mjs",
     "intelligence:run": "node scripts/run-editorial-intelligence.mjs",
     "build:n8n": "node scripts/build-n8n-workflows.mjs",

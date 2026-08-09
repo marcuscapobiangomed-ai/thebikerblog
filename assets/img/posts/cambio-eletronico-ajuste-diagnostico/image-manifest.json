@@ -2,44 +2,28 @@
   "schemaVersion": 2,
   "status": "approved",
   "editorialUse": "publishable",
-  "assetType": "official-product-photo",
-  "factualSubject": "exact-product",
+  "assetType": "technical-diagram",
+  "factualSubject": "conceptual",
   "editorialScope": "portfolio",
-  "purpose": "Ilustrar Câmbio eletrônico sob carga: ajuste fino, diagnóstico e erros que comprometem a troca com produto real do catálogo TheBiker.",
-  "alt": "Bateria Sram AXS em fotografia oficial da TheBiker Shop",
-  "caption": "Bateria Sram AXS, conforme catálogo oficial da TheBiker Shop.",
-  "credit": "TheBiker Shop",
-  "containsText": false,
+  "purpose": "Identificar visualmente a pauta técnica Câmbio eletrônico sob carga: ajuste e diagnóstico do Shimano Di2.",
+  "alt": "Capa técnica TheBiker para o artigo Câmbio eletrônico sob carga: ajuste e diagnóstico do Shimano Di2",
+  "caption": "Capa técnica produzida para o conteúdo editorial TheBiker.",
+  "credit": "TheBiker",
+  "containsText": true,
   "aiGenerated": false,
-  "assetId": "thebiker-bateria-sram-axs-5cbb772e8f",
-  "sha256": "5cbb772e8fee59d156ec1ae7f251baf573845f9eea165a56e60525688b4d6b93",
-  "perceptualHash": "1111111111100111110001111000010111000001111000111111111111111111",
-  "preserveFullProduct": true,
-  "matchedProduct": {
-    "id": "bateria-sram-axs",
-    "name": "Bateria Sram AXS",
-    "sku": null,
-    "matchLevel": "exact-id"
-  },
-  "depictedBrands": [
-    "SRAM"
-  ],
-  "depictedProducts": [
-    "Bateria Sram AXS"
-  ],
+  "depictedBrands": [],
+  "depictedProducts": [],
   "focalPoint": {
     "x": 0.5,
     "y": 0.5
   },
   "source": {
-    "type": "thebiker",
-    "name": "TheBiker Shop",
-    "url": "https://thebikershop.com.br/produtos/bateria-sram-axs/",
-    "fileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/abbf6440991-9b6cf23d3673cab21215735899547332-640-0.webp",
-    "obtainedAt": "2026-08-05",
-    "license": "Uso editorial no blog oficial TheBiker",
-    "licenseEvidence": "Diretriz editorial registrada pelo responsável do blog oficial TheBiker.",
-    "rightsPolicyId": "thebiker-official-editorial-v1"
+    "type": "own-production",
+    "name": "TheBiker",
+    "url": "",
+    "obtainedAt": "2026-08-09",
+    "license": "Propriedade editorial TheBiker",
+    "licenseEvidence": "Arte técnica original produzida pelo pipeline editorial do repositório."
   },
   "files": {
     "hero": {
@@ -62,25 +46,14 @@
     }
   },
   "approval": {
-    "reviewedBy": "TheBiker deterministic image gate",
-    "approvedAt": "2026-08-05",
+    "reviewedBy": "TheBiker AI Editorial Gate",
+    "approvedAt": "2026-08-09",
     "method": "automated-editorial-gate",
     "checks": [
-      "fonte-thebiker",
-      "direitos",
-      "produto-relacionado",
-      "sha256",
-      "hash-perceptual",
-      "sem-concorrente"
+      "origem-própria",
+      "sem-marca-concorrente",
+      "dimensões",
+      "peso-do-arquivo"
     ]
-  },
-  "composition": {
-    "strategy": "trim-contain-safe-area",
-    "safeArea": 0.9,
-    "trimThreshold": 16,
-    "sourceWidth": 380,
-    "sourceHeight": 380,
-    "subjectWidth": 266,
-    "subjectHeight": 247
   }
 }
