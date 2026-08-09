@@ -49,6 +49,7 @@
     "compare_products",
     "purchase_consideration",
     "follow_market_competition",
+    "find_race_to_enter",
     "plan_ride"
   ],
   "experienceLevelTaxonomy": [

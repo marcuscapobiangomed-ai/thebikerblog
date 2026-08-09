@@ -45,6 +45,16 @@ const CONTENT_TYPE_PRESETS = {
     mobile: "/assets/img/system/covers/corrida-v2/hero-800.webp",
     thumbnail: "/assets/img/system/covers/corrida-v2/card-640.webp",
   },
+  "calendario-provas": {
+    hero: "/assets/img/system/covers/corrida-v2/hero-1600.webp",
+    mobile: "/assets/img/system/covers/corrida-v2/hero-800.webp",
+    thumbnail: "/assets/img/system/covers/corrida-v2/card-640.webp",
+  },
+  "guia-prova": {
+    hero: "/assets/img/system/covers/corrida-v2/hero-1600.webp",
+    mobile: "/assets/img/system/covers/corrida-v2/hero-800.webp",
+    thumbnail: "/assets/img/system/covers/corrida-v2/card-640.webp",
+  },
 };
 
 export function getCoverPreset(contentType = "guia-de-compra") {

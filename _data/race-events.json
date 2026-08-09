@@ -1,0 +1,192 @@
+{
+  "version": 1,
+  "timezone": "America/Sao_Paulo",
+  "updatedAt": "2026-08-08T15:00:00.000Z",
+  "policy": {
+    "officialSourcesOnly": true,
+    "revalidateBeforePublicationHours": 24,
+    "unknownRegistrationLabel": "Inscrição ainda não confirmada na fonte oficial"
+  },
+  "events": [
+    {
+      "id": "uci-mtb-worlds-val-di-sole-2026",
+      "name": "UCI Mountain Bike World Championships 2026",
+      "track": "professional-coverage",
+      "discipline": "multi-discipline",
+      "level": "international",
+      "country": "IT",
+      "city": "Val di Sole",
+      "startsOn": "2026-08-26",
+      "endsOn": "2026-08-30",
+      "eventStatus": "scheduled",
+      "registration": { "status": "not-applicable" },
+      "sources": [
+        {
+          "type": "official-calendar",
+          "publisher": "Union Cycliste Internationale",
+          "url": "https://www.uci.org/calendar/mtb/1voMyukVGR4iZMhMlDfRv0?tab=calendar-upcoming",
+          "checkedAt": "2026-08-08T15:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "volta-ciclistica-santa-catarina-2026",
+      "name": "Volta Ciclística de Santa Catarina 2026",
+      "track": "professional-coverage",
+      "discipline": "road",
+      "level": "international",
+      "country": "BR",
+      "state": "SC",
+      "city": "A definir",
+      "startsOn": "2026-09-02",
+      "endsOn": "2026-09-06",
+      "eventStatus": "scheduled",
+      "registration": { "status": "not-applicable" },
+      "sources": [
+        {
+          "type": "official-calendar",
+          "publisher": "Confederação Brasileira de Ciclismo",
+          "url": "https://www.cbc.esp.br/modalidades/calendario/busca/estrada",
+          "checkedAt": "2026-08-08T15:00:00.000Z"
+        }
+      ],
+      "notes": "Calendário CBC classifica a prova como UCI 2.2; percurso e cidades ainda exigem confirmação oficial."
+    },
+    {
+      "id": "internacional-estrada-real-xcc-barbacena-2026",
+      "name": "Internacional Estrada Real #4 XCC",
+      "track": "professional-coverage",
+      "discipline": "mtb-xcc",
+      "level": "international",
+      "country": "BR",
+      "state": "MG",
+      "city": "Barbacena",
+      "startsOn": "2026-09-04",
+      "endsOn": "2026-09-04",
+      "eventStatus": "scheduled",
+      "registration": { "status": "not-applicable" },
+      "sources": [
+        {
+          "type": "official-calendar",
+          "publisher": "Confederação Brasileira de Ciclismo",
+          "url": "https://www.cbc.esp.br/modalidades/calendario/busca/mtb",
+          "checkedAt": "2026-08-08T15:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "circuito-estreito-xco-2026",
+      "name": "Circuito do Estreito - XCO",
+      "track": "participant-calendar",
+      "discipline": "mtb-xco",
+      "level": "regional",
+      "country": "BR",
+      "state": "PI",
+      "city": "Luzilândia",
+      "startsOn": "2026-08-22",
+      "endsOn": "2026-08-23",
+      "eventStatus": "scheduled",
+      "registration": { "status": "unknown" },
+      "sources": [
+        {
+          "type": "official-calendar",
+          "publisher": "Confederação Brasileira de Ciclismo",
+          "url": "https://www.cbc.esp.br/modalidades/calendario/busca/mtb",
+          "checkedAt": "2026-08-08T15:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "desafio-vertical-mtb-xcm-2026",
+      "name": "Desafio Vertical de MTB XCM 2026",
+      "track": "participant-calendar",
+      "discipline": "mtb-xcm",
+      "level": "regional",
+      "country": "BR",
+      "state": "CE",
+      "city": "Palmácia",
+      "startsOn": "2026-08-23",
+      "endsOn": "2026-08-23",
+      "eventStatus": "scheduled",
+      "registration": { "status": "unknown" },
+      "sources": [
+        {
+          "type": "official-calendar",
+          "publisher": "Confederação Brasileira de Ciclismo",
+          "url": "https://www.cbc.esp.br/modalidades/calendario/busca/mtb",
+          "checkedAt": "2026-08-08T15:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "brasileiro-mtb-xcm-castro-alves-2026",
+      "name": "Campeonato Brasileiro de MTB XCM 2026",
+      "track": "participant-calendar",
+      "discipline": "mtb-xcm",
+      "level": "national",
+      "country": "BR",
+      "state": "BA",
+      "city": "Castro Alves",
+      "startsOn": "2026-08-30",
+      "endsOn": "2026-08-30",
+      "eventStatus": "scheduled",
+      "registration": { "status": "unknown" },
+      "sources": [
+        {
+          "type": "official-calendar",
+          "publisher": "Confederação Brasileira de Ciclismo",
+          "url": "https://www.cbc.esp.br/modalidades/calendario/busca/mtb",
+          "checkedAt": "2026-08-08T15:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "desafio-mucuge-2026",
+      "name": "Desafio Mucugê 2026",
+      "track": "participant-calendar",
+      "discipline": "mtb-xcm",
+      "level": "regional",
+      "country": "BR",
+      "state": "BA",
+      "city": "Mucugê",
+      "startsOn": "2026-09-05",
+      "endsOn": "2026-09-06",
+      "eventStatus": "scheduled",
+      "registration": { "status": "unknown" },
+      "sources": [
+        {
+          "type": "official-calendar",
+          "publisher": "Confederação Brasileira de Ciclismo",
+          "url": "https://www.cbc.esp.br/modalidades/calendario/busca/mtb",
+          "checkedAt": "2026-08-08T15:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "brasileiro-estrada-masters-sub30-2026",
+      "name": "Campeonato Brasileiro de Estrada Masters e Sub-30 2026",
+      "track": "participant-calendar",
+      "discipline": "road",
+      "level": "national",
+      "country": "BR",
+      "state": "SE",
+      "city": "Aracaju",
+      "startsOn": "2026-09-18",
+      "endsOn": "2026-09-20",
+      "eventStatus": "confirmed",
+      "registration": {
+        "status": "unknown",
+        "deadline": "2026-09-05",
+        "eligibility": "Categorias Masters e Sub-30, com filiação CBC 2026; confirmar regras e inscrição na página oficial antes de publicar."
+      },
+      "sources": [
+        {
+          "type": "official-event",
+          "publisher": "Confederação Brasileira de Ciclismo",
+          "url": "https://www.cbc.esp.br/modalidades/eventos/busca/",
+          "checkedAt": "2026-08-08T15:00:00.000Z"
+        }
+      ]
+    }
+  ]
+}
