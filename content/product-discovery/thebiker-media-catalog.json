@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "source": "https://thebikershop.com.br/",
-  "discoveredAt": "2026-08-09T13:52:48.703Z",
+  "discoveredAt": "2026-08-09T17:34:32.394Z",
   "rightsPolicyId": "thebiker-official-editorial-v1",
   "total": 481,
   "products": [
@@ -2654,17 +2654,6 @@
       "sku": "212"
     },
     {
-      "id": "thule-bike-protector",
-      "name": "Thule Bike Protector",
-      "brand": "Thule",
-      "category": "acessorios",
-      "productUrl": "https://thebikershop.com.br/produtos/thule-bike-protector/",
-      "images": [
-        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/8887661-1b87ee2e17b18e0f9e16750903659432-480-0.webp"
-      ],
-      "sku": "988000"
-    },
-    {
       "id": "adaptador-para-rolo-elite-142mm-e-9mm-xonpq",
       "name": "Kit Adaptador para Rolo Elite 142mm e 9mm",
       "brand": "Elite",
@@ -3732,6 +3721,17 @@
       "sku": null
     },
     {
+      "id": "oculos-hb-presto-2-0-military-gree-gray",
+      "name": "Óculos HB Presto 2.0 Military Gree Gray",
+      "brand": "HB",
+      "category": "acessorios",
+      "productUrl": "https://thebikershop.com.br/produtos/oculos-hb-presto-2-0-military-gree-gray/",
+      "images": [
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/p_10105180807001_2-jpg-82531b911223cb18f017326560635077-480-0.webp"
+      ],
+      "sku": null
+    },
+    {
       "id": "espuma-interna-capacete-giro-agilis",
       "name": "Espuma Interna Capacete Giro Agilis",
       "brand": "Giro",
@@ -4487,17 +4487,6 @@
       "productUrl": "https://thebikershop.com.br/produtos/espuma-interna-capacete-scott-arx-plus/",
       "images": [
         "https://acdn-us.mitiendanube.com/stores/001/062/247/products/108362-00-d-1784541-ee9924486e7437552b16602519373487-480-0.webp"
-      ],
-      "sku": null
-    },
-    {
-      "id": "lente-extra-oculos-hb-presto-green",
-      "name": "Lente Extra HB Presto Green",
-      "brand": "HB",
-      "category": "vestuario",
-      "productUrl": "https://thebikershop.com.br/produtos/lente-extra-oculos-hb-presto-green/",
-      "images": [
-        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/p_20100370681_21-7b7ecd96d39900ec3116509104563954-480-0.webp"
       ],
       "sku": null
     },
@@ -5301,6 +5290,17 @@
       "productUrl": "https://thebikershop.com.br/produtos/capacete-abus-airbreaker-branco-puro/",
       "images": [
         "https://acdn-us.mitiendanube.com/stores/001/062/247/products/a8bb44f6-f448-11ef-a330-8eedd104f833-e57fb00eb98d2791b117407525183996-480-0.webp"
+      ],
+      "sku": null
+    },
+    {
+      "id": "sapatilha-fizik-x5-terra-atlas-verde-militar",
+      "name": "Sapatilha MTB Fizik X5 Terra Atlas Verde Militar",
+      "brand": "Fizik",
+      "category": "vestuario",
+      "productUrl": "https://thebikershop.com.br/produtos/sapatilha-fizik-x5-terra-atlas-verde-militar/",
+      "images": [
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/a91dc1d8-bdd8-11ed-91cf-92062a34e454-57a25b3787fdbed7e417176216267872-480-0.webp"
       ],
       "sku": null
     }

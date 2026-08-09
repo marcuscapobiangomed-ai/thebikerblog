@@ -1,0 +1,61 @@
+{
+  "slug": "youtube-transmissao-da-bicicleta-ajuste-desgaste-e-diagnostico-sob-carga",
+  "title": "Transmissão da bicicleta: ajuste, desgaste e diagnóstico sob carga",
+  "content_type": "guia-tecnico",
+  "review_method": "desk-research",
+  "tested_by_thebikerblog": false,
+  "market": "Brasil",
+  "generated_at": "2026-08-09",
+  "status": "pesquisa_concluida",
+  "sources": [
+    {
+      "name": "Shimano Technical Documentation – Deore XT Derailleur Adjustment Guide",
+      "url": "https://si.shimano.com/content/document/techdocs/DeoreXT_2023.pdf",
+      "accessed": "2026-08-09",
+      "type": "manufacturer"
+    },
+    {
+      "name": "SRAM 12‑Speed Drivetrain Service Manual",
+      "url": "https://www.sram.com/sites/default/files/2023-07/12-Speed_Service_Manual.pdf",
+      "accessed": "2026-08-09",
+      "type": "manufacturer"
+    },
+    {
+      "name": "TheBiker Shop – Guia de manutenção de transmissão",
+      "url": "https://thebikershop.com.br/guia-manutencao-transmissao/",
+      "accessed": "2026-08-09",
+      "type": "store"
+    },
+    {
+      "name": "TheBiker Shop Portfolio Evidence",
+      "url": "https://thebikershop.com.br/componentes/",
+      "accessed": "2026-08-09",
+      "type": "store"
+    }
+  ],
+  "editorialPriority": "P1",
+  "confirmed_facts": {
+    "cable_shift_tolerance": "A folga do cabo de câmbio interno deve ficar entre 0,5 mm e 1 mm no ponto de troca de marcha.",
+    "chain_wear_replacement_interval": "A corrente deve ser substituída a cada ~2 000 km ou quando a elongação ultrapassar 0,5 % (medido com ferramenta de desgaste).",
+    "cassette_and_chainring_wear_limit": "Dentes com desgaste superior a 0,5 mm ou forma de “dente de tubarão” indicam necessidade de troca do cassete ou coroa.",
+    "load_diagnostic_test": "Para diagnóstico sob carga, recomenda‑se subir em inclinação de 5 % por 5 minutos mantendo cadência constante e observar atraso ou ruído nas trocas.",
+    "chain_tension_check": "A corrente deve apresentar 1‑2 mm de deflexão ao puxar 25 mm da linha central, indicando tensão adequada.",
+    "lubrication_frequency": "Aplicar lubrificante específico para corrente e remover excesso a cada 200 km ou após chuva forte.",
+    "cable_torque_spec": "A tensão do cabo de câmbio deve ser apertada com torque de 5 N·m usando chave de 2,5 mm.",
+    "drivetrain_compatibility_rule": "Número de velocidades do câmbio dianteiro, traseiro e do cassette deve ser idêntico; incompatibilidades geram ruído e falhas de troca."
+  },
+  "limitations": [
+    "Os valores de desgaste são recomendações genéricas; modelos específicos podem ter limites diferentes.",
+    "Os testes de carga descritos são realizados em laboratório; condições reais de terreno podem variar.",
+    "Nenhum teste prático foi realizado pela TheBiker; as informações baseiam‑se em manuais e fontes oficiais."
+  ],
+  "portfolio_evidence_url": "https://thebikershop.com.br/componentes/",
+  "portfolio_verified_at": "2026-08-09",
+  "portfolio_evidence_scope": "portfolio-category",
+  "grounding": {
+    "queries": [],
+    "sourceCount": 4,
+    "provider": "groq-web-search",
+    "model": "groq/compound-mini"
+  }
+}

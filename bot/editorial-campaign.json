@@ -61,6 +61,7 @@
         "thebiker-kit-de-rolamentos-direcao-scott-foil-510894cafc"
       ],
       "imageValidatedAt": "2026-08-05T17:12:11.856Z",
+      "publishedAt": "2026-08-09T15:35:02.322Z",
       "attempts": 0,
       "aiReview": {
         "score": 0,
@@ -75,8 +76,7 @@
           "bufferFinalAudit": "deepseek"
         },
         "generatedAt": "2026-08-05T15:25:40.344Z"
-      },
-      "publishedAt": "2026-08-09T15:35:02.322Z"
+      }
     },
     {
       "day": 3,
@@ -427,10 +427,12 @@
       "summary": "Criar resposta técnica original para ciclista intermediário ou avançado, com método e limitações declarados. Sinal observado: 31.956 visualizações globais do vídeo; 1.183 por dia; encontrado em 1 busca(s) configurada(s) para o Brasil.",
       "category": "manutencao-ajustes",
       "freshness": "event-driven",
-      "status": "planned",
+      "status": "blocked",
       "productIds": [],
       "imageAssetIds": [],
-      "attempts": 0
+      "attempts": 1,
+      "lastAttemptAt": "2026-08-09T17:34:33.162Z",
+      "blockReason": "Gates editoriais não atendidos: extensão insuficiente: 1163 palavras; mínimo 1600"
     },
     {
       "day": 14,
