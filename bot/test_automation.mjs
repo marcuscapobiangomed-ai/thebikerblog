@@ -13,6 +13,7 @@ import { selectScheduledPublication } from "./src/publish_scheduled.js";
 import { buildRepairPrompt } from "./src/editorial-prompt.js";
 import { produceCampaignVisual } from "./src/campaign_finalize.js";
 import { markdownPublicationErrors } from "./src/validation/markdown-publication-gates.js";
+import { scheduledDraftErrors } from "./src/validation/validate-scheduled-publications.js";
 
 assert.deepEqual(markdownPublicationErrors(`---
 tags: ["ciclismo", "cambio-eletronico"]
@@ -31,6 +32,25 @@ Durante o pedal, a tecnologia de ponta resolveu tudo.`), [
   "tags não canônicas: câmbio eletrônico",
   "linguagem publicitária proibida: tecnologia de ponta",
   "alegação de teste prático proibida: Durante o pedal",
+]);
+assert.deepEqual(scheduledDraftErrors(`---
+published: false
+tags: ["ciclismo", "guia-tecnico"]
+review_method: "desk-research"
+tested_by_thebikerblog: false
+---
+
+Diagnóstico técnico baseado em fontes.`), []);
+assert.deepEqual(scheduledDraftErrors(`---
+published: true
+tags: ["guia técnico"]
+review_method: "desk-research"
+tested_by_thebikerblog: false
+---
+
+Diagnóstico técnico baseado em fontes.`), [
+  "rascunho scheduled precisa conter published: false",
+  "tags não canônicas: guia técnico",
 ]);
 
 const root = await fs.mkdtemp(path.join(os.tmpdir(), "thebiker-queue-"));

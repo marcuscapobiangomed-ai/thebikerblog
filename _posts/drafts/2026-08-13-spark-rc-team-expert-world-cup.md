@@ -25,7 +25,7 @@ price_max: 89999
 price_currency: "BRL"
 price_checked_at: "2026-08-07"
 category: "comparativos"
-tags: ["ciclismo", "mountain bike", "xc", "scott spark rc", "comparativo"]
+tags: ["ciclismo", "mountain-bike", "xc", "scott-spark-rc", "comparativo"]
 description: "Compare Scott Spark RC Team, Expert e World Cup: quadro, suspensão, transmissão, rodas e preço. Descubra qual montagem atende seu perfil de XC."
 direct_answer: "Compare Scott Spark RC Team, Expert e World Cup: quadro, suspensão, transmissão, rodas e preço. Descubra qual montagem atende seu perfil de XC."
 image: "/assets/img/posts/spark-rc-team-expert-world-cup/hero-1600.webp"

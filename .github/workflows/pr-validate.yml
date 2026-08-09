@@ -64,6 +64,7 @@ jobs:
           node --check src/knowledge/product-knowledge.js
           node --check src/schemas/article.schema.js
           node --check src/validation/validate-research.js
+          node --check src/validation/validate-scheduled-publications.js
           node --check src/validation/validate-images.js
           node --check src/validation/check-claims.js
           node --check src/generator.js
@@ -84,6 +85,10 @@ jobs:
 
       - name: Validar Fichas de Pesquisa
         run: node src/validation/validate-research.js
+        working-directory: bot
+
+      - name: Validar buffer agendado para publicação
+        run: npm run validate:scheduled
         working-directory: bot
 
       - name: Verificar Alegações Proibidas
