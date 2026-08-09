@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "source": "https://thebikershop.com.br/",
-  "discoveredAt": "2026-08-08T17:34:01.739Z",
+  "discoveredAt": "2026-08-09T09:43:04.094Z",
   "rightsPolicyId": "thebiker-official-editorial-v1",
   "total": 481,
   "products": [
@@ -2258,17 +2258,6 @@
       "sku": null
     },
     {
-      "id": "suporte-de-garmin-syncros-mtb-dc-nova-spark",
-      "name": "Suporte de Garmin Syncros MTB DC - Scott Spark / Scale",
-      "brand": "Syncros",
-      "category": "acessorios",
-      "productUrl": "https://thebikershop.com.br/produtos/suporte-de-garmin-syncros-mtb-dc-nova-spark/",
-      "images": [
-        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/2881450001_1799167_png_zoom_11-8cdca0c4d5fc5fdcfa16360433352389-480-0.webp"
-      ],
-      "sku": "288145"
-    },
-    {
       "id": "caramanhola-elite-fly-tex-750ml-preta",
       "name": "Caramanhola Elite FLY TEX 750ml Preta",
       "brand": "Elite",
@@ -2278,6 +2267,17 @@
         "https://acdn-us.mitiendanube.com/stores/001/062/247/products/img_3348-ef357a6d95bb2f151b17175190481857-480-0.webp"
       ],
       "sku": null
+    },
+    {
+      "id": "suporte-de-garmin-syncros-mtb-dc-nova-spark",
+      "name": "Suporte de Garmin Syncros MTB DC - Scott Spark / Scale",
+      "brand": "Syncros",
+      "category": "acessorios",
+      "productUrl": "https://thebikershop.com.br/produtos/suporte-de-garmin-syncros-mtb-dc-nova-spark/",
+      "images": [
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/2881450001_1799167_png_zoom_11-8cdca0c4d5fc5fdcfa16360433352389-480-0.webp"
+      ],
+      "sku": "288145"
     },
     {
       "id": "caramanhola-elite-fly-tex-550ml-preta",
@@ -3160,17 +3160,6 @@
       "sku": "199"
     },
     {
-      "id": "suporte-para-rastreador-muc-off-tubeless-tag-holder",
-      "name": "Suporte para Rastreador Muc Off Tubeless Tag Holder",
-      "brand": "Muc Off",
-      "category": "acessorios",
-      "productUrl": "https://thebikershop.com.br/produtos/suporte-para-rastreador-muc-off-tubeless-tag-holder/",
-      "images": [
-        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/web_no_valve_tubeless_tag_holder__2022_1000x1000-b855f1fd8e7f3c89ca17147156347349-480-0.webp"
-      ],
-      "sku": "20707"
-    },
-    {
       "id": "fita-de-aro-tubeless-rim-tape",
       "name": "Fita de Aro Muc Off",
       "brand": "Muc Off",
@@ -3677,17 +3666,6 @@
       "sku": "UCI COW BELL"
     },
     {
-      "id": "oculos-hb-grinder-cristal-gold-chrome",
-      "name": "Óculos HB Grinder Cristal Gold Chrome",
-      "brand": "HB",
-      "category": "acessorios",
-      "productUrl": "https://thebikershop.com.br/produtos/oculos-hb-grinder-cristal-gold-chrome/",
-      "images": [
-        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/p_10103860884026_2-e1c5ac940728ab93e817545993789631-480-0.webp"
-      ],
-      "sku": null
-    },
-    {
       "id": "sensor-cardiaco-garmin-hrm-200",
       "name": "Sensor Cardiaco Garmin HRM-200",
       "brand": "Garmin",
@@ -3730,6 +3708,28 @@
         "https://acdn-us.mitiendanube.com/stores/001/062/247/products/2929116512-png-aa73278afba9e1150417368881494484-480-0.webp"
       ],
       "sku": "292911651222"
+    },
+    {
+      "id": "mochila-thule-landmark-40l-darkest-blue",
+      "name": "Mochila Thule Landmark 40L Darkest Blue",
+      "brand": "Thule",
+      "category": "acessorios",
+      "productUrl": "https://thebikershop.com.br/produtos/mochila-thule-landmark-40l-darkest-blue/",
+      "images": [
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/1511340-2af42eaa387416820317352212613104-480-0.webp"
+      ],
+      "sku": "3205309"
+    },
+    {
+      "id": "garrafa-termica-elite-nano-fly-500ml-cinza-claro",
+      "name": "Garrafa Térmica Elite Nano Fly 500ml - Cinza Claro",
+      "brand": "Elite",
+      "category": "acessorios",
+      "productUrl": "https://thebikershop.com.br/produtos/garrafa-termica-elite-nano-fly-500ml-cinza-claro/",
+      "images": [
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/1010733-1-84d14b000ff9e8b2b517340344182189-480-0.webp"
+      ],
+      "sku": null
     },
     {
       "id": "espuma-interna-capacete-giro-agilis",

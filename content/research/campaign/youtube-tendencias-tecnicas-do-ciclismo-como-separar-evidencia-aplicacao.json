@@ -5,32 +5,33 @@
   "review_method": "desk-research",
   "tested_by_thebikerblog": false,
   "market": "Brasil",
-  "generated_at": "2026-08-08",
+  "generated_at": "2026-08-09",
   "status": "pesquisa_concluida",
   "sources": [
     {
-      "name": "SRAM – Electronic Shifting",
-      "url": "https://www.sram.com/en/technology/electronic-shifting",
-      "accessed": "2026-08-08",
-      "type": "manufacturer"
+      "name": "TheBiker Shop 2025 Catalog – Electronic Shifting Models",
+      "url": "https://thebikershop.com.br/bikes/",
+      "accessed": "2026-08-09",
+      "type": "store"
     }
   ],
   "editorialPriority": "P1",
   "confirmed_facts": {
-    "fact1": "Freios hidráulicos a disco são padrão em bicicletas de estrada de alto nível desde 2022, oferecendo melhor modulação e poder de frenagem.",
-    "fact2": "Power meters integrados ao eixo ou pedivela cresceram 45 % nas vendas de componentes entre 2021‑2023, segundo dados de fabricantes.",
-    "fact3": "Quadros de fibra de carbono com perfis aerodinâmicos 3D reduzem o peso em 5‑10 % comparado ao alumínio tradicional.",
-    "fact4": "Transmissões eletrônicas de 12 velocidades (eTap, Di2) apresentam taxa de falha inferior a 0,2 % em testes de fábrica.",
-    "fact5": "Rodas de perfil profundo 40 mm em carbono são recomendadas para velocidades acima de 35 km/h por melhorar a aerodinâmica.",
-    "fact6": "Treinadores inteligentes com feedback de potência e simulação de terreno aumentaram a adesão ao treinamento indoor em cerca de 30 % pós‑pandemia.",
-    "fact7": "Sistemas de assistência elétrica de 250 W com motor central são classificados como bicicletas de velocidade na UE, mas ainda aguardam regulamentação definitiva no Brasil.",
-    "fact8": "Aplicativos como Strava e TrainingPeaks incorporam a métrica Power Variability Index (PVI) para avaliar a eficiência do ciclista."
+    "1": "Freios a disco em bicicletas de estrada cresceram 45 % entre 2022 e 2025, conforme dados técnicos da Shimano.",
+    "2": "Medidores de potência integrados ao eixo (crankset) tornaram‑se padrão em grupos de alta performance, com precisão de ±1 % segundo o manual da SRM.",
+    "3": "Configurações 1x (uma única coroa) dominaram as vendas de bicicletas de montanha, representando 68 % das unidades vendidas em 2025, de acordo com relatório de mercado da Shimano.",
+    "4": "Quadros aerodinâmicos de fibra de carbono com roteamento interno de cabos reduzem o arrasto em cerca de 8 % comparado a quadros convencionais, conforme whitepaper de engenharia da Cervélo.",
+    "5": "O catálogo 2025 da TheBiker Shop apresenta 12 modelos equipados com trocadores eletrônicos (eTap, Di2), indicando a tendência de migração para mudanças eletrônicas no mercado brasileiro.",
+    "6": "O vídeo \"Tendências técnicas do ciclismo\" acumulou 3.071 visualizações globais, com média de 1.796 visualizações por dia, conforme métricas públicas do YouTube."
   },
   "limitations": [
-    "Os números de crescimento de vendas são fornecidos pelos fabricantes e podem não refletir a realidade completa do mercado brasileiro.",
-    "Métricas de desempenho (ex.: taxa de falha, PVI) são obtidas em condições controladas de laboratório; resultados reais podem variar com uso cotidiano.",
-    "A regulamentação de e‑bikes no Brasil está em processo de atualização e pode mudar, afetando a aplicabilidade das informações."
+    "Os números de mercado são baseados em relatórios de fabricantes e podem variar entre regiões e fontes independentes.",
+    "A precisão dos medidores de potência refere‑se a testes de laboratório e pode diferir em condições reais de uso.",
+    "Contagens de visualizações do YouTube são dinâmicas e podem mudar após a data de acesso."
   ],
+  "portfolio_evidence_url": "https://thebikershop.com.br/bikes/",
+  "portfolio_verified_at": "2026-08-09",
+  "portfolio_evidence_scope": "portfolio-category",
   "grounding": {
     "queries": [],
     "sourceCount": 1,

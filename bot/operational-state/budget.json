@@ -1,7 +1,7 @@
 {
   "limit": 5,
   "month": "2026-08",
-  "spent": 0.5182180659999998,
-  "updatedAt": "2026-08-08T17:35:49.044Z",
-  "lastModel": "deepseek-v4-pro"
+  "spent": 0.5323087091999996,
+  "updatedAt": "2026-08-09T09:44:57.353Z",
+  "lastModel": "deepseek-v4-flash"
 }

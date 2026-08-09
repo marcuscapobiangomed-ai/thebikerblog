@@ -363,7 +363,10 @@
       "status": "scheduled",
       "productIds": [],
       "postPath": "_posts/drafts/2026-08-18-youtube-bike-fit-e-posicao-criterios-tecnicos-para-ajuste-e-distribuicao.md",
+      "imageManifestPath": "assets/img/posts/youtube-bike-fit-e-posicao-criterios-tecnicos-para-ajuste-e-distribuicao/image-manifest.json",
+      "imageStatus": "approved",
       "imageAssetIds": [],
+      "imageValidatedAt": "2026-08-08T17:45:09.217Z",
       "attempts": 1,
       "lastAttemptAt": "2026-08-08T17:34:02.509Z",
       "aiReview": {
@@ -380,10 +383,7 @@
           "finalRepair": "deepseek"
         },
         "generatedAt": "2026-08-08T17:34:02.509Z"
-      },
-      "imageManifestPath": "assets/img/posts/youtube-bike-fit-e-posicao-criterios-tecnicos-para-ajuste-e-distribuicao/image-manifest.json",
-      "imageStatus": "approved",
-      "imageValidatedAt": "2026-08-08T17:45:09.217Z"
+      }
     },
     {
       "day": 12,
@@ -393,10 +393,12 @@
       "summary": "Criar resposta técnica original para ciclista intermediário ou avançado, com método e limitações declarados. Sinal observado: 3.071 visualizações globais do vídeo; 1.796 por dia; encontrado em 1 busca(s) configurada(s) para o Brasil.",
       "category": "lancamentos",
       "freshness": "event-driven",
-      "status": "planned",
+      "status": "blocked",
       "productIds": [],
       "imageAssetIds": [],
-      "attempts": 0
+      "attempts": 1,
+      "lastAttemptAt": "2026-08-09T09:43:04.905Z",
+      "blockReason": "STATUS: REVISÃO FINAL REPROVADA\nNota 85; bloqueadores: nota abaixo do mínimo"
     },
     {
       "day": 13,
