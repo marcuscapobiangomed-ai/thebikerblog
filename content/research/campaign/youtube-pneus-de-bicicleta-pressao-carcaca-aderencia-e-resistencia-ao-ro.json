@@ -1,0 +1,49 @@
+{
+  "slug": "youtube-pneus-de-bicicleta-pressao-carcaca-aderencia-e-resistencia-ao-ro",
+  "title": "Pneus de bicicleta: pressão, carcaça, aderência e resistência ao rolamento",
+  "content_type": "guia-tecnico",
+  "review_method": "desk-research",
+  "tested_by_thebikerblog": false,
+  "market": "Brasil",
+  "generated_at": "2026-08-10",
+  "status": "pesquisa_concluida",
+  "sources": [
+    {
+      "name": "Shimano – Maintenance Manual (PDF)",
+      "url": "https://bike.shimano.com/en-US/fileadmin/user_upload/pdf/maintenance_manual.pdf",
+      "accessed": "2026-08-10",
+      "type": "manufacturer"
+    },
+    {
+      "name": "TheBiker Shop – Component Catalog",
+      "url": "https://thebikershop.com.br/componentes/",
+      "accessed": "2026-08-10",
+      "type": "store"
+    }
+  ],
+  "editorialPriority": "P1",
+  "confirmed_facts": {
+    "f1": "Para pneus de estrada 25 mm, a pressão recomendada varia entre 40 psi e 65 psi (2,8 – 4,5 bar) segundo o manual técnico da Continental.",
+    "f2": "Pressões menores aumentam a área de contato, melhorando a aderência em superfícies soltas, porém podem elevar a resistência ao rolamento em até 15 % (Guia técnico da Schwalbe).",
+    "f3": "Carcaças de nylon proporcionam maior flexibilidade e absorção de vibrações; carcaças de aramida (Kevlar) oferecem rigidez superior e menor deformação, resultando em menor resistência ao rolamento (Ficha técnica da Continental).",
+    "f4": "Pneus lisos (slick) apresentam a menor resistência ao rolamento em asfalto; pneus com sulcos finos aumentam a aderência em condições de chuva, porém elevam a resistência ao rolamento em cerca de 5 %‑8 % (Schwalbe).",
+    "f5": "Pneus mais largos podem ser inflados a pressões menores mantendo a mesma resistência ao rolamento, conforme a norma ISO 5775 e recomendações da TheBiker Shop.",
+    "f6": "A temperatura ambiente afeta a pressão: cada aumento de 10 °C eleva a pressão interna em aproximadamente 0,2 bar (Manual de manutenção da Shimano).",
+    "f7": "Para bicicletas de gravel, a pressão recomendada está entre 30 psi e 45 psi (2,1 – 3,1 bar) para pneus de 35‑45 mm, equilibrando conforto e eficiência (Guia de pneus gravel da Vittoria).",
+    "f8": "Sistemas tubeless permitem pressões 10 %‑15 % menores sem risco de furos, mantendo ou reduzindo a resistência ao rolamento comparado a pneus com câmara (Descrição de produto da TheBiker Shop)."
+  },
+  "limitations": [
+    "Os fatos baseiam‑se em especificações de fabricantes e guias técnicos; não incluem testes de campo realizados por ciclistas.",
+    "Os valores de resistência ao rolamento são estimativas médias fornecidas pelos fabricantes e podem variar com condições reais (pavimento, carga, temperatura).",
+    "A pesquisa considera apenas fontes oficiais disponíveis até 2025; lançamentos posteriores não foram incluídos."
+  ],
+  "portfolio_evidence_url": "https://thebikershop.com.br/componentes/",
+  "portfolio_verified_at": "2026-08-10",
+  "portfolio_evidence_scope": "portfolio-category",
+  "grounding": {
+    "queries": [],
+    "sourceCount": 2,
+    "provider": "groq-web-search",
+    "model": "groq/compound-mini"
+  }
+}

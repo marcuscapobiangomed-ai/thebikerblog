@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "source": "https://thebikershop.com.br/",
-  "discoveredAt": "2026-08-10T14:22:05.155Z",
+  "discoveredAt": "2026-08-10T17:54:01.588Z",
   "rightsPolicyId": "thebiker-official-editorial-v1",
   "total": 481,
   "products": [
@@ -2676,6 +2676,17 @@
       "sku": "1070676"
     },
     {
+      "id": "kit-premium-de-limpeza-de-sapatilhas-muc-off",
+      "name": "Kit Premium de Limpeza de Sapatilhas Muc Off",
+      "brand": "Muc Off",
+      "category": "acessorios",
+      "productUrl": "https://thebikershop.com.br/produtos/kit-premium-de-limpeza-de-sapatilhas-muc-off/",
+      "images": [
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/web_20339-premium-bike-shoe-care-kit_2022_2_x550_crop_center2x-jpg-d715c21f0035e8593017430225172458-480-0.webp"
+      ],
+      "sku": "20339"
+    },
+    {
       "id": "garrafa-scott-corporate-600ml-verde",
       "name": "Garrafa Scott Corporate 600ml - Verde",
       "brand": "Scott",
@@ -2696,17 +2707,6 @@
         "https://acdn-us.mitiendanube.com/stores/001/062/247/products/img_7540-87a14829cef349124217644158790751-480-0.webp"
       ],
       "sku": "422716"
-    },
-    {
-      "id": "kit-premium-de-limpeza-de-sapatilhas-muc-off",
-      "name": "Kit Premium de Limpeza de Sapatilhas Muc Off",
-      "brand": "Muc Off",
-      "category": "acessorios",
-      "productUrl": "https://thebikershop.com.br/produtos/kit-premium-de-limpeza-de-sapatilhas-muc-off/",
-      "images": [
-        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/web_20339-premium-bike-shoe-care-kit_2022_2_x550_crop_center2x-jpg-d715c21f0035e8593017430225172458-480-0.webp"
-      ],
-      "sku": "20339"
     },
     {
       "id": "protetor-de-quadro-scott-scale-houston",
@@ -2896,6 +2896,17 @@
       "sku": "ACS-101"
     },
     {
+      "id": "protetor-de-quadro-scott-spark-e-lumen-houston",
+      "name": "Protetor de quadro Scott Spark e Lumen Houston",
+      "brand": "Syncros",
+      "category": "acessorios",
+      "productUrl": "https://thebikershop.com.br/produtos/protetor-de-quadro-scott-spark-e-lumen-houston/",
+      "images": [
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/captura-de-tela-2026-01-09-as-09-30-16-5bc76fa9f07a76ea4317679620554001-480-0.webp"
+      ],
+      "sku": "4194690001222"
+    },
+    {
       "id": "valvula-para-tubeles-muc-off-big-bore-hybrid-60mm-dmj7x",
       "name": "Válvula para Tubeles Muc Off Big Bore Hybrid",
       "brand": "Muc Off",
@@ -2949,17 +2960,6 @@
         "https://acdn-us.mitiendanube.com/stores/001/062/247/products/liner11-0d4f710078c45974af16675071920716-480-0.webp"
       ],
       "sku": null
-    },
-    {
-      "id": "protetor-de-quadro-scott-spark-e-lumen-houston",
-      "name": "Protetor de quadro Scott Spark e Lumen Houston",
-      "brand": "Syncros",
-      "category": "acessorios",
-      "productUrl": "https://thebikershop.com.br/produtos/protetor-de-quadro-scott-spark-e-lumen-houston/",
-      "images": [
-        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/captura-de-tela-2026-01-09-as-09-30-16-5bc76fa9f07a76ea4317679620554001-480-0.webp"
-      ],
-      "sku": "4194690001222"
     },
     {
       "id": "garrafa-termica-elite-nano-fly-500ml",

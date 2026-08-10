@@ -95,6 +95,7 @@
         "thebiker-pastilha-de-freio-sram-guide-trail-organica-c458e0070c"
       ],
       "imageValidatedAt": "2026-08-05T17:10:57.802Z",
+      "publishedAt": "2026-08-10T15:44:48.961Z",
       "attempts": 0,
       "aiReview": {
         "score": 0,
@@ -109,8 +110,7 @@
           "bufferFinalAudit": "deepseek"
         },
         "generatedAt": "2026-08-05T14:32:13.739Z"
-      },
-      "publishedAt": "2026-08-10T15:44:48.961Z"
+      }
     },
     {
       "day": 4,
@@ -461,10 +461,28 @@
       "summary": "Criar resposta técnica original para ciclista intermediário ou avançado, com método e limitações declarados. Sinal observado: 32.958 visualizações globais do vídeo; 2.235 por dia; encontrado em 1 busca(s) configurada(s) para o Brasil.",
       "category": "componentes",
       "freshness": "event-driven",
-      "status": "planned",
+      "status": "blocked",
       "productIds": [],
+      "postPath": "_posts/drafts/2026-08-21-youtube-pneus-de-bicicleta-pressao-carcaca-aderencia-e-resistencia-ao-ro.md",
       "imageAssetIds": [],
-      "attempts": 0
+      "attempts": 1,
+      "lastAttemptAt": "2026-08-10T17:54:02.687Z",
+      "aiReview": {
+        "score": 72,
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "premiumEditUsed": true,
+        "providers": {
+          "factSheet": "deepseek",
+          "draft": "gemini",
+          "critique": "deepseek",
+          "final": "deepseek",
+          "finalAudit": "deepseek",
+          "finalRepair": "deepseek"
+        },
+        "generatedAt": "2026-08-10T17:54:02.687Z"
+      },
+      "blockReason": "Validação final: Gate Markdown reprovado: linguagem publicitária proibida: imbatível"
     },
     {
       "day": 15,
