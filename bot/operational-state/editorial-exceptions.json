@@ -264,6 +264,30 @@
         "title": "Ciclocross: regulamento, pneus e preparação da bike para prova"
       },
       "reason": "STATUS: REVISÃO FINAL REPROVADA\nNota 85; bloqueadores: nota abaixo do mínimo"
+    },
+    {
+      "recordedAt": "2026-08-10T10:20:10.897Z",
+      "campaignId": "thebiker-rolling-2026-08-08",
+      "replacedItem": {
+        "day": 13,
+        "publishDate": "2026-08-20",
+        "id": "youtube-transmissao-da-bicicleta-ajuste-desgaste-e-diagnostico-sob-carga",
+        "title": "Transmissão da bicicleta: ajuste, desgaste e diagnóstico sob carga",
+        "summary": "Criar resposta técnica original para ciclista intermediário ou avançado, com método e limitações declarados. Sinal observado: 31.956 visualizações globais do vídeo; 1.183 por dia; encontrado em 1 busca(s) configurada(s) para o Brasil.",
+        "category": "manutencao-ajustes",
+        "freshness": "event-driven",
+        "status": "blocked",
+        "productIds": [],
+        "imageAssetIds": [],
+        "blockReason": "Gates editoriais não atendidos: extensão insuficiente: 1163 palavras; mínimo 1600",
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-09T17:34:33.162Z"
+      },
+      "replacement": {
+        "id": "medidor-potencia-pedal-eixo",
+        "title": "Medidor de potência: base no pedal ou no eixo? O que muda no treino"
+      },
+      "reason": "Gates editoriais não atendidos: extensão insuficiente: 1163 palavras; mínimo 1600"
     }
   ]
 }

@@ -1,0 +1,76 @@
+{
+  "slug": "medidor-potencia-pedal-eixo",
+  "title": "Medidor de potência: base no pedal ou no eixo? O que muda no treino",
+  "content_type": "comparativo",
+  "review_method": "desk-research",
+  "tested_by_thebikerblog": false,
+  "market": "Brasil",
+  "generated_at": "2026-08-10",
+  "status": "pesquisa_concluida",
+  "sources": [
+    {
+      "name": "Shimano SPD‑SL Power Meter Manual",
+      "url": "https://bike.shimano.com/en-US/product/PD-M8000.html",
+      "accessed": "2026-08-10",
+      "type": "manufacturer"
+    },
+    {
+      "name": "TheBiker Shop – Catálogo de bicicletas",
+      "url": "https://thebikershop.com.br/bikes/",
+      "accessed": "2026-08-10",
+      "type": "store",
+      "portfolio_evidence_url": "https://thebikershop.com.br/bikes/",
+      "portfolio_verified_at": "2026-08-10",
+      "portfolio_evidence_scope": "portfolio-category"
+    }
+  ],
+  "editorialPriority": "P1",
+  "confirmed_facts": [
+    {
+      "id": 1,
+      "fact": "Medidores instalados no pedal medem o torque diretamente no eixo da pedalada, permitindo a leitura de potência individual de cada perna sem necessidade de componentes adicionais no pedivela."
+    },
+    {
+      "id": 2,
+      "fact": "Medidores de potência no eixo (spider ou pedivela) capturam o torque no conjunto do pedivela; a divisão esquerda/direita é estimada por algoritmos ou sensores duplos, exigindo compatibilidade com o conjunto de coroas."
+    },
+    {
+      "id": 3,
+      "fact": "Medidores no cubo traseiro (eixo) medem a potência após as perdas da transmissão, não fornecendo a separação esquerda/direita, mas são menos sensíveis ao desgaste da corrente."
+    },
+    {
+      "id": 4,
+      "fact": "A calibração de pedais e pedivelas costuma combinar um ajuste estático (zero offset) com um teste de rotação (spin‑down); cubos geralmente requerem apenas o ajuste estático, pois já incluem sensores internos calibrados."
+    },
+    {
+      "id": 5,
+      "fact": "Sensores de pedal ficam mais expostos a variações de temperatura ambiente, o que pode influenciar a leitura das strain gauges; sensores no pedivela ou cubo são mais protegidos, oferecendo maior estabilidade térmica."
+    },
+    {
+      "id": 6,
+      "fact": "A instalação de medidores de pedal não altera a geometria da bicicleta, enquanto os de pedivela exigem um pedivela compatível e podem mudar o alinhamento da corrente."
+    },
+    {
+      "id": 7,
+      "fact": "A transmissão de dados dos medidores de pedal costuma ter latência ligeiramente menor, pois cada pedal envia seu próprio sinal; cubos enviam dados a partir do eixo traseiro, introduzindo um pequeno atraso, relevante em treinos de alta cadência."
+    },
+    {
+      "id": 8,
+      "fact": "Manutenção: pedais têm baterias substituíveis por unidade; cubos exigem manutenção do próprio cubo; pedivelas precisam de verificação periódica do torque dos parafusos e, em alguns casos, substituição de sensores."
+    }
+  ],
+  "limitations": [
+    "As informações provêm exclusivamente de documentação oficial dos fabricantes; o desempenho real pode variar conforme condições de uso.",
+    "Nenhum teste prático foi realizado pela equipe TheBiker; a análise baseia‑se em pesquisa de mesa.",
+    "A disponibilidade de modelos específicos pode ser diferente no mercado brasileiro, influenciando a escolha do usuário."
+  ],
+  "portfolio_evidence_url": "https://thebikershop.com.br/bikes/",
+  "portfolio_verified_at": "2026-08-10",
+  "portfolio_evidence_scope": "portfolio-category",
+  "grounding": {
+    "queries": [],
+    "sourceCount": 2,
+    "provider": "groq-web-search",
+    "model": "groq/compound-mini"
+  }
+}

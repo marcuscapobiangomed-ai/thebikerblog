@@ -422,17 +422,17 @@
     {
       "day": 13,
       "publishDate": "2026-08-20",
-      "id": "youtube-transmissao-da-bicicleta-ajuste-desgaste-e-diagnostico-sob-carga",
-      "title": "Transmissão da bicicleta: ajuste, desgaste e diagnóstico sob carga",
-      "summary": "Criar resposta técnica original para ciclista intermediário ou avançado, com método e limitações declarados. Sinal observado: 31.956 visualizações globais do vídeo; 1.183 por dia; encontrado em 1 busca(s) configurada(s) para o Brasil.",
-      "category": "manutencao-ajustes",
-      "freshness": "event-driven",
+      "id": "medidor-potencia-pedal-eixo",
+      "title": "Medidor de potência: base no pedal ou no eixo? O que muda no treino",
+      "summary": "Diferenças práticas entre medidores instalados no pedal, eixo ou spider, considerando leitura, calibração e uso em treinos. Sem rankings de marcas.",
+      "category": "comparativo",
+      "freshness": "revalidate-24h",
       "status": "blocked",
       "productIds": [],
       "imageAssetIds": [],
       "attempts": 1,
-      "lastAttemptAt": "2026-08-09T17:34:33.162Z",
-      "blockReason": "Gates editoriais não atendidos: extensão insuficiente: 1163 palavras; mínimo 1600"
+      "lastAttemptAt": "2026-08-10T10:20:11.740Z",
+      "blockReason": "Gates editoriais não atendidos: extensão insuficiente: 1518 palavras; mínimo 1600"
     },
     {
       "day": 14,
@@ -658,12 +658,6 @@
   ],
   "reserves": [
     {
-      "id": "medidor-potencia-pedal-eixo",
-      "title": "Medidor de potência: base no pedal ou no eixo? O que muda no treino",
-      "summary": "Diferenças práticas entre medidores instalados no pedal, eixo ou spider, considerando leitura, calibração e uso em treinos. Sem rankings de marcas.",
-      "category": "comparativo"
-    },
-    {
       "id": "servico-garfo-amortecedor-oleo-vedacao",
       "title": "Serviço de garfo e amortecedor: quando trocar óleo e vedação",
       "summary": "Sinais de que a suspensão precisa de serviço interno, como perda de amortecimento e vazamento de óleo. Inclui cuidados com vedação.",
@@ -686,6 +680,12 @@
       "title": "Cabos e mangueiras: roteamento, atrito e sinais de montagem que pedem correção",
       "summary": "Leitura técnica de curvas, fixações, contato com o quadro e interferências que alteram comando, ruído e durabilidade.",
       "category": "componentes"
+    },
+    {
+      "id": "reserva-limpeza-transmissao-metodo",
+      "title": "Limpeza de transmissão: como remover contaminantes sem deslocar o problema",
+      "summary": "Sequência de limpeza, inspeção e relubrificação que considera corrente, cassete, coroas, roldanas e compatibilidade química.",
+      "category": "manutencao-ajustes"
     }
   ]
 }
