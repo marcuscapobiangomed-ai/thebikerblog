@@ -102,10 +102,10 @@
     {
       "day": 13,
       "publishDate": "2026-08-20",
-      "title": "Medidor de potência: base no pedal ou no eixo? O que muda no treino",
-      "summary": "Diferenças práticas entre medidores instalados no pedal, eixo ou spider, considerando leitura, calibração e uso em treinos. Sem rankings de marcas.",
-      "category": "comparativo",
-      "status": "blocked"
+      "title": "Serviço de garfo e amortecedor: quando trocar óleo e vedação",
+      "summary": "Sinais de que a suspensão precisa de serviço interno, como perda de amortecimento e vazamento de óleo. Inclui cuidados com vedação.",
+      "category": "manutencao-ajustes",
+      "status": "scheduled"
     },
     {
       "day": 14,

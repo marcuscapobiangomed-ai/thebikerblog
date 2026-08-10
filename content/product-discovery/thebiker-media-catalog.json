@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "source": "https://thebikershop.com.br/",
-  "discoveredAt": "2026-08-10T10:20:10.681Z",
+  "discoveredAt": "2026-08-10T14:22:05.155Z",
   "rightsPolicyId": "thebiker-official-editorial-v1",
   "total": 481,
   "products": [
@@ -2555,6 +2555,17 @@
       "sku": "1500034358"
     },
     {
+      "id": "caramanhola-elite-fly-tex-950ml-preta",
+      "name": "Caramanhola Elite FLY TEX 950ml Preta",
+      "brand": "Elite",
+      "category": "acessorios",
+      "productUrl": "https://thebikershop.com.br/produtos/caramanhola-elite-fly-tex-950ml-preta/",
+      "images": [
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/thumbnail_image_0160921_fly_tex_black_grey_logo_950ml_380-c4240327142d04b59f17513226075474-480-0.webp"
+      ],
+      "sku": null
+    },
+    {
       "id": "cartucho-co2-shimano-pro-16g",
       "name": "Cartucho CO2 Shimano Pro 16g",
       "brand": "Shimano",
@@ -2599,6 +2610,17 @@
       "sku": "2754770001222"
     },
     {
+      "id": "thule-bike-protector",
+      "name": "Thule Bike Protector",
+      "brand": "Thule",
+      "category": "acessorios",
+      "productUrl": "https://thebikershop.com.br/produtos/thule-bike-protector/",
+      "images": [
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/8887661-1b87ee2e17b18e0f9e16750903659432-480-0.webp"
+      ],
+      "sku": "988000"
+    },
+    {
       "id": "protetor-de-rodas-thule",
       "name": "Protetor de Rodas Thule",
       "brand": "Thule",
@@ -2628,17 +2650,6 @@
       "productUrl": "https://thebikershop.com.br/produtos/garrafa-syncros-corporate-g7-550ml-preta/",
       "images": [
         "https://acdn-us.mitiendanube.com/stores/001/062/247/products/4263420001610_2231847-86226afc02c653374017579665110229-480-0.webp"
-      ],
-      "sku": null
-    },
-    {
-      "id": "caramanhola-elite-fly-tex-950ml-preta",
-      "name": "Caramanhola Elite FLY TEX 950ml Preta",
-      "brand": "Elite",
-      "category": "acessorios",
-      "productUrl": "https://thebikershop.com.br/produtos/caramanhola-elite-fly-tex-950ml-preta/",
-      "images": [
-        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/thumbnail_image_0160921_fly_tex_black_grey_logo_950ml_380-c4240327142d04b59f17513226075474-480-0.webp"
       ],
       "sku": null
     },
@@ -2806,6 +2817,17 @@
         "https://acdn-us.mitiendanube.com/stores/001/062/247/products/captura-de-tela-2025-09-15-as-17-03-12-df24daf409f3f717ae17579668001317-480-0.webp"
       ],
       "sku": "4234320001222"
+    },
+    {
+      "id": "caramanhola-elite-fly-tex-950ml-transparente",
+      "name": "Caramanhola Elite FLY TEX 950ml Transparente",
+      "brand": "Elite",
+      "category": "acessorios",
+      "productUrl": "https://thebikershop.com.br/produtos/caramanhola-elite-fly-tex-950ml-transparente/",
+      "images": [
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/thumbnail_image_0160920_fly_tex_clear_grey_logo_950ml_380-499d1e8ec34e610eab17562152943512-480-0.webp"
+      ],
+      "sku": null
     },
     {
       "id": "caramanhola-elite-fly-tex-550ml-branca",
@@ -3004,6 +3026,17 @@
         "https://acdn-us.mitiendanube.com/stores/001/062/247/products/st0157-stan_s-original-tubeless-sealant_-1000ml-web_1e23957c-1414-445f-87c0-d3f43069afac-jpg-a57ef5f7128d9cdce717279042501120-480-0.webp"
       ],
       "sku": "ST0157"
+    },
+    {
+      "id": "suporte-para-rastreador-muc-off-tubeless-tag-holder",
+      "name": "Suporte para Rastreador Muc Off Tubeless Tag Holder",
+      "brand": "Muc Off",
+      "category": "acessorios",
+      "productUrl": "https://thebikershop.com.br/produtos/suporte-para-rastreador-muc-off-tubeless-tag-holder/",
+      "images": [
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/web_no_valve_tubeless_tag_holder__2022_1000x1000-b855f1fd8e7f3c89ca17147156347349-480-0.webp"
+      ],
+      "sku": "20707"
     },
     {
       "id": "freehub-xd-xdr-para-rolo-de-treino-elite",
@@ -3699,39 +3732,6 @@
       "sku": "292911651222"
     },
     {
-      "id": "mochila-thule-landmark-40l-darkest-blue",
-      "name": "Mochila Thule Landmark 40L Darkest Blue",
-      "brand": "Thule",
-      "category": "acessorios",
-      "productUrl": "https://thebikershop.com.br/produtos/mochila-thule-landmark-40l-darkest-blue/",
-      "images": [
-        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/1511340-2af42eaa387416820317352212613104-480-0.webp"
-      ],
-      "sku": "3205309"
-    },
-    {
-      "id": "garrafa-termica-elite-nano-fly-500ml-cinza-claro",
-      "name": "Garrafa Térmica Elite Nano Fly 500ml - Cinza Claro",
-      "brand": "Elite",
-      "category": "acessorios",
-      "productUrl": "https://thebikershop.com.br/produtos/garrafa-termica-elite-nano-fly-500ml-cinza-claro/",
-      "images": [
-        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/1010733-1-84d14b000ff9e8b2b517340344182189-480-0.webp"
-      ],
-      "sku": null
-    },
-    {
-      "id": "oculos-hb-presto-2-0-military-gree-gray",
-      "name": "Óculos HB Presto 2.0 Military Gree Gray",
-      "brand": "HB",
-      "category": "acessorios",
-      "productUrl": "https://thebikershop.com.br/produtos/oculos-hb-presto-2-0-military-gree-gray/",
-      "images": [
-        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/p_10105180807001_2-jpg-82531b911223cb18f017326560635077-480-0.webp"
-      ],
-      "sku": null
-    },
-    {
       "id": "espuma-interna-capacete-giro-agilis",
       "name": "Espuma Interna Capacete Giro Agilis",
       "brand": "Giro",
@@ -3919,6 +3919,17 @@
       "sku": null
     },
     {
+      "id": "sapatilha-triathlon-shimano-tr501",
+      "name": "Sapatilha Triathlon Shimano TR501",
+      "brand": "Shimano",
+      "category": "vestuario",
+      "productUrl": "https://thebikershop.com.br/produtos/sapatilha-triathlon-shimano-tr501/",
+      "images": [
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/sh-tr501_c165_1_750_750-5ff1ff143de765e7e117434556595911-480-0.webp"
+      ],
+      "sku": null
+    },
+    {
       "id": "ajuste-giratorio-para-capacetes-scott-mras",
       "name": "Ajuste Giratório para Capacetes Scott MRAS",
       "brand": "Scott",
@@ -3959,17 +3970,6 @@
       "productUrl": "https://thebikershop.com.br/produtos/meia-shimano-s-phyre-flash-cano-alto1/",
       "images": [
         "https://acdn-us.mitiendanube.com/stores/001/062/247/products/cw-scrs-xs41m-shic165-primary_2_750_750-c4d342031f1100443717446663986843-480-0.webp"
-      ],
-      "sku": null
-    },
-    {
-      "id": "sapatilha-triathlon-shimano-tr501",
-      "name": "Sapatilha Triathlon Shimano TR501",
-      "brand": "Shimano",
-      "category": "vestuario",
-      "productUrl": "https://thebikershop.com.br/produtos/sapatilha-triathlon-shimano-tr501/",
-      "images": [
-        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/sh-tr501_c165_1_750_750-5ff1ff143de765e7e117434556595911-480-0.webp"
       ],
       "sku": null
     },
@@ -4487,6 +4487,17 @@
       "productUrl": "https://thebikershop.com.br/produtos/espuma-interna-capacete-scott-arx-plus/",
       "images": [
         "https://acdn-us.mitiendanube.com/stores/001/062/247/products/108362-00-d-1784541-ee9924486e7437552b16602519373487-480-0.webp"
+      ],
+      "sku": null
+    },
+    {
+      "id": "lente-extra-oculos-hb-presto-green",
+      "name": "Lente Extra HB Presto Green",
+      "brand": "HB",
+      "category": "vestuario",
+      "productUrl": "https://thebikershop.com.br/produtos/lente-extra-oculos-hb-presto-green/",
+      "images": [
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/p_20100370681_21-7b7ecd96d39900ec3116509104563954-480-0.webp"
       ],
       "sku": null
     },
@@ -5180,17 +5191,6 @@
       "productUrl": "https://thebikershop.com.br/produtos/bretelle-castelli-endurance-3/",
       "images": [
         "https://acdn-us.mitiendanube.com/stores/001/062/247/products/65d3e03c-d29e-11eb-9d35-0242ac1200051-c76adcc747203db9d816329404951164-480-0.webp"
-      ],
-      "sku": null
-    },
-    {
-      "id": "bretelle-castelli-entrata",
-      "name": "Bretelle Castelli Entrata 2",
-      "brand": "Castelli",
-      "category": "vestuario",
-      "productUrl": "https://thebikershop.com.br/produtos/bretelle-castelli-entrata/",
-      "images": [
-        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/1922458c-d2a6-11eb-81cc-0242ac1200091-df8ea376b707630cb316327496970577-480-0.webp"
       ],
       "sku": null
     },

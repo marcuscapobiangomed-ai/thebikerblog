@@ -422,17 +422,35 @@
     {
       "day": 13,
       "publishDate": "2026-08-20",
-      "id": "medidor-potencia-pedal-eixo",
-      "title": "Medidor de potência: base no pedal ou no eixo? O que muda no treino",
-      "summary": "Diferenças práticas entre medidores instalados no pedal, eixo ou spider, considerando leitura, calibração e uso em treinos. Sem rankings de marcas.",
-      "category": "comparativo",
-      "freshness": "revalidate-24h",
-      "status": "blocked",
+      "id": "servico-garfo-amortecedor-oleo-vedacao",
+      "title": "Serviço de garfo e amortecedor: quando trocar óleo e vedação",
+      "summary": "Sinais de que a suspensão precisa de serviço interno, como perda de amortecimento e vazamento de óleo. Inclui cuidados com vedação.",
+      "category": "manutencao-ajustes",
+      "freshness": "evergreen",
+      "status": "scheduled",
       "productIds": [],
+      "postPath": "_posts/drafts/2026-08-20-servico-garfo-amortecedor-oleo-vedacao.md",
       "imageAssetIds": [],
       "attempts": 1,
-      "lastAttemptAt": "2026-08-10T10:20:11.740Z",
-      "blockReason": "Gates editoriais não atendidos: extensão insuficiente: 1518 palavras; mínimo 1600"
+      "lastAttemptAt": "2026-08-10T14:22:05.926Z",
+      "aiReview": {
+        "score": 45,
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "premiumEditUsed": true,
+        "providers": {
+          "factSheet": "deepseek",
+          "draft": "gemini",
+          "critique": "deepseek",
+          "final": "deepseek",
+          "finalAudit": "deepseek",
+          "finalRepair": "deepseek"
+        },
+        "generatedAt": "2026-08-10T14:22:05.926Z"
+      },
+      "imageManifestPath": "assets/img/posts/servico-garfo-amortecedor-oleo-vedacao/image-manifest.json",
+      "imageStatus": "approved",
+      "imageValidatedAt": "2026-08-10T14:25:12.262Z"
     },
     {
       "day": 14,
@@ -657,12 +675,6 @@
     }
   ],
   "reserves": [
-    {
-      "id": "servico-garfo-amortecedor-oleo-vedacao",
-      "title": "Serviço de garfo e amortecedor: quando trocar óleo e vedação",
-      "summary": "Sinais de que a suspensão precisa de serviço interno, como perda de amortecimento e vazamento de óleo. Inclui cuidados com vedação.",
-      "category": "manutencao-ajustes"
-    },
     {
       "id": "reserva-diagnostico-ruidos-bike",
       "title": "Diagnóstico de ruídos na bicicleta: método por carga, frequência e interface",

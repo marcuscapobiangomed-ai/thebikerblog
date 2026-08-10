@@ -288,6 +288,30 @@
         "title": "Medidor de potência: base no pedal ou no eixo? O que muda no treino"
       },
       "reason": "Gates editoriais não atendidos: extensão insuficiente: 1163 palavras; mínimo 1600"
+    },
+    {
+      "recordedAt": "2026-08-10T14:22:05.370Z",
+      "campaignId": "thebiker-rolling-2026-08-08",
+      "replacedItem": {
+        "day": 13,
+        "publishDate": "2026-08-20",
+        "id": "medidor-potencia-pedal-eixo",
+        "title": "Medidor de potência: base no pedal ou no eixo? O que muda no treino",
+        "summary": "Diferenças práticas entre medidores instalados no pedal, eixo ou spider, considerando leitura, calibração e uso em treinos. Sem rankings de marcas.",
+        "category": "comparativo",
+        "freshness": "revalidate-24h",
+        "status": "blocked",
+        "productIds": [],
+        "imageAssetIds": [],
+        "blockReason": "Gates editoriais não atendidos: extensão insuficiente: 1518 palavras; mínimo 1600",
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-10T10:20:11.740Z"
+      },
+      "replacement": {
+        "id": "servico-garfo-amortecedor-oleo-vedacao",
+        "title": "Serviço de garfo e amortecedor: quando trocar óleo e vedação"
+      },
+      "reason": "Gates editoriais não atendidos: extensão insuficiente: 1518 palavras; mínimo 1600"
     }
   ]
 }
