@@ -86,9 +86,9 @@
       "summary": "Diagnóstico de alinhamento, empeno, recuo de pistões, contaminação e compatibilidade de rotores nas montagens de estrada e XC.",
       "category": "manutencao-ajustes",
       "freshness": "evergreen",
-      "status": "scheduled",
+      "status": "published",
       "productIds": [],
-      "postPath": "_posts/drafts/2026-08-10-alinhamento-pinca-rotores.md",
+      "postPath": "_posts/2026-08-10-alinhamento-pinca-rotores.md",
       "imageManifestPath": "assets/img/posts/alinhamento-pinca-rotores/image-manifest.json",
       "imageStatus": "approved",
       "imageAssetIds": [
@@ -109,7 +109,8 @@
           "bufferFinalAudit": "deepseek"
         },
         "generatedAt": "2026-08-05T14:32:13.739Z"
-      }
+      },
+      "publishedAt": "2026-08-10T15:44:48.961Z"
     },
     {
       "day": 4,
@@ -430,7 +431,10 @@
       "status": "scheduled",
       "productIds": [],
       "postPath": "_posts/drafts/2026-08-20-servico-garfo-amortecedor-oleo-vedacao.md",
+      "imageManifestPath": "assets/img/posts/servico-garfo-amortecedor-oleo-vedacao/image-manifest.json",
+      "imageStatus": "approved",
       "imageAssetIds": [],
+      "imageValidatedAt": "2026-08-10T14:25:12.262Z",
       "attempts": 1,
       "lastAttemptAt": "2026-08-10T14:22:05.926Z",
       "aiReview": {
@@ -447,10 +451,7 @@
           "finalRepair": "deepseek"
         },
         "generatedAt": "2026-08-10T14:22:05.926Z"
-      },
-      "imageManifestPath": "assets/img/posts/servico-garfo-amortecedor-oleo-vedacao/image-manifest.json",
-      "imageStatus": "approved",
-      "imageValidatedAt": "2026-08-10T14:25:12.262Z"
+      }
     },
     {
       "day": 14,

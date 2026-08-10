@@ -1,6 +1,6 @@
 ---
 layout: post
-published: false
+published: true
 title: "Pinça, rotor e contato de pastilha: como eliminar atrito sem perder potência de frenagem"
 slug: "alinhamento-pinca-rotores"
 date: 2026-08-10
@@ -44,8 +44,8 @@ promoted_brands: ["Scott"]
 context_only_brands: []
 portfolio_evidence_url: "https://thebikershop.com.br/categoria/bicicletas/scott/"
 portfolio_verified_at: "2026-08-05"
-editorial_status: "reviewed"
-status: "scheduled"
+editorial_status: "published"
+status: "published"
 sources:
   - name: "Scott — página oficial do modelo Addict 50"
     type: "manufacturer"
