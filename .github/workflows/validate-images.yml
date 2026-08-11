@@ -5,6 +5,12 @@ on:
     paths:
       - "_posts/**"
       - "assets/img/posts/**"
+      - "bot/editorial-campaign.json"
+      - "bot/config/official-image-sources.json"
+      - "bot/src/images/**"
+      - "bot/src/validation/**"
+      - "content/product-discovery/thebiker-media-catalog.json"
+      - "scripts/audit-media-catalog.js"
 
 jobs:
   validate:
@@ -28,4 +34,4 @@ jobs:
         working-directory: bot
 
       - name: Validate post images
-        run: node scripts/validate-images.js
+        run: npm run media:audit && node scripts/validate-images.js

@@ -1,3 +1,5 @@
+import { canonicalPortfolioBrand } from "../portfolio-policy.js";
+
 function normalize(value) {
   return String(value || "")
     .normalize("NFD")
@@ -7,13 +9,17 @@ function normalize(value) {
     .toLocaleLowerCase("pt-BR");
 }
 
+function normalizeBrand(value) {
+  return normalize(canonicalPortfolioBrand(value) || value);
+}
+
 function unique(values) {
   return [...new Set(values.map(normalize).filter(Boolean))];
 }
 
 function promotedBrands(article) {
   const declared = Array.isArray(article?.promoted_brands) ? article.promoted_brands : [];
-  return unique([article?.brand, ...declared]).filter((brand) => brand !== "thebiker");
+  return [...new Set([article?.brand, ...declared].map(normalizeBrand).filter(Boolean))].filter((brand) => brand !== "thebiker");
 }
 
 export function imageArticleConsistencyErrors({ article = {}, manifest = {}, campaignItem = null, catalog = null, archivedAsset = null } = {}) {
@@ -23,7 +29,7 @@ export function imageArticleConsistencyErrors({ article = {}, manifest = {}, cam
   const subjectId = String(article.image_subject_id || "").trim();
 
   if (visualPolicy) {
-    const expectedSubject = visualPolicy.mode === "exact-product"
+    const expectedSubject = ["exact-product", "real-context"].includes(visualPolicy.mode)
       ? "exact-product"
       : visualPolicy.mode === "race-context" ? "real-event" : "conceptual";
     if (factualSubject !== expectedSubject) {
@@ -38,11 +44,11 @@ export function imageArticleConsistencyErrors({ article = {}, manifest = {}, cam
     if (matchedId && subjectId && matchedId !== subjectId) {
       errors.push(`produto visual ${matchedId} não corresponde ao image_subject_id ${subjectId}`);
     }
-    if (visualPolicy?.mode === "exact-product" && matchedId && matchedId !== visualPolicy.productId) {
+    if (["exact-product", "real-context"].includes(visualPolicy?.mode) && matchedId && matchedId !== visualPolicy.productId) {
       errors.push(`produto visual ${matchedId} não corresponde ao heroImage.productId ${visualPolicy.productId}`);
     }
 
-    const depicted = unique(manifest.depictedBrands || []);
+    const depicted = [...new Set((manifest.depictedBrands || []).map(normalizeBrand).filter(Boolean))];
     if (depicted.length === 0) errors.push("imagem de produto exato exige depictedBrands");
     const promoted = promotedBrands(article);
     if (promoted.length > 0 && depicted.length > 0 && !depicted.some((brand) => promoted.includes(brand))) {
@@ -59,7 +65,7 @@ export function imageArticleConsistencyErrors({ article = {}, manifest = {}, cam
           && archivedAsset.rightsPolicyId === manifest.source?.rightsPolicyId;
         if (!immutableProofMatches) errors.push(`produto visual ${matchedId} não existe no catálogo editorial nem possui prova imutável`);
       } else {
-        const catalogBrand = normalize(product.brand);
+        const catalogBrand = normalizeBrand(product.brand);
         if (catalogBrand && depicted.length > 0 && !depicted.includes(catalogBrand)) {
           errors.push(`marca declarada na imagem (${depicted.join(", ")}) não corresponde à marca do catálogo (${catalogBrand})`);
         }

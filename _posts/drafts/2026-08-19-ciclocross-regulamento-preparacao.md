@@ -1,4 +1,5 @@
 ---
+image_subject_id: "cambio-traseiro-shimano-grx-11v"
 layout: post
 published: false
 title: "Ciclocross: regulamento, pneus e preparação da bike para prova"
@@ -37,12 +38,12 @@ image: "/assets/img/posts/ciclocross-regulamento-preparacao/hero-1600.webp"
 image_mobile: "/assets/img/posts/ciclocross-regulamento-preparacao/hero-800.webp"
 thumbnail: "/assets/img/posts/ciclocross-regulamento-preparacao/card-640.webp"
 image_manifest_version: 2
-image_asset_type: "technical-diagram"
+image_asset_type: "official-product-photo"
 image_status: "approved"
-image_alt: "Capa técnica TheBiker para o artigo Ciclocross: regulamento, pneus e preparação da bike para prova"
-image_caption: "Capa técnica produzida para o conteúdo editorial TheBiker."
-image_credit: "TheBiker"
-image_license: "Propriedade editorial TheBiker"
+image_alt: "Câmbio Traseiro Shimano GRX 11v RD-RX812 em fotografia oficial de TheBiker Shop"
+image_caption: "Câmbio Traseiro Shimano GRX 11v RD-RX812, em fotografia oficial de TheBiker Shop."
+image_credit: "TheBiker Shop"
+image_license: "Uso editorial no blog oficial TheBiker"
 affiliate_links: false
 editorial_scope: "portfolio"
 promoted_brands: ["Shimano"]

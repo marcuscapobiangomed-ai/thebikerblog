@@ -65,7 +65,7 @@ jobs:
       - run: npm ci
         working-directory: bot
       - name: Atualizar catálogo visual oficial da TheBiker
-        run: npm run media:discover
+        run: npm run media:discover && npm run media:audit
         working-directory: bot
       - name: Recuperar ou substituir a próxima pauta bloqueada
         run: npm run campaign:recover

@@ -2,28 +2,47 @@
   "schemaVersion": 2,
   "status": "approved",
   "editorialUse": "publishable",
-  "assetType": "technical-diagram",
-  "factualSubject": "conceptual",
+  "assetType": "official-product-photo",
+  "factualSubject": "exact-product",
   "editorialScope": "portfolio",
-  "purpose": "Identificar visualmente a pauta técnica Bike fit e posição: critérios técnicos para ajuste e distribuição de carga.",
-  "alt": "Capa técnica TheBiker para o artigo Bike fit e posição: critérios técnicos para ajuste e distribuição de carga",
-  "caption": "Capa técnica produzida para o conteúdo editorial TheBiker.",
-  "credit": "TheBiker",
-  "containsText": true,
+  "purpose": "Ilustrar Bike fit e posição: critérios técnicos para ajuste e distribuição de carga com produto real do catálogo TheBiker.",
+  "alt": "Selim Syncros Belcarra V1.0 Neo Carbon Cut Out - 145mm em fotografia oficial de TheBiker Shop",
+  "caption": "Selim Syncros Belcarra V1.0 Neo Carbon Cut Out - 145mm, em fotografia oficial de TheBiker Shop.",
+  "credit": "TheBiker Shop",
+  "containsText": false,
   "aiGenerated": false,
-  "depictedBrands": [],
-  "depictedProducts": [],
+  "assetId": "thebiker-selim-syncros-belcarra-v1-0-neo-carbon-cut-out-145mm-948a3da94c",
+  "sha256": "948a3da94cd3b916055f7392cab81e190c876c03139a7dcb0c04ee5d506c0ad2",
+  "perceptualHash": "1111111111111111100011110000011110000011110000001111110111111111",
+  "preserveFullProduct": true,
+  "outputFormat": "webp",
+  "qualityTier": "standard",
+  "matchedProduct": {
+    "id": "selim-syncros-belcarra-v1-0-neo-carbon-cut-out-145mm",
+    "name": "Selim Syncros Belcarra V1.0 Neo Carbon Cut Out - 145mm",
+    "sku": "295914",
+    "matchLevel": "exact-id"
+  },
+  "depictedBrands": [
+    "Syncros"
+  ],
+  "depictedProducts": [
+    "Selim Syncros Belcarra V1.0 Neo Carbon Cut Out - 145mm"
+  ],
   "focalPoint": {
     "x": 0.5,
     "y": 0.5
   },
   "source": {
-    "type": "own-production",
-    "name": "TheBiker",
-    "url": "",
-    "obtainedAt": "2026-08-08",
-    "license": "Propriedade editorial TheBiker",
-    "licenseEvidence": "Arte técnica original produzida pelo pipeline editorial do repositório."
+    "type": "thebiker",
+    "name": "TheBiker Shop",
+    "url": "https://thebikershop.com.br/produtos/selim-syncros-belcarra-v1-0-neo-carbon-cut-out-145mm/",
+    "fileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/2959140001a_2038209-png-1b693fdb1f8864545817368895919841-1024-1024.webp",
+    "localFile": "source.webp",
+    "obtainedAt": "2026-08-11",
+    "license": "Uso editorial no blog oficial TheBiker",
+    "licenseEvidence": "Diretriz editorial registrada pelo responsável do blog oficial TheBiker.",
+    "rightsPolicyId": "thebiker-official-editorial-v1"
   },
   "files": {
     "hero": {
@@ -46,14 +65,27 @@
     }
   },
   "approval": {
-    "reviewedBy": "TheBiker AI Editorial Gate",
-    "approvedAt": "2026-08-08",
+    "reviewedBy": "TheBiker deterministic image gate",
+    "approvedAt": "2026-08-11",
     "method": "automated-editorial-gate",
     "checks": [
-      "origem-própria",
-      "sem-marca-concorrente",
-      "dimensões",
-      "peso-do-arquivo"
+      "fonte-oficial",
+      "resolucao-padrao-declarada",
+      "webp-otimizado",
+      "direitos",
+      "produto-relacionado",
+      "sha256",
+      "hash-perceptual",
+      "sem-concorrente"
     ]
+  },
+  "composition": {
+    "strategy": "trim-contain-safe-area",
+    "safeArea": 0.9,
+    "trimThreshold": 16,
+    "sourceWidth": 1024,
+    "sourceHeight": 1024,
+    "subjectWidth": 912,
+    "subjectHeight": 587
   }
 }

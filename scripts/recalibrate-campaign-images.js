@@ -3,8 +3,16 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { produceCampaignVisual } from "../bot/src/campaign_finalize.js";
 import { refreshReceiptAfterDeterministicTransform } from "../bot/src/validation/editorial-receipt.js";
+import { assertVisualDecision, issueVisualDecision } from "../bot/src/validation/visual-decision.js";
+import * as yaml from "js-yaml";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+
+function articleData(content) {
+  const match = String(content).match(/^---\s*\r?\n([\s\S]*?)\r?\n---/);
+  if (!match) throw new Error("Frontmatter ausente");
+  return yaml.load(match[1]);
+}
 
 function setField(content, field, value) {
   const pattern = new RegExp(`^${field}:.*$`, "m");
@@ -40,6 +48,7 @@ async function main() {
     (requested.size === 0 || requested.has(item.id)),
   );
   const failures = [];
+  const catalog = JSON.parse(await fs.readFile(path.join(root, "content/product-discovery/thebiker-media-catalog.json"), "utf8"));
   for (const item of selected) {
     try {
       const approvedAt = new Date().toISOString().slice(0, 10);
@@ -70,6 +79,8 @@ async function main() {
       item.imageAssetIds = image.manifest.assetId ? [image.manifest.assetId] : [];
       item.imageValidatedAt = new Date().toISOString();
       item.editorialReceipt = refreshReceiptAfterDeterministicTransform({ content, item }) || item.editorialReceipt;
+      item.visualDecision = issueVisualDecision({ item, article: articleData(content), manifest: image.manifest, catalog, now: new Date() });
+      assertVisualDecision({ receipt: item.visualDecision, item, article: articleData(content), manifest: image.manifest, catalog });
       console.log(`✅ ${item.id}: ${image.manifest.matchedProduct?.name || "capa conceitual própria"}`);
     } catch (error) {
       failures.push(`${item.id}: ${error.message}`);

@@ -1,4 +1,5 @@
 ---
+image_subject_id: "corrente-sram-nx-eagle"
 layout: post
 published: false
 title: "Inspeção pós-chuva: os pontos que concentram contaminação, corrosão e desgaste"
@@ -32,12 +33,12 @@ image: "/assets/img/posts/reserva-inspecao-pos-chuva/hero-1600.webp"
 image_mobile: "/assets/img/posts/reserva-inspecao-pos-chuva/hero-800.webp"
 thumbnail: "/assets/img/posts/reserva-inspecao-pos-chuva/card-640.webp"
 image_manifest_version: 2
-image_asset_type: "technical-diagram"
+image_asset_type: "official-product-photo"
 image_status: "approved"
-image_alt: "Capa técnica TheBiker para o artigo Inspeção pós-chuva: os pontos que concentram contaminação, corrosão e desgaste"
-image_caption: "Capa técnica produzida para o conteúdo editorial TheBiker."
-image_credit: "TheBiker"
-image_license: "Propriedade editorial TheBiker"
+image_alt: "Corrente Sram NX Eagle em fotografia oficial de TheBiker Shop"
+image_caption: "Corrente Sram NX Eagle, em fotografia oficial de TheBiker Shop."
+image_credit: "TheBiker Shop"
+image_license: "Uso editorial no blog oficial TheBiker"
 affiliate_links: false
 editorial_scope: "portfolio"
 promoted_brands: ["SRAM"]

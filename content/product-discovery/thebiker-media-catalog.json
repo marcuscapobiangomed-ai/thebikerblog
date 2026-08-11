@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "source": "https://thebikershop.com.br/",
-  "discoveredAt": "2026-08-11T16:53:27.595Z",
+  "discoveredAt": "2026-08-11T18:15:15.099Z",
   "rightsPolicyId": "thebiker-official-editorial-v1",
-  "total": 484,
+  "total": 488,
   "products": [
     {
       "id": "quadro-scott-scale-rc-team-hmf-2026",
@@ -982,18 +982,6 @@
       "sku": "00.5018.176.000"
     },
     {
-      "id": "disco-de-freio-shimano-xtr-cl900-center-lock",
-      "name": "Disco de Freio Shimano XTR CL900 Center Lock",
-      "brand": "Shimano",
-      "category": "componentes",
-      "productUrl": "https://thebikershop.com.br/produtos/disco-de-freio-shimano-xtr-cl900-center-lock/",
-      "images": [
-        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/shimano-xtr-bremsscheibe-rt-cl900-center-lock-180-mm-icetech-freeza-35a84b0e7471dfcb9517565614721715-1024-1024.webp",
-        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/shimano-xtr-bremsscheibe-rt-cl900-center-lock-180-mm-icetech-freeza2-abe3a5ff4ec35f2f6417565614721420-1024-1024.webp"
-      ],
-      "sku": null
-    },
-    {
       "id": "pastilha-de-freio-shimano-k05ti-resina-xtr-dura-ace",
       "name": "Pastilha de Freio Shimano K05TI Resina - XTR/Dura Ace",
       "brand": "Shimano",
@@ -1111,17 +1099,6 @@
       "productUrl": "https://thebikershop.com.br/produtos/bateria-sram-axs/",
       "images": [
         "https://acdn-us.mitiendanube.com/stores/001/062/247/products/abbf6440991-9b6cf23d3673cab21215735899547332-480-0.webp"
-      ],
-      "sku": null
-    },
-    {
-      "id": "grupo-shimano-105-di2",
-      "name": "Grupo Shimano 105 Di2",
-      "brand": "Shimano",
-      "category": "componentes",
-      "productUrl": "https://thebikershop.com.br/produtos/grupo-shimano-105-di2/",
-      "images": [
-        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/shimano-r7100-105-di2-12-speed-disc-groupset1-86a06941b5e9ce397f16789989000621-1024-1024.webp"
       ],
       "sku": null
     },
@@ -5335,6 +5312,72 @@
       "productUrl": "https://thebikershop.com.br/produtos/capacete-abus-airbreaker-branco-puro/",
       "images": [
         "https://acdn-us.mitiendanube.com/stores/001/062/247/products/a8bb44f6-f448-11ef-a330-8eedd104f833-e57fb00eb98d2791b117407525183996-480-0.webp"
+      ],
+      "sku": null
+    },
+    {
+      "id": "grupo-shimano-105-di2",
+      "name": "Grupo Shimano 105 Di2",
+      "brand": "Shimano",
+      "category": "componentes",
+      "productUrl": "https://thebikershop.com.br/produtos/grupo-shimano-105-di2/",
+      "images": [
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/shimano-r7100-105-di2-12-speed-disc-groupset1-86a06941b5e9ce397f16789989000621-640-0.webp"
+      ],
+      "sku": null
+    },
+    {
+      "id": "disco-de-freio-shimano-xtr-cl900-center-lock",
+      "name": "Disco de Freio Shimano XTR CL900 Center Lock",
+      "brand": "Shimano",
+      "category": "componentes",
+      "productUrl": "https://thebikershop.com.br/produtos/disco-de-freio-shimano-xtr-cl900-center-lock/",
+      "images": [
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/shimano-xtr-bremsscheibe-rt-cl900-center-lock-180-mm-icetech-freeza-35a84b0e7471dfcb9517565614721715-640-0.webp"
+      ],
+      "sku": null
+    },
+    {
+      "id": "cambio-traseiro-shimano-grx-11v",
+      "name": "Câmbio Traseiro Shimano GRX 11v RD-RX812",
+      "brand": "Shimano",
+      "category": "componentes",
+      "productUrl": "https://thebikershop.com.br/produtos/cambio-traseiro-shimano-grx-11v/",
+      "images": [
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/shimano-desviador-traseiro-grx-rd-rx810-shadow-rd-direct1-09aa717cff5cd0fba116616197453563-640-0.webp"
+      ],
+      "sku": null
+    },
+    {
+      "id": "pneu-continental-gatorskin-700x28",
+      "name": "Pneu Continental GatorSkin 700x28 BlackEdition",
+      "brand": "Continental",
+      "category": "componentes",
+      "productUrl": "https://thebikershop.com.br/produtos/pneu-continental-gatorskin-700x28/",
+      "images": [
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/ef798064-959b-11ed-885e-be6342a0061c-f5087c144269ecf5b917018871676276-640-0.webp"
+      ],
+      "sku": null
+    },
+    {
+      "id": "pneu-schwalbe-racing-ray-29-x-2-25-super-race-tlr-addix",
+      "name": "Pneu Schwalbe Racing Ray 29 x 2.25 Super Race TLR Addix",
+      "brand": "Schwalbe",
+      "category": "componentes",
+      "productUrl": "https://thebikershop.com.br/produtos/pneu-schwalbe-racing-ray-29-x-2-25-super-race-tlr-addix/",
+      "images": [
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/schwalbe-racing-ray-evolution-addixspeed-superrace-transparent-skin-8608241-e2539507e196474cc716325152570604-640-0.webp"
+      ],
+      "sku": null
+    },
+    {
+      "id": "kit-reparo-suspensao-rock-shox-sid-flight-attendant",
+      "name": "Kit Reparo Suspensão RockShox SID SL 32 Flight Attendant 2026+",
+      "brand": "Rock Shox",
+      "category": "componentes",
+      "productUrl": "https://thebikershop.com.br/produtos/kit-reparo-suspensao-rock-shox-sid-flight-attendant/",
+      "images": [
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/fork-servicekit-1912847-8173335d4ce719cf4d17803506184697-640-0.webp"
       ],
       "sku": null
     }

@@ -44,6 +44,25 @@
           "bufferFinalAudit": "deepseek"
         },
         "generatedAt": "2026-08-05T13:26:00.968Z"
+      },
+      "visualDecision": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-visual-autonomy-v1",
+        "inputHash": "sha256:c5d3ec236e3181dcfe434e36d725ddf04f4ff7a539e03f529fad5fd6351f1a18",
+        "mode": "exact-product",
+        "productId": "grupo-shimano-105-di2",
+        "score": 100,
+        "hardGates": {
+          "semanticMatch": true,
+          "realAsset": true,
+          "explicitProduct": true,
+          "officialSource": true,
+          "approvedRights": true,
+          "publishableResolution": true,
+          "uniqueAsset": true
+        },
+        "blockers": [],
+        "issuedAt": "2026-08-11T18:15:18.901Z"
       }
     },
     {
@@ -84,6 +103,25 @@
           "bufferFinalAudit": "deepseek"
         },
         "generatedAt": "2026-08-05T15:25:40.344Z"
+      },
+      "visualDecision": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-visual-autonomy-v1",
+        "inputHash": "sha256:5cd9dab7e888632ec22a778a33da47cf051ed43d45cf9ab80ebeb4f2f7b26699",
+        "mode": "exact-product",
+        "productId": "kit-de-rolamentos-direcao-scott-foil",
+        "score": 100,
+        "hardGates": {
+          "semanticMatch": true,
+          "realAsset": true,
+          "explicitProduct": true,
+          "officialSource": true,
+          "approvedRights": true,
+          "publishableResolution": true,
+          "uniqueAsset": true
+        },
+        "blockers": [],
+        "issuedAt": "2026-08-11T18:15:18.915Z"
       }
     },
     {
@@ -124,6 +162,25 @@
           "bufferFinalAudit": "deepseek"
         },
         "generatedAt": "2026-08-05T14:32:13.739Z"
+      },
+      "visualDecision": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-visual-autonomy-v1",
+        "inputHash": "sha256:d2285ca4dfaad05b8d227065e56cf065309c8d84bf5ee1f1a4abe0cb08bc93c5",
+        "mode": "exact-product",
+        "productId": "disco-de-freio-shimano-xtr-cl900-center-lock",
+        "score": 100,
+        "hardGates": {
+          "semanticMatch": true,
+          "realAsset": true,
+          "explicitProduct": true,
+          "officialSource": true,
+          "approvedRights": true,
+          "publishableResolution": true,
+          "uniqueAsset": true
+        },
+        "blockers": [],
+        "issuedAt": "2026-08-11T18:15:18.920Z"
       }
     },
     {
@@ -164,6 +221,25 @@
           "bufferFinalAudit": "groq"
         },
         "generatedAt": "2026-08-05T15:03:08.085Z"
+      },
+      "visualDecision": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-visual-autonomy-v1",
+        "inputHash": "sha256:8e5246e5953fe696bfba4ed70415c72f2ea5853c3e79ef8bdc0589b40b342e27",
+        "mode": "exact-product",
+        "productId": "quadro-suspensao-spark-rc-world-cup-hmx-2026-flight-attendant",
+        "score": 100,
+        "hardGates": {
+          "semanticMatch": true,
+          "realAsset": true,
+          "explicitProduct": true,
+          "officialSource": true,
+          "approvedRights": true,
+          "publishableResolution": true,
+          "uniqueAsset": true
+        },
+        "blockers": [],
+        "issuedAt": "2026-08-11T18:15:18.925Z"
       }
     },
     {
@@ -216,6 +292,25 @@
         "finalScore": 92,
         "finalBlockers": 0,
         "issuedAt": "2026-08-11T17:13:56.190Z"
+      },
+      "visualDecision": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-visual-autonomy-v1",
+        "inputHash": "sha256:6e803eba0df01449e59513950bb10d80af71c4d23ae763b4236c46a5e477652d",
+        "mode": "exact-product",
+        "productId": "bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9",
+        "score": 100,
+        "hardGates": {
+          "semanticMatch": true,
+          "realAsset": true,
+          "explicitProduct": true,
+          "officialSource": true,
+          "approvedRights": true,
+          "publishableResolution": true,
+          "uniqueAsset": true
+        },
+        "blockers": [],
+        "issuedAt": "2026-08-11T18:15:18.931Z"
       }
     },
     {
@@ -270,6 +365,25 @@
         "finalScore": 95,
         "finalBlockers": 0,
         "issuedAt": "2026-08-11T17:13:56.194Z"
+      },
+      "visualDecision": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-visual-autonomy-v1",
+        "inputHash": "sha256:15fefe1241882aa16014b677f2e8297ccce728f1f943d0e3a594611ce889c0ac",
+        "mode": "exact-product",
+        "productId": "bicicleta-scott-spark-rc-world-cup-20271",
+        "score": 100,
+        "hardGates": {
+          "semanticMatch": true,
+          "realAsset": true,
+          "explicitProduct": true,
+          "officialSource": true,
+          "approvedRights": true,
+          "publishableResolution": true,
+          "uniqueAsset": true
+        },
+        "blockers": [],
+        "issuedAt": "2026-08-11T18:15:18.935Z"
       }
     },
     {
@@ -281,15 +395,22 @@
       "category": "manutencao-ajustes",
       "freshness": "evergreen",
       "status": "scheduled",
-      "productIds": [],
+      "productIds": [
+        "corrente-sram-nx-eagle"
+      ],
       "heroImage": {
-        "mode": "conceptual"
+        "mode": "real-context",
+        "productId": "corrente-sram-nx-eagle",
+        "relationship": "maintenance-example",
+        "rationale": "A corrente SRAM real exemplifica o componente mais exposto a água, abrasivos, corrosão e desgaste na inspeção pós-chuva."
       },
       "postPath": "_posts/drafts/2026-08-14-reserva-inspecao-pos-chuva.md",
       "imageManifestPath": "assets/img/posts/reserva-inspecao-pos-chuva/image-manifest.json",
       "imageStatus": "approved",
-      "imageAssetIds": [],
-      "imageValidatedAt": "2026-08-08T04:15:44.581Z",
+      "imageAssetIds": [
+        "thebiker-corrente-sram-nx-eagle-ab2209342e"
+      ],
+      "imageValidatedAt": "2026-08-11T18:07:59.683Z",
       "attempts": 1,
       "lastAttemptAt": "2026-08-08T04:08:25.560Z",
       "aiReview": {
@@ -310,14 +431,33 @@
       "editorialReceipt": {
         "schemaVersion": 1,
         "policyVersion": "thebiker-editorial-2026-08-v2",
-        "origin": "legacy-backfill",
+        "origin": "deterministic-transform",
         "reviewedContentHash": "sha256:587b3bec49f22c0197f1daeb5b7b5ed8892303242afa0683b0013339479aa72e",
-        "scheduledContentHash": "sha256:587b3bec49f22c0197f1daeb5b7b5ed8892303242afa0683b0013339479aa72e",
+        "scheduledContentHash": "sha256:b014e6b0420cd644ac6ad0782341c56ec0ef400c5e04af5d43d8e75dc3d8b566",
         "researchHash": "sha256:37e23f674005c64320d443317d12ac2453225620d627d12fcb40fb0cc20f5751",
         "sourceHash": null,
         "finalScore": 92,
         "finalBlockers": 0,
-        "issuedAt": "2026-08-11T17:13:56.198Z"
+        "issuedAt": "2026-08-11T18:07:59.685Z"
+      },
+      "visualDecision": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-visual-autonomy-v1",
+        "inputHash": "sha256:c15cafa4ce2ecd3dbe93f6f6384df6a79d8791be523c60296b772469ffabc2bc",
+        "mode": "real-context",
+        "productId": "corrente-sram-nx-eagle",
+        "score": 100,
+        "hardGates": {
+          "semanticMatch": true,
+          "realAsset": true,
+          "explicitProduct": true,
+          "officialSource": true,
+          "approvedRights": true,
+          "publishableResolution": true,
+          "uniqueAsset": true
+        },
+        "blockers": [],
+        "issuedAt": "2026-08-11T18:15:18.938Z"
       }
     },
     {
@@ -329,15 +469,22 @@
       "category": "comparativo",
       "freshness": "revalidate-24h",
       "status": "scheduled",
-      "productIds": [],
+      "productIds": [
+        "foil-rc-hmx-sl-bicicleta-aero-24v-sram-red-axs"
+      ],
       "heroImage": {
-        "mode": "conceptual"
+        "mode": "real-context",
+        "productId": "foil-rc-hmx-sl-bicicleta-aero-24v-sram-red-axs",
+        "relationship": "platform-example",
+        "rationale": "A Scott Foil RC Ultimate real funciona como plataforma concreta para explicar integração, aerodinâmica e montagem de competição."
       },
       "postPath": "_posts/drafts/2026-08-15-bike-de-fabrica-vs-bike-de-competicao.md",
       "imageManifestPath": "assets/img/posts/bike-de-fabrica-vs-bike-de-competicao/image-manifest.json",
       "imageStatus": "approved",
-      "imageAssetIds": [],
-      "imageValidatedAt": "2026-08-08T14:00:17.193Z",
+      "imageAssetIds": [
+        "thebiker-foil-rc-hmx-sl-bicicleta-aero-24v-sram-red-axs-4f08a0b5be"
+      ],
+      "imageValidatedAt": "2026-08-11T18:11:00.347Z",
       "attempts": 1,
       "lastAttemptAt": "2026-08-08T13:47:43.047Z",
       "aiReview": {
@@ -359,14 +506,33 @@
       "editorialReceipt": {
         "schemaVersion": 1,
         "policyVersion": "thebiker-editorial-2026-08-v2",
-        "origin": "legacy-backfill",
+        "origin": "deterministic-transform",
         "reviewedContentHash": "sha256:f4f2833a61c3fb5f8c391a3accbfcb6616e4e4f083c48ab59bcf54613231f3aa",
-        "scheduledContentHash": "sha256:f4f2833a61c3fb5f8c391a3accbfcb6616e4e4f083c48ab59bcf54613231f3aa",
+        "scheduledContentHash": "sha256:3c7fc5367962919d0a59878c0840365f08743f59126fcb77dbac3c692aeeb9ba",
         "researchHash": "sha256:e474a815421ca7e4b6186d037a238deaf4256079783b65f77370efba35e85f8e",
         "sourceHash": null,
         "finalScore": 95,
         "finalBlockers": 0,
-        "issuedAt": "2026-08-11T17:13:56.202Z"
+        "issuedAt": "2026-08-11T18:11:00.347Z"
+      },
+      "visualDecision": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-visual-autonomy-v1",
+        "inputHash": "sha256:6904b7a83d868715d6b27fcaff93287c2398d64894f6585bc8fd7030153e2954",
+        "mode": "real-context",
+        "productId": "foil-rc-hmx-sl-bicicleta-aero-24v-sram-red-axs",
+        "score": 100,
+        "hardGates": {
+          "semanticMatch": true,
+          "realAsset": true,
+          "explicitProduct": true,
+          "officialSource": true,
+          "approvedRights": true,
+          "publishableResolution": true,
+          "uniqueAsset": true
+        },
+        "blockers": [],
+        "issuedAt": "2026-08-11T18:15:18.942Z"
       }
     },
     {
@@ -378,15 +544,22 @@
       "category": "componentes",
       "freshness": "event-driven",
       "status": "scheduled",
-      "productIds": [],
+      "productIds": [
+        "bicicleta-scott-addict-gravel-30-2026-pre-venda"
+      ],
       "heroImage": {
-        "mode": "conceptual"
+        "mode": "real-context",
+        "productId": "bicicleta-scott-addict-gravel-30-2026-pre-venda",
+        "relationship": "category-example",
+        "rationale": "A Scott Addict Gravel 30 real representa visualmente a categoria discutida, sem transformar o guia técnico em review do modelo."
       },
       "postPath": "_posts/drafts/2026-08-16-youtube-bicicletas-gravel-geometria-pneus-transmissao-e-criterios-de-uso.md",
       "imageManifestPath": "assets/img/posts/youtube-bicicletas-gravel-geometria-pneus-transmissao-e-criterios-de-uso/image-manifest.json",
       "imageStatus": "approved",
-      "imageAssetIds": [],
-      "imageValidatedAt": "2026-08-08T15:37:52.440Z",
+      "imageAssetIds": [
+        "thebiker-bicicleta-scott-addict-gravel-30-2026-pre-venda-e60f05d57b"
+      ],
+      "imageValidatedAt": "2026-08-11T18:11:01.402Z",
       "attempts": 2,
       "lastAttemptAt": "2026-08-08T15:35:33.560Z",
       "aiReview": {
@@ -407,14 +580,33 @@
       "editorialReceipt": {
         "schemaVersion": 1,
         "policyVersion": "thebiker-editorial-2026-08-v2",
-        "origin": "legacy-backfill",
+        "origin": "deterministic-transform",
         "reviewedContentHash": "sha256:51b54651ec0fd02248b0bd7247a3c6745d759ce7abe436d09fd98fe8450cdfac",
-        "scheduledContentHash": "sha256:51b54651ec0fd02248b0bd7247a3c6745d759ce7abe436d09fd98fe8450cdfac",
+        "scheduledContentHash": "sha256:88555c23290b94dda1f462c76bdf658ac7e706c8f6a93e2eb2291bc95967f04d",
         "researchHash": "sha256:dfc39e303356d18f592805ecd330cb2925b7eb7ba07889697b817fc6bb6d111a",
         "sourceHash": null,
         "finalScore": 95,
         "finalBlockers": 0,
-        "issuedAt": "2026-08-11T17:13:56.206Z"
+        "issuedAt": "2026-08-11T18:11:01.402Z"
+      },
+      "visualDecision": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-visual-autonomy-v1",
+        "inputHash": "sha256:3957ec70832a688964c42ce6fc6d28336a8c0c9443f3d317a943d23e318180cd",
+        "mode": "real-context",
+        "productId": "bicicleta-scott-addict-gravel-30-2026-pre-venda",
+        "score": 100,
+        "hardGates": {
+          "semanticMatch": true,
+          "realAsset": true,
+          "explicitProduct": true,
+          "officialSource": true,
+          "approvedRights": true,
+          "publishableResolution": true,
+          "uniqueAsset": true
+        },
+        "blockers": [],
+        "issuedAt": "2026-08-11T18:15:18.945Z"
       }
     },
     {
@@ -470,6 +662,25 @@
         "finalScore": 95,
         "finalBlockers": 0,
         "issuedAt": "2026-08-11T17:13:56.209Z"
+      },
+      "visualDecision": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-visual-autonomy-v1",
+        "inputHash": "sha256:92501bd66a0eb4a5732b0a98d59ed661fc3e7dc19c4cf576da63945d51c62c0d",
+        "mode": "exact-product",
+        "productId": "bicicleta-scott-addict-rc-pro-di2-2026-pre-venda",
+        "score": 100,
+        "hardGates": {
+          "semanticMatch": true,
+          "realAsset": true,
+          "explicitProduct": true,
+          "officialSource": true,
+          "approvedRights": true,
+          "publishableResolution": true,
+          "uniqueAsset": true
+        },
+        "blockers": [],
+        "issuedAt": "2026-08-11T18:15:18.948Z"
       }
     },
     {
@@ -481,15 +692,22 @@
       "category": "manutencao-ajustes",
       "freshness": "event-driven",
       "status": "scheduled",
-      "productIds": [],
+      "productIds": [
+        "selim-syncros-belcarra-v1-0-neo-carbon-cut-out-145mm"
+      ],
       "heroImage": {
-        "mode": "conceptual"
+        "mode": "real-context",
+        "productId": "selim-syncros-belcarra-v1-0-neo-carbon-cut-out-145mm",
+        "relationship": "component-example",
+        "rationale": "O selim Syncros real materializa um dos principais pontos de contato e ajuste tratados no conteúdo técnico de bike fit."
       },
       "postPath": "_posts/drafts/2026-08-18-youtube-bike-fit-e-posicao-criterios-tecnicos-para-ajuste-e-distribuicao.md",
       "imageManifestPath": "assets/img/posts/youtube-bike-fit-e-posicao-criterios-tecnicos-para-ajuste-e-distribuicao/image-manifest.json",
       "imageStatus": "approved",
-      "imageAssetIds": [],
-      "imageValidatedAt": "2026-08-08T17:45:09.217Z",
+      "imageAssetIds": [
+        "thebiker-selim-syncros-belcarra-v1-0-neo-carbon-cut-out-145mm-948a3da94c"
+      ],
+      "imageValidatedAt": "2026-08-11T18:08:03.810Z",
       "attempts": 1,
       "lastAttemptAt": "2026-08-08T17:34:02.509Z",
       "aiReview": {
@@ -511,14 +729,33 @@
       "editorialReceipt": {
         "schemaVersion": 1,
         "policyVersion": "thebiker-editorial-2026-08-v2",
-        "origin": "legacy-backfill",
+        "origin": "deterministic-transform",
         "reviewedContentHash": "sha256:765732be0e555edd5bde95401a93b99687803d8647a6c69d96f94f594b985dd6",
-        "scheduledContentHash": "sha256:765732be0e555edd5bde95401a93b99687803d8647a6c69d96f94f594b985dd6",
+        "scheduledContentHash": "sha256:b7035cd04043e2229a631a26dedf007b6a72bf6c00d57d34027dec418f3aa6e0",
         "researchHash": "sha256:f39f7bd9d7b6707137a3d21165080dae296309ba1e3f7a41cf7eae25b7feeea3",
         "sourceHash": null,
         "finalScore": 95,
         "finalBlockers": 0,
-        "issuedAt": "2026-08-11T17:13:56.212Z"
+        "issuedAt": "2026-08-11T18:08:03.810Z"
+      },
+      "visualDecision": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-visual-autonomy-v1",
+        "inputHash": "sha256:a7a41f4f8332c97912224ea4f6ae5c69d4da554a6944e08dc914ad1ff34cf684",
+        "mode": "real-context",
+        "productId": "selim-syncros-belcarra-v1-0-neo-carbon-cut-out-145mm",
+        "score": 100,
+        "hardGates": {
+          "semanticMatch": true,
+          "realAsset": true,
+          "explicitProduct": true,
+          "officialSource": true,
+          "approvedRights": true,
+          "publishableResolution": true,
+          "uniqueAsset": true
+        },
+        "blockers": [],
+        "issuedAt": "2026-08-11T18:15:18.952Z"
       }
     },
     {
@@ -530,15 +767,22 @@
       "category": "competicoes",
       "freshness": "evergreen",
       "status": "scheduled",
-      "productIds": [],
+      "productIds": [
+        "cambio-traseiro-shimano-grx-11v"
+      ],
       "heroImage": {
-        "mode": "conceptual"
+        "mode": "real-context",
+        "productId": "cambio-traseiro-shimano-grx-11v",
+        "relationship": "component-example",
+        "rationale": "O câmbio Shimano GRX real exemplifica a transmissão para terreno misto citada no artigo, preservando a marca promovida."
       },
       "postPath": "_posts/drafts/2026-08-19-ciclocross-regulamento-preparacao.md",
       "imageManifestPath": "assets/img/posts/ciclocross-regulamento-preparacao/image-manifest.json",
       "imageStatus": "approved",
-      "imageAssetIds": [],
-      "imageValidatedAt": "2026-08-09T13:54:43.220Z",
+      "imageAssetIds": [
+        "thebiker-cambio-traseiro-shimano-grx-11v-f0c0a6abf1"
+      ],
+      "imageValidatedAt": "2026-08-11T18:08:05.051Z",
       "attempts": 1,
       "lastAttemptAt": "2026-08-09T13:52:49.906Z",
       "aiReview": {
@@ -560,14 +804,33 @@
       "editorialReceipt": {
         "schemaVersion": 1,
         "policyVersion": "thebiker-editorial-2026-08-v2",
-        "origin": "legacy-backfill",
+        "origin": "deterministic-transform",
         "reviewedContentHash": "sha256:cbcb76216609cd34ec43907689fb771d6c7671f17c947edbe976e3b340ab1303",
-        "scheduledContentHash": "sha256:cbcb76216609cd34ec43907689fb771d6c7671f17c947edbe976e3b340ab1303",
+        "scheduledContentHash": "sha256:2c38b145d015dac2ce60552ff9e80946bfc4f88e16b8a336771f6b531d899369",
         "researchHash": "sha256:3d6616b4ab31e0782abf9b3524a693b9b68af25e67fe06bd7a58487eb575b53c",
         "sourceHash": null,
         "finalScore": 95,
         "finalBlockers": 0,
-        "issuedAt": "2026-08-11T17:13:56.215Z"
+        "issuedAt": "2026-08-11T18:08:05.051Z"
+      },
+      "visualDecision": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-visual-autonomy-v1",
+        "inputHash": "sha256:1b3bf05ece46860b4508924706906dbbd16d9c4a359b4d17fd2fffe18cb59584",
+        "mode": "real-context",
+        "productId": "cambio-traseiro-shimano-grx-11v",
+        "score": 100,
+        "hardGates": {
+          "semanticMatch": true,
+          "realAsset": true,
+          "explicitProduct": true,
+          "officialSource": true,
+          "approvedRights": true,
+          "publishableResolution": true,
+          "uniqueAsset": true
+        },
+        "blockers": [],
+        "issuedAt": "2026-08-11T18:15:18.955Z"
       }
     },
     {
@@ -579,15 +842,22 @@
       "category": "manutencao-ajustes",
       "freshness": "evergreen",
       "status": "scheduled",
-      "productIds": [],
+      "productIds": [
+        "kit-reparo-suspensao-rock-shox-sid-flight-attendant"
+      ],
       "heroImage": {
-        "mode": "conceptual"
+        "mode": "real-context",
+        "productId": "kit-reparo-suspensao-rock-shox-sid-flight-attendant",
+        "relationship": "maintenance-example",
+        "rationale": "O kit real de reparo RockShox representa diretamente vedações e peças de desgaste envolvidas no serviço preventivo de suspensão."
       },
       "postPath": "_posts/drafts/2026-08-20-servico-garfo-amortecedor-oleo-vedacao.md",
       "imageManifestPath": "assets/img/posts/servico-garfo-amortecedor-oleo-vedacao/image-manifest.json",
       "imageStatus": "approved",
-      "imageAssetIds": [],
-      "imageValidatedAt": "2026-08-10T14:25:12.262Z",
+      "imageAssetIds": [
+        "thebiker-kit-reparo-suspensao-rock-shox-sid-flight-attendant-af0e2fa90b"
+      ],
+      "imageValidatedAt": "2026-08-11T18:11:30.500Z",
       "attempts": 1,
       "lastAttemptAt": "2026-08-10T14:22:05.926Z",
       "aiReview": {
@@ -609,14 +879,33 @@
       "editorialReceipt": {
         "schemaVersion": 1,
         "policyVersion": "thebiker-editorial-2026-08-v2",
-        "origin": "legacy-backfill",
+        "origin": "deterministic-transform",
         "reviewedContentHash": "sha256:4834b2fa919c56cd22f68388caa73852e2fb5dfc9054863e34f7b2e81ddbf6db",
-        "scheduledContentHash": "sha256:4834b2fa919c56cd22f68388caa73852e2fb5dfc9054863e34f7b2e81ddbf6db",
+        "scheduledContentHash": "sha256:183d9a945b5c75696353ab470f79d6147ffac038d9fbd593920ec1ab1cf69491",
         "researchHash": "sha256:53aac02ec38e6653e0c111a9328b3622e86cad05ba2a53543c2d90d11cbde881",
         "sourceHash": null,
         "finalScore": 95,
         "finalBlockers": 0,
-        "issuedAt": "2026-08-11T17:13:56.219Z"
+        "issuedAt": "2026-08-11T18:11:30.501Z"
+      },
+      "visualDecision": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-visual-autonomy-v1",
+        "inputHash": "sha256:72a235cdc96c6699bf665404956e22426847a7e42a7fcb73e4bf6b49f1b37028",
+        "mode": "real-context",
+        "productId": "kit-reparo-suspensao-rock-shox-sid-flight-attendant",
+        "score": 100,
+        "hardGates": {
+          "semanticMatch": true,
+          "realAsset": true,
+          "explicitProduct": true,
+          "officialSource": true,
+          "approvedRights": true,
+          "publishableResolution": true,
+          "uniqueAsset": true
+        },
+        "blockers": [],
+        "issuedAt": "2026-08-11T18:15:18.958Z"
       }
     },
     {
@@ -628,15 +917,22 @@
       "category": "componentes",
       "freshness": "event-driven",
       "status": "scheduled",
-      "productIds": [],
+      "productIds": [
+        "pneu-schwalbe-racing-ray-29-x-2-25-super-race-tlr-addix"
+      ],
       "heroImage": {
-        "mode": "conceptual"
+        "mode": "real-context",
+        "productId": "pneu-schwalbe-racing-ray-29-x-2-25-super-race-tlr-addix",
+        "relationship": "category-example",
+        "rationale": "O pneu Schwalbe real exemplifica carcaça, contato com o solo e resistência ao rolamento sem sugerir teste específico do modelo."
       },
       "postPath": "_posts/drafts/2026-08-21-youtube-pneus-de-bicicleta-pressao-carcaca-aderencia-e-resistencia-ao-ro.md",
       "imageManifestPath": "assets/img/posts/youtube-pneus-de-bicicleta-pressao-carcaca-aderencia-e-resistencia-ao-ro/image-manifest.json",
       "imageStatus": "approved",
-      "imageAssetIds": [],
-      "imageValidatedAt": "2026-08-11T16:53:28.675Z",
+      "imageAssetIds": [
+        "thebiker-pneu-schwalbe-racing-ray-29-x-2-25-super-race-tlr-addix-c7d82b6fc2"
+      ],
+      "imageValidatedAt": "2026-08-11T18:15:17.779Z",
       "attempts": 1,
       "lastAttemptAt": "2026-08-10T17:54:02.687Z",
       "aiReview": {
@@ -658,14 +954,33 @@
       "editorialReceipt": {
         "schemaVersion": 1,
         "policyVersion": "thebiker-editorial-2026-08-v2",
-        "origin": "legacy-backfill",
+        "origin": "deterministic-transform",
         "reviewedContentHash": "sha256:d7508be1f25eef1ebe5194394cb30ccca7b9f434feab6b86f5e9f8d09b4c7436",
-        "scheduledContentHash": "sha256:d7508be1f25eef1ebe5194394cb30ccca7b9f434feab6b86f5e9f8d09b4c7436",
+        "scheduledContentHash": "sha256:650f4cb8a171171e5fc58e3ef207976937e1975d3fa703307ceb62f93ee7e255",
         "researchHash": "sha256:69e0e05d24cdaf3f4aec457128026aaba626a771b4396210ff3f26ba6608a859",
         "sourceHash": null,
         "finalScore": 95,
         "finalBlockers": 0,
-        "issuedAt": "2026-08-11T17:13:56.222Z"
+        "issuedAt": "2026-08-11T18:15:17.780Z"
+      },
+      "visualDecision": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-visual-autonomy-v1",
+        "inputHash": "sha256:ba55f6fc5344da582acea409449b5838aad8403799f41834ee9c737b5c35575d",
+        "mode": "real-context",
+        "productId": "pneu-schwalbe-racing-ray-29-x-2-25-super-race-tlr-addix",
+        "score": 100,
+        "hardGates": {
+          "semanticMatch": true,
+          "realAsset": true,
+          "explicitProduct": true,
+          "officialSource": true,
+          "approvedRights": true,
+          "publishableResolution": true,
+          "uniqueAsset": true
+        },
+        "blockers": [],
+        "issuedAt": "2026-08-11T18:15:18.961Z"
       }
     },
     {

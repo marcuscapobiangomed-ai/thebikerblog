@@ -7,6 +7,7 @@ import matter from "gray-matter";
 import { validateImageManifestV2 } from "./image-manifest-v2.js";
 import { imageArticleConsistencyErrors } from "./image-article-consistency.js";
 import { assertScheduledReceipt } from "./editorial-receipt.js";
+import { visualDecisionErrors } from "./visual-decision.js";
 
 const defaultRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../../..");
 
@@ -76,6 +77,9 @@ export async function validateScheduledPublications({ root = defaultRoot } = {})
         { requirePublishable: true },
       );
       for (const error of imageArticleConsistencyErrors({ article: matter(content).data, manifest, campaignItem: item, catalog })) {
+        errors.push(`${item.id}: ${error}`);
+      }
+      for (const error of visualDecisionErrors({ receipt: item.visualDecision, item, article: matter(content).data, manifest, catalog })) {
         errors.push(`${item.id}: ${error}`);
       }
     } catch (error) {

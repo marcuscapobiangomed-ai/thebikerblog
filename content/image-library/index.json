@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-08-11T17:27:56.710Z",
+  "updatedAt": "2026-08-11T18:15:17.770Z",
   "assets": [
     {
       "assetId": "thebiker-scott-addict-rc-pro-hmx-frame-set-def10da96a",
@@ -235,6 +235,125 @@
       "uses": [
         {
           "postId": "alinhamento-pinca-rotores",
+          "position": "hero",
+          "usedAt": "2026-08-11T12:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "assetId": "thebiker-corrente-sram-nx-eagle-ab2209342e",
+      "sha256": "ab2209342e5fd903a29f5c82548eded8c02bd40095494077d600118d08be785b",
+      "perceptualHash": "1111111111000011000000110000000110000001100000011100011111111111",
+      "sourcePageUrl": "https://thebikershop.com.br/produtos/corrente-sram-nx-eagle/",
+      "sourceFileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/corrente-2b4150b6e6dc14ca9017127097004077-1024-1024.webp",
+      "productId": "corrente-sram-nx-eagle",
+      "productName": "Corrente Sram NX Eagle",
+      "rightsPolicyId": "thebiker-official-editorial-v1",
+      "uses": [
+        {
+          "postId": "reserva-inspecao-pos-chuva",
+          "position": "hero",
+          "usedAt": "2026-08-11T12:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "assetId": "thebiker-selim-syncros-belcarra-v1-0-neo-carbon-cut-out-145mm-948a3da94c",
+      "sha256": "948a3da94cd3b916055f7392cab81e190c876c03139a7dcb0c04ee5d506c0ad2",
+      "perceptualHash": "1111111111111111100011110000011110000011110000001111110111111111",
+      "sourcePageUrl": "https://thebikershop.com.br/produtos/selim-syncros-belcarra-v1-0-neo-carbon-cut-out-145mm/",
+      "sourceFileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/2959140001a_2038209-png-1b693fdb1f8864545817368895919841-1024-1024.webp",
+      "productId": "selim-syncros-belcarra-v1-0-neo-carbon-cut-out-145mm",
+      "productName": "Selim Syncros Belcarra V1.0 Neo Carbon Cut Out - 145mm",
+      "rightsPolicyId": "thebiker-official-editorial-v1",
+      "uses": [
+        {
+          "postId": "youtube-bike-fit-e-posicao-criterios-tecnicos-para-ajuste-e-distribuicao",
+          "position": "hero",
+          "usedAt": "2026-08-11T12:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "assetId": "thebiker-cambio-traseiro-shimano-grx-11v-f0c0a6abf1",
+      "sha256": "f0c0a6abf153bfe34283a1e09a0f7769c01dd2e062b311d63597bd2b2470d79e",
+      "perceptualHash": "1000111110000000100000001111001110000111000111110001111110111111",
+      "sourcePageUrl": "https://thebikershop.com.br/produtos/cambio-traseiro-shimano-grx-11v/",
+      "sourceFileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/shimano-desviador-traseiro-grx-rd-rx810-shadow-rd-direct1-09aa717cff5cd0fba116616197453563-1024-1024.webp",
+      "productId": "cambio-traseiro-shimano-grx-11v",
+      "productName": "Câmbio Traseiro Shimano GRX 11v RD-RX812",
+      "rightsPolicyId": "thebiker-official-editorial-v1",
+      "uses": [
+        {
+          "postId": "ciclocross-regulamento-preparacao",
+          "position": "hero",
+          "usedAt": "2026-08-11T12:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "assetId": "thebiker-foil-rc-hmx-sl-bicicleta-aero-24v-sram-red-axs-4f08a0b5be",
+      "sha256": "4f08a0b5be05197c12dc078c33c3090bc536cd3b6af40e6a08e704e92dcc4a90",
+      "perceptualHash": "0001111111000111111001101011000100000001101000011100111100011111",
+      "sourcePageUrl": "https://thebikershop.com.br/produtos/foil-rc-hmx-sl-bicicleta-aero-24v-sram-red-axs/",
+      "sourceFileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/55e6b8d6-eb06-11f0-9677-5e507c77730f-2d8781528e23601a0417794468698826-1024-1024.webp",
+      "productId": "foil-rc-hmx-sl-bicicleta-aero-24v-sram-red-axs",
+      "productName": "Bicicleta Scott Foil RC Ultimate 2026",
+      "rightsPolicyId": "thebiker-official-editorial-v1",
+      "uses": [
+        {
+          "postId": "bike-de-fabrica-vs-bike-de-competicao",
+          "position": "hero",
+          "usedAt": "2026-08-11T12:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "assetId": "thebiker-bicicleta-scott-addict-gravel-30-2026-pre-venda-e60f05d57b",
+      "sha256": "e60f05d57b30022b402e6ebe6156078bd86f2f09065df4ec2740b4c0cbe96994",
+      "perceptualHash": "1111111111010001101110010101000000000010000001101001100011111111",
+      "sourcePageUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-addict-gravel-30-2026-pre-venda/",
+      "sourceFileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/f06d9586-eb02-11f0-9eff-c24f74839598-a97f08e701a24ec31a17751348830787-1024-1024.webp",
+      "productId": "bicicleta-scott-addict-gravel-30-2026-pre-venda",
+      "productName": "Bicicleta Scott Addict Gravel 30 2026 - Pré Venda",
+      "rightsPolicyId": "thebiker-official-editorial-v1",
+      "uses": [
+        {
+          "postId": "youtube-bicicletas-gravel-geometria-pneus-transmissao-e-criterios-de-uso",
+          "position": "hero",
+          "usedAt": "2026-08-11T12:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "assetId": "thebiker-kit-reparo-suspensao-rock-shox-sid-flight-attendant-af0e2fa90b",
+      "sha256": "af0e2fa90b5f814226b360969b90b274f4677dd5b1cd76ffb59f4b4a2af82396",
+      "perceptualHash": "1111111111111111000011111000111100001011000000011111111111111111",
+      "sourcePageUrl": "https://thebikershop.com.br/produtos/kit-reparo-suspensao-rock-shox-sid-flight-attendant/",
+      "sourceFileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/fork-servicekit-1912847-8173335d4ce719cf4d17803506184697-1024-1024.webp",
+      "productId": "kit-reparo-suspensao-rock-shox-sid-flight-attendant",
+      "productName": "Kit Reparo Suspensão RockShox SID SL 32 Flight Attendant 2026+",
+      "rightsPolicyId": "thebiker-official-editorial-v1",
+      "uses": [
+        {
+          "postId": "servico-garfo-amortecedor-oleo-vedacao",
+          "position": "hero",
+          "usedAt": "2026-08-11T12:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "assetId": "thebiker-pneu-schwalbe-racing-ray-29-x-2-25-super-race-tlr-addix-c7d82b6fc2",
+      "sha256": "c7d82b6fc24457debbab8d5f19a637cfd2e3181153cdb7b06396d5a100312a31",
+      "perceptualHash": "1011011110100011100000111100101111001011110010111100101111001011",
+      "sourcePageUrl": "https://thebikershop.com.br/produtos/pneu-schwalbe-racing-ray-29-x-2-25-super-race-tlr-addix/",
+      "sourceFileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/schwalbe-racing-ray-evolution-addixspeed-superrace-transparent-skin-8608241-e2539507e196474cc716325152570604-1024-1024.webp",
+      "productId": "pneu-schwalbe-racing-ray-29-x-2-25-super-race-tlr-addix",
+      "productName": "Pneu Schwalbe Racing Ray 29 x 2.25 Super Race TLR Addix",
+      "rightsPolicyId": "thebiker-official-editorial-v1",
+      "uses": [
+        {
+          "postId": "youtube-pneus-de-bicicleta-pressao-carcaca-aderencia-e-resistencia-ao-ro",
           "position": "hero",
           "usedAt": "2026-08-11T12:00:00.000Z"
         }

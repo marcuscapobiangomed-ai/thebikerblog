@@ -5,6 +5,7 @@ import { fileURLToPath } from "url";
 import { hammingDistance } from "../bot/src/images/dedupe.js";
 import * as yaml from "js-yaml";
 import { imageArticleConsistencyErrors } from "../bot/src/validation/image-article-consistency.js";
+import { visualDecisionErrors } from "../bot/src/validation/visual-decision.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
@@ -131,14 +132,20 @@ function validatePost(postPath) {
       errors.push(`${rel}: fonte visual ativa não autorizada (${manifest.source?.type || "indefinida"})`);
     }
     const postId = path.basename(postPath, ".md").replace(/^\d{4}-\d{2}-\d{2}-/, "");
+    const campaignItem = campaignById.get(postId) || null;
     for (const error of imageArticleConsistencyErrors({
       article: fm,
       manifest,
-      campaignItem: campaignById.get(postId) || null,
+      campaignItem,
       catalog,
       archivedAsset: published === true ? imageLibraryByAssetId.get(manifest.assetId) || null : null,
     })) {
       errors.push(`${rel}: ${error}`);
+    }
+    if (campaignItem && ["validation", "approved", "scheduled", "published"].includes(campaignItem.status)) {
+      for (const error of visualDecisionErrors({ receipt: campaignItem.visualDecision, item: campaignItem, article: fm, manifest, catalog })) {
+        errors.push(`${rel}: ${error}`);
+      }
     }
     const digest = crypto.createHash("sha256").update(fs.readFileSync(imgPath)).digest("hex");
     activeImages.push({ rel, digest, assetId: manifest.assetId, perceptualHash: manifest.perceptualHash });

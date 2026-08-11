@@ -1,4 +1,5 @@
 ---
+image_subject_id: "pneu-schwalbe-racing-ray-29-x-2-25-super-race-tlr-addix"
 layout: post
 published: false
 title: "Pneus de bicicleta: pressão, carcaça, aderência e resistência ao rolamento"
@@ -37,12 +38,12 @@ image: "/assets/img/posts/youtube-pneus-de-bicicleta-pressao-carcaca-aderencia-e
 image_mobile: "/assets/img/posts/youtube-pneus-de-bicicleta-pressao-carcaca-aderencia-e-resistencia-ao-ro/hero-800.webp"
 thumbnail: "/assets/img/posts/youtube-pneus-de-bicicleta-pressao-carcaca-aderencia-e-resistencia-ao-ro/card-640.webp"
 image_manifest_version: 2
-image_asset_type: "technical-diagram"
+image_asset_type: "official-product-photo"
 image_status: "approved"
-image_alt: "Capa técnica TheBiker para o artigo Pneus de bicicleta: pressão, carcaça, aderência e resistência ao rolamento"
-image_caption: "Capa técnica produzida para o conteúdo editorial TheBiker."
-image_credit: "TheBiker"
-image_license: "Propriedade editorial TheBiker"
+image_alt: "Pneu Schwalbe Racing Ray 29 x 2.25 Super Race TLR Addix em fotografia oficial de TheBiker Shop"
+image_caption: "Pneu Schwalbe Racing Ray 29 x 2.25 Super Race TLR Addix, em fotografia oficial de TheBiker Shop."
+image_credit: "TheBiker Shop"
+image_license: "Uso editorial no blog oficial TheBiker"
 affiliate_links: false
 editorial_scope: "portfolio"
 promoted_brands: ["Continental", "Schwalbe", "Vittoria"]
