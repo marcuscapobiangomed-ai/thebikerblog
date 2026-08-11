@@ -1,4 +1,4 @@
-title: "TheBiker Insights"
+title: "TheBiker Blog"
 tagline: "Ciclismo vivido, testado e explicado"
 description: "O canal editorial oficial da TheBiker: análises técnicas, comparativos, lançamentos e cobertura de competições para ciclistas experientes"
 url: "https://blog.thebiker.com.br"
@@ -17,7 +17,7 @@ organization:
 logo: "/assets/img/logo.svg"
 
 social:
-  name: TheBiker Insights
+  name: TheBiker Blog
   links:
     - https://www.instagram.com/thebikerbrasil
 

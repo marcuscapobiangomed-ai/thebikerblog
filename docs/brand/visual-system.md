@@ -1,4 +1,4 @@
-# Sistema Visual — TheBiker Insights
+# Sistema Visual — TheBiker Blog
 
 ## Identidade visual
 Base grafite e preta, cinza metálico e amarelo discreto, em continuidade com a identidade atual da TheBiker. A imagem deve transmitir alta performance, precisão e sobriedade.

@@ -1,8 +1,8 @@
-# Sistema de público-alvo — TheBiker Insights
+# Sistema de público-alvo — TheBiker Blog
 
 ## Contrato de público
 
-O TheBiker Insights é o canal editorial oficial da TheBiker para o mercado brasileiro. O núcleo é formado por ciclistas intermediários e avançados, atletas amadores, competidores e entusiastas de tecnologia que tomam decisões de performance, manutenção, ajuste e compra com base em evidências.
+O TheBiker Blog é o canal editorial oficial da TheBiker para o mercado brasileiro. O núcleo é formado por ciclistas intermediários e avançados, atletas amadores, competidores e entusiastas de tecnologia que tomam decisões de performance, manutenção, ajuste e compra com base em evidências.
 
 O público secundário reúne mecânicos, bike fitters, treinadores, lojistas e especialistas que precisam de especificações rastreáveis. O segmento de crescimento é o ciclista já ativo que está evoluindo para decisões intermediárias. Conteúdo básico pode funcionar como porta de entrada, mas não deve dominar a home, o calendário nem a distribuição.
 

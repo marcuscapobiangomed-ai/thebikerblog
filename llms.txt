@@ -3,7 +3,7 @@ layout: null
 permalink: /llms.txt
 sitemap: false
 ---
-# TheBiker Insights
+# TheBiker Blog
 
 > Blog oficial da TheBiker para ciclismo de média e alta experiência, com reviews técnicos, comparativos, lançamentos e cobertura de competições.
 

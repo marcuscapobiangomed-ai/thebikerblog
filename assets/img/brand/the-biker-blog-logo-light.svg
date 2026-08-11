@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 288" role="img" aria-labelledby="title desc">
-  <title id="title">TheBiker Insights</title>
-  <desc id="desc">Wordmark branco TheBiker com selo vermelho Insights.</desc>
+  <title id="title">TheBiker Blog</title>
+  <desc id="desc">Wordmark branco TheBiker com selo vermelho Blog.</desc>
   <text x="12" y="202" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="188" font-weight="800" letter-spacing="-10">thebiker</text>
   <rect x="12" y="236" width="718" height="12" fill="#ffffff"/>
   <rect x="730" y="211" width="282" height="64" rx="2" fill="#c8102e"/>
-  <text x="871" y="255" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="31" font-weight="800" letter-spacing="6" text-anchor="middle">INSIGHTS</text>
+  <text x="871" y="255" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="31" font-weight="800" letter-spacing="6" text-anchor="middle">BLOG</text>
 </svg>
