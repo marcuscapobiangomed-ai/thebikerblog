@@ -2,7 +2,7 @@ import assert from 'node:assert/strict'
 import fs from 'node:fs'
 import { CampaignSchema, publicCampaignSummary, selectProductionCandidate, selectPublicationCandidate } from '../bot/src/automation/campaign.js'
 import { contentTypeForCampaignItem } from '../bot/src/automation/grounded-research.js'
-import { raceSourceIsFresh, validateRaceEditorialStructure } from '../bot/src/automation/race-program.js'
+import { raceSourceIsFresh, selectRaceEventsForEditorialItem, validateRaceEditorialStructure } from '../bot/src/automation/race-program.js'
 
 const campaign = JSON.parse(fs.readFileSync(new URL('../bot/editorial-campaign.json', import.meta.url), 'utf8'))
 const program = JSON.parse(fs.readFileSync(new URL('../_data/race-events.json', import.meta.url), 'utf8'))
@@ -26,6 +26,27 @@ readyRace.race.sourceStatus = 'verified'
 readyRace.race.sourceVerifiedAt = '2026-08-08T15:30:00.000Z'
 assert.equal(raceSourceIsFresh(readyRace, program, new Date('2026-08-08T16:00:00.000Z')), true)
 assert.equal(raceSourceIsFresh(readyRace, program, new Date('2026-08-09T16:00:01.000Z')), false, 'fonte deve expirar após a janela governada')
+
+const automaticPreview = structuredClone(parsed.items.find((item) => item.race?.track === 'professional-coverage'))
+automaticPreview.race.format = 'preview'
+automaticPreview.race.eventIds = []
+const previewEvents = selectRaceEventsForEditorialItem(automaticPreview, program)
+assert.equal(previewEvents.length, 1, 'prévia sem vínculo manual deve receber uma prova sincronizada')
+assert.equal(previewEvents[0].eventStatus, 'scheduled')
+assert.match(previewEvents[0].sources[0].url, /^https:\/\/www\.uci\.org\/competition-details\//)
+
+const automaticRoundup = structuredClone(automaticPreview)
+automaticRoundup.race.format = 'weekly-roundup'
+const roundupEvents = selectRaceEventsForEditorialItem(automaticRoundup, program)
+assert.equal(roundupEvents.length, 3, 'radar semanal deve receber três sinais editoriais priorizados')
+
+const publicLinkedCampaign = structuredClone(parsed)
+const publicLinkedItem = publicLinkedCampaign.items.find((item) => item.race?.track === 'professional-coverage')
+publicLinkedItem.race.eventIds = [previewEvents[0].id]
+assert.doesNotThrow(() => validateRaceEditorialStructure(publicLinkedCampaign, program), 'pauta profissional deve aceitar evento público sincronizado')
+publicLinkedItem.race.sourceStatus = 'verified'
+publicLinkedItem.race.sourceVerifiedAt = '2026-08-11T16:55:00.000Z'
+assert.equal(raceSourceIsFresh(publicLinkedItem, program, new Date('2026-08-11T17:00:00.000Z')), true, 'evento sincronizado deve passar pelo mesmo gate de frescor editorial')
 
 const productionFixture = structuredClone(parsed)
 for (const item of productionFixture.items) if (item.status === 'planned' && item.category !== 'competicoes') item.status = 'blocked'

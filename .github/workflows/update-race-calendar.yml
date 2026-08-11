@@ -1,0 +1,68 @@
+name: TheBiker — Atualização diária de corridas
+
+on:
+  schedule:
+    # 05:20 em Brasília. Atualiza antes das rotinas editoriais e de publicação.
+    - cron: "20 8 * * *"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Consultar e validar sem registrar a atualização"
+        required: false
+        default: true
+        type: boolean
+
+permissions:
+  contents: write
+
+concurrency:
+  group: thebiker-editorial-write
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    if: ${{ vars.AUTOMATION_ENABLED == 'true' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            bot/package-lock.json
+
+      - name: Instalar dependências
+        run: |
+          npm ci
+          npm ci --prefix bot
+
+      - name: Sincronizar calendário oficial UCI
+        run: npm run sync:races
+
+      - name: Validar dados, página e bloqueios fail-closed
+        run: |
+          npm run validate:races
+          node scripts/test-race-calendar-sync.mjs
+          node scripts/test-race-program.mjs
+          node scripts/test-race-navigation.mjs
+          npm run security:secrets
+
+      - name: Registrar snapshot verificado
+        if: ${{ github.event_name == 'schedule' || !inputs.dry_run }}
+        run: |
+          git config user.name "thebiker-race-bot"
+          git config user.email "thebiker-race-bot@users.noreply.github.com"
+          git add _data/race-events.json
+          git diff --cached --quiet || git commit -m "data: atualizar calendário de corridas $(date -u +%F)"
+          for attempt in 1 2 3; do
+            git pull --rebase origin main && git push && exit 0
+            git rebase --abort 2>/dev/null || true
+            sleep $((attempt * 5))
+          done
+          exit 1

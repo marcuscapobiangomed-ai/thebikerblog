@@ -45,3 +45,11 @@
 | Feedbacks recebidos (mês) | 0 | — |
 | Pendências de feedback | 0 | <5 |
 | Incidentes abertos | 0 | 0 |
+
+### Corridas
+| Métrica | Atual | Meta |
+|---|---|---|
+| Agenda pública | Até 3 em disputa hoje, 3 recentes e 10 próximas | Snapshot UCI com menos de 48h |
+| Atualização | Diária às 05:20 BRT | 100% dos ciclos válidos ou alerta operacional |
+| Inteligência editorial | Prévias, resumos e boletins podem receber eventos UCI priorizados | Pesquisa oficial obrigatória antes da publicação |
+| Mensuração | `race_calendar_view` e `race_outbound_click` | Segmentação por evento e seção |

@@ -10,6 +10,7 @@ on:
       - "TheBiker — Renovação mensal de 30 dias"
       - "TheBiker — Inteligência SEO e YouTube"
       - "TheBiker — Watchdog editorial diário"
+      - "TheBiker — Atualização diária de corridas"
       - "Deploy Blog"
     types: [completed]
 

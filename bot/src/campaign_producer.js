@@ -6,7 +6,7 @@ import { CampaignSchema, publicCampaignSummary, selectProductionCandidate } from
 import { GroundedResearcher } from './automation/grounded-research.js'
 import { hashEditorialText } from './validation/editorial-receipt.js'
 import { classifyEditorialFailure } from './validation/editorial-failures.js'
-import { RaceProgramSchema, validateRaceEditorialStructure } from './automation/race-program.js'
+import { RaceProgramSchema, selectRaceEventsForEditorialItem, validateRaceEditorialStructure } from './automation/race-program.js'
 
 const defaultRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..')
 
@@ -66,9 +66,9 @@ export async function runCampaignProducer({ root = defaultRoot, env = process.en
     let raceEvents = []
     if (item.race) {
       const raceProgram = RaceProgramSchema.parse(JSON.parse(await fs.readFile(path.join(root, '_data/race-events.json'), 'utf8')))
+      raceEvents = selectRaceEventsForEditorialItem(item, raceProgram)
+      if (item.race.eventIds.length === 0 && raceEvents.length > 0) item.race.eventIds = raceEvents.map((event) => event.id)
       validateRaceEditorialStructure(campaign, raceProgram)
-      const byId = new Map(raceProgram.events.map((event) => [event.id, event]))
-      raceEvents = item.race.eventIds.map((id) => byId.get(id)).filter(Boolean)
       if (raceEvents.length !== item.race.eventIds.length || raceEvents.length === 0) throw new Error('Pauta de corrida sem evento oficial completo no registro editorial')
     }
     const knowledge = await knowledgeEvidence(root, item)

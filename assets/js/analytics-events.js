@@ -8,6 +8,7 @@
   var sessionEvents = []
   var maxSessionEvents = 200
   var contextTracked = false
+  var raceCalendarTracked = false
 
   function audienceIntent() {
     if (config.audienceIntent) return config.audienceIntent
@@ -164,6 +165,26 @@
     }, safeMeta(clickMeta)))
   }
 
+  function trackRaceOutboundClick(link) {
+    return track('engagement', 'race_outbound_click', link.dataset.eventId || 'evento-nao-informado', null, {
+      race_event_id: link.dataset.eventId || 'evento-nao-informado',
+      race_calendar_section: link.dataset.raceSection || 'nao-informada',
+      race_source: link.dataset.raceSource || 'UCI'
+    })
+  }
+
+  function trackRaceCalendarView() {
+    var calendar = document.querySelector('[data-race-calendar]')
+    if (!calendar || !hasConsent() || raceCalendarTracked) return
+    raceCalendarTracked = true
+    track('content', 'race_calendar_view', 'Corridas', null, {
+      race_today_count: Number(calendar.dataset.todayCount || 0),
+      race_recent_count: Number(calendar.dataset.recentCount || 0),
+      race_upcoming_count: Number(calendar.dataset.upcomingCount || 0),
+      race_calendar_as_of: calendar.dataset.calendarAsOf || 'nao-informado'
+    })
+  }
+
   function trackProductView(productId, brand, model) {
     return track('product', 'view_item', [brand, model].filter(Boolean).join(' '), null, {
       product_id: productId,
@@ -299,6 +320,7 @@
     document.addEventListener('click', function(event) {
       var link = event.target.closest('a[href]')
       if (link && !shouldIgnoreClick(link)) {
+        if (link.matches('[data-race-outbound]')) trackRaceOutboundClick(link)
         var linkMeta = safeDestination(link)
         if (isStoreLink(link)) {
           decorateStoreLink(link)
@@ -329,10 +351,14 @@
     })
 
     trackContentContext()
+    trackRaceCalendarView()
     initScrollTracking()
 
     window.addEventListener('thebiker:consent-change', function(event) {
-      if (event.detail && event.detail.analytics) trackContentContext()
+      if (event.detail && event.detail.analytics) {
+        trackContentContext()
+        trackRaceCalendarView()
+      }
     })
   }
 
@@ -342,6 +368,7 @@
   window.TheBikerBlog.getEventSummary = getSummary
   window.TheBikerBlog.clearEvents = clearEvents
   window.TheBikerBlog.trackAffiliateClick = trackAffiliateClick
+  window.TheBikerBlog.trackRaceOutboundClick = trackRaceOutboundClick
   window.TheBikerBlog.trackProductView = trackProductView
   window.TheBikerBlog.trackCompareAdd = trackCompareAdd
   window.TheBikerBlog.trackCompareComplete = trackCompareComplete
