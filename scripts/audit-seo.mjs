@@ -98,6 +98,10 @@ if (!read('_layouts/post.html').includes('id="fontes-do-artigo"')) failures.push
 if (!read('_layouts/post.html').includes('{% include answer-block.html %}')) failures.push('_layouts/post.html: resposta direta visível ausente')
 if (!read('_layouts/post.html').includes('{% include article-structured-data.html %}')) failures.push('_layouts/post.html: grafo JSON-LD estático ausente')
 if (read('_layouts/post.html').includes('{% include faq-schema.html %}')) failures.push('_layouts/post.html: FAQ não pode depender de JavaScript no cliente')
+const articleStyles = read('assets/css/style.css')
+if (!/\.answer-block p:last-child\s*\{[^}]*text-align:\s*justify;/s.test(articleStyles)) {
+  failures.push('assets/css/style.css: resposta direta não acompanha o alinhamento justificado do artigo')
+}
 
 console.log(`SEO auditado: ${publishedPosts} artigos e ${publishedProducts} produtos publicados.`)
 for (const warning of warnings) console.warn(`AVISO: ${warning}`)
