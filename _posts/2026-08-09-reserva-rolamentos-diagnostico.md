@@ -1,4 +1,5 @@
 ---
+image_subject_id: "kit-de-rolamentos-direcao-scott-foil"
 layout: post
 published: true
 title: "Rolamentos sob carga: como localizar folga e contaminação"

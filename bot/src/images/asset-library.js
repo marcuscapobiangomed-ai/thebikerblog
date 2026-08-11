@@ -29,3 +29,18 @@ export async function registerAsset(root, asset) {
   await fs.writeFile(library.file, JSON.stringify(library.data, null, 2) + "\n");
   return asset;
 }
+
+export async function releaseAssetUse(root, { postId, position }) {
+  const library = await loadAssetLibrary(root);
+  let changed = false;
+  for (const entry of library.data.assets) {
+    const previousUses = entry.uses || [];
+    entry.uses = previousUses.filter((use) => use.postId !== postId || use.position !== position);
+    if (entry.uses.length !== previousUses.length) changed = true;
+  }
+  if (!changed) return;
+  library.data.assets = library.data.assets.filter((entry) => (entry.uses || []).length > 0);
+  library.data.updatedAt = new Date().toISOString();
+  await fs.mkdir(path.dirname(library.file), { recursive: true });
+  await fs.writeFile(library.file, JSON.stringify(library.data, null, 2) + "\n");
+}

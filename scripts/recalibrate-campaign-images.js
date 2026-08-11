@@ -1,7 +1,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { produceOfficialCampaignImage } from "../bot/src/images/official-campaign-image.js";
+import { produceCampaignVisual } from "../bot/src/campaign_finalize.js";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 
@@ -9,6 +9,13 @@ function setField(content, field, value) {
   const pattern = new RegExp(`^${field}:.*$`, "m");
   if (!pattern.test(content)) throw new Error(`Frontmatter obrigatório ausente: ${field}`);
   return content.replace(pattern, `${field}: ${value}`);
+}
+
+function setOptionalField(content, field, value) {
+  const pattern = new RegExp(`^${field}:.*(?:\\r?\\n)?`, "m");
+  if (value === null) return content.replace(pattern, "");
+  if (pattern.test(content)) return content.replace(pattern, `${field}: ${value}\n`);
+  return content.replace(/^---\s*\r?\n/, (opening) => `${opening}${field}: ${value}\n`);
 }
 
 async function postPathFor(item) {
@@ -35,7 +42,7 @@ async function main() {
   for (const item of selected) {
     try {
       const approvedAt = new Date().toISOString().slice(0, 10);
-      const image = await produceOfficialCampaignImage({ root, item, approvedAt, force: true });
+      const image = await produceCampaignVisual({ root, item, approvedAt, force: true });
       const postPath = await postPathFor(item);
       let content = await fs.readFile(postPath, "utf8");
       content = setField(content, "image", `"${image.publicBase}/${image.manifest.files.hero.file}"`);
@@ -47,14 +54,21 @@ async function main() {
       content = setField(content, "image_caption", `"${image.manifest.caption.replace(/"/g, '\\"')}"`);
       content = setField(content, "image_credit", `"${image.manifest.credit.replace(/"/g, '\\"')}"`);
       content = setField(content, "image_license", `"${image.manifest.source.license.replace(/"/g, '\\"')}"`);
+      content = setOptionalField(
+        content,
+        "image_subject_id",
+        image.manifest.factualSubject === "exact-product" ? `"${image.manifest.matchedProduct.id}"` : null,
+      );
       await fs.writeFile(postPath, content);
-      await fs.rm(path.join(root, "assets/img/posts", item.id, "source.svg"), { force: true });
+      if (image.manifest.factualSubject === "exact-product") {
+        await fs.rm(path.join(root, "assets/img/posts", item.id, "source.svg"), { force: true });
+      }
       item.postPath = path.relative(root, postPath).replace(/\\/g, "/");
       item.imageManifestPath = `assets/img/posts/${item.id}/image-manifest.json`;
       item.imageStatus = "approved";
-      item.imageAssetIds = [image.manifest.assetId];
+      item.imageAssetIds = image.manifest.assetId ? [image.manifest.assetId] : [];
       item.imageValidatedAt = new Date().toISOString();
-      console.log(`✅ ${item.id}: ${image.manifest.matchedProduct.name}`);
+      console.log(`✅ ${item.id}: ${image.manifest.matchedProduct?.name || "capa conceitual própria"}`);
     } catch (error) {
       failures.push(`${item.id}: ${error.message}`);
       console.error(`❌ ${item.id}: ${error.message}`);

@@ -12,21 +12,82 @@ import fsPromises from "node:fs/promises";
 import os from "node:os";
 import sharp from "sharp";
 import { selectImageCandidate } from "./src/images/select-image.js";
+import { imageArticleConsistencyErrors } from "./src/validation/image-article-consistency.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const comparisonCandidate = selectImageCandidate({
-  id: "addict-rc-20-vs-pro",
-  title: "Addict RC 20 ou RC Pro: rodas e pneus em comparação",
-  summary: "Comparação técnica de rodas, pneus e cockpit das duas Addict.",
-  productIds: [],
-}, { products: [{
+const catalog = { products: [{
   id: "addict-rc-pro",
   name: "Bicicleta Scott Addict RC Pro Di2 2026",
   brand: "Scott",
   category: "bikes",
   productUrl: "https://thebikershop.com.br/produtos/addict-rc-pro/",
-}] }, { assets: [] });
-assert.equal(comparisonCandidate?.product.id, "addict-rc-pro", "o modelo exato não pode ser descartado por termos de componentes");
+}] };
+const conceptualComparisonCandidate = selectImageCandidate({
+  id: "addict-rc-20-vs-pro",
+  title: "Addict RC 20 ou RC Pro: rodas e pneus em comparação",
+  summary: "Comparação técnica de rodas, pneus e cockpit das duas Addict.",
+  productIds: [],
+}, catalog, { assets: [] });
+assert.equal(conceptualComparisonCandidate, null, "pauta sem produto visual explícito deve permanecer conceitual");
+const explicitCandidate = selectImageCandidate({
+  id: "addict-rc-20-vs-pro",
+  title: "Addict RC 20 ou RC Pro: rodas e pneus em comparação",
+  summary: "Comparação técnica de rodas, pneus e cockpit das duas Addict.",
+  productIds: ["addict-rc-pro"],
+}, catalog, { assets: [] });
+assert.equal(explicitCandidate?.product.id, "addict-rc-pro", "produto visual explícito deve ser selecionado por ID");
+assert.equal(selectImageCandidate({
+  id: "produto-ausente",
+  title: "Produto visual ausente no catálogo editorial",
+  summary: "A seleção precisa falhar fechada quando o produto solicitado não existe.",
+  productIds: ["nao-existe"],
+}, catalog, { assets: [] }), null);
+
+const shimanoArticle = {
+  slug: "cambio-eletronico-ajuste-diagnostico",
+  brand: "Shimano",
+  promoted_brands: ["Shimano"],
+  image_subject_id: "grupo-shimano-105-di2",
+};
+const shimanoManifest = {
+  factualSubject: "exact-product",
+  matchedProduct: { id: "grupo-shimano-105-di2", name: "Grupo Shimano 105 Di2" },
+  depictedBrands: ["Shimano"],
+  depictedProducts: ["Grupo Shimano 105 Di2"],
+};
+const productCatalog = { products: [
+  { id: "grupo-shimano-105-di2", name: "Grupo Shimano 105 Di2", brand: "Shimano" },
+  { id: "bateria-sram-axs", name: "Bateria Sram AXS", brand: "Sram" },
+] };
+assert.deepEqual(imageArticleConsistencyErrors({
+  article: shimanoArticle,
+  manifest: shimanoManifest,
+  campaignItem: { heroImage: { mode: "exact-product", productId: "grupo-shimano-105-di2" } },
+  catalog: productCatalog,
+}), []);
+assert.match(imageArticleConsistencyErrors({
+  article: shimanoArticle,
+  manifest: {
+    ...shimanoManifest,
+    matchedProduct: { id: "bateria-sram-axs", name: "Bateria Sram AXS" },
+    depictedBrands: ["SRAM"],
+    depictedProducts: ["Bateria Sram AXS"],
+  },
+  campaignItem: { heroImage: { mode: "exact-product", productId: "grupo-shimano-105-di2" } },
+  catalog: productCatalog,
+}).join("; "), /produto visual|marca da imagem/i);
+assert.match(imageArticleConsistencyErrors({
+  article: shimanoArticle,
+  manifest: { ...shimanoManifest, matchedProduct: { id: "outro-produto-shimano", name: "Sapatilha Shimano" } },
+  campaignItem: { heroImage: { mode: "exact-product", productId: "grupo-shimano-105-di2" } },
+  catalog: productCatalog,
+}).join("; "), /produto visual/i);
+assert.deepEqual(imageArticleConsistencyErrors({
+  article: { slug: "guia-generico", brand: "TheBiker", promoted_brands: ["TheBiker"] },
+  manifest: { factualSubject: "conceptual", depictedBrands: [], depictedProducts: [] },
+  campaignItem: { heroImage: { mode: "conceptual" } },
+  catalog: productCatalog,
+}), []);
 
 for (const category of ["corrida-v2", "lancamento-v2"]) {
   const directory = path.resolve(__dirname, `../assets/img/system/covers/${category}`);

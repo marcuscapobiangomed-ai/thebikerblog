@@ -1,4 +1,5 @@
 ---
+image_subject_id: "scott-addict-rc-pro-hmx-frame-set"
 layout: post
 published: true
 title: "HMF ou HMX: o que realmente muda na engenharia dos quadros Scott"

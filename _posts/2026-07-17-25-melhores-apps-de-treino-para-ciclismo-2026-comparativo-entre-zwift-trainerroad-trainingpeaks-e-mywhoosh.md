@@ -1,4 +1,5 @@
 ---
+image_subject_id: "rolo-de-treino-elite-novo-force"
 layout: post
 title: "Zwift, TrainerRoad, TrainingPeaks ou MyWhoosh: qual app usar?"
 description: "Comparativo completo dos melhores apps de treino para ciclismo em 2026: Zwift, TrainerRoad, TrainingPeaks, MyWhoosh e Rouvy. Preços atualizados, prós e contras."

@@ -1,4 +1,5 @@
 ---
+image_subject_id: "bicicleta-scott-addict-50-2026-pre-venda-cumulus-white"
 layout: post
 title: "Melhores Estradas e Rotas de Ciclismo no Brasil"
 description: "Descubra as melhores estradas e rotas para ciclismo de estrada no Brasil, organizadas por região."

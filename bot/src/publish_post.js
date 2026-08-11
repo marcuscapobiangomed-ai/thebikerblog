@@ -13,6 +13,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import matter from "gray-matter";
 import { validateImageManifestV2 } from "./validation/image-manifest-v2.js";
+import { assertImageArticleConsistency } from "./validation/image-article-consistency.js";
 import { linkTheBikerProducts, loadTheBikerLinkData } from "./editorial/product-linker.js";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -79,14 +80,8 @@ function main() {
         path.dirname(manifestPath),
         { requirePublishable: true },
       );
-      if (validatedManifest.factualSubject === "exact-product") {
-        const expectedProduct = String(parsed.data.product_name || "").trim().toLocaleLowerCase("pt-BR");
-        const depicted = validatedManifest.depictedProducts
-          .map((product) => product.trim().toLocaleLowerCase("pt-BR"));
-        if (!expectedProduct || !depicted.includes(expectedProduct)) {
-          throw new Error("produto retratado no manifesto não corresponde ao product_name do post");
-        }
-      }
+      const catalog = JSON.parse(fs.readFileSync(path.join(ROOT_DIR, "content/product-discovery/thebiker-media-catalog.json"), "utf8"));
+      assertImageArticleConsistency({ article: parsed.data, manifest: validatedManifest, catalog });
     } catch (error) {
       console.error(`❌ Publicação bloqueada: ${error.message}`);
       process.exit(1);

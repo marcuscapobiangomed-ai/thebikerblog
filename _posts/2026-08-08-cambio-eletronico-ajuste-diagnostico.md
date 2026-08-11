@@ -1,4 +1,5 @@
 ---
+image_subject_id: "grupo-shimano-105-di2"
 layout: post
 published: true
 title: "Câmbio eletrônico sob carga: ajuste e diagnóstico do Shimano Di2"
@@ -28,14 +29,14 @@ category: "guia-tecnico"
 tags: ["ciclismo", "cambio-eletronico", "shimano-di2", "ajuste", "diagnostico"]
 description: "Guia técnico para ajustar e diagnosticar o câmbio eletrônico Shimano Di2 sob carga, evitar falhas de troca e preservar o funcionamento do sistema."
 direct_answer: "Falhas do Shimano Di2 sob carga devem ser diagnosticadas em sequência: bateria e conexões, alinhamento da gancheira, fixação e desgaste da transmissão, limites e microajuste. Ajustar eletronicamente sem excluir causas mecânicas tende a mascarar o problema."
-image: "/assets/img/posts/cambio-eletronico-ajuste-diagnostico/hero-1600.png"
-image_mobile: "/assets/img/posts/cambio-eletronico-ajuste-diagnostico/hero-800.png"
-thumbnail: "/assets/img/posts/cambio-eletronico-ajuste-diagnostico/card-640.png"
+image: "/assets/img/posts/cambio-eletronico-ajuste-diagnostico/hero-1600.webp"
+image_mobile: "/assets/img/posts/cambio-eletronico-ajuste-diagnostico/hero-800.webp"
+thumbnail: "/assets/img/posts/cambio-eletronico-ajuste-diagnostico/card-640.webp"
 image_manifest_version: 2
 image_asset_type: "official-product-photo"
 image_status: "approved"
-image_alt: "Bateria Sram AXS e tampa vermelha em fotografia oficial da TheBiker Shop"
-image_caption: "Bateria Sram AXS e tampa protetora, conforme fotografia do catálogo oficial da TheBiker Shop."
+image_alt: "Grupo Shimano 105 Di2 em fotografia oficial de TheBiker Shop"
+image_caption: "Grupo Shimano 105 Di2, em fotografia oficial de TheBiker Shop."
 image_credit: "TheBiker Shop"
 image_license: "Uso editorial no blog oficial TheBiker"
 affiliate_links: false

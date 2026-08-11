@@ -1,4 +1,5 @@
 ---
+image_subject_id: "bicicleta-scott-addict-rc-pro-di2-2026-pre-venda"
 layout: post
 published: false
 title: "Addict RC 20 ou RC Pro: onde estão as diferenças que importam na montagem"

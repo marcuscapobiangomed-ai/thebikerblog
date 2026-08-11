@@ -1,4 +1,5 @@
 ---
+image_subject_id: "bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9"
 layout: post
 published: false
 title: "Addict RC 20: Ultegra Di2, rodas de 40 mm e o equilíbrio da montagem"

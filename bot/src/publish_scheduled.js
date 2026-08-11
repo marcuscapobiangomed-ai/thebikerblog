@@ -4,6 +4,8 @@ import { fileURLToPath } from "node:url";
 import { CampaignSchema, publicCampaignSummary } from "./automation/campaign.js";
 import { validateImageManifestV2 } from "./validation/image-manifest-v2.js";
 import { assertMarkdownPublicationGates } from "./validation/markdown-publication-gates.js";
+import matter from "gray-matter";
+import { assertImageArticleConsistency } from "./validation/image-article-consistency.js";
 
 const defaultRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 
@@ -64,12 +66,14 @@ export async function publishScheduled({ now = new Date(), dryRun = false, root 
   const imagesRoot = path.resolve(root, "assets/img/posts") + path.sep;
   if (!manifestPath.startsWith(imagesRoot)) throw new Error(`imageManifestPath inseguro: ${item.imageManifestPath}`);
   const manifest = JSON.parse(await fs.readFile(manifestPath, "utf8"));
-  validateImageManifestV2(manifest, path.dirname(manifestPath), { requirePublishable: true });
+  const validatedManifest = validateImageManifestV2(manifest, path.dirname(manifestPath), { requirePublishable: true });
 
   const sourcePath = path.resolve(root, item.postPath);
   const draftsRoot = path.join(root, "_posts", "drafts") + path.sep;
   if (!sourcePath.startsWith(draftsRoot)) throw new Error(`postPath inseguro: ${item.postPath}`);
   let content = await fs.readFile(sourcePath, "utf8");
+  const catalog = JSON.parse(await fs.readFile(path.join(root, "content/product-discovery/thebiker-media-catalog.json"), "utf8"));
+  assertImageArticleConsistency({ article: matter(content).data, manifest: validatedManifest, campaignItem: item, catalog });
   content = content.replace(/^published:\s*false\s*$/m, "published: true");
   content = content.replace(/^editorial_status:\s*.*$/m, 'editorial_status: "published"');
   content = content.replace(/^status:\s*.*$/m, 'status: "published"');

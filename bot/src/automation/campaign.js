@@ -1,5 +1,11 @@
 import { z } from 'zod'
 
+const HeroImageSchema = z.discriminatedUnion('mode', [
+  z.object({ mode: z.literal('exact-product'), productId: z.string().min(3) }),
+  z.object({ mode: z.literal('conceptual') }),
+  z.object({ mode: z.literal('race-context') }),
+])
+
 const CampaignItemSchema = z.object({
   day: z.number().int().min(1).max(30),
   publishDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
@@ -10,6 +16,7 @@ const CampaignItemSchema = z.object({
   freshness: z.enum(['evergreen', 'revalidate-24h', 'event-driven']),
   status: z.enum(['planned', 'researching', 'research-ready', 'drafting', 'validation', 'approved', 'scheduled', 'published', 'blocked', 'replaced']),
   productIds: z.array(z.string()).default([]),
+  heroImage: HeroImageSchema.default({ mode: 'conceptual' }),
   postPath: z.string().regex(/^_posts\/(?:drafts\/)?[^/]+\.md$/).optional(),
   imageManifestPath: z.string().regex(/^assets\/img\/posts\/.+\/image-manifest\.json$/).optional(),
   imageStatus: z.enum(['missing', 'candidate', 'approved', 'blocked']).optional(),
@@ -50,6 +57,12 @@ export const CampaignSchema = z.object({
     if (item.publishDate !== expectedDate) context.addIssue({ code: 'custom', path: ['items', index, 'publishDate'], message: `data esperada: ${expectedDate}` })
     if (item.category === "review" && ["validation", "approved", "scheduled", "published"].includes(item.status) && item.productIds.length === 0) {
       context.addIssue({ code: 'custom', path: ['items', index, 'productIds'], message: 'review validado exige ao menos um produto rastreável' })
+    }
+    if (item.heroImage.mode === 'exact-product' && !item.productIds.includes(item.heroImage.productId)) {
+      context.addIssue({ code: 'custom', path: ['items', index, 'heroImage', 'productId'], message: 'produto da capa precisa estar declarado em productIds' })
+    }
+    if (item.heroImage.mode === 'race-context' && item.category !== 'competicoes') {
+      context.addIssue({ code: 'custom', path: ['items', index, 'heroImage', 'mode'], message: 'race-context é exclusivo de conteúdo de competições' })
     }
   }
 })

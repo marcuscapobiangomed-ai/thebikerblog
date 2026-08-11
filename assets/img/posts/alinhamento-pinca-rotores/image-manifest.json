@@ -2,44 +2,28 @@
   "schemaVersion": 2,
   "status": "approved",
   "editorialUse": "publishable",
-  "assetType": "official-product-photo",
-  "factualSubject": "exact-product",
+  "assetType": "technical-diagram",
+  "factualSubject": "conceptual",
   "editorialScope": "portfolio",
-  "purpose": "Ilustrar Pinça, rotor e contato de pastilha: como eliminar atrito sem perder potência de frenagem com produto real do catálogo TheBiker.",
-  "alt": "Pastilha de Freio Sram Medium Orgânica - Level 4 Pistões em fotografia oficial da TheBiker Shop",
-  "caption": "Pastilha de Freio Sram Medium Orgânica - Level 4 Pistões, conforme catálogo oficial da TheBiker Shop.",
-  "credit": "TheBiker Shop",
-  "containsText": false,
+  "purpose": "Identificar visualmente a pauta técnica Pinça, rotor e contato de pastilha: como eliminar atrito sem perder potência de frenagem.",
+  "alt": "Capa técnica TheBiker para o artigo Pinça, rotor e contato de pastilha: como eliminar atrito sem perder potência de frenagem",
+  "caption": "Capa técnica produzida para o conteúdo editorial TheBiker.",
+  "credit": "TheBiker",
+  "containsText": true,
   "aiGenerated": false,
-  "assetId": "thebiker-pastilha-de-freio-sram-guide-trail-organica-c458e0070c",
-  "sha256": "c458e0070c0e8b0a5d4612b6bbab07f38d6f6806abe7f30fb42e896332e29b6a",
-  "perceptualHash": "1111111111111111111111011000011100000011101100111100011111111111",
-  "preserveFullProduct": true,
-  "matchedProduct": {
-    "id": "pastilha-de-freio-sram-guide-trail-organica",
-    "name": "Pastilha de Freio Sram Medium Orgânica - Level 4 Pistões",
-    "sku": "00.5318.003.004",
-    "matchLevel": "deterministic-topic"
-  },
-  "depictedBrands": [
-    "SRAM"
-  ],
-  "depictedProducts": [
-    "Pastilha de Freio Sram Medium Orgânica - Level 4 Pistões"
-  ],
+  "depictedBrands": [],
+  "depictedProducts": [],
   "focalPoint": {
     "x": 0.5,
     "y": 0.5
   },
   "source": {
-    "type": "thebiker",
-    "name": "TheBiker Shop",
-    "url": "https://thebikershop.com.br/produtos/pastilha-de-freio-sram-guide-trail-organica/",
-    "fileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/yzoqcmcjgs0w8xiriquo-jpg-24200ad5f0da1ae80117213319205890-640-0.webp",
-    "obtainedAt": "2026-08-05",
-    "license": "Uso editorial no blog oficial TheBiker",
-    "licenseEvidence": "Diretriz editorial registrada pelo responsável do blog oficial TheBiker.",
-    "rightsPolicyId": "thebiker-official-editorial-v1"
+    "type": "own-production",
+    "name": "TheBiker",
+    "url": "",
+    "obtainedAt": "2026-08-11",
+    "license": "Propriedade editorial TheBiker",
+    "licenseEvidence": "Arte técnica original produzida pelo pipeline editorial do repositório."
   },
   "files": {
     "hero": {
@@ -62,25 +46,14 @@
     }
   },
   "approval": {
-    "reviewedBy": "TheBiker deterministic image gate",
-    "approvedAt": "2026-08-05",
+    "reviewedBy": "TheBiker AI Editorial Gate",
+    "approvedAt": "2026-08-11",
     "method": "automated-editorial-gate",
     "checks": [
-      "fonte-thebiker",
-      "direitos",
-      "produto-relacionado",
-      "sha256",
-      "hash-perceptual",
-      "sem-concorrente"
+      "origem-própria",
+      "sem-marca-concorrente",
+      "dimensões",
+      "peso-do-arquivo"
     ]
-  },
-  "composition": {
-    "strategy": "trim-contain-safe-area",
-    "safeArea": 0.9,
-    "trimThreshold": 16,
-    "sourceWidth": 640,
-    "sourceHeight": 536,
-    "subjectWidth": 563,
-    "subjectHeight": 391
   }
 }

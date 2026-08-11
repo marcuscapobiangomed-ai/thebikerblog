@@ -16,7 +16,12 @@ jobs:
         with:
           node-version: 24
           cache: "npm"
-          cache-dependency-path: bot/package-lock.json
+          cache-dependency-path: |
+            package-lock.json
+            bot/package-lock.json
+
+      - name: Install site validation dependencies
+        run: npm ci
 
       - name: Install image validation dependencies
         run: npm ci

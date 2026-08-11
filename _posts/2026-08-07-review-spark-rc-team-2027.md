@@ -1,4 +1,5 @@
 ---
+image_subject_id: "bicicleta-scott-spark-rc-world-cup-2027"
 layout: post
 published: true
 title: "Spark RC Team 2027: plataforma de 120 mm e transmissão AXS"
