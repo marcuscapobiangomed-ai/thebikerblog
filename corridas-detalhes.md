@@ -62,4 +62,4 @@ model: ""
   </div>
 </div>
 
-<script defer src="{{ site.baseurl }}/assets/js/race-details.js?v=1"></script>
+<script defer src="{{ site.baseurl }}/assets/js/race-details.js?v=2"></script>

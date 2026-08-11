@@ -53,6 +53,11 @@ jobs:
           node scripts/test-race-navigation.mjs
           npm run security:secrets
 
+      - name: Resumir saúde da agenda
+        if: ${{ always() }}
+        run: |
+          node -e "const c=require('./_data/race-events.json').publicCalendar; const br=c.upcoming.filter(e=>e.countryCode==='BRA'); const guides=br.filter(e=>e.deepProfile); console.log('## Saúde da agenda de corridas\n\n- Em disputa hoje: '+c.today.length+'\n- Recentes: '+c.recent.length+'\n- Próximas: '+c.upcoming.length+'\n- Brasileiras com guia: '+guides.length+'/'+br.length+'\n- Snapshot: '+c.generatedAt)" >> "$GITHUB_STEP_SUMMARY"
+
       - name: Registrar snapshot verificado
         if: ${{ github.event_name == 'schedule' || !inputs.dry_run }}
         run: |
