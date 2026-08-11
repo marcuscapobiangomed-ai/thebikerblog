@@ -26,6 +26,25 @@ const resumed = recoverBlockedCampaign(finalization, { now: new Date('2026-08-07
 assert.equal(resumed.result.status, 'retry-finalization')
 assert.equal(resumed.campaign.items.find((item) => item.id === finalizable.id).status, 'validation')
 
+const conceptualFinalization = structuredClone(campaignFixture)
+for (const item of conceptualFinalization.items) if (item.status === 'blocked') { item.status = 'planned'; delete item.blockReason; delete item.failure }
+const conceptual = conceptualFinalization.items.find((item) => item.id === 'reserva-pressao-pneus-terreno')
+assert.ok(conceptual, 'A campanha precisa conter a reserva técnica com política visual reparável')
+conceptual.status = 'blocked'
+conceptual.heroImage = { mode: 'conceptual' }
+conceptual.blockReason = 'Validação final: Politica visual conceptual: agendamento exige fotografia real explicitamente vinculada'
+conceptual.failure = {
+  code: 'IMAGE_NOT_PUBLISHABLE', retryable: false, stage: 'finalization',
+  message: 'Politica visual conceptual: agendamento exige fotografia real explicitamente vinculada',
+  recordedAt: '2026-08-07T12:00:00.000Z',
+}
+const visualRecovered = recoverBlockedCampaign(conceptualFinalization, { now: new Date('2026-08-07T12:00:00Z') })
+assert.equal(visualRecovered.result.status, 'repair-finalization-visual')
+const repairedVisualItem = visualRecovered.campaign.items.find((item) => item.id === conceptual.id)
+assert.equal(repairedVisualItem.status, 'validation')
+assert.equal(repairedVisualItem.heroImage.mode, 'real-context')
+assert.deepEqual(repairedVisualItem.productIds, [repairedVisualItem.heroImage.productId])
+
 const invalidFinalization = structuredClone(finalization)
 const invalidDraft = invalidFinalization.items.find((item) => item.id === finalizable.id)
 invalidDraft.status = 'blocked'
