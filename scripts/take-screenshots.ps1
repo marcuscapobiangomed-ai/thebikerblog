@@ -1,4 +1,4 @@
-$baseUrl = "https://insights.thebikershop.com.br"
+$baseUrl = "https://blog.thebiker.com.br"
 $screenshotDir = "C:\Users\marcu\Downloads\Blog - APRENDA!\medblog-full\screenshots"
 $chromePath = "C:\Program Files\Google\Chrome\Application\chrome.exe"
 

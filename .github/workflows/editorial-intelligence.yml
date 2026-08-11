@@ -63,9 +63,9 @@ jobs:
           GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
           GOOGLE_REFRESH_TOKEN: ${{ secrets.GOOGLE_REFRESH_TOKEN }}
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
-          SEARCH_CONSOLE_SITE_URL: ${{ vars.SEARCH_CONSOLE_SITE_URL || 'https://insights.thebikershop.com.br/' }}
+          SEARCH_CONSOLE_SITE_URL: ${{ vars.SEARCH_CONSOLE_SITE_URL || 'https://blog.thebiker.com.br/' }}
           SEARCH_CONSOLE_SHOP_SITE_URL: ${{ vars.SEARCH_CONSOLE_SHOP_SITE_URL || 'sc-domain:thebikershop.com.br' }}
-          CONTENT_INDEX_URL: ${{ vars.CONTENT_INDEX_URL || 'https://insights.thebikershop.com.br/api/content-index.json' }}
+          CONTENT_INDEX_URL: ${{ vars.CONTENT_INDEX_URL || 'https://blog.thebiker.com.br/api/content-index.json' }}
           YOUTUBE_CACHE_DIR: ${{ runner.temp }}/youtube-intelligence-cache
         shell: bash
         run: |

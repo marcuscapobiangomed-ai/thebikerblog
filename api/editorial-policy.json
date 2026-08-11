@@ -4,7 +4,7 @@
   "publisher": "TheBiker Insights",
   "language": "pt-BR",
   "audience": "Canal editorial oficial da TheBiker para decisões técnicas, esportivas e de compra de ciclistas exigentes.",
-  "audiencePolicy": "https://insights.thebikershop.com.br/api/audience.json",
+  "audiencePolicy": "https://blog.thebiker.com.br/api/audience.json",
   "sourcePriority": [
     "Fabricante oficial",
     "TheBiker Shop"
