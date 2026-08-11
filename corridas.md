@@ -11,39 +11,130 @@ model: ""
 ---
 
 {% assign published_posts = site.posts | where_exp: "p", "p.status != 'draft'" %}
+{% assign race_program = site.data["race-events"] %}
+{% assign public_calendar = race_program.publicCalendar %}
 
-<div class="race-hub">
+<div class="race-hub" data-race-calendar data-today-count="{{ public_calendar.today | size }}" data-recent-count="{{ public_calendar.recent | size }}" data-upcoming-count="{{ public_calendar.upcoming | size }}" data-calendar-as-of="{{ public_calendar.asOfDate }}">
   <section class="race-hub-hero" aria-labelledby="race-hub-title">
     <div class="container race-hub-hero-inner">
       <span class="race-hub-kicker">TheBiker Insights · Competições</span>
-      <h1 id="race-hub-title">Corridas para acompanhar.<br>Provas para viver.</h1>
-      <p>Cobertura técnica do cenário profissional e uma agenda criteriosa para quem quer alinhar em provas pelo Brasil.</p>
+      <h1 id="race-hub-title">O pelotão corre.<br>A agenda acompanha.</h1>
+      <p>Agenda recente e as próximas grandes corridas do ciclismo mundial, conferidas diretamente no calendário oficial da UCI.</p>
+      <div class="race-hub-status" aria-label="Resumo do calendário">
+        <span><strong>{{ public_calendar.today | size }}</strong> em disputa hoje</span>
+        <span><strong>{{ public_calendar.recent | size }}</strong> encerradas recentemente</span>
+        <span><strong>{{ public_calendar.upcoming | size }}</strong> próximas provas</span>
+        <span>Verificado em <strong>{{ public_calendar.generatedAt | date: "%d/%m/%Y" }}</strong></span>
+      </div>
     </div>
   </section>
 
   <section class="container race-hub-tracks" aria-label="Áreas de corridas">
     <article class="race-track-card">
       <span>01</span>
-      <h2>Cenário profissional</h2>
-      <p>Prévias, resultados e análise das decisões técnicas e táticas que definem as principais competições.</p>
-      <a href="#profissional">Ver cobertura <span aria-hidden="true">↓</span></a>
+      <h2>Acabaram de acontecer</h2>
+      <p>Três provas importantes encerradas nos últimos dias, com data, categoria e ficha oficial verificadas.</p>
+      <a href="#recentes">Ver provas recentes <span aria-hidden="true">↓</span></a>
     </article>
     <article class="race-track-card">
       <span>02</span>
-      <h2>Provas para participar</h2>
-      <p>Calendário brasileiro, guias de evento e situação das inscrições, sempre separados do conteúdo profissional.</p>
-      <a href="#participar">Ver calendário <span aria-hidden="true">↓</span></a>
+      <h2>As próximas 10</h2>
+      <p>Agenda cronológica de WorldTour, Women’s WorldTour, ProSeries, Copa do Mundo e Campeonatos Mundiais.</p>
+      <a href="#proximas">Abrir calendário <span aria-hidden="true">↓</span></a>
     </article>
   </section>
 
   <div class="container race-hub-content">
+    <section id="hoje" class="race-today-section" aria-labelledby="today-races-title">
+      <div class="race-today-card{% if public_calendar.today == empty %} race-today-card--empty{% endif %}">
+        <div class="race-today-heading">
+          <div>
+            <span class="race-today-badge"><i aria-hidden="true"></i> Hoje</span>
+            <h2 id="today-races-title">Em disputa hoje</h2>
+          </div>
+          <time datetime="{{ public_calendar.asOfDate }}">{{ public_calendar.asOfDateDisplay }}</time>
+        </div>
+        {% if public_calendar.today != empty %}
+          <div class="race-today-events">
+            {% for event in public_calendar.today %}
+              <article class="race-today-event">
+                <div>
+                  <span>{{ event.disciplineLabel }} · {{ event.country }}</span>
+                  <h3>{{ event.name }}</h3>
+                  <p>{{ event.competitionClass }}{% if event.venue != "" %} · {{ event.venue }}{% endif %}</p>
+                </div>
+                <a href="{{ event.source.officialUrl }}" target="_blank" rel="noopener noreferrer" data-race-outbound data-event-id="{{ event.id }}" data-race-section="today" data-race-source="UCI" aria-label="Abrir ficha oficial de {{ event.name }}">Ver ficha na UCI <span aria-hidden="true">↗</span></a>
+              </article>
+            {% endfor %}
+          </div>
+        {% else %}
+          <p class="race-today-empty">Nenhuma prova do recorte profissional monitorado acontece hoje. O calendário abaixo mostra as próximas largadas confirmadas.</p>
+        {% endif %}
+      </div>
+    </section>
+
+    <section id="recentes" class="race-content-section" aria-labelledby="recent-races-title">
+      <div class="race-section-heading">
+        <div>
+          <span>Calendário recente</span>
+          <h2 id="recent-races-title">Encerradas no calendário UCI</h2>
+        </div>
+        <p>Selecionamos as provas de maior nível encerradas mais recentemente. O link de cada card leva à ficha oficial da UCI.</p>
+      </div>
+      <div class="race-recent-grid">
+        {% for event in public_calendar.recent %}
+          <article class="race-event-card race-event-card--completed">
+            <div class="race-event-card-topline">
+              <span class="race-event-status">Data encerrada</span>
+              <span>{{ event.disciplineLabel }}</span>
+            </div>
+            <p class="race-event-date">
+              <time datetime="{{ event.startsOn }}">{{ event.displayDate.startsOn }}</time>
+              {% unless event.startsOn == event.endsOn %}<span aria-hidden="true">—</span> <time datetime="{{ event.endsOn }}">{{ event.displayDate.endsOnWithYear }}</time>{% endunless %}
+            </p>
+            <h3>{{ event.name }}</h3>
+            <p class="race-event-location">{{ event.country }}{% if event.venue != "" %} · {{ event.venue }}{% endif %}</p>
+            <p class="race-event-class">{{ event.competitionClass }}</p>
+            <a href="{{ event.source.officialUrl }}" target="_blank" rel="noopener noreferrer" data-race-outbound data-event-id="{{ event.id }}" data-race-section="recent" data-race-source="UCI">Ficha oficial UCI <span aria-hidden="true">↗</span></a>
+          </article>
+        {% endfor %}
+      </div>
+    </section>
+
+    <section id="proximas" class="race-content-section" aria-labelledby="upcoming-races-title">
+      <div class="race-section-heading">
+        <div>
+          <span>Agenda verificada</span>
+          <h2 id="upcoming-races-title">As próximas 10 corridas</h2>
+        </div>
+        <p>Ordem de largada confirmada no calendário UCI. Mudanças de data ou classificação entram automaticamente na próxima sincronização.</p>
+      </div>
+      <ol class="race-upcoming-list">
+        {% for event in public_calendar.upcoming %}
+          <li class="race-upcoming-item">
+            <span class="race-upcoming-position" aria-hidden="true">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span>
+            <p class="race-upcoming-date">
+              <time datetime="{{ event.startsOn }}">{{ event.displayDate.startsOn }}</time>
+              {% unless event.startsOn == event.endsOn %}<span>até</span> <time datetime="{{ event.endsOn }}">{{ event.displayDate.endsOn }}</time>{% endunless %}
+            </p>
+            <div class="race-upcoming-main">
+              <span>{{ event.disciplineLabel }} · {{ event.country }}</span>
+              <h3>{{ event.name }}</h3>
+              <p>{{ event.competitionClass }}{% if event.venue != "" %} · {{ event.venue }}{% endif %}</p>
+            </div>
+            <a href="{{ event.source.officialUrl }}" target="_blank" rel="noopener noreferrer" data-race-outbound data-event-id="{{ event.id }}" data-race-section="upcoming" data-race-source="UCI" aria-label="Abrir ficha oficial de {{ event.name }}">UCI <span aria-hidden="true">↗</span></a>
+          </li>
+        {% endfor %}
+      </ol>
+    </section>
+
     <section id="profissional" class="race-content-section" aria-labelledby="professional-title">
       <div class="race-section-heading">
         <div>
-          <span>Cobertura</span>
-          <h2 id="professional-title">Ciclismo profissional</h2>
+          <span>Conteúdo editorial</span>
+          <h2 id="professional-title">Análises de corrida</h2>
         </div>
-        <p>Fontes oficiais, resultado confirmado e leitura técnica sem transformar rumor em fato.</p>
+        <p>Prévias e leituras técnicas publicadas pelo blog, sempre separadas do calendário factual acima.</p>
       </div>
       <div class="brand-guide-grid race-article-grid">
         {% assign professional_found = false %}
@@ -63,8 +154,8 @@ model: ""
       </div>
       {% unless professional_found %}
         <div class="race-empty-state">
-          <strong>Cobertura em preparação</strong>
-          <p>As primeiras análises aparecerão aqui depois da confirmação das fontes e da revisão editorial.</p>
+          <strong>Nenhuma análise publicada neste momento</strong>
+          <p>O calendário oficial acima já está ativo. Novas análises entram aqui somente depois de passarem pela verificação editorial.</p>
         </div>
       {% endunless %}
     </section>
@@ -95,8 +186,8 @@ model: ""
       </div>
       {% unless participant_found %}
         <div class="race-empty-state">
-          <strong>Calendário em preparação</strong>
-          <p>Os eventos serão exibidos quando data, fonte oficial e situação da inscrição estiverem verificadas.</p>
+          <strong>Nenhum guia de participação publicado</strong>
+          <p>Não exibimos inscrição ou logística sem confirmação do organizador. As próximas corridas profissionais continuam disponíveis no calendário acima.</p>
         </div>
       {% endunless %}
     </section>
@@ -105,7 +196,7 @@ model: ""
   <section class="race-source-note">
     <div class="container">
       <strong>Compromisso de fonte</strong>
-      <p>Uma prova pode mudar de data, regulamento ou inscrição. Por isso, cada publicação informa o que foi confirmado e o que ainda precisa ser consultado diretamente com a organização.</p>
+      <p>Dados de agenda sincronizados diariamente com a Union Cycliste Internationale. “Em disputa hoje” indica que a data oficial da prova abrange o dia atual; não representa transmissão ao vivo nem confirma resultado. Se a fonte mudar de formato, ficar indisponível ou entregar menos de 3 provas recentes e 10 próximas, a atualização é bloqueada e o fluxo operacional recebe um alerta.</p>
     </div>
   </section>
 </div>

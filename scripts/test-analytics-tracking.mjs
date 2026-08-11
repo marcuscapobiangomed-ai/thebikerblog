@@ -57,7 +57,7 @@ expect(search.includes("'search_results'"), 'Busca interna sem evento agregado')
 expect(!search.includes('search_term:'), 'Termo digitado não deve ser enviado ao analytics')
 expect(consent.includes("page_location: window.location.origin + window.location.pathname"), 'GA4 pode receber parâmetros sensíveis da URL')
 expect(consent.includes('(admin|search|login|conta)'), 'Clarity não exclui páginas sensíveis')
-for (const eventName of ['content_view', 'scroll_depth', 'qualified_read', 'view_item', 'comparison_complete', 'store_click', 'internal_link_click', 'external_link_click', 'button_click']) {
+for (const eventName of ['content_view', 'scroll_depth', 'qualified_read', 'view_item', 'comparison_complete', 'store_click', 'internal_link_click', 'external_link_click', 'button_click', 'race_calendar_view', 'race_outbound_click']) {
   expect(events.includes(`'${eventName}'`), `Evento obrigatório ausente: ${eventName}`)
 }
 for (const parameter of ['element_type', 'element_name', 'link_type', 'destination_host', 'destination_path', 'button_type']) {

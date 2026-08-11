@@ -31,6 +31,7 @@ function classification(frontmatter) {
   let audienceIntent = 'technical_learning';
   if (contentType === 'comparativo') audienceIntent = 'compare_products';
   else if (['review', 'guia-de-compra'].includes(contentType)) audienceIntent = 'purchase_consideration';
+  else if (['calendario-provas', 'guia-prova'].includes(contentType)) audienceIntent = 'find_race_to_enter';
   else if (['noticia', 'lancamento', 'previa-corrida', 'resumo-corrida'].includes(contentType)) audienceIntent = 'follow_market_competition';
   else if (contentType === 'guia-turistico') audienceIntent = 'plan_ride';
   else if (contentType === 'guia-tecnico') audienceIntent = 'solve_problem';

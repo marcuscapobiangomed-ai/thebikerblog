@@ -31,7 +31,10 @@ const posts = fs.readdirSync(path.join(projectRoot, "_posts"), { withFileTypes: 
 
 const findPost = (fragment) => posts.find((post) => String(post.title || "").includes(fragment));
 const config = yaml.load(read("_config.yml"));
-const site = { ...config, baseurl: "", posts, time: new Date() };
+const data = {
+  "race-events": JSON.parse(read(path.join("_data", "race-events.json")))
+};
+const site = { ...config, baseurl: "", posts, data, time: new Date() };
 const page = { ...parseDocument(read("index.html")).data, url: "/" };
 const context = {
   site,

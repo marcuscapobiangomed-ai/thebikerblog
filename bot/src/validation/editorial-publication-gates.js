@@ -7,6 +7,8 @@ const MIN_WORDS = {
   lancamento: 900,
   "previa-corrida": 1000,
   "resumo-corrida": 1200,
+  "calendario-provas": 1000,
+  "guia-prova": 1200,
 };
 
 function wordCount(article) {
