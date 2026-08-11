@@ -16,7 +16,7 @@ function promotedBrands(article) {
   return unique([article?.brand, ...declared]).filter((brand) => brand !== "thebiker");
 }
 
-export function imageArticleConsistencyErrors({ article = {}, manifest = {}, campaignItem = null, catalog = null } = {}) {
+export function imageArticleConsistencyErrors({ article = {}, manifest = {}, campaignItem = null, catalog = null, archivedAsset = null } = {}) {
   const errors = [];
   const factualSubject = String(manifest.factualSubject || "");
   const visualPolicy = campaignItem?.heroImage || null;
@@ -52,7 +52,12 @@ export function imageArticleConsistencyErrors({ article = {}, manifest = {}, cam
     if (catalog && matchedId) {
       const product = (catalog.products || []).find((candidate) => candidate.id === matchedId);
       if (!product) {
-        errors.push(`produto visual ${matchedId} não existe no catálogo editorial`);
+        const immutableProofMatches = archivedAsset
+          && archivedAsset.assetId === manifest.assetId
+          && archivedAsset.sha256 === manifest.sha256
+          && archivedAsset.productId === matchedId
+          && archivedAsset.rightsPolicyId === manifest.source?.rightsPolicyId;
+        if (!immutableProofMatches) errors.push(`produto visual ${matchedId} não existe no catálogo editorial nem possui prova imutável`);
       } else {
         const catalogBrand = normalize(product.brand);
         if (catalogBrand && depicted.length > 0 && !depicted.includes(catalogBrand)) {
