@@ -346,6 +346,40 @@
         "title": "Diagnóstico de ruídos na bicicleta: método por carga, frequência e interface"
       },
       "reason": "[POLICY_MARKETING_LANGUAGE] Gate Markdown reprovado: linguagem publicitária proibida: perfeito"
+    },
+    {
+      "recordedAt": "2026-08-11T22:51:18.738Z",
+      "campaignId": "thebiker-rolling-2026-08-08",
+      "replacedItem": {
+        "day": 15,
+        "publishDate": "2026-08-22",
+        "id": "reserva-diagnostico-ruidos-bike",
+        "title": "Diagnóstico de ruídos na bicicleta: método por carga, frequência e interface",
+        "summary": "Protocolo técnico para isolar ruídos de transmissão, cockpit, rodas e quadro sem substituir componentes por tentativa e erro.",
+        "category": "manutencao-ajustes",
+        "freshness": "evergreen",
+        "status": "blocked",
+        "productIds": [],
+        "heroImage": {
+          "mode": "conceptual"
+        },
+        "imageAssetIds": [],
+        "blockReason": "[POLICY_UNSUPPORTED_TEST] Gate Markdown reprovado: alegação de teste prático proibida: durante o pedal",
+        "failure": {
+          "code": "POLICY_UNSUPPORTED_TEST",
+          "retryable": false,
+          "stage": "production",
+          "message": "Gate Markdown reprovado: alegação de teste prático proibida: durante o pedal",
+          "recordedAt": "2026-08-11T22:31:50.904Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-11T22:31:50.904Z"
+      },
+      "replacement": {
+        "id": "reserva-pressao-pneus-terreno",
+        "title": "Pressão de pneus por terreno: como testar sem transformar sensação em dado"
+      },
+      "reason": "[POLICY_UNSUPPORTED_TEST] Gate Markdown reprovado: alegação de teste prático proibida: durante o pedal"
     }
   ]
 }

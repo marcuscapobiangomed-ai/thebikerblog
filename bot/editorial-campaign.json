@@ -986,27 +986,45 @@
     {
       "day": 15,
       "publishDate": "2026-08-22",
-      "id": "reserva-diagnostico-ruidos-bike",
-      "title": "Diagnóstico de ruídos na bicicleta: método por carga, frequência e interface",
-      "summary": "Protocolo técnico para isolar ruídos de transmissão, cockpit, rodas e quadro sem substituir componentes por tentativa e erro.",
-      "category": "manutencao-ajustes",
+      "id": "reserva-pressao-pneus-terreno",
+      "title": "Pressão de pneus por terreno: como testar sem transformar sensação em dado",
+      "summary": "Método de campo para ajustar pressão, registrar comportamento e separar aderência, suporte lateral, impacto e resistência ao rolamento.",
+      "category": "engenharia",
       "freshness": "evergreen",
       "status": "blocked",
       "productIds": [],
       "heroImage": {
         "mode": "conceptual"
       },
+      "postPath": "_posts/drafts/2026-08-22-reserva-pressao-pneus-terreno.md",
       "imageAssetIds": [],
       "attempts": 1,
-      "lastAttemptAt": "2026-08-11T22:31:50.904Z",
-      "failure": {
-        "code": "POLICY_UNSUPPORTED_TEST",
-        "retryable": false,
-        "stage": "production",
-        "message": "Gate Markdown reprovado: alegação de teste prático proibida: durante o pedal",
-        "recordedAt": "2026-08-11T22:31:50.904Z"
+      "lastAttemptAt": "2026-08-11T22:51:19.284Z",
+      "aiReview": {
+        "score": 45,
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "premiumEditUsed": true,
+        "providers": {
+          "factSheet": "deepseek",
+          "draft": "gemini",
+          "critique": "deepseek",
+          "final": "deepseek",
+          "finalAudit": "deepseek",
+          "finalRepair": "deepseek"
+        },
+        "generatedAt": "2026-08-11T22:51:19.284Z",
+        "contentHash": "sha256:1b398a6edf700799c696b8f221ff6266e02915f4b450eff0c26909146c00c370",
+        "sourceHash": "927572092feecb63ed36af766f4cbc815af921b21512a96f84cc8b6c409460ea"
       },
-      "blockReason": "[POLICY_UNSUPPORTED_TEST] Gate Markdown reprovado: alegação de teste prático proibida: durante o pedal"
+      "failure": {
+        "code": "VALIDATION_FAILED",
+        "retryable": false,
+        "stage": "finalization",
+        "message": "Politica visual conceptual: agendamento exige fotografia real explicitamente vinculada",
+        "recordedAt": "2026-08-11T22:53:28.408Z"
+      },
+      "blockReason": "Validação final: [VALIDATION_FAILED] Politica visual conceptual: agendamento exige fotografia real explicitamente vinculada"
     },
     {
       "day": 16,
@@ -1251,12 +1269,6 @@
   ],
   "reserves": [
     {
-      "id": "reserva-pressao-pneus-terreno",
-      "title": "Pressão de pneus por terreno: como testar sem transformar sensação em dado",
-      "summary": "Método de campo para ajustar pressão, registrar comportamento e separar aderência, suporte lateral, impacto e resistência ao rolamento.",
-      "category": "engenharia"
-    },
-    {
       "id": "reserva-cabos-mangueiras-roteamento",
       "title": "Cabos e mangueiras: roteamento, atrito e sinais de montagem que pedem correção",
       "summary": "Leitura técnica de curvas, fixações, contato com o quadro e interferências que alteram comando, ruído e durabilidade.",
@@ -1291,6 +1303,12 @@
         "eventIds": [],
         "sourceStatus": "pending"
       }
+    },
+    {
+      "id": "reserva-diagnostico-ruidos-bike",
+      "title": "Diagnóstico de ruídos na bicicleta: método por carga, frequência e interface",
+      "summary": "Protocolo técnico para isolar ruídos de transmissão, cockpit, rodas e quadro sem substituir componentes por tentativa e erro.",
+      "category": "manutencao-ajustes"
     }
   ]
 }

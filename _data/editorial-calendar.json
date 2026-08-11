@@ -118,9 +118,9 @@
     {
       "day": 15,
       "publishDate": "2026-08-22",
-      "title": "Diagnóstico de ruídos na bicicleta: método por carga, frequência e interface",
-      "summary": "Protocolo técnico para isolar ruídos de transmissão, cockpit, rodas e quadro sem substituir componentes por tentativa e erro.",
-      "category": "manutencao-ajustes",
+      "title": "Pressão de pneus por terreno: como testar sem transformar sensação em dado",
+      "summary": "Método de campo para ajustar pressão, registrar comportamento e separar aderência, suporte lateral, impacto e resistência ao rolamento.",
+      "category": "engenharia",
       "status": "blocked"
     },
     {
