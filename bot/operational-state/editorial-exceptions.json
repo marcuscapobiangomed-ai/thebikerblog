@@ -380,6 +380,58 @@
         "title": "Pressão de pneus por terreno: como testar sem transformar sensação em dado"
       },
       "reason": "[POLICY_UNSUPPORTED_TEST] Gate Markdown reprovado: alegação de teste prático proibida: durante o pedal"
+    },
+    {
+      "recordedAt": "2026-08-11T22:58:57.930Z",
+      "campaignId": "thebiker-rolling-2026-08-08",
+      "replacedItem": {
+        "day": 15,
+        "publishDate": "2026-08-22",
+        "id": "reserva-pressao-pneus-terreno",
+        "title": "Pressão de pneus por terreno: como testar sem transformar sensação em dado",
+        "summary": "Método de campo para ajustar pressão, registrar comportamento e separar aderência, suporte lateral, impacto e resistência ao rolamento.",
+        "category": "engenharia",
+        "freshness": "evergreen",
+        "status": "blocked",
+        "productIds": [],
+        "heroImage": {
+          "mode": "conceptual"
+        },
+        "postPath": "_posts/drafts/2026-08-22-reserva-pressao-pneus-terreno.md",
+        "imageAssetIds": [],
+        "blockReason": "Validação final: [VALIDATION_FAILED] Politica visual conceptual: agendamento exige fotografia real explicitamente vinculada",
+        "failure": {
+          "code": "VALIDATION_FAILED",
+          "retryable": false,
+          "stage": "finalization",
+          "message": "Politica visual conceptual: agendamento exige fotografia real explicitamente vinculada",
+          "recordedAt": "2026-08-11T22:53:28.408Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-11T22:51:19.284Z",
+        "aiReview": {
+          "score": 45,
+          "finalScore": 95,
+          "finalBlockers": 0,
+          "premiumEditUsed": true,
+          "providers": {
+            "factSheet": "deepseek",
+            "draft": "gemini",
+            "critique": "deepseek",
+            "final": "deepseek",
+            "finalAudit": "deepseek",
+            "finalRepair": "deepseek"
+          },
+          "generatedAt": "2026-08-11T22:51:19.284Z",
+          "contentHash": "sha256:1b398a6edf700799c696b8f221ff6266e02915f4b450eff0c26909146c00c370",
+          "sourceHash": "927572092feecb63ed36af766f4cbc815af921b21512a96f84cc8b6c409460ea"
+        }
+      },
+      "replacement": {
+        "id": "reserva-cabos-mangueiras-roteamento",
+        "title": "Cabos e mangueiras: roteamento, atrito e sinais de montagem que pedem correção"
+      },
+      "reason": "Validação final: [VALIDATION_FAILED] Politica visual conceptual: agendamento exige fotografia real explicitamente vinculada; rascunho ainda reprovado: rascunho indisponível (ENOENT)"
     }
   ]
 }
