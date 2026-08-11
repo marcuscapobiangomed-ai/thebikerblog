@@ -239,14 +239,24 @@ function validateDeepProfileDefinition(profile) {
     throw new Error(`Perfil aprofundado ${profile.eventId} sem fonte oficial verificável`)
   }
   const stages = profile.route?.stages
-  if (!Number.isFinite(profile.route?.totalDistanceKm) || profile.route.totalDistanceKm <= 0 || !Array.isArray(stages) || stages.length !== profile.route.stageCount) {
+  const courseOptions = profile.route?.courseOptions
+  const hasStages = Array.isArray(stages) && stages.length > 0
+  const hasCourseOptions = Array.isArray(courseOptions) && courseOptions.length > 0
+  const hasTotalDistance = Number.isFinite(profile.route?.totalDistanceKm) && profile.route.totalDistanceKm > 0
+  if (!profile.route || (!hasStages && !hasCourseOptions && !hasTotalDistance)) {
     throw new Error(`Perfil aprofundado ${profile.eventId} com percurso incompleto`)
   }
-  const distanceSum = stages.reduce((total, stage) => total + Number(stage.distanceKm || 0), 0)
-  if (Math.abs(distanceSum - profile.route.totalDistanceKm) > 0.1) {
-    throw new Error(`Perfil aprofundado ${profile.eventId} diverge na quilometragem: ${distanceSum}/${profile.route.totalDistanceKm}`)
+  if (hasStages) {
+    if (stages.length !== profile.route.stageCount || !hasTotalDistance) throw new Error(`Perfil aprofundado ${profile.eventId} com etapas incompletas`)
+    const distanceSum = stages.reduce((total, stage) => total + Number(stage.distanceKm || 0), 0)
+    if (Math.abs(distanceSum - profile.route.totalDistanceKm) > 0.1) {
+      throw new Error(`Perfil aprofundado ${profile.eventId} diverge na quilometragem: ${distanceSum}/${profile.route.totalDistanceKm}`)
+    }
   }
-  if (!Array.isArray(profile.route.restSchedule) || profile.route.restSchedule.length !== profile.route.restDays) {
+  if (hasCourseOptions && courseOptions.some((option) => !option.label || (!Number.isFinite(option.distanceKm) && !option.distanceLabel))) {
+    throw new Error(`Perfil aprofundado ${profile.eventId} com opção de percurso incompleta`)
+  }
+  if ((profile.route.restSchedule?.length || 0) !== (profile.route.restDays || 0)) {
     throw new Error(`Perfil aprofundado ${profile.eventId} diverge nos dias de descanso`)
   }
   if (!['team-only', 'open', 'closed', 'not-published'].includes(profile.participation?.status)) {
@@ -277,6 +287,8 @@ export function verifyDeepProfileEvidence(profileInput, event, html, checkedAt) 
     },
     participation: profile.participation,
     route: profile.route,
+    categories: profile.categories,
+    logistics: profile.logistics,
     coverage: profile.coverage,
   }
 }

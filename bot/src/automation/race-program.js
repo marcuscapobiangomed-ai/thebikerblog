@@ -34,20 +34,22 @@ const DeepProfileSchema = z.object({
     label: z.string().min(5).max(80),
     description: z.string().min(20).max(500),
     url: z.string().url().optional(),
+    deadline: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional(),
   }).superRefine((participation, context) => {
     if (participation.status === 'open' && !participation.url) context.addIssue({ code: 'custom', path: ['url'], message: 'inscrição aberta exige URL oficial' })
     if (participation.status === 'team-only' && participation.url) context.addIssue({ code: 'custom', path: ['url'], message: 'prova por equipes não deve expor inscrição individual' })
   }),
   route: z.object({
     format: z.string().min(5).max(160),
-    totalDistanceKm: z.number().positive().max(10000),
-    stageCount: z.number().int().positive().max(30),
-    restDays: z.number().int().nonnegative().max(10),
+    totalDistanceKm: z.number().positive().max(10000).optional(),
+    elevationGainM: z.number().positive().max(100000).optional(),
+    stageCount: z.number().int().positive().max(30).optional(),
+    restDays: z.number().int().nonnegative().max(10).optional(),
     restSchedule: z.array(z.object({
       date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
       label: z.string().min(3).max(80),
       location: z.string().min(2).max(160),
-    })).max(10),
+    })).max(10).optional(),
     difficulty: z.object({
       label: z.string().min(3).max(100),
       basis: z.string().min(20).max(500),
@@ -61,13 +63,34 @@ const DeepProfileSchema = z.object({
       finish: z.string().min(2).max(160),
       distanceKm: z.number().positive().max(500),
       profile: z.string().min(5).max(240),
-    })).min(1).max(30),
+    })).min(1).max(30).optional(),
+    courseOptions: z.array(z.object({
+      label: z.string().min(2).max(100),
+      distanceKm: z.number().positive().max(1000).optional(),
+      distanceLabel: z.string().min(3).max(120).optional(),
+      elevationGainM: z.number().positive().max(20000).optional(),
+      elevationLabel: z.string().min(3).max(120).optional(),
+      difficulty: z.string().min(3).max(120),
+      terrain: z.string().min(5).max(240),
+      note: z.string().min(5).max(300).optional(),
+      startTime: z.string().min(3).max(80).optional(),
+    }).superRefine((option, context) => {
+      if (!option.distanceKm && !option.distanceLabel) context.addIssue({ code: 'custom', path: ['distanceLabel'], message: 'opção exige distância numérica ou estado oficial da distância' })
+    })).min(1).max(12).optional(),
   }).superRefine((route, context) => {
-    if (route.stages.length !== route.stageCount) context.addIssue({ code: 'custom', path: ['stageCount'], message: 'quantidade de etapas diverge da lista' })
-    if (route.restSchedule.length !== route.restDays) context.addIssue({ code: 'custom', path: ['restDays'], message: 'quantidade de descansos diverge da programação' })
-    const total = route.stages.reduce((sum, stage) => sum + stage.distanceKm, 0)
-    if (Math.abs(total - route.totalDistanceKm) > 0.1) context.addIssue({ code: 'custom', path: ['totalDistanceKm'], message: 'quilometragem total diverge da soma das etapas' })
+    if (!route.stages && !route.courseOptions && !route.totalDistanceKm) context.addIssue({ code: 'custom', path: [], message: 'percurso exige etapas, opções ou distância total' })
+    if (route.stages) {
+      if (route.stages.length !== route.stageCount) context.addIssue({ code: 'custom', path: ['stageCount'], message: 'quantidade de etapas diverge da lista' })
+      const total = route.stages.reduce((sum, stage) => sum + stage.distanceKm, 0)
+      if (!route.totalDistanceKm || Math.abs(total - route.totalDistanceKm) > 0.1) context.addIssue({ code: 'custom', path: ['totalDistanceKm'], message: 'quilometragem total diverge da soma das etapas' })
+    }
+    if ((route.restSchedule?.length || 0) !== (route.restDays || 0)) context.addIssue({ code: 'custom', path: ['restDays'], message: 'quantidade de descansos diverge da programação' })
   }),
+  categories: z.array(z.string().min(5).max(240)).min(1).max(12).optional(),
+  logistics: z.array(z.object({
+    label: z.string().min(2).max(80),
+    detail: z.string().min(5).max(300),
+  })).min(1).max(12).optional(),
   coverage: z.object({
     label: z.string().min(3).max(100),
     description: z.string().min(10).max(400),
@@ -152,9 +175,9 @@ const PublicRaceEventSchema = z.object({
   }
   if (event.deepProfile) {
     if (event.deepProfile.checkedAt !== event.source.checkedAt) context.addIssue({ code: 'custom', path: ['deepProfile', 'checkedAt'], message: 'perfil aprofundado precisa pertencer ao snapshot atual' })
-    const stageDates = event.deepProfile.route.stages.map((stage) => stage.date)
+    const stageDates = (event.deepProfile.route.stages || []).map((stage) => stage.date)
     if (stageDates.some((date) => date < event.startsOn || date > event.endsOn)) context.addIssue({ code: 'custom', path: ['deepProfile', 'route', 'stages'], message: 'etapa fora do período oficial' })
-    const restDates = event.deepProfile.route.restSchedule.map((rest) => rest.date)
+    const restDates = (event.deepProfile.route.restSchedule || []).map((rest) => rest.date)
     if (restDates.some((date) => date < event.startsOn || date > event.endsOn || stageDates.includes(date))) context.addIssue({ code: 'custom', path: ['deepProfile', 'route', 'restSchedule'], message: 'descanso inválido ou sobreposto a etapa' })
   }
 })

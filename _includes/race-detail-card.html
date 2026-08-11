@@ -65,8 +65,8 @@
 
       <div class="race-detail-depth-grid">
         <div>
-          <span>Distância total</span>
-          <strong>{{ deep.route.totalDistanceKm }} km</strong>
+          <span>{% if deep.route.totalDistanceKm %}Distância total{% else %}Percursos{% endif %}</span>
+          <strong>{% if deep.route.totalDistanceKm %}{{ deep.route.totalDistanceKm }} km{% if deep.route.elevationGainM %} · {{ deep.route.elevationGainM }} m+{% endif %}{% else %}{{ deep.route.courseOptions.size }} opções{% endif %}</strong>
           <p>{{ deep.route.format }}</p>
         </div>
         <div>
@@ -78,6 +78,7 @@
           <span>Como participar</span>
           <strong>{{ deep.participation.label }}</strong>
           <p>{{ deep.participation.description }}</p>
+          {% if deep.participation.deadline %}<p><strong>Prazo informado:</strong> {{ deep.participation.deadline | slice: 8, 2 }}/{{ deep.participation.deadline | slice: 5, 2 }}/{{ deep.participation.deadline | slice: 0, 4 }}</p>{% endif %}
           {% if deep.participation.url %}<a href="{{ deep.participation.url }}" target="_blank" rel="noopener noreferrer">Ir para a inscrição oficial ↗</a>{% endif %}
         </div>
       </div>
@@ -89,7 +90,36 @@
         </ul>
       </div>
 
-      <div class="race-detail-stages">
+      {% if deep.route.courseOptions %}
+        <div class="race-detail-courses">
+          <div class="race-detail-stages-heading">
+            <h4>Opções de percurso</h4>
+            <span>Somente dados publicados pela organização</span>
+          </div>
+          <div class="race-detail-course-list">
+            {% for option in deep.route.courseOptions %}
+              <article>
+                <div><strong>{{ option.label }}</strong>{% if option.startTime %}<span>{{ option.startTime }}</span>{% endif %}</div>
+                <p class="race-detail-course-numbers">
+                  <strong>{% if option.distanceKm %}{{ option.distanceKm }} km{% else %}{{ option.distanceLabel }}{% endif %}</strong>
+                  {% if option.elevationGainM %}<span>{{ option.elevationGainM }} m+</span>{% elsif option.elevationLabel %}<span>{{ option.elevationLabel }}</span>{% endif %}
+                </p>
+                <p>{{ option.difficulty }} · {{ option.terrain }}</p>
+                {% if option.note %}<small>{{ option.note }}</small>{% endif %}
+              </article>
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
+
+      {% if deep.categories or deep.logistics %}
+        <div class="race-detail-practical">
+          {% if deep.categories %}<div><h4>Categorias e elegibilidade</h4><ul>{% for category in deep.categories %}<li>{{ category }}</li>{% endfor %}</ul></div>{% endif %}
+          {% if deep.logistics %}<div><h4>Logística do atleta</h4><dl>{% for item in deep.logistics %}<div><dt>{{ item.label }}</dt><dd>{{ item.detail }}</dd></div>{% endfor %}</dl></div>{% endif %}
+        </div>
+      {% endif %}
+
+      {% if deep.route.stages %}<div class="race-detail-stages">
         <div class="race-detail-stages-heading">
           <h4>Etapa por etapa</h4>
           <span>{{ deep.route.stageCount }} jornadas · {{ deep.route.restDays }} dia de descanso</span>
@@ -112,7 +142,7 @@
             </article>
           {% endfor %}
         </div>
-      </div>
+      </div>{% endif %}
 
       {% if deep.coverage %}<p class="race-detail-coverage"><strong>{{ deep.coverage.label }}:</strong> {{ deep.coverage.description }}</p>{% endif %}
     </section>
