@@ -1,6 +1,9 @@
 import assert from 'node:assert/strict'
+import fs from 'node:fs/promises'
+import os from 'node:os'
+import path from 'node:path'
 import campaignFixture from '../bot/editorial-campaign.json' with { type: 'json' }
-import { recoverBlockedCampaign } from '../bot/src/automation/recover-blocked.js'
+import { recoverBlockedCampaign, recoverBlockedCampaignFiles } from '../bot/src/automation/recover-blocked.js'
 
 const transient = structuredClone(campaignFixture)
 for (const item of transient.items) if (item.status === 'blocked') { item.status = 'planned'; delete item.blockReason }
@@ -22,6 +25,42 @@ finalizable.blockReason = 'Validação final: imagem oficial ainda sem variante 
 const resumed = recoverBlockedCampaign(finalization, { now: new Date('2026-08-07T12:00:00Z') })
 assert.equal(resumed.result.status, 'retry-finalization')
 assert.equal(resumed.campaign.items.find((item) => item.id === finalizable.id).status, 'validation')
+
+const invalidFinalization = structuredClone(finalization)
+const invalidDraft = invalidFinalization.items.find((item) => item.id === finalizable.id)
+invalidDraft.status = 'blocked'
+invalidDraft.blockReason = 'Validação final: Gate Markdown reprovado: linguagem publicitária proibida: imbatível'
+const invalidRecovered = recoverBlockedCampaign(invalidFinalization, {
+  now: new Date('2026-08-07T12:00:00Z'),
+  finalizationDraftErrors: ['linguagem publicitária proibida: imbatível'],
+})
+assert.equal(invalidRecovered.result.status, 'replaced')
+assert.notEqual(invalidRecovered.campaign.items[invalidDraft.day - 1].id, invalidDraft.id)
+assert.match(invalidRecovered.exception.reason, /rascunho ainda reprovado/)
+
+const recoveryRoot = await fs.mkdtemp(path.join(os.tmpdir(), 'thebiker-campaign-recovery-'))
+try {
+  await fs.mkdir(path.join(recoveryRoot, 'bot/operational-state'), { recursive: true })
+  await fs.mkdir(path.join(recoveryRoot, '_data'), { recursive: true })
+  const invalidDraftPath = path.join(recoveryRoot, invalidDraft.postPath)
+  await fs.mkdir(path.dirname(invalidDraftPath), { recursive: true })
+  await fs.writeFile(path.join(recoveryRoot, 'bot/editorial-campaign.json'), `${JSON.stringify(invalidFinalization, null, 2)}\n`)
+  await fs.writeFile(invalidDraftPath, `---
+published: false
+tags: ["ciclismo", "componentes"]
+review_method: "desk-research"
+tested_by_thebikerblog: false
+---
+
+Este produto é imbatível.
+`)
+  const fileRecovery = await recoverBlockedCampaignFiles({ root: recoveryRoot, now: new Date('2026-08-07T12:00:00Z') })
+  assert.equal(fileRecovery.status, 'replaced')
+  const persistedCampaign = JSON.parse(await fs.readFile(path.join(recoveryRoot, 'bot/editorial-campaign.json'), 'utf8'))
+  assert.notEqual(persistedCampaign.items[invalidDraft.day - 1].id, invalidDraft.id)
+} finally {
+  await fs.rm(recoveryRoot, { recursive: true, force: true })
+}
 
 const permanent = structuredClone(campaignFixture)
 for (const item of permanent.items) if (item.status === 'blocked') { item.status = 'planned'; delete item.blockReason }

@@ -1,6 +1,7 @@
 import fs from 'node:fs/promises'
 import path from 'node:path'
 import { CampaignSchema, publicCampaignSummary } from './campaign.js'
+import { markdownPublicationErrors } from '../validation/markdown-publication-gates.js'
 
 const TRANSIENT = /timeout|timed out|aborted|429|rate limit|temporar|econnreset|fetch failed/i
 const FINALIZATION = /^Valida(?:ção|cao) final:/i
@@ -38,13 +39,17 @@ function nextReserve(campaign) {
   return campaign.reserves.find((item) => !used.has(item.id)) || RECOVERY_RESERVES.find((item) => !used.has(item.id)) || null
 }
 
-export function recoverBlockedCampaign(campaignInput, { now = new Date(), maximumTransientAttempts = 2 } = {}) {
+export function recoverBlockedCampaign(campaignInput, {
+  now = new Date(),
+  maximumTransientAttempts = 2,
+  finalizationDraftErrors = [],
+} = {}) {
   const campaign = CampaignSchema.parse(structuredClone(campaignInput))
   const today = localDate(now, campaign.timezone)
   const blocked = campaign.items.find((item) => item.status === 'blocked' && item.publishDate >= today)
   if (!blocked) return { campaign, result: { status: 'idle' }, exception: null }
-  const reason = blocked.blockReason || 'Motivo não informado'
-  if (FINALIZATION.test(reason) && blocked.postPath) {
+  let reason = blocked.blockReason || 'Motivo não informado'
+  if (FINALIZATION.test(reason) && blocked.postPath && finalizationDraftErrors.length === 0) {
     blocked.status = 'validation'
     delete blocked.blockReason
     return {
@@ -53,7 +58,10 @@ export function recoverBlockedCampaign(campaignInput, { now = new Date(), maximu
       exception: null,
     }
   }
-  if (TRANSIENT.test(reason) && (blocked.attempts || 0) < maximumTransientAttempts) {
+  if (FINALIZATION.test(reason) && finalizationDraftErrors.length > 0) {
+    reason = `${reason}; rascunho ainda reprovado: ${finalizationDraftErrors.join('; ')}`
+  }
+  if (finalizationDraftErrors.length === 0 && TRANSIENT.test(reason) && (blocked.attempts || 0) < maximumTransientAttempts) {
     blocked.status = 'planned'
     delete blocked.blockReason
     return { campaign: CampaignSchema.parse(campaign), result: { status: 'retry', itemId: blocked.id, attempts: blocked.attempts || 0 }, exception: null }
@@ -74,7 +82,26 @@ export function recoverBlockedCampaign(campaignInput, { now = new Date(), maximu
 export async function recoverBlockedCampaignFiles({ root, now = new Date() } = {}) {
   const campaignPath = path.join(root, 'bot/editorial-campaign.json')
   const campaign = JSON.parse(await fs.readFile(campaignPath, 'utf8'))
-  const recovered = recoverBlockedCampaign(campaign, { now })
+  const parsedCampaign = CampaignSchema.parse(campaign)
+  const today = localDate(now, parsedCampaign.timezone)
+  const blocked = parsedCampaign.items.find((item) => item.status === 'blocked' && item.publishDate >= today)
+  let finalizationDraftErrors = []
+  if (blocked?.postPath && FINALIZATION.test(blocked.blockReason || '')) {
+    const draftsRoot = path.resolve(root, '_posts/drafts')
+    const draftPath = path.resolve(root, blocked.postPath)
+    const relativeDraftPath = path.relative(draftsRoot, draftPath)
+    if (!relativeDraftPath || relativeDraftPath.startsWith('..') || path.isAbsolute(relativeDraftPath)) {
+      finalizationDraftErrors = ['postPath precisa apontar para _posts/drafts']
+    } else {
+      try {
+        const content = await fs.readFile(draftPath, 'utf8')
+        finalizationDraftErrors = markdownPublicationErrors(content)
+      } catch (error) {
+        finalizationDraftErrors = [`rascunho indisponível (${error.code || error.message})`]
+      }
+    }
+  }
+  const recovered = recoverBlockedCampaign(parsedCampaign, { now, finalizationDraftErrors })
   if (recovered.result.status === 'idle' || recovered.result.status === 'blocked') return recovered.result
   await fs.writeFile(campaignPath, JSON.stringify(recovered.campaign, null, 2) + '\n')
   await fs.writeFile(path.join(root, '_data/editorial-calendar.json'), JSON.stringify(publicCampaignSummary(recovered.campaign), null, 2) + '\n')

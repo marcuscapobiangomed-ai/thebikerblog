@@ -103,6 +103,7 @@ jobs:
         run: npm run campaign:produce
         working-directory: bot
       - name: Produzir imagem e agendar pauta validada
+        id: finalization
         if: steps.automation.outcome == 'success'
         run: npm run campaign:finalize
         working-directory: bot
@@ -135,7 +136,8 @@ jobs:
         if: always()
         run: |
           echo "### Automação editorial TheBiker" >> "$GITHUB_STEP_SUMMARY"
-          echo "- Resultado: ${{ steps.automation.outcome }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Produção: ${{ steps.automation.outcome }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Finalização: ${{ steps.finalization.outcome }}" >> "$GITHUB_STEP_SUMMARY"
           echo "- Auditoria do buffer: ${{ steps.buffer_audit.outcome }}" >> "$GITHUB_STEP_SUMMARY"
 
   disabled-notice:
