@@ -2719,7 +2719,13 @@ button.comparison-slot { width: 100%; font: inherit; cursor: pointer; }
   text-transform: uppercase;
 }
 .answer-block h2 { margin: 0 0 10px; font-size: clamp(1.25rem, 2.2vw, 1.65rem); }
-.answer-block p:last-child { margin: 0; line-height: 1.68; }
+.answer-block p:last-child {
+  margin: 0;
+  line-height: 1.68;
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+}
 .post-faq details { padding: 14px 0; border-bottom: 1px solid var(--border-card); }
 .post-faq summary { font-weight: 700; cursor: pointer; }
 .post-faq details p { margin: 10px 0 0; }
