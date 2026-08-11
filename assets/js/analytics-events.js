@@ -156,12 +156,12 @@
     sessionEvents = []
   }
 
-  function trackAffiliateClick(partner, productId, placement) {
-    return track('conversion', 'store_click', partner || 'TheBiker Shop', null, {
+  function trackAffiliateClick(partner, productId, placement, clickMeta) {
+    return track('conversion', 'store_click', partner || 'TheBiker Shop', null, Object.assign({
       partner: partner || 'TheBiker Shop',
       product_id: productId || 'nao-informado',
       placement: placement || 'nao-informado'
-    })
+    }, safeMeta(clickMeta)))
   }
 
   function trackProductView(productId, brand, model) {
@@ -191,10 +191,49 @@
   function placementFor(link) {
     if (link.dataset.placement) return link.dataset.placement
     if (link.closest('.site-header')) return 'site_header'
+    if (link.closest('.mobile-nav')) return 'mobile_navigation'
+    if (link.closest('.primary-nav, .nav-bar')) return 'primary_navigation'
     if (link.closest('.site-footer')) return 'site_footer'
     if (link.closest('.brand-shop-cta')) return 'home_shop_cta'
+    if (link.closest('.answer-block')) return 'answer_block'
+    if (link.closest('.affiliate-links')) return 'affiliate_links'
+    if (link.closest('.catalog-bike-card, .product-card')) return 'product_card'
+    if (link.closest('.comparison-container, .comparator-shell')) return 'comparison'
+    if (link.closest('.calculator-shell, .calculator-card')) return 'calculator'
     if (link.closest('.post-content')) return 'article_body'
     return 'page'
+  }
+
+  function elementName(element) {
+    var explicit = element.getAttribute('data-analytics-label') || element.getAttribute('aria-label') || element.id || ''
+    var visible = explicit || element.textContent || element.getAttribute('title') || ''
+    return safeKey(String(visible).trim().replace(/\s+/g, ' ')) || element.tagName.toLowerCase()
+  }
+
+  function safeDestination(link) {
+    var meta = { element_type: 'link', element_name: elementName(link), placement: placementFor(link) }
+    try {
+      var url = new URL(link.href, window.location.href)
+      meta.destination_host = url.hostname.toLowerCase()
+      if (url.origin === window.location.origin || isStoreLink(link)) meta.destination_path = url.pathname
+      if (link.hasAttribute('download')) meta.link_type = 'download'
+      else if (/^(mailto:|tel:)/i.test(link.getAttribute('href') || '')) meta.link_type = 'contact'
+      else if (isStoreLink(link)) meta.link_type = 'store'
+      else if (url.origin === window.location.origin && url.pathname === window.location.pathname && url.hash) meta.link_type = 'anchor'
+      else if (url.origin === window.location.origin) meta.link_type = 'internal'
+      else meta.link_type = 'external'
+    } catch {
+      meta.link_type = 'invalid'
+    }
+    return meta
+  }
+
+  function shouldIgnoreClick(element) {
+    if (!element || element.closest('[data-analytics-ignore]')) return true
+    if (element.matches('[disabled], [aria-disabled="true"]')) return true
+    if (element.closest('[data-consent-accept], [data-consent-reject], [data-open-privacy-preferences]')) return true
+    if (element.closest('form')) return true
+    return false
   }
 
   function isStoreLink(link) {
@@ -259,13 +298,34 @@
 
     document.addEventListener('click', function(event) {
       var link = event.target.closest('a[href]')
-      if (!link || !isStoreLink(link)) return
-      decorateStoreLink(link)
-      trackAffiliateClick(
-        link.getAttribute('data-partner') || 'TheBiker Shop',
-        link.getAttribute('data-product') || config.contentId || 'sitewide',
-        placementFor(link)
-      )
+      if (link && !shouldIgnoreClick(link)) {
+        var linkMeta = safeDestination(link)
+        if (isStoreLink(link)) {
+          decorateStoreLink(link)
+          trackAffiliateClick(
+            link.getAttribute('data-partner') || 'TheBiker Shop',
+            link.getAttribute('data-product') || config.contentId || 'sitewide',
+            placementFor(link),
+            linkMeta
+          )
+          return
+        }
+        if (linkMeta.link_type === 'internal' || linkMeta.link_type === 'anchor') {
+          track('navigation', 'internal_link_click', linkMeta.element_name, null, linkMeta)
+        } else if (linkMeta.link_type === 'external' || linkMeta.link_type === 'download' || linkMeta.link_type === 'contact') {
+          track('navigation', 'external_link_click', linkMeta.element_name, null, linkMeta)
+        }
+        return
+      }
+
+      var button = event.target.closest('button, [role="button"]')
+      if (!button || shouldIgnoreClick(button)) return
+      track('interaction', 'button_click', elementName(button), null, {
+        element_type: 'button',
+        element_name: elementName(button),
+        placement: placementFor(button),
+        button_type: button.getAttribute('type') || 'button'
+      })
     })
 
     trackContentContext()
