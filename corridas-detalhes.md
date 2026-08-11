@@ -16,7 +16,7 @@ model: ""
 <div class="race-details-page" data-race-details-page data-calendar-as-of="{{ public_calendar.asOfDate }}">
   <section class="race-details-hero">
     <div class="container">
-      <span class="race-hub-kicker">TheBiker Insights · Corridas explicadas</span>
+      <span class="race-hub-kicker">TheBiker Blog · Corridas explicadas</span>
       <h1>A ficha é a fonte.<br>A informação fica aqui.</h1>
       <p>Entenda em português o que está confirmado sobre cada corrida da agenda. Se um dado ainda não foi validado, nós dizemos claramente.</p>
       <a href="{{ site.baseurl }}/corridas/">← Voltar para todas as corridas</a>
