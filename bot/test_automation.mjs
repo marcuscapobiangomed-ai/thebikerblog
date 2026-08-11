@@ -12,7 +12,7 @@ import { selectKnowledgeEvidence } from "./src/campaign_producer.js";
 import { selectScheduledPublication } from "./src/publish_scheduled.js";
 import { buildRepairPrompt } from "./src/editorial-prompt.js";
 import { produceCampaignVisual } from "./src/campaign_finalize.js";
-import { markdownPublicationErrors } from "./src/validation/markdown-publication-gates.js";
+import { markdownPublicationErrors, neutralizeMarkdownPolicyPhrases } from "./src/validation/markdown-publication-gates.js";
 import { scheduledDraftErrors } from "./src/validation/validate-scheduled-publications.js";
 import { assertScheduledReceipt, hashEditorialText } from "./src/validation/editorial-receipt.js";
 
@@ -34,6 +34,15 @@ Durante o pedal, a tecnologia de ponta resolveu tudo.`), [
   "linguagem publicitária proibida: tecnologia de ponta",
   "alegação de teste prático proibida: Durante o pedal",
 ]);
+const neutralizedDeskCopy = neutralizeMarkdownPolicyPhrases(
+  "Durante o pedal percebemos uma tecnologia de ponta perfeita.",
+  { deskResearch: true },
+);
+assert.equal(
+  neutralizedDeskCopy,
+  "As fontes consultadas indicam uma tecnologia atual consistente.",
+);
+assert.doesNotMatch(neutralizedDeskCopy, /durante o pedal|percebemos|tecnologia de ponta|perfeita/i);
 assert.deepEqual(scheduledDraftErrors(`---
 published: false
 tags: ["ciclismo", "guia-tecnico"]
