@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "source": "https://thebikershop.com.br/",
-  "discoveredAt": "2026-08-11T10:03:25.293Z",
+  "discoveredAt": "2026-08-11T14:21:49.887Z",
   "rightsPolicyId": "thebiker-official-editorial-v1",
-  "total": 481,
+  "total": 482,
   "products": [
     {
       "id": "quadro-scott-scale-rc-team-hmf-2026",
@@ -2324,17 +2324,6 @@
       "sku": null
     },
     {
-      "id": "paralama-dianteiro-universal-fox-34-e-rock-shox",
-      "name": "Paralama Dianteiro Universal - Fox 34 e Rock Shox",
-      "brand": "Sledgehammer",
-      "category": "acessorios",
-      "productUrl": "https://thebikershop.com.br/produtos/paralama-dianteiro-universal-fox-34-e-rock-shox/",
-      "images": [
-        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/51205_paralama-dianteiro-para-bike-sledgehammer-pr-11886-40051017_l4_637853752200454133-9e204404f3ebd9faaf17600417719024-480-0.webp"
-      ],
-      "sku": null
-    },
-    {
       "id": "limpador-de-bicicletas-nanotech-muc-off-1l",
       "name": "Limpador de Bicicletas NanoTech Muc Off 1L",
       "brand": "Muc Off",
@@ -2344,6 +2333,17 @@
         "https://acdn-us.mitiendanube.com/stores/001/062/247/products/web_904-ctj_nano_tech_bike_cleaner_2021_1000x1000-6c6c00f373b7da597217150456320838-480-0.webp"
       ],
       "sku": "904-CTJ"
+    },
+    {
+      "id": "paralama-dianteiro-universal-fox-34-e-rock-shox",
+      "name": "Paralama Dianteiro Universal - Fox 34 e Rock Shox",
+      "brand": "Sledgehammer",
+      "category": "acessorios",
+      "productUrl": "https://thebikershop.com.br/produtos/paralama-dianteiro-universal-fox-34-e-rock-shox/",
+      "images": [
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/51205_paralama-dianteiro-para-bike-sledgehammer-pr-11886-40051017_l4_637853752200454133-9e204404f3ebd9faaf17600417719024-480-0.webp"
+      ],
+      "sku": null
     },
     {
       "id": "protetor-de-quadro-thule-carbon-frame",
@@ -3141,7 +3141,7 @@
       "id": "oculos-hb-grinder-grad-dark-bluish-gray-gold-chrome",
       "name": "Óculos HB Grinder Grad Dark Bluish Gray Gold Chrome",
       "brand": "HB",
-      "category": "vestuario",
+      "category": "acessorios",
       "productUrl": "https://thebikershop.com.br/produtos/oculos-hb-grinder-grad-dark-bluish-gray-gold-chrome/",
       "images": [
         "https://acdn-us.mitiendanube.com/stores/001/062/247/products/p_10103860838026_2-jpg-15df933ec8b549451017279667056449-480-0.webp"
@@ -3235,17 +3235,6 @@
         "https://acdn-us.mitiendanube.com/stores/001/062/247/products/13913651-dcdf57a16652adc0e316839885270792-480-0.webp"
       ],
       "sku": null
-    },
-    {
-      "id": "end-cap-thule-proride-598",
-      "name": "End Cap Thule ProRide 598",
-      "brand": "Thule",
-      "category": "acessorios",
-      "productUrl": "https://thebikershop.com.br/produtos/end-cap-thule-proride-598/",
-      "images": [
-        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/thule-thule-1500052669-end-cap-for-5980011-60a3a7a5c8a9241da616795869469408-480-0.webp"
-      ],
-      "sku": "1500052669"
     },
     {
       "id": "manopla-thule-com-limitador-de-torque-acutight",
@@ -3730,6 +3719,17 @@
         "https://acdn-us.mitiendanube.com/stores/001/062/247/products/2929116512-png-aa73278afba9e1150417368881494484-480-0.webp"
       ],
       "sku": "292911651222"
+    },
+    {
+      "id": "mochila-thule-landmark-40l-darkest-blue",
+      "name": "Mochila Thule Landmark 40L Darkest Blue",
+      "brand": "Thule",
+      "category": "acessorios",
+      "productUrl": "https://thebikershop.com.br/produtos/mochila-thule-landmark-40l-darkest-blue/",
+      "images": [
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/1511340-2af42eaa387416820317352212613104-480-0.webp"
+      ],
+      "sku": "3205309"
     },
     {
       "id": "espuma-interna-capacete-giro-agilis",
@@ -4425,6 +4425,17 @@
       "sku": null
     },
     {
+      "id": "sapatilha-fizik-r5-overcuve-preta",
+      "name": "Sapatilha Road Fizik R5 Tempo - Preta",
+      "brand": "Fizik",
+      "category": "vestuario",
+      "productUrl": "https://thebikershop.com.br/produtos/sapatilha-fizik-r5-overcuve-preta/",
+      "images": [
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/1ff88e07b31-a7e3974b69046ee5c915736779617629-480-0.webp"
+      ],
+      "sku": "VST-197-39"
+    },
+    {
       "id": "camisa-de-ciclismo-scott-pro-2026-cinza",
       "name": "Camisa de Ciclismo Scott Pró 2026 Cinza",
       "brand": "Scott",
@@ -4511,17 +4522,6 @@
         "https://acdn-us.mitiendanube.com/stores/001/062/247/products/p_20100370681_21-7b7ecd96d39900ec3116509104563954-480-0.webp"
       ],
       "sku": null
-    },
-    {
-      "id": "sapatilha-fizik-r5-overcuve-preta",
-      "name": "Sapatilha Road Fizik R5 Tempo - Preta",
-      "brand": "Fizik",
-      "category": "vestuario",
-      "productUrl": "https://thebikershop.com.br/produtos/sapatilha-fizik-r5-overcuve-preta/",
-      "images": [
-        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/1ff88e07b31-a7e3974b69046ee5c915736779617629-480-0.webp"
-      ],
-      "sku": "VST-197-39"
     },
     {
       "id": "camisa-de-ciclismo-scott-pro-2026-branca",
@@ -5226,6 +5226,17 @@
         "https://acdn-us.mitiendanube.com/stores/001/062/247/products/capacete-abus-airbreaker1-9fd0b9807f8df8ccd715712517736142-480-0.webp"
       ],
       "sku": "FTX9MRXRL-m-BKNMLOS0B"
+    },
+    {
+      "id": "luva-scott-endurance-cinza",
+      "name": "Luva Scott RC Endurance",
+      "brand": "Scott",
+      "category": "vestuario",
+      "productUrl": "https://thebikershop.com.br/produtos/luva-scott-endurance-cinza/",
+      "images": [
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/f9f45342-546b-11f1-a9cc-ae081647863e-064b79a57ce0145fb717816152846315-480-0.webp"
+      ],
+      "sku": null
     },
     {
       "id": "scott-mtb-comp-boa-women-sapatilha-mtb-feminina",
