@@ -2,6 +2,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { produceCampaignVisual } from "../bot/src/campaign_finalize.js";
+import { refreshReceiptAfterDeterministicTransform } from "../bot/src/validation/editorial-receipt.js";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 
@@ -68,6 +69,7 @@ async function main() {
       item.imageStatus = "approved";
       item.imageAssetIds = image.manifest.assetId ? [image.manifest.assetId] : [];
       item.imageValidatedAt = new Date().toISOString();
+      item.editorialReceipt = refreshReceiptAfterDeterministicTransform({ content, item }) || item.editorialReceipt;
       console.log(`✅ ${item.id}: ${image.manifest.matchedProduct?.name || "capa conceitual própria"}`);
     } catch (error) {
       failures.push(`${item.id}: ${error.message}`);

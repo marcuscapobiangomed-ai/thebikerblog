@@ -39,6 +39,10 @@ jobs:
       - name: Validar fila e configuração estrutural
         run: npm run automation:doctor
         working-directory: bot
+      - name: Auditar preventivamente os próximos 14 dias
+        run: npm run audit:buffer-shadow
+      - name: Validar recibos, conteúdo e imagens do buffer agendado
+        run: npm run validate:scheduled
 
   generate-draft:
     needs: preflight
@@ -107,14 +111,15 @@ jobs:
         if: steps.automation.outcome == 'success'
         run: npm run campaign:finalize
         working-directory: bot
-      - name: Aplicar links TheBiker antes do gate
+      - name: Verificar links TheBiker após as transformações
         if: always()
-        run: npm run links:thebiker
+        run: npm run check:thebiker-links
       - name: Validar artefatos produzidos
+        id: validation
         if: always()
         run: npm run validate
-      - name: Persistir estado, pesquisa e rascunho
-        if: always() && (github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.dry_run == false))
+      - name: Persistir somente candidato integralmente validado
+        if: steps.automation.outcome == 'success' && steps.finalization.outcome == 'success' && steps.validation.outcome == 'success' && (github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.dry_run == false))
         run: |
           git config user.name "thebiker-editorial-bot"
           git config user.email "thebiker-editorial-bot@users.noreply.github.com"
@@ -122,6 +127,19 @@ jobs:
           git diff --cached --quiet || git commit -m "content: produzir próxima pauta da campanha"
           for attempt in 1 2 3; do
             git pull --rebase origin main && git push && exit 0
+            git rebase --abort 2>/dev/null || true
+            sleep $((attempt * 5))
+          done
+          exit 1
+      - name: Persistir somente estado seguro da falha
+        if: always() && (steps.automation.outcome == 'failure' || steps.finalization.outcome == 'failure' || steps.buffer_audit.outcome == 'failure') && (github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.dry_run == false))
+        run: |
+          git config user.name "thebiker-editorial-bot"
+          git config user.email "thebiker-editorial-bot@users.noreply.github.com"
+          git add -- bot/editorial-campaign.json _data/editorial-calendar.json bot/operational-state/editorial-exceptions.json
+          git diff --cached --quiet || git commit -m "state: registrar falha editorial tipada"
+          for attempt in 1 2 3; do
+            git pull --rebase --autostash origin main && git push && exit 0
             git rebase --abort 2>/dev/null || true
             sleep $((attempt * 5))
           done
@@ -138,6 +156,7 @@ jobs:
           echo "### Automação editorial TheBiker" >> "$GITHUB_STEP_SUMMARY"
           echo "- Produção: ${{ steps.automation.outcome }}" >> "$GITHUB_STEP_SUMMARY"
           echo "- Finalização: ${{ steps.finalization.outcome }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Validação transacional: ${{ steps.validation.outcome }}" >> "$GITHUB_STEP_SUMMARY"
           echo "- Auditoria do buffer: ${{ steps.buffer_audit.outcome }}" >> "$GITHUB_STEP_SUMMARY"
 
   disabled-notice:

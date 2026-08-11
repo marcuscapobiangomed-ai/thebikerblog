@@ -6,6 +6,7 @@ import { markdownPublicationErrors } from "./markdown-publication-gates.js";
 import matter from "gray-matter";
 import { validateImageManifestV2 } from "./image-manifest-v2.js";
 import { imageArticleConsistencyErrors } from "./image-article-consistency.js";
+import { assertScheduledReceipt } from "./editorial-receipt.js";
 
 const defaultRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../../..");
 
@@ -52,6 +53,11 @@ export async function validateScheduledPublications({ root = defaultRoot } = {})
 
     for (const error of scheduledDraftErrors(content)) {
       errors.push(`${item.id}: ${error}`);
+    }
+    try {
+      assertScheduledReceipt(content, item);
+    } catch (error) {
+      errors.push(`${item.id}: ${error.message}`);
     }
     if (item.imageStatus !== "approved" || !item.imageManifestPath) {
       errors.push(`${item.id}: imagem sem aprovação ou manifesto`);

@@ -6,6 +6,7 @@ import { CampaignSchema, publicCampaignSummary } from "./automation/campaign.js"
 import { ThreeProviderPipeline } from "./ai/three-provider-pipeline.js";
 import { hashPayload } from "./ai/runtime.js";
 import { auditCampaignBuffer } from "./audit_campaign_buffer.js";
+import { assertMarkdownPublicationGates, MARKDOWN_POLICY_GUIDANCE } from "./validation/markdown-publication-gates.js";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 
@@ -26,7 +27,7 @@ export async function repairCampaignBuffer({ env = process.env } = {}) {
   const campaign = CampaignSchema.parse(JSON.parse(await fs.readFile(campaignFile, "utf8")));
   const blockedIds = campaign.items
     .filter((item) =>
-      (item.status === "blocked" && item.blockReason?.startsWith("Auditoria final:")) ||
+      (item.status === "blocked" && (item.failure?.stage === "buffer-audit" || /Auditoria final:/i.test(item.blockReason || ""))) ||
       (item.status === "published" && ((item.aiReview?.finalScore ?? 0) < 90 || (item.aiReview?.finalBlockers ?? 0) > 0)),
     )
     .map((item) => item.id);
@@ -38,6 +39,8 @@ export async function repairCampaignBuffer({ env = process.env } = {}) {
     const item = latest.items.find((entry) => entry.id === itemId);
     const originalStatus = item.status;
     const originalReview = structuredClone(item.aiReview);
+    const originalReceipt = structuredClone(item.editorialReceipt);
+    const originalFailure = structuredClone(item.failure);
     let postFile;
     let originalRaw;
     try {
@@ -60,6 +63,7 @@ export async function repairCampaignBuffer({ env = process.env } = {}) {
           "Voce e o editor tecnico senior do blog oficial da TheBiker.",
           "Reescreva usando apenas a pesquisa fornecida e sem inventar testes, medidas ou disponibilidade.",
           "Nao promova concorrentes. Escreva para ciclistas experientes, com subtitulos fortes.",
+          ...MARKDOWN_POLICY_GUIDANCE,
           "Nao use secoes chamadas Introducao ou Conclusao. Responda somente com o corpo em Markdown, sem JSON e sem frontmatter.",
         ].join("\n"),
         user: JSON.stringify({
@@ -83,9 +87,13 @@ export async function repairCampaignBuffer({ env = process.env } = {}) {
       if (/^##\s+(introducao|introdução|conclusao|conclusão)\b/im.test(repaired)) throw new Error("Reparo com secao generica proibida");
       const frontmatter = raw.match(/^---\r?\n[\s\S]*?\r?\n---\r?\n/);
       if (!frontmatter) throw new Error("Frontmatter nao encontrado");
-      await fs.writeFile(postFile, `${frontmatter[0]}\n${repaired.trim()}\n`);
+      const repairedContent = `${frontmatter[0]}\n${repaired.trim()}\n`;
+      assertMarkdownPublicationGates(repairedContent);
+      await fs.writeFile(postFile, repairedContent);
       item.status = "scheduled";
       delete item.blockReason;
+      delete item.failure;
+      delete item.editorialReceipt;
       await persist(latest);
       await auditCampaignBuffer({ env });
       if (originalStatus === "published") {
@@ -102,6 +110,8 @@ export async function repairCampaignBuffer({ env = process.env } = {}) {
         const rollbackItem = rollback.items.find((entry) => entry.id === itemId);
         rollbackItem.status = "published";
         rollbackItem.aiReview = originalReview;
+        rollbackItem.editorialReceipt = originalReceipt;
+        rollbackItem.failure = originalFailure;
         delete rollbackItem.blockReason;
         await persist(rollback);
       }

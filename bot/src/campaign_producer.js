@@ -4,6 +4,8 @@ import { fileURLToPath } from 'url'
 import { AIProvider } from './gemini.js'
 import { CampaignSchema, publicCampaignSummary, selectProductionCandidate } from './automation/campaign.js'
 import { GroundedResearcher } from './automation/grounded-research.js'
+import { hashEditorialText } from './validation/editorial-receipt.js'
+import { classifyEditorialFailure } from './validation/editorial-failures.js'
 
 const defaultRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..')
 
@@ -89,12 +91,16 @@ export async function runCampaignProducer({ root = defaultRoot, env = process.en
       premiumEditUsed: post.pipelineMetadata?.premiumEditUsed === true,
       providers: post.pipelineMetadata?.providers || {},
       generatedAt: now.toISOString(),
+      contentHash: hashEditorialText(post.content),
+      sourceHash: post.pipelineMetadata?.sourceHash,
     }
+    delete item.failure
     await persist(root, campaign)
     return { status: 'validation', itemId: item.id, postPath, researchPath: `content/research/campaign/${item.id}.json` }
   } catch (error) {
     item.status = 'blocked'
-    item.blockReason = String(error.message || error).slice(0, 700)
+    item.failure = classifyEditorialFailure(error, { stage: 'production', now })
+    item.blockReason = `[${item.failure.code}] ${item.failure.message}`
     await persist(root, campaign)
     throw error
   }

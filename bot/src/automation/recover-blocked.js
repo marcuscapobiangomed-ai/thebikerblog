@@ -2,6 +2,7 @@ import fs from 'node:fs/promises'
 import path from 'node:path'
 import { CampaignSchema, publicCampaignSummary } from './campaign.js'
 import { markdownPublicationErrors } from '../validation/markdown-publication-gates.js'
+import { classifyEditorialFailure } from '../validation/editorial-failures.js'
 
 const TRANSIENT = /timeout|timed out|aborted|429|rate limit|temporar|econnreset|fetch failed/i
 const FINALIZATION = /^Valida(?:ção|cao) final:/i
@@ -52,6 +53,7 @@ export function recoverBlockedCampaign(campaignInput, {
   if (FINALIZATION.test(reason) && blocked.postPath && finalizationDraftErrors.length === 0) {
     blocked.status = 'validation'
     delete blocked.blockReason
+    delete blocked.failure
     return {
       campaign: CampaignSchema.parse(campaign),
       result: { status: 'retry-finalization', itemId: blocked.id, attempts: blocked.attempts || 0 },
@@ -61,9 +63,11 @@ export function recoverBlockedCampaign(campaignInput, {
   if (FINALIZATION.test(reason) && finalizationDraftErrors.length > 0) {
     reason = `${reason}; rascunho ainda reprovado: ${finalizationDraftErrors.join('; ')}`
   }
-  if (finalizationDraftErrors.length === 0 && TRANSIENT.test(reason) && (blocked.attempts || 0) < maximumTransientAttempts) {
+  const classified = blocked.failure || classifyEditorialFailure(reason, { stage: 'recovery', now })
+  if (finalizationDraftErrors.length === 0 && (classified.retryable || TRANSIENT.test(reason)) && (blocked.attempts || 0) < maximumTransientAttempts) {
     blocked.status = 'planned'
     delete blocked.blockReason
+    delete blocked.failure
     return { campaign: CampaignSchema.parse(campaign), result: { status: 'retry', itemId: blocked.id, attempts: blocked.attempts || 0 }, exception: null }
   }
   const reserve = nextReserve(campaign)

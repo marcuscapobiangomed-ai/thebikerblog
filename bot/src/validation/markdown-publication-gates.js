@@ -1,5 +1,11 @@
 const CANONICAL_TAG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
+export const MARKDOWN_POLICY_GUIDANCE = [
+  "Não use linguagem publicitária absoluta ou superlativos vazios, incluindo: revolucionário, perfeito, imbatível, a melhor do mercado, tecnologia de ponta, qualidade incomparável, compra obrigatória, sem dúvidas e vale cada centavo.",
+  "Em desk-research, não atribua teste prático à TheBiker e não use fórmulas como Testamos, Sentimos, Durante o pedal, Em nosso teste ou percebemos.",
+  "Use somente tags canônicas em minúsculas, sem acentos e em kebab-case.",
+];
+
 const FORBIDDEN_MARKETING = [
   /\brevolucion[aá]ri[ao]\b/i,
   /\bperfeit[ao]\b/i,

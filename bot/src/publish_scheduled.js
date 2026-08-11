@@ -6,6 +6,7 @@ import { validateImageManifestV2 } from "./validation/image-manifest-v2.js";
 import { assertMarkdownPublicationGates } from "./validation/markdown-publication-gates.js";
 import matter from "gray-matter";
 import { assertImageArticleConsistency } from "./validation/image-article-consistency.js";
+import { assertScheduledReceipt, hashEditorialText } from "./validation/editorial-receipt.js";
 
 const defaultRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 
@@ -74,6 +75,7 @@ export async function publishScheduled({ now = new Date(), dryRun = false, root 
   let content = await fs.readFile(sourcePath, "utf8");
   const catalog = JSON.parse(await fs.readFile(path.join(root, "content/product-discovery/thebiker-media-catalog.json"), "utf8"));
   assertImageArticleConsistency({ article: matter(content).data, manifest: validatedManifest, campaignItem: item, catalog });
+  assertScheduledReceipt(content, item);
   content = content.replace(/^published:\s*false\s*$/m, "published: true");
   content = content.replace(/^editorial_status:\s*.*$/m, 'editorial_status: "published"');
   content = content.replace(/^status:\s*.*$/m, 'status: "published"');
@@ -83,6 +85,7 @@ export async function publishScheduled({ now = new Date(), dryRun = false, root 
   }
   if (!/^published:\s*true\s*$/m.test(content)) throw new Error(`Post ${item.id} nao possui published: false valido`);
   assertMarkdownPublicationGates(content);
+  item.editorialReceipt.publishedContentHash = hashEditorialText(content);
   const targetName = `${selected.catchUp ? date : item.publishDate}-${item.id}.md`;
   const targetPath = path.join(root, "_posts", targetName);
   if (dryRun) return {
