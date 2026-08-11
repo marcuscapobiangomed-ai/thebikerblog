@@ -1,10 +1,16 @@
 import assert from 'node:assert/strict'
 import {
+  brazilianEventFromJsonLd,
+  calendarioMtbDetailLinks,
+  calendarioMtbPageCount,
   dateInTimeZone,
   decodeHtmlAttribute,
   flattenCalendarResponse,
   mergeCalendarRows,
+  mergeBrazilPriority,
+  officialOrganizerConfirmsEvent,
   parseCompetitionDetails,
+  parseJsonLdEvents,
   selectPublicCalendar,
 } from './sync-race-calendar.mjs'
 
@@ -85,4 +91,34 @@ assert.equal(decodeHtmlAttribute('&quot;UCI &amp; TheBiker&quot;'), '"UCI & TheB
 assert.throws(() => flattenCalendarResponse({}, 'ROA', '2.Pro'), /Contrato UCI inválido/)
 assert.throws(() => parseCompetitionDetails('<html></html>', 'https://www.uci.org/example'), /CompetitionDetailsModule/)
 
-console.log('Sincronização pública de corridas validada com seleção cronológica e fail-closed.')
+const brazilDiscoveryUrl = 'https://www.calendariomtb.com.br/evento/Desafio-Brou-Mariana-2026/10616/'
+const brazilJsonLd = {
+  '@type': 'Event',
+  name: 'Desafio Brou Mariana 2026',
+  startDate: '2026-08-16',
+  endDate: '2026-08-16',
+  location: { name: 'Mariana (MG)', address: { addressCountry: 'BR' } },
+  offers: { url: 'https://www.brouaventuras.com.br' },
+  organizer: { name: 'Brou Aventuras' },
+}
+const discoveryHtml = `<a href="/evento/Desafio-Brou-Mariana-2026/10616/" title="Desafio Brou Mariana 2026">Evento</a><a href="?page=2">2</a><script type="application/ld+json">${JSON.stringify(brazilJsonLd)}</script>`
+assert.equal(calendarioMtbPageCount(discoveryHtml), 2)
+assert.deepEqual(calendarioMtbDetailLinks(discoveryHtml), [{ sourceId: '10616', discoveryUrl: brazilDiscoveryUrl }])
+assert.deepEqual(parseJsonLdEvents(discoveryHtml, brazilDiscoveryUrl), brazilJsonLd)
+const brazilian = brazilianEventFromJsonLd(brazilJsonLd, { sourceId: '10616', discoveryUrl: brazilDiscoveryUrl })
+assert.equal(brazilian.key, 'br-mtb-10616')
+assert.equal(brazilian.venue, 'Mariana/MG')
+assert.equal(officialOrganizerConfirmsEvent(brazilian, '<main>Desafio Brou MTB Mariana 2026 — Mariana — 16 de agosto</main>'), true)
+assert.equal(officialOrganizerConfirmsEvent(brazilian, '<main>Desafio Brou MTB Mariana 2026 — Mariana — 15 de agosto</main>'), false)
+const rangeFixture = { ...brazilian, startsOn: '2026-08-22', endsOn: '2026-08-23', venue: 'Pirenópolis/GO' }
+assert.equal(officialOrganizerConfirmsEvent(rangeFixture, '<main>MTB em Pirenópolis: 22 a 23 de agosto</main>'), true)
+assert.equal(officialOrganizerConfirmsEvent(rangeFixture, '<main>MTB em Pirenópolis: 21 a 23 de agosto</main>'), false, 'divergência do organizador deve bloquear a descoberta')
+assert.throws(() => brazilianEventFromJsonLd({ ...brazilJsonLd, name: 'WOS Trail Run' }, { sourceId: '1', discoveryUrl: brazilDiscoveryUrl }), /exclusivamente de trail run/)
+const mixedUpcoming = mergeBrazilPriority(
+  [{ name: 'World race', startsOn: '2026-08-17' }],
+  [{ name: brazilian.name, startsOn: brazilian.startsOn }],
+  2,
+)
+assert.deepEqual(mixedUpcoming.map((event) => event.name), [brazilian.name, 'World race'])
+
+console.log('Sincronização pública de corridas validada com prioridade brasileira, seleção cronológica e fail-closed.')

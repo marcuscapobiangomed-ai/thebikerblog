@@ -26,7 +26,7 @@ model: ""
   <div class="container race-details-content">
     <aside class="race-details-method" aria-label="Como validamos">
       <strong>Como esta página funciona</strong>
-      <p>Os detalhes abaixo vêm do mesmo snapshot oficial que alimenta os cards. A atualização diária consulta calendário e ficha UCI, valida quantidades, datas e duplicidades e só então publica.</p>
+      <p>Os detalhes abaixo vêm do mesmo snapshot que alimenta os cards. A atualização diária consulta UCI, Calendário MTB e páginas oficiais dos organizadores, valida períodos, locais, quantidades e duplicidades e só então publica.</p>
       <span>Última verificação: {{ public_calendar.generatedAt | date: "%d/%m/%Y às %H:%M UTC" }}</span>
     </aside>
 
@@ -61,3 +61,5 @@ model: ""
     </section>
   </div>
 </div>
+
+<script defer src="{{ site.baseurl }}/assets/js/race-details.js?v=1"></script>

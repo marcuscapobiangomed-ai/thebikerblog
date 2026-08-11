@@ -2,7 +2,9 @@
 {% assign country_pt = site.data["countries-pt"][event.countryCode] | default: event.country %}
 {% assign official_class = event.competitionClass %}
 {% assign class_explanation = "Classificação oficial da UCI; o nível exato está preservado abaixo sem tradução livre." %}
-{% if official_class contains "WWT" %}
+{% if official_class contains "MTB brasileira" %}
+  {% assign class_explanation = "Prova brasileira de mountain bike aberta a participantes; categoria e inscrição devem ser confirmadas no site oficial." %}
+{% elsif official_class contains "WWT" %}
   {% assign class_explanation = "UCI Women's WorldTour: principal circuito internacional feminino de ciclismo de estrada." %}
 {% elsif official_class contains "UWT" %}
   {% assign class_explanation = "UCI WorldTour: principal circuito internacional masculino de ciclismo de estrada." %}
@@ -54,12 +56,16 @@
   <div class="race-detail-explanation">
     <span>O que significa a categoria</span>
     <h3>{{ class_explanation }}</h3>
-    <p>Código preservado da fonte: <strong>{{ official_class }}</strong>.</p>
+    <p>Classificação preservada da fonte: <strong>{{ official_class }}</strong>.</p>
   </div>
 
   <div class="race-detail-integrity">
     <strong>O que foi validado</strong>
-    <p>Nome, modalidade, país, período e classe foram conferidos na ficha da Union Cycliste Internationale em {{ event.source.checkedAt | date: "%d/%m/%Y às %H:%M UTC" }}.</p>
+    {% if event.source.validationMethod == "discovery-plus-organizer" %}
+      <p>Nome, modalidade, local e período foram encontrados no Calendário MTB e confirmados com o mesmo local e período na página oficial da organização em {{ event.source.checkedAt | date: "%d/%m/%Y às %H:%M UTC" }}.</p>
+    {% else %}
+      <p>Nome, modalidade, país, período e classe foram conferidos na ficha da Union Cycliste Internationale em {{ event.source.checkedAt | date: "%d/%m/%Y às %H:%M UTC" }}.</p>
+    {% endif %}
     {% if include.status == "past" %}
       <p>O encerramento acima representa o fim do período oficial. Resultados, vencedores e classificação não são afirmados enquanto não entrarem em uma fonte de resultados integrada e validada.</p>
     {% elsif include.status == "today" %}
@@ -71,6 +77,7 @@
 
   <footer class="race-detail-actions">
     {% if event.source.organizerUrl %}<a href="{{ event.source.organizerUrl }}" target="_blank" rel="noopener noreferrer" data-race-outbound data-event-id="{{ event.id }}" data-race-section="detail-organizer" data-race-source="Organizador">Site oficial da organização <span aria-hidden="true">↗</span></a>{% endif %}
-    <a href="{{ event.source.officialUrl }}" target="_blank" rel="noopener noreferrer" data-race-outbound data-event-id="{{ event.id }}" data-race-section="detail-source" data-race-source="UCI">Conferir fonte UCI <span aria-hidden="true">↗</span></a>
+    <a href="{{ event.source.officialUrl }}" target="_blank" rel="noopener noreferrer" data-race-outbound data-event-id="{{ event.id }}" data-race-section="detail-source" data-race-source="{{ event.source.provider }}">{% if event.source.validationMethod == "official-calendar" %}Conferir fonte UCI{% else %}Conferir site oficial{% endif %} <span aria-hidden="true">↗</span></a>
+    {% if event.source.discoveryUrl %}<a href="{{ event.source.discoveryUrl }}" target="_blank" rel="noopener noreferrer" data-race-outbound data-event-id="{{ event.id }}" data-race-section="detail-discovery" data-race-source="Calendário MTB">Ver registro no Calendário MTB <span aria-hidden="true">↗</span></a>{% endif %}
   </footer>
 </article>

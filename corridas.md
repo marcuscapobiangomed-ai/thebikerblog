@@ -19,7 +19,7 @@ model: ""
     <div class="container race-hub-hero-inner">
       <span class="race-hub-kicker">TheBiker Insights · Competições</span>
       <h1 id="race-hub-title">O pelotão corre.<br>A agenda acompanha.</h1>
-      <p>Agenda recente e as próximas grandes corridas do ciclismo mundial, explicadas em português e conferidas no calendário oficial da UCI.</p>
+      <p>Corridas brasileiras em primeiro plano e grandes provas mundiais, explicadas em português e conferidas em fontes oficiais.</p>
       <div class="race-hub-status" aria-label="Resumo do calendário">
         <span><strong>{{ public_calendar.today | size }}</strong> em disputa hoje</span>
         <span><strong>{{ public_calendar.recent | size }}</strong> encerradas recentemente</span>
@@ -39,7 +39,7 @@ model: ""
     <article class="race-track-card">
       <span>02</span>
       <h2>As próximas 10</h2>
-      <p>Agenda cronológica de WorldTour, Women’s WorldTour, ProSeries, Copa do Mundo e Campeonatos Mundiais.</p>
+      <p>Maioria brasileira, com provas participativas de MTB, sem perder WorldTour, Copa do Mundo e Campeonatos Mundiais.</p>
       <a href="#proximas">Abrir calendário <span aria-hidden="true">↓</span></a>
     </article>
   </section>
@@ -78,7 +78,7 @@ model: ""
       <div class="race-section-heading">
         <div>
           <span>Calendário recente</span>
-          <h2 id="recent-races-title">Encerradas no calendário UCI</h2>
+          <h2 id="recent-races-title">Encerradas recentemente</h2>
         </div>
         <p>Selecionamos as provas de maior nível encerradas mais recentemente. Cada card abre uma explicação em português dentro do blog.</p>
       </div>
@@ -109,7 +109,7 @@ model: ""
           <span>Agenda verificada</span>
           <h2 id="upcoming-races-title">As próximas 10 corridas</h2>
         </div>
-        <p>Ordem de largada confirmada no calendário UCI. Mudanças de data ou classificação entram automaticamente na próxima sincronização.</p>
+        <p>Seis vagas mantêm maioria brasileira validada; quatro preservam a cobertura mundial. Mudanças entram automaticamente na próxima sincronização.</p>
       </div>
       <ol class="race-upcoming-list">
         {% for event in public_calendar.upcoming %}
@@ -199,7 +199,7 @@ model: ""
   <section class="race-source-note">
     <div class="container">
       <strong>Compromisso de fonte</strong>
-      <p>Dados de agenda sincronizados diariamente com a Union Cycliste Internationale. “Em disputa hoje” indica que a data oficial da prova abrange o dia atual; não representa transmissão ao vivo nem confirma resultado. Se a fonte mudar de formato, ficar indisponível ou entregar menos de 3 provas recentes e 10 próximas, a atualização é bloqueada e o fluxo operacional recebe um alerta.</p>
+      <p>Dados sincronizados diariamente com a UCI e com o Calendário MTB, usado apenas para descoberta. Uma prova brasileira só entra após validação do local, das datas e da disponibilidade do site oficial da organização. “Em disputa hoje” indica que a data validada abrange o dia atual; não representa transmissão ao vivo nem confirma resultado. Duplicidades, fontes indisponíveis ou cobertura abaixo do mínimo bloqueiam a atualização.</p>
     </div>
   </section>
 </div>

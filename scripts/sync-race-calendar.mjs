@@ -5,12 +5,20 @@ import { fileURLToPath } from 'node:url'
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const outputPath = path.join(projectRoot, '_data', 'race-events.json')
 const UCI_BASE_URL = 'https://www.uci.org'
+const CALENDARIO_MTB_BASE_URL = 'https://www.calendariomtb.com.br'
 const RECENT_MINIMUM = 3
 const UPCOMING_MINIMUM = 10
 const TODAY_MAXIMUM = 3
+const BRAZIL_UPCOMING_TARGET = 6
 const CALENDAR_REQUEST_CONCURRENCY = 6
 const DETAIL_REQUEST_CONCURRENCY = 4
 const CALENDAR_TIMEZONE = 'America/Sao_Paulo'
+const BRAZIL_BIKE_NAME_PATTERN = /\b(mtb|mountain bike|bike|biker|brou|brasil ride|cimtb|ciclismo)\b/i
+const DEBUG_SYNC = process.argv.includes('--debug')
+
+function debugSync(message) {
+  if (DEBUG_SYNC) process.stderr.write(`[corridas] ${message}\n`)
+}
 
 const CLASS_FILTERS = Object.freeze({
   ROA: ['1.UWT', '2.UWT', '1.WWT', '2.WWT', '1.Pro', '2.Pro'],
@@ -120,6 +128,203 @@ async function fetchJson(url) {
   }
 }
 
+function parseJsonLdEvents(html, sourceUrl) {
+  const events = []
+  for (const match of html.matchAll(/<script[^>]+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)) {
+    try {
+      const parsed = JSON.parse(match[1])
+      const candidates = Array.isArray(parsed) ? parsed : [parsed]
+      events.push(...candidates.filter((item) => item?.['@type'] === 'Event'))
+    } catch {
+      // Other JSON-LD blocks on the discovery page are not part of the event contract.
+    }
+  }
+  if (events.length !== 1) throw new Error(`Ficha brasileira sem evento JSON-LD único: ${sourceUrl}`)
+  return events[0]
+}
+
+function calendarioMtbDetailLinks(html) {
+  const links = new Map()
+  for (const match of html.matchAll(/<a href=["'](\/evento\/[^"']+\/(\d+)\/)["'][^>]*title=["']([^"']+)["']/gi)) {
+    links.set(match[2], new URL(match[1], CALENDARIO_MTB_BASE_URL).href)
+  }
+  return [...links.entries()].map(([sourceId, discoveryUrl]) => ({ sourceId, discoveryUrl }))
+}
+
+function calendarioMtbPageCount(html) {
+  const pages = [...html.matchAll(/[?&]page=(\d+)/g)].map((match) => Number(match[1]))
+  return Math.min(10, Math.max(1, ...pages))
+}
+
+function parseBrazilianLocation(location) {
+  const match = String(location || '').trim().match(/^(.+?)\s*\(([A-Z]{2})\)$/)
+  if (!match || /^a divulgar$/i.test(match[1])) throw new Error(`Local brasileiro incompleto: ${location || 'ausente'}`)
+  return { city: match[1].trim(), state: match[2] }
+}
+
+function normalizeSeriesName(value) {
+  return value
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/\b\d+[ªº]?\s*(etapa)?\b/g, '')
+    .replace(/\b20\d{2}\b/g, '')
+    .replace(/[^a-z0-9]+/g, ' ')
+    .trim()
+}
+
+function brazilianEventFromJsonLd(data, candidate) {
+  const name = String(data.name || '').trim()
+  const startsOn = String(data.startDate || '').slice(0, 10)
+  const endsOn = String(data.endDate || data.startDate || '').slice(0, 10)
+  const country = data.location?.address?.addressCountry
+  const officialUrl = data.offers?.url
+  if (/trail\s*run/i.test(name) && !BRAZIL_BIKE_NAME_PATTERN.test(name.replace(/trail\s*run/ig, ''))) {
+    throw new Error(`Evento exclusivamente de trail run: ${name || candidate.discoveryUrl}`)
+  }
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(startsOn) || !/^\d{4}-\d{2}-\d{2}$/.test(endsOn) || endsOn < startsOn) {
+    throw new Error(`Datas brasileiras inválidas: ${candidate.discoveryUrl}`)
+  }
+  if (country !== 'BR') throw new Error(`Evento fora do Brasil: ${candidate.discoveryUrl}`)
+  if (!officialUrl || !/^https?:\/\//.test(officialUrl)) throw new Error(`Evento brasileiro sem site oficial: ${candidate.discoveryUrl}`)
+  const official = new URL(officialUrl)
+  if (official.hostname.endsWith('calendariomtb.com.br')) throw new Error(`Site oficial não independente: ${candidate.discoveryUrl}`)
+  const { city, state } = parseBrazilianLocation(data.location?.name)
+  return {
+    key: `br-mtb-${candidate.sourceId}`,
+    sourceId: candidate.sourceId,
+    name,
+    venue: `${city}/${state}`,
+    countryCode: 'BRA',
+    startsOn,
+    endsOn,
+    disciplineCode: 'MTB',
+    classCode: 'BR-MTB',
+    officialUrl: official.href,
+    discoveryUrl: candidate.discoveryUrl,
+    provider: String(data.organizer?.name || new URL(officialUrl).hostname).trim(),
+    seriesKey: `${normalizeSeriesName(name)}|${startsOn}|${city.toLowerCase()}|${state}`,
+  }
+}
+
+function normalizedEvidenceText(value) {
+  return String(value || '')
+    .replace(/<script[\s\S]*?<\/script>/gi, ' ')
+    .replace(/<style[\s\S]*?<\/style>/gi, ' ')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/&(?:nbsp|#160);/gi, ' ')
+    .replace(/&(?:ndash|mdash|#8211|#8212);/gi, '-')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/\\[nrt]/g, ' ')
+    .replace(/\s+/g, ' ')
+}
+
+function dateEvidencePatterns(isoValue) {
+  const months = ['janeiro', 'fevereiro', 'marco', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro']
+  const [year, month, day] = isoValue.split('-')
+  const numericDay = String(Number(day))
+  const numericMonth = String(Number(month))
+  return [
+    isoValue,
+    `${day}/${month}/${year}`,
+    `${numericDay}/${numericMonth}/${year}`,
+    `${day}/${month}/${year.slice(2)}`,
+    `${numericDay} de ${months[Number(month) - 1]}`,
+    `${numericDay} ${months[Number(month) - 1]}`,
+  ]
+}
+
+function officialOrganizerConfirmsEvent(event, html) {
+  const text = normalizedEvidenceText(html)
+  if (!BRAZIL_BIKE_NAME_PATTERN.test(text)) return false
+  const city = normalizeSeriesName(event.venue.split('/')[0])
+  const locations = [...text.matchAll(new RegExp(city.replace(/\s+/g, '\\s+'), 'g'))].map((match) => match.index)
+  if (locations.length === 0) return false
+  const startPatterns = dateEvidencePatterns(event.startsOn)
+  const endPatterns = dateEvidencePatterns(event.endsOn)
+  const [startYear, startMonth, startDay] = event.startsOn.split('-').map(Number)
+  const [endYear, endMonth, endDay] = event.endsOn.split('-').map(Number)
+  for (const index of locations) {
+    const window = text.slice(Math.max(0, index - 1_200), index + city.length + 1_200)
+    const ranges = [...window.matchAll(/\b(\d{1,2})\s+(?:a|e|ate)\s+(\d{1,2})\s+(?:de\s+)?(janeiro|fevereiro|marco|abril|maio|junho|julho|agosto|setembro|outubro|novembro|dezembro)\b/g)]
+    if (ranges.length > 0 && startYear === endYear && startMonth === endMonth) {
+      const months = ['janeiro', 'fevereiro', 'marco', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro']
+      if (ranges.some((range) => Number(range[1]) === startDay && Number(range[2]) === endDay && months.indexOf(range[3]) + 1 === startMonth)) return true
+      continue
+    }
+    if (startPatterns.some((pattern) => window.includes(pattern)) && endPatterns.some((pattern) => window.includes(pattern))) return true
+  }
+  return false
+}
+
+async function resolveOfficialEvidence(event) {
+  const { officialUrl: url } = event
+  const candidates = [...new Set([url, url.replace(/^http:/, 'https:')])].reverse()
+  for (const candidate of candidates) {
+    try {
+      const response = await fetch(candidate, {
+        redirect: 'follow',
+        headers: { 'user-agent': 'TheBikerBlog-RaceCalendar/1.0 (+https://blog.thebiker.com.br/corridas/)' },
+        signal: AbortSignal.timeout(12_000),
+      })
+      if (!response.ok || !/^https?:$/.test(new URL(response.url).protocol)) continue
+      const html = await response.text()
+      if (officialOrganizerConfirmsEvent(event, html)) return { ...event, officialUrl: response.url }
+    } catch {
+      // Try the next safe protocol candidate.
+    }
+  }
+  throw new Error(`Site oficial não confirma local e período: ${url}`)
+}
+
+async function collectBrazilianEvents(asOfDate) {
+  const firstUrl = `${CALENDARIO_MTB_BASE_URL}/evento/index.php?page=1`
+  const firstHtml = await fetchText(firstUrl)
+  const pageCount = calendarioMtbPageCount(firstHtml)
+  const pages = [firstHtml]
+  if (pageCount > 1) {
+    const remaining = await mapWithConcurrency(
+      Array.from({ length: pageCount - 1 }, (_, index) => `${CALENDARIO_MTB_BASE_URL}/evento/index.php?page=${index + 2}`),
+      CALENDAR_REQUEST_CONCURRENCY,
+      fetchText,
+    )
+    pages.push(...remaining)
+  }
+  const detailCandidates = new Map()
+  for (const page of pages) for (const candidate of calendarioMtbDetailLinks(page)) detailCandidates.set(candidate.sourceId, candidate)
+  const horizon = isoDate(addDays(new Date(`${asOfDate}T12:00:00.000Z`), 90))
+  const parsed = await mapWithConcurrency([...detailCandidates.values()], CALENDAR_REQUEST_CONCURRENCY, async (candidate) => {
+    try {
+      const html = await fetchText(candidate.discoveryUrl)
+      const event = brazilianEventFromJsonLd(parseJsonLdEvents(html, candidate.discoveryUrl), candidate)
+      return event.endsOn >= asOfDate && event.startsOn <= horizon ? event : null
+    } catch (error) {
+      debugSync(`Descoberta excluída ${candidate.discoveryUrl}: ${error.message}`)
+      return null
+    }
+  })
+  const conflicts = new Map()
+  for (const event of parsed.filter(Boolean)) conflicts.set(event.seriesKey, (conflicts.get(event.seriesKey) || 0) + 1)
+  const clean = parsed.filter((event) => event && conflicts.get(event.seriesKey) === 1)
+    .sort((left, right) => left.startsOn.localeCompare(right.startsOn) || left.name.localeCompare(right.name))
+  const verified = []
+  for (const event of clean) {
+    try {
+      const confirmed = await resolveOfficialEvidence(event)
+      verified.push(confirmed)
+      debugSync(`Confirmada ${confirmed.name}: ${confirmed.officialUrl}`)
+    } catch (error) {
+      debugSync(`Confirmação excluída ${event.name}: ${error.message}`)
+      // Discovery is not enough: the organizer must confirm the same place and period.
+    }
+    const upcomingCount = verified.filter((item) => item.startsOn > asOfDate).length
+    if (upcomingCount >= BRAZIL_UPCOMING_TARGET && event.startsOn > asOfDate) break
+  }
+  return verified
+}
+
 function flattenCalendarResponse(payload, disciplineCode, classCode) {
   if (!Array.isArray(payload?.items)) throw new Error(`Contrato UCI inválido para ${disciplineCode}/${classCode}: items ausente`)
   const rows = []
@@ -211,6 +416,7 @@ function mapPublicEvent(event, details, status, checkedAt) {
   }
   return {
     id: eventId(event),
+    track: 'professional-coverage',
     name: details.name,
     disciplineCode: event.disciplineCode,
     disciplineLabel: event.disciplineCode === 'ROA' ? 'Ciclismo de estrada' : 'Mountain bike',
@@ -229,10 +435,55 @@ function mapPublicEvent(event, details, status, checkedAt) {
     source: {
       provider: 'Union Cycliste Internationale',
       officialUrl: event.officialUrl,
+      validationMethod: 'official-calendar',
       ...(details.organizerUrl ? { organizerUrl: details.organizerUrl } : {}),
       checkedAt,
     },
   }
+}
+
+function mapBrazilianPublicEvent(event, status, checkedAt) {
+  return {
+    id: event.key,
+    track: 'participant-calendar',
+    name: event.name,
+    disciplineCode: 'MTB',
+    disciplineLabel: 'Mountain bike',
+    countryCode: 'BRA',
+    country: 'Brasil',
+    venue: event.venue,
+    startsOn: event.startsOn,
+    endsOn: event.endsOn,
+    displayDate: {
+      startsOn: formatBrDate(event.startsOn),
+      endsOn: formatBrDate(event.endsOn),
+      endsOnWithYear: formatBrDate(event.endsOn, true),
+    },
+    eventStatus: status,
+    competitionClass: 'MTB brasileira · prova participativa',
+    source: {
+      provider: event.provider,
+      officialUrl: event.officialUrl,
+      discoveryUrl: event.discoveryUrl,
+      validationMethod: 'discovery-plus-organizer',
+      checkedAt,
+    },
+  }
+}
+
+function sameRace(left, right) {
+  return left.startsOn === right.startsOn && normalizeSeriesName(left.name) === normalizeSeriesName(right.name)
+}
+
+function mergeBrazilPriority(uciEvents, brazilEvents, limit) {
+  const selected = [...brazilEvents]
+  for (const event of uciEvents) {
+    if (selected.length >= limit) break
+    if (!selected.some((candidate) => sameRace(candidate, event))) selected.push(event)
+  }
+  return selected
+    .sort((left, right) => left.startsOn.localeCompare(right.startsOn) || left.name.localeCompare(right.name))
+    .slice(0, limit)
 }
 
 function assertSorted(events, field, direction = 'asc') {
@@ -317,11 +568,27 @@ async function main() {
   const asOfDate = dateFromInput(cliValue('today'))
   const checkedAt = new Date().toISOString()
   const existing = JSON.parse(await fs.readFile(outputPath, 'utf8'))
-  const candidates = await collectOfficialEvents(asOfDate)
+  const [candidates, brazilianCandidates] = await Promise.all([
+    collectOfficialEvents(asOfDate),
+    collectBrazilianEvents(asOfDate),
+  ])
   const selection = selectPublicCalendar(candidates, asOfDate)
-  const today = await enrichSelection(selection.today, 'today', checkedAt)
+  const brazilToday = brazilianCandidates
+    .filter((event) => event.startsOn <= asOfDate && event.endsOn >= asOfDate)
+    .slice(0, TODAY_MAXIMUM)
+    .map((event) => mapBrazilianPublicEvent(event, 'today', checkedAt))
+  const brazilUpcoming = brazilianCandidates
+    .filter((event) => event.startsOn > asOfDate)
+    .slice(0, BRAZIL_UPCOMING_TARGET)
+    .map((event) => mapBrazilianPublicEvent(event, 'scheduled', checkedAt))
+  if (brazilUpcoming.length < BRAZIL_UPCOMING_TARGET) {
+    throw new Error(`Cobertura brasileira insuficiente: ${brazilUpcoming.length}/${BRAZIL_UPCOMING_TARGET} próximas com organizador validado`)
+  }
+  const uciToday = await enrichSelection(selection.today, 'today', checkedAt)
   const recent = await enrichSelection(selection.recent, 'past', checkedAt)
-  const upcoming = await enrichSelection(selection.upcoming, 'scheduled', checkedAt)
+  const uciUpcoming = await enrichSelection(selection.upcoming, 'scheduled', checkedAt)
+  const today = mergeBrazilPriority(uciToday, brazilToday, TODAY_MAXIMUM)
+  const upcoming = mergeBrazilPriority(uciUpcoming, brazilUpcoming, UPCOMING_MINIMUM)
   const next = {
     ...existing,
     updatedAt: checkedAt,
@@ -331,7 +598,7 @@ async function main() {
       asOfDateDisplay: formatBrDate(asOfDate, true),
       timezone: CALENDAR_TIMEZONE,
       sourceStatus: 'verified',
-      selectionPolicy: 'Agenda UCI de estrada e MTB: provas em disputa na data, entradas recentes e próximas provas de maior classe.',
+      selectionPolicy: 'Agenda combinada: próximas provas mantêm maioria brasileira, validada por descoberta e confirmação do organizador; UCI completa a cobertura mundial. Recentes permanecem na fonte oficial UCI.',
       today,
       recent,
       upcoming,
@@ -349,7 +616,7 @@ async function main() {
   } finally {
     await fs.rm(temporaryPath, { force: true })
   }
-  process.stdout.write(`Calendário UCI sincronizado: ${today.length} em disputa hoje + ${recent.length} recentes + ${upcoming.length} próximas (${asOfDate}).\n`)
+  process.stdout.write(`Calendário sincronizado: ${today.length} em disputa hoje + ${recent.length} recentes + ${upcoming.length} próximas, com ${upcoming.filter((event) => event.countryCode === 'BRA').length} brasileiras (${asOfDate}).\n`)
 }
 
 const invokedDirectly = process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)
@@ -360,9 +627,15 @@ if (invokedDirectly) main().catch((error) => {
 
 export {
   CLASS_FILTERS,
+  brazilianEventFromJsonLd,
+  calendarioMtbDetailLinks,
+  calendarioMtbPageCount,
   dateInTimeZone,
   decodeHtmlAttribute,
   flattenCalendarResponse,
   mergeCalendarRows,
+  mergeBrazilPriority,
+  officialOrganizerConfirmsEvent,
   parseCompetitionDetails,
+  parseJsonLdEvents,
 }
