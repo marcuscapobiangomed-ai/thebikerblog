@@ -10,7 +10,7 @@ import { getTemplate } from "./templates.js";
 import { ThreeProviderPipeline } from "./ai/three-provider-pipeline.js";
 import { AIRuntime } from "./ai/runtime.js";
 import { assertEditorialPublicationGates } from "./validation/editorial-publication-gates.js";
-import { assertMarkdownPublicationGates } from "./validation/markdown-publication-gates.js";
+import { assertMarkdownPublicationGates, neutralizeMarkdownPolicyPhrases } from "./validation/markdown-publication-gates.js";
 import { buildImageProductionPlan } from "./image-manifest.js";
 
 const CATEGORY_ALIASES = {
@@ -311,22 +311,23 @@ export class AIProvider {
 
   _sanitizeStructuredArticle(parsed) {
     const next = JSON.parse(JSON.stringify(parsed));
+    const requestedHandsOn =
+      toText(next.review_method, "").trim() === "hands-on-test" ||
+      toBoolean(next.tested_by_thebikerblog, false);
+    const neutralize = (value) => neutralizeMarkdownPolicyPhrases(value, { deskResearch: !requestedHandsOn });
 
-    next.title = this._sanitizeHtml(next.title);
-    next.description = truncateAtWordBoundary(this._sanitizeHtml(next.description), 200);
-    next.direct_answer = truncateAtWordBoundary(this._sanitizeHtml(next.direct_answer), 420);
+    next.title = neutralize(this._sanitizeHtml(next.title));
+    next.description = truncateAtWordBoundary(neutralize(this._sanitizeHtml(next.description)), 200);
+    next.direct_answer = truncateAtWordBoundary(neutralize(this._sanitizeHtml(next.direct_answer)), 420);
     next.slug = this._sanitizeHtml(next.slug);
     next.category = this._normalizeCategory(next.category);
     next.content_type = this._normalizeContentType(next.content_type);
     next.audience_segment = this._sanitizeHtml(next.audience_segment || "core_technical_cyclists");
     next.audience_intent = this._sanitizeHtml(next.audience_intent || "technical_learning");
     next.experience_level_target = this._sanitizeHtml(next.experience_level_target || "intermediate_advanced");
-    const requestedHandsOn =
-      toText(next.review_method, "").trim() === "hands-on-test" ||
-      toBoolean(next.tested_by_thebikerblog, false);
     next.review_method = requestedHandsOn ? "hands-on-test" : "desk-research";
     next.tested_by_thebikerblog = requestedHandsOn;
-    next.methodologyNotice = this._sanitizeHtml(next.methodologyNotice || "");
+    next.methodologyNotice = neutralize(this._sanitizeHtml(next.methodologyNotice || ""));
     next.brand = this._sanitizeHtml(next.brand || "");
     next.product_name = this._sanitizeHtml(next.product_name || "");
     next.model_year = toNumber(next.model_year, undefined);
@@ -366,13 +367,13 @@ export class AIProvider {
     }));
 
     next.faq = normalizeList(next.faq).slice(0, 5).map((item) => ({
-      question: truncateAtWordBoundary(this._sanitizeHtml(item.question || ""), 180),
-      answer: truncateAtWordBoundary(this._sanitizeHtml(item.answer || ""), 600),
+      question: truncateAtWordBoundary(neutralize(this._sanitizeHtml(item.question || "")), 180),
+      answer: truncateAtWordBoundary(neutralize(this._sanitizeHtml(item.answer || "")), 600),
     }));
 
     next.sections = normalizeList(next.sections).map((section) => ({
-      heading: this._sanitizeHtml(section.heading || ""),
-      content: this._sanitizeHtml(section.content || ""),
+      heading: neutralize(this._sanitizeHtml(section.heading || "")),
+      content: neutralize(this._sanitizeHtml(section.content || "")),
     }));
 
     next.imagePlan = normalizeList(next.imagePlan).map((item) => ({
@@ -390,14 +391,14 @@ export class AIProvider {
       aiGeneratedAllowed: toBoolean(item.aiGeneratedAllowed, false),
     }));
 
-    next.claimsRequiringReview = normalizeList(next.claimsRequiringReview).map((item) => this._sanitizeHtml(item));
+    next.claimsRequiringReview = normalizeList(next.claimsRequiringReview).map((item) => neutralize(this._sanitizeHtml(item)));
 
     next.frontmatter = next.frontmatter || {};
     next.frontmatter.author = this._sanitizeHtml(next.frontmatter.author || "Equipe TheBiker");
     next.frontmatter.image = this._sanitizeHtml(next.frontmatter.image || "/assets/img/logo.svg");
     next.frontmatter.thumbnail = this._sanitizeHtml(next.frontmatter.thumbnail || "");
-    next.frontmatter.image_alt = this._sanitizeHtml(next.frontmatter.image_alt || next.description || "");
-    next.frontmatter.image_caption = this._sanitizeHtml(next.frontmatter.image_caption || "");
+    next.frontmatter.image_alt = neutralize(this._sanitizeHtml(next.frontmatter.image_alt || next.description || ""));
+    next.frontmatter.image_caption = neutralize(this._sanitizeHtml(next.frontmatter.image_caption || ""));
     next.frontmatter.image_credit = this._sanitizeHtml(next.frontmatter.image_credit || "TheBiker");
     next.frontmatter.image_license = this._sanitizeHtml(next.frontmatter.image_license || "Uso editorial da TheBiker");
 

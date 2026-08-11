@@ -14,6 +14,7 @@ on:
 
 permissions:
   contents: write
+  actions: write
 
 concurrency:
   group: thebiker-editorial-write
@@ -71,3 +72,9 @@ jobs:
             sleep $((attempt * 5))
           done
           exit 1
+
+      - name: Publicar snapshot atualizado
+        if: ${{ github.event_name == 'schedule' || !inputs.dry_run }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run deploy.yml --ref main

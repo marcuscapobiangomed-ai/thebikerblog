@@ -27,6 +27,41 @@ const FORBIDDEN_DESK_TESTS = [
   /\bpercebemos\b/i,
 ];
 
+const NEUTRAL_MARKETING_REPLACEMENTS = [
+  [/\brevolucion[aá]ri[ao]\b/gi, "tecnicamente relevante"],
+  [/\bperfeit[ao]\b/gi, "consistente"],
+  [/\bimbat[ií]vel\b/gi, "competitivo"],
+  [/\ba melhor do mercado\b/gi, "uma opção relevante"],
+  [/\btecnologia de ponta\b/gi, "tecnologia atual"],
+  [/\bqualidade incompar[aá]vel\b/gi, "qualidade elevada"],
+  [/\bcompra obrigat[oó]ria\b/gi, "opção a considerar"],
+  [/\bsem d[uú]vidas\b/gi, "com base nas fontes consultadas"],
+  [/\bvale cada centavo\b/gi, "exige avaliação de custo-benefício"],
+];
+
+const NEUTRAL_DESK_REPLACEMENTS = [
+  [/\bDurante o pedal percebemos\b/gi, "As fontes consultadas indicam"],
+  [/\bTestamos\b/g, "A análise documental considera"],
+  [/\bSentimos\b/g, "As fontes consultadas descrevem"],
+  [/\bDurante o pedal\b/gi, "Segundo as fontes consultadas"],
+  [/\bNossa experi[êe]ncia com a bicicleta\b/gi, "A documentação técnica da bicicleta"],
+  [/\bEm nosso teste\b/gi, "Na análise documental"],
+  [/\bpercebemos\b/gi, "a documentação consultada indica"],
+];
+
+export function neutralizeMarkdownPolicyPhrases(value, { deskResearch = false } = {}) {
+  let result = String(value || "");
+  for (const [pattern, replacement] of NEUTRAL_MARKETING_REPLACEMENTS) {
+    result = result.replace(pattern, replacement);
+  }
+  if (deskResearch) {
+    for (const [pattern, replacement] of NEUTRAL_DESK_REPLACEMENTS) {
+      result = result.replace(pattern, replacement);
+    }
+  }
+  return result;
+}
+
 function frontmatterValue(content, field) {
   return content.match(new RegExp(`^${field}:\\s*(.*)$`, "m"))?.[1]?.trim() || "";
 }
