@@ -360,9 +360,59 @@ async function resolveOfficialEvidence(event) {
   throw new Error(`Site oficial não confirma local e período: ${url}`)
 }
 
-async function collectBrazilianEvents(asOfDate) {
+function brazilianEventsFromVerifiedSnapshot(publicCalendar, asOfDate) {
+  const horizon = isoDate(addDays(new Date(`${asOfDate}T12:00:00.000Z`), 90))
+  const events = [...(publicCalendar?.today || []), ...(publicCalendar?.upcoming || [])]
+  return events
+    .filter((event) => event.id.startsWith('br-mtb-')
+      && event.source?.validationMethod === 'discovery-plus-organizer'
+      && event.source.discoveryUrl
+      && event.endsOn >= asOfDate
+      && event.startsOn <= horizon)
+    .map((event) => ({
+      key: event.id,
+      name: event.name,
+      venue: event.venue,
+      startsOn: event.startsOn,
+      endsOn: event.endsOn,
+      provider: event.source.provider,
+      officialUrl: event.source.officialUrl,
+      discoveryUrl: event.source.discoveryUrl,
+      discoveryCheckedAt: event.source.discoveryCheckedAt || event.source.checkedAt,
+      validationMethod: 'verified-snapshot-plus-organizer',
+      seriesKey: `${normalizeSeriesName(event.name)}|${event.startsOn}`,
+    }))
+}
+
+async function revalidateBrazilianSnapshot(publicCalendar, asOfDate) {
+  const fallback = brazilianEventsFromVerifiedSnapshot(publicCalendar, asOfDate)
+  if (fallback.length < BRAZIL_UPCOMING_TARGET) {
+    throw new Error(`Snapshot brasileiro insuficiente para contingência: ${fallback.length}/${BRAZIL_UPCOMING_TARGET}`)
+  }
+  const verified = []
+  for (const event of fallback) {
+    try {
+      verified.push(await resolveOfficialEvidence(event))
+    } catch (error) {
+      debugSync(`Contingência excluída ${event.name}: ${error.message}`)
+    }
+  }
+  if (verified.filter((event) => event.startsOn > asOfDate).length < BRAZIL_UPCOMING_TARGET) {
+    throw new Error('Contingência brasileira falhou na revalidação dos organizadores')
+  }
+  debugSync(`Calendário MTB bloqueou o robô; ${verified.length} provas foram revalidadas diretamente nos organizadores`)
+  return verified
+}
+
+async function collectBrazilianEvents(asOfDate, publicCalendar) {
   const firstUrl = `${CALENDARIO_MTB_BASE_URL}/evento/index.php?page=1`
-  const firstHtml = await fetchText(firstUrl)
+  let firstHtml
+  try {
+    firstHtml = await fetchText(firstUrl)
+  } catch (error) {
+    if (/HTTP 403/.test(error.message)) return revalidateBrazilianSnapshot(publicCalendar, asOfDate)
+    throw error
+  }
   const pageCount = calendarioMtbPageCount(firstHtml)
   const pages = [firstHtml]
   if (pageCount > 1) {
@@ -546,7 +596,8 @@ function mapBrazilianPublicEvent(event, status, checkedAt) {
       provider: event.provider,
       officialUrl: event.officialUrl,
       discoveryUrl: event.discoveryUrl,
-      validationMethod: 'discovery-plus-organizer',
+      validationMethod: event.validationMethod || 'discovery-plus-organizer',
+      ...(event.discoveryCheckedAt ? { discoveryCheckedAt: event.discoveryCheckedAt } : {}),
       checkedAt,
     },
   }
@@ -659,7 +710,7 @@ async function main() {
   }
   const [candidates, brazilianCandidates] = await Promise.all([
     collectOfficialEvents(asOfDate),
-    collectBrazilianEvents(asOfDate),
+    collectBrazilianEvents(asOfDate, existing.publicCalendar),
   ])
   const selection = selectPublicCalendar(candidates, asOfDate)
   const brazilToday = brazilianCandidates
@@ -722,6 +773,7 @@ if (invokedDirectly) main().catch((error) => {
 export {
   CLASS_FILTERS,
   brazilianEventFromJsonLd,
+  brazilianEventsFromVerifiedSnapshot,
   calendarioMtbDetailLinks,
   calendarioMtbPageCount,
   dateInTimeZone,

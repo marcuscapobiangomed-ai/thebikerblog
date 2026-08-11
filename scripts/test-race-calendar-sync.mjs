@@ -2,6 +2,7 @@ import assert from 'node:assert/strict'
 import fs from 'node:fs'
 import {
   brazilianEventFromJsonLd,
+  brazilianEventsFromVerifiedSnapshot,
   calendarioMtbDetailLinks,
   calendarioMtbPageCount,
   dateInTimeZone,
@@ -115,6 +116,14 @@ assert.equal(officialOrganizerConfirmsEvent(brazilian, '<main>Desafio Brou MTB M
 const rangeFixture = { ...brazilian, startsOn: '2026-08-22', endsOn: '2026-08-23', venue: 'Pirenópolis/GO' }
 assert.equal(officialOrganizerConfirmsEvent(rangeFixture, '<main>MTB em Pirenópolis: 22 a 23 de agosto</main>'), true)
 assert.equal(officialOrganizerConfirmsEvent(rangeFixture, '<main>MTB em Pirenópolis: 21 a 23 de agosto</main>'), false, 'divergência do organizador deve bloquear a descoberta')
+const snapshotFallback = brazilianEventsFromVerifiedSnapshot({
+  upcoming: [{
+    id: 'br-mtb-10616', name: brazilian.name, venue: brazilian.venue, startsOn: brazilian.startsOn, endsOn: brazilian.endsOn,
+    source: { ...brazilian, validationMethod: 'discovery-plus-organizer', checkedAt: '2026-08-11T20:01:29.236Z' },
+  }],
+}, '2026-08-11')
+assert.equal(snapshotFallback[0].validationMethod, 'verified-snapshot-plus-organizer')
+assert.equal(snapshotFallback[0].discoveryCheckedAt, '2026-08-11T20:01:29.236Z')
 assert.throws(() => brazilianEventFromJsonLd({ ...brazilJsonLd, name: 'WOS Trail Run' }, { sourceId: '1', discoveryUrl: brazilDiscoveryUrl }), /exclusivamente de trail run/)
 const mixedUpcoming = mergeBrazilPriority(
   [{ name: 'World race', startsOn: '2026-08-17' }],

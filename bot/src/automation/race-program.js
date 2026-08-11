@@ -142,7 +142,8 @@ const PublicRaceEventSchema = z.object({
     officialUrl: z.string().url(),
     organizerUrl: z.string().url().optional(),
     discoveryUrl: z.string().url().optional(),
-    validationMethod: z.enum(['official-calendar', 'discovery-plus-organizer']),
+    validationMethod: z.enum(['official-calendar', 'discovery-plus-organizer', 'verified-snapshot-plus-organizer']),
+    discoveryCheckedAt: z.string().datetime().optional(),
     checkedAt: z.string().datetime(),
   }),
   deepProfile: DeepProfileSchema.optional(),
@@ -166,8 +167,11 @@ const PublicRaceEventSchema = z.object({
     if (event.track !== 'participant-calendar' || event.countryCode !== 'BRA' || event.disciplineCode !== 'MTB') {
       context.addIssue({ code: 'custom', path: ['track'], message: 'prova brasileira descoberta deve ser MTB participativa no Brasil' })
     }
-    if (event.source.validationMethod !== 'discovery-plus-organizer' || !event.source.discoveryUrl || new URL(event.source.discoveryUrl).hostname !== 'www.calendariomtb.com.br') {
+    if (!['discovery-plus-organizer', 'verified-snapshot-plus-organizer'].includes(event.source.validationMethod) || !event.source.discoveryUrl || new URL(event.source.discoveryUrl).hostname !== 'www.calendariomtb.com.br') {
       context.addIssue({ code: 'custom', path: ['source'], message: 'prova brasileira exige descoberta rastreável no Calendário MTB e site oficial do organizador' })
+    }
+    if (event.source.validationMethod === 'verified-snapshot-plus-organizer' && !event.source.discoveryCheckedAt) {
+      context.addIssue({ code: 'custom', path: ['source', 'discoveryCheckedAt'], message: 'contingência exige data da última descoberta verificada' })
     }
     if (event.source.discoveryUrl === event.source.officialUrl) {
       context.addIssue({ code: 'custom', path: ['source', 'officialUrl'], message: 'descoberta e confirmação oficial precisam ser fontes independentes' })
