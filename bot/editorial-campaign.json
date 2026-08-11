@@ -676,13 +676,22 @@
       "summary": "Criar resposta técnica original para ciclista intermediário ou avançado, com método e limitações declarados. Sinal observado: 937 visualizações globais do vídeo; 79 por dia; encontrado em 1 busca(s) configurada(s) para o Brasil.",
       "category": "componentes",
       "freshness": "event-driven",
-      "status": "planned",
+      "status": "blocked",
       "productIds": [],
       "heroImage": {
         "mode": "conceptual"
       },
       "imageAssetIds": [],
-      "attempts": 0
+      "attempts": 1,
+      "lastAttemptAt": "2026-08-11T17:59:29.839Z",
+      "failure": {
+        "code": "POLICY_MARKETING_LANGUAGE",
+        "retryable": false,
+        "stage": "production",
+        "message": "Gate Markdown reprovado: linguagem publicitária proibida: perfeito",
+        "recordedAt": "2026-08-11T17:59:29.839Z"
+      },
+      "blockReason": "[POLICY_MARKETING_LANGUAGE] Gate Markdown reprovado: linguagem publicitária proibida: perfeito"
     },
     {
       "day": 16,
