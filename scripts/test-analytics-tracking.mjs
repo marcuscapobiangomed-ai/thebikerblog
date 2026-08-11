@@ -28,9 +28,18 @@ const privacyPolicy = read('legal/privacy-policy.md')
 const cookiePolicy = read('legal/cookie-policy.md')
 const audience = JSON.parse(read('_data/audience.json'))
 const audiencePlan = read('docs/AUDIENCE_OPERATING_SYSTEM.md')
+const customDomain = read('CNAME').trim()
+const domainRunbook = read('docs/operations/custom-domain-nuvemshop-github-pages.md')
+const machineReadableProducts = read('api/products.json')
+const editorialWorkflow = read('.github/workflows/editorial-intelligence.yml')
 
 expect(/google_analytics:\s*G-[A-Z0-9]+/i.test(config), 'Measurement ID GA4 ausente')
 expect(/clarity_project_id:\s*"[a-z0-9]+"/i.test(config), 'Project ID real do Clarity ausente')
+expect(customDomain === 'blog.thebiker.com.br', 'CNAME não corresponde ao domínio publicado')
+expect(config.includes(`url: "https://${customDomain}"`), 'URL canônica não corresponde ao CNAME')
+expect(domainRunbook.includes(`https://${customDomain}/`), 'Runbook não corresponde ao domínio publicado')
+expect(!machineReadableProducts.includes('insights.thebikershop.com.br'), 'Produtos estruturados usam o domínio antigo')
+expect(!editorialWorkflow.includes('insights.thebikershop.com.br'), 'Workflow editorial usa o domínio antigo')
 for (const consentType of ['ad_storage', 'ad_user_data', 'ad_personalization', 'analytics_storage']) {
   expect(new RegExp(`${consentType}:\\s*'denied'`).test(analyticsInclude), `Consentimento padrão não negado: ${consentType}`)
 }

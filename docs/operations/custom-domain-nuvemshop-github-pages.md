@@ -3,9 +3,16 @@
 ## Arquitetura aprovada
 
 - A loja continua integralmente na Nuvemshop em `thebikershop.com.br` e `www.thebikershop.com.br`.
-- O canal editorial é publicado pelo GitHub Pages em `insights.thebikershop.com.br`.
+- O canal editorial é publicado pelo GitHub Pages em `blog.thebiker.com.br`.
 - Nenhum registro do domínio raiz, de `www`, e-mail, checkout ou Nuvemshop pode ser alterado por este procedimento.
-- A entrada nova e isolada é apenas o host `insights`.
+- A entrada nova e isolada é apenas o host `blog` no domínio `thebiker.com.br`.
+
+## Estado verificado em 11 de agosto de 2026
+
+- `blog.thebiker.com.br` possui CNAME para `marcuscapobiangomed-ai.github.io`.
+- O GitHub Pages reconhece o domínio, mantém HTTPS obrigatório e informa certificado aprovado.
+- A homepage pública responde HTTP 200 em HTTPS.
+- O repositório mantém `CNAME`, URL canônica e artefatos de analytics vinculados ao mesmo host.
 
 ## Invariantes de segurança
 
@@ -21,13 +28,13 @@ Qualquer diferença na loja interrompe o corte. Timeout, erro ou resposta inconc
 
 ## Procedimento controlado
 
-1. Confirmar que `insights.thebikershop.com.br` não possui A, AAAA ou CNAME.
-2. Em **GitHub > Settings > Pages**, cadastrar `insights.thebikershop.com.br` como custom domain.
+1. Confirmar que `blog.thebiker.com.br` não possui A, AAAA ou CNAME.
+2. Em **GitHub > Settings > Pages**, cadastrar `blog.thebiker.com.br` como custom domain.
 3. No provedor DNS, criar somente:
 
    ```text
    Tipo: CNAME
-   Nome/host: insights
+   Nome/host: blog
    Destino: marcuscapobiangomed-ai.github.io
    ```
 
@@ -37,7 +44,7 @@ Qualquer diferença na loja interrompe o corte. Timeout, erro ou resposta inconc
 5. Publicar o candidato que define:
 
    ```yaml
-   url: "https://insights.thebikershop.com.br"
+   url: "https://blog.thebiker.com.br"
    baseurl: ""
    ```
 
@@ -48,7 +55,7 @@ Qualquer diferença na loja interrompe o corte. Timeout, erro ou resposta inconc
 
 ## Gate de aceite
 
-- `https://insights.thebikershop.com.br/` responde em HTTPS sem alerta.
+- `https://blog.thebiker.com.br/` responde em HTTPS sem alerta.
 - Nenhum ativo ou link interno depende de `/thebikerblog`.
 - Canonical, Open Graph, sitemap e artefatos de descoberta usam apenas o novo host.
 - Domínio raiz e `www` continuam resolvendo para a infraestrutura anterior da loja.
@@ -58,7 +65,7 @@ Qualquer diferença na loja interrompe o corte. Timeout, erro ou resposta inconc
 
 ## Reversão
 
-Em caso de falha, remover somente o CNAME `insights` e o custom domain do GitHub Pages. Não tocar em `@`, `www`, MX, TXT ou registros da Nuvemshop. Restaurar `url` e `baseurl` em um novo commit validado.
+Em caso de falha, remover somente o CNAME `blog` de `thebiker.com.br` e o custom domain do GitHub Pages. Não tocar em `@`, `www`, MX, TXT ou registros da Nuvemshop. Restaurar `url` e `baseurl` em um novo commit validado.
 
 ## Referências
 
