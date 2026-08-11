@@ -173,6 +173,13 @@
     })
   }
 
+  function trackRaceDetailOpen(link) {
+    return track('engagement', 'race_detail_open', link.dataset.eventId || 'evento-nao-informado', null, {
+      race_event_id: link.dataset.eventId || 'evento-nao-informado',
+      race_calendar_section: link.dataset.raceSection || 'nao-informada'
+    })
+  }
+
   function trackRaceCalendarView() {
     var calendar = document.querySelector('[data-race-calendar]')
     if (!calendar || !hasConsent() || raceCalendarTracked) return
@@ -321,6 +328,7 @@
       var link = event.target.closest('a[href]')
       if (link && !shouldIgnoreClick(link)) {
         if (link.matches('[data-race-outbound]')) trackRaceOutboundClick(link)
+        if (link.matches('[data-race-detail]')) trackRaceDetailOpen(link)
         var linkMeta = safeDestination(link)
         if (isStoreLink(link)) {
           decorateStoreLink(link)
@@ -369,6 +377,7 @@
   window.TheBikerBlog.clearEvents = clearEvents
   window.TheBikerBlog.trackAffiliateClick = trackAffiliateClick
   window.TheBikerBlog.trackRaceOutboundClick = trackRaceOutboundClick
+  window.TheBikerBlog.trackRaceDetailOpen = trackRaceDetailOpen
   window.TheBikerBlog.trackProductView = trackProductView
   window.TheBikerBlog.trackCompareAdd = trackCompareAdd
   window.TheBikerBlog.trackCompareComplete = trackCompareComplete

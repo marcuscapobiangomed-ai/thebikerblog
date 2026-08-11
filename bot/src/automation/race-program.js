@@ -44,7 +44,8 @@ export const RaceEventSchema = z.object({
 })
 
 const PublicRaceEventSchema = z.object({
-  id: z.string().regex(/^uci-\d{4}-(roa|mtb)-\d+$/),
+  id: z.string().regex(/^(uci-\d{4}-(roa|mtb)-\d+|br-mtb-\d+)$/),
+  track: z.enum(['professional-coverage', 'participant-calendar']),
   name: z.string().min(5).max(180),
   disciplineCode: z.enum(['ROA', 'MTB']),
   disciplineLabel: z.enum(['Ciclismo de estrada', 'Mountain bike']),
@@ -61,9 +62,11 @@ const PublicRaceEventSchema = z.object({
   eventStatus: z.enum(['today', 'scheduled', 'past']),
   competitionClass: z.string().min(3).max(160),
   source: z.object({
-    provider: z.literal('Union Cycliste Internationale'),
-    officialUrl: z.string().url().refine((value) => new URL(value).hostname === 'www.uci.org', 'fonte pública deve ser oficial da UCI'),
+    provider: z.string().min(2).max(120),
+    officialUrl: z.string().url(),
     organizerUrl: z.string().url().optional(),
+    discoveryUrl: z.string().url().optional(),
+    validationMethod: z.enum(['official-calendar', 'discovery-plus-organizer']),
     checkedAt: z.string().datetime(),
   }),
 }).superRefine((event, context) => {
@@ -74,8 +77,24 @@ const PublicRaceEventSchema = z.object({
   if (event.displayDate.endsOn !== `${endDay}/${endMonth}` || event.displayDate.endsOnWithYear !== `${endDay}/${endMonth}/${endYear}`) {
     context.addIssue({ code: 'custom', path: ['displayDate'], message: 'rótulo final diverge da data canônica' })
   }
-  if (!event.source.officialUrl.includes(`/competition-details/${event.id.slice(4, 8)}/${event.disciplineCode}/`)) {
-    context.addIssue({ code: 'custom', path: ['source', 'officialUrl'], message: 'URL oficial não corresponde ao identificador público' })
+  if (event.id.startsWith('uci-')) {
+    if (event.track !== 'professional-coverage') context.addIssue({ code: 'custom', path: ['track'], message: 'prova UCI pública deve alimentar cobertura profissional' })
+    if (event.source.provider !== 'Union Cycliste Internationale' || new URL(event.source.officialUrl).hostname !== 'www.uci.org' || event.source.validationMethod !== 'official-calendar') {
+      context.addIssue({ code: 'custom', path: ['source'], message: 'prova UCI exige calendário oficial da UCI' })
+    }
+    if (!event.source.officialUrl.includes(`/competition-details/${event.id.slice(4, 8)}/${event.disciplineCode}/`)) {
+      context.addIssue({ code: 'custom', path: ['source', 'officialUrl'], message: 'URL oficial não corresponde ao identificador público' })
+    }
+  } else {
+    if (event.track !== 'participant-calendar' || event.countryCode !== 'BRA' || event.disciplineCode !== 'MTB') {
+      context.addIssue({ code: 'custom', path: ['track'], message: 'prova brasileira descoberta deve ser MTB participativa no Brasil' })
+    }
+    if (event.source.validationMethod !== 'discovery-plus-organizer' || !event.source.discoveryUrl || new URL(event.source.discoveryUrl).hostname !== 'www.calendariomtb.com.br') {
+      context.addIssue({ code: 'custom', path: ['source'], message: 'prova brasileira exige descoberta rastreável no Calendário MTB e site oficial do organizador' })
+    }
+    if (event.source.discoveryUrl === event.source.officialUrl) {
+      context.addIssue({ code: 'custom', path: ['source', 'officialUrl'], message: 'descoberta e confirmação oficial precisam ser fontes independentes' })
+    }
   }
 })
 
@@ -99,9 +118,10 @@ const PublicRaceCalendarSchema = z.object({
   for (const [groupName, events] of [['today', calendar.today], ['recent', calendar.recent], ['upcoming', calendar.upcoming]]) {
     for (const [index, event] of events.entries()) {
       if (ids.has(event.id)) context.addIssue({ code: 'custom', path: [groupName, index, 'id'], message: 'prova pública duplicada' })
-      if (urls.has(event.source.officialUrl)) context.addIssue({ code: 'custom', path: [groupName, index, 'source', 'officialUrl'], message: 'fonte pública duplicada' })
+      const evidenceUrl = event.source.discoveryUrl || event.source.officialUrl
+      if (urls.has(evidenceUrl)) context.addIssue({ code: 'custom', path: [groupName, index, 'source'], message: 'registro de fonte pública duplicado' })
       ids.add(event.id)
-      urls.add(event.source.officialUrl)
+      urls.add(evidenceUrl)
       if (event.source.checkedAt !== calendar.generatedAt) {
         context.addIssue({ code: 'custom', path: [groupName, index, 'source', 'checkedAt'], message: 'checagem da fonte precisa pertencer ao snapshot atual' })
       }
@@ -125,6 +145,10 @@ const PublicRaceCalendarSchema = z.object({
     if (calendar.upcoming[index - 1].startsOn > calendar.upcoming[index].startsOn) {
       context.addIssue({ code: 'custom', path: ['upcoming', index], message: 'próximas provas devem estar em ordem cronológica' })
     }
+  }
+  const brazilianUpcoming = calendar.upcoming.filter((event) => event.countryCode === 'BRA').length
+  if (brazilianUpcoming < 6) {
+    context.addIssue({ code: 'custom', path: ['upcoming'], message: `agenda deve manter maioria brasileira, com ao menos 6 provas; recebeu ${brazilianUpcoming}` })
   }
 })
 
@@ -202,9 +226,9 @@ function publicEventAsEditorialEvidence(event) {
   return {
     id: event.id,
     name: event.name,
-    track: 'professional-coverage',
+    track: event.track,
     discipline,
-    level: 'international',
+    level: event.countryCode === 'BRA' ? 'national' : 'international',
     country: event.countryCode,
     city: event.venue || event.country,
     startsOn: event.startsOn,
@@ -240,6 +264,7 @@ export function selectRaceEventsForEditorialItem(item, programInput) {
       : [...calendar.today, ...calendar.recent, ...calendar.upcoming]
   const distanceDays = (date) => Math.round((Date.parse(`${date}T12:00:00Z`) - Date.parse(`${referenceDate}T12:00:00Z`)) / 86_400_000)
   const pool = initialPool.filter((event) => {
+    if (event.track !== item.race.track) return false
     if (item.race.format === 'preview') {
       const distance = distanceDays(event.startsOn)
       return distance >= 0 && distance <= 21
