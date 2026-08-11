@@ -1,5 +1,5 @@
 {
-  "name": "thebiker-insights",
+  "name": "thebiker-blog",
   "private": true,
   "type": "module",
   "scripts": {
@@ -50,9 +50,10 @@
     "check:tags": "node scripts/normalize-post-tags.js --check",
     "security:secrets": "node scripts/check-secrets.js",
     "security:public": "node scripts/check-secrets.js --public",
+    "check:brand": "node scripts/check-brand-consistency.mjs",
     "links:thebiker": "node scripts/link-thebiker-products.js --write --rebuild",
     "check:thebiker-links": "node scripts/link-thebiker-products.js --check",
-    "validate": "npm run security:secrets && npm run validate:research && npm run receipts:check && npm run audit:buffer-shadow && npm run validate:scheduled && npm run validate:posts && npm run audit:editorial && npm run audit:seo && npm run check:audience && npm run media:audit && npm run validate:images && npm run validate:manifests && npm run validate:manifests-v2 && npm run validate:data && npm run validate:races && npm run check:catalog-public && npm run check:machine-readable && npm run check:claims && npm run check:thebiker-links && npm run check:n8n && npm test && npm run test:analytics && npm run lint",
+    "validate": "npm run security:secrets && npm run check:brand && npm run validate:research && npm run receipts:check && npm run audit:buffer-shadow && npm run validate:scheduled && npm run validate:posts && npm run audit:editorial && npm run audit:seo && npm run check:audience && npm run media:audit && npm run validate:images && npm run validate:manifests && npm run validate:manifests-v2 && npm run validate:data && npm run validate:races && npm run check:catalog-public && npm run check:machine-readable && npm run check:claims && npm run check:thebiker-links && npm run check:n8n && npm test && npm run test:analytics && npm run lint",
     "audit:images": "node ../medblog-automation/src/audit-images.js",
     "generate:thumbnails": "node ../medblog-automation/src/generate-thumbnails.js",
     "generate:placeholders": "node ../medblog-automation/src/generate-placeholders.js && node ../medblog-automation/src/generate-data-placeholders.js",

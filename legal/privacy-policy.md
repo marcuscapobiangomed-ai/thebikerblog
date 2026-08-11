@@ -1,12 +1,12 @@
 ---
 layout: default
 title: "Política de privacidade"
-description: "Como o TheBiker Insights trata dados de navegação, preferências e métricas de audiência."
+description: "Como o TheBiker Blog trata dados de navegação, preferências e métricas de audiência."
 permalink: /legal/privacidade/
 last_modified_at: 2026-08-07
 ---
 
-# Política de Privacidade — TheBiker Insights
+# Política de Privacidade — TheBiker Blog
 
 Última atualização: 7 de agosto de 2026.
 
@@ -53,6 +53,6 @@ Solicitações: [{{ site.email }}](mailto:{{ site.email }}).
 
 ## Controlador
 
-TheBiker, responsável pelo TheBiker Insights. Contato: [{{ site.email }}](mailto:{{ site.email }}).
+TheBiker, responsável pelo TheBiker Blog. Contato: [{{ site.email }}](mailto:{{ site.email }}).
 
 Esta política deve ser revista quando houver mudança de fornecedores, finalidades, eventos coletados ou forma de tratamento.

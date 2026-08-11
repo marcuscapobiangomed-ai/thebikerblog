@@ -17,7 +17,7 @@ model: ""
 <div class="race-hub" data-race-calendar data-today-count="{{ public_calendar.today | size }}" data-recent-count="{{ public_calendar.recent | size }}" data-upcoming-count="{{ public_calendar.upcoming | size }}" data-calendar-as-of="{{ public_calendar.asOfDate }}">
   <section class="race-hub-hero" aria-labelledby="race-hub-title">
     <div class="container race-hub-hero-inner">
-      <span class="race-hub-kicker">TheBiker Insights · Competições</span>
+      <span class="race-hub-kicker">TheBiker Blog · Competições</span>
       <h1 id="race-hub-title">O pelotão corre.<br>A agenda acompanha.</h1>
       <p>Agenda recente e as próximas grandes corridas do ciclismo mundial, conferidas diretamente no calendário oficial da UCI.</p>
       <div class="race-hub-status" aria-label="Resumo do calendário">

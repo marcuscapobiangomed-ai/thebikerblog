@@ -2,7 +2,7 @@
 
 ## Propriedade
 
-- Nome: `TheBiker Insights`
+- Nome: `TheBiker Blog`
 - Property ID: `546043157`
 - Measurement ID no site: `G-DHD86P6XDZ`
 - Clarity Project ID no site: `xyo6bi7k8g`

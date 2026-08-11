@@ -1,9 +1,9 @@
-# Uso do Logo — TheBiker Insights
+# Uso do Logo — TheBiker Blog
 
 ## Regras gerais
 - O logo não deve ser distorcido, rotacionado ou recolocado
 - O logo não deve receber efeitos (sombra, brilho, gradiente)
-- O logo deve ter área de respiro mínima equivalente à altura do selo "INSIGHTS"
+- O logo deve ter área de respiro mínima equivalente à altura do selo "BLOG"
 - O logo não deve ser aplicado sobre fundo de baixo contraste
 
 ## Versões

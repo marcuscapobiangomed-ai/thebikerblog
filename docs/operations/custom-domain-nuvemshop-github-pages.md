@@ -1,4 +1,4 @@
-# Domínio oficial: TheBiker Insights no GitHub Pages
+# Domínio oficial: TheBiker Blog no GitHub Pages
 
 ## Arquitetura aprovada
 

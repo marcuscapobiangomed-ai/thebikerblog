@@ -1,12 +1,12 @@
 ---
 layout: default
 title: "Política de cookies"
-description: "Cookies e armazenamento utilizados pelo TheBiker Insights e como alterar as preferências de analytics."
+description: "Cookies e armazenamento utilizados pelo TheBiker Blog e como alterar as preferências de analytics."
 permalink: /legal/cookies/
 last_modified_at: 2026-08-07
 ---
 
-# Política de Cookies — TheBiker Insights
+# Política de Cookies — TheBiker Blog
 
 Última atualização: 7 de agosto de 2026.
 

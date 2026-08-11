@@ -7,7 +7,7 @@ permalink: /categorias/endurance/
 <section class="page-header">
   <div class="container">
     <h1>Melhores Bikes Endurance 2026</h1>
-    <p class="page-subtitle">Bicicletas de estrada com geometria confortável para longas distâncias — selecionadas da base TheBiker Insights</p>
+    <p class="page-subtitle">Bicicletas de estrada com geometria confortável para longas distâncias — selecionadas da base TheBiker Blog</p>
   </div>
 </section>
 

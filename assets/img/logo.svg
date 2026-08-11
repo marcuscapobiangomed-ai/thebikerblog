@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-labelledby="title desc">
-  <title id="title">TheBiker Insights</title>
-  <desc id="desc">Monograma da publicação editorial TheBiker Insights.</desc>
+  <title id="title">TheBiker Blog</title>
+  <desc id="desc">Monograma da publicação editorial TheBiker Blog.</desc>
   <rect width="400" height="400" fill="#0b0b0b" rx="28"/>
   <path d="M54 96h292v20H54zM54 284h292v20H54z" fill="#c8102e"/>
   <text x="200" y="242" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="142" font-weight="800" letter-spacing="-12" text-anchor="middle">TB</text>
-  <text x="200" y="340" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="26" font-weight="800" letter-spacing="7" text-anchor="middle">INSIGHTS</text>
+  <text x="200" y="340" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="26" font-weight="800" letter-spacing="7" text-anchor="middle">BLOG</text>
 </svg>

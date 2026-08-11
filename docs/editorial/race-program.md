@@ -1,4 +1,4 @@
-# Programa editorial de corridas — TheBiker Insights
+# Programa editorial de corridas — TheBiker Blog
 
 ## Decisão
 
