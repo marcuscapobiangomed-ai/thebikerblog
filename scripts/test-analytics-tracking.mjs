@@ -57,9 +57,16 @@ expect(search.includes("'search_results'"), 'Busca interna sem evento agregado')
 expect(!search.includes('search_term:'), 'Termo digitado não deve ser enviado ao analytics')
 expect(consent.includes("page_location: window.location.origin + window.location.pathname"), 'GA4 pode receber parâmetros sensíveis da URL')
 expect(consent.includes('(admin|search|login|conta)'), 'Clarity não exclui páginas sensíveis')
-for (const eventName of ['content_view', 'scroll_depth', 'qualified_read', 'view_item', 'comparison_complete', 'store_click']) {
+for (const eventName of ['content_view', 'scroll_depth', 'qualified_read', 'view_item', 'comparison_complete', 'store_click', 'internal_link_click', 'external_link_click', 'button_click']) {
   expect(events.includes(`'${eventName}'`), `Evento obrigatório ausente: ${eventName}`)
 }
+for (const parameter of ['element_type', 'element_name', 'link_type', 'destination_host', 'destination_path', 'button_type']) {
+  expect(events.includes(parameter), `Parâmetro de clique ausente: ${parameter}`)
+}
+expect(events.includes("url.pathname"), 'Destino de clique deve usar caminho sem query string')
+expect(events.includes("form')"), 'Botões de formulário devem ser excluídos do tracking genérico')
+expect(events.includes('data-analytics-ignore'), 'Elementos precisam permitir exclusão explícita do tracking')
+expect(events.includes('data-consent-accept'), 'Controles de consentimento não podem gerar tracking genérico')
 expect(events.includes("'ai_referral_visit'"), 'Evento de referência por assistente de IA ausente')
 for (const assistant of ['chatgpt', 'perplexity', 'claude', 'gemini', 'microsoft_copilot']) {
   expect(events.includes(`'${assistant}'`), `Classificação de assistente ausente: ${assistant}`)

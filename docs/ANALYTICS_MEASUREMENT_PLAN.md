@@ -32,6 +32,9 @@ Aquisição → Conteúdo consumido → Intenção de produto → Clique para a 
 | Ferramenta | `size_calculator_complete` | A calculadora de tamanho foi concluída? |
 | Ferramenta | `gear_calculator_complete` | A calculadora de marchas foi concluída? |
 | Conversão | `store_click` | Quem saiu para a TheBiker Shop e de qual posição? |
+| Navegação | `internal_link_click` | Quais links mantêm o visitante avançando dentro do blog? |
+| Navegação | `external_link_click` | Quais fontes e destinos externos recebem cliques? |
+| Interação | `button_click` | Quais botões de interface são utilizados? |
 | Interesse | `newsletter_interest` | Houve intenção de cadastro no formulário atual? |
 
 `newsletter_interest` não deve ser tratado como inscrição ou lead enquanto o formulário não estiver conectado a um serviço que realmente grave o cadastro.
@@ -50,11 +53,18 @@ Aquisição → Conteúdo consumido → Intenção de produto → Clique para a 
 - `product_ids`
 - `product_count`
 - `placement`
+- `element_type`
+- `element_name`
+- `link_type`
+- `destination_host`
+- `destination_path`
+- `button_type`
 - `profile`
 - `audience_intent`
 - `experience_level_target`
 
 Nome, e-mail, telefone, CPF, endereço e conteúdo de formulários são bloqueados pelo coletor e não podem ser parâmetros de analytics.
+O destino nunca inclui query string ou fragmento. Botões dentro de formulários, controles de consentimento e elementos com `data-analytics-ignore` ficam fora do tracking genérico.
 
 ## Configuração no GA4
 
@@ -83,12 +93,16 @@ Em **Administrador → Eventos principais**, marcar `store_click` como evento pr
 4. **Aquisição:** source/medium/campaign, landing page, engajamento e conversões.
 5. **Tecnologia:** dispositivo, navegador, resolução e páginas com perda de engajamento.
 6. **Público editorial:** intenção, nível-alvo, origem, leitura qualificada e saída para a loja.
+7. **Navegação e CTAs:** `element_name`, `placement`, `link_type`, destino e volume de cliques por página.
 
 Taxas operacionais:
 
 - leitura qualificada = usuários com `scroll_depth=50` / usuários com `content_view`;
 - leitura completa = usuários com `scroll_depth=90` / usuários com `content_view`;
 - intenção comercial = usuários com `store_click` / usuários com `view_item`;
+- taxa de saída para a loja = sessões com `store_click` / sessões com `content_view`;
+- progressão interna = sessões com `internal_link_click` / sessões com `content_view`;
+- adoção de CTA = sessões com o clique do elemento / sessões que visualizaram a página onde ele aparece;
 - uso do comparador = usuários com `comparison_complete` / usuários com `comparison_add`.
 
 ### Tráfego de assistentes de IA
