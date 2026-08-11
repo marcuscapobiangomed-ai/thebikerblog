@@ -50,6 +50,7 @@ assert.match(detailCard, /Resultados, vencedores e classificação não são afi
 assert.match(detailCard, /event\.source\.officialUrl/, 'fonte oficial precisa continuar acessível como comprovação secundária')
 assert.match(detailCard, /event\.source\.discoveryUrl/, 'registro brasileiro de descoberta precisa permanecer rastreável')
 assert.match(detailCard, /discovery-plus-organizer/, 'ficha brasileira precisa explicar a validação em duas fontes')
+assert.match(detailCard, /verified-snapshot-plus-organizer/, 'ficha precisa explicar a contingência quando o diretório bloqueia automação')
 assert.match(detailCard, /O que foi validado/)
 assert.match(detailCard, /Percurso, dificuldade e participação/, 'ficha precisa apresentar aprofundamento validado quando disponível')
 assert.match(detailCard, /deep\.route\.totalDistanceKm/, 'ficha aprofundada precisa exibir quilometragem total')
