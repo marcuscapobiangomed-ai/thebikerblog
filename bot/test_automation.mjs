@@ -14,6 +14,7 @@ import { buildRepairPrompt } from "./src/editorial-prompt.js";
 import { produceCampaignVisual } from "./src/campaign_finalize.js";
 import { markdownPublicationErrors } from "./src/validation/markdown-publication-gates.js";
 import { scheduledDraftErrors } from "./src/validation/validate-scheduled-publications.js";
+import { assertScheduledReceipt, hashEditorialText } from "./src/validation/editorial-receipt.js";
 
 assert.deepEqual(markdownPublicationErrors(`---
 tags: ["ciclismo", "cambio-eletronico"]
@@ -287,6 +288,8 @@ finalizeCampaign.items[0].postPath = `_posts/drafts/${finalizeCampaign.items[0].
 await fs.writeFile(path.join(finalizeRoot, "bot/editorial-campaign.json"), JSON.stringify(finalizeCampaign));
 const sections = Array.from({ length: 5 }, (_, index) => `## Seção técnica ${index + 1}\n\nConteúdo técnico sustentado pelas fontes editoriais.`).join("\n\n");
 await fs.writeFile(path.join(finalizeRoot, finalizeCampaign.items[0].postPath), `---\nlayout: post\npublished: false\ndate: 2026-08-04\nlast_modified_at: 2026-08-04\ndirect_answer: "Este guia apresenta um diagnóstico técnico verificável, baseado nas fontes declaradas, para orientar ajustes sem transformar hipótese em constatação."\nimage: "/assets/img/system/covers/guia-tecnico-v2/hero-1600.webp"\nimage_mobile: "/assets/img/system/covers/guia-tecnico-v2/hero-800.webp"\nthumbnail: "/assets/img/system/covers/guia-tecnico-v2/card-640.webp"\nimage_asset_type: "system-fallback"\nimage_status: "draft"\nimage_alt: "Capa"\nimage_caption: "Capa"\nimage_credit: "TheBiker"\nimage_license: "Interno"\nreviewed_by: ""\neditorial_status: "draft"\nstatus: "draft"\nsources:\n  - name: "Scott"\n    url: "https://www.scott-sports.com/"\n---\n\n${sections}\n`);
+finalizeCampaign.items[0].aiReview.contentHash = hashEditorialText(await fs.readFile(path.join(finalizeRoot, finalizeCampaign.items[0].postPath), "utf8"));
+await fs.writeFile(path.join(finalizeRoot, "bot/editorial-campaign.json"), JSON.stringify(finalizeCampaign));
 const finalized = await finalizeCampaignItem({
   root: finalizeRoot,
   now: new Date("2026-08-05T10:00:00Z"),
@@ -295,6 +298,9 @@ const finalized = await finalizeCampaignItem({
 assert.equal(finalized.status, "scheduled");
 const finalizedCampaign = JSON.parse(await fs.readFile(path.join(finalizeRoot, "bot/editorial-campaign.json"), "utf8"));
 assert.equal(finalizedCampaign.items[0].status, "scheduled");
+const finalizedContent = await fs.readFile(path.join(finalizeRoot, finalizedCampaign.items[0].postPath), "utf8");
+assert.equal(assertScheduledReceipt(finalizedContent, finalizedCampaign.items[0]), finalizedCampaign.items[0].editorialReceipt.scheduledContentHash);
+assert.throws(() => assertScheduledReceipt(`${finalizedContent}\nalterado`, finalizedCampaign.items[0]), /Hash do artefato agendado divergente/);
 assert.ok(await fs.stat(path.join(finalizeRoot, finalizedCampaign.items[0].imageManifestPath)));
 await fs.rm(root, { recursive: true, force: true });
 console.log("Automation queue tests passed.");

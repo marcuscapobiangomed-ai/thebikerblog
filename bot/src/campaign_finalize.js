@@ -8,6 +8,8 @@ import { produceCampaignCover } from "./images/campaign-cover.js";
 import { linkTheBikerProducts, loadTheBikerLinkData } from "./editorial/product-linker.js";
 import { assertMarkdownPublicationGates } from "./validation/markdown-publication-gates.js";
 import { assertImageArticleConsistency } from "./validation/image-article-consistency.js";
+import { assertReviewedContentIntegrity, issueEditorialReceipt } from "./validation/editorial-receipt.js";
+import { classifyEditorialFailure } from "./validation/editorial-failures.js";
 
 const defaultRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 
@@ -55,6 +57,7 @@ export async function finalizeCampaignItem({ root = defaultRoot, now = new Date(
     const draftRoot = path.resolve(root, "_posts/drafts") + path.sep;
     if (!absolutePost.startsWith(draftRoot)) throw new Error(`postPath inseguro: ${item.postPath}`);
     let content = await fs.readFile(absolutePost, "utf8");
+    assertReviewedContentIntegrity(content, item.aiReview);
     const parsed = matter(content);
     if (parsed.data.published !== false) throw new Error("Rascunho precisa permanecer com published: false");
     if (!Array.isArray(parsed.data.sources) || parsed.data.sources.length === 0) throw new Error("Post sem fontes editoriais");
@@ -101,6 +104,10 @@ export async function finalizeCampaignItem({ root = defaultRoot, now = new Date(
     const linkResult = linkTheBikerProducts(content, linkData);
     content = linkResult.content;
     if (/\/assets\/img\/system\/covers\//.test(content.split("---", 3)[1] || "")) throw new Error("Fallback de imagem ainda presente no frontmatter");
+    assertMarkdownPublicationGates(content);
+    const researchPath = path.join(root, "content/research/campaign", `${item.id}.json`);
+    const researchContent = await fs.readFile(researchPath, "utf8").catch((error) => error?.code === "ENOENT" ? null : Promise.reject(error));
+    item.editorialReceipt = issueEditorialReceipt({ content, researchContent, aiReview: item.aiReview, now, origin: "pipeline" });
     await fs.writeFile(absolutePost, content);
     item.imageManifestPath = `assets/img/posts/${item.id}/image-manifest.json`;
     item.imageStatus = "approved";
@@ -108,11 +115,14 @@ export async function finalizeCampaignItem({ root = defaultRoot, now = new Date(
     item.imageValidatedAt = now.toISOString();
     item.status = "scheduled";
     delete item.blockReason;
+    delete item.failure;
     await persist(root, campaign);
     return { status: "scheduled", itemId: item.id, publishDate: item.publishDate, imageManifestPath: item.imageManifestPath, theBikerLinks: linkResult.links.length };
   } catch (error) {
     item.status = "blocked";
-    item.blockReason = `Validação final: ${String(error.message || error).slice(0, 650)}`;
+    item.failure = classifyEditorialFailure(error, { stage: "finalization", now });
+    item.blockReason = `Validação final: [${item.failure.code}] ${item.failure.message}`;
+    delete item.editorialReceipt;
     await persist(root, campaign);
     throw error;
   }

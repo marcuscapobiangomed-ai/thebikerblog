@@ -10,6 +10,7 @@ import { getTemplate } from "./templates.js";
 import { ThreeProviderPipeline } from "./ai/three-provider-pipeline.js";
 import { AIRuntime } from "./ai/runtime.js";
 import { assertEditorialPublicationGates } from "./validation/editorial-publication-gates.js";
+import { assertMarkdownPublicationGates } from "./validation/markdown-publication-gates.js";
 import { buildImageProductionPlan } from "./image-manifest.js";
 
 const CATEGORY_ALIASES = {
@@ -432,6 +433,7 @@ export class AIProvider {
     const article = validateArticle(sanitized);
     const editorialGate = assertEditorialPublicationGates(article);
     const markdown = generateMarkdown(article);
+    assertMarkdownPublicationGates(markdown);
 
     return {
       title: article.title,

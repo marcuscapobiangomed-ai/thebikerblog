@@ -197,7 +197,20 @@
           "final": "deepseek",
           "bufferFinalAudit": "deepseek"
         },
-        "generatedAt": "2026-08-05T15:14:55.775Z"
+        "generatedAt": "2026-08-05T15:14:55.775Z",
+        "contentHash": "sha256:a07650a3446b56e577af89d5cfbb8021b43cf39988aa6df222f2f7bcf29a2880"
+      },
+      "editorialReceipt": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-editorial-2026-08-v2",
+        "origin": "legacy-backfill",
+        "reviewedContentHash": "sha256:a07650a3446b56e577af89d5cfbb8021b43cf39988aa6df222f2f7bcf29a2880",
+        "scheduledContentHash": "sha256:a07650a3446b56e577af89d5cfbb8021b43cf39988aa6df222f2f7bcf29a2880",
+        "researchHash": "sha256:27814354c29307616d2643d3e5af2685de2da32a787ba7114c3570a1fa7279f9",
+        "sourceHash": null,
+        "finalScore": 92,
+        "finalBlockers": 0,
+        "issuedAt": "2026-08-11T17:13:56.190Z"
       }
     },
     {
@@ -238,7 +251,20 @@
           "final": "deepseek",
           "finalAudit": "deepseek"
         },
-        "generatedAt": "2026-08-07T19:17:24.628Z"
+        "generatedAt": "2026-08-07T19:17:24.628Z",
+        "contentHash": "sha256:807bae988ec20d4e55abbd9af63f62adfe8e88418082175dc0f1399c175a8a36"
+      },
+      "editorialReceipt": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-editorial-2026-08-v2",
+        "origin": "legacy-backfill",
+        "reviewedContentHash": "sha256:807bae988ec20d4e55abbd9af63f62adfe8e88418082175dc0f1399c175a8a36",
+        "scheduledContentHash": "sha256:807bae988ec20d4e55abbd9af63f62adfe8e88418082175dc0f1399c175a8a36",
+        "researchHash": "sha256:bbf782703711cc533ce77cb18b8d4d249d85397142fc335cd90984c2c1c45629",
+        "sourceHash": null,
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "issuedAt": "2026-08-11T17:13:56.194Z"
       }
     },
     {
@@ -273,7 +299,20 @@
           "final": "deepseek",
           "finalAudit": "deepseek"
         },
-        "generatedAt": "2026-08-08T04:08:25.560Z"
+        "generatedAt": "2026-08-08T04:08:25.560Z",
+        "contentHash": "sha256:587b3bec49f22c0197f1daeb5b7b5ed8892303242afa0683b0013339479aa72e"
+      },
+      "editorialReceipt": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-editorial-2026-08-v2",
+        "origin": "legacy-backfill",
+        "reviewedContentHash": "sha256:587b3bec49f22c0197f1daeb5b7b5ed8892303242afa0683b0013339479aa72e",
+        "scheduledContentHash": "sha256:587b3bec49f22c0197f1daeb5b7b5ed8892303242afa0683b0013339479aa72e",
+        "researchHash": "sha256:37e23f674005c64320d443317d12ac2453225620d627d12fcb40fb0cc20f5751",
+        "sourceHash": null,
+        "finalScore": 92,
+        "finalBlockers": 0,
+        "issuedAt": "2026-08-11T17:13:56.198Z"
       }
     },
     {
@@ -309,7 +348,20 @@
           "finalAudit": "deepseek",
           "finalRepair": "deepseek"
         },
-        "generatedAt": "2026-08-08T13:47:43.047Z"
+        "generatedAt": "2026-08-08T13:47:43.047Z",
+        "contentHash": "sha256:f4f2833a61c3fb5f8c391a3accbfcb6616e4e4f083c48ab59bcf54613231f3aa"
+      },
+      "editorialReceipt": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-editorial-2026-08-v2",
+        "origin": "legacy-backfill",
+        "reviewedContentHash": "sha256:f4f2833a61c3fb5f8c391a3accbfcb6616e4e4f083c48ab59bcf54613231f3aa",
+        "scheduledContentHash": "sha256:f4f2833a61c3fb5f8c391a3accbfcb6616e4e4f083c48ab59bcf54613231f3aa",
+        "researchHash": "sha256:e474a815421ca7e4b6186d037a238deaf4256079783b65f77370efba35e85f8e",
+        "sourceHash": null,
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "issuedAt": "2026-08-11T17:13:56.202Z"
       }
     },
     {
@@ -344,7 +396,20 @@
           "final": "deepseek",
           "finalAudit": "deepseek"
         },
-        "generatedAt": "2026-08-08T15:35:33.560Z"
+        "generatedAt": "2026-08-08T15:35:33.560Z",
+        "contentHash": "sha256:51b54651ec0fd02248b0bd7247a3c6745d759ce7abe436d09fd98fe8450cdfac"
+      },
+      "editorialReceipt": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-editorial-2026-08-v2",
+        "origin": "legacy-backfill",
+        "reviewedContentHash": "sha256:51b54651ec0fd02248b0bd7247a3c6745d759ce7abe436d09fd98fe8450cdfac",
+        "scheduledContentHash": "sha256:51b54651ec0fd02248b0bd7247a3c6745d759ce7abe436d09fd98fe8450cdfac",
+        "researchHash": "sha256:dfc39e303356d18f592805ecd330cb2925b7eb7ba07889697b817fc6bb6d111a",
+        "sourceHash": null,
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "issuedAt": "2026-08-11T17:13:56.206Z"
       }
     },
     {
@@ -386,7 +451,20 @@
           "finalAudit": "deepseek",
           "finalRepair": "deepseek"
         },
-        "generatedAt": "2026-08-07T14:14:33.779Z"
+        "generatedAt": "2026-08-07T14:14:33.779Z",
+        "contentHash": "sha256:8a4c9b05eae14d9f686a60a1f34ddc78e0a3075fc2bfae66cb7ac31b69767a3b"
+      },
+      "editorialReceipt": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-editorial-2026-08-v2",
+        "origin": "legacy-backfill",
+        "reviewedContentHash": "sha256:8a4c9b05eae14d9f686a60a1f34ddc78e0a3075fc2bfae66cb7ac31b69767a3b",
+        "scheduledContentHash": "sha256:8a4c9b05eae14d9f686a60a1f34ddc78e0a3075fc2bfae66cb7ac31b69767a3b",
+        "researchHash": "sha256:32ada53aa0e15ed2803049f433d099a4e1d956058175a0ac2dae79d98c74af68",
+        "sourceHash": null,
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "issuedAt": "2026-08-11T17:13:56.209Z"
       }
     },
     {
@@ -422,7 +500,20 @@
           "finalAudit": "deepseek",
           "finalRepair": "deepseek"
         },
-        "generatedAt": "2026-08-08T17:34:02.509Z"
+        "generatedAt": "2026-08-08T17:34:02.509Z",
+        "contentHash": "sha256:765732be0e555edd5bde95401a93b99687803d8647a6c69d96f94f594b985dd6"
+      },
+      "editorialReceipt": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-editorial-2026-08-v2",
+        "origin": "legacy-backfill",
+        "reviewedContentHash": "sha256:765732be0e555edd5bde95401a93b99687803d8647a6c69d96f94f594b985dd6",
+        "scheduledContentHash": "sha256:765732be0e555edd5bde95401a93b99687803d8647a6c69d96f94f594b985dd6",
+        "researchHash": "sha256:f39f7bd9d7b6707137a3d21165080dae296309ba1e3f7a41cf7eae25b7feeea3",
+        "sourceHash": null,
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "issuedAt": "2026-08-11T17:13:56.212Z"
       }
     },
     {
@@ -458,7 +549,20 @@
           "finalAudit": "deepseek",
           "finalRepair": "deepseek"
         },
-        "generatedAt": "2026-08-09T13:52:49.906Z"
+        "generatedAt": "2026-08-09T13:52:49.906Z",
+        "contentHash": "sha256:cbcb76216609cd34ec43907689fb771d6c7671f17c947edbe976e3b340ab1303"
+      },
+      "editorialReceipt": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-editorial-2026-08-v2",
+        "origin": "legacy-backfill",
+        "reviewedContentHash": "sha256:cbcb76216609cd34ec43907689fb771d6c7671f17c947edbe976e3b340ab1303",
+        "scheduledContentHash": "sha256:cbcb76216609cd34ec43907689fb771d6c7671f17c947edbe976e3b340ab1303",
+        "researchHash": "sha256:3d6616b4ab31e0782abf9b3524a693b9b68af25e67fe06bd7a58487eb575b53c",
+        "sourceHash": null,
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "issuedAt": "2026-08-11T17:13:56.215Z"
       }
     },
     {
@@ -494,7 +598,20 @@
           "finalAudit": "deepseek",
           "finalRepair": "deepseek"
         },
-        "generatedAt": "2026-08-10T14:22:05.926Z"
+        "generatedAt": "2026-08-10T14:22:05.926Z",
+        "contentHash": "sha256:4834b2fa919c56cd22f68388caa73852e2fb5dfc9054863e34f7b2e81ddbf6db"
+      },
+      "editorialReceipt": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-editorial-2026-08-v2",
+        "origin": "legacy-backfill",
+        "reviewedContentHash": "sha256:4834b2fa919c56cd22f68388caa73852e2fb5dfc9054863e34f7b2e81ddbf6db",
+        "scheduledContentHash": "sha256:4834b2fa919c56cd22f68388caa73852e2fb5dfc9054863e34f7b2e81ddbf6db",
+        "researchHash": "sha256:53aac02ec38e6653e0c111a9328b3622e86cad05ba2a53543c2d90d11cbde881",
+        "sourceHash": null,
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "issuedAt": "2026-08-11T17:13:56.219Z"
       }
     },
     {
@@ -507,8 +624,14 @@
       "freshness": "event-driven",
       "status": "scheduled",
       "productIds": [],
+      "heroImage": {
+        "mode": "conceptual"
+      },
       "postPath": "_posts/drafts/2026-08-21-youtube-pneus-de-bicicleta-pressao-carcaca-aderencia-e-resistencia-ao-ro.md",
+      "imageManifestPath": "assets/img/posts/youtube-pneus-de-bicicleta-pressao-carcaca-aderencia-e-resistencia-ao-ro/image-manifest.json",
+      "imageStatus": "approved",
       "imageAssetIds": [],
+      "imageValidatedAt": "2026-08-11T16:53:28.675Z",
       "attempts": 1,
       "lastAttemptAt": "2026-08-10T17:54:02.687Z",
       "aiReview": {
@@ -524,11 +647,21 @@
           "finalAudit": "deepseek",
           "finalRepair": "deepseek"
         },
-        "generatedAt": "2026-08-10T17:54:02.687Z"
+        "generatedAt": "2026-08-10T17:54:02.687Z",
+        "contentHash": "sha256:d7508be1f25eef1ebe5194394cb30ccca7b9f434feab6b86f5e9f8d09b4c7436"
       },
-      "imageManifestPath": "assets/img/posts/youtube-pneus-de-bicicleta-pressao-carcaca-aderencia-e-resistencia-ao-ro/image-manifest.json",
-      "imageStatus": "approved",
-      "imageValidatedAt": "2026-08-11T16:53:28.675Z"
+      "editorialReceipt": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-editorial-2026-08-v2",
+        "origin": "legacy-backfill",
+        "reviewedContentHash": "sha256:d7508be1f25eef1ebe5194394cb30ccca7b9f434feab6b86f5e9f8d09b4c7436",
+        "scheduledContentHash": "sha256:d7508be1f25eef1ebe5194394cb30ccca7b9f434feab6b86f5e9f8d09b4c7436",
+        "researchHash": "sha256:69e0e05d24cdaf3f4aec457128026aaba626a771b4396210ff3f26ba6608a859",
+        "sourceHash": null,
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "issuedAt": "2026-08-11T17:13:56.222Z"
+      }
     },
     {
       "day": 15,
@@ -540,6 +673,9 @@
       "freshness": "event-driven",
       "status": "planned",
       "productIds": [],
+      "heroImage": {
+        "mode": "conceptual"
+      },
       "imageAssetIds": [],
       "attempts": 0
     },
@@ -553,6 +689,9 @@
       "freshness": "event-driven",
       "status": "planned",
       "productIds": [],
+      "heroImage": {
+        "mode": "conceptual"
+      },
       "imageAssetIds": [],
       "attempts": 0
     },
@@ -566,6 +705,9 @@
       "freshness": "evergreen",
       "status": "planned",
       "productIds": [],
+      "heroImage": {
+        "mode": "conceptual"
+      },
       "imageAssetIds": [],
       "attempts": 0
     },
@@ -579,6 +721,9 @@
       "freshness": "evergreen",
       "status": "planned",
       "productIds": [],
+      "heroImage": {
+        "mode": "conceptual"
+      },
       "imageAssetIds": [],
       "attempts": 0
     },
@@ -592,6 +737,9 @@
       "freshness": "evergreen",
       "status": "planned",
       "productIds": [],
+      "heroImage": {
+        "mode": "conceptual"
+      },
       "imageAssetIds": [],
       "attempts": 0
     },
@@ -605,6 +753,9 @@
       "freshness": "evergreen",
       "status": "planned",
       "productIds": [],
+      "heroImage": {
+        "mode": "conceptual"
+      },
       "imageAssetIds": [],
       "attempts": 0
     },
@@ -618,6 +769,9 @@
       "freshness": "evergreen",
       "status": "planned",
       "productIds": [],
+      "heroImage": {
+        "mode": "conceptual"
+      },
       "imageAssetIds": [],
       "attempts": 0
     },
@@ -631,6 +785,9 @@
       "freshness": "evergreen",
       "status": "planned",
       "productIds": [],
+      "heroImage": {
+        "mode": "conceptual"
+      },
       "imageAssetIds": [],
       "attempts": 0
     },
@@ -644,6 +801,9 @@
       "freshness": "evergreen",
       "status": "planned",
       "productIds": [],
+      "heroImage": {
+        "mode": "conceptual"
+      },
       "imageAssetIds": [],
       "attempts": 0
     },
@@ -657,6 +817,9 @@
       "freshness": "evergreen",
       "status": "planned",
       "productIds": [],
+      "heroImage": {
+        "mode": "conceptual"
+      },
       "imageAssetIds": [],
       "attempts": 0
     },
@@ -670,6 +833,9 @@
       "freshness": "evergreen",
       "status": "planned",
       "productIds": [],
+      "heroImage": {
+        "mode": "conceptual"
+      },
       "imageAssetIds": [],
       "attempts": 0
     },
@@ -683,6 +849,9 @@
       "freshness": "evergreen",
       "status": "planned",
       "productIds": [],
+      "heroImage": {
+        "mode": "conceptual"
+      },
       "imageAssetIds": [],
       "attempts": 0
     },
@@ -696,6 +865,9 @@
       "freshness": "evergreen",
       "status": "planned",
       "productIds": [],
+      "heroImage": {
+        "mode": "conceptual"
+      },
       "imageAssetIds": [],
       "attempts": 0
     },
@@ -709,6 +881,9 @@
       "freshness": "evergreen",
       "status": "planned",
       "productIds": [],
+      "heroImage": {
+        "mode": "conceptual"
+      },
       "imageAssetIds": [],
       "attempts": 0
     },
@@ -722,6 +897,9 @@
       "freshness": "revalidate-24h",
       "status": "planned",
       "productIds": [],
+      "heroImage": {
+        "mode": "conceptual"
+      },
       "imageAssetIds": [],
       "attempts": 0
     },
@@ -735,6 +913,9 @@
       "freshness": "evergreen",
       "status": "planned",
       "productIds": [],
+      "heroImage": {
+        "mode": "conceptual"
+      },
       "imageAssetIds": [],
       "attempts": 0
     }

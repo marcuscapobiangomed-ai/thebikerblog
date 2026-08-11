@@ -5,6 +5,8 @@ import matter from "gray-matter";
 import { CampaignSchema, publicCampaignSummary } from "./automation/campaign.js";
 import { ThreeProviderPipeline } from "./ai/three-provider-pipeline.js";
 import { hashPayload } from "./ai/runtime.js";
+import { hashEditorialText, issueEditorialReceipt } from "./validation/editorial-receipt.js";
+import { classifyEditorialFailure } from "./validation/editorial-failures.js";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 
@@ -79,10 +81,25 @@ export async function auditCampaignBuffer({ env = process.env, now = new Date() 
       premiumEditUsed: item.aiReview?.premiumEditUsed === true,
       providers: { ...(item.aiReview?.providers || {}), bufferFinalAudit: response.provider },
       generatedAt: item.aiReview?.generatedAt || now.toISOString(),
+      contentHash: hashEditorialText(await fs.readFile(path.resolve(root, item.postPath), "utf8")),
+      sourceHash: hashPayload(research),
     };
     if (item.status !== "published" && (score < Number(env.AI_FINAL_SCORE_THRESHOLD || 90) || blockers.length > 0)) {
       item.status = "blocked";
-      item.blockReason = `Auditoria final: nota ${score}; ${blockers.map((entry) => entry.detail || entry.type).join("; ") || "nota abaixo do minimo"}`.slice(0, 700);
+      const failureMessage = `Auditoria final: nota ${score}; ${blockers.map((entry) => entry.detail || entry.type).join("; ") || "nota abaixo do minimo"}`;
+      item.failure = classifyEditorialFailure(failureMessage, { stage: "buffer-audit", now });
+      item.blockReason = `[${item.failure.code}] ${item.failure.message}`;
+      delete item.editorialReceipt;
+    } else {
+      const scheduledContent = await fs.readFile(path.resolve(root, item.postPath), "utf8");
+      item.editorialReceipt = issueEditorialReceipt({
+        content: scheduledContent,
+        researchContent: research === null ? null : JSON.stringify(research),
+        aiReview: item.aiReview,
+        now,
+        origin: "buffer-audit",
+      });
+      delete item.failure;
     }
     results.push({ itemId: item.id, score, blockers: blockers.length, provider: response.provider });
     await persist(campaign);

@@ -5,6 +5,7 @@ const HeroImageSchema = z.discriminatedUnion('mode', [
   z.object({ mode: z.literal('conceptual') }),
   z.object({ mode: z.literal('race-context') }),
 ])
+const HashSchema = z.string().regex(/^sha256:[a-f0-9]{64}$/)
 
 const CampaignItemSchema = z.object({
   day: z.number().int().min(1).max(30),
@@ -24,6 +25,13 @@ const CampaignItemSchema = z.object({
   imageValidatedAt: z.string().datetime().optional(),
   publishedAt: z.string().datetime().optional(),
   blockReason: z.string().optional(),
+  failure: z.object({
+    code: z.string().regex(/^[A-Z][A-Z0-9_]+$/),
+    retryable: z.boolean(),
+    stage: z.string().min(1),
+    message: z.string().min(1).max(650),
+    recordedAt: z.string().datetime(),
+  }).optional(),
   attempts: z.number().int().min(0).default(0),
   lastAttemptAt: z.string().datetime().optional(),
   aiReview: z.object({
@@ -33,6 +41,21 @@ const CampaignItemSchema = z.object({
     premiumEditUsed: z.boolean(),
     providers: z.record(z.string(), z.string()),
     generatedAt: z.string().datetime(),
+    contentHash: HashSchema.optional(),
+    sourceHash: z.string().min(8).optional(),
+  }).optional(),
+  editorialReceipt: z.object({
+    schemaVersion: z.literal(1),
+    policyVersion: z.string().min(1),
+    origin: z.enum(['pipeline', 'buffer-audit', 'legacy-backfill', 'deterministic-transform']),
+    reviewedContentHash: HashSchema,
+    scheduledContentHash: HashSchema,
+    publishedContentHash: HashSchema.optional(),
+    researchHash: HashSchema.nullable(),
+    sourceHash: z.string().nullable(),
+    finalScore: z.number().min(0).max(100),
+    finalBlockers: z.number().int().min(0),
+    issuedAt: z.string().datetime(),
   }).optional(),
 })
 

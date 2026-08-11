@@ -1,3 +1,5 @@
+import { MARKDOWN_POLICY_GUIDANCE } from "./validation/markdown-publication-gates.js";
+
 const CONTENT_TYPE_RULES = [
   {
     type: "previa-corrida",
@@ -52,6 +54,7 @@ export function buildSystemPrompt() {
     "Seu trabalho é demonstrar autoridade excepcional sobre bicicletas, componentes, equipamentos, tecnologia, mercado e competições.",
     "",
     "Regras absolutas:",
+    ...MARKDOWN_POLICY_GUIDANCE.map((rule) => `- ${rule}`),
     "- use somente informações presentes na ficha de pesquisa e no briefing do tema;",
     "- nunca invente preço, peso, geometria, compatibilidade, garantia, disponibilidade, fontes ou experiência prática;",
     "- se faltar dado indispensável, retorne PESQUISA INSUFICIENTE;",
