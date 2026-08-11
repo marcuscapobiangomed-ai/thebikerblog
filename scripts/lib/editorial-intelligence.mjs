@@ -144,6 +144,85 @@ function trendOpportunity(item, context, config) {
   };
 }
 
+const GOOGLE_ADS_MONTH_ORDER = new Map([
+  ['JANUARY', 1], ['FEBRUARY', 2], ['MARCH', 3], ['APRIL', 4], ['MAY', 5], ['JUNE', 6],
+  ['JULY', 7], ['AUGUST', 8], ['SEPTEMBER', 9], ['OCTOBER', 10], ['NOVEMBER', 11], ['DECEMBER', 12],
+]);
+
+function average(values) {
+  if (!values.length) return 0;
+  return values.reduce((total, value) => total + number(value), 0) / values.length;
+}
+
+function marketDemandTrend(monthlySearchVolumes = []) {
+  const ordered = [...monthlySearchVolumes]
+    .filter((item) => item.year && GOOGLE_ADS_MONTH_ORDER.has(item.month))
+    .sort((left, right) => (left.year * 100 + GOOGLE_ADS_MONTH_ORDER.get(left.month)) - (right.year * 100 + GOOGLE_ADS_MONTH_ORDER.get(right.month)));
+  const recent = average(ordered.slice(-3).map((item) => item.monthlySearches));
+  const previous = average(ordered.slice(-6, -3).map((item) => item.monthlySearches));
+  if (!previous) return recent > 0 ? 1 : 0;
+  return (recent - previous) / previous;
+}
+
+function articleCoverage(term, articles) {
+  const tokens = normalizeText(term).split(' ').filter((token) => token.length >= 4 && !STOPWORDS.has(token));
+  if (!tokens.length) return null;
+  const matches = articles.map((article) => {
+    const text = normalizeText(`${article.title || ''} ${(article.tags || []).join(' ')} ${article.directAnswer || ''}`);
+    const score = tokens.filter((token) => text.includes(token)).length / tokens.length;
+    return { score, title: article.title, url: article.url || article.canonicalUrl || null };
+  }).filter((item) => item.url && item.score >= 0.5)
+    .sort((left, right) => right.score - left.score);
+  return matches[0] || null;
+}
+
+function marketDemandOpportunity(item, articles, config) {
+  const term = String(item.term || '').trim();
+  const normalized = normalizeText(term);
+  const cluster = queryCluster(term);
+  const intent = searchIntent(term);
+  const portfolioTerms = [...(config.portfolioBrands || []), ...(config.marketDemandSeedKeywords || [])]
+    .map(normalizeText)
+    .filter(Boolean);
+  const portfolioMatch = portfolioTerms.some((candidate) => normalized.includes(candidate) || candidate.includes(normalized));
+  const coverage = articleCoverage(term, articles);
+  const trend = marketDemandTrend(item.monthlySearchVolumes);
+  const averageMonthlySearches = number(item.averageMonthlySearches);
+  const score = Math.round(
+    Math.log10(averageMonthlySearches + 1) * 30
+    + Math.max(-10, Math.min(20, trend * 20))
+    + (portfolioMatch ? 15 : 0)
+    + (['commercial', 'comparison', 'evaluation'].includes(intent) ? 8 : 0),
+  );
+  let recommendedAction = 'Criar conteúdo editorial técnico e validar aderência ao portfólio antes de qualquer CTA.';
+  if (coverage) recommendedAction = 'Otimizar o conteúdo existente e reforçar links internos conforme a intenção da busca.';
+  else if (portfolioMatch && ['commercial', 'comparison', 'evaluation'].includes(intent)) {
+    recommendedAction = 'Criar guia comercial técnico e vincular somente produto ou categoria com estoque verificado.';
+  }
+  return {
+    source: 'google-keyword-planner',
+    term,
+    topic: term,
+    sourceUrl: 'https://ads.google.com/home/tools/keyword-planner/',
+    cluster,
+    intent,
+    averageMonthlySearches,
+    monthlySearchVolumes: item.monthlySearchVolumes || [],
+    trend,
+    competition: item.competition || 'UNSPECIFIED',
+    competitionIndex: number(item.competitionIndex),
+    lowTopOfPageBidMicros: number(item.lowTopOfPageBidMicros),
+    highTopOfPageBidMicros: number(item.highTopOfPageBidMicros),
+    portfolioRelevance: portfolioMatch ? 'seed_or_brand_match' : 'editorial_niche',
+    coverage,
+    recommendedAction,
+    score,
+    evidence: `${Math.round(averageMonthlySearches).toLocaleString('pt-BR')} buscas mensais médias no Google Brasil; tendência recente ${(trend * 100).toFixed(0)}%`,
+    directPromotionAllowed: portfolioMatch,
+    blockedBrandDetected: hasBlockedBrand(term, config),
+  };
+}
+
 export function searchIntent(value) {
   const text = normalizeText(value);
   if (/\b(comprar|preco|precos|valor|onde comprar|loja|promocao)\b/.test(text)) return 'commercial';
@@ -336,6 +415,8 @@ export function buildEditorialIntelligence({
   googleTrendsStatus = { status: 'not_requested', error: null },
   publicShopSeo = { status: 'not_requested', signal: null, error: null },
   youtubeStatus = { status: 'available', error: null },
+  marketDemand = [],
+  marketDemandStatus = { status: 'not_configured', error: null },
 }) {
   const previousMap = new Map(gscPrevious.map((row) => [rowKey(row), row]));
   const brazilCountry = config.searchConsoleCountry || 'bra';
@@ -353,6 +434,18 @@ export function buildEditorialIntelligence({
     .map((item) => trendOpportunity(item, context, config))
     .sort((left, right) => right.score - left.score);
   const topTrends = trendSignals.slice(0, config.trendsMaximumSignals || 20).map((item, index) => ({ rank: index + 1, ...item }));
+  const relevanceTerms = [
+    ...(config.cyclingTerms || DEFAULT_CYCLING_TERMS),
+    ...(config.portfolioBrands || []),
+    ...(config.marketDemandSeedKeywords || []),
+  ].map(normalizeText).filter(Boolean);
+  const marketDemandSignals = marketDemand
+    .map((item) => marketDemandOpportunity(item, articles, config))
+    .filter((item) => item.averageMonthlySearches > 0)
+    .filter((item) => item.cluster !== 'ciclismo-geral' || relevanceTerms.some((term) => normalizeText(item.term).includes(term) || term.includes(normalizeText(item.term))))
+    .filter((item) => !item.blockedBrandDetected)
+    .sort((left, right) => right.averageMonthlySearches - left.averageMonthlySearches || right.score - left.score);
+  const topMarketDemand = marketDemandSignals.slice(0, config.marketDemandMaximumKeywords || 100).map((item, index) => ({ rank: index + 1, ...item }));
   const propertyIds = [...new Set([
     ...(config.searchConsoleSites || []).map((site) => site.id),
     ...searchSignals.map((signal) => signal.propertyId),
@@ -382,7 +475,7 @@ export function buildEditorialIntelligence({
     source: 'search-console', topic: item.term, targetUrl: item.targetUrls[0] || null, sourceUrl: item.targetUrls[0] || null,
     score: item.opportunityScore, evidence: `${item.impressions} impressões no Brasil; posição ${item.position.toFixed(1)}; CTR ${(item.ctr * 100).toFixed(1)}%`, directPromotionAllowed: true,
   }));
-  const directCandidates = [...seoCandidates, ...trendSignals, ...videoSignals]
+  const directCandidates = [...seoCandidates, ...marketDemandSignals, ...trendSignals, ...videoSignals]
     .filter((item) => item.directPromotionAllowed || item.source === 'youtube')
     .filter((item) => !item.blockedBrandDetected)
     .sort((left, right) => right.score - left.score);
@@ -419,7 +512,7 @@ export function buildEditorialIntelligence({
   }, new Map()).values()].map((item) => ({ ...item, pages: [...item.pages].sort() }))
     .sort((left, right) => right.impressions - left.impressions || right.queries - left.queries);
   return {
-    schemaVersion: 5,
+    schemaVersion: 6,
     runKey: context.runKey,
     cadence: context.cadence,
     generatedAt: context.generatedAt,
@@ -446,6 +539,14 @@ export function buildEditorialIntelligence({
         sourceItems: googleTrends.length,
         nicheSignals: topTrends.length,
       },
+      googleMarketDemand: {
+        method: 'Google Ads Keyword Planner segmentado para Google Search, Brasil e idioma português; volume médio mensal aproximado dos últimos 12 meses e concorrência exclusivamente publicitária',
+        market: 'BR',
+        language: 'pt',
+        status: marketDemandStatus.status,
+        sourceItems: marketDemand.length,
+        eligibleKeywords: topMarketDemand.length,
+      },
     },
     metrics: {
       gscRows: gscCurrent.length,
@@ -463,6 +564,7 @@ export function buildEditorialIntelligence({
       cannibalizationRisks: topSeo.filter((item) => item.cannibalizationRisk).length,
       googleTrendsSourceItems: googleTrends.length,
       googleTrendsNicheSignals: topTrends.length,
+      googleMarketDemandKeywords: topMarketDemand.length,
       publicShopSeoAvailable: publicShopSeo.siteAudit?.status === 'available' || publicShopSeo.pageSpeed?.status === 'available',
       gscBrazilAggregateImpressions: number(searchConsoleDiagnostics.current?.brazil?.impressions),
       gscGlobalAggregateImpressions: number(searchConsoleDiagnostics.current?.global?.impressions),
@@ -492,6 +594,7 @@ export function buildEditorialIntelligence({
       seoMeasured: topSeo,
       seoByProperty,
       googleTrendsDiscovery: topTrends,
+      googleMarketDemand: topMarketDemand,
     },
     crossDomainOpportunities,
     publicShopSeo,
@@ -501,6 +604,7 @@ export function buildEditorialIntelligence({
     refreshQueue,
     discoverySignals: videoSignals.slice(0, 50),
     googleTrendsStatus,
+    marketDemandStatus,
     governance: {
       planningStatus: briefs.length > 0 ? 'actionable' : 'insufficient_signals',
       autoPublish: false,
@@ -513,6 +617,7 @@ export function buildEditorialIntelligence({
       youtubeDoesNotFillMeasuredSeo: true,
       brazilClaimRequiresCountryFilter: true,
       googleTrendsDoesNotFillMeasuredSeo: true,
+      keywordPlannerIsMarketDemandNotOwnedVisibility: true,
     },
   };
 }
@@ -529,6 +634,7 @@ export function intelligenceMarkdown(report) {
   const topYoutube = report.brazilRankings?.youtubeDiscovery || [];
   const topSeo = report.brazilRankings?.seoMeasured || [];
   const topTrends = report.brazilRankings?.googleTrendsDiscovery || [];
+  const topMarketDemand = report.brazilRankings?.googleMarketDemand || [];
   const planningPayload = {
     schemaVersion: report.schemaVersion,
     runKey: report.runKey,
@@ -548,6 +654,12 @@ export function intelligenceMarkdown(report) {
         rank: item.rank, source: item.source, topic: item.topic, signalTitle: item.signalTitle,
         sourceUrl: item.sourceUrl, score: item.score, evidence: item.evidence,
       })),
+      googleMarketDemand: topMarketDemand.slice(0, 30).map((item) => ({
+        rank: item.rank, term: item.term, source: item.source, cluster: item.cluster, intent: item.intent,
+        averageMonthlySearches: item.averageMonthlySearches, trend: item.trend, competition: item.competition,
+        competitionIndex: item.competitionIndex, portfolioRelevance: item.portfolioRelevance,
+        coverage: item.coverage, recommendedAction: item.recommendedAction,
+      })),
     },
     queryClusters: report.queryClusters.map(({ pages, ...cluster }) => ({
       ...cluster,
@@ -565,7 +677,7 @@ export function intelligenceMarkdown(report) {
     '',
     '## Executive Summary',
     '',
-    `- **A inteligência desta janela é acionável, não uma promessa de liderança automática.** Foram classificados ${topYoutube.length} sinais de vídeo obtidos no YouTube Brasil e ${topSeo.length} consultas SEO brasileiras medidas para orientar pauta, atualização e links internos.`,
+    `- **A inteligência desta janela é acionável, não uma promessa de liderança automática.** Foram classificados ${topMarketDemand.length} termos de demanda do mercado Google Brasil, ${topYoutube.length} sinais de vídeo obtidos no YouTube Brasil e ${topSeo.length} consultas SEO brasileiras medidas para orientar pauta, atualização e links internos.`,
     `- **SEO medido e descoberta editorial permanecem separados.** Se o Search Console não entregar consultas, a seção SEO fica vazia; vídeos nunca são apresentados como palavras-chave do Google.`,
     `- **O relatório entra no planejamento.** ${report.briefs.length} pautas foram derivadas dos sinais e ${report.refreshQueue.length} páginas entraram na fila de atualização.`,
     '',
@@ -579,6 +691,28 @@ export function intelligenceMarkdown(report) {
   if (topYoutube.length === 0) lines.push('| — | Nenhum sinal elegível | — | — | — | — | — | — | Execução sem cobertura suficiente |');
   for (const item of topYoutube) {
     lines.push(`| ${item.rank} | [${md(item.signalTitle)}](${item.sourceUrl}) | ${md(item.channelTitle || 'Não informado')} | ${item.views.toLocaleString('pt-BR')} | ${item.viewsPerDay.toLocaleString('pt-BR')} | ${item.capturedSearches.length || 1} | ${item.format} | ${item.score} | ${md(item.topic)} |`);
+  }
+  lines.push(
+    '',
+    '## Demanda total no Google Brasil — nicho e portfólio TheBiker',
+    '',
+    'Fonte: Google Ads Keyword Planner, segmentado para Google Search, Brasil e português. A média mensal representa demanda aproximada do mercado nos últimos 12 meses; não representa impressões do TheBiker.',
+    '',
+  );
+  if (report.marketDemandStatus?.status !== 'available') {
+    lines.push(`- Estado: **${md(report.marketDemandStatus?.status || 'not_configured')}**. ${md(report.marketDemandStatus?.error || 'Ativação da conta Google Ads pendente.')}`);
+  } else {
+    lines.push(
+      `Foram priorizados ${topMarketDemand.length} termos aderentes ao nicho, às sementes do portfólio e ao conteúdo público da loja.`,
+      '',
+      '| # | Busca | Média mensal | Tendência | Intenção | Cluster | Concorrência Ads | Portfólio | Cobertura atual | Ação |',
+      '|---:|---|---:|---:|---|---|---|---|---|---|',
+    );
+    if (topMarketDemand.length === 0) lines.push('| — | Nenhum termo elegível | — | — | — | — | — | — | — | Revisar sementes e acesso |');
+    for (const item of topMarketDemand.slice(0, 30)) {
+      const coverage = item.coverage?.url ? `[${md(item.coverage.title)}](${item.coverage.url})` : 'lacuna';
+      lines.push(`| ${item.rank} | ${md(item.term)} | ${Math.round(item.averageMonthlySearches).toLocaleString('pt-BR')} | ${percent(item.trend)} | ${item.intent} | ${item.cluster} | ${md(item.competition)} (${item.competitionIndex}) | ${item.portfolioRelevance === 'seed_or_brand_match' ? 'aderente' : 'editorial'} | ${coverage} | ${md(item.recommendedAction)} |`);
+    }
   }
   const currentDiagnostic = report.searchConsoleDiagnostics?.current || {};
   const brazilSummary = currentDiagnostic.brazil || {};
@@ -680,6 +814,8 @@ export function intelligenceMarkdown(report) {
     '## Limitações e governança',
     '',
     '- O Search Console mede somente a demanda que já encontrou o TheBiker e pode omitir consultas raras por privacidade; o CSV contém até 1.000 linhas disponibilizadas por propriedade, não o universo integral das buscas brasileiras.',
+    '- O Keyword Planner mede demanda aproximada do mercado e agrupa variantes próximas; concorrência significa disputa entre anunciantes, não dificuldade orgânica de SEO.',
+    `- Estado do Keyword Planner nesta execução: ${md(report.marketDemandStatus?.status || 'não informado')}; ausência de credenciais deixa a seção explicitamente não configurada e nunca é preenchida com Trends, YouTube ou Search Console.`,
     '- O agregado Brasil versus global serve apenas para diagnóstico de cobertura; consultas globais nunca entram no ranking editorial brasileiro.',
     '- O Google Trends RSS mostra pesquisas gerais em aceleração e pode não conter ciclismo em uma janela; ele nunca preenche a seção de SEO medido nem representa volume absoluto.',
     '- A região BR e as consultas em português tornam o YouTube um radar brasileiro, mas a API pública fornece visualizações globais de cada vídeo, não visualizações exclusivamente brasileiras.',
@@ -688,7 +824,7 @@ export function intelligenceMarkdown(report) {
     '- Fontes, método, produto, imagem, preço e estoque precisam passar pelos gates do repositório.',
     '- Exceções ficam bloqueadas para revisão; conteúdo aprovado pelos gates pode ser agendado sem intervenção no Codex.',
     '- Marcas concorrentes podem servir apenas como sinal de mercado; não viram promoção nem CTA.',
-    '- O payload JSON completo e o CSV das consultas ficam anexados como artefatos da execução por 30 dias.',
+    '- O payload JSON completo, o CSV do Search Console e o CSV de demanda do Google ficam anexados como artefatos da execução por 30 dias.',
     '',
     '<details><summary>Payload compacto para o planejador mensal</summary>',
     '',

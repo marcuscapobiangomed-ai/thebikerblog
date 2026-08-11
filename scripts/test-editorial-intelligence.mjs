@@ -3,7 +3,7 @@ import fs from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { buildEditorialIntelligence, intelligenceMarkdown, queryCluster, searchIntent } from './lib/editorial-intelligence.mjs';
-import { cachedYoutubePayload, parseGoogleTrendsRss, periodsFor } from './run-editorial-intelligence.mjs';
+import { cachedYoutubePayload, normalizeGoogleAdsKeywordIdeas, parseGoogleTrendsRss, periodsFor } from './run-editorial-intelligence.mjs';
 
 const youtubeCache = await fs.mkdtemp(path.join(os.tmpdir(), 'thebiker-youtube-cache-'));
 let youtubeLoads = 0;
@@ -29,6 +29,28 @@ const parsedTrends = parseGoogleTrendsRss(trendsRss);
 assert.equal(parsedTrends.length, 2);
 assert.equal(parsedTrends[0].title, 'bicicleta gravel brasil');
 assert.equal(parsedTrends[0].sourceUrl.includes('&hl=pt-BR'), true);
+
+const marketDemand = normalizeGoogleAdsKeywordIdeas([
+  {
+    text: 'bicicleta scott',
+    closeVariants: ['bike scott'],
+    keywordIdeaMetrics: {
+      avgMonthlySearches: '12100', competition: 'HIGH', competitionIndex: '78',
+      lowTopOfPageBidMicros: '1200000', highTopOfPageBidMicros: '4500000',
+      monthlySearchVolumes: [
+        { year: '2026', month: 'JANUARY', monthlySearches: '8000' },
+        { year: '2026', month: 'FEBRUARY', monthlySearches: '8500' },
+        { year: '2026', month: 'MARCH', monthlySearches: '9000' },
+        { year: '2026', month: 'APRIL', monthlySearches: '11000' },
+        { year: '2026', month: 'MAY', monthlySearches: '12000' },
+        { year: '2026', month: 'JUNE', monthlySearches: '13000' },
+      ],
+    },
+  },
+  { text: 'Trek promoção', keywordIdeaMetrics: { avgMonthlySearches: '50000', competition: 'HIGH' } },
+]);
+assert.equal(marketDemand[0].averageMonthlySearches, 12100);
+assert.equal(marketDemand[0].monthlySearchVolumes[5].monthlySearches, 13000);
 
 const context = {
   runKey: 'weekly-2026-08-08',
@@ -102,6 +124,8 @@ const report = buildEditorialIntelligence({
   videos,
   googleTrends: parsedTrends,
   googleTrendsStatus: { status: 'available', error: null },
+  marketDemand,
+  marketDemandStatus: { status: 'available', error: null },
   publicShopSeo: {
     status: 'available',
     siteAudit: { status: 'available', error: null, signal: { source: 'public-site-audit', evidenceClass: 'public_measurement', targetUrl: 'https://thebikershop.com.br/', httpStatus: 200, robotsStatus: 200, sitemapStatus: 200, checks: { title: true, metaDescription: true, canonical: true, h1: true, structuredData: true, noindex: false } } },
@@ -121,7 +145,7 @@ const report = buildEditorialIntelligence({
   articles: [{ title: 'Ajuste de suspensão MTB', tags: ['suspensão'], url: 'https://example.com/ajuste/', dateModified: '2026-01-01T00:00:00Z' }],
 });
 
-assert.equal(report.schemaVersion, 5);
+assert.equal(report.schemaVersion, 6);
 assert.equal(report.scope.label.includes('Brasil'), true);
 assert.equal(report.brazilRankings.youtubeDiscovery.length, 20);
 assert.ok(report.brazilRankings.seoMeasured.length > 1000);
@@ -142,6 +166,13 @@ assert.deepEqual(Object.keys(report.brazilRankings.seoByProperty), ['blog', 'sho
 assert.equal(report.crossDomainOpportunities.length, 1);
 assert.deepEqual(report.crossDomainOpportunities[0].propertyIds, ['blog', 'shop']);
 assert.equal(report.brazilRankings.googleTrendsDiscovery[0].signalTitle, 'bicicleta gravel brasil');
+assert.equal(report.brazilRankings.googleMarketDemand.length, 1);
+assert.equal(report.brazilRankings.googleMarketDemand[0].term, 'bicicleta scott');
+assert.equal(report.brazilRankings.googleMarketDemand[0].averageMonthlySearches, 12100);
+assert.equal(report.brazilRankings.googleMarketDemand[0].portfolioRelevance, 'seed_or_brand_match');
+assert.ok(report.brazilRankings.googleMarketDemand[0].trend > 0);
+assert.equal(report.metrics.googleMarketDemandKeywords, 1);
+assert.equal(report.governance.keywordPlannerIsMarketDemandNotOwnedVisibility, true);
 assert.equal(report.searchConsoleDiagnostics.interpretation, 'brazil_query_rows_available');
 assert.equal(report.governance.googleTrendsDoesNotFillMeasuredSeo, true);
 assert.ok(report.queryClusters.some((cluster) => cluster.cluster === 'suspensao'));
@@ -152,6 +183,8 @@ assert.match(intelligenceMarkdown(report), /até \*\*1\.000 consultas por propri
 assert.match(intelligenceMarkdown(report), /Payload compacto para o planejador mensal/);
 assert.match(intelligenceMarkdown(report), /Diagnóstico do Search Console/);
 assert.match(intelligenceMarkdown(report), /Google Trends Brasil/);
+assert.match(intelligenceMarkdown(report), /Demanda total no Google Brasil/);
+assert.match(intelligenceMarkdown(report), /12\.100/);
 assert.match(intelligenceMarkdown(report), /Oportunidades cruzadas/);
 assert.match(intelligenceMarkdown(report), /Diagnóstico público gratuito da TheBikerShop/);
 assert.match(intelligenceMarkdown(report), /public_measurement/);
@@ -168,6 +201,7 @@ assert.equal(emptySeo.searchConsoleDiagnostics.interpretation, 'no_finalized_glo
 assert.equal(emptySeo.governance.planningStatus, 'actionable');
 const noSignals = buildEditorialIntelligence({ context, config });
 assert.equal(noSignals.governance.planningStatus, 'insufficient_signals');
+assert.match(intelligenceMarkdown(noSignals), /not_configured/);
 
 assert.deepEqual(periodsFor({ cadence: 'weekly', generatedAt: '2026-08-07T12:00:00.000Z' }), {
   lookbackDays: 7,

@@ -62,6 +62,13 @@ jobs:
           GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
           GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
           GOOGLE_REFRESH_TOKEN: ${{ secrets.GOOGLE_REFRESH_TOKEN }}
+          GOOGLE_ADS_CLIENT_ID: ${{ secrets.GOOGLE_ADS_CLIENT_ID }}
+          GOOGLE_ADS_CLIENT_SECRET: ${{ secrets.GOOGLE_ADS_CLIENT_SECRET }}
+          GOOGLE_ADS_REFRESH_TOKEN: ${{ secrets.GOOGLE_ADS_REFRESH_TOKEN }}
+          GOOGLE_ADS_DEVELOPER_TOKEN: ${{ secrets.GOOGLE_ADS_DEVELOPER_TOKEN }}
+          GOOGLE_ADS_CUSTOMER_ID: ${{ vars.GOOGLE_ADS_CUSTOMER_ID }}
+          GOOGLE_ADS_LOGIN_CUSTOMER_ID: ${{ vars.GOOGLE_ADS_LOGIN_CUSTOMER_ID }}
+          GOOGLE_ADS_API_VERSION: ${{ vars.GOOGLE_ADS_API_VERSION || 'v23' }}
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
           SEARCH_CONSOLE_SITE_URL: ${{ vars.SEARCH_CONSOLE_SITE_URL || 'https://blog.thebiker.com.br/' }}
           SEARCH_CONSOLE_SHOP_SITE_URL: ${{ vars.SEARCH_CONSOLE_SHOP_SITE_URL || 'sc-domain:thebikershop.com.br' }}
@@ -81,7 +88,7 @@ jobs:
           REPORT_PATH: ${{ steps.report.outputs.markdown_path }}
         shell: bash
         run: |
-          title="[INTEL-BR] ${RUN_KEY} — Top 1.000 consultas e Top 20 YouTube Brasil"
+          title="[INTEL-BR] ${RUN_KEY} — Demanda Google, SEO próprio e YouTube Brasil"
           number="$(gh issue list --state all --search "${RUN_KEY} in:title" --json number --jq '.[0].number // empty')"
           if [ -n "$number" ]; then
             gh issue edit "$number" --title "$title" --body-file "$REPORT_PATH"

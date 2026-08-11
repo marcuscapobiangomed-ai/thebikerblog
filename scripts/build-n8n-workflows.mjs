@@ -180,7 +180,7 @@ const report = buildEditorialIntelligence({
 });
 return [{ json: {
   ...report,
-  title: '[INTEL-BR] ' + report.runKey + ' — Top 1.000 consultas e Top 20 YouTube Brasil',
+  title: '[INTEL-BR] ' + report.runKey + ' — Demanda Google, SEO próprio e YouTube Brasil',
   body: intelligenceMarkdown(report),
   issueQuery: 'repo:' + context.config.githubOwner + '/' + context.config.githubRepository + ' in:title "[INTEL] ' + report.runKey + '"',
   githubOwner: context.config.githubOwner,
