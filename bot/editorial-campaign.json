@@ -120,11 +120,11 @@
       "summary": "Análise da arquitetura Spark RC, do posicionamento do amortecedor, do Flex Pivot e dos efeitos mecânicos da integração no quadro.",
       "category": "engenharia",
       "freshness": "evergreen",
-      "status": "scheduled",
+      "status": "published",
       "productIds": [
         "quadro-suspensao-spark-rc-world-cup-hmx-2026-flight-attendant"
       ],
-      "postPath": "_posts/drafts/2026-08-11-engenharia-suspensao-integrada-spark.md",
+      "postPath": "_posts/2026-08-11-engenharia-suspensao-integrada-spark.md",
       "imageManifestPath": "assets/img/posts/engenharia-suspensao-integrada-spark/image-manifest.json",
       "imageStatus": "approved",
       "imageAssetIds": [
@@ -145,7 +145,8 @@
           "bufferFinalAudit": "groq"
         },
         "generatedAt": "2026-08-05T15:03:08.085Z"
-      }
+      },
+      "publishedAt": "2026-08-11T15:44:53.018Z"
     },
     {
       "day": 5,
@@ -465,6 +466,7 @@
       "productIds": [],
       "postPath": "_posts/drafts/2026-08-21-youtube-pneus-de-bicicleta-pressao-carcaca-aderencia-e-resistencia-ao-ro.md",
       "imageAssetIds": [],
+      "blockReason": "Validação final: Gate Markdown reprovado: linguagem publicitária proibida: imbatível",
       "attempts": 1,
       "lastAttemptAt": "2026-08-10T17:54:02.687Z",
       "aiReview": {
@@ -481,8 +483,7 @@
           "finalRepair": "deepseek"
         },
         "generatedAt": "2026-08-10T17:54:02.687Z"
-      },
-      "blockReason": "Validação final: Gate Markdown reprovado: linguagem publicitária proibida: imbatível"
+      }
     },
     {
       "day": 15,

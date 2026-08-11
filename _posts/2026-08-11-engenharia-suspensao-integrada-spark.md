@@ -1,6 +1,6 @@
 ---
 layout: post
-published: false
+published: true
 title: "Dentro da Spark RC: por que a suspensão integrada muda estrutura, serviço e distribuição de massa"
 slug: "engenharia-suspensao-integrada-spark"
 date: 2026-08-11
@@ -44,8 +44,8 @@ promoted_brands: ["Scott"]
 context_only_brands: []
 portfolio_evidence_url: "https://thebikershop.com.br/produtos/quadro-suspensao-spark-rc-world-cup-hmx-2026-flight-attendant/"
 portfolio_verified_at: "2026-08-05"
-editorial_status: "reviewed"
-status: "scheduled"
+editorial_status: "published"
+status: "published"
 sources:
   - name: "The Biker — Quadro + Suspensão Spark RC World Cup HMX 2026 Flight Attendant"
     type: "store"
