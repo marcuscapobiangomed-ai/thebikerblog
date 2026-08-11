@@ -209,9 +209,9 @@
         "verificationTokens": ["PRO, SPORT e LIGHT", "60/70 Km", "40/50 km", "20 de setembro de 2026"]
       },
       "participation": {
-        "status": "open",
-        "label": "Inscrição online disponível",
-        "description": "A organização exige inscrição pelo próprio atleta. O prazo específico da etapa não está no regulamento; inscrição no dia pode existir somente se houver vagas.",
+        "status": "not-published",
+        "label": "Prazo da etapa não publicado",
+        "description": "A organização exige inscrição online pelo próprio atleta, mas o regulamento não publica o prazo específico de Passa Quatro. Inscrição no dia pode existir somente se houver vagas.",
         "url": "https://inscricoes.desafionatureza.com.br/"
       },
       "route": {
