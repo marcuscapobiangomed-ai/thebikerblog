@@ -63,6 +63,13 @@ model: ""
                   <span>{{ event.disciplineLabel }} · {{ country_pt }}</span>
                   <h3>{{ event.name }}</h3>
                   <p>{% include race-class-label.html value=event.competitionClass %}{% if event.venue != "" %} · {{ event.venue }}{% endif %}</p>
+                  {% if event.deepProfile %}
+                    <div class="race-card-insights" aria-label="Resumo do guia da corrida">
+                      <span class="race-card-insight race-card-insight--verified">Guia completo</span>
+                      {% if event.deepProfile.route.totalDistanceKm %}<span class="race-card-insight">{{ event.deepProfile.route.totalDistanceKm }} km</span>{% elsif event.deepProfile.route.courseOptions %}<span class="race-card-insight">{{ event.deepProfile.route.courseOptions.size }} percursos</span>{% endif %}
+                      <span class="race-card-insight">{{ event.deepProfile.route.difficulty.label }}</span>
+                    </div>
+                  {% endif %}
                 </div>
                 <a href="{{ site.baseurl }}/corridas/detalhes/#{{ event.id }}" data-race-detail data-event-id="{{ event.id }}" data-race-section="today" aria-label="Ver detalhes em português de {{ event.name }}">Entender esta corrida <span aria-hidden="true">→</span></a>
               </article>
@@ -111,10 +118,21 @@ model: ""
         </div>
         <p>Seis vagas mantêm maioria brasileira validada; quatro preservam a cobertura mundial. Mudanças entram automaticamente na próxima sincronização.</p>
       </div>
-      <ol class="race-upcoming-list">
+      <div class="race-calendar-tools" data-race-filters>
+        <div>
+          <strong>Encontre a prova certa</strong>
+          <span><b data-race-filter-count>{{ public_calendar.upcoming | size }}</b> corridas exibidas</span>
+        </div>
+        <div class="race-filter-buttons" role="group" aria-label="Filtrar próximas corridas">
+          <button type="button" class="is-active" data-race-filter="all" aria-pressed="true">Todas</button>
+          <button type="button" data-race-filter="brazil" aria-pressed="false">Brasil</button>
+          <button type="button" data-race-filter="guide" aria-pressed="false">Com guia completo</button>
+        </div>
+      </div>
+      <ol class="race-upcoming-list" data-race-filter-list>
         {% for event in public_calendar.upcoming %}
           {% assign country_pt = site.data["countries-pt"][event.countryCode] | default: event.country %}
-          <li class="race-upcoming-item">
+          <li class="race-upcoming-item" data-race-filter-item data-country-code="{{ event.countryCode }}" data-has-guide="{% if event.deepProfile %}true{% else %}false{% endif %}">
             <span class="race-upcoming-position" aria-hidden="true">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span>
             <p class="race-upcoming-date">
               <time datetime="{{ event.startsOn }}">{{ event.displayDate.startsOn }}</time>
@@ -124,11 +142,22 @@ model: ""
               <span>{{ event.disciplineLabel }} · {{ country_pt }}</span>
               <h3>{{ event.name }}</h3>
               <p>{% include race-class-label.html value=event.competitionClass %}{% if event.venue != "" %} · {{ event.venue }}{% endif %}</p>
+              <div class="race-card-insights">
+                {% if event.deepProfile %}
+                  <span class="race-card-insight race-card-insight--verified">Guia completo</span>
+                  <span class="race-card-insight">{{ event.deepProfile.participation.label }}</span>
+                  {% if event.deepProfile.route.totalDistanceKm %}<span class="race-card-insight">{{ event.deepProfile.route.totalDistanceKm }} km</span>{% elsif event.deepProfile.route.courseOptions %}<span class="race-card-insight">{{ event.deepProfile.route.courseOptions.size }} percursos</span>{% endif %}
+                  <span class="race-card-insight">Dificuldade: {{ event.deepProfile.route.difficulty.label }}</span>
+                {% else %}
+                  <span class="race-card-insight">Ficha essencial validada</span>
+                {% endif %}
+              </div>
             </div>
-            <a href="{{ site.baseurl }}/corridas/detalhes/#{{ event.id }}" data-race-detail data-event-id="{{ event.id }}" data-race-section="upcoming" aria-label="Ver detalhes em português de {{ event.name }}">Detalhes <span aria-hidden="true">→</span></a>
+            <a href="{{ site.baseurl }}/corridas/detalhes/#{{ event.id }}" data-race-detail data-event-id="{{ event.id }}" data-race-section="upcoming" aria-label="Ver detalhes em português de {{ event.name }}">{% if event.deepProfile %}Abrir guia{% else %}Ver ficha{% endif %} <span aria-hidden="true">→</span></a>
           </li>
         {% endfor %}
       </ol>
+      <p class="race-filter-empty" data-race-filter-empty hidden>Nenhuma corrida corresponde a este filtro.</p>
     </section>
 
     <section id="profissional" class="race-content-section" aria-labelledby="professional-title">
@@ -171,18 +200,23 @@ model: ""
         </div>
         <p>Datas, categorias e inscrições só aparecem como confirmadas quando a organização ou a federação publica a informação.</p>
       </div>
-      <div class="brand-guide-grid race-article-grid">
+      <div class="race-participant-grid">
         {% assign participant_found = false %}
-        {% for post in published_posts %}
-          {% if post.content_type == "calendario-provas" or post.content_type == "guia-prova" %}
+        {% for event in public_calendar.upcoming %}
+          {% if event.countryCode == "BRA" and event.deepProfile %}
             {% assign participant_found = true %}
-            <article class="brand-guide-card">
-              <a href="{{ site.baseurl }}{{ post.url }}">
-                <img src="{{ site.baseurl }}{{ post.thumbnail | default: post.image | default: '/assets/img/system/covers/corrida-v2/card-640.webp' }}" alt="{{ post.image_alt | default: post.title | escape }}" width="900" height="600" loading="lazy">
-              </a>
-              <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%d.%m.%Y" }}</time>
-              <h3><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h3>
-              {% if post.description %}<p>{{ post.description }}</p>{% endif %}
+            <article class="race-participant-card">
+              <div class="race-participant-card-topline">
+                <time datetime="{{ event.startsOn }}">{{ event.displayDate.startsOn }}{% unless event.startsOn == event.endsOn %}–{{ event.displayDate.endsOn }}{% endunless %}</time>
+                <span>{{ event.deepProfile.participation.label }}</span>
+              </div>
+              <h3>{{ event.name }}</h3>
+              <p>{{ event.venue }} · {{ event.deepProfile.route.format }}</p>
+              <dl>
+                <div><dt>Percurso</dt><dd>{% if event.deepProfile.route.totalDistanceKm %}{{ event.deepProfile.route.totalDistanceKm }} km{% else %}{{ event.deepProfile.route.courseOptions.size }} opções{% endif %}</dd></div>
+                <div><dt>Dificuldade</dt><dd>{{ event.deepProfile.route.difficulty.label }}</dd></div>
+              </dl>
+              <a href="{{ site.baseurl }}/corridas/detalhes/#{{ event.id }}" data-race-detail data-event-id="{{ event.id }}" data-race-section="participant">Ver inscrição, percurso e logística <span aria-hidden="true">→</span></a>
             </article>
           {% endif %}
         {% endfor %}
@@ -203,3 +237,5 @@ model: ""
     </div>
   </section>
 </div>
+
+<script defer src="{{ site.baseurl }}/assets/js/race-calendar.js?v=1"></script>
