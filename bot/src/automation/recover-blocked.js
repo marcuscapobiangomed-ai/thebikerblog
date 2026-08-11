@@ -7,6 +7,28 @@ import { classifyEditorialFailure } from '../validation/editorial-failures.js'
 const TRANSIENT = /timeout|timed out|aborted|429|rate limit|temporar|econnreset|fetch failed/i
 const FINALIZATION = /^Valida(?:ção|cao) final:/i
 
+const REAL_CONTEXT_BY_RESERVE_ID = Object.freeze({
+  'reserva-diagnostico-ruidos-bike': 'bicicleta-scott-scale-940-black',
+  'reserva-pressao-pneus-terreno': 'pneu-schwalbe-racing-ray-29-x-2-25-super-race-tlr-addix',
+  'reserva-inspecao-pos-chuva': 'corrente-sram-nx-eagle',
+  'reserva-cabos-mangueiras-roteamento': 'bicicleta-scott-scale-940-black',
+  'reserva-limpeza-transmissao-metodo': 'corrente-sram-nx-eagle',
+})
+
+function realContextPolicy(item) {
+  const productId = REAL_CONTEXT_BY_RESERVE_ID[item.id]
+  if (!productId) return null
+  return {
+    productId,
+    heroImage: {
+      mode: 'real-context',
+      productId,
+      relationship: 'category-example',
+      rationale: 'Fotografia real do catálogo TheBiker usada apenas como exemplo visual da categoria técnica abordada.',
+    },
+  }
+}
+
 const RECOVERY_RESERVES = [
   { id: 'reserva-radar-profissional-oficial', title: 'Radar profissional: próxima prova com calendário e resultados oficialmente verificáveis', summary: 'Reserva de cobertura profissional que só avança depois de ser vinculada a um evento e a fontes oficiais revalidadas.', category: 'competicoes', race: { track: 'professional-coverage', format: 'weekly-roundup', eventIds: [], sourceStatus: 'pending' } },
   { id: 'reserva-calendario-participativo-oficial', title: 'Calendário brasileiro de provas: atualização com inscrições e mudanças verificadas', summary: 'Reserva participativa que permanece pendente até receber eventos oficiais, situação de inscrição e checagem recente das fontes.', category: 'competicoes', race: { track: 'participant-calendar', format: 'calendar-roundup', eventIds: [], sourceStatus: 'pending' } },
@@ -22,6 +44,7 @@ function localDate(now, timezone) {
 }
 
 function reserveToItem(reserve, blocked) {
+  const visual = realContextPolicy(reserve)
   return {
     day: blocked.day,
     publishDate: blocked.publishDate,
@@ -32,7 +55,8 @@ function reserveToItem(reserve, blocked) {
     ...(reserve.race ? { race: structuredClone(reserve.race) } : {}),
     freshness: reserve.category === 'competicoes' ? 'event-driven' : ['review', 'comparativo', 'lancamentos'].includes(reserve.category) ? 'revalidate-24h' : 'evergreen',
     status: 'planned',
-    productIds: [],
+    productIds: visual ? [visual.productId] : [],
+    ...(visual ? { heroImage: visual.heroImage } : {}),
     imageAssetIds: [],
     attempts: 0,
   }
@@ -55,6 +79,25 @@ export function recoverBlockedCampaign(campaignInput, {
   const blocked = campaign.items.find((item) => item.status === 'blocked' && item.publishDate >= today)
   if (!blocked) return { campaign, result: { status: 'idle' }, exception: null }
   let reason = blocked.blockReason || 'Motivo não informado'
+  const classified = blocked.failure || classifyEditorialFailure(reason, { stage: 'recovery', now })
+  const visual = realContextPolicy(blocked)
+  if (FINALIZATION.test(reason)
+      && classified.code === 'IMAGE_NOT_PUBLISHABLE'
+      && blocked.heroImage?.mode === 'conceptual'
+      && blocked.postPath
+      && finalizationDraftErrors.length === 0
+      && visual) {
+    blocked.productIds = [visual.productId]
+    blocked.heroImage = visual.heroImage
+    blocked.status = 'validation'
+    delete blocked.blockReason
+    delete blocked.failure
+    return {
+      campaign: CampaignSchema.parse(campaign),
+      result: { status: 'repair-finalization-visual', itemId: blocked.id, productId: visual.productId },
+      exception: null,
+    }
+  }
   if (FINALIZATION.test(reason) && blocked.postPath && finalizationDraftErrors.length === 0) {
     blocked.status = 'validation'
     delete blocked.blockReason
@@ -68,7 +111,6 @@ export function recoverBlockedCampaign(campaignInput, {
   if (FINALIZATION.test(reason) && finalizationDraftErrors.length > 0) {
     reason = `${reason}; rascunho ainda reprovado: ${finalizationDraftErrors.join('; ')}`
   }
-  const classified = blocked.failure || classifyEditorialFailure(reason, { stage: 'recovery', now })
   if (finalizationDraftErrors.length === 0 && (classified.retryable || TRANSIENT.test(reason)) && (blocked.attempts || 0) < maximumTransientAttempts) {
     blocked.status = 'planned'
     delete blocked.blockReason
