@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "source": "https://thebikershop.com.br/",
-  "discoveredAt": "2026-08-11T14:21:49.887Z",
+  "discoveredAt": "2026-08-11T16:53:27.595Z",
   "rightsPolicyId": "thebiker-official-editorial-v1",
   "total": 482,
   "products": [
@@ -4282,6 +4282,17 @@
       "sku": null
     },
     {
+      "id": "sapatilha-fizik-r5-overcuve-preta",
+      "name": "Sapatilha Road Fizik R5 Tempo - Preta",
+      "brand": "Fizik",
+      "category": "vestuario",
+      "productUrl": "https://thebikershop.com.br/produtos/sapatilha-fizik-r5-overcuve-preta/",
+      "images": [
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/1ff88e07b31-a7e3974b69046ee5c915736779617629-480-0.webp"
+      ],
+      "sku": "VST-197-39"
+    },
+    {
       "id": "meia-scott-no-shortcuts-preta",
       "name": "Meia Scott No ShortCuts Preta",
       "brand": "Scott",
@@ -4425,17 +4436,6 @@
       "sku": null
     },
     {
-      "id": "sapatilha-fizik-r5-overcuve-preta",
-      "name": "Sapatilha Road Fizik R5 Tempo - Preta",
-      "brand": "Fizik",
-      "category": "vestuario",
-      "productUrl": "https://thebikershop.com.br/produtos/sapatilha-fizik-r5-overcuve-preta/",
-      "images": [
-        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/1ff88e07b31-a7e3974b69046ee5c915736779617629-480-0.webp"
-      ],
-      "sku": "VST-197-39"
-    },
-    {
       "id": "camisa-de-ciclismo-scott-pro-2026-cinza",
       "name": "Camisa de Ciclismo Scott Pró 2026 Cinza",
       "brand": "Scott",
@@ -4520,6 +4520,17 @@
       "productUrl": "https://thebikershop.com.br/produtos/lente-extra-oculos-hb-presto-green/",
       "images": [
         "https://acdn-us.mitiendanube.com/stores/001/062/247/products/p_20100370681_21-7b7ecd96d39900ec3116509104563954-480-0.webp"
+      ],
+      "sku": null
+    },
+    {
+      "id": "luva-scott-rc-endurance-short-cinza",
+      "name": "Luva Scott RC Endurance Short",
+      "brand": "Scott",
+      "category": "vestuario",
+      "productUrl": "https://thebikershop.com.br/produtos/luva-scott-rc-endurance-short-cinza/",
+      "images": [
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/2232339-8d28f98cdfd1f1345817816158503903-480-0.webp"
       ],
       "sku": null
     },
@@ -4786,17 +4797,6 @@
         "https://acdn-us.mitiendanube.com/stores/001/062/247/products/espuma-scott-supra-tbkr1-0aeecce90d1725c55e16446676221630-480-0.webp"
       ],
       "sku": "2528010001222"
-    },
-    {
-      "id": "luva-scott-rc-endurance-short-cinza",
-      "name": "Luva Scott RC Endurance Short",
-      "brand": "Scott",
-      "category": "vestuario",
-      "productUrl": "https://thebikershop.com.br/produtos/luva-scott-rc-endurance-short-cinza/",
-      "images": [
-        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/2232339-8d28f98cdfd1f1345817816158503903-480-0.webp"
-      ],
-      "sku": null
     },
     {
       "id": "camisa-de-ciclismo-scott-pro-2026-laranja",

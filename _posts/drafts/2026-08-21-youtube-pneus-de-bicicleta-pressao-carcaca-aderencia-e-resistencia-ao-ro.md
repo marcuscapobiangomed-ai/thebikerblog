@@ -3,10 +3,10 @@ layout: post
 published: false
 title: "Pneus de bicicleta: pressão, carcaça, aderência e resistência ao rolamento"
 slug: "pneus-de-bicicleta-pressao-carcaca-aderencia-e-resistencia-ao-rolamento"
-date: 2026-08-10
-last_modified_at: 2026-08-10
+date: 2026-08-21
+last_modified_at: 2026-08-11
 author: "Equipe TheBiker"
-reviewed_by: ""
+reviewed_by: "TheBiker AI Editorial Gate"
 content_type: "guia-tecnico"
 audience_segment: "core_technical_cyclists"
 audience_intent: "technical_learning"
@@ -33,24 +33,24 @@ faq:
     answer: "A temperatura afeta diretamente a pressão interna devido à expansão térmica do ar. Segundo o manual de manutenção da Shimano, cada aumento de 10 °C na temperatura ambiente eleva a pressão interna do pneu em aproximadamente 0,2 bar."
   - question: "Por que pneus tubeless permitem pressões menores?"
     answer: "Sistemas tubeless eliminam o risco de 'snake bites' (furos por mordida da câmara contra o aro), permitindo uma redução de 10% a 15% na pressão de inflagem, o que melhora a aderência e o conforto sem comprometer a resistência ao rolamento."
-image: "/assets/img/system/covers/guia/hero.webp"
-image_mobile: "/assets/img/system/covers/guia/hero.webp"
-thumbnail: "/assets/img/system/covers/guia/thumb-480.webp"
+image: "/assets/img/posts/youtube-pneus-de-bicicleta-pressao-carcaca-aderencia-e-resistencia-ao-ro/hero-1600.webp"
+image_mobile: "/assets/img/posts/youtube-pneus-de-bicicleta-pressao-carcaca-aderencia-e-resistencia-ao-ro/hero-800.webp"
+thumbnail: "/assets/img/posts/youtube-pneus-de-bicicleta-pressao-carcaca-aderencia-e-resistencia-ao-ro/card-640.webp"
 image_manifest_version: 2
-image_asset_type: "system-fallback"
-image_status: "draft"
-image_alt: "Close-up técnico de pneu de alta performance em aro de carbono"
-image_caption: "A precisão na escolha do pneu define a eficiência do sistema roda-pneu."
-image_credit: "TheBiker com geração assistida por IA"
-image_license: "Uso editorial interno TheBiker"
+image_asset_type: "technical-diagram"
+image_status: "approved"
+image_alt: "Capa técnica TheBiker para o artigo Pneus de bicicleta: pressão, carcaça, aderência e resistência ao rolamento"
+image_caption: "Capa técnica produzida para o conteúdo editorial TheBiker."
+image_credit: "TheBiker"
+image_license: "Propriedade editorial TheBiker"
 affiliate_links: false
 editorial_scope: "portfolio"
 promoted_brands: ["Continental", "Schwalbe", "Vittoria"]
 context_only_brands: []
 portfolio_evidence_url: "https://thebikershop.com.br/componentes/"
 portfolio_verified_at: "2026-08-10"
-editorial_status: "draft"
-status: "draft"
+editorial_status: "reviewed"
+status: "scheduled"
 sources:
   - name: "Shimano – Maintenance Manual"
     type: "manufacturer"

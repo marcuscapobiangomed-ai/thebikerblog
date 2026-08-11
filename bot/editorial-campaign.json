@@ -131,6 +131,7 @@
         "thebiker-quadro-suspensao-spark-rc-world-cup-hmx-2026-flight-attendant-69b0b793fd"
       ],
       "imageValidatedAt": "2026-08-05T17:11:19.430Z",
+      "publishedAt": "2026-08-11T15:44:53.018Z",
       "attempts": 0,
       "aiReview": {
         "score": 0,
@@ -145,8 +146,7 @@
           "bufferFinalAudit": "groq"
         },
         "generatedAt": "2026-08-05T15:03:08.085Z"
-      },
-      "publishedAt": "2026-08-11T15:44:53.018Z"
+      }
     },
     {
       "day": 5,
@@ -462,11 +462,10 @@
       "summary": "Criar resposta técnica original para ciclista intermediário ou avançado, com método e limitações declarados. Sinal observado: 32.958 visualizações globais do vídeo; 2.235 por dia; encontrado em 1 busca(s) configurada(s) para o Brasil.",
       "category": "componentes",
       "freshness": "event-driven",
-      "status": "blocked",
+      "status": "scheduled",
       "productIds": [],
       "postPath": "_posts/drafts/2026-08-21-youtube-pneus-de-bicicleta-pressao-carcaca-aderencia-e-resistencia-ao-ro.md",
       "imageAssetIds": [],
-      "blockReason": "Validação final: Gate Markdown reprovado: linguagem publicitária proibida: imbatível",
       "attempts": 1,
       "lastAttemptAt": "2026-08-10T17:54:02.687Z",
       "aiReview": {
@@ -483,7 +482,10 @@
           "finalRepair": "deepseek"
         },
         "generatedAt": "2026-08-10T17:54:02.687Z"
-      }
+      },
+      "imageManifestPath": "assets/img/posts/youtube-pneus-de-bicicleta-pressao-carcaca-aderencia-e-resistencia-ao-ro/image-manifest.json",
+      "imageStatus": "approved",
+      "imageValidatedAt": "2026-08-11T16:53:28.675Z"
     },
     {
       "day": 15,
