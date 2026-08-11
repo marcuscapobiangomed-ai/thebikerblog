@@ -66,6 +66,85 @@ async function googleAccessToken(env) {
   return payload.access_token;
 }
 
+async function googleAdsAccessToken(env) {
+  const mapped = {
+    GOOGLE_CLIENT_ID: env.GOOGLE_ADS_CLIENT_ID,
+    GOOGLE_CLIENT_SECRET: env.GOOGLE_ADS_CLIENT_SECRET,
+    GOOGLE_REFRESH_TOKEN: env.GOOGLE_ADS_REFRESH_TOKEN,
+  };
+  try {
+    return await googleAccessToken(mapped);
+  } catch (error) {
+    throw new Error(String(error?.message || error).replace('Credenciais Google ausentes', 'Credenciais OAuth Google Ads ausentes'));
+  }
+}
+
+export function normalizeGoogleAdsKeywordIdeas(results = []) {
+  return results.map((result) => {
+    const metrics = result.keywordIdeaMetrics || result.keywordMetrics || {};
+    return {
+      term: String(result.text || '').trim(),
+      closeVariants: Array.isArray(result.closeVariants) ? result.closeVariants : [],
+      averageMonthlySearches: Number(metrics.avgMonthlySearches || 0),
+      competition: metrics.competition || 'UNSPECIFIED',
+      competitionIndex: Number(metrics.competitionIndex || 0),
+      lowTopOfPageBidMicros: Number(metrics.lowTopOfPageBidMicros || 0),
+      highTopOfPageBidMicros: Number(metrics.highTopOfPageBidMicros || 0),
+      monthlySearchVolumes: (metrics.monthlySearchVolumes || []).map((item) => ({
+        year: Number(item.year || 0),
+        month: item.month || 'UNSPECIFIED',
+        monthlySearches: Number(item.monthlySearches || 0),
+      })),
+    };
+  }).filter((item) => item.term);
+}
+
+async function googleAdsMarketDemand({ env, config, shopUrl }) {
+  const required = [
+    'GOOGLE_ADS_CLIENT_ID',
+    'GOOGLE_ADS_CLIENT_SECRET',
+    'GOOGLE_ADS_REFRESH_TOKEN',
+    'GOOGLE_ADS_DEVELOPER_TOKEN',
+    'GOOGLE_ADS_CUSTOMER_ID',
+  ];
+  const missing = required.filter((name) => !env[name]);
+  if (missing.length > 0) {
+    return { status: 'not_configured', items: [], error: `Configuração Google Ads pendente: ${missing.join(', ')}` };
+  }
+  const accessToken = await googleAdsAccessToken(env);
+  const apiVersion = String(env.GOOGLE_ADS_API_VERSION || 'v23').replace(/^v?/, 'v');
+  const customerId = String(env.GOOGLE_ADS_CUSTOMER_ID).replace(/\D/g, '');
+  const endpoint = `https://googleads.googleapis.com/${apiVersion}/customers/${customerId}:generateKeywordIdeas`;
+  const headers = {
+    Authorization: `Bearer ${accessToken}`,
+    'Content-Type': 'application/json',
+    'developer-token': env.GOOGLE_ADS_DEVELOPER_TOKEN,
+  };
+  if (env.GOOGLE_ADS_LOGIN_CUSTOMER_ID) {
+    headers['login-customer-id'] = String(env.GOOGLE_ADS_LOGIN_CUSTOMER_ID).replace(/\D/g, '');
+  }
+  const seedKeywords = (config.marketDemandSeedKeywords || []).map(String).filter(Boolean).slice(0, 20);
+  if (seedKeywords.length === 0) throw new Error('Google Ads Keyword Planner sem palavras-chave semente');
+  const seed = shopUrl
+    ? { keywordAndUrlSeed: { keywords: seedKeywords, url: shopUrl } }
+    : { keywordSeed: { keywords: seedKeywords } };
+  const response = await fetch(endpoint, {
+    method: 'POST',
+    headers,
+    signal: AbortSignal.timeout(45000),
+    body: JSON.stringify({
+      language: 'languageConstants/1014',
+      geoTargetConstants: ['geoTargetConstants/2076'],
+      includeAdultKeywords: false,
+      keywordPlanNetwork: 'GOOGLE_SEARCH',
+      pageSize: Math.min(1000, Number(config.marketDemandMaximumKeywords || 100)),
+      ...seed,
+    }),
+  });
+  const payload = await responseJson(response, 'Google Ads Keyword Planner');
+  return { status: 'available', items: normalizeGoogleAdsKeywordIdeas(payload.results), error: null };
+}
+
 async function searchConsoleRows({ accessToken, siteUrl, period, country = 'bra', maximumRows = 1000 }) {
   const endpoint = `https://www.googleapis.com/webmasters/v3/sites/${encodeURIComponent(siteUrl)}/searchAnalytics/query`;
   const rows = [];
@@ -319,6 +398,8 @@ export async function runEditorialIntelligence({
     .then((items) => ({ status: 'available', items, error: null }))
     .catch((error) => ({ status: 'unavailable', items: [], error: String(error?.message || error).slice(0, 240) }));
   const shop = searchConsoleSites.find((site) => site.id === 'shop');
+  const marketDemandPromise = googleAdsMarketDemand({ env, config, shopUrl: shop?.publicUrl })
+    .catch((error) => ({ status: 'unavailable', items: [], error: String(error?.message || error).slice(0, 500) }));
   const publicShopSeoPromise = shop?.publicUrl
     ? Promise.all([
       publicSiteAudit(shop.publicUrl)
@@ -350,12 +431,13 @@ export async function runEditorialIntelligence({
       return { site, status: 'not_authorized', error: String(error?.message || error).slice(0, 500), currentRows: [], previousRows: [], brazilCurrent: empty, brazilPrevious: empty, globalCurrent: empty, globalPrevious: empty };
     }
   }));
-  const [siteResults, youtube, contentIndex, trends, publicShopSeo] = await Promise.all([
+  const [siteResults, youtube, contentIndex, trends, publicShopSeo, marketDemand] = await Promise.all([
     siteResultsPromise,
     youtubePromise,
     fetch(env.CONTENT_INDEX_URL || config.contentIndexUrl).then((response) => responseJson(response, 'Índice público do blog')),
     trendsPromise,
     publicShopSeoPromise,
+    marketDemandPromise,
   ]);
   const gscCurrent = siteResults.flatMap((result) => result.currentRows);
   const gscPrevious = siteResults.flatMap((result) => result.previousRows);
@@ -399,11 +481,14 @@ export async function runEditorialIntelligence({
     googleTrendsStatus: { status: trends.status, error: trends.error },
     publicShopSeo,
     youtubeStatus: { status: youtube.status, error: youtube.error },
+    marketDemand: marketDemand.items,
+    marketDemandStatus: { status: marketDemand.status, error: marketDemand.error },
   });
   await fs.mkdir(outputDirectory, { recursive: true });
   const jsonPath = path.join(outputDirectory, `${report.runKey}.json`);
   const markdownPath = path.join(outputDirectory, `${report.runKey}.md`);
   const queriesCsvPath = path.join(outputDirectory, `${report.runKey}-consultas-brasil.csv`);
+  const marketDemandCsvPath = path.join(outputDirectory, `${report.runKey}-demanda-google-brasil.csv`);
   await fs.writeFile(jsonPath, JSON.stringify(report, null, 2) + '\n');
   await fs.writeFile(markdownPath, intelligenceMarkdown(report) + '\n');
   const csvCell = (value) => `"${String(value ?? '').replaceAll('"', '""')}"`;
@@ -413,7 +498,13 @@ export async function runEditorialIntelligence({
     item.devices.join('|'), item.targetUrls.join('|'), item.cannibalizationRisk, item.opportunityScore,
   ]);
   await fs.writeFile(queriesCsvPath, [csvHeader, ...csvRows].map((row) => row.map(csvCell).join(',')).join('\n') + '\n');
-  return { report, jsonPath, markdownPath, queriesCsvPath };
+  const demandHeader = ['rank', 'termo', 'cluster', 'intencao', 'buscas_mensais_medias', 'tendencia', 'concorrencia_ads', 'indice_concorrencia', 'aderencia_portfolio', 'cobertura_blog', 'acao'];
+  const demandRows = (report.brazilRankings?.googleMarketDemand || []).map((item) => [
+    item.rank, item.term, item.cluster, item.intent, item.averageMonthlySearches, item.trend,
+    item.competition, item.competitionIndex, item.portfolioRelevance, item.coverage?.url || '', item.recommendedAction,
+  ]);
+  await fs.writeFile(marketDemandCsvPath, [demandHeader, ...demandRows].map((row) => row.map(csvCell).join(',')).join('\n') + '\n');
+  return { report, jsonPath, markdownPath, queriesCsvPath, marketDemandCsvPath };
 }
 
 if (path.resolve(process.argv[1] || '') === fileURLToPath(import.meta.url)) {
