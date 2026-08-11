@@ -3,7 +3,7 @@
   "source": "https://thebikershop.com.br/",
   "discoveredAt": "2026-08-11T16:53:27.595Z",
   "rightsPolicyId": "thebiker-official-editorial-v1",
-  "total": 483,
+  "total": 484,
   "products": [
     {
       "id": "quadro-scott-scale-rc-team-hmf-2026",
@@ -980,6 +980,18 @@
         "https://acdn-us.mitiendanube.com/stores/001/062/247/products/am-db-rotorbolts-hs2-180-rounded-c-side-s1-de1201694b57a0f72116528168136249-480-0.webp"
       ],
       "sku": "00.5018.176.000"
+    },
+    {
+      "id": "disco-de-freio-shimano-xtr-cl900-center-lock",
+      "name": "Disco de Freio Shimano XTR CL900 Center Lock",
+      "brand": "Shimano",
+      "category": "componentes",
+      "productUrl": "https://thebikershop.com.br/produtos/disco-de-freio-shimano-xtr-cl900-center-lock/",
+      "images": [
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/shimano-xtr-bremsscheibe-rt-cl900-center-lock-180-mm-icetech-freeza-35a84b0e7471dfcb9517565614721715-1024-1024.webp",
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/shimano-xtr-bremsscheibe-rt-cl900-center-lock-180-mm-icetech-freeza2-abe3a5ff4ec35f2f6417565614721420-1024-1024.webp"
+      ],
+      "sku": null
     },
     {
       "id": "pastilha-de-freio-shimano-k05ti-resina-xtr-dura-ace",

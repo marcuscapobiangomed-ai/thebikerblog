@@ -1,4 +1,5 @@
 ---
+image_subject_id: "disco-de-freio-shimano-xtr-cl900-center-lock"
 layout: post
 published: true
 title: "Pinça, rotor e contato de pastilha: como eliminar atrito sem perder potência de frenagem"
@@ -32,21 +33,25 @@ image: "/assets/img/posts/alinhamento-pinca-rotores/hero-1600.webp"
 image_mobile: "/assets/img/posts/alinhamento-pinca-rotores/hero-800.webp"
 thumbnail: "/assets/img/posts/alinhamento-pinca-rotores/card-640.webp"
 image_manifest_version: 2
-image_asset_type: "technical-diagram"
+image_asset_type: "official-product-photo"
 image_status: "approved"
-image_alt: "Capa técnica TheBiker para o artigo Pinça, rotor e contato de pastilha: como eliminar atrito sem perder potência de frenagem"
-image_caption: "Capa técnica produzida para o conteúdo editorial TheBiker."
-image_credit: "TheBiker"
-image_license: "Propriedade editorial TheBiker"
+image_alt: "Disco de Freio Shimano XTR CL900 Center Lock em fotografia oficial de TheBiker Shop"
+image_caption: "Disco de Freio Shimano XTR CL900 Center Lock, em fotografia oficial de TheBiker Shop."
+image_credit: "TheBiker Shop"
+image_license: "Uso editorial no blog oficial TheBiker"
 affiliate_links: false
 editorial_scope: "portfolio"
-promoted_brands: ["Scott"]
+promoted_brands: ["Scott", "Shimano"]
 context_only_brands: []
-portfolio_evidence_url: "https://thebikershop.com.br/categoria/bicicletas/scott/"
-portfolio_verified_at: "2026-08-05"
+portfolio_evidence_url: "https://thebikershop.com.br/produtos/disco-de-freio-shimano-xtr-cl900-center-lock/"
+portfolio_verified_at: "2026-08-11"
 editorial_status: "published"
 status: "published"
 sources:
+  - name: "TheBiker — Disco de Freio Shimano XTR CL900 Center Lock"
+    type: "store"
+    url: "https://thebikershop.com.br/produtos/disco-de-freio-shimano-xtr-cl900-center-lock/"
+    accessed_at: "2026-08-11"
   - name: "Scott — página oficial do modelo Addict 50"
     type: "manufacturer"
     url: "https://www.scott-sports.com/global/en/product/scott-addict-50-bike"

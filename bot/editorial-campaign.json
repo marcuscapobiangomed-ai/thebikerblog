@@ -95,15 +95,20 @@
       "category": "manutencao-ajustes",
       "freshness": "evergreen",
       "status": "published",
-      "productIds": [],
+      "productIds": [
+        "disco-de-freio-shimano-xtr-cl900-center-lock"
+      ],
       "heroImage": {
-        "mode": "conceptual"
+        "mode": "exact-product",
+        "productId": "disco-de-freio-shimano-xtr-cl900-center-lock"
       },
       "postPath": "_posts/2026-08-10-alinhamento-pinca-rotores.md",
       "imageManifestPath": "assets/img/posts/alinhamento-pinca-rotores/image-manifest.json",
       "imageStatus": "approved",
-      "imageAssetIds": [],
-      "imageValidatedAt": "2026-08-11T16:48:32.773Z",
+      "imageAssetIds": [
+        "thebiker-disco-de-freio-shimano-xtr-cl900-center-lock-0be782d12c"
+      ],
+      "imageValidatedAt": "2026-08-11T17:27:56.748Z",
       "publishedAt": "2026-08-10T15:44:48.961Z",
       "attempts": 0,
       "aiReview": {

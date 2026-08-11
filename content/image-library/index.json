@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-08-11T16:48:32.769Z",
+  "updatedAt": "2026-08-11T17:27:56.710Z",
   "assets": [
     {
       "assetId": "thebiker-scott-addict-rc-pro-hmx-frame-set-def10da96a",
@@ -218,6 +218,23 @@
       "uses": [
         {
           "postId": "cambio-eletronico-ajuste-diagnostico",
+          "position": "hero",
+          "usedAt": "2026-08-11T12:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "assetId": "thebiker-disco-de-freio-shimano-xtr-cl900-center-lock-0be782d12c",
+      "sha256": "0be782d12cb20b4078ed771a6f0058c545bc6f512a903db7326a4d77e0170e97",
+      "perceptualHash": "1111111111100111110000111100001111000011110000111100001111111111",
+      "sourcePageUrl": "https://thebikershop.com.br/produtos/disco-de-freio-shimano-xtr-cl900-center-lock/",
+      "sourceFileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/shimano-xtr-bremsscheibe-rt-cl900-center-lock-180-mm-icetech-freeza-35a84b0e7471dfcb9517565614721715-1024-1024.webp",
+      "productId": "disco-de-freio-shimano-xtr-cl900-center-lock",
+      "productName": "Disco de Freio Shimano XTR CL900 Center Lock",
+      "rightsPolicyId": "thebiker-official-editorial-v1",
+      "uses": [
+        {
+          "postId": "alinhamento-pinca-rotores",
           "position": "hero",
           "usedAt": "2026-08-11T12:00:00.000Z"
         }
