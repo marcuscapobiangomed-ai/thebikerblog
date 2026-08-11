@@ -1,7 +1,7 @@
 {
   "version": 1,
   "timezone": "America/Sao_Paulo",
-  "updatedAt": "2026-08-11T20:52:07.788Z",
+  "updatedAt": "2026-08-11T21:10:47.976Z",
   "policy": {
     "officialSourcesOnly": true,
     "revalidateBeforePublicationHours": 24,
@@ -204,7 +204,7 @@
     }
   ],
   "publicCalendar": {
-    "generatedAt": "2026-08-11T20:52:07.788Z",
+    "generatedAt": "2026-08-11T21:10:47.976Z",
     "asOfDate": "2026-08-11",
     "asOfDateDisplay": "11/08/2026",
     "timezone": "America/Sao_Paulo",
@@ -234,11 +234,11 @@
           "officialUrl": "https://www.uci.org/competition-details/2026/ROA/78327",
           "validationMethod": "official-calendar",
           "organizerUrl": "https://fpciclismo.pt",
-          "checkedAt": "2026-08-11T20:52:07.788Z"
+          "checkedAt": "2026-08-11T21:10:47.976Z"
         },
         "deepProfile": {
           "status": "verified",
-          "checkedAt": "2026-08-11T20:52:07.788Z",
+          "checkedAt": "2026-08-11T21:10:47.976Z",
           "source": {
             "publisher": "Federação Portuguesa de Ciclismo",
             "url": "https://www.fpciclismo.pt/noticia/volta-a-portugal-apresenta-percurso-da-87-edicao--e-inaugura-um-novo-ciclo-rumo-ao-centenario",
@@ -391,7 +391,7 @@
           "officialUrl": "https://www.uci.org/competition-details/2026/ROA/78330",
           "validationMethod": "official-calendar",
           "organizerUrl": "https://WWW.FEDERACIONCOLOMBIANADECICLISMO.COM",
-          "checkedAt": "2026-08-11T20:52:07.788Z"
+          "checkedAt": "2026-08-11T21:10:47.976Z"
         }
       },
       {
@@ -417,7 +417,7 @@
           "officialUrl": "https://www.uci.org/competition-details/2026/ROA/78560",
           "validationMethod": "official-calendar",
           "organizerUrl": "https://www.criteriumdecolmar.fr/",
-          "checkedAt": "2026-08-11T20:52:07.788Z"
+          "checkedAt": "2026-08-11T21:10:47.976Z"
         }
       }
     ],
@@ -445,7 +445,7 @@
           "officialUrl": "https://www.uci.org/competition-details/2026/ROA/76938",
           "validationMethod": "official-calendar",
           "organizerUrl": "https://www.tourdepologne.pl",
-          "checkedAt": "2026-08-11T20:52:07.788Z"
+          "checkedAt": "2026-08-11T21:10:47.976Z"
         }
       },
       {
@@ -471,7 +471,7 @@
           "officialUrl": "https://www.uci.org/competition-details/2026/ROA/76937",
           "validationMethod": "official-calendar",
           "organizerUrl": "https://letourfemmes.fr",
-          "checkedAt": "2026-08-11T20:52:07.788Z"
+          "checkedAt": "2026-08-11T21:10:47.976Z"
         }
       },
       {
@@ -497,7 +497,7 @@
           "officialUrl": "https://www.uci.org/competition-details/2026/ROA/78326",
           "validationMethod": "official-calendar",
           "organizerUrl": "https://www.vueltaburgos.es",
-          "checkedAt": "2026-08-11T20:52:07.788Z"
+          "checkedAt": "2026-08-11T21:10:47.976Z"
         }
       }
     ],
@@ -525,7 +525,7 @@
           "officialUrl": "https://www.uci.org/competition-details/2026/ROA/78339",
           "validationMethod": "official-calendar",
           "organizerUrl": "https://www.arctic-race.com",
-          "checkedAt": "2026-08-11T20:52:07.788Z"
+          "checkedAt": "2026-08-11T21:10:47.976Z"
         }
       },
       {
@@ -551,7 +551,7 @@
           "officialUrl": "https://www.uci.org/competition-details/2026/ROA/78340",
           "validationMethod": "official-calendar",
           "organizerUrl": "https://www.czechtour.com",
-          "checkedAt": "2026-08-11T20:52:07.788Z"
+          "checkedAt": "2026-08-11T21:10:47.976Z"
         }
       },
       {
@@ -577,7 +577,7 @@
           "officialUrl": "https://www.uci.org/competition-details/2026/MTB/77092",
           "validationMethod": "official-calendar",
           "organizerUrl": "https://ucimtbworldseries.com/",
-          "checkedAt": "2026-08-11T20:52:07.788Z"
+          "checkedAt": "2026-08-11T21:10:47.976Z"
         }
       },
       {
@@ -603,7 +603,7 @@
           "officialUrl": "https://www.uci.org/competition-details/2026/ROA/76939",
           "validationMethod": "official-calendar",
           "organizerUrl": "https://www.cyclassics-hamburg.de",
-          "checkedAt": "2026-08-11T20:52:07.788Z"
+          "checkedAt": "2026-08-11T21:10:47.976Z"
         }
       },
       {
@@ -629,7 +629,80 @@
           "officialUrl": "https://www.desafiorural.com/",
           "discoveryUrl": "https://www.calendariomtb.com.br/evento/Desafio-Rural-de-MTB-3-etapa-2026/10723/",
           "validationMethod": "discovery-plus-organizer",
-          "checkedAt": "2026-08-11T20:52:07.788Z"
+          "checkedAt": "2026-08-11T21:10:47.976Z"
+        },
+        "deepProfile": {
+          "status": "verified",
+          "checkedAt": "2026-08-11T21:10:47.976Z",
+          "source": {
+            "publisher": "Desafio Rural MTB",
+            "url": "https://www.desafiorural.com/infos-dr-3-etapa-2026",
+            "validationMethod": "official-event-details"
+          },
+          "participation": {
+            "status": "closed",
+            "label": "Prazo online encerrado",
+            "description": "A página de inscrição publicou o último lote até 10/08. O link oficial permanece disponível para consulta e segunda via; não afirmamos vaga após o prazo.",
+            "url": "https://inscricoes.desafiorural.com.br/",
+            "deadline": "2026-08-10"
+          },
+          "route": {
+            "format": "Maratona MTB de um dia com três percursos",
+            "difficulty": {
+              "label": "De iniciante a avançada",
+              "basis": "A organização publicou três combinações distintas de distância e subida acumulada; a exigência cresce de Light para Sport e Pro.",
+              "assessmentType": "editorial-from-official-route"
+            },
+            "highlights": [
+              "A categoria Pro concentra 1.700 m de subida em aproximadamente 60 km.",
+              "O briefing virtual da semana da prova terá GPX e horários definitivos.",
+              "Quilometragem e altimetria foram marcadas pela organização como aproximadas e sujeitas a alteração."
+            ],
+            "courseOptions": [
+              {
+                "label": "Pro",
+                "distanceKm": 60,
+                "elevationGainM": 1700,
+                "difficulty": "Avançada",
+                "terrain": "Percurso MTB de maratona em Paraibuna",
+                "note": "Valores aproximados; aguardar o briefing e o GPX finais."
+              },
+              {
+                "label": "Sport",
+                "distanceKm": 49,
+                "elevationGainM": 1200,
+                "difficulty": "Intermediária",
+                "terrain": "Percurso MTB de maratona em Paraibuna",
+                "note": "Valores aproximados; aguardar o briefing e o GPX finais."
+              },
+              {
+                "label": "Light",
+                "distanceKm": 25,
+                "elevationGainM": 605,
+                "difficulty": "Entrada/menor volume",
+                "terrain": "Percurso MTB de maratona em Paraibuna",
+                "note": "Valores aproximados; aguardar o briefing e o GPX finais."
+              }
+            ]
+          },
+          "categories": [
+            "Três grupos de percurso: Pro, Sport e Light.",
+            "A inscrição inclui seguro, medalha, brindes e hidratação, segundo a página oficial."
+          ],
+          "logistics": [
+            {
+              "label": "Arena",
+              "detail": "Ginásio Poliesportivo, Av. Major Elias Calazans, 365, Paraibuna/SP."
+            },
+            {
+              "label": "Largada",
+              "detail": "Prevista para 8h30; horários por categoria serão confirmados no briefing virtual."
+            },
+            {
+              "label": "GPX",
+              "detail": "A organização informou que os arquivos serão liberados na semana anterior à prova."
+            }
+          ]
         }
       },
       {
@@ -655,7 +728,86 @@
           "officialUrl": "https://www.ironbiker.com.br/",
           "discoveryUrl": "https://www.calendariomtb.com.br/evento/Iron-Biker-Brasil-2026/10469/",
           "validationMethod": "discovery-plus-organizer",
-          "checkedAt": "2026-08-11T20:52:07.788Z"
+          "checkedAt": "2026-08-11T21:10:47.976Z"
+        },
+        "deepProfile": {
+          "status": "verified",
+          "checkedAt": "2026-08-11T21:10:47.976Z",
+          "source": {
+            "publisher": "Iron Biker Brasil",
+            "url": "https://www.ironbiker.com.br/regulamento",
+            "validationMethod": "official-event-details"
+          },
+          "participation": {
+            "status": "open",
+            "label": "Inscrições abertas",
+            "description": "Inscrição individual ou em dupla pelo site oficial, até 19/08 ou o esgotamento das vagas. A ativação exige doação mínima de 2 kg de alimentos na retirada do kit.",
+            "url": "https://www.ironbiker.com.br/inscricoes",
+            "deadline": "2026-08-19"
+          },
+          "route": {
+            "format": "Dois dias de maratona, com percursos A e B",
+            "difficulty": {
+              "label": "Alta no A; moderada a alta no B",
+              "basis": "Síntese editorial baseada nas distâncias, nos dois dias consecutivos e no regulamento, que cita ruas, estradas, trilhas e uma subida específica para Rei e Rainha da Montanha.",
+              "assessmentType": "editorial-from-official-route"
+            },
+            "highlights": [
+              "A classificação geral soma os tempos dos dois dias de competição.",
+              "O percurso A totaliza 168 km nos dois dias; o B, 113 km, incluindo deslocamentos.",
+              "O regulamento avisa que distâncias, horários e altimetria podem mudar até a homologação final."
+            ],
+            "courseOptions": [
+              {
+                "label": "Percurso A · sábado",
+                "distanceKm": 88,
+                "difficulty": "Alta",
+                "terrain": "7 km de deslocamento, 75 km cronometrados e 6 km de retorno",
+                "startTime": "Largada 7h30"
+              },
+              {
+                "label": "Percurso A · domingo",
+                "distanceKm": 80,
+                "difficulty": "Alta",
+                "terrain": "7 km de deslocamento, 67 km cronometrados e 6 km de retorno",
+                "startTime": "Largada 7h30"
+              },
+              {
+                "label": "Percurso B · sábado",
+                "distanceKm": 55,
+                "difficulty": "Moderada a alta",
+                "terrain": "7 km de deslocamento, 42 km cronometrados e 6 km de retorno",
+                "startTime": "Largada 8h20"
+              },
+              {
+                "label": "Percurso B · domingo",
+                "distanceKm": 58,
+                "difficulty": "Moderada a alta",
+                "terrain": "7 km de deslocamento, 45 km cronometrados e 6 km de retorno",
+                "startTime": "Largada 8h20"
+              }
+            ]
+          },
+          "categories": [
+            "37 classes entre percursos A e B, individuais e duplas.",
+            "Percurso A: Elite federada, categorias por idade e duplas; somente nascidos até 2007.",
+            "Percurso B: categorias juvenis, Adventure, Masters, femininas, duplas, PCD e E-bike.",
+            "E-bikes competem somente no percurso B, embora larguem no bloco do A."
+          ],
+          "logistics": [
+            {
+              "label": "Kit",
+              "detail": "Teatro Municipal de Mariana: 10/09, 16h–20h; 11/09, 10h–21h; ou 12/09, 7h–8h."
+            },
+            {
+              "label": "Documento",
+              "detail": "Documento com foto; menores de 18 anos precisam de autorização e cópia do documento do responsável."
+            },
+            {
+              "label": "Atenção",
+              "detail": "O Guia do Atleta e o regulamento homologado mais próximo da prova prevalecem sobre os números preliminares."
+            }
+          ]
         }
       },
       {
@@ -681,7 +833,75 @@
           "officialUrl": "https://www.challengemtb.com.br/",
           "discoveryUrl": "https://www.calendariomtb.com.br/evento/Challenge-MTB-4-etapa-2026/10818/",
           "validationMethod": "discovery-plus-organizer",
-          "checkedAt": "2026-08-11T20:52:07.788Z"
+          "checkedAt": "2026-08-11T21:10:47.976Z"
+        },
+        "deepProfile": {
+          "status": "verified",
+          "checkedAt": "2026-08-11T21:10:47.976Z",
+          "source": {
+            "publisher": "Challenge Chaoyang de MTB / RaceTop",
+            "url": "https://www.racetop.com.br/evento/5534/challenge-chaoyang-de-mtb-etapa-paulo-lopes",
+            "validationMethod": "official-event-details"
+          },
+          "participation": {
+            "status": "open",
+            "label": "Inscrições abertas",
+            "description": "Inscrição pela RaceTop, página indicada pelo organizador. O segundo lote está publicado até 08/09, com categorias gerais, PNE e faixas 60+.",
+            "url": "https://www.racetop.com.br/evento/5534/challenge-chaoyang-de-mtb-etapa-paulo-lopes",
+            "deadline": "2026-09-08"
+          },
+          "route": {
+            "format": "Mountain bike maratona com três níveis de categoria",
+            "difficulty": {
+              "label": "Variável por categoria",
+              "basis": "A organização oferece Pro, Sport e Amador e descreve trilhas inéditas e desafios para diferentes níveis, mas ainda não publicou quilometragem ou altimetria da etapa consultada.",
+              "assessmentType": "editorial-from-official-route"
+            },
+            "highlights": [
+              "Etapa inédita no município de Paulo Lopes, com largada às 8h.",
+              "A página confirma categorias Pro, Sport e Amador, além de Gravel, E-bike, duplas, PNE e faixas etárias.",
+              "Distância, altimetria e GPX não aparecem na página oficial consultada; o blog não os estima."
+            ],
+            "courseOptions": [
+              {
+                "label": "Pro",
+                "distanceLabel": "Distância não publicada",
+                "difficulty": "Maior exigência da etapa",
+                "terrain": "Trilhas inéditas em Paulo Lopes; desenho detalhado ainda não publicado"
+              },
+              {
+                "label": "Sport",
+                "distanceLabel": "Distância não publicada",
+                "difficulty": "Intermediária",
+                "terrain": "Percurso específico ainda não publicado pela organização"
+              },
+              {
+                "label": "Amador",
+                "distanceLabel": "Distância não publicada",
+                "difficulty": "Acesso e faixas variadas",
+                "terrain": "Percurso específico ainda não publicado pela organização"
+              }
+            ]
+          },
+          "categories": [
+            "Pro inclui Elite, faixas Master, Gravel e duplas.",
+            "Sport inclui faixas etárias, feminino, E-bike, duplas e 60+/65+.",
+            "Amador inclui faixas etárias, feminino, Pesadão, PNE e categorias juvenis."
+          ],
+          "logistics": [
+            {
+              "label": "Arena",
+              "detail": "Parque Municipal de Eventos Abelardo Juvêncio Rodrigues, Paulo Lopes/SC."
+            },
+            {
+              "label": "Kit",
+              "detail": "12/09, 14h–18h; ou 13/09 a partir das 6h."
+            },
+            {
+              "label": "Largada",
+              "detail": "13/09 às 8h, conforme a página de inscrição oficial."
+            }
+          ]
         }
       },
       {
@@ -707,7 +927,81 @@
           "officialUrl": "https://desafionatureza.com.br/",
           "discoveryUrl": "https://www.calendariomtb.com.br/evento/Desafio-Natureza-4-etapa-2026/10520/",
           "validationMethod": "discovery-plus-organizer",
-          "checkedAt": "2026-08-11T20:52:07.788Z"
+          "checkedAt": "2026-08-11T21:10:47.976Z"
+        },
+        "deepProfile": {
+          "status": "verified",
+          "checkedAt": "2026-08-11T21:10:47.976Z",
+          "source": {
+            "publisher": "Desafio Natureza",
+            "url": "https://inscricoes.desafionatureza.com.br/regulamento.php",
+            "validationMethod": "official-event-details"
+          },
+          "participation": {
+            "status": "open",
+            "label": "Inscrição online disponível",
+            "description": "A organização exige inscrição pelo próprio atleta. O prazo específico da etapa não está no regulamento; inscrição no dia pode existir somente se houver vagas.",
+            "url": "https://inscricoes.desafionatureza.com.br/"
+          },
+          "route": {
+            "format": "Maratona XC com circuitos Pro, Sport e Light",
+            "difficulty": {
+              "label": "Progressiva: Light, Sport e Pro",
+              "basis": "O regulamento relaciona cada circuito a nível técnico, resistência, faixa de distância e altimetria; os números específicos de Passa Quatro dependem do briefing e GPX da etapa.",
+              "assessmentType": "editorial-from-official-route"
+            },
+            "highlights": [
+              "A escolha do circuito é responsabilidade do atleta conforme nível técnico e condicionamento.",
+              "O trajeto pode incluir estradas rurais, pavimentadas e trechos urbanos com trânsito aberto.",
+              "Quilometragem, altimetria e GPX específicos serão publicados previamente pela organização."
+            ],
+            "courseOptions": [
+              {
+                "label": "Pro",
+                "distanceLabel": "Referência: 60–70 km",
+                "elevationLabel": "Referência: 1.200–1.800 m+",
+                "difficulty": "Alta",
+                "terrain": "Maratona XC para atletas com técnica e condicionamento altos",
+                "note": "Faixa geral do campeonato; ainda não é o GPX definitivo de Passa Quatro."
+              },
+              {
+                "label": "Sport",
+                "distanceLabel": "Referência: 40–50 km",
+                "elevationLabel": "Referência: 900–1.200 m+",
+                "difficulty": "Intermediária",
+                "terrain": "Maratona XC para nível médio de técnica e resistência",
+                "note": "Faixa geral do campeonato; ainda não é o GPX definitivo de Passa Quatro."
+              },
+              {
+                "label": "Light",
+                "distanceLabel": "Referência: 20–30 km",
+                "elevationLabel": "Referência: até 800 m+",
+                "difficulty": "Entrada/iniciante",
+                "terrain": "Circuito destinado a iniciantes que já participam de passeios",
+                "note": "Faixa geral do campeonato; ainda não é o GPX definitivo de Passa Quatro."
+              }
+            ]
+          },
+          "categories": [
+            "Pro: solo e dupla, com divisões por idade e sexo.",
+            "Sport: solo e dupla, incluindo feminino, Gravel e E-bike.",
+            "Light: solo e dupla, incluindo Heavy Pilot e categorias femininas.",
+            "Menores de idade só podem participar no circuito Light, com autorização."
+          ],
+          "logistics": [
+            {
+              "label": "Horário-limite",
+              "detail": "Conclusão até 14h para todas as modalidades."
+            },
+            {
+              "label": "Segurança",
+              "detail": "Capacete e luvas são obrigatórios; fones de ouvido são proibidos."
+            },
+            {
+              "label": "Apoio",
+              "detail": "Alimentação e apoio mecânico são responsabilidade do atleta; hidratação oficial será informada no briefing."
+            }
+          ]
         }
       },
       {
@@ -733,7 +1027,77 @@
           "officialUrl": "https://cimtb.com.br/",
           "discoveryUrl": "https://www.calendariomtb.com.br/evento/CIMTB-Congonhas-2026/10409/",
           "validationMethod": "discovery-plus-organizer",
-          "checkedAt": "2026-08-11T20:52:07.788Z"
+          "checkedAt": "2026-08-11T21:10:47.976Z"
+        },
+        "deepProfile": {
+          "status": "verified",
+          "checkedAt": "2026-08-11T21:10:47.976Z",
+          "source": {
+            "publisher": "Copa Internacional de Mountain Bike",
+            "url": "https://cimtb.com.br/inscricoes-abertas-para-o-grande-encerramento-da-temporada-da-cimtb-em-congonhas/",
+            "validationMethod": "official-event-details"
+          },
+          "participation": {
+            "status": "open",
+            "label": "Inscrições abertas",
+            "description": "A organização anuncia vagas limitadas em mais de 60 categorias e direciona o cadastro para a página oficial do evento na Sympla.",
+            "url": "https://www.sympla.com.br/evento/cimtb-copa-internacional-de-mtb-etapa-3-congonhas/3448680"
+          },
+          "route": {
+            "format": "Três dias: XCC, XCO e XCM, além de passeio",
+            "difficulty": {
+              "label": "De passeio a competição UCI",
+              "basis": "A programação reúne passeio de 12 km, maratona reduzida e completa e provas XCC/XCO de alto rendimento; a altimetria oficial ainda não foi publicada na fonte consultada.",
+              "assessmentType": "editorial-from-official-route"
+            },
+            "highlights": [
+              "Sexta-feira concentra o Short Track; sábado, o Cross Country Olímpico; domingo, a Maratona.",
+              "A maratona oferece 65 km completos e 42 km reduzidos; o passeio de turismo tem 12 km.",
+              "XCC é Classe 3 UCI; XCO e XCM são Classe 1, conforme a organização."
+            ],
+            "courseOptions": [
+              {
+                "label": "XCM completo",
+                "distanceKm": 65,
+                "difficulty": "Alta/competitiva",
+                "terrain": "Maratona MTB em Congonhas; altimetria ainda não publicada",
+                "startTime": "Domingo · 9h"
+              },
+              {
+                "label": "XCM reduzido",
+                "distanceKm": 42,
+                "difficulty": "Intermediária a alta",
+                "terrain": "Versão reduzida da maratona; altimetria ainda não publicada",
+                "startTime": "Domingo · 9h"
+              },
+              {
+                "label": "Turismo/passeio",
+                "distanceKm": 12,
+                "difficulty": "Participativa",
+                "terrain": "Passeio de mountain bike sem altimetria publicada",
+                "startTime": "Domingo · 9h30"
+              }
+            ]
+          },
+          "categories": [
+            "Mais de 60 categorias distribuídas entre XCC, XCO e XCM.",
+            "Há disputas Elite, Sub-23, Júnior, categorias de base, Masters, E-bike e Turismo.",
+            "O atleta pode se inscrever em uma modalidade ou disputar os três dias."
+          ],
+          "logistics": [
+            {
+              "label": "Sexta",
+              "detail": "XCC e atividades de abertura em 25/09."
+            },
+            {
+              "label": "Sábado",
+              "detail": "Baterias de XCO e campeonato de habilidades em 26/09."
+            },
+            {
+              "label": "Domingo",
+              "detail": "Secretaria 7h–11h; XCM às 9h e passeio às 9h30 em 27/09."
+            }
+          ]
         }
       },
       {
@@ -759,7 +1123,75 @@
           "officialUrl": "https://www.brasilride.com.br/",
           "discoveryUrl": "https://www.calendariomtb.com.br/evento/Brasil-Ride-2026/10678/",
           "validationMethod": "discovery-plus-organizer",
-          "checkedAt": "2026-08-11T20:52:07.788Z"
+          "checkedAt": "2026-08-11T21:10:47.976Z"
+        },
+        "deepProfile": {
+          "status": "verified",
+          "checkedAt": "2026-08-11T21:10:47.976Z",
+          "source": {
+            "publisher": "Brasil Ride",
+            "url": "https://www.brasilride.com.br/provas/brasil-ride-paraiba-2026/",
+            "validationMethod": "official-event-details"
+          },
+          "participation": {
+            "status": "open",
+            "label": "Inscrições abertas",
+            "description": "Cadastro pela Sprinta para a competição oficial de sete dias ou para a E-bike Expedition não competitiva. Critérios variam entre Solo Elite, duplas e trio.",
+            "url": "https://app.sprinta.com.br/event/inscription/3055369495268ba714"
+          },
+          "route": {
+            "format": "Ultramaratona de sete dias pela Paraíba",
+            "totalDistanceKm": 540,
+            "elevationGainM": 8000,
+            "difficulty": {
+              "label": "Muito alta",
+              "basis": "Síntese editorial baseada nos 540 km, 8.000 m de subida acumulada e sete dias consecutivos de técnica e resistência publicados pela organização.",
+              "assessmentType": "editorial-from-official-route"
+            },
+            "highlights": [
+              "A rota atravessa litoral, Mata Atlântica, Agreste, Cariri e Sertão paraibano.",
+              "A organização oferece competição oficial e E-bike Expedition no mesmo trajeto, sem cronometragem para a expedição.",
+              "Estrutura inclui acampamento, hidratação, atendimento médico, transporte de bagagem, bike wash e bike park."
+            ],
+            "courseOptions": [
+              {
+                "label": "Ultramaratona",
+                "distanceKm": 540,
+                "elevationGainM": 8000,
+                "difficulty": "Muito alta/competitiva",
+                "terrain": "Sete dias cruzando diferentes regiões e terrenos da Paraíba",
+                "note": "Competição oficial com categorias Solo Elite, duplas e trio."
+              },
+              {
+                "label": "E-bike Expedition",
+                "distanceKm": 540,
+                "elevationGainM": 8000,
+                "difficulty": "Muito alta em volume",
+                "terrain": "Mesmo trajeto e estrutura da prova, com bicicleta elétrica",
+                "note": "Participação sem cronometragem e sem premiação."
+              }
+            ]
+          },
+          "categories": [
+            "Solo Elite masculino e feminino: 19+ e filiação UCI e/ou CBC obrigatória.",
+            "Duplas Open, Mista, Master 40+, Grandmaster 50+ e Super Grandmaster 60+.",
+            "Categorias especiais incluem Guarini, Nelore, Iron Rider e Trio Corporativo.",
+            "E-bike Expedition percorre o mesmo trajeto sem competição."
+          ],
+          "logistics": [
+            {
+              "label": "Duração",
+              "detail": "10 a 17/10, com sete dias de prova e experiência na Paraíba."
+            },
+            {
+              "label": "Incluído",
+              "detail": "Barraca, bagagem, refeições indicadas, hidratação, atendimento médico, transporte de bagagem, bike wash e bike park."
+            },
+            {
+              "label": "Atenção",
+              "detail": "A Maratona da Paraíba de um dia é outro produto do festival; este card trata da ultramaratona de sete dias."
+            }
+          ]
         }
       }
     ]

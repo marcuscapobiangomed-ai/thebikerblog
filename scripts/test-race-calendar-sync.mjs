@@ -142,4 +142,23 @@ const entityEncodedEvidence = '1,388 quil&oacute;metros no total | Pr&oacute;log
 assert.equal(verifyDeepProfileEvidence(voltaProfile, voltaEvent, entityEncodedEvidence, '2026-08-11T20:01:29.236Z').status, 'verified')
 assert.throws(() => verifyDeepProfileEvidence(voltaProfile, voltaEvent, 'página oficial sem percurso', '2026-08-11T20:01:29.236Z'), /não confirma/)
 
+const brazilianDeepProfileIds = ['br-mtb-10723', 'br-mtb-10469', 'br-mtb-10818', 'br-mtb-10520', 'br-mtb-10409', 'br-mtb-10678']
+for (const eventId of brazilianDeepProfileIds) {
+  const profile = deepProfiles.profiles.find((candidate) => candidate.eventId === eventId)
+  assert.ok(profile, `perfil brasileiro ausente: ${eventId}`)
+  const verified = verifyDeepProfileEvidence(profile, {
+    id: profile.eventId,
+    name: profile.eventName,
+    startsOn: profile.validFrom,
+    endsOn: profile.validThrough,
+  }, profile.source.verificationTokens.join(' | '), '2026-08-11T20:01:29.236Z')
+  assert.equal(verified.status, 'verified')
+  assert.ok(verified.route.courseOptions.length >= 2)
+  assert.ok(verified.route.courseOptions.every((option) => option.distanceKm || option.distanceLabel))
+}
+const ruralProfile = deepProfiles.profiles.find((profile) => profile.eventId === 'br-mtb-10723')
+assert.deepEqual(ruralProfile.route.courseOptions.map((option) => [option.distanceKm, option.elevationGainM]), [[60, 1700], [49, 1200], [25, 605]])
+const challengeProfile = deepProfiles.profiles.find((profile) => profile.eventId === 'br-mtb-10818')
+assert.ok(challengeProfile.route.courseOptions.every((option) => option.distanceLabel === 'Distância não publicada'))
+
 console.log('Sincronização pública de corridas validada com prioridade brasileira, seleção cronológica e fail-closed.')
