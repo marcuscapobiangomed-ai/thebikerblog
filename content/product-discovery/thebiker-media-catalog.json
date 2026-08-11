@@ -3,7 +3,7 @@
   "source": "https://thebikershop.com.br/",
   "discoveredAt": "2026-08-11T16:53:27.595Z",
   "rightsPolicyId": "thebiker-official-editorial-v1",
-  "total": 482,
+  "total": 483,
   "products": [
     {
       "id": "quadro-scott-scale-rc-team-hmf-2026",
@@ -1099,6 +1099,17 @@
       "productUrl": "https://thebikershop.com.br/produtos/bateria-sram-axs/",
       "images": [
         "https://acdn-us.mitiendanube.com/stores/001/062/247/products/abbf6440991-9b6cf23d3673cab21215735899547332-480-0.webp"
+      ],
+      "sku": null
+    },
+    {
+      "id": "grupo-shimano-105-di2",
+      "name": "Grupo Shimano 105 Di2",
+      "brand": "Shimano",
+      "category": "componentes",
+      "productUrl": "https://thebikershop.com.br/produtos/grupo-shimano-105-di2/",
+      "images": [
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/shimano-r7100-105-di2-12-speed-disc-groupset1-86a06941b5e9ce397f16789989000621-1024-1024.webp"
       ],
       "sku": null
     },

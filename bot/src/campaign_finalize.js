@@ -7,6 +7,7 @@ import { produceOfficialCampaignImage } from "./images/official-campaign-image.j
 import { produceCampaignCover } from "./images/campaign-cover.js";
 import { linkTheBikerProducts, loadTheBikerLinkData } from "./editorial/product-linker.js";
 import { assertMarkdownPublicationGates } from "./validation/markdown-publication-gates.js";
+import { assertImageArticleConsistency } from "./validation/image-article-consistency.js";
 
 const defaultRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 
@@ -22,12 +23,24 @@ function setField(content, field, value) {
   return content.replace(pattern, line);
 }
 
-export async function produceCampaignVisual({ root, item, approvedAt }) {
-  const hasExactProduct = (item.productIds || []).length > 0;
-  if (!hasExactProduct) {
+function setOptionalField(content, field, value) {
+  const pattern = new RegExp(`^${field}:.*(?:\\r?\\n)?`, "m");
+  if (value === null) return content.replace(pattern, "");
+  if (pattern.test(content)) return content.replace(pattern, `${field}: ${value}\n`);
+  return content.replace(/^---\s*\r?\n/, (opening) => `${opening}${field}: ${value}\n`);
+}
+
+export async function produceCampaignVisual({ root, item, approvedAt, force = false }) {
+  const visualPolicy = item.heroImage || { mode: "conceptual" };
+  if (visualPolicy.mode !== "exact-product") {
     return produceCampaignCover({ root, item, approvedAt });
   }
-  return produceOfficialCampaignImage({ root, item, approvedAt });
+  return produceOfficialCampaignImage({
+    root,
+    item: { ...item, productIds: [visualPolicy.productId] },
+    approvedAt,
+    force,
+  });
 }
 
 export async function finalizeCampaignItem({ root = defaultRoot, now = new Date(), imageProducer = produceCampaignVisual } = {}) {
@@ -68,9 +81,16 @@ export async function finalizeCampaignItem({ root = defaultRoot, now = new Date(
     content = setField(content, "image_caption", `"${cover.manifest.caption}"`);
     content = setField(content, "image_credit", `"${cover.manifest.credit.replace(/"/g, '\\"')}"`);
     content = setField(content, "image_license", `"${cover.manifest.source.license.replace(/"/g, '\\"')}"`);
+    content = setOptionalField(
+      content,
+      "image_subject_id",
+      cover.manifest.factualSubject === "exact-product" ? `"${cover.manifest.matchedProduct.id}"` : null,
+    );
     content = setField(content, "reviewed_by", '"TheBiker AI Editorial Gate"');
     content = setField(content, "editorial_status", '"reviewed"');
     content = setField(content, "status", '"scheduled"');
+    const catalog = JSON.parse(await fs.readFile(path.join(root, "content/product-discovery/thebiker-media-catalog.json"), "utf8"));
+    assertImageArticleConsistency({ article: matter(content).data, manifest: cover.manifest, campaignItem: item, catalog });
     let linkData;
     try {
       linkData = loadTheBikerLinkData(root);

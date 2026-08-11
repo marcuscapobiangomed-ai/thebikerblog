@@ -3,6 +3,8 @@ import path from "path";
 import crypto from "crypto";
 import { fileURLToPath } from "url";
 import { hammingDistance } from "../bot/src/images/dedupe.js";
+import * as yaml from "js-yaml";
+import { imageArticleConsistencyErrors } from "../bot/src/validation/image-article-consistency.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
@@ -13,19 +15,19 @@ const DRAFTS_DIR = path.join(POSTS_DIR, "drafts");
 const errors = [];
 const warnings = [];
 const activeImages = [];
+const catalog = JSON.parse(fs.readFileSync(path.join(ROOT, "content/product-discovery/thebiker-media-catalog.json"), "utf8"));
+const campaign = JSON.parse(fs.readFileSync(path.join(ROOT, "bot/editorial-campaign.json"), "utf8"));
+const campaignById = new Map(campaign.items.map((item) => [item.id, item]));
 
 function parseFrontmatter(filePath) {
   const content = fs.readFileSync(filePath, "utf8");
   const match = content.match(/^---\s*\n([\s\S]*?)\n---\s*\n/);
   if (!match) return null;
-  return match[1];
+  return yaml.load(match[1]);
 }
 
 function getField(fm, field) {
-  const regex = new RegExp(`^${field}:(.*)$`, "m");
-  const match = fm?.match(regex);
-  if (!match) return null;
-  return match[1].trim().replace(/^["']|["']$/g, "");
+  return fm?.[field] ?? null;
 }
 
 function walkPosts(dir) {
@@ -56,11 +58,13 @@ function validatePost(postPath) {
   const thumbnail = getField(fm, "thumbnail");
   const credit = getField(fm, "image_credit");
   const license = getField(fm, "image_license");
-  const status = getField(fm, "editorial_status");
+  const editorialStatus = String(getField(fm, "editorial_status") || "");
+  const workflowStatus = String(getField(fm, "status") || "");
   const published = getField(fm, "published");
   const isArchived = postPath.startsWith(`${ARCHIVED_DIR}${path.sep}`);
   const isActive = !isArchived && (
-    status === "scheduled" || published === "true" || (published !== "false" && status === "published")
+    workflowStatus === "scheduled" || editorialStatus === "scheduled" || published === true ||
+    (published !== false && (workflowStatus === "published" || editorialStatus === "published"))
   );
 
   if (!image) {
@@ -123,6 +127,15 @@ function validatePost(postPath) {
     }
     if (!manifest.source || !["thebiker", "manufacturer", "own-production"].includes(manifest.source.type)) {
       errors.push(`${rel}: fonte visual ativa não autorizada (${manifest.source?.type || "indefinida"})`);
+    }
+    const postId = path.basename(postPath, ".md").replace(/^\d{4}-\d{2}-\d{2}-/, "");
+    for (const error of imageArticleConsistencyErrors({
+      article: fm,
+      manifest,
+      campaignItem: campaignById.get(postId) || null,
+      catalog,
+    })) {
+      errors.push(`${rel}: ${error}`);
     }
     const digest = crypto.createHash("sha256").update(fs.readFileSync(imgPath)).digest("hex");
     activeImages.push({ rel, digest, assetId: manifest.assetId, perceptualHash: manifest.perceptualHash });

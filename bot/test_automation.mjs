@@ -67,7 +67,13 @@ assert.equal(selectReadyItem({ items: [] }), null);
 const campaign = CampaignSchema.parse(JSON.parse(await fs.readFile(new URL('./editorial-campaign.json', import.meta.url), 'utf8')));
 assert.equal(campaign.items.length, 30);
 const conceptualComparison = structuredClone(campaign);
-conceptualComparison.items[0] = { ...conceptualComparison.items[0], category: 'comparativo', status: 'validation', productIds: [] };
+conceptualComparison.items[0] = {
+  ...conceptualComparison.items[0],
+  category: 'comparativo',
+  status: 'validation',
+  productIds: [],
+  heroImage: { mode: 'conceptual' },
+};
 assert.doesNotThrow(() => CampaignSchema.parse(conceptualComparison));
 const reviewWithoutProduct = structuredClone(campaign);
 reviewWithoutProduct.items[0] = { ...reviewWithoutProduct.items[0], category: 'review', status: 'validation', productIds: [] };
@@ -124,15 +130,17 @@ assert.equal(publicCampaignSummary(scheduled).items[0].title, scheduled.items[0]
 const imageConfig = {
   minimumPublishableLongEdge: 1600,
   minimumPublishableShortEdge: 800,
+  minimumStandardLongEdge: 900,
+  minimumStandardShortEdge: 600,
 };
 assert.deepEqual(classifyOfficialImageQuality({ width: 2000, height: 1200 }, imageConfig), {
   qualityTier: "high-definition",
   outputFormat: "png",
 });
-assert.throws(
-  () => classifyOfficialImageQuality({ width: 1024, height: 1024 }, imageConfig),
-  /resolução insuficiente/,
-);
+assert.deepEqual(classifyOfficialImageQuality({ width: 1024, height: 1024 }, imageConfig), {
+  qualityTier: "standard",
+  outputFormat: "webp",
+});
 assert.throws(
   () => classifyOfficialImageQuality({ width: 320, height: 200 }, imageConfig),
   /resolução insuficiente/,
@@ -268,8 +276,11 @@ const finalizeRoot = path.join(root, "finalize");
 await fs.mkdir(path.join(finalizeRoot, "bot"), { recursive: true });
 await fs.mkdir(path.join(finalizeRoot, "_data"), { recursive: true });
 await fs.mkdir(path.join(finalizeRoot, "_posts/drafts"), { recursive: true });
+await fs.mkdir(path.join(finalizeRoot, "content/product-discovery"), { recursive: true });
+await fs.writeFile(path.join(finalizeRoot, "content/product-discovery/thebiker-media-catalog.json"), JSON.stringify({ products: [] }));
 const finalizeCampaign = structuredClone(campaign);
 finalizeCampaign.items[0].status = "validation";
+finalizeCampaign.items[0].heroImage = { mode: "conceptual" };
 finalizeCampaign.items[0].aiReview.finalScore = 95;
 finalizeCampaign.items[0].aiReview.finalBlockers = 0;
 finalizeCampaign.items[0].postPath = `_posts/drafts/${finalizeCampaign.items[0].publishDate}-${finalizeCampaign.items[0].id}.md`;

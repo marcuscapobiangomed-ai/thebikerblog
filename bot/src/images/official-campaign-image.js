@@ -20,13 +20,13 @@ export function classifyOfficialImageQuality(metadata, config) {
   const shortEdge = Math.min(width, height);
   const minimumLongEdge = config.minimumPublishableLongEdge;
   const minimumShortEdge = config.minimumPublishableShortEdge;
-  if (longEdge < minimumLongEdge || shortEdge < minimumShortEdge) {
+  if (longEdge >= minimumLongEdge && shortEdge >= minimumShortEdge) {
+    return { qualityTier: "high-definition", outputFormat: "png" };
+  }
+  if (longEdge < config.minimumStandardLongEdge || shortEdge < config.minimumStandardShortEdge) {
     throw new Error(`resolução insuficiente para o padrão editorial: ${width}x${height}`);
   }
-  return {
-    qualityTier: "high-definition",
-    outputFormat: "png",
-  };
+  return { qualityTier: "standard", outputFormat: "webp" };
 }
 
 function galleryUrls(html) {

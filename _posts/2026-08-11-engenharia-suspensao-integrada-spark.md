@@ -1,4 +1,5 @@
 ---
+image_subject_id: "quadro-suspensao-spark-rc-world-cup-hmx-2026-flight-attendant"
 layout: post
 published: true
 title: "Dentro da Spark RC: por que a suspensão integrada muda estrutura, serviço e distribuição de massa"

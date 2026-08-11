@@ -103,6 +103,9 @@ jobs:
         run: node src/validation/validate-images.js
         working-directory: bot
 
+      - name: Validar consistência entre imagem e artigo
+        run: npm run validate:images
+
       - name: Validar Base de Dados (schemas)
         run: node _data/schemas/validate-all.js
 

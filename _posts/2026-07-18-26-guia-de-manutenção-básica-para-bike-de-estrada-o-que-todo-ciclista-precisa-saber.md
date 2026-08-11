@@ -1,4 +1,5 @@
 ---
+image_subject_id: "kit-de-escovas-muc-off"
 layout: post
 title: "Manutenção Básica da Bike de Estrada: guia do ciclista"
 description: "Guia completo de manutenção básica para bikes de estrada: limpeza, lubrificação, pneus, freios a disco e transmissão. Periodicidade e ferramentas recomendadas."

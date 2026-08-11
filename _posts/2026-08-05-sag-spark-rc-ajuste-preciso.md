@@ -1,4 +1,5 @@
 ---
+image_subject_id: "bicicleta-scott-spark-rc-expert-2027"
 layout: post
 published: true
 title: "SAG da Scott Spark RC: guia de ajuste preciso"

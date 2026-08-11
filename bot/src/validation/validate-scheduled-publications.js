@@ -3,6 +3,9 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { CampaignSchema } from "../automation/campaign.js";
 import { markdownPublicationErrors } from "./markdown-publication-gates.js";
+import matter from "gray-matter";
+import { validateImageManifestV2 } from "./image-manifest-v2.js";
+import { imageArticleConsistencyErrors } from "./image-article-consistency.js";
 
 const defaultRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../../..");
 
@@ -25,6 +28,7 @@ export async function validateScheduledPublications({ root = defaultRoot } = {})
   const draftsRoot = path.resolve(root, "_posts/drafts");
   const scheduled = campaign.items.filter((item) => item.status === "scheduled");
   const errors = [];
+  const catalog = JSON.parse(await fs.readFile(path.join(root, "content/product-discovery/thebiker-media-catalog.json"), "utf8"));
 
   for (const item of scheduled) {
     if (!item.postPath) {
@@ -48,6 +52,28 @@ export async function validateScheduledPublications({ root = defaultRoot } = {})
 
     for (const error of scheduledDraftErrors(content)) {
       errors.push(`${item.id}: ${error}`);
+    }
+    if (item.imageStatus !== "approved" || !item.imageManifestPath) {
+      errors.push(`${item.id}: imagem sem aprovação ou manifesto`);
+      continue;
+    }
+    const manifestPath = path.resolve(root, item.imageManifestPath);
+    const imagesRoot = path.resolve(root, "assets/img/posts") + path.sep;
+    if (!manifestPath.startsWith(imagesRoot)) {
+      errors.push(`${item.id}: imageManifestPath inseguro`);
+      continue;
+    }
+    try {
+      const manifest = validateImageManifestV2(
+        JSON.parse(await fs.readFile(manifestPath, "utf8")),
+        path.dirname(manifestPath),
+        { requirePublishable: true },
+      );
+      for (const error of imageArticleConsistencyErrors({ article: matter(content).data, manifest, campaignItem: item, catalog })) {
+        errors.push(`${item.id}: ${error}`);
+      }
+    } catch (error) {
+      errors.push(`${item.id}: manifesto de imagem inválido (${error.message})`);
     }
   }
 

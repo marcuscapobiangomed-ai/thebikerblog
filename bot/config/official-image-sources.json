@@ -21,5 +21,7 @@
   "rightsPolicyId": "thebiker-official-editorial-v1",
   "maximumDownloadBytes": 12582912,
   "minimumPublishableLongEdge": 1600,
-  "minimumPublishableShortEdge": 800
+  "minimumPublishableShortEdge": 800,
+  "minimumStandardLongEdge": 900,
+  "minimumStandardShortEdge": 600
 }

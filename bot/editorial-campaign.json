@@ -16,15 +16,19 @@
       "freshness": "evergreen",
       "status": "published",
       "productIds": [
-        "bateria-sram-axs"
+        "grupo-shimano-105-di2"
       ],
+      "heroImage": {
+        "mode": "exact-product",
+        "productId": "grupo-shimano-105-di2"
+      },
       "postPath": "_posts/2026-08-08-cambio-eletronico-ajuste-diagnostico.md",
       "imageManifestPath": "assets/img/posts/cambio-eletronico-ajuste-diagnostico/image-manifest.json",
       "imageStatus": "approved",
       "imageAssetIds": [
-        "thebiker-bateria-sram-axs-eaa649bc43"
+        "thebiker-grupo-shimano-105-di2-2a6b056cb4"
       ],
-      "imageValidatedAt": "2026-08-09T12:32:09.198Z",
+      "imageValidatedAt": "2026-08-11T16:48:32.198Z",
       "publishedAt": "2026-08-08T15:33:02.861Z",
       "attempts": 0,
       "aiReview": {
@@ -54,6 +58,10 @@
       "productIds": [
         "kit-de-rolamentos-direcao-scott-foil"
       ],
+      "heroImage": {
+        "mode": "exact-product",
+        "productId": "kit-de-rolamentos-direcao-scott-foil"
+      },
       "postPath": "_posts/2026-08-09-reserva-rolamentos-diagnostico.md",
       "imageManifestPath": "assets/img/posts/reserva-rolamentos-diagnostico/image-manifest.json",
       "imageStatus": "approved",
@@ -88,13 +96,14 @@
       "freshness": "evergreen",
       "status": "published",
       "productIds": [],
+      "heroImage": {
+        "mode": "conceptual"
+      },
       "postPath": "_posts/2026-08-10-alinhamento-pinca-rotores.md",
       "imageManifestPath": "assets/img/posts/alinhamento-pinca-rotores/image-manifest.json",
       "imageStatus": "approved",
-      "imageAssetIds": [
-        "thebiker-pastilha-de-freio-sram-guide-trail-organica-c458e0070c"
-      ],
-      "imageValidatedAt": "2026-08-05T17:10:57.802Z",
+      "imageAssetIds": [],
+      "imageValidatedAt": "2026-08-11T16:48:32.773Z",
       "publishedAt": "2026-08-10T15:44:48.961Z",
       "attempts": 0,
       "aiReview": {
@@ -124,6 +133,10 @@
       "productIds": [
         "quadro-suspensao-spark-rc-world-cup-hmx-2026-flight-attendant"
       ],
+      "heroImage": {
+        "mode": "exact-product",
+        "productId": "quadro-suspensao-spark-rc-world-cup-hmx-2026-flight-attendant"
+      },
       "postPath": "_posts/2026-08-11-engenharia-suspensao-integrada-spark.md",
       "imageManifestPath": "assets/img/posts/engenharia-suspensao-integrada-spark/image-manifest.json",
       "imageStatus": "approved",
@@ -160,6 +173,10 @@
       "productIds": [
         "bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9"
       ],
+      "heroImage": {
+        "mode": "exact-product",
+        "productId": "bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9"
+      },
       "postPath": "_posts/drafts/2026-08-12-review-addict-rc-20.md",
       "imageManifestPath": "assets/img/posts/review-addict-rc-20/image-manifest.json",
       "imageStatus": "approved",
@@ -196,6 +213,10 @@
         "bicicleta-scott-spark-rc-world-cup-2027",
         "bicicleta-scott-spark-rc-world-cup-20271"
       ],
+      "heroImage": {
+        "mode": "exact-product",
+        "productId": "bicicleta-scott-spark-rc-world-cup-20271"
+      },
       "postPath": "_posts/drafts/2026-08-13-spark-rc-team-expert-world-cup.md",
       "imageManifestPath": "assets/img/posts/spark-rc-team-expert-world-cup/image-manifest.json",
       "imageStatus": "approved",
@@ -230,6 +251,9 @@
       "freshness": "evergreen",
       "status": "scheduled",
       "productIds": [],
+      "heroImage": {
+        "mode": "conceptual"
+      },
       "postPath": "_posts/drafts/2026-08-14-reserva-inspecao-pos-chuva.md",
       "imageManifestPath": "assets/img/posts/reserva-inspecao-pos-chuva/image-manifest.json",
       "imageStatus": "approved",
@@ -262,6 +286,9 @@
       "freshness": "revalidate-24h",
       "status": "scheduled",
       "productIds": [],
+      "heroImage": {
+        "mode": "conceptual"
+      },
       "postPath": "_posts/drafts/2026-08-15-bike-de-fabrica-vs-bike-de-competicao.md",
       "imageManifestPath": "assets/img/posts/bike-de-fabrica-vs-bike-de-competicao/image-manifest.json",
       "imageStatus": "approved",
@@ -295,6 +322,9 @@
       "freshness": "event-driven",
       "status": "scheduled",
       "productIds": [],
+      "heroImage": {
+        "mode": "conceptual"
+      },
       "postPath": "_posts/drafts/2026-08-16-youtube-bicicletas-gravel-geometria-pneus-transmissao-e-criterios-de-uso.md",
       "imageManifestPath": "assets/img/posts/youtube-bicicletas-gravel-geometria-pneus-transmissao-e-criterios-de-uso/image-manifest.json",
       "imageStatus": "approved",
@@ -330,6 +360,10 @@
         "bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9",
         "bicicleta-scott-addict-rc-pro-di2-2026-pre-venda"
       ],
+      "heroImage": {
+        "mode": "exact-product",
+        "productId": "bicicleta-scott-addict-rc-pro-di2-2026-pre-venda"
+      },
       "postPath": "_posts/drafts/2026-08-17-addict-rc-20-vs-pro.md",
       "imageManifestPath": "assets/img/posts/addict-rc-20-vs-pro/image-manifest.json",
       "imageStatus": "approved",
@@ -365,6 +399,9 @@
       "freshness": "event-driven",
       "status": "scheduled",
       "productIds": [],
+      "heroImage": {
+        "mode": "conceptual"
+      },
       "postPath": "_posts/drafts/2026-08-18-youtube-bike-fit-e-posicao-criterios-tecnicos-para-ajuste-e-distribuicao.md",
       "imageManifestPath": "assets/img/posts/youtube-bike-fit-e-posicao-criterios-tecnicos-para-ajuste-e-distribuicao/image-manifest.json",
       "imageStatus": "approved",
@@ -398,6 +435,9 @@
       "freshness": "evergreen",
       "status": "scheduled",
       "productIds": [],
+      "heroImage": {
+        "mode": "conceptual"
+      },
       "postPath": "_posts/drafts/2026-08-19-ciclocross-regulamento-preparacao.md",
       "imageManifestPath": "assets/img/posts/ciclocross-regulamento-preparacao/image-manifest.json",
       "imageStatus": "approved",
@@ -431,6 +471,9 @@
       "freshness": "evergreen",
       "status": "scheduled",
       "productIds": [],
+      "heroImage": {
+        "mode": "conceptual"
+      },
       "postPath": "_posts/drafts/2026-08-20-servico-garfo-amortecedor-oleo-vedacao.md",
       "imageManifestPath": "assets/img/posts/servico-garfo-amortecedor-oleo-vedacao/image-manifest.json",
       "imageStatus": "approved",

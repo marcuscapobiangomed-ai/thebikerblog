@@ -3,6 +3,7 @@ import path from "node:path";
 import sharp from "sharp";
 import { prepareImageVariants } from "./prepare-variants.js";
 import { validateImageManifestV2 } from "../validation/image-manifest-v2.js";
+import { releaseAssetUse } from "./asset-library.js";
 
 const CATEGORY_LABELS = {
   "manutencao-ajustes": "OFICINA DE PRECISÃO",
@@ -89,5 +90,6 @@ export async function produceCampaignCover({ root, item, approvedAt }) {
   const manifest = await prepareImageVariants({ input: source, outputDirectory: directory, manifest: baseManifest });
   await fs.writeFile(path.join(directory, "image-manifest.json"), JSON.stringify(manifest, null, 2) + "\n");
   validateImageManifestV2(manifest, directory, { requirePublishable: true });
+  await releaseAssetUse(root, { postId: item.id, position: "hero" });
   return { directory, manifest, publicBase: `/assets/img/posts/${item.id}` };
 }
