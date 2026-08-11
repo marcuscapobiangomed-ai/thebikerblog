@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url'
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const outputPath = path.join(projectRoot, '_data', 'race-events.json')
+const deepProfilesPath = path.join(projectRoot, '_data', 'race-deep-profiles.json')
 const UCI_BASE_URL = 'https://www.uci.org'
 const CALENDARIO_MTB_BASE_URL = 'https://www.calendariomtb.com.br'
 const RECENT_MINIMUM = 3
@@ -208,17 +209,85 @@ function brazilianEventFromJsonLd(data, candidate) {
 }
 
 function normalizedEvidenceText(value) {
+  const namedEntities = {
+    aacute: 'á', agrave: 'à', acirc: 'â', atilde: 'ã', auml: 'ä',
+    ccedil: 'ç', eacute: 'é', egrave: 'è', ecirc: 'ê', euml: 'ë',
+    iacute: 'í', igrave: 'ì', icirc: 'î', iuml: 'ï',
+    oacute: 'ó', ograve: 'ò', ocirc: 'ô', otilde: 'õ', ouml: 'ö',
+    uacute: 'ú', ugrave: 'ù', ucirc: 'û', uuml: 'ü',
+    ordf: 'ª', ordm: 'º', nbsp: ' ', ndash: '-', mdash: '-', amp: '&', gt: '>', lt: '<', quot: '"',
+  }
   return String(value || '')
     .replace(/<script[\s\S]*?<\/script>/gi, ' ')
     .replace(/<style[\s\S]*?<\/style>/gi, ' ')
     .replace(/<[^>]+>/g, ' ')
-    .replace(/&(?:nbsp|#160);/gi, ' ')
-    .replace(/&(?:ndash|mdash|#8211|#8212);/gi, '-')
+    .replace(/&#(\d+);/g, (_, code) => String.fromCodePoint(Number(code)))
+    .replace(/&#x([0-9a-f]+);/gi, (_, code) => String.fromCodePoint(Number.parseInt(code, 16)))
+    .replace(/&([a-z]+);/gi, (entity, name) => namedEntities[name.toLowerCase()] ?? entity)
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
     .toLowerCase()
     .replace(/\\[nrt]/g, ' ')
     .replace(/\s+/g, ' ')
+}
+
+function validateDeepProfileDefinition(profile) {
+  if (!profile?.eventId || !profile?.eventName || !/^\d{4}-\d{2}-\d{2}$/.test(profile.validFrom) || !/^\d{4}-\d{2}-\d{2}$/.test(profile.validThrough)) {
+    throw new Error('Perfil aprofundado sem identidade ou vigência válida')
+  }
+  if (!/^https:\/\//.test(profile.source?.url || '') || !profile.source?.publisher || !Array.isArray(profile.source?.verificationTokens) || profile.source.verificationTokens.length < 3) {
+    throw new Error(`Perfil aprofundado ${profile.eventId} sem fonte oficial verificável`)
+  }
+  const stages = profile.route?.stages
+  if (!Number.isFinite(profile.route?.totalDistanceKm) || profile.route.totalDistanceKm <= 0 || !Array.isArray(stages) || stages.length !== profile.route.stageCount) {
+    throw new Error(`Perfil aprofundado ${profile.eventId} com percurso incompleto`)
+  }
+  const distanceSum = stages.reduce((total, stage) => total + Number(stage.distanceKm || 0), 0)
+  if (Math.abs(distanceSum - profile.route.totalDistanceKm) > 0.1) {
+    throw new Error(`Perfil aprofundado ${profile.eventId} diverge na quilometragem: ${distanceSum}/${profile.route.totalDistanceKm}`)
+  }
+  if (!Array.isArray(profile.route.restSchedule) || profile.route.restSchedule.length !== profile.route.restDays) {
+    throw new Error(`Perfil aprofundado ${profile.eventId} diverge nos dias de descanso`)
+  }
+  if (!['team-only', 'open', 'closed', 'not-published'].includes(profile.participation?.status)) {
+    throw new Error(`Perfil aprofundado ${profile.eventId} com inscrição inválida`)
+  }
+  return profile
+}
+
+export function verifyDeepProfileEvidence(profileInput, event, html, checkedAt) {
+  const profile = validateDeepProfileDefinition(profileInput)
+  if (profile.eventId !== event.id || profile.eventName !== event.name || profile.validFrom !== event.startsOn || profile.validThrough !== event.endsOn) {
+    throw new Error(`Perfil aprofundado divergente do calendário: ${profile.eventId}`)
+  }
+  const evidence = normalizedEvidenceText(html)
+  const missingTokens = profile.source.verificationTokens
+    .map((token) => normalizedEvidenceText(token))
+    .filter((token) => !evidence.includes(token))
+  if (missingTokens.length) {
+    throw new Error(`Fonte aprofundada não confirma ${profile.eventId}: ${missingTokens.join(', ')}`)
+  }
+  return {
+    status: 'verified',
+    checkedAt,
+    source: {
+      publisher: profile.source.publisher,
+      url: profile.source.url,
+      validationMethod: 'official-event-details',
+    },
+    participation: profile.participation,
+    route: profile.route,
+    coverage: profile.coverage,
+  }
+}
+
+async function enrichDeepProfiles(events, profileById, checkedAt) {
+  return mapWithConcurrency(events, DETAIL_REQUEST_CONCURRENCY, async (event) => {
+    const profile = profileById.get(event.id)
+    if (!profile) return event
+    const html = await fetchText(profile.source.url)
+    return { ...event, deepProfile: verifyDeepProfileEvidence(profile, event, html, checkedAt) }
+  })
 }
 
 function dateEvidencePatterns(isoValue) {
@@ -568,6 +637,14 @@ async function main() {
   const asOfDate = dateFromInput(cliValue('today'))
   const checkedAt = new Date().toISOString()
   const existing = JSON.parse(await fs.readFile(outputPath, 'utf8'))
+  const deepProfileDocument = JSON.parse(await fs.readFile(deepProfilesPath, 'utf8'))
+  if (deepProfileDocument.version !== 1 || !Array.isArray(deepProfileDocument.profiles)) throw new Error('Catálogo de perfis aprofundados inválido')
+  const deepProfiles = new Map()
+  for (const profile of deepProfileDocument.profiles) {
+    validateDeepProfileDefinition(profile)
+    if (deepProfiles.has(profile.eventId)) throw new Error(`Perfil aprofundado duplicado: ${profile.eventId}`)
+    deepProfiles.set(profile.eventId, profile)
+  }
   const [candidates, brazilianCandidates] = await Promise.all([
     collectOfficialEvents(asOfDate),
     collectBrazilianEvents(asOfDate),
@@ -587,8 +664,13 @@ async function main() {
   const uciToday = await enrichSelection(selection.today, 'today', checkedAt)
   const recent = await enrichSelection(selection.recent, 'past', checkedAt)
   const uciUpcoming = await enrichSelection(selection.upcoming, 'scheduled', checkedAt)
-  const today = mergeBrazilPriority(uciToday, brazilToday, TODAY_MAXIMUM)
-  const upcoming = mergeBrazilPriority(uciUpcoming, brazilUpcoming, UPCOMING_MINIMUM)
+  const selectedToday = mergeBrazilPriority(uciToday, brazilToday, TODAY_MAXIMUM)
+  const selectedUpcoming = mergeBrazilPriority(uciUpcoming, brazilUpcoming, UPCOMING_MINIMUM)
+  const [today, recentWithProfiles, upcoming] = await Promise.all([
+    enrichDeepProfiles(selectedToday, deepProfiles, checkedAt),
+    enrichDeepProfiles(recent, deepProfiles, checkedAt),
+    enrichDeepProfiles(selectedUpcoming, deepProfiles, checkedAt),
+  ])
   const next = {
     ...existing,
     updatedAt: checkedAt,
@@ -600,7 +682,7 @@ async function main() {
       sourceStatus: 'verified',
       selectionPolicy: 'Agenda combinada: próximas provas mantêm maioria brasileira, validada por descoberta e confirmação do organizador; UCI completa a cobertura mundial. Recentes permanecem na fonte oficial UCI.',
       today,
-      recent,
+      recent: recentWithProfiles,
       upcoming,
     },
   }

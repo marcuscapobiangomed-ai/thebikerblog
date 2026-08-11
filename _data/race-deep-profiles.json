@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "profiles": [
+    {
+      "eventId": "uci-2026-roa-78327",
+      "eventName": "Volta a Portugal em Bicicleta",
+      "validFrom": "2026-08-05",
+      "validThrough": "2026-08-16",
+      "source": {
+        "publisher": "Federação Portuguesa de Ciclismo",
+        "url": "https://www.fpciclismo.pt/noticia/volta-a-portugal-apresenta-percurso-da-87-edicao--e-inaugura-um-novo-ciclo-rumo-ao-centenario",
+        "verificationTokens": [
+          "1,388 quilometros no total",
+          "prologo - lisboa",
+          "lourinha > sintra",
+          "maia > porto",
+          "10 quilometros e uma inclinacao media de 6,5%"
+        ]
+      },
+      "participation": {
+        "status": "team-only",
+        "label": "Sem inscrição individual",
+        "description": "É uma corrida profissional UCI disputada por equipes participantes. A organização não oferece inscrição avulsa ao público para integrar o pelotão."
+      },
+      "route": {
+        "format": "Prólogo + 10 etapas, com 1 dia de descanso",
+        "totalDistanceKm": 1388,
+        "stageCount": 11,
+        "restDays": 1,
+        "restSchedule": [
+          { "date": "2026-08-11", "label": "Dia de descanso", "location": "Santa Maria da Feira (Europarque)" }
+        ],
+        "difficulty": {
+          "label": "Alta e variável por etapa",
+          "basis": "Síntese editorial baseada no percurso oficial: há etapas planas, terreno ondulado, contrarrelógio e chegadas decisivas em alta montanha.",
+          "assessmentType": "editorial-from-official-route"
+        },
+        "highlights": [
+          "Chegada à Torre, na Serra da Estrela, na etapa de maior desnível acumulado da prova.",
+          "Subida ao Germil com cerca de 10 km, inclinação média de 6,5% e metade do trecho em calçada.",
+          "Dupla ascensão à Senhora da Graça, incluindo cerca de 9 km a 7% e trecho final em terra batida."
+        ],
+        "stages": [
+          { "date": "2026-08-05", "label": "Prólogo", "start": "Lisboa", "finish": "Lisboa", "distanceKm": 6, "profile": "Contrarrelógio curto e intenso" },
+          { "date": "2026-08-06", "label": "1ª etapa", "start": "Lourinhã", "finish": "Sintra (Queluz)", "distanceKm": 153, "profile": "Ondulada, com subida de 3ª categoria perto da meta" },
+          { "date": "2026-08-07", "label": "2ª etapa", "start": "Sines", "finish": "Albufeira", "distanceKm": 177, "profile": "Predominantemente plana, longa e sujeita ao calor" },
+          { "date": "2026-08-08", "label": "3ª etapa", "start": "Beja", "finish": "Elvas", "distanceKm": 180, "profile": "A mais longa; calor e subida a Monsaraz podem selecionar" },
+          { "date": "2026-08-09", "label": "4ª etapa", "start": "Figueiró dos Vinhos", "finish": "Covilhã (Torre)", "distanceKm": 148, "profile": "Alta montanha; maior desnível acumulado da edição" },
+          { "date": "2026-08-10", "label": "5ª etapa", "start": "Anadia", "finish": "Águeda", "distanceKm": 17, "profile": "Contrarrelógio individual com subida intermediária" },
+          { "date": "2026-08-12", "label": "6ª etapa", "start": "Santa Maria da Feira", "finish": "Peso da Régua", "distanceKm": 129, "profile": "Muito ondulada, com pouca recuperação na EN 222" },
+          { "date": "2026-08-13", "label": "7ª etapa", "start": "Vieira do Minho", "finish": "Gerês", "distanceKm": 147, "profile": "Montanha; Germil tem cerca de 10 km a 6,5% e calçada" },
+          { "date": "2026-08-14", "label": "8ª etapa", "start": "Melgaço", "finish": "Fafe", "distanceKm": 166, "profile": "Seletiva, com subida à Penha próxima da chegada" },
+          { "date": "2026-08-15", "label": "9ª etapa", "start": "Paredes", "finish": "Mondim de Basto (Senhora da Graça)", "distanceKm": 141, "profile": "Etapa-rainha; dupla subida, inclinações fortes e terra batida" },
+          { "date": "2026-08-16", "label": "10ª etapa", "start": "Maia", "finish": "Porto", "distanceKm": 124, "profile": "Circuito final urbano e tecnicamente exigente" }
+        ]
+      },
+      "coverage": {
+        "label": "Transmissão confirmada",
+        "description": "RTP1 em Portugal, HBO Max internacionalmente e resumos no Eurosport. A disponibilidade pode variar por território."
+      }
+    }
+  ]
+}

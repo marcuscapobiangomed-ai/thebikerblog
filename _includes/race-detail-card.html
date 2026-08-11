@@ -53,6 +53,76 @@
     </div>
   </dl>
 
+  {% if event.deepProfile %}
+    {% assign deep = event.deepProfile %}
+    {% assign calendar_date = site.data["race-events"].publicCalendar.asOfDate %}
+    <section class="race-detail-depth" aria-label="Guia aprofundado da corrida">
+      <div class="race-detail-depth-heading">
+        <span>Guia aprofundado e verificado</span>
+        <h3>Percurso, dificuldade e participação</h3>
+        <p>Dados conferidos em {{ deep.source.publisher }} em {{ deep.checkedAt | date: "%d/%m/%Y às %H:%M UTC" }}.</p>
+      </div>
+
+      <div class="race-detail-depth-grid">
+        <div>
+          <span>Distância total</span>
+          <strong>{{ deep.route.totalDistanceKm }} km</strong>
+          <p>{{ deep.route.format }}</p>
+        </div>
+        <div>
+          <span>Dificuldade</span>
+          <strong>{{ deep.route.difficulty.label }}</strong>
+          <p>{{ deep.route.difficulty.basis }}</p>
+        </div>
+        <div>
+          <span>Como participar</span>
+          <strong>{{ deep.participation.label }}</strong>
+          <p>{{ deep.participation.description }}</p>
+          {% if deep.participation.url %}<a href="{{ deep.participation.url }}" target="_blank" rel="noopener noreferrer">Ir para a inscrição oficial ↗</a>{% endif %}
+        </div>
+      </div>
+
+      <div class="race-detail-highlights">
+        <h4>Pontos decisivos do percurso</h4>
+        <ul>
+          {% for highlight in deep.route.highlights %}<li>{{ highlight }}</li>{% endfor %}
+        </ul>
+      </div>
+
+      <div class="race-detail-stages">
+        <div class="race-detail-stages-heading">
+          <h4>Etapa por etapa</h4>
+          <span>{{ deep.route.stageCount }} jornadas · {{ deep.route.restDays }} dia de descanso</span>
+        </div>
+        {% for rest in deep.route.restSchedule %}
+          {% if rest.date == calendar_date %}
+            <div class="race-detail-rest-today"><strong>Hoje é dia de descanso</strong><span>{{ rest.location }}</span></div>
+          {% endif %}
+        {% endfor %}
+        <div class="race-detail-stage-list">
+          {% for stage in deep.route.stages %}
+            <article{% if stage.date == calendar_date %} class="is-today"{% endif %}>
+              <div>
+                <time datetime="{{ stage.date }}">{{ stage.date | slice: 8, 2 }}/{{ stage.date | slice: 5, 2 }}</time>
+                <strong>{{ stage.label }}</strong>
+                {% if stage.date == calendar_date %}<span class="race-detail-stage-today">Hoje</span>{% endif %}
+              </div>
+              <p><strong>{{ stage.start }} → {{ stage.finish }}</strong><span>{{ stage.distanceKm }} km</span></p>
+              <small>{{ stage.profile }}</small>
+            </article>
+          {% endfor %}
+        </div>
+      </div>
+
+      {% if deep.coverage %}<p class="race-detail-coverage"><strong>{{ deep.coverage.label }}:</strong> {{ deep.coverage.description }}</p>{% endif %}
+    </section>
+  {% else %}
+    <div class="race-detail-depth-pending">
+      <strong>Percurso aprofundado ainda não confirmado</strong>
+      <p>Quilometragem, altimetria, dificuldade e inscrição só entram aqui quando uma página oficial da organização permite validar esses dados. Não completamos lacunas por estimativa.</p>
+    </div>
+  {% endif %}
+
   <div class="race-detail-explanation">
     <span>O que significa a categoria</span>
     <h3>{{ class_explanation }}</h3>
@@ -76,6 +146,7 @@
   </div>
 
   <footer class="race-detail-actions">
+    {% if event.deepProfile %}<a href="{{ event.deepProfile.source.url }}" target="_blank" rel="noopener noreferrer" data-race-outbound data-event-id="{{ event.id }}" data-race-section="detail-depth" data-race-source="{{ event.deepProfile.source.publisher }}">Fonte do percurso <span aria-hidden="true">↗</span></a>{% endif %}
     {% if event.source.organizerUrl %}<a href="{{ event.source.organizerUrl }}" target="_blank" rel="noopener noreferrer" data-race-outbound data-event-id="{{ event.id }}" data-race-section="detail-organizer" data-race-source="Organizador">Site oficial da organização <span aria-hidden="true">↗</span></a>{% endif %}
     <a href="{{ event.source.officialUrl }}" target="_blank" rel="noopener noreferrer" data-race-outbound data-event-id="{{ event.id }}" data-race-section="detail-source" data-race-source="{{ event.source.provider }}">{% if event.source.validationMethod == "official-calendar" %}Conferir fonte UCI{% else %}Conferir site oficial{% endif %} <span aria-hidden="true">↗</span></a>
     {% if event.source.discoveryUrl %}<a href="{{ event.source.discoveryUrl }}" target="_blank" rel="noopener noreferrer" data-race-outbound data-event-id="{{ event.id }}" data-race-section="detail-discovery" data-race-source="Calendário MTB">Ver registro no Calendário MTB <span aria-hidden="true">↗</span></a>{% endif %}
