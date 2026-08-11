@@ -1,4 +1,5 @@
 ---
+image_subject_id: "selim-syncros-belcarra-v1-0-neo-carbon-cut-out-145mm"
 layout: post
 published: false
 title: "Bike fit e posição: critérios técnicos para ajuste e distribuição de carga"
@@ -32,12 +33,12 @@ image: "/assets/img/posts/youtube-bike-fit-e-posicao-criterios-tecnicos-para-aju
 image_mobile: "/assets/img/posts/youtube-bike-fit-e-posicao-criterios-tecnicos-para-ajuste-e-distribuicao/hero-800.webp"
 thumbnail: "/assets/img/posts/youtube-bike-fit-e-posicao-criterios-tecnicos-para-ajuste-e-distribuicao/card-640.webp"
 image_manifest_version: 2
-image_asset_type: "technical-diagram"
+image_asset_type: "official-product-photo"
 image_status: "approved"
-image_alt: "Capa técnica TheBiker para o artigo Bike fit e posição: critérios técnicos para ajuste e distribuição de carga"
-image_caption: "Capa técnica produzida para o conteúdo editorial TheBiker."
-image_credit: "TheBiker"
-image_license: "Propriedade editorial TheBiker"
+image_alt: "Selim Syncros Belcarra V1.0 Neo Carbon Cut Out - 145mm em fotografia oficial de TheBiker Shop"
+image_caption: "Selim Syncros Belcarra V1.0 Neo Carbon Cut Out - 145mm, em fotografia oficial de TheBiker Shop."
+image_credit: "TheBiker Shop"
+image_license: "Uso editorial no blog oficial TheBiker"
 affiliate_links: false
 editorial_scope: "portfolio"
 promoted_brands: ["TheBiker"]

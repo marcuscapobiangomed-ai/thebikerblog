@@ -35,7 +35,7 @@ function galleryUrls(html) {
     .filter((url) => /\.(?:webp|jpe?g|png)(?:\?|$)/i.test(url));
 }
 
-async function productImageCandidates(product, config, fetchImpl) {
+export async function productImageCandidates(product, config, fetchImpl) {
   const page = new URL(product.productUrl);
   if (!config.allowedPageHosts.some((host) => page.hostname === host || page.hostname.endsWith(`.${host}`))) {
     throw new Error(`Página de produto fora da allowlist: ${page.hostname}`);
@@ -84,7 +84,8 @@ export async function produceOfficialCampaignImage({ root, item, approvedAt, fet
       asset.assetId === existingManifest.assetId &&
       (asset.uses || []).some((use) => use.postId === item.id),
     );
-    if (registered && !force) {
+    const requestedProductMatches = (item.productIds || []).includes(existingManifest.matchedProduct?.id);
+    if (registered && requestedProductMatches && !force) {
       validateImageManifestV2(existingManifest, existingDirectory, { requirePublishable: true });
       return { directory: existingDirectory, manifest: existingManifest, publicBase: `/assets/img/posts/${item.id}` };
     }

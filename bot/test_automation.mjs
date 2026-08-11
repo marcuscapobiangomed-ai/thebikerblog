@@ -105,9 +105,8 @@ assert.match(buildRepairPrompt({
   template: { label: 'Guia técnico' },
   today: '2026-08-08',
 }), /ao menos 1840 palavras reais/);
-const conceptualVisualRoot = path.join(root, "conceptual-visual");
-const conceptualVisual = await produceCampaignVisual({
-  root: conceptualVisualRoot,
+await assert.rejects(() => produceCampaignVisual({
+  root: path.join(root, "conceptual-visual"),
   item: {
     id: "bike-de-fabrica-vs-bike-de-competicao",
     title: "Bike de fábrica vs. bike de competição",
@@ -115,9 +114,7 @@ const conceptualVisual = await produceCampaignVisual({
     productIds: [],
   },
   approvedAt: "2026-08-08",
-});
-assert.equal(conceptualVisual.manifest.assetType, "technical-diagram");
-assert.equal(conceptualVisual.manifest.source.type, "own-production");
+}), /agendamento exige fotografia real/i);
 const campaignWithHistory = structuredClone(campaign);
 for (const item of campaignWithHistory.items) item.status = 'blocked';
 campaignWithHistory.items[3].status = 'planned';
@@ -278,10 +275,12 @@ await fs.mkdir(path.join(finalizeRoot, "bot"), { recursive: true });
 await fs.mkdir(path.join(finalizeRoot, "_data"), { recursive: true });
 await fs.mkdir(path.join(finalizeRoot, "_posts/drafts"), { recursive: true });
 await fs.mkdir(path.join(finalizeRoot, "content/product-discovery"), { recursive: true });
-await fs.writeFile(path.join(finalizeRoot, "content/product-discovery/thebiker-media-catalog.json"), JSON.stringify({ products: [] }));
+const testProduct = { id: "scott-spark-test", name: "Scott Spark Test", brand: "Scott", productUrl: "https://thebikershop.com.br/produtos/scott-spark-test/", images: ["https://thebikershop.com.br/test.webp"] };
+await fs.writeFile(path.join(finalizeRoot, "content/product-discovery/thebiker-media-catalog.json"), JSON.stringify({ products: [testProduct] }));
 const finalizeCampaign = structuredClone(campaign);
 finalizeCampaign.items[0].status = "validation";
-finalizeCampaign.items[0].heroImage = { mode: "conceptual" };
+finalizeCampaign.items[0].productIds = [testProduct.id];
+finalizeCampaign.items[0].heroImage = { mode: "real-context", productId: testProduct.id, relationship: "platform-example", rationale: "Produto real usado como plataforma visual do teste deterministico de finalizacao." };
 finalizeCampaign.items[0].aiReview.finalScore = 95;
 finalizeCampaign.items[0].aiReview.finalBlockers = 0;
 finalizeCampaign.items[0].postPath = `_posts/drafts/${finalizeCampaign.items[0].publishDate}-${finalizeCampaign.items[0].id}.md`;
@@ -293,7 +292,26 @@ await fs.writeFile(path.join(finalizeRoot, "bot/editorial-campaign.json"), JSON.
 const finalized = await finalizeCampaignItem({
   root: finalizeRoot,
   now: new Date("2026-08-05T10:00:00Z"),
-  imageProducer: produceCampaignCover,
+  imageProducer: async (options) => {
+    const cover = await produceCampaignCover(options);
+    cover.manifest = {
+      ...cover.manifest,
+      assetType: "official-product-photo",
+      factualSubject: "exact-product",
+      editorialUse: "publishable",
+      aiGenerated: false,
+      assetId: "thebiker-scott-spark-test-12345678",
+      sha256: "a".repeat(64),
+      matchedProduct: { id: testProduct.id, name: testProduct.name, sku: null, matchLevel: "exact-id" },
+      depictedBrands: ["Scott"],
+      depictedProducts: [testProduct.name],
+      qualityTier: "standard",
+      source: { ...cover.manifest.source, type: "thebiker", url: testProduct.productUrl, rightsPolicyId: "thebiker-official-editorial-v1", licenseEvidence: "catalogo oficial" },
+      approval: { reviewedBy: "gate", approvedAt: "2026-08-05", method: "automated-editorial-gate", checks: ["sem-concorrente"] },
+    };
+    await fs.writeFile(path.join(cover.directory, "image-manifest.json"), JSON.stringify(cover.manifest));
+    return cover;
+  },
 });
 assert.equal(finalized.status, "scheduled");
 const finalizedCampaign = JSON.parse(await fs.readFile(path.join(finalizeRoot, "bot/editorial-campaign.json"), "utf8"));

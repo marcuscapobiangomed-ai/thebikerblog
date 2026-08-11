@@ -1,4 +1,5 @@
 ---
+image_subject_id: "foil-rc-hmx-sl-bicicleta-aero-24v-sram-red-axs"
 layout: post
 published: false
 title: "Bike de fábrica vs. bike de competição: o que realmente muda na prática"
@@ -32,12 +33,12 @@ image: "/assets/img/posts/bike-de-fabrica-vs-bike-de-competicao/hero-1600.webp"
 image_mobile: "/assets/img/posts/bike-de-fabrica-vs-bike-de-competicao/hero-800.webp"
 thumbnail: "/assets/img/posts/bike-de-fabrica-vs-bike-de-competicao/card-640.webp"
 image_manifest_version: 2
-image_asset_type: "technical-diagram"
+image_asset_type: "official-product-photo"
 image_status: "approved"
-image_alt: "Capa técnica TheBiker para o artigo Bike de fábrica vs. bike de competição: o que realmente muda na prática"
-image_caption: "Capa técnica produzida para o conteúdo editorial TheBiker."
-image_credit: "TheBiker"
-image_license: "Propriedade editorial TheBiker"
+image_alt: "Bicicleta Scott Foil RC Ultimate 2026 em fotografia oficial de TheBiker Shop"
+image_caption: "Bicicleta Scott Foil RC Ultimate 2026, em fotografia oficial de TheBiker Shop."
+image_credit: "TheBiker Shop"
+image_license: "Uso editorial no blog oficial TheBiker"
 affiliate_links: false
 editorial_scope: "portfolio"
 promoted_brands: ["TheBiker"]

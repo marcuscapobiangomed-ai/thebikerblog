@@ -2,28 +2,47 @@
   "schemaVersion": 2,
   "status": "approved",
   "editorialUse": "publishable",
-  "assetType": "technical-diagram",
-  "factualSubject": "conceptual",
+  "assetType": "official-product-photo",
+  "factualSubject": "exact-product",
   "editorialScope": "portfolio",
-  "purpose": "Identificar visualmente a pauta técnica Bicicletas gravel: geometria, pneus, transmissão e critérios de uso.",
-  "alt": "Capa técnica TheBiker para o artigo Bicicletas gravel: geometria, pneus, transmissão e critérios de uso",
-  "caption": "Capa técnica produzida para o conteúdo editorial TheBiker.",
-  "credit": "TheBiker",
-  "containsText": true,
+  "purpose": "Ilustrar Bicicletas gravel: geometria, pneus, transmissão e critérios de uso com produto real do catálogo TheBiker.",
+  "alt": "Bicicleta Scott Addict Gravel 30 2026 - Pré Venda em fotografia oficial de TheBiker Shop",
+  "caption": "Bicicleta Scott Addict Gravel 30 2026 - Pré Venda, em fotografia oficial de TheBiker Shop.",
+  "credit": "TheBiker Shop",
+  "containsText": false,
   "aiGenerated": false,
-  "depictedBrands": [],
-  "depictedProducts": [],
+  "assetId": "thebiker-bicicleta-scott-addict-gravel-30-2026-pre-venda-e60f05d57b",
+  "sha256": "e60f05d57b30022b402e6ebe6156078bd86f2f09065df4ec2740b4c0cbe96994",
+  "perceptualHash": "1111111111010001101110010101000000000010000001101001100011111111",
+  "preserveFullProduct": true,
+  "outputFormat": "webp",
+  "qualityTier": "standard",
+  "matchedProduct": {
+    "id": "bicicleta-scott-addict-gravel-30-2026-pre-venda",
+    "name": "Bicicleta Scott Addict Gravel 30 2026 - Pré Venda",
+    "sku": null,
+    "matchLevel": "exact-id"
+  },
+  "depictedBrands": [
+    "Scott"
+  ],
+  "depictedProducts": [
+    "Bicicleta Scott Addict Gravel 30 2026 - Pré Venda"
+  ],
   "focalPoint": {
     "x": 0.5,
     "y": 0.5
   },
   "source": {
-    "type": "own-production",
-    "name": "TheBiker",
-    "url": "",
-    "obtainedAt": "2026-08-08",
-    "license": "Propriedade editorial TheBiker",
-    "licenseEvidence": "Arte técnica original produzida pelo pipeline editorial do repositório."
+    "type": "thebiker",
+    "name": "TheBiker Shop",
+    "url": "https://thebikershop.com.br/produtos/bicicleta-scott-addict-gravel-30-2026-pre-venda/",
+    "fileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/f06d9586-eb02-11f0-9eff-c24f74839598-a97f08e701a24ec31a17751348830787-1024-1024.webp",
+    "localFile": "source.webp",
+    "obtainedAt": "2026-08-11",
+    "license": "Uso editorial no blog oficial TheBiker",
+    "licenseEvidence": "Diretriz editorial registrada pelo responsável do blog oficial TheBiker.",
+    "rightsPolicyId": "thebiker-official-editorial-v1"
   },
   "files": {
     "hero": {
@@ -46,14 +65,27 @@
     }
   },
   "approval": {
-    "reviewedBy": "TheBiker AI Editorial Gate",
-    "approvedAt": "2026-08-08",
+    "reviewedBy": "TheBiker deterministic image gate",
+    "approvedAt": "2026-08-11",
     "method": "automated-editorial-gate",
     "checks": [
-      "origem-própria",
-      "sem-marca-concorrente",
-      "dimensões",
-      "peso-do-arquivo"
+      "fonte-oficial",
+      "resolucao-padrao-declarada",
+      "webp-otimizado",
+      "direitos",
+      "produto-relacionado",
+      "sha256",
+      "hash-perceptual",
+      "sem-concorrente"
     ]
+  },
+  "composition": {
+    "strategy": "trim-contain-safe-area",
+    "safeArea": 0.9,
+    "trimThreshold": 16,
+    "sourceWidth": 800,
+    "sourceHeight": 800,
+    "subjectWidth": 764,
+    "subjectHeight": 625
   }
 }

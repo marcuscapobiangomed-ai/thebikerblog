@@ -6,6 +6,14 @@
     { "category": "acessorios", "url": "https://thebikershop.com.br/acessorios/" },
     { "category": "vestuario", "url": "https://thebikershop.com.br/vestuario/" }
   ],
+  "requiredProductPages": [
+    { "category": "componentes", "brand": "Shimano", "name": "Grupo Shimano 105 Di2", "url": "https://thebikershop.com.br/produtos/grupo-shimano-105-di2/" },
+    { "category": "componentes", "brand": "Shimano", "name": "Disco de Freio Shimano XTR CL900 Center Lock", "url": "https://thebikershop.com.br/produtos/disco-de-freio-shimano-xtr-cl900-center-lock/" },
+    { "category": "componentes", "brand": "Shimano", "name": "Câmbio Traseiro Shimano GRX 11v RD-RX812", "url": "https://thebikershop.com.br/produtos/cambio-traseiro-shimano-grx-11v/" },
+    { "category": "componentes", "brand": "Continental", "name": "Pneu Continental GatorSkin 700x28 BlackEdition", "url": "https://thebikershop.com.br/produtos/pneu-continental-gatorskin-700x28/" },
+    { "category": "componentes", "brand": "Schwalbe", "name": "Pneu Schwalbe Racing Ray 29 x 2.25 Super Race TLR Addix", "url": "https://thebikershop.com.br/produtos/pneu-schwalbe-racing-ray-29-x-2-25-super-race-tlr-addix/" },
+    { "category": "componentes", "brand": "Rock Shox", "name": "Kit Reparo Suspensão RockShox SID SL 32 Flight Attendant 2026+", "url": "https://thebikershop.com.br/produtos/kit-reparo-suspensao-rock-shox-sid-flight-attendant/" }
+  ],
   "allowedPageHosts": ["thebikershop.com.br"],
   "allowedAssetHosts": ["acdn-us.mitiendanube.com", "thebikershop.com.br", "api.elite-it.com", "static.scott-sports.com"],
   "officialProductImages": {
@@ -22,6 +30,6 @@
   "maximumDownloadBytes": 12582912,
   "minimumPublishableLongEdge": 1600,
   "minimumPublishableShortEdge": 800,
-  "minimumStandardLongEdge": 900,
+  "minimumStandardLongEdge": 800,
   "minimumStandardShortEdge": 600
 }

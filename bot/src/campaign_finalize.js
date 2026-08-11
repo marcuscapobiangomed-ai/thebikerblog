@@ -4,12 +4,12 @@ import { fileURLToPath } from "node:url";
 import matter from "gray-matter";
 import { CampaignSchema, publicCampaignSummary } from "./automation/campaign.js";
 import { produceOfficialCampaignImage } from "./images/official-campaign-image.js";
-import { produceCampaignCover } from "./images/campaign-cover.js";
 import { linkTheBikerProducts, loadTheBikerLinkData } from "./editorial/product-linker.js";
 import { assertMarkdownPublicationGates } from "./validation/markdown-publication-gates.js";
 import { assertImageArticleConsistency } from "./validation/image-article-consistency.js";
 import { assertReviewedContentIntegrity, issueEditorialReceipt } from "./validation/editorial-receipt.js";
 import { classifyEditorialFailure } from "./validation/editorial-failures.js";
+import { assertVisualDecision, issueVisualDecision } from "./validation/visual-decision.js";
 
 const defaultRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 
@@ -34,8 +34,8 @@ function setOptionalField(content, field, value) {
 
 export async function produceCampaignVisual({ root, item, approvedAt, force = false }) {
   const visualPolicy = item.heroImage || { mode: "conceptual" };
-  if (visualPolicy.mode !== "exact-product") {
-    return produceCampaignCover({ root, item, approvedAt });
+  if (!["exact-product", "real-context"].includes(visualPolicy.mode)) {
+    throw new Error(`Politica visual ${visualPolicy.mode}: agendamento exige fotografia real explicitamente vinculada`);
   }
   return produceOfficialCampaignImage({
     root,
@@ -93,7 +93,10 @@ export async function finalizeCampaignItem({ root = defaultRoot, now = new Date(
     content = setField(content, "editorial_status", '"reviewed"');
     content = setField(content, "status", '"scheduled"');
     const catalog = JSON.parse(await fs.readFile(path.join(root, "content/product-discovery/thebiker-media-catalog.json"), "utf8"));
-    assertImageArticleConsistency({ article: matter(content).data, manifest: cover.manifest, campaignItem: item, catalog });
+    const article = matter(content).data;
+    assertImageArticleConsistency({ article, manifest: cover.manifest, campaignItem: item, catalog });
+    item.visualDecision = issueVisualDecision({ item, article, manifest: cover.manifest, catalog, now });
+    assertVisualDecision({ receipt: item.visualDecision, item, article, manifest: cover.manifest, catalog });
     let linkData;
     try {
       linkData = loadTheBikerLinkData(root);

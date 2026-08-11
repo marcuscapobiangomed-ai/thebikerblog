@@ -30,6 +30,7 @@
     ,"campaign:produce": "node src/campaign_producer.js"
     ,"campaign:finalize": "node src/campaign_finalize.js"
     ,"media:discover": "node src/images/discover-candidates.js"
+    ,"media:audit": "node ../scripts/audit-media-catalog.js"
     ,"campaign:audit-buffer": "node src/audit_campaign_buffer.js"
     ,"campaign:simulate": "node src/automation/simulate-campaign.js"
     ,"campaign:repair-buffer": "node src/repair_campaign_buffer.js"

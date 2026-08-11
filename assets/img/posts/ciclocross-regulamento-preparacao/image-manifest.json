@@ -2,28 +2,47 @@
   "schemaVersion": 2,
   "status": "approved",
   "editorialUse": "publishable",
-  "assetType": "technical-diagram",
-  "factualSubject": "conceptual",
-  "editorialScope": "race-context",
-  "purpose": "Identificar visualmente a pauta técnica Ciclocross: regulamento, pneus e preparação da bike para prova.",
-  "alt": "Capa técnica TheBiker para o artigo Ciclocross: regulamento, pneus e preparação da bike para prova",
-  "caption": "Capa técnica produzida para o conteúdo editorial TheBiker.",
-  "credit": "TheBiker",
-  "containsText": true,
+  "assetType": "official-product-photo",
+  "factualSubject": "exact-product",
+  "editorialScope": "portfolio",
+  "purpose": "Ilustrar Ciclocross: regulamento, pneus e preparação da bike para prova com produto real do catálogo TheBiker.",
+  "alt": "Câmbio Traseiro Shimano GRX 11v RD-RX812 em fotografia oficial de TheBiker Shop",
+  "caption": "Câmbio Traseiro Shimano GRX 11v RD-RX812, em fotografia oficial de TheBiker Shop.",
+  "credit": "TheBiker Shop",
+  "containsText": false,
   "aiGenerated": false,
-  "depictedBrands": [],
-  "depictedProducts": [],
+  "assetId": "thebiker-cambio-traseiro-shimano-grx-11v-f0c0a6abf1",
+  "sha256": "f0c0a6abf153bfe34283a1e09a0f7769c01dd2e062b311d63597bd2b2470d79e",
+  "perceptualHash": "1000111110000000100000001111001110000111000111110001111110111111",
+  "preserveFullProduct": true,
+  "outputFormat": "webp",
+  "qualityTier": "standard",
+  "matchedProduct": {
+    "id": "cambio-traseiro-shimano-grx-11v",
+    "name": "Câmbio Traseiro Shimano GRX 11v RD-RX812",
+    "sku": null,
+    "matchLevel": "exact-id"
+  },
+  "depictedBrands": [
+    "Shimano"
+  ],
+  "depictedProducts": [
+    "Câmbio Traseiro Shimano GRX 11v RD-RX812"
+  ],
   "focalPoint": {
     "x": 0.5,
     "y": 0.5
   },
   "source": {
-    "type": "own-production",
-    "name": "TheBiker",
-    "url": "",
-    "obtainedAt": "2026-08-09",
-    "license": "Propriedade editorial TheBiker",
-    "licenseEvidence": "Arte técnica original produzida pelo pipeline editorial do repositório."
+    "type": "thebiker",
+    "name": "TheBiker Shop",
+    "url": "https://thebikershop.com.br/produtos/cambio-traseiro-shimano-grx-11v/",
+    "fileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/shimano-desviador-traseiro-grx-rd-rx810-shadow-rd-direct1-09aa717cff5cd0fba116616197453563-1024-1024.webp",
+    "localFile": "source.webp",
+    "obtainedAt": "2026-08-11",
+    "license": "Uso editorial no blog oficial TheBiker",
+    "licenseEvidence": "Diretriz editorial registrada pelo responsável do blog oficial TheBiker.",
+    "rightsPolicyId": "thebiker-official-editorial-v1"
   },
   "files": {
     "hero": {
@@ -46,14 +65,27 @@
     }
   },
   "approval": {
-    "reviewedBy": "TheBiker AI Editorial Gate",
-    "approvedAt": "2026-08-09",
+    "reviewedBy": "TheBiker deterministic image gate",
+    "approvedAt": "2026-08-11",
     "method": "automated-editorial-gate",
     "checks": [
-      "origem-própria",
-      "sem-marca-concorrente",
-      "dimensões",
-      "peso-do-arquivo"
+      "fonte-oficial",
+      "resolucao-padrao-declarada",
+      "webp-otimizado",
+      "direitos",
+      "produto-relacionado",
+      "sha256",
+      "hash-perceptual",
+      "sem-concorrente"
     ]
+  },
+  "composition": {
+    "strategy": "trim-contain-safe-area",
+    "safeArea": 0.9,
+    "trimThreshold": 16,
+    "sourceWidth": 1000,
+    "sourceHeight": 1000,
+    "subjectWidth": 964,
+    "subjectHeight": 954
   }
 }

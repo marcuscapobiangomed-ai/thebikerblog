@@ -13,6 +13,7 @@ import os from "node:os";
 import sharp from "sharp";
 import { selectImageCandidate } from "./src/images/select-image.js";
 import { imageArticleConsistencyErrors } from "./src/validation/image-article-consistency.js";
+import { issueVisualDecision, visualDecisionErrors } from "./src/validation/visual-decision.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const catalog = { products: [{
@@ -68,6 +69,56 @@ assert.deepEqual(imageArticleConsistencyErrors({
   campaignItem: { heroImage: { mode: "exact-product", productId: "grupo-shimano-105-di2" } },
   catalog: productCatalog,
 }), []);
+const contextualItem = {
+  heroImage: {
+    mode: "real-context",
+    productId: "grupo-shimano-105-di2",
+    relationship: "component-example",
+    rationale: "Produto real usado como exemplo visual do sistema explicado no artigo.",
+  },
+  productIds: ["grupo-shimano-105-di2"],
+};
+assert.deepEqual(imageArticleConsistencyErrors({
+  article: shimanoArticle,
+  manifest: shimanoManifest,
+  campaignItem: contextualItem,
+  catalog: productCatalog,
+}), [], "contexto real preserva a identidade factual do produto sem declarar review");
+const publishableManifest = {
+  ...shimanoManifest,
+  editorialUse: "publishable",
+  factualSubject: "exact-product",
+  aiGenerated: false,
+  qualityTier: "standard",
+  source: {
+    type: "thebiker",
+    rightsPolicyId: "thebiker-official-editorial-v1",
+    licenseEvidence: "catalogo oficial",
+  },
+  approval: { checks: ["sem-concorrente"] },
+};
+const visualDecision = issueVisualDecision({
+  item: contextualItem,
+  article: shimanoArticle,
+  manifest: publishableManifest,
+  catalog: productCatalog,
+  now: new Date("2026-08-11T12:00:00.000Z"),
+});
+assert.equal(visualDecision.score, 100);
+assert.deepEqual(visualDecisionErrors({
+  receipt: visualDecision,
+  item: contextualItem,
+  article: shimanoArticle,
+  manifest: publishableManifest,
+  catalog: productCatalog,
+}), []);
+assert.match(visualDecisionErrors({
+  receipt: visualDecision,
+  item: contextualItem,
+  article: shimanoArticle,
+  manifest: { ...publishableManifest, matchedProduct: { id: "bateria-sram-axs", name: "Bateria SRAM AXS" } },
+  catalog: productCatalog,
+}).join("; "), /nao corresponde|reprovada/i);
 const immutableShimanoProof = {
   assetId: shimanoManifest.assetId,
   sha256: shimanoManifest.sha256,

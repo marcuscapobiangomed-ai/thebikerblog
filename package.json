@@ -52,7 +52,7 @@
     "security:public": "node scripts/check-secrets.js --public",
     "links:thebiker": "node scripts/link-thebiker-products.js --write --rebuild",
     "check:thebiker-links": "node scripts/link-thebiker-products.js --check",
-    "validate": "npm run security:secrets && npm run validate:research && npm run receipts:check && npm run audit:buffer-shadow && npm run validate:scheduled && npm run validate:posts && npm run audit:editorial && npm run audit:seo && npm run check:audience && npm run validate:images && npm run validate:manifests && npm run validate:manifests-v2 && npm run validate:data && npm run validate:races && npm run check:catalog-public && npm run check:machine-readable && npm run check:claims && npm run check:thebiker-links && npm run check:n8n && npm test && npm run test:analytics && npm run lint",
+    "validate": "npm run security:secrets && npm run validate:research && npm run receipts:check && npm run audit:buffer-shadow && npm run validate:scheduled && npm run validate:posts && npm run audit:editorial && npm run audit:seo && npm run check:audience && npm run media:audit && npm run validate:images && npm run validate:manifests && npm run validate:manifests-v2 && npm run validate:data && npm run validate:races && npm run check:catalog-public && npm run check:machine-readable && npm run check:claims && npm run check:thebiker-links && npm run check:n8n && npm test && npm run test:analytics && npm run lint",
     "audit:images": "node ../medblog-automation/src/audit-images.js",
     "generate:thumbnails": "node ../medblog-automation/src/generate-thumbnails.js",
     "generate:placeholders": "node ../medblog-automation/src/generate-placeholders.js && node ../medblog-automation/src/generate-data-placeholders.js",
@@ -60,6 +60,9 @@
     ,"images:reframe-products": "node scripts/reframe-product-images.js"
     ,"media:recalibrate-campaign": "node scripts/recalibrate-campaign-images.js"
     ,"media:recalibrate-active": "node scripts/recalibrate-active-legacy-images.js"
+    ,"media:audit": "node scripts/audit-media-catalog.js"
+    ,"verify:live-images": "node scripts/verify-live-editorial-images.js"
+    ,"media:decisions:backfill": "node scripts/backfill-visual-decisions.js"
     ,"campaign:simulate": "npm --prefix bot run campaign:simulate"
   },
   "devDependencies": {

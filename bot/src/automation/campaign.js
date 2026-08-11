@@ -2,6 +2,12 @@ import { z } from 'zod'
 
 const HeroImageSchema = z.discriminatedUnion('mode', [
   z.object({ mode: z.literal('exact-product'), productId: z.string().min(3) }),
+  z.object({
+    mode: z.literal('real-context'),
+    productId: z.string().min(3),
+    relationship: z.enum(['component-example', 'category-example', 'platform-example', 'maintenance-example']),
+    rationale: z.string().min(30).max(300),
+  }),
   z.object({ mode: z.literal('conceptual') }),
   z.object({ mode: z.literal('race-context') }),
 ])
@@ -66,6 +72,17 @@ const CampaignItemSchema = z.object({
     finalBlockers: z.number().int().min(0),
     issuedAt: z.string().datetime(),
   }).optional(),
+  visualDecision: z.object({
+    schemaVersion: z.literal(1),
+    policyVersion: z.literal('thebiker-visual-autonomy-v1'),
+    inputHash: HashSchema,
+    mode: z.enum(['exact-product', 'real-context', 'race-context']),
+    productId: z.string().min(3).nullable(),
+    score: z.number().int().min(0).max(100),
+    hardGates: z.record(z.string(), z.boolean()),
+    blockers: z.array(z.string()),
+    issuedAt: z.string().datetime(),
+  }).optional(),
 })
 
 const ReserveSchema = z.object({
@@ -98,7 +115,7 @@ export const CampaignSchema = z.object({
     if (item.category === "review" && ["validation", "approved", "scheduled", "published"].includes(item.status) && item.productIds.length === 0) {
       context.addIssue({ code: 'custom', path: ['items', index, 'productIds'], message: 'review validado exige ao menos um produto rastreável' })
     }
-    if (item.heroImage.mode === 'exact-product' && !item.productIds.includes(item.heroImage.productId)) {
+    if (['exact-product', 'real-context'].includes(item.heroImage.mode) && !item.productIds.includes(item.heroImage.productId)) {
       context.addIssue({ code: 'custom', path: ['items', index, 'heroImage', 'productId'], message: 'produto da capa precisa estar declarado em productIds' })
     }
     if (item.heroImage.mode === 'race-context' && item.category !== 'competicoes') {
