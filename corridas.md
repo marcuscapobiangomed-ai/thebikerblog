@@ -19,7 +19,7 @@ model: ""
     <div class="container race-hub-hero-inner">
       <span class="race-hub-kicker">TheBiker Insights · Competições</span>
       <h1 id="race-hub-title">O pelotão corre.<br>A agenda acompanha.</h1>
-      <p>Agenda recente e as próximas grandes corridas do ciclismo mundial, conferidas diretamente no calendário oficial da UCI.</p>
+      <p>Agenda recente e as próximas grandes corridas do ciclismo mundial, explicadas em português e conferidas no calendário oficial da UCI.</p>
       <div class="race-hub-status" aria-label="Resumo do calendário">
         <span><strong>{{ public_calendar.today | size }}</strong> em disputa hoje</span>
         <span><strong>{{ public_calendar.recent | size }}</strong> encerradas recentemente</span>
@@ -57,13 +57,14 @@ model: ""
         {% if public_calendar.today != empty %}
           <div class="race-today-events">
             {% for event in public_calendar.today %}
+              {% assign country_pt = site.data["countries-pt"][event.countryCode] | default: event.country %}
               <article class="race-today-event">
                 <div>
-                  <span>{{ event.disciplineLabel }} · {{ event.country }}</span>
+                  <span>{{ event.disciplineLabel }} · {{ country_pt }}</span>
                   <h3>{{ event.name }}</h3>
-                  <p>{{ event.competitionClass }}{% if event.venue != "" %} · {{ event.venue }}{% endif %}</p>
+                  <p>{% include race-class-label.html value=event.competitionClass %}{% if event.venue != "" %} · {{ event.venue }}{% endif %}</p>
                 </div>
-                <a href="{{ event.source.officialUrl }}" target="_blank" rel="noopener noreferrer" data-race-outbound data-event-id="{{ event.id }}" data-race-section="today" data-race-source="UCI" aria-label="Abrir ficha oficial de {{ event.name }}">Ver ficha na UCI <span aria-hidden="true">↗</span></a>
+                <a href="{{ site.baseurl }}/corridas/detalhes/#{{ event.id }}" data-race-detail data-event-id="{{ event.id }}" data-race-section="today" aria-label="Ver detalhes em português de {{ event.name }}">Entender esta corrida <span aria-hidden="true">→</span></a>
               </article>
             {% endfor %}
           </div>
@@ -79,10 +80,11 @@ model: ""
           <span>Calendário recente</span>
           <h2 id="recent-races-title">Encerradas no calendário UCI</h2>
         </div>
-        <p>Selecionamos as provas de maior nível encerradas mais recentemente. O link de cada card leva à ficha oficial da UCI.</p>
+        <p>Selecionamos as provas de maior nível encerradas mais recentemente. Cada card abre uma explicação em português dentro do blog.</p>
       </div>
       <div class="race-recent-grid">
         {% for event in public_calendar.recent %}
+          {% assign country_pt = site.data["countries-pt"][event.countryCode] | default: event.country %}
           <article class="race-event-card race-event-card--completed">
             <div class="race-event-card-topline">
               <span class="race-event-status">Data encerrada</span>
@@ -93,9 +95,9 @@ model: ""
               {% unless event.startsOn == event.endsOn %}<span aria-hidden="true">—</span> <time datetime="{{ event.endsOn }}">{{ event.displayDate.endsOnWithYear }}</time>{% endunless %}
             </p>
             <h3>{{ event.name }}</h3>
-            <p class="race-event-location">{{ event.country }}{% if event.venue != "" %} · {{ event.venue }}{% endif %}</p>
-            <p class="race-event-class">{{ event.competitionClass }}</p>
-            <a href="{{ event.source.officialUrl }}" target="_blank" rel="noopener noreferrer" data-race-outbound data-event-id="{{ event.id }}" data-race-section="recent" data-race-source="UCI">Ficha oficial UCI <span aria-hidden="true">↗</span></a>
+            <p class="race-event-location">{{ country_pt }}{% if event.venue != "" %} · {{ event.venue }}{% endif %}</p>
+            <p class="race-event-class">{% include race-class-label.html value=event.competitionClass %}</p>
+            <a href="{{ site.baseurl }}/corridas/detalhes/#{{ event.id }}" data-race-detail data-event-id="{{ event.id }}" data-race-section="recent">Ver informações validadas <span aria-hidden="true">→</span></a>
           </article>
         {% endfor %}
       </div>
@@ -111,6 +113,7 @@ model: ""
       </div>
       <ol class="race-upcoming-list">
         {% for event in public_calendar.upcoming %}
+          {% assign country_pt = site.data["countries-pt"][event.countryCode] | default: event.country %}
           <li class="race-upcoming-item">
             <span class="race-upcoming-position" aria-hidden="true">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span>
             <p class="race-upcoming-date">
@@ -118,11 +121,11 @@ model: ""
               {% unless event.startsOn == event.endsOn %}<span>até</span> <time datetime="{{ event.endsOn }}">{{ event.displayDate.endsOn }}</time>{% endunless %}
             </p>
             <div class="race-upcoming-main">
-              <span>{{ event.disciplineLabel }} · {{ event.country }}</span>
+              <span>{{ event.disciplineLabel }} · {{ country_pt }}</span>
               <h3>{{ event.name }}</h3>
-              <p>{{ event.competitionClass }}{% if event.venue != "" %} · {{ event.venue }}{% endif %}</p>
+              <p>{% include race-class-label.html value=event.competitionClass %}{% if event.venue != "" %} · {{ event.venue }}{% endif %}</p>
             </div>
-            <a href="{{ event.source.officialUrl }}" target="_blank" rel="noopener noreferrer" data-race-outbound data-event-id="{{ event.id }}" data-race-section="upcoming" data-race-source="UCI" aria-label="Abrir ficha oficial de {{ event.name }}">UCI <span aria-hidden="true">↗</span></a>
+            <a href="{{ site.baseurl }}/corridas/detalhes/#{{ event.id }}" data-race-detail data-event-id="{{ event.id }}" data-race-section="upcoming" aria-label="Ver detalhes em português de {{ event.name }}">Detalhes <span aria-hidden="true">→</span></a>
           </li>
         {% endfor %}
       </ol>

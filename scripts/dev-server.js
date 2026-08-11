@@ -32,7 +32,8 @@ const posts = fs.readdirSync(path.join(projectRoot, "_posts"), { withFileTypes: 
 const findPost = (fragment) => posts.find((post) => String(post.title || "").includes(fragment));
 const config = yaml.load(read("_config.yml"));
 const data = {
-  "race-events": JSON.parse(read(path.join("_data", "race-events.json")))
+  "race-events": JSON.parse(read(path.join("_data", "race-events.json"))),
+  "countries-pt": JSON.parse(read(path.join("_data", "countries-pt.json")))
 };
 const site = { ...config, baseurl: "", posts, data, time: new Date() };
 const page = { ...parseDocument(read("index.html")).data, url: "/" };
@@ -50,7 +51,13 @@ const context = {
   maintenance_post: findPost("Manutenção Básica")
 };
 
-const engine = new Liquid({ strictVariables: false, strictFilters: false });
+const engine = new Liquid({
+  strictVariables: false,
+  strictFilters: false,
+  jekyllInclude: true,
+  root: [path.join(projectRoot, "_includes")],
+  extname: ".html"
+});
 engine.registerFilter("date_to_xmlschema", (value) => new Date(value).toISOString());
 
 function expandIncludes(source) {
@@ -91,6 +98,7 @@ const mimeTypes = {
 const homeHtml = await renderHome();
 const pageRoutes = new Map([
   ["/corridas/", await renderPage("corridas.md", "/corridas/")],
+  ["/corridas/detalhes/", await renderPage("corridas-detalhes.md", "/corridas/detalhes/")],
   ["/calculadoras/", await renderPage("calculadoras.html", "/calculadoras/")],
   ["/calculadoras/tamanho-road-bike/", await renderPage("calculadora-tamanho.html", "/calculadoras/tamanho-road-bike/")],
   ["/calculadoras/relacao-marchas/", await renderPage("calculadora-marchas.html", "/calculadoras/relacao-marchas/")],

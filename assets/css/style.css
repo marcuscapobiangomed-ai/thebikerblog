@@ -2574,6 +2574,49 @@ button.comparison-slot { width: 100%; font: inherit; cursor: pointer; }
 .race-source-note strong { color: #e8b9c1; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; }
 .race-source-note p { margin: 0; color: rgba(255,255,255,0.72); line-height: 1.65; }
 
+/* Detalhes internos das corridas: a fonte externa vira comprovação secundária. */
+.race-details-page { background: #f7f5f2; }
+.race-details-hero { color: #fff; background: linear-gradient(125deg, #171313 0%, #401018 56%, #7d1a2a 100%); }
+.race-details-hero .container { padding-top: 64px; padding-bottom: 66px; }
+.race-details-hero h1 { max-width: 900px; margin: 0; color: #fff; font-family: var(--font-heading); font-size: clamp(2.5rem, 6vw, 5.2rem); line-height: 0.96; letter-spacing: -0.045em; text-transform: uppercase; }
+.race-details-hero p { max-width: 720px; margin: 24px 0; color: rgba(255,255,255,0.8); font-size: 1.02rem; line-height: 1.65; }
+.race-details-hero a { color: #fff; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.07em; text-decoration: none; text-transform: uppercase; }
+.race-details-content { padding-top: 52px; padding-bottom: 88px; }
+.race-details-method { display: grid; grid-template-columns: 200px minmax(0, 1fr) auto; gap: 26px; align-items: start; margin-bottom: 72px; padding: 24px 28px; background: #ece8e3; border-left: 4px solid var(--accent); }
+.race-details-method strong { color: #2a2425; font-size: 0.72rem; letter-spacing: 0.09em; text-transform: uppercase; }
+.race-details-method p { margin: 0; color: #5f595a; line-height: 1.6; }
+.race-details-method span { color: #756f70; font-family: var(--font-mono); font-size: 0.68rem; }
+.race-details-content > section + section { margin-top: 82px; padding-top: 66px; border-top: 1px solid #dcd7d3; }
+.race-details-section-heading { margin-bottom: 28px; }
+.race-details-section-heading > span { display: block; margin-bottom: 8px; color: var(--accent-dark); font-size: 0.68rem; font-weight: 800; letter-spacing: 0.13em; text-transform: uppercase; }
+.race-details-section-heading h2 { margin: 0; color: #171717; font-family: var(--font-heading); font-size: clamp(1.8rem, 4vw, 3rem); letter-spacing: -0.035em; text-transform: uppercase; }
+.race-detail-card { scroll-margin-top: 24px; padding: 32px; background: #fff; border: 1px solid #dfdad6; box-shadow: 0 12px 34px rgba(31,5,10,0.06); outline: 0; }
+.race-detail-card + .race-detail-card { margin-top: 20px; }
+.race-detail-card:target { border-color: var(--accent); box-shadow: 0 18px 48px rgba(125,16,34,0.17); }
+.race-detail-card-header { display: flex; justify-content: space-between; gap: 28px; align-items: flex-start; padding-bottom: 24px; border-bottom: 1px solid #e6e1de; }
+.race-detail-card-header p { margin: 12px 0 8px; color: #756f70; font-size: 0.67rem; font-weight: 800; letter-spacing: 0.09em; text-transform: uppercase; }
+.race-detail-card-header h2 { margin: 0; color: #171717; font-family: var(--font-heading); font-size: clamp(1.55rem, 3.2vw, 2.5rem); line-height: 1; text-transform: uppercase; }
+.race-detail-status { display: inline-flex; padding: 7px 9px; color: #fff; background: #655f60; font-size: 0.62rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; }
+.race-detail-status--today { background: var(--accent-dark); }
+.race-detail-status--scheduled { color: #302b2c; background: #e5ddd6; }
+.race-detail-back { flex: 0 0 auto; color: var(--accent-dark); font-size: 0.67rem; font-weight: 800; letter-spacing: 0.06em; text-decoration: none; text-transform: uppercase; }
+.race-detail-summary { max-width: 820px; margin: 24px 0; color: #514c4d; font-size: 0.96rem; line-height: 1.7; }
+.race-detail-facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 0; border: 1px solid #e4dfdc; }
+.race-detail-facts > div { min-width: 0; padding: 18px; border-left: 1px solid #e4dfdc; }
+.race-detail-facts > div:first-child { border-left: 0; }
+.race-detail-facts dt { margin-bottom: 7px; color: #8a8283; font-size: 0.62rem; font-weight: 800; letter-spacing: 0.09em; text-transform: uppercase; }
+.race-detail-facts dd { margin: 0; color: #272324; font-size: 0.84rem; font-weight: 750; line-height: 1.45; }
+.race-detail-explanation { margin-top: 24px; padding: 24px; color: #fff; background: #211d1e; }
+.race-detail-explanation > span { color: #e8b9c1; font-size: 0.62rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; }
+.race-detail-explanation h3 { margin: 10px 0 8px; color: #fff; font-family: var(--font-heading); font-size: 1.12rem; line-height: 1.25; text-transform: uppercase; }
+.race-detail-explanation p { margin: 0; color: rgba(255,255,255,0.62); font-size: 0.75rem; }
+.race-detail-integrity { margin-top: 24px; padding: 22px 24px; background: #f2efec; border-left: 4px solid #908788; }
+.race-detail-integrity strong { display: block; color: #342f30; font-size: 0.68rem; letter-spacing: 0.09em; text-transform: uppercase; }
+.race-detail-integrity p { margin: 9px 0 0; color: #615b5c; font-size: 0.82rem; line-height: 1.6; }
+.race-detail-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+.race-detail-actions a { padding: 11px 13px; color: var(--accent-dark); border: 1px solid #cfc7c4; font-size: 0.66rem; font-weight: 800; letter-spacing: 0.06em; text-decoration: none; text-transform: uppercase; }
+.race-detail-actions a:hover { color: #fff; background: var(--accent-dark); border-color: var(--accent-dark); }
+
 @media (max-width: 720px) {
   .race-hub-hero-inner { padding-top: 52px; padding-bottom: 58px; }
   .race-hub-hero p { font-size: 0.94rem; }
@@ -2600,6 +2643,17 @@ button.comparison-slot { width: 100%; font: inherit; cursor: pointer; }
   .race-upcoming-main { grid-column: 2; grid-row: 2; }
   .race-upcoming-item > a { grid-column: 3; grid-row: 2; align-self: center; }
   .race-source-note .container { grid-template-columns: 1fr; gap: 12px; }
+  .race-details-hero .container { padding-top: 50px; padding-bottom: 52px; }
+  .race-details-method { grid-template-columns: 1fr; gap: 10px; margin-bottom: 54px; padding: 22px; }
+  .race-details-content { padding-top: 40px; padding-bottom: 64px; }
+  .race-details-content > section + section { margin-top: 58px; padding-top: 50px; }
+  .race-detail-card { padding: 22px 18px; }
+  .race-detail-card-header { display: grid; gap: 18px; }
+  .race-detail-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .race-detail-facts > div:nth-child(3) { border-left: 0; }
+  .race-detail-facts > div:nth-child(n+3) { border-top: 1px solid #e4dfdc; }
+  .race-detail-actions { display: grid; }
+  .race-detail-actions a { text-align: center; }
 }
 
 .post-title,
