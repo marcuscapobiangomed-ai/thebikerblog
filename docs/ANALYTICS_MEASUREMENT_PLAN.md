@@ -68,7 +68,7 @@ O destino nunca inclui query string ou fragmento. Botões dentro de formulários
 
 ## Configuração no GA4
 
-As oito dimensões abaixo, o evento principal `store_click` e os públicos **Alta intenção TheBiker** e **Leitores técnicos engajados** foram configurados em 7 de agosto de 2026. A evidência operacional está em `docs/operations/analytics-audience-configuration-2026-08-07.md`.
+As nove dimensões editoriais abaixo, o evento principal `store_click` e os públicos **Alta intenção TheBiker** e **Leitores técnicos engajados** foram configurados em 7 de agosto de 2026. As seis dimensões de clique foram configuradas em 11 de agosto de 2026. A evidência operacional inicial está em `docs/operations/analytics-audience-configuration-2026-08-07.md`.
 
 Em **Administrador → Definições personalizadas**, cadastrar como dimensões de evento:
 
@@ -80,6 +80,13 @@ Em **Administrador → Definições personalizadas**, cadastrar como dimensões 
 6. `percent_scrolled`
 7. `audience_intent`
 8. `experience_level_target`
+9. `audience_segment`
+10. `element_type`
+11. `element_name`
+12. `link_type`
+13. `destination_host`
+14. `destination_path`
+15. `button_type`
 
 Todas têm escopo **Evento**. `audience_intent` e `experience_level_target` são dimensões de baixa cardinalidade que descrevem a página; não representam uma inferência sobre a identidade do visitante. Os dados podem levar de 24 a 48 horas para aparecer nos relatórios após coleta e cadastro.
 
