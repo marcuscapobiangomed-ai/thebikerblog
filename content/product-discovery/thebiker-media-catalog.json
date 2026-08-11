@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "source": "https://thebikershop.com.br/",
-  "discoveredAt": "2026-08-10T17:54:01.588Z",
+  "discoveredAt": "2026-08-11T10:03:25.293Z",
   "rightsPolicyId": "thebiker-official-editorial-v1",
   "total": 481,
   "products": [
@@ -1059,6 +1059,17 @@
       "sku": null
     },
     {
+      "id": "taco-de-pedal-look-keo-gripp",
+      "name": "Taco de Pedal Look Keo Gripp",
+      "brand": "Look",
+      "category": "componentes",
+      "productUrl": "https://thebikershop.com.br/produtos/taco-de-pedal-look-keo-gripp/",
+      "images": [
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/809dfdd1331-e7d881a50a7710773e15737471635818-480-0.webp"
+      ],
+      "sku": "COMP-004"
+    },
+    {
       "id": "sapata-de-freio-mavic-exalith",
       "name": "Sapata de Freio Mavic Exalith Campagnolo",
       "brand": "Mavic",
@@ -1301,6 +1312,17 @@
       "sku": "00.3018.254.000"
     },
     {
+      "id": "2-unidades-pneu-pirelli-p-zero-race-tlr-700x28",
+      "name": "Combo Pneu Pirelli P Zero Race TLR 700x28 - 2 unidades",
+      "brand": "Pirelli",
+      "category": "componentes",
+      "productUrl": "https://thebikershop.com.br/produtos/2-unidades-pneu-pirelli-p-zero-race-tlr-700x28/",
+      "images": [
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/parpzero-aa976957077f85d40517061046136273-480-0.webp"
+      ],
+      "sku": "3905502"
+    },
+    {
       "id": "mesa-syncros-xc-2-0-spark-scale-2023",
       "name": "Mesa Syncros XC 2.0 - Spark / Scale 2023",
       "brand": "Syncros",
@@ -1356,6 +1378,17 @@
       "sku": "245452"
     },
     {
+      "id": "cassete-sram-nx-eagle-11-50-dentes",
+      "name": "Cassete Sram NX Eagle 11/50 Dentes",
+      "brand": "Sram",
+      "category": "componentes",
+      "productUrl": "https://thebikershop.com.br/produtos/cassete-sram-nx-eagle-11-50-dentes/",
+      "images": [
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/cassete-01-a80e567b8aa6fb8df817127082317633-480-0.webp"
+      ],
+      "sku": "COMP-428"
+    },
+    {
       "id": "protetor-de-chainstay-scott-scale-aluminio-2023",
       "name": "Protetor de ChainStay Scott Scale Aluminio 2023",
       "brand": "Scott",
@@ -1387,17 +1420,6 @@
         "https://acdn-us.mitiendanube.com/stores/001/062/247/products/11-6218-054-000-64175727718386cc3817092428377409-480-0.webp"
       ],
       "sku": "11.6218.054.000"
-    },
-    {
-      "id": "2-unidades-pneu-pirelli-p-zero-race-tlr-700x28",
-      "name": "Combo Pneu Pirelli P Zero Race TLR 700x28 - 2 unidades",
-      "brand": "Pirelli",
-      "category": "componentes",
-      "productUrl": "https://thebikershop.com.br/produtos/2-unidades-pneu-pirelli-p-zero-race-tlr-700x28/",
-      "images": [
-        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/parpzero-aa976957077f85d40517061046136273-480-0.webp"
-      ],
-      "sku": "3905502"
     },
     {
       "id": "raio-mavic-r-sys-slr-ksyrium-slr-2827-mm",
@@ -2177,28 +2199,6 @@
       "productUrl": "https://thebikershop.com.br/produtos/taco-para-pedal-shimano-road-sh10/",
       "images": [
         "https://acdn-us.mitiendanube.com/stores/001/062/247/products/y42u98020_sm-sh10_2_750_7501-46bd18c886cc49250e16397675283585-480-0.webp"
-      ],
-      "sku": null
-    },
-    {
-      "id": "freehub-mavic-id360-xd",
-      "name": "Freehub Mavic ID360 - XD",
-      "brand": "Mavic",
-      "category": "componentes",
-      "productUrl": "https://thebikershop.com.br/produtos/freehub-mavic-id360-xd/",
-      "images": [
-        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/600x600-158823_154348403484111-6300bce57bb0cc63c816204027948647-480-0.webp"
-      ],
-      "sku": "V3740101"
-    },
-    {
-      "id": "roldana-de-cambio-shimano-xt-m8100",
-      "name": "Roldana de Câmbio Shimano XT M8100",
-      "brand": "Shimano",
-      "category": "componentes",
-      "productUrl": "https://thebikershop.com.br/produtos/roldana-de-cambio-shimano-xt-m8100/",
-      "images": [
-        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/d_nq_np_2x_821635-mlb41189199029_032020-f1-4a2a0b700c5f5cc7e416146231228149-480-0.webp"
       ],
       "sku": null
     },
@@ -4469,6 +4469,17 @@
       "sku": null
     },
     {
+      "id": "kit-mangueira-e-bico-com-revestimento-termico-para-mochilas-de-hidratacao-uswe",
+      "name": "Kit Mangueira e Bico com Revestimento Térmico para Mochilas de Hidratação - USWE",
+      "brand": "Uswe",
+      "category": "vestuario",
+      "productUrl": "https://thebikershop.com.br/produtos/kit-mangueira-e-bico-com-revestimento-termico-para-mochilas-de-hidratacao-uswe/",
+      "images": [
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/1011819_uswe-kit-mandgueira-bico-revestimento-termico-1-1-103466_z1_637630025577417329-e62125f0513c6730ac17250561729039-480-0.webp"
+      ],
+      "sku": null
+    },
+    {
       "id": "limpa-sapatilhas-session-250ml",
       "name": "Limpa Sapatilhas Session 250ml",
       "brand": "S-Wax",
@@ -4531,17 +4542,6 @@
       "productUrl": "https://thebikershop.com.br/produtos/camisa-de-ciclismo-manga-longa-scott-pro-2026-cinza-ffaby/",
       "images": [
         "https://acdn-us.mitiendanube.com/stores/001/062/247/products/tmp_b64_6fb3cd61-479e-464f-9441-b3bf792beee1_1062247_1188274-4e207aa7d994e0c8e017733243989936-480-0.webp"
-      ],
-      "sku": null
-    },
-    {
-      "id": "jersey-scott-pro-2026-blue",
-      "name": "Camisa de Ciclismo Scott Pró 2026 Blue",
-      "brand": "Scott",
-      "category": "vestuario",
-      "productUrl": "https://thebikershop.com.br/produtos/jersey-scott-pro-2026-blue/",
-      "images": [
-        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/tmp_b64_b5bb94f4-42d5-4f79-b28f-f94a1e224134_1062247_1188274-23fbfbf11d28c92d4017733230843186-480-0.webp"
       ],
       "sku": null
     },
@@ -4674,6 +4674,17 @@
       "productUrl": "https://thebikershop.com.br/produtos/camisa-de-ciclismo-manga-longa-scott-pro-2026-blue/",
       "images": [
         "https://acdn-us.mitiendanube.com/stores/001/062/247/products/tmp_b64_890d6883-216a-4d29-94f6-f39b775079d9_1062247_1188274-4f3fd872fdef89692317733242766902-480-0.webp"
+      ],
+      "sku": null
+    },
+    {
+      "id": "jersey-scott-pro-2026-blue",
+      "name": "Camisa de Ciclismo Scott Pró 2026 Blue",
+      "brand": "Scott",
+      "category": "vestuario",
+      "productUrl": "https://thebikershop.com.br/produtos/jersey-scott-pro-2026-blue/",
+      "images": [
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/tmp_b64_b5bb94f4-42d5-4f79-b28f-f94a1e224134_1062247_1188274-23fbfbf11d28c92d4017733230843186-480-0.webp"
       ],
       "sku": null
     },
@@ -5290,17 +5301,6 @@
       "productUrl": "https://thebikershop.com.br/produtos/capacete-abus-airbreaker-branco-puro/",
       "images": [
         "https://acdn-us.mitiendanube.com/stores/001/062/247/products/a8bb44f6-f448-11ef-a330-8eedd104f833-e57fb00eb98d2791b117407525183996-480-0.webp"
-      ],
-      "sku": null
-    },
-    {
-      "id": "sapatilha-fizik-x5-terra-atlas-verde-militar",
-      "name": "Sapatilha MTB Fizik X5 Terra Atlas Verde Militar",
-      "brand": "Fizik",
-      "category": "vestuario",
-      "productUrl": "https://thebikershop.com.br/produtos/sapatilha-fizik-x5-terra-atlas-verde-militar/",
-      "images": [
-        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/a91dc1d8-bdd8-11ed-91cf-92062a34e454-57a25b3787fdbed7e417176216267872-480-0.webp"
       ],
       "sku": null
     }
