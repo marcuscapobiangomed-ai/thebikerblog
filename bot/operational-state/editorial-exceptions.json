@@ -312,6 +312,40 @@
         "title": "Serviço de garfo e amortecedor: quando trocar óleo e vedação"
       },
       "reason": "Gates editoriais não atendidos: extensão insuficiente: 1518 palavras; mínimo 1600"
+    },
+    {
+      "recordedAt": "2026-08-11T22:31:50.510Z",
+      "campaignId": "thebiker-rolling-2026-08-08",
+      "replacedItem": {
+        "day": 15,
+        "publishDate": "2026-08-22",
+        "id": "youtube-freios-de-bicicleta-diagnostico-ajuste-e-controle-termico",
+        "title": "Freios de bicicleta: diagnóstico, ajuste e controle térmico",
+        "summary": "Criar resposta técnica original para ciclista intermediário ou avançado, com método e limitações declarados. Sinal observado: 937 visualizações globais do vídeo; 79 por dia; encontrado em 1 busca(s) configurada(s) para o Brasil.",
+        "category": "componentes",
+        "freshness": "event-driven",
+        "status": "blocked",
+        "productIds": [],
+        "heroImage": {
+          "mode": "conceptual"
+        },
+        "imageAssetIds": [],
+        "blockReason": "[POLICY_MARKETING_LANGUAGE] Gate Markdown reprovado: linguagem publicitária proibida: perfeito",
+        "failure": {
+          "code": "POLICY_MARKETING_LANGUAGE",
+          "retryable": false,
+          "stage": "production",
+          "message": "Gate Markdown reprovado: linguagem publicitária proibida: perfeito",
+          "recordedAt": "2026-08-11T17:59:29.839Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-11T17:59:29.839Z"
+      },
+      "replacement": {
+        "id": "reserva-diagnostico-ruidos-bike",
+        "title": "Diagnóstico de ruídos na bicicleta: método por carga, frequência e interface"
+      },
+      "reason": "[POLICY_MARKETING_LANGUAGE] Gate Markdown reprovado: linguagem publicitária proibida: perfeito"
     }
   ]
 }

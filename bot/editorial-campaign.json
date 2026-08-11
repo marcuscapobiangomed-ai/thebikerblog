@@ -986,11 +986,11 @@
     {
       "day": 15,
       "publishDate": "2026-08-22",
-      "id": "youtube-freios-de-bicicleta-diagnostico-ajuste-e-controle-termico",
-      "title": "Freios de bicicleta: diagnóstico, ajuste e controle térmico",
-      "summary": "Criar resposta técnica original para ciclista intermediário ou avançado, com método e limitações declarados. Sinal observado: 937 visualizações globais do vídeo; 79 por dia; encontrado em 1 busca(s) configurada(s) para o Brasil.",
-      "category": "componentes",
-      "freshness": "event-driven",
+      "id": "reserva-diagnostico-ruidos-bike",
+      "title": "Diagnóstico de ruídos na bicicleta: método por carga, frequência e interface",
+      "summary": "Protocolo técnico para isolar ruídos de transmissão, cockpit, rodas e quadro sem substituir componentes por tentativa e erro.",
+      "category": "manutencao-ajustes",
+      "freshness": "evergreen",
       "status": "blocked",
       "productIds": [],
       "heroImage": {
@@ -998,15 +998,15 @@
       },
       "imageAssetIds": [],
       "attempts": 1,
-      "lastAttemptAt": "2026-08-11T17:59:29.839Z",
+      "lastAttemptAt": "2026-08-11T22:31:50.904Z",
       "failure": {
-        "code": "POLICY_MARKETING_LANGUAGE",
+        "code": "POLICY_UNSUPPORTED_TEST",
         "retryable": false,
         "stage": "production",
-        "message": "Gate Markdown reprovado: linguagem publicitária proibida: perfeito",
-        "recordedAt": "2026-08-11T17:59:29.839Z"
+        "message": "Gate Markdown reprovado: alegação de teste prático proibida: durante o pedal",
+        "recordedAt": "2026-08-11T22:31:50.904Z"
       },
-      "blockReason": "[POLICY_MARKETING_LANGUAGE] Gate Markdown reprovado: linguagem publicitária proibida: perfeito"
+      "blockReason": "[POLICY_UNSUPPORTED_TEST] Gate Markdown reprovado: alegação de teste prático proibida: durante o pedal"
     },
     {
       "day": 16,
@@ -1251,12 +1251,6 @@
   ],
   "reserves": [
     {
-      "id": "reserva-diagnostico-ruidos-bike",
-      "title": "Diagnóstico de ruídos na bicicleta: método por carga, frequência e interface",
-      "summary": "Protocolo técnico para isolar ruídos de transmissão, cockpit, rodas e quadro sem substituir componentes por tentativa e erro.",
-      "category": "manutencao-ajustes"
-    },
-    {
       "id": "reserva-pressao-pneus-terreno",
       "title": "Pressão de pneus por terreno: como testar sem transformar sensação em dado",
       "summary": "Método de campo para ajustar pressão, registrar comportamento e separar aderência, suporte lateral, impacto e resistência ao rolamento.",
@@ -1273,6 +1267,30 @@
       "title": "Limpeza de transmissão: como remover contaminantes sem deslocar o problema",
       "summary": "Sequência de limpeza, inspeção e relubrificação que considera corrente, cassete, coroas, roldanas e compatibilidade química.",
       "category": "manutencao-ajustes"
+    },
+    {
+      "id": "reserva-radar-profissional-oficial",
+      "title": "Radar profissional: próxima prova com calendário e resultados oficialmente verificáveis",
+      "summary": "Reserva de cobertura profissional que só avança depois de ser vinculada a um evento e a fontes oficiais revalidadas.",
+      "category": "competicoes",
+      "race": {
+        "track": "professional-coverage",
+        "format": "weekly-roundup",
+        "eventIds": [],
+        "sourceStatus": "pending"
+      }
+    },
+    {
+      "id": "reserva-calendario-participativo-oficial",
+      "title": "Calendário brasileiro de provas: atualização com inscrições e mudanças verificadas",
+      "summary": "Reserva participativa que permanece pendente até receber eventos oficiais, situação de inscrição e checagem recente das fontes.",
+      "category": "competicoes",
+      "race": {
+        "track": "participant-calendar",
+        "format": "calendar-roundup",
+        "eventIds": [],
+        "sourceStatus": "pending"
+      }
     }
   ]
 }
