@@ -16,6 +16,8 @@ const errors = [];
 const warnings = [];
 const activeImages = [];
 const catalog = JSON.parse(fs.readFileSync(path.join(ROOT, "content/product-discovery/thebiker-media-catalog.json"), "utf8"));
+const imageLibrary = JSON.parse(fs.readFileSync(path.join(ROOT, "content/image-library/index.json"), "utf8"));
+const imageLibraryByAssetId = new Map((imageLibrary.assets || []).map((asset) => [asset.assetId, asset]));
 const campaign = JSON.parse(fs.readFileSync(path.join(ROOT, "bot/editorial-campaign.json"), "utf8"));
 const campaignById = new Map(campaign.items.map((item) => [item.id, item]));
 
@@ -134,6 +136,7 @@ function validatePost(postPath) {
       manifest,
       campaignItem: campaignById.get(postId) || null,
       catalog,
+      archivedAsset: published === true ? imageLibraryByAssetId.get(manifest.assetId) || null : null,
     })) {
       errors.push(`${rel}: ${error}`);
     }

@@ -50,10 +50,13 @@ const shimanoArticle = {
   image_subject_id: "grupo-shimano-105-di2",
 };
 const shimanoManifest = {
+  assetId: "thebiker-grupo-shimano-105-di2-2a6b056cb4",
+  sha256: "2a6b056cb47e4f84b19f13eef3f1e4bf7e73b49fb77b57c49ebfe9e0b0caf74b",
   factualSubject: "exact-product",
   matchedProduct: { id: "grupo-shimano-105-di2", name: "Grupo Shimano 105 Di2" },
   depictedBrands: ["Shimano"],
   depictedProducts: ["Grupo Shimano 105 Di2"],
+  source: { rightsPolicyId: "thebiker-official-editorial-v1" },
 };
 const productCatalog = { products: [
   { id: "grupo-shimano-105-di2", name: "Grupo Shimano 105 Di2", brand: "Shimano" },
@@ -65,6 +68,24 @@ assert.deepEqual(imageArticleConsistencyErrors({
   campaignItem: { heroImage: { mode: "exact-product", productId: "grupo-shimano-105-di2" } },
   catalog: productCatalog,
 }), []);
+const immutableShimanoProof = {
+  assetId: shimanoManifest.assetId,
+  sha256: shimanoManifest.sha256,
+  productId: "grupo-shimano-105-di2",
+  rightsPolicyId: "thebiker-official-editorial-v1",
+};
+assert.deepEqual(imageArticleConsistencyErrors({
+  article: shimanoArticle,
+  manifest: shimanoManifest,
+  catalog: { products: [] },
+  archivedAsset: immutableShimanoProof,
+}), [], "post publicado pode usar prova imutável quando o produto sai do catálogo vivo");
+assert.match(imageArticleConsistencyErrors({
+  article: shimanoArticle,
+  manifest: shimanoManifest,
+  catalog: { products: [] },
+  archivedAsset: { ...immutableShimanoProof, sha256: "divergente" },
+}).join("; "), /prova imutável/i);
 assert.match(imageArticleConsistencyErrors({
   article: shimanoArticle,
   manifest: {
