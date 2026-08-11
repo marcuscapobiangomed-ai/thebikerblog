@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict'
+import fs from 'node:fs'
 import {
   brazilianEventFromJsonLd,
   calendarioMtbDetailLinks,
@@ -12,6 +13,7 @@ import {
   parseCompetitionDetails,
   parseJsonLdEvents,
   selectPublicCalendar,
+  verifyDeepProfileEvidence,
 } from './sync-race-calendar.mjs'
 
 assert.equal(dateInTimeZone(new Date('2026-08-12T01:30:00.000Z')), '2026-08-11', 'início da noite no Brasil não pode avançar o calendário para o dia UTC seguinte')
@@ -120,5 +122,24 @@ const mixedUpcoming = mergeBrazilPriority(
   2,
 )
 assert.deepEqual(mixedUpcoming.map((event) => event.name), [brazilian.name, 'World race'])
+
+const deepProfiles = JSON.parse(fs.readFileSync(new URL('../_data/race-deep-profiles.json', import.meta.url), 'utf8'))
+const voltaProfile = deepProfiles.profiles.find((profile) => profile.eventId === 'uci-2026-roa-78327')
+const voltaEvent = {
+  id: voltaProfile.eventId,
+  name: voltaProfile.eventName,
+  startsOn: voltaProfile.validFrom,
+  endsOn: voltaProfile.validThrough,
+}
+const deepEvidence = voltaProfile.source.verificationTokens.join(' | ')
+const verifiedProfile = verifyDeepProfileEvidence(voltaProfile, voltaEvent, deepEvidence, '2026-08-11T20:01:29.236Z')
+assert.equal(verifiedProfile.status, 'verified')
+assert.equal(verifiedProfile.route.totalDistanceKm, 1388)
+assert.equal(verifiedProfile.route.stages.reduce((sum, stage) => sum + stage.distanceKm, 0), 1388)
+assert.deepEqual(verifiedProfile.route.restSchedule, [{ date: '2026-08-11', label: 'Dia de descanso', location: 'Santa Maria da Feira (Europarque)' }])
+assert.equal(verifiedProfile.participation.status, 'team-only')
+const entityEncodedEvidence = '1,388 quil&oacute;metros no total | Pr&oacute;logo - Lisboa | Lourinh&atilde; &gt; Sintra | Maia &gt; Porto | 10 quil&oacute;metros e uma inclina&ccedil;&atilde;o m&eacute;dia de 6,5%'
+assert.equal(verifyDeepProfileEvidence(voltaProfile, voltaEvent, entityEncodedEvidence, '2026-08-11T20:01:29.236Z').status, 'verified')
+assert.throws(() => verifyDeepProfileEvidence(voltaProfile, voltaEvent, 'página oficial sem percurso', '2026-08-11T20:01:29.236Z'), /não confirma/)
 
 console.log('Sincronização pública de corridas validada com prioridade brasileira, seleção cronológica e fail-closed.')
