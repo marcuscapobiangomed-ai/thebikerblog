@@ -64,10 +64,10 @@ assert.equal(renewed.items.some((item) => item.id === staleReserveId), false, 'r
 assert.equal(renewed.reserves.some((item) => item.id === staleReserveId), false, 'buffer renovado deve vir apenas da inteligência atual')
 assert.ok(renewed.items.some((item) => item.id === 'seo-topic-1'), 'inteligência nova deve preencher lacunas')
 assert.ok(renewed.reserves.length >= 3)
-assert.equal(renewed.items.filter((item) => item.category === 'competicoes').length, 8, 'campanha deve reservar 25% para corridas')
+assert.equal(renewed.items.filter((item) => item.race).length, 8, 'campanha deve reservar oito pautas estruturadas para corridas')
 assert.equal(renewed.items.filter((item) => item.race?.track === 'professional-coverage').length, 4)
 assert.equal(renewed.items.filter((item) => item.race?.track === 'participant-calendar').length, 4)
-assert.ok(renewed.items.filter((item) => item.category === 'competicoes').every((item) => item.race.sourceStatus === 'pending'), 'pauta mensal não pode presumir fonte já verificada')
+assert.ok(renewed.items.filter((item) => item.race).every((item) => item.race.sourceStatus === 'pending'), 'pauta mensal não pode presumir fonte já verificada')
 assert.match(plannerPrompt, /brazilRankings/)
 assert.match(plannerPrompt, /ajuste suspensão mtb/)
 

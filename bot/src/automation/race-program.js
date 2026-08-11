@@ -265,14 +265,19 @@ export function validateRaceEditorialStructure(campaignInput, programInput) {
   const program = RaceProgramSchema.parse(programInput)
   const events = new Map(program.events.map((event) => [event.id, event]))
   for (const event of publicEvents(program)) events.set(event.id, { ...event, track: 'professional-coverage' })
-  const raceItems = campaign.items.filter((item) => item.category === 'competicoes')
+  const raceItems = campaign.items.filter((item) => item.category === 'competicoes' && item.race)
   const professional = raceItems.filter((item) => item.race.track === 'professional-coverage')
   const participant = raceItems.filter((item) => item.race.track === 'participant-calendar')
   const issues = []
 
-  if (raceItems.length < RACE_MONTHLY_TARGETS.total) issues.push(`campanha tem ${raceItems.length}/${RACE_MONTHLY_TARGETS.total} pautas de corrida`)
-  if (professional.length < RACE_MONTHLY_TARGETS.professionalCoverage) issues.push(`cobertura profissional tem ${professional.length}/${RACE_MONTHLY_TARGETS.professionalCoverage} pautas`)
-  if (participant.length < RACE_MONTHLY_TARGETS.participantCalendar) issues.push(`calendário participativo tem ${participant.length}/${RACE_MONTHLY_TARGETS.participantCalendar} pautas`)
+  // Campanhas anteriores à implantação podem conter conteúdo genérico de
+  // competições. Assim que uma campanha adota metadados de corrida, o alvo
+  // mensal completo passa a ser obrigatório.
+  if (raceItems.length > 0) {
+    if (raceItems.length < RACE_MONTHLY_TARGETS.total) issues.push(`campanha tem ${raceItems.length}/${RACE_MONTHLY_TARGETS.total} pautas de corrida`)
+    if (professional.length < RACE_MONTHLY_TARGETS.professionalCoverage) issues.push(`cobertura profissional tem ${professional.length}/${RACE_MONTHLY_TARGETS.professionalCoverage} pautas`)
+    if (participant.length < RACE_MONTHLY_TARGETS.participantCalendar) issues.push(`calendário participativo tem ${participant.length}/${RACE_MONTHLY_TARGETS.participantCalendar} pautas`)
+  }
 
   for (const item of raceItems) {
     for (const eventId of item.race.eventIds) {
@@ -290,7 +295,7 @@ export function validateRaceEditorialStructure(campaignInput, programInput) {
 }
 
 export function raceSourceIsFresh(item, programInput, now = new Date()) {
-  if (item.category !== 'competicoes') return true
+  if (item.category !== 'competicoes' || !item.race) return true
   const program = RaceProgramSchema.parse(programInput)
   if (item.race?.sourceStatus !== 'verified' || !item.race.sourceVerifiedAt || item.race.eventIds.length === 0) return false
   const verifiedAt = new Date(item.race.sourceVerifiedAt)
