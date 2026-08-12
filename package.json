@@ -33,7 +33,7 @@
     "sync:product-pages": "node scripts/sync-product-pages.js",
     "check:product-pages": "node scripts/sync-product-pages.js --check",
     "catalog:public": "node scripts/build-public-catalog.js",
-    "prepare:derived": "npm run catalog:public && npm run build:machine-readable",
+    "prepare:derived": "npm run catalog:public && npm run build:machine-readable && npm run build:editorial-calendar",
     "sync:product-knowledge": "node scripts/sync-product-knowledge.js",
     "discover:thebiker-catalog": "node scripts/discover-thebiker-catalog.js",
     "queue:official-enrichment": "node scripts/build-official-enrichment-queue.js",
