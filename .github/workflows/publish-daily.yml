@@ -16,8 +16,6 @@ on:
 
 permissions:
   contents: write
-  issues: write
-  actions: write
 
 concurrency:
   group: thebiker-editorial-write
@@ -42,6 +40,8 @@ jobs:
       - run: npm ci
       - run: npm ci
         working-directory: bot
+      - name: Preparar derivados e validar baseline antes de publicar
+        run: npm run validate:ci
       - name: Publicar somente o conteúdo aprovado para hoje
         id: publication
         env:
@@ -58,7 +58,7 @@ jobs:
         run: |
           git config user.name "thebiker-editorial-bot"
           git config user.email "thebiker-editorial-bot@users.noreply.github.com"
-          git add _posts bot/editorial-campaign.json _data/editorial-calendar.json
+          git add _posts bot/editorial-campaign.json _data/editorial-calendar.json _data/catalog-public.json api/products.json
           git diff --cached --quiet || git commit -m "publish: artigo diário $(date -u +%F)"
           for attempt in 1 2 3; do
             git pull --rebase origin main && git push && exit 0
@@ -66,8 +66,3 @@ jobs:
             sleep $((attempt * 5))
           done
           exit 1
-      - name: Deploy published SHA to GitHub Pages
-        if: ${{ steps.publication.outputs.status == 'published' }}
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: gh workflow run deploy.yml --ref main

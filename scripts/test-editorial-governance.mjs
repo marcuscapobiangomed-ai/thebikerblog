@@ -14,7 +14,7 @@ const workflow = await fs.readFile(path.join(repositoryRoot, ".github/workflows/
 assert.match(workflow, /id: validation/);
 assert.match(workflow, /steps\.validation\.outcome == 'success'/);
 assert.match(workflow, /Persistir somente estado seguro da falha/);
-assert.match(workflow, /run: npm run validate:scheduled/);
+assert.match(workflow, /run: npm run validate:ci/);
 assert.doesNotMatch(workflow, /run: npm run links:thebiker/);
 assert.match(buildSystemPrompt(), /imbatível/);
 
@@ -75,6 +75,7 @@ try {
   assert.ok(rejected.findings.some((finding) => finding.code === EditorialFailureCode.CONTENT_HASH_MISMATCH));
 
   campaign.items[item.day - 1].status = "blocked";
+  campaign.items[item.day - 1].blockReason = "Falha editorial induzida pelo teste de quarentena";
   await fs.writeFile(path.join(root, "bot/editorial-campaign.json"), `${JSON.stringify(campaign, null, 2)}\n`);
   const quarantined = await auditCampaignShadow({ root, now: new Date("2026-08-11T12:00:00Z") });
   assert.equal(quarantined.errors, 0);

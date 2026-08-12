@@ -24,7 +24,8 @@ for (const [relative, data] of Object.entries(files)) {
   const target = path.join(root, relative)
   const output = JSON.stringify(data, null, 2) + '\n'
   if (check) {
-    if (!fs.existsSync(target) || fs.readFileSync(target, 'utf8') !== output) process.exitCode = 1
+    const existing = fs.existsSync(target) ? fs.readFileSync(target, 'utf8').replace(/\r\n/g, '\n') : ''
+    if (existing !== output.replace(/\r\n/g, '\n')) process.exitCode = 1
   } else {
     fs.mkdirSync(path.dirname(target), { recursive: true })
     fs.writeFileSync(target, output)

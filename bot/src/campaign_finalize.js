@@ -10,10 +10,15 @@ import { assertImageArticleConsistency } from "./validation/image-article-consis
 import { assertReviewedContentIntegrity, issueEditorialReceipt } from "./validation/editorial-receipt.js";
 import { classifyEditorialFailure } from "./validation/editorial-failures.js";
 import { assertVisualDecision, issueVisualDecision } from "./validation/visual-decision.js";
+import { alignRealContextVisual } from "./images/align-campaign-visual.js";
+import { releaseAssetUse } from "./images/asset-library.js";
+import { createStagedWorkspace, discardStagedWorkspace, promoteStagedPaths } from "./automation/file-transaction.js";
 
 const defaultRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 
 async function persist(root, campaign) {
+  await fs.mkdir(path.join(root, "bot"), { recursive: true });
+  await fs.mkdir(path.join(root, "_data"), { recursive: true });
   await fs.writeFile(path.join(root, "bot/editorial-campaign.json"), JSON.stringify(campaign, null, 2) + "\n");
   await fs.writeFile(path.join(root, "_data/editorial-calendar.json"), JSON.stringify(publicCampaignSummary(campaign), null, 2) + "\n");
 }
@@ -32,6 +37,25 @@ function setOptionalField(content, field, value) {
   return content.replace(/^---\s*\r?\n/, (opening) => `${opening}${field}: ${value}\n`);
 }
 
+export async function cleanupFailedFinalization(root, item) {
+  const draftRoot = path.resolve(root, "_posts/drafts") + path.sep;
+  const draftPath = item.postPath ? path.resolve(root, item.postPath) : null;
+  if (draftPath?.startsWith(draftRoot)) await fs.rm(draftPath, { force: true });
+
+  await fs.rm(path.join(root, "content/research/campaign", `${item.id}.json`), { force: true });
+  await releaseAssetUse(root, { postId: item.id, position: "hero" });
+  await fs.rm(path.join(root, "assets/img/posts", item.id), { recursive: true, force: true });
+
+  delete item.postPath;
+  delete item.aiReview;
+  delete item.editorialReceipt;
+  delete item.visualDecision;
+  delete item.imageManifestPath;
+  delete item.imageStatus;
+  delete item.imageValidatedAt;
+  item.imageAssetIds = [];
+}
+
 export async function produceCampaignVisual({ root, item, approvedAt, force = false }) {
   const visualPolicy = item.heroImage || { mode: "conceptual" };
   if (!["exact-product", "real-context"].includes(visualPolicy.mode)) {
@@ -45,7 +69,7 @@ export async function produceCampaignVisual({ root, item, approvedAt, force = fa
   });
 }
 
-export async function finalizeCampaignItem({ root = defaultRoot, now = new Date(), imageProducer = produceCampaignVisual } = {}) {
+async function finalizeInWorkspace({ root, now, imageProducer }) {
   const campaignPath = path.join(root, "bot/editorial-campaign.json");
   const campaign = CampaignSchema.parse(JSON.parse(await fs.readFile(campaignPath, "utf8")));
   const item = campaign.items.find((candidate) => candidate.status === "validation") || null;
@@ -72,6 +96,8 @@ export async function finalizeCampaignItem({ root = defaultRoot, now = new Date(
     }
     if ((item.aiReview?.finalBlockers || 0) > 0) throw new Error("Auditoria editorial final ainda possui bloqueadores");
     assertMarkdownPublicationGates(content);
+    const catalog = JSON.parse(await fs.readFile(path.join(root, "content/product-discovery/thebiker-media-catalog.json"), "utf8"));
+    const visualAlignment = alignRealContextVisual({ item, article: parsed.data, catalog });
     const cover = await imageProducer({ root, item, approvedAt });
     content = setField(content, "date", item.publishDate);
     content = setField(content, "last_modified_at", approvedAt);
@@ -92,7 +118,6 @@ export async function finalizeCampaignItem({ root = defaultRoot, now = new Date(
     content = setField(content, "reviewed_by", '"TheBiker AI Editorial Gate"');
     content = setField(content, "editorial_status", '"reviewed"');
     content = setField(content, "status", '"scheduled"');
-    const catalog = JSON.parse(await fs.readFile(path.join(root, "content/product-discovery/thebiker-media-catalog.json"), "utf8"));
     const article = matter(content).data;
     assertImageArticleConsistency({ article, manifest: cover.manifest, campaignItem: item, catalog });
     item.visualDecision = issueVisualDecision({ item, article, manifest: cover.manifest, catalog, now });
@@ -120,14 +145,84 @@ export async function finalizeCampaignItem({ root = defaultRoot, now = new Date(
     delete item.blockReason;
     delete item.failure;
     await persist(root, campaign);
-    return { status: "scheduled", itemId: item.id, publishDate: item.publishDate, imageManifestPath: item.imageManifestPath, theBikerLinks: linkResult.links.length };
+    return {
+      status: "scheduled",
+      itemId: item.id,
+      publishDate: item.publishDate,
+      imageManifestPath: item.imageManifestPath,
+      theBikerLinks: linkResult.links.length,
+      visualAlignment,
+    };
   } catch (error) {
     item.status = "blocked";
     item.failure = classifyEditorialFailure(error, { stage: "finalization", now });
     item.blockReason = `Validação final: [${item.failure.code}] ${item.failure.message}`;
-    delete item.editorialReceipt;
+    await cleanupFailedFinalization(root, item);
     await persist(root, campaign);
     throw error;
+  }
+}
+
+async function recordSafeFailure(root, itemId, error, now) {
+  const campaignPath = path.join(root, "bot/editorial-campaign.json");
+  const campaign = CampaignSchema.parse(JSON.parse(await fs.readFile(campaignPath, "utf8")));
+  const item = campaign.items.find((candidate) => candidate.id === itemId);
+  if (!item) throw error;
+  item.status = "blocked";
+  item.failure = classifyEditorialFailure(error, { stage: "finalization", now });
+  item.blockReason = `Validação final: [${item.failure.code}] ${item.failure.message}`;
+  delete item.editorialReceipt;
+  delete item.visualDecision;
+  delete item.imageManifestPath;
+  delete item.imageStatus;
+  delete item.imageValidatedAt;
+  item.imageAssetIds = [];
+  await persist(root, campaign);
+}
+
+export async function finalizeCampaignItem({
+  root = defaultRoot,
+  now = new Date(),
+  imageProducer = produceCampaignVisual,
+  beforePromote,
+} = {}) {
+  const campaignPath = path.join(root, "bot/editorial-campaign.json");
+  const campaign = CampaignSchema.parse(JSON.parse(await fs.readFile(campaignPath, "utf8")));
+  const item = campaign.items.find((candidate) => candidate.status === "validation") || null;
+  if (!item) return { status: "idle", message: "Nenhuma pauta aguardando validação final" };
+  if (!item.postPath) throw new Error(`Pauta ${item.id} sem postPath`);
+
+  const researchPath = `content/research/campaign/${item.id}.json`;
+  const imageDirectory = `assets/img/posts/${item.id}`;
+  const inputs = [
+    "bot/editorial-campaign.json",
+    "_data/editorial-calendar.json",
+    item.postPath,
+    researchPath,
+    imageDirectory,
+    "content/image-library/index.json",
+    "content/product-discovery/thebiker-media-catalog.json",
+    "bot/config/official-image-sources.json",
+    "content/image-rights/thebiker-official-editorial-v1.json",
+    "content/image-rights/official-brand-editorial-v1.json",
+  ];
+  const transaction = await createStagedWorkspace(root, inputs, {
+    transactionId: `finalize-${item.id}-${process.pid}-${Date.now()}`,
+  });
+  try {
+    const result = await finalizeInWorkspace({ root: transaction.workspaceRoot, now, imageProducer });
+    const outputs = [item.postPath, imageDirectory, "bot/editorial-campaign.json", "_data/editorial-calendar.json"];
+    const stagedLibrary = path.join(transaction.workspaceRoot, "content/image-library/index.json");
+    if (await fs.stat(stagedLibrary).then(() => true).catch((error) => error?.code === "ENOENT" ? false : Promise.reject(error))) {
+      outputs.splice(2, 0, "content/image-library/index.json");
+    }
+    await promoteStagedPaths(transaction, outputs, { beforePromote });
+    return { ...result, transactionId: transaction.id };
+  } catch (error) {
+    await recordSafeFailure(root, item.id, error, now);
+    throw error;
+  } finally {
+    await discardStagedWorkspace(transaction);
   }
 }
 

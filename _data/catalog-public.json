@@ -1,7 +1,7 @@
 {
   "version": "2.0",
   "verifiedAt": "2026-08-05",
-  "totalBikes": 30,
+  "totalBikes": 29,
   "bikes": [
     {
       "id": "oggi-big-wheel-7-1-thebiker-br",
@@ -164,24 +164,6 @@
       "slug": "scott/scott-addict-30-di2-2025-thebiker",
       "storeProductUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-addict-30-di2-2025-pre-venda/",
       "portfolioVerifiedAt": "2026-08-05"
-    },
-    {
-      "id": "scott-addict-50-2026-thebiker-br",
-      "brand": "Scott",
-      "model": "Addict 50",
-      "year": 2026,
-      "category": "road-endurance",
-      "priceLowest": 28999,
-      "weightKg": null,
-      "frameMaterial": "carbon",
-      "groupset": "105",
-      "speeds": 12,
-      "shifting": "mechanical",
-      "brakeType": "hydraulic-disc",
-      "image": "/assets/img/products/comparator/scott-addict-50-2026.webp",
-      "slug": "scott/scott-addict-50-2026-thebiker",
-      "storeProductUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-addict-50-2026-pre-venda-cumulus-white/",
-      "portfolioVerifiedAt": "2026-08-04"
     },
     {
       "id": "scott-addict-50-2025-thebiker-br",
