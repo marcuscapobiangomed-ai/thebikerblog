@@ -5,7 +5,7 @@ import path from "node:path";
 import { loadQueue, selectReadyItem } from "./src/automation/queue.js";
 import { CampaignSchema, selectProductionCandidate, selectPublicationCandidate, publicCampaignSummary } from "./src/automation/campaign.js";
 import { GroundedResearcher } from "./src/automation/grounded-research.js";
-import { finalizeCampaignItem } from "./src/campaign_finalize.js";
+import { cleanupFailedFinalization, finalizeCampaignItem } from "./src/campaign_finalize.js";
 import { produceCampaignCover } from "./src/images/campaign-cover.js";
 import { classifyOfficialImageQuality } from "./src/images/official-campaign-image.js";
 import { selectKnowledgeEvidence } from "./src/campaign_producer.js";
@@ -329,5 +329,39 @@ const finalizedContent = await fs.readFile(path.join(finalizeRoot, finalizedCamp
 assert.equal(assertScheduledReceipt(finalizedContent, finalizedCampaign.items[0]), finalizedCampaign.items[0].editorialReceipt.scheduledContentHash);
 assert.throws(() => assertScheduledReceipt(`${finalizedContent}\nalterado`, finalizedCampaign.items[0]), /Hash do artefato agendado divergente/);
 assert.ok(await fs.stat(path.join(finalizeRoot, finalizedCampaign.items[0].imageManifestPath)));
+
+const cleanupRoot = path.join(root, "cleanup-finalization");
+const cleanupItem = {
+  id: "candidate-with-failed-image",
+  postPath: "_posts/drafts/2026-08-22-candidate-with-failed-image.md",
+  aiReview: { finalScore: 95 },
+  editorialReceipt: { schemaVersion: 1 },
+  visualDecision: { schemaVersion: 1 },
+  imageManifestPath: "assets/img/posts/candidate-with-failed-image/image-manifest.json",
+  imageStatus: "candidate",
+  imageValidatedAt: "2026-08-12T12:00:00.000Z",
+  imageAssetIds: ["failed-asset"],
+};
+await fs.mkdir(path.join(cleanupRoot, "_posts/drafts"), { recursive: true });
+await fs.mkdir(path.join(cleanupRoot, "content/research/campaign"), { recursive: true });
+await fs.mkdir(path.join(cleanupRoot, "assets/img/posts", cleanupItem.id), { recursive: true });
+await fs.mkdir(path.join(cleanupRoot, "content/image-library"), { recursive: true });
+await fs.writeFile(path.join(cleanupRoot, cleanupItem.postPath), "rascunho");
+await fs.writeFile(path.join(cleanupRoot, "content/research/campaign", `${cleanupItem.id}.json`), "{}");
+await fs.writeFile(path.join(cleanupRoot, "assets/img/posts", cleanupItem.id, "image-manifest.json"), "{}");
+await fs.writeFile(path.join(cleanupRoot, "content/image-library/index.json"), JSON.stringify({
+  schemaVersion: 1,
+  updatedAt: "2026-08-12T12:00:00.000Z",
+  assets: [{ assetId: "failed-asset", uses: [{ postId: cleanupItem.id, position: "hero" }] }],
+}));
+await cleanupFailedFinalization(cleanupRoot, cleanupItem);
+await assert.rejects(fs.stat(path.join(cleanupRoot, "_posts/drafts/2026-08-22-candidate-with-failed-image.md")), /ENOENT/);
+await assert.rejects(fs.stat(path.join(cleanupRoot, "content/research/campaign", `${cleanupItem.id}.json`)), /ENOENT/);
+await assert.rejects(fs.stat(path.join(cleanupRoot, "assets/img/posts", cleanupItem.id)), /ENOENT/);
+assert.equal(cleanupItem.postPath, undefined);
+assert.equal(cleanupItem.aiReview, undefined);
+assert.deepEqual(cleanupItem.imageAssetIds, []);
+const cleanedLibrary = JSON.parse(await fs.readFile(path.join(cleanupRoot, "content/image-library/index.json"), "utf8"));
+assert.deepEqual(cleanedLibrary.assets, []);
 await fs.rm(root, { recursive: true, force: true });
 console.log("Automation queue tests passed.");

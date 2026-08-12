@@ -10,6 +10,8 @@ import { assertImageArticleConsistency } from "./validation/image-article-consis
 import { assertReviewedContentIntegrity, issueEditorialReceipt } from "./validation/editorial-receipt.js";
 import { classifyEditorialFailure } from "./validation/editorial-failures.js";
 import { assertVisualDecision, issueVisualDecision } from "./validation/visual-decision.js";
+import { alignRealContextVisual } from "./images/align-campaign-visual.js";
+import { releaseAssetUse } from "./images/asset-library.js";
 
 const defaultRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 
@@ -30,6 +32,25 @@ function setOptionalField(content, field, value) {
   if (value === null) return content.replace(pattern, "");
   if (pattern.test(content)) return content.replace(pattern, `${field}: ${value}\n`);
   return content.replace(/^---\s*\r?\n/, (opening) => `${opening}${field}: ${value}\n`);
+}
+
+export async function cleanupFailedFinalization(root, item) {
+  const draftRoot = path.resolve(root, "_posts/drafts") + path.sep;
+  const draftPath = item.postPath ? path.resolve(root, item.postPath) : null;
+  if (draftPath?.startsWith(draftRoot)) await fs.rm(draftPath, { force: true });
+
+  await fs.rm(path.join(root, "content/research/campaign", `${item.id}.json`), { force: true });
+  await releaseAssetUse(root, { postId: item.id, position: "hero" });
+  await fs.rm(path.join(root, "assets/img/posts", item.id), { recursive: true, force: true });
+
+  delete item.postPath;
+  delete item.aiReview;
+  delete item.editorialReceipt;
+  delete item.visualDecision;
+  delete item.imageManifestPath;
+  delete item.imageStatus;
+  delete item.imageValidatedAt;
+  item.imageAssetIds = [];
 }
 
 export async function produceCampaignVisual({ root, item, approvedAt, force = false }) {
@@ -72,6 +93,8 @@ export async function finalizeCampaignItem({ root = defaultRoot, now = new Date(
     }
     if ((item.aiReview?.finalBlockers || 0) > 0) throw new Error("Auditoria editorial final ainda possui bloqueadores");
     assertMarkdownPublicationGates(content);
+    const catalog = JSON.parse(await fs.readFile(path.join(root, "content/product-discovery/thebiker-media-catalog.json"), "utf8"));
+    const visualAlignment = alignRealContextVisual({ item, article: parsed.data, catalog });
     const cover = await imageProducer({ root, item, approvedAt });
     content = setField(content, "date", item.publishDate);
     content = setField(content, "last_modified_at", approvedAt);
@@ -92,7 +115,6 @@ export async function finalizeCampaignItem({ root = defaultRoot, now = new Date(
     content = setField(content, "reviewed_by", '"TheBiker AI Editorial Gate"');
     content = setField(content, "editorial_status", '"reviewed"');
     content = setField(content, "status", '"scheduled"');
-    const catalog = JSON.parse(await fs.readFile(path.join(root, "content/product-discovery/thebiker-media-catalog.json"), "utf8"));
     const article = matter(content).data;
     assertImageArticleConsistency({ article, manifest: cover.manifest, campaignItem: item, catalog });
     item.visualDecision = issueVisualDecision({ item, article, manifest: cover.manifest, catalog, now });
@@ -120,12 +142,19 @@ export async function finalizeCampaignItem({ root = defaultRoot, now = new Date(
     delete item.blockReason;
     delete item.failure;
     await persist(root, campaign);
-    return { status: "scheduled", itemId: item.id, publishDate: item.publishDate, imageManifestPath: item.imageManifestPath, theBikerLinks: linkResult.links.length };
+    return {
+      status: "scheduled",
+      itemId: item.id,
+      publishDate: item.publishDate,
+      imageManifestPath: item.imageManifestPath,
+      theBikerLinks: linkResult.links.length,
+      visualAlignment,
+    };
   } catch (error) {
     item.status = "blocked";
     item.failure = classifyEditorialFailure(error, { stage: "finalization", now });
     item.blockReason = `Validação final: [${item.failure.code}] ${item.failure.message}`;
-    delete item.editorialReceipt;
+    await cleanupFailedFinalization(root, item);
     await persist(root, campaign);
     throw error;
   }

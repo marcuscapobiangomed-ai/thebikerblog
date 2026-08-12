@@ -14,7 +14,7 @@ const workflow = await fs.readFile(path.join(repositoryRoot, ".github/workflows/
 assert.match(workflow, /id: validation/);
 assert.match(workflow, /steps\.validation\.outcome == 'success'/);
 assert.match(workflow, /Persistir somente estado seguro da falha/);
-assert.match(workflow, /run: npm run validate:scheduled/);
+assert.match(workflow, /run: npm run validate:ci/);
 assert.doesNotMatch(workflow, /run: npm run links:thebiker/);
 assert.match(buildSystemPrompt(), /imbatível/);
 

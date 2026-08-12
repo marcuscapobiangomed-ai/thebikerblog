@@ -28,8 +28,10 @@ assert.equal(resumed.campaign.items.find((item) => item.id === finalizable.id).s
 
 const conceptualFinalization = structuredClone(campaignFixture)
 for (const item of conceptualFinalization.items) if (item.status === 'blocked') { item.status = 'planned'; delete item.blockReason; delete item.failure }
-const conceptual = conceptualFinalization.items.find((item) => item.id === 'reserva-pressao-pneus-terreno')
-assert.ok(conceptual, 'A campanha precisa conter a reserva técnica com política visual reparável')
+const conceptual = conceptualFinalization.items.find((item) => item.id === finalizable.id)
+assert.ok(conceptual, 'A campanha precisa conter uma pauta produzida para testar o reparo visual')
+conceptualFinalization.reserves = conceptualFinalization.reserves.filter((item) => item.id !== 'reserva-pressao-pneus-terreno')
+conceptual.id = 'reserva-pressao-pneus-terreno'
 conceptual.status = 'blocked'
 conceptual.heroImage = { mode: 'conceptual' }
 conceptual.blockReason = 'Validação final: Politica visual conceptual: agendamento exige fotografia real explicitamente vinculada'

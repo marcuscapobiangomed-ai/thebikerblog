@@ -39,10 +39,8 @@ jobs:
       - name: Validar fila e configuração estrutural
         run: npm run automation:doctor
         working-directory: bot
-      - name: Auditar preventivamente os próximos 14 dias
-        run: npm run audit:buffer-shadow
-      - name: Validar recibos, conteúdo e imagens do buffer agendado
-        run: npm run validate:scheduled
+      - name: Preparar derivados e validar baseline antes de consumir IA
+        run: npm run validate:ci
 
   generate-draft:
     needs: preflight
@@ -64,6 +62,8 @@ jobs:
       - run: npm ci
       - run: npm ci
         working-directory: bot
+      - name: Revalidar baseline no workspace de produção
+        run: npm run validate:ci
       - name: Atualizar catálogo visual oficial da TheBiker
         run: npm run media:discover && npm run media:audit
         working-directory: bot
