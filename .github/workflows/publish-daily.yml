@@ -16,8 +16,6 @@ on:
 
 permissions:
   contents: write
-  issues: write
-  actions: write
 
 concurrency:
   group: thebiker-editorial-write
@@ -68,8 +66,3 @@ jobs:
             sleep $((attempt * 5))
           done
           exit 1
-      - name: Deploy published SHA to GitHub Pages
-        if: ${{ steps.publication.outputs.status == 'published' }}
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: gh workflow run deploy.yml --ref main

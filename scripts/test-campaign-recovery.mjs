@@ -18,7 +18,7 @@ assert.equal(retried.campaign.items.find((item) => item.id === timeout.id).statu
 
 const finalization = structuredClone(campaignFixture)
 for (const item of finalization.items) if (item.status === 'blocked') { item.status = 'planned'; delete item.blockReason }
-const finalizable = finalization.items.find((item) => item.postPath && item.aiReview && item.publishDate >= '2026-08-07')
+const finalizable = finalization.items.find((item) => item.status === 'scheduled' && item.postPath && item.aiReview && item.publishDate >= '2026-08-07')
 assert.ok(finalizable, 'A campanha precisa ter uma pauta produzida para testar retomada de finalização')
 finalizable.status = 'blocked'
 finalizable.blockReason = 'Validação final: imagem oficial ainda sem variante publicável'

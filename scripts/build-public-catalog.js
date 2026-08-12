@@ -38,8 +38,8 @@ export function run({ checkOnly = process.argv.includes('--check'), rootDir = ro
   const output = `${JSON.stringify(catalog, null, 2)}\n`
 
   if (checkOnly) {
-    const existing = fs.existsSync(outputPath) ? fs.readFileSync(outputPath, 'utf8') : ''
-    if (existing !== output) {
+    const existing = fs.existsSync(outputPath) ? fs.readFileSync(outputPath, 'utf8').replace(/\r\n/g, '\n') : ''
+    if (existing !== output.replace(/\r\n/g, '\n')) {
       console.error('catalog-public.json está desatualizado')
       return 1
     }

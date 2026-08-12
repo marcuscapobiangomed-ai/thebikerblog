@@ -75,6 +75,7 @@ try {
   assert.ok(rejected.findings.some((finding) => finding.code === EditorialFailureCode.CONTENT_HASH_MISMATCH));
 
   campaign.items[item.day - 1].status = "blocked";
+  campaign.items[item.day - 1].blockReason = "Falha editorial induzida pelo teste de quarentena";
   await fs.writeFile(path.join(root, "bot/editorial-campaign.json"), `${JSON.stringify(campaign, null, 2)}\n`);
   const quarantined = await auditCampaignShadow({ root, now: new Date("2026-08-11T12:00:00Z") });
   assert.equal(quarantined.errors, 0);

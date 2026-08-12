@@ -16,6 +16,8 @@ const mutationIndex = publication.indexOf("node src/publish_scheduled.js");
 assert.ok(baselineIndex >= 0 && baselineIndex < mutationIndex, "a publicação deve validar e renovar derivados antes de alterar o post");
 assert.match(publication, /git add .*_data\/catalog-public\.json/, "a publicação precisa persistir o catálogo renovado");
 assert.match(publication, /git add .*api\/products\.json/, "a publicação precisa persistir o endpoint derivado renovado");
+assert.doesNotMatch(publication, /gh workflow run deploy\.yml/,
+  "o push em main já dispara o deploy; um segundo disparo causaria cancelamentos concorrentes");
 
 const editorial = read("cron-post.yml");
 assert.ok((editorial.match(/npm run validate:ci/g) || []).length >= 2,

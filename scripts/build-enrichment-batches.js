@@ -16,6 +16,7 @@ for (let i = 0; i < source.queue.length; i += size) {
 const output = JSON.stringify({ schemaVersion: '1.0', generatedAt: source.generatedAt, batchSize: size, totalItems: source.total, totalBatches: batches.length, batches }, null, 2) + '\n'
 const target = path.join(root, 'content/product-discovery/enrichment-batches.json')
 if (check) {
-  if (!fs.existsSync(target) || fs.readFileSync(target, 'utf8') !== output) process.exit(1)
+  const existing = fs.existsSync(target) ? fs.readFileSync(target, 'utf8').replace(/\r\n/g, '\n') : ''
+  if (existing !== output.replace(/\r\n/g, '\n')) process.exit(1)
 } else fs.writeFileSync(target, output)
 console.log(`${batches.length} lotes, ${source.total} itens, ${source.verifiedExact} oficiais, ${source.storeVerifiedLimited || 0} limitados e ${source.blocked} bloqueados.`)

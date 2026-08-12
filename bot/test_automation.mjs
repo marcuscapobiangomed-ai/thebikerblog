@@ -9,7 +9,7 @@ import { cleanupFailedFinalization, finalizeCampaignItem } from "./src/campaign_
 import { produceCampaignCover } from "./src/images/campaign-cover.js";
 import { classifyOfficialImageQuality } from "./src/images/official-campaign-image.js";
 import { selectKnowledgeEvidence } from "./src/campaign_producer.js";
-import { selectScheduledPublication } from "./src/publish_scheduled.js";
+import { publishScheduled, selectScheduledPublication } from "./src/publish_scheduled.js";
 import { buildRepairPrompt } from "./src/editorial-prompt.js";
 import { produceCampaignVisual } from "./src/campaign_finalize.js";
 import { markdownPublicationErrors, neutralizeMarkdownPolicyPhrases } from "./src/validation/markdown-publication-gates.js";
@@ -83,11 +83,21 @@ conceptualComparison.items[0] = {
   status: 'validation',
   productIds: [],
   heroImage: { mode: 'conceptual' },
+  aiReview: { ...conceptualComparison.items[0].aiReview, contentHash: `sha256:${'a'.repeat(64)}` },
 };
 assert.doesNotThrow(() => CampaignSchema.parse(conceptualComparison));
 const reviewWithoutProduct = structuredClone(campaign);
 reviewWithoutProduct.items[0] = { ...reviewWithoutProduct.items[0], category: 'review', status: 'validation', productIds: [] };
 assert.throws(() => CampaignSchema.parse(reviewWithoutProduct), /review validado exige ao menos um produto rastreável/);
+const scheduledWithoutReceipt = structuredClone(campaign);
+delete scheduledWithoutReceipt.items.find((item) => item.status === "scheduled").editorialReceipt;
+assert.throws(() => CampaignSchema.parse(scheduledWithoutReceipt), /scheduled exige recibo editorial/);
+const blockedWithoutReason = structuredClone(campaign);
+const plannedWithoutReason = blockedWithoutReason.items.find((item) => item.status === "planned");
+plannedWithoutReason.status = "blocked";
+delete plannedWithoutReason.blockReason;
+delete plannedWithoutReason.failure;
+assert.throws(() => CampaignSchema.parse(blockedWithoutReason), /blocked exige motivo ou falha tipada/);
 const inferred = selectKnowledgeEvidence([
   { id: 'addict-rc-20', model: 'Addict RC 20' },
   { id: 'addict-rc-pro', model: 'Addict RC Pro' },
@@ -298,6 +308,25 @@ const sections = Array.from({ length: 5 }, (_, index) => `## Seção técnica ${
 await fs.writeFile(path.join(finalizeRoot, finalizeCampaign.items[0].postPath), `---\nlayout: post\npublished: false\ndate: 2026-08-04\nlast_modified_at: 2026-08-04\ndirect_answer: "Este guia apresenta um diagnóstico técnico verificável, baseado nas fontes declaradas, para orientar ajustes sem transformar hipótese em constatação."\nimage: "/assets/img/system/covers/guia-tecnico-v2/hero-1600.webp"\nimage_mobile: "/assets/img/system/covers/guia-tecnico-v2/hero-800.webp"\nthumbnail: "/assets/img/system/covers/guia-tecnico-v2/card-640.webp"\nimage_asset_type: "system-fallback"\nimage_status: "draft"\nimage_alt: "Capa"\nimage_caption: "Capa"\nimage_credit: "TheBiker"\nimage_license: "Interno"\nreviewed_by: ""\neditorial_status: "draft"\nstatus: "draft"\nsources:\n  - name: "Scott"\n    url: "https://www.scott-sports.com/"\n---\n\n${sections}\n`);
 finalizeCampaign.items[0].aiReview.contentHash = hashEditorialText(await fs.readFile(path.join(finalizeRoot, finalizeCampaign.items[0].postPath), "utf8"));
 await fs.writeFile(path.join(finalizeRoot, "bot/editorial-campaign.json"), JSON.stringify(finalizeCampaign));
+const originalDraft = await fs.readFile(path.join(finalizeRoot, finalizeCampaign.items[0].postPath), "utf8");
+await assert.rejects(finalizeCampaignItem({
+  root: finalizeRoot,
+  now: new Date("2026-08-05T09:00:00Z"),
+  imageProducer: async ({ root: stagedRoot, item }) => {
+    const stagedImage = path.join(stagedRoot, "assets/img/posts", item.id);
+    await fs.mkdir(stagedImage, { recursive: true });
+    await fs.writeFile(path.join(stagedImage, "partial.txt"), "não promover");
+    throw new Error("falha visual induzida");
+  },
+}), /falha visual induzida/);
+assert.equal(await fs.readFile(path.join(finalizeRoot, finalizeCampaign.items[0].postPath), "utf8"), originalDraft,
+  "uma falha não pode alterar o rascunho original");
+await assert.rejects(fs.stat(path.join(finalizeRoot, "assets/img/posts", finalizeCampaign.items[0].id)), /ENOENT/);
+const safelyBlocked = JSON.parse(await fs.readFile(path.join(finalizeRoot, "bot/editorial-campaign.json"), "utf8"));
+assert.equal(safelyBlocked.items[0].status, "blocked");
+assert.equal(safelyBlocked.items[0].postPath, finalizeCampaign.items[0].postPath);
+assert.ok(safelyBlocked.items[0].aiReview, "o insumo revisado deve permanecer disponível para recuperação");
+await fs.writeFile(path.join(finalizeRoot, "bot/editorial-campaign.json"), JSON.stringify(finalizeCampaign));
 const finalized = await finalizeCampaignItem({
   root: finalizeRoot,
   now: new Date("2026-08-05T10:00:00Z"),
@@ -329,6 +358,23 @@ const finalizedContent = await fs.readFile(path.join(finalizeRoot, finalizedCamp
 assert.equal(assertScheduledReceipt(finalizedContent, finalizedCampaign.items[0]), finalizedCampaign.items[0].editorialReceipt.scheduledContentHash);
 assert.throws(() => assertScheduledReceipt(`${finalizedContent}\nalterado`, finalizedCampaign.items[0]), /Hash do artefato agendado divergente/);
 assert.ok(await fs.stat(path.join(finalizeRoot, finalizedCampaign.items[0].imageManifestPath)));
+const publicationNow = new Date(`${finalizedCampaign.items[0].publishDate}T15:00:00.000Z`);
+const publishedTarget = path.join(finalizeRoot, "_posts", `${finalizedCampaign.items[0].publishDate}-${finalizedCampaign.items[0].id}.md`);
+await assert.rejects(publishScheduled({
+  root: finalizeRoot,
+  now: publicationNow,
+  beforePromote: ({ index }) => { if (index === 1) throw new Error("falha induzida na promoção da publicação"); },
+}), /falha induzida/);
+assert.equal(await fs.readFile(path.join(finalizeRoot, finalizedCampaign.items[0].postPath), "utf8"), finalizedContent,
+  "rollback da publicação precisa preservar o rascunho agendado");
+await assert.rejects(fs.stat(publishedTarget), /ENOENT/);
+assert.equal(JSON.parse(await fs.readFile(path.join(finalizeRoot, "bot/editorial-campaign.json"), "utf8")).items[0].status, "scheduled");
+const published = await publishScheduled({ root: finalizeRoot, now: publicationNow });
+assert.equal(published.status, "published");
+assert.ok(await fs.stat(publishedTarget));
+await assert.rejects(fs.stat(path.join(finalizeRoot, finalizedCampaign.items[0].postPath)), /ENOENT/);
+assert.equal((await publishScheduled({ root: finalizeRoot, now: publicationNow })).status, "already-published",
+  "repetir a mesma publicação deve ser idempotente");
 
 const cleanupRoot = path.join(root, "cleanup-finalization");
 const cleanupItem = {
