@@ -1,7 +1,7 @@
 ---
 image_subject_id: "bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9"
 layout: post
-published: false
+published: true
 title: "Addict RC 20: Ultegra Di2, rodas de 40 mm e o equilíbrio da montagem"
 slug: "review-addict-rc-20"
 date: 2026-08-12
@@ -45,8 +45,8 @@ promoted_brands: ["Scott"]
 context_only_brands: []
 portfolio_evidence_url: "https://thebikershop.com.br/produtos/bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9/"
 portfolio_verified_at: "2026-08-04"
-editorial_status: "reviewed"
-status: "scheduled"
+editorial_status: "published"
+status: "published"
 sources:
   - name: "TheBiker — Bicicleta Scott Addict RC 20 Di2 2026 - Pré Venda"
     type: "store"

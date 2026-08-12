@@ -250,7 +250,7 @@
       "summary": "Review técnico da Addict RC 20 com foco na transmissão, frenagem, rodas, pneus, massa declarada e limites de uso publicados pela Scott.",
       "category": "review",
       "freshness": "revalidate-24h",
-      "status": "scheduled",
+      "status": "published",
       "productIds": [
         "bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9"
       ],
@@ -258,7 +258,7 @@
         "mode": "exact-product",
         "productId": "bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9"
       },
-      "postPath": "_posts/drafts/2026-08-12-review-addict-rc-20.md",
+      "postPath": "_posts/2026-08-12-review-addict-rc-20.md",
       "imageManifestPath": "assets/img/posts/review-addict-rc-20/image-manifest.json",
       "imageStatus": "approved",
       "imageAssetIds": [
@@ -291,7 +291,8 @@
         "sourceHash": null,
         "finalScore": 92,
         "finalBlockers": 0,
-        "issuedAt": "2026-08-11T17:13:56.190Z"
+        "issuedAt": "2026-08-11T17:13:56.190Z",
+        "publishedContentHash": "sha256:edf1b3e5434f3efb4ac3e751528ac2f0546d562be37dcbdd822a4db5ec7240ec"
       },
       "visualDecision": {
         "schemaVersion": 1,
@@ -311,7 +312,8 @@
         },
         "blockers": [],
         "issuedAt": "2026-08-11T18:15:18.931Z"
-      }
+      },
+      "publishedAt": "2026-08-12T18:24:51.394Z"
     },
     {
       "day": 6,
@@ -1002,8 +1004,7 @@
         "rationale": "Fotografia real do catálogo TheBiker usada apenas como exemplo visual da categoria técnica abordada."
       },
       "imageAssetIds": [],
-      "attempts": 1,
-      "lastAttemptAt": "2026-08-12T17:59:31.173Z",
+      "blockReason": "[VALIDATION_FAILED] Gates editoriais não atendidos: extensão insuficiente: 1225 palavras; mínimo 1600",
       "failure": {
         "code": "VALIDATION_FAILED",
         "retryable": false,
@@ -1011,7 +1012,8 @@
         "message": "Gates editoriais não atendidos: extensão insuficiente: 1225 palavras; mínimo 1600",
         "recordedAt": "2026-08-12T17:59:31.173Z"
       },
-      "blockReason": "[VALIDATION_FAILED] Gates editoriais não atendidos: extensão insuficiente: 1225 palavras; mínimo 1600"
+      "attempts": 1,
+      "lastAttemptAt": "2026-08-12T17:59:31.173Z"
     },
     {
       "day": 16,
