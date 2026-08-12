@@ -432,6 +432,45 @@
         "title": "Cabos e mangueiras: roteamento, atrito e sinais de montagem que pedem correção"
       },
       "reason": "Validação final: [VALIDATION_FAILED] Politica visual conceptual: agendamento exige fotografia real explicitamente vinculada; rascunho ainda reprovado: rascunho indisponível (ENOENT)"
+    },
+    {
+      "recordedAt": "2026-08-12T14:22:22.018Z",
+      "campaignId": "thebiker-rolling-2026-08-08",
+      "replacedItem": {
+        "day": 15,
+        "publishDate": "2026-08-22",
+        "id": "reserva-cabos-mangueiras-roteamento",
+        "title": "Cabos e mangueiras: roteamento, atrito e sinais de montagem que pedem correção",
+        "summary": "Leitura técnica de curvas, fixações, contato com o quadro e interferências que alteram comando, ruído e durabilidade.",
+        "category": "componentes",
+        "freshness": "evergreen",
+        "status": "blocked",
+        "productIds": [
+          "bicicleta-scott-scale-940-black"
+        ],
+        "heroImage": {
+          "mode": "real-context",
+          "productId": "bicicleta-scott-scale-940-black",
+          "relationship": "category-example",
+          "rationale": "Fotografia real do catálogo TheBiker usada apenas como exemplo visual da categoria técnica abordada."
+        },
+        "imageAssetIds": [],
+        "blockReason": "[VALIDATION_FAILED] Gates editoriais não atendidos: extensão insuficiente: 1157 palavras; mínimo 1600",
+        "failure": {
+          "code": "VALIDATION_FAILED",
+          "retryable": false,
+          "stage": "production",
+          "message": "Gates editoriais não atendidos: extensão insuficiente: 1157 palavras; mínimo 1600",
+          "recordedAt": "2026-08-11T22:58:58.793Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-11T22:58:58.793Z"
+      },
+      "replacement": {
+        "id": "reserva-limpeza-transmissao-metodo",
+        "title": "Limpeza de transmissão: como remover contaminantes sem deslocar o problema"
+      },
+      "reason": "[VALIDATION_FAILED] Gates editoriais não atendidos: extensão insuficiente: 1157 palavras; mínimo 1600"
     }
   ]
 }

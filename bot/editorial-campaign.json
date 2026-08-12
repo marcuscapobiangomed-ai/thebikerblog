@@ -986,32 +986,50 @@
     {
       "day": 15,
       "publishDate": "2026-08-22",
-      "id": "reserva-cabos-mangueiras-roteamento",
-      "title": "Cabos e mangueiras: roteamento, atrito e sinais de montagem que pedem correção",
-      "summary": "Leitura técnica de curvas, fixações, contato com o quadro e interferências que alteram comando, ruído e durabilidade.",
-      "category": "componentes",
+      "id": "reserva-limpeza-transmissao-metodo",
+      "title": "Limpeza de transmissão: como remover contaminantes sem deslocar o problema",
+      "summary": "Sequência de limpeza, inspeção e relubrificação que considera corrente, cassete, coroas, roldanas e compatibilidade química.",
+      "category": "manutencao-ajustes",
       "freshness": "evergreen",
       "status": "blocked",
       "productIds": [
-        "bicicleta-scott-scale-940-black"
+        "corrente-sram-nx-eagle"
       ],
       "heroImage": {
         "mode": "real-context",
-        "productId": "bicicleta-scott-scale-940-black",
+        "productId": "corrente-sram-nx-eagle",
         "relationship": "category-example",
         "rationale": "Fotografia real do catálogo TheBiker usada apenas como exemplo visual da categoria técnica abordada."
       },
+      "postPath": "_posts/drafts/2026-08-22-reserva-limpeza-transmissao-metodo.md",
       "imageAssetIds": [],
       "attempts": 1,
-      "lastAttemptAt": "2026-08-11T22:58:58.793Z",
-      "failure": {
-        "code": "VALIDATION_FAILED",
-        "retryable": false,
-        "stage": "production",
-        "message": "Gates editoriais não atendidos: extensão insuficiente: 1157 palavras; mínimo 1600",
-        "recordedAt": "2026-08-11T22:58:58.793Z"
+      "lastAttemptAt": "2026-08-12T14:22:22.746Z",
+      "aiReview": {
+        "score": 85,
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "premiumEditUsed": true,
+        "providers": {
+          "factSheet": "deepseek",
+          "draft": "gemini",
+          "critique": "deepseek",
+          "final": "deepseek",
+          "finalAudit": "deepseek",
+          "finalRepair": "gemini"
+        },
+        "generatedAt": "2026-08-12T14:22:22.746Z",
+        "contentHash": "sha256:0beec4a3f8654dd8a1b3c6d28d16989ba3bdb25e16eb50f39184ebdac998b5c3",
+        "sourceHash": "31bb92be82b3e41dbf8afa9b3db400c3d99dde39d98d208309f891a198ea5d42"
       },
-      "blockReason": "[VALIDATION_FAILED] Gates editoriais não atendidos: extensão insuficiente: 1157 palavras; mínimo 1600"
+      "failure": {
+        "code": "IMAGE_NOT_PUBLISHABLE",
+        "retryable": false,
+        "stage": "finalization",
+        "message": "Imagem incompatível com o artigo: marca da imagem (SRAM) não corresponde à marca promovida (shimano)",
+        "recordedAt": "2026-08-12T14:25:26.910Z"
+      },
+      "blockReason": "Validação final: [IMAGE_NOT_PUBLISHABLE] Imagem incompatível com o artigo: marca da imagem (SRAM) não corresponde à marca promovida (shimano)"
     },
     {
       "day": 16,
@@ -1256,12 +1274,6 @@
   ],
   "reserves": [
     {
-      "id": "reserva-limpeza-transmissao-metodo",
-      "title": "Limpeza de transmissão: como remover contaminantes sem deslocar o problema",
-      "summary": "Sequência de limpeza, inspeção e relubrificação que considera corrente, cassete, coroas, roldanas e compatibilidade química.",
-      "category": "manutencao-ajustes"
-    },
-    {
       "id": "reserva-radar-profissional-oficial",
       "title": "Radar profissional: próxima prova com calendário e resultados oficialmente verificáveis",
       "summary": "Reserva de cobertura profissional que só avança depois de ser vinculada a um evento e a fontes oficiais revalidadas.",
@@ -1296,6 +1308,12 @@
       "title": "Pressão de pneus por terreno: como testar sem transformar sensação em dado",
       "summary": "Método de campo para ajustar pressão, registrar comportamento e separar aderência, suporte lateral, impacto e resistência ao rolamento.",
       "category": "engenharia"
+    },
+    {
+      "id": "reserva-cabos-mangueiras-roteamento",
+      "title": "Cabos e mangueiras: roteamento, atrito e sinais de montagem que pedem correção",
+      "summary": "Leitura técnica de curvas, fixações, contato com o quadro e interferências que alteram comando, ruído e durabilidade.",
+      "category": "componentes"
     }
   ]
 }
