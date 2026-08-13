@@ -67,3 +67,27 @@ export function assertArticleResearchGrounding(options) {
   if (errors.length > 0) throw new Error(`Artigo bloqueado por integridade de claims: ${errors.join("; ")}`);
   return options.content;
 }
+
+function removeUnsupportedSentences(value, research) {
+  const text = String(value || "");
+  const parts = text.match(/[^.!?\n]+[.!?]?|\n+/gu) || [];
+  return parts
+    .filter((part) => /^\s*\n+\s*$/u.test(part) || articleResearchGroundingErrors({ content: part, research }).length === 0)
+    .join("")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+}
+
+export function sanitizeStructuredArticleClaims(articleInput, research) {
+  const article = structuredClone(articleInput);
+  for (const field of ["description", "direct_answer", "methodologyNotice"]) {
+    if (typeof article[field] === "string") article[field] = removeUnsupportedSentences(article[field], research);
+  }
+  if (Array.isArray(article.faq)) {
+    article.faq = article.faq.map((item) => ({ ...item, answer: removeUnsupportedSentences(item.answer, research) }));
+  }
+  if (Array.isArray(article.sections)) {
+    article.sections = article.sections.map((section) => ({ ...section, content: removeUnsupportedSentences(section.content, research) }));
+  }
+  return article;
+}

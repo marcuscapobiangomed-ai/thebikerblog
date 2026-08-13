@@ -43,7 +43,11 @@ const providerGroundingRetry = recoverBlockedCampaign(groundingFailure, { now: n
 assert.equal(providerGroundingRetry.result.status, 'retry-research-grounding')
 ungrounded.status = 'blocked'
 ungrounded.attempts = 5
-const cappedGroundingRetry = recoverBlockedCampaign(groundingFailure, { now: new Date('2026-08-13T15:05:00Z') })
+const deterministicGroundingRetry = recoverBlockedCampaign(groundingFailure, { now: new Date('2026-08-13T15:05:00Z') })
+assert.equal(deterministicGroundingRetry.result.status, 'retry-research-grounding')
+ungrounded.status = 'blocked'
+ungrounded.attempts = 6
+const cappedGroundingRetry = recoverBlockedCampaign(groundingFailure, { now: new Date('2026-08-13T15:06:00Z') })
 assert.notEqual(cappedGroundingRetry.result.status, 'retry-research-grounding')
 
 const structuralFailure = structuredClone(campaignFixture)
