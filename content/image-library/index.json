@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-08-13T17:38:09.721Z",
+  "updatedAt": "2026-08-13T18:27:14.453Z",
   "assets": [
     {
       "assetId": "thebiker-scott-addict-rc-pro-hmx-frame-set-def10da96a",
@@ -203,6 +203,23 @@
           "postId": "alinhamento-pinca-rotores",
           "position": "hero",
           "usedAt": "2026-08-11T12:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "assetId": "thebiker-bicicleta-scott-spark-rc-world-cup-20271-078d5ce90f",
+      "sha256": "078d5ce90fdb41e035842d1ced77a560327922d730a11afef0eaf933f3c044c2",
+      "perceptualHash": "0000000000101100001111001111111011111111111001110000011000000000",
+      "sourcePageUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-spark-rc-world-cup-20271/",
+      "sourceFileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/4275448086a-69855010392fd33f6117812058566683-1024-1024.webp",
+      "productId": "bicicleta-scott-spark-rc-world-cup-20271",
+      "productName": "Bicicleta Scott Spark RC World Cup 2027",
+      "rightsPolicyId": "thebiker-official-editorial-v1",
+      "uses": [
+        {
+          "postId": "spark-rc-team-expert-world-cup",
+          "position": "hero",
+          "usedAt": "2026-08-13T12:00:00.000Z"
         }
       ]
     }

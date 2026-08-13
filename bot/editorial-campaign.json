@@ -323,7 +323,7 @@
       "summary": "Comparação interna entre as três Spark RC vendidas pela TheBiker, cobrindo carbono, suspensões, transmissão, rodas, peso e limite do sistema.",
       "category": "comparativo",
       "freshness": "revalidate-24h",
-      "status": "planned",
+      "status": "scheduled",
       "productIds": [
         "bicicleta-scott-spark-rc-world-cup-2027",
         "bicicleta-scott-spark-rc-expert-2027",
@@ -333,8 +333,63 @@
         "mode": "exact-product",
         "productId": "bicicleta-scott-spark-rc-world-cup-20271"
       },
-      "imageAssetIds": [],
-      "attempts": 0
+      "postPath": "_posts/drafts/2026-08-13-spark-rc-team-expert-world-cup.md",
+      "imageAssetIds": [
+        "thebiker-bicicleta-scott-spark-rc-world-cup-20271-078d5ce90f"
+      ],
+      "attempts": 1,
+      "lastAttemptAt": "2026-08-13T18:25:03.650Z",
+      "aiReview": {
+        "score": 85,
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "premiumEditUsed": true,
+        "providers": {
+          "factSheet": "deepseek",
+          "draft": "gemini",
+          "critique": "deepseek",
+          "final": "deepseek",
+          "finalAudit": "deepseek",
+          "finalRepair": "deepseek"
+        },
+        "generatedAt": "2026-08-13T18:25:03.650Z",
+        "contentHash": "sha256:44595abc21999c312a1e36e5824e1ff9def5833d4469bffe826fb47f1cfa1f6a",
+        "sourceHash": "0ac6c18c154903b25a02971e2729ed808ced9571640ad50f452e53f480ebef54"
+      },
+      "visualDecision": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-visual-autonomy-v1",
+        "inputHash": "sha256:15fefe1241882aa16014b677f2e8297ccce728f1f943d0e3a594611ce889c0ac",
+        "mode": "exact-product",
+        "productId": "bicicleta-scott-spark-rc-world-cup-20271",
+        "score": 100,
+        "hardGates": {
+          "semanticMatch": true,
+          "realAsset": true,
+          "explicitProduct": true,
+          "officialSource": true,
+          "approvedRights": true,
+          "publishableResolution": true,
+          "uniqueAsset": true
+        },
+        "blockers": [],
+        "issuedAt": "2026-08-13T18:27:12.387Z"
+      },
+      "editorialReceipt": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-editorial-2026-08-v2",
+        "origin": "pipeline",
+        "reviewedContentHash": "sha256:44595abc21999c312a1e36e5824e1ff9def5833d4469bffe826fb47f1cfa1f6a",
+        "scheduledContentHash": "sha256:9823caeb5a9644f14adf761dc88e4582bc410e3ad2eafb5f768cc1aa558f0c5b",
+        "researchHash": "sha256:081a6df0c10edd837550d43dd67d6b97d500a2634005a8b70e36370d241796cb",
+        "sourceHash": "0ac6c18c154903b25a02971e2729ed808ced9571640ad50f452e53f480ebef54",
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "issuedAt": "2026-08-13T18:27:12.387Z"
+      },
+      "imageManifestPath": "assets/img/posts/spark-rc-team-expert-world-cup/image-manifest.json",
+      "imageStatus": "approved",
+      "imageValidatedAt": "2026-08-13T18:27:12.387Z"
     },
     {
       "day": 7,
@@ -344,7 +399,7 @@
       "summary": "Rotina técnica depois de treinos molhados, priorizando rolamentos, transmissão, freios, suspensão e interfaces do quadro.",
       "category": "manutencao-ajustes",
       "freshness": "evergreen",
-      "status": "blocked",
+      "status": "planned",
       "productIds": [
         "corrente-sram-nx-eagle"
       ],
@@ -354,16 +409,7 @@
         "relationship": "maintenance-example",
         "rationale": "A corrente SRAM real exemplifica o componente mais exposto a água, abrasivos, corrosão e desgaste na inspeção pós-chuva."
       },
-      "imageStatus": "blocked",
       "imageAssetIds": [],
-      "blockReason": "[RESEARCH_INSUFFICIENT] pesquisa sem contrato de evidência recuperada retrieved-excerpt-v1; pesquisa sem data de verificação ativa das fontes; fato 1 sem trecho literal verificável",
-      "failure": {
-        "code": "RESEARCH_INSUFFICIENT",
-        "retryable": true,
-        "stage": "source-verification-audit",
-        "message": "pesquisa sem contrato de evidência recuperada retrieved-excerpt-v1; pesquisa sem data de verificação ativa das fontes; fato 1 sem trecho literal verificável",
-        "recordedAt": "2026-08-13T18:15:00.000Z"
-      },
       "attempts": 1,
       "lastAttemptAt": "2026-08-13T18:15:00.000Z"
     },
@@ -881,7 +927,8 @@
         "format": "weekly-roundup",
         "eventIds": [],
         "sourceStatus": "pending"
-      }
+      },
+      "productIds": []
     },
     {
       "id": "reserva-calendario-participativo-oficial",
@@ -893,13 +940,15 @@
         "format": "calendar-roundup",
         "eventIds": [],
         "sourceStatus": "pending"
-      }
+      },
+      "productIds": []
     },
     {
       "id": "reserva-diagnostico-ruidos-bike",
       "title": "Diagnóstico de ruídos na bicicleta: método por carga, frequência e interface",
       "summary": "Protocolo técnico para isolar ruídos de transmissão, cockpit, rodas e quadro sem substituir componentes por tentativa e erro.",
-      "category": "manutencao-ajustes"
+      "category": "manutencao-ajustes",
+      "productIds": []
     }
   ]
 }
