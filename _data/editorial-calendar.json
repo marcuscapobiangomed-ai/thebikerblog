@@ -54,26 +54,26 @@
     {
       "day": 7,
       "publishDate": "2026-08-14",
+      "title": "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação",
+      "summary": "Procedimento técnico baseado em orientações oficiais para remover contaminantes, verificar danos e devolver a corrente ao uso seguro.",
+      "category": "manutencao-ajustes",
+      "status": "scheduled"
+    },
+    {
+      "day": 8,
+      "publishDate": "2026-08-15",
       "title": "Scott Addict 50 e Addict RC 20: duas propostas de estrada confrontadas pelas fichas oficiais",
       "summary": "Análise comparativa restrita a geometria, materiais e montagens comprovados nas fontes atuais dos dois modelos.",
       "category": "comparativo",
       "status": "blocked"
     },
     {
-      "day": 8,
-      "publishDate": "2026-08-15",
-      "title": "Bike de fábrica vs. bike de competição: o que realmente muda na prática",
-      "summary": "Muitas diferenças vêm de ajustes, pneus e posição, não do quadro. Aprenda a identificar o que importa para o seu tipo de pedal.",
-      "category": "comparativo",
-      "status": "planned"
-    },
-    {
       "day": 9,
       "publishDate": "2026-08-16",
-      "title": "Bicicletas gravel: geometria, pneus, transmissão e critérios de uso",
-      "summary": "Criar resposta técnica original para ciclista intermediário ou avançado, com método e limitações declarados. Sinal observado: 54.278 visualizações globais do vídeo; 2.578 por dia; encontrado em 1 busca(s) configurada(s) para o Brasil.",
-      "category": "componentes",
-      "status": "blocked"
+      "title": "Scott Scale 940 e 980: diferenças verificáveis de quadro, suspensão e componentes",
+      "summary": "Comparação limitada às especificações atualmente recuperáveis nas páginas oficiais e no catálogo TheBiker.",
+      "category": "comparativo",
+      "status": "planned"
     },
     {
       "day": 10,

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-08-13T18:27:14.453Z",
+  "updatedAt": "2026-08-13T23:03:02.957Z",
   "assets": [
     {
       "assetId": "thebiker-scott-addict-rc-pro-hmx-frame-set-def10da96a",
@@ -218,6 +218,23 @@
       "uses": [
         {
           "postId": "spark-rc-team-expert-world-cup",
+          "position": "hero",
+          "usedAt": "2026-08-13T12:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "assetId": "thebiker-corrente-sram-nx-eagle-ab2209342e",
+      "sha256": "ab2209342e5fd903a29f5c82548eded8c02bd40095494077d600118d08be785b",
+      "perceptualHash": "1111111111000011000000110000000110000001100000011100011111111111",
+      "sourcePageUrl": "https://thebikershop.com.br/produtos/corrente-sram-nx-eagle/",
+      "sourceFileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/corrente-2b4150b6e6dc14ca9017127097004077-1024-1024.webp",
+      "productId": "corrente-sram-nx-eagle",
+      "productName": "Corrente Sram NX Eagle",
+      "rightsPolicyId": "thebiker-official-editorial-v1",
+      "uses": [
+        {
+          "postId": "reserva-limpeza-transmissao-metodo",
           "position": "hero",
           "usedAt": "2026-08-13T12:00:00.000Z"
         }

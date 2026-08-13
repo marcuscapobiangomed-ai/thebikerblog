@@ -950,6 +950,123 @@
         "title": "Scott Addict 50 e Addict RC 20: duas propostas de estrada confrontadas pelas fichas oficiais"
       },
       "reason": "[RESEARCH_INSUFFICIENT] Rascunho bloqueado apÃ³s 2 reparos: Artigo bloqueado por integridade de claims: alegações numéricas ausentes dos fatos confirmados: 100mm, 100kg; inferencias tecnicas ausentes dos fatos confirmados: por exemplo, a presenca do mesmo cambio traseiro e freios nao garante que a experiencia de pilotagem seja identica, pois a suspensao dianteira influencia diretamente o controle e a absorcao de impactos. | alem disso, a diferenca na disponibilidade de tamanhos pode ser um fator eliminatorio para ciclistas fora da faixa s-xl. | para quem busca uma bike para uso recreativo em trilhas leves, ambas atendem, mas a escolha pode ser influenciada pela disp"
+    },
+    {
+      "recordedAt": "2026-08-13T23:00:54.384Z",
+      "campaignId": "thebiker-rolling-2026-08-08",
+      "replacedItem": {
+        "day": 7,
+        "publishDate": "2026-08-14",
+        "id": "reserva-addict-50-rc20-comparativo",
+        "title": "Scott Addict 50 e Addict RC 20: duas propostas de estrada confrontadas pelas fichas oficiais",
+        "summary": "Análise comparativa restrita a geometria, materiais e montagens comprovados nas fontes atuais dos dois modelos.",
+        "category": "comparativo",
+        "freshness": "revalidate-24h",
+        "status": "blocked",
+        "productIds": [
+          "bicicleta-scott-addict-50-2026-pre-venda-1bxzy",
+          "bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9"
+        ],
+        "heroImage": {
+          "mode": "exact-product",
+          "productId": "bicicleta-scott-addict-50-2026-pre-venda-1bxzy"
+        },
+        "imageAssetIds": [],
+        "blockReason": "[RESEARCH_INSUFFICIENT] Rascunho bloqueado apÃ³s 2 reparos: Artigo bloqueado por integridade de claims: alegações numéricas ausentes dos fatos confirmados: 34mm, 40mm, 30mm; inferencias tecnicas ausentes dos fatos confirmados: ja a addict rc 20 emprega o carbono hmx, uma composicao de fibra de carbono de alta rigidez que visa maximizar a eficiencia de transferencia de potencia em esforcos de competicao. | a selecao entre hmf e hmx repercute no comportamento dinamico do conjunto: o carbono hmf, ao priorizar a absorcao de vibracoes, tende a reduzir a fadiga muscular em pavimentos irregulares, enquanto o hmx, com sua maior rigidez, pode transmitir mais feedback do asfa",
+        "failure": {
+          "code": "RESEARCH_INSUFFICIENT",
+          "retryable": false,
+          "stage": "production",
+          "message": "Rascunho bloqueado apÃ³s 2 reparos: Artigo bloqueado por integridade de claims: alegações numéricas ausentes dos fatos confirmados: 34mm, 40mm, 30mm; inferencias tecnicas ausentes dos fatos confirmados: ja a addict rc 20 emprega o carbono hmx, uma composicao de fibra de carbono de alta rigidez que visa maximizar a eficiencia de transferencia de potencia em esforcos de competicao. | a selecao entre hmf e hmx repercute no comportamento dinamico do conjunto: o carbono hmf, ao priorizar a absorcao de vibracoes, tende a reduzir a fadiga muscular em pavimentos irregulares, enquanto o hmx, com sua maior rigidez, pode transmitir mais feedback do asfa",
+          "recordedAt": "2026-08-13T21:35:07.971Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-13T21:35:07.971Z"
+      },
+      "replacement": {
+        "id": "reserva-limpeza-transmissao-metodo",
+        "title": "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação"
+      },
+      "reason": "[RESEARCH_INSUFFICIENT] Rascunho bloqueado apÃ³s 2 reparos: Artigo bloqueado por integridade de claims: alegações numéricas ausentes dos fatos confirmados: 34mm, 40mm, 30mm; inferencias tecnicas ausentes dos fatos confirmados: ja a addict rc 20 emprega o carbono hmx, uma composicao de fibra de carbono de alta rigidez que visa maximizar a eficiencia de transferencia de potencia em esforcos de competicao. | a selecao entre hmf e hmx repercute no comportamento dinamico do conjunto: o carbono hmf, ao priorizar a absorcao de vibracoes, tende a reduzir a fadiga muscular em pavimentos irregulares, enquanto o hmx, com sua maior rigidez, pode transmitir mais feedback do asfa"
+    },
+    {
+      "recordedAt": "2026-08-13T23:00:54.384Z",
+      "campaignId": "thebiker-rolling-2026-08-08",
+      "replacedItem": {
+        "day": 9,
+        "publishDate": "2026-08-16",
+        "id": "youtube-bicicletas-gravel-geometria-pneus-transmissao-e-criterios-de-uso",
+        "title": "Bicicletas gravel: geometria, pneus, transmissão e critérios de uso",
+        "summary": "Criar resposta técnica original para ciclista intermediário ou avançado, com método e limitações declarados. Sinal observado: 54.278 visualizações globais do vídeo; 2.578 por dia; encontrado em 1 busca(s) configurada(s) para o Brasil.",
+        "category": "componentes",
+        "freshness": "event-driven",
+        "status": "blocked",
+        "productIds": [
+          "bicicleta-scott-addict-gravel-30-2026-pre-venda"
+        ],
+        "heroImage": {
+          "mode": "real-context",
+          "productId": "bicicleta-scott-addict-gravel-30-2026-pre-venda",
+          "relationship": "category-example",
+          "rationale": "A Scott Addict Gravel 30 real representa visualmente a categoria discutida, sem transformar o guia técnico em review do modelo."
+        },
+        "imageStatus": "blocked",
+        "imageAssetIds": [],
+        "blockReason": "[RESEARCH_INSUFFICIENT] pesquisa sem contrato de evidência recuperada retrieved-excerpt-v1; pesquisa sem data de verificação ativa das fontes; fato 1 sem trecho literal verificável; fato 2 sem trecho literal verificável; fato 3 sem trecho literal verificável; fato 4 sem trecho literal verificável; fato 5 sem trecho literal verificável; fato 6 sem trecho literal verificável; fato 7 sem trecho literal verificável; fato 8 sem trecho literal verificável",
+        "failure": {
+          "code": "RESEARCH_INSUFFICIENT",
+          "retryable": true,
+          "stage": "source-verification-audit",
+          "message": "pesquisa sem contrato de evidência recuperada retrieved-excerpt-v1; pesquisa sem data de verificação ativa das fontes; fato 1 sem trecho literal verificável; fato 2 sem trecho literal verificável; fato 3 sem trecho literal verificável; fato 4 sem trecho literal verificável; fato 5 sem trecho literal verificável; fato 6 sem trecho literal verificável; fato 7 sem trecho literal verificável; fato 8 sem trecho literal verificável",
+          "recordedAt": "2026-08-13T18:15:00.000Z"
+        },
+        "attempts": 2,
+        "lastAttemptAt": "2026-08-13T18:15:00.000Z"
+      },
+      "replacement": {
+        "id": "reserva-scale-940-980-comparativo",
+        "title": "Scott Scale 940 e 980: diferenças verificáveis de quadro, suspensão e componentes"
+      },
+      "reason": "[RESEARCH_INSUFFICIENT] pesquisa sem contrato de evidência recuperada retrieved-excerpt-v1; pesquisa sem data de verificação ativa das fontes; fato 1 sem trecho literal verificável; fato 2 sem trecho literal verificável; fato 3 sem trecho literal verificável; fato 4 sem trecho literal verificável; fato 5 sem trecho literal verificável; fato 6 sem trecho literal verificável; fato 7 sem trecho literal verificável; fato 8 sem trecho literal verificável"
+    },
+    {
+      "recordedAt": "2026-08-13T23:00:54.384Z",
+      "campaignId": "thebiker-rolling-2026-08-08",
+      "replacedItem": {
+        "day": 8,
+        "publishDate": "2026-08-15",
+        "id": "bike-de-fabrica-vs-bike-de-competicao",
+        "title": "Bike de fábrica vs. bike de competição: o que realmente muda na prática",
+        "summary": "Muitas diferenças vêm de ajustes, pneus e posição, não do quadro. Aprenda a identificar o que importa para o seu tipo de pedal.",
+        "category": "comparativo",
+        "freshness": "revalidate-24h",
+        "status": "blocked",
+        "productIds": [
+          "foil-rc-hmx-sl-bicicleta-aero-24v-sram-red-axs"
+        ],
+        "heroImage": {
+          "mode": "real-context",
+          "productId": "foil-rc-hmx-sl-bicicleta-aero-24v-sram-red-axs",
+          "relationship": "platform-example",
+          "rationale": "A Scott Foil RC Ultimate real funciona como plataforma concreta para explicar integração, aerodinâmica e montagem de competição."
+        },
+        "imageAssetIds": [],
+        "blockReason": "[RESEARCH_INSUFFICIENT] Pesquisa bloqueada por integridade de fontes: pesquisa concluída sem fontes rastreáveis; pesquisa sem fatos explicitamente fundamentados",
+        "failure": {
+          "code": "RESEARCH_INSUFFICIENT",
+          "retryable": false,
+          "stage": "production",
+          "message": "Pesquisa bloqueada por integridade de fontes: pesquisa concluída sem fontes rastreáveis; pesquisa sem fatos explicitamente fundamentados",
+          "recordedAt": "2026-08-13T23:00:54.384Z"
+        },
+        "attempts": 2,
+        "lastAttemptAt": "2026-08-13T23:00:54.384Z"
+      },
+      "replacement": {
+        "id": "reserva-addict-50-rc20-comparativo",
+        "title": "Scott Addict 50 e Addict RC 20: duas propostas de estrada confrontadas pelas fichas oficiais"
+      },
+      "reason": "[RESEARCH_INSUFFICIENT] Pesquisa bloqueada por integridade de fontes: pesquisa concluída sem fontes rastreáveis; pesquisa sem fatos explicitamente fundamentados"
     }
   ]
 }
