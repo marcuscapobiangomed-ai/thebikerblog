@@ -238,17 +238,20 @@ const sanitizedClaims = sanitizeStructuredArticleClaims({
   confirmed_facts: [{ fact: "O CONTRAN admite propulsão auxiliar até 32 km/h.", source_ids: ["src-gov"] }],
   sources: [{ id: "src-gov", url: "https://www.gov.br/transportes/resolucao.pdf" }],
 });
-assert.match(sanitizedClaims.direct_answer, /especificações efetivamente confirmadas/);
-assert.equal(sanitizedClaims.sections[0].content, "Confirme sempre o manual do fabricante.");
+assert.match(sanitizedClaims.direct_answer, /fontes confirmadas não oferecem base suficiente/);
+assert.match(sanitizedClaims.direct_answer, /32 km\/h/);
+assert.match(sanitizedClaims.sections[0].content, /fontes confirmadas não oferecem base suficiente/);
+assert.match(sanitizedClaims.sections[0].content, /Confirme sempre o manual do fabricante/);
 const schemaSafeClaims = sanitizeStructuredArticleClaims({
   description: "Revisão em seis meses.", direct_answer: "Revisão em seis meses.", methodologyNotice: "Análise.",
   faq: [{ question: "Quando revisar?", answer: "Em seis meses." }],
   sections: [{ heading: "Manutenção", content: "Revise em seis meses." }],
 }, { confirmed_facts: [], sources: [] });
-assert.equal(schemaSafeClaims.description.length, 140);
+assert.ok(schemaSafeClaims.description.length >= 140 && schemaSafeClaims.description.length <= 160);
 assert.ok(schemaSafeClaims.direct_answer.length >= 80);
-assert.deepEqual(schemaSafeClaims.faq, []);
-assert.match(schemaSafeClaims.sections[0].content, /evidências documentadas/);
+assert.equal(schemaSafeClaims.faq.length, 1);
+assert.doesNotMatch(schemaSafeClaims.sections[0].content, /seis meses/);
+assert.match(schemaSafeClaims.sections[0].content, /fontes confirmadas/);
 
 const productKnowledgeResearch = {
   slug: "scott-addict-50-2026",

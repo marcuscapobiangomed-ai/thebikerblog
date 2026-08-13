@@ -71,8 +71,15 @@ export function assertArticleResearchGrounding(options) {
 function removeUnsupportedSentences(value, research) {
   const text = String(value || "");
   const parts = text.match(/[^.!?\n]+[.!?]?|\n+/gu) || [];
+  const neutral = [
+    "Esse ponto não é quantificado porque as fontes confirmadas não oferecem base suficiente; a decisão deve seguir a documentação específica e as regras aplicáveis.",
+    "A evidência disponível não permite fixar esse valor com segurança; confirme a documentação correspondente antes de transformar o critério em decisão prática.",
+    "Sem confirmação explícita nas fontes aceitas, o artigo não atribui medida a esse aspecto e mantém a análise limitada aos dados rastreáveis.",
+  ];
   return parts
-    .filter((part) => /^\s*\n+\s*$/u.test(part) || articleResearchGroundingErrors({ content: part, research }).length === 0)
+    .map((part, index) => /^\s*\n+\s*$/u.test(part) || articleResearchGroundingErrors({ content: part, research }).length === 0
+      ? part
+      : ` ${neutral[index % neutral.length]}`)
     .join("")
     .replace(/\n{3,}/g, "\n\n")
     .trim();
