@@ -154,6 +154,7 @@ async function internalResearch({ item, internalEvidence, today, contentType, re
   const confirmedFacts = []
   for (const record of evidence) {
     const sourceIds = []
+    const recordSourceIds = new Map()
     for (const source of record.sources || []) {
       if (!source.url || !allowedSource(source.url, raceCoverage)) continue
       if (!sourceMap.has(source.url)) {
@@ -166,8 +167,24 @@ async function internalResearch({ item, internalEvidence, today, contentType, re
         })
       }
       sourceIds.push(sourceMap.get(source.url).id)
+      recordSourceIds.set(source.id, sourceMap.get(source.url).id)
     }
-    if (sourceIds.length > 0) confirmedFacts.push({ fact: record.facts || {}, source_ids: [...new Set(sourceIds)] })
+    for (const [field, detail] of Object.entries(record.facts || {})) {
+      if (detail?.status && detail.status !== 'confirmed') continue
+      const value = detail && typeof detail === 'object' && 'value' in detail ? detail.value : detail
+      const unit = detail && typeof detail === 'object' ? detail.unit : null
+      const factSources = Array.isArray(detail?.sourceIds)
+        ? detail.sourceIds.map((id) => recordSourceIds.get(id)).filter(Boolean)
+        : sourceIds
+      const display = Array.isArray(value) ? value.join(', ') : String(value ?? '')
+      const lookup = `${display}${unit ? ` ${unit}` : ''}`.trim()
+      if (lookup && factSources.length > 0) confirmedFacts.push({
+        fact: `${field}: ${lookup}`,
+        evidence_lookup: lookup,
+        evidence_candidate_ids: [...new Set(sourceIds)],
+        source_ids: [...new Set(factSources)],
+      })
+    }
   }
   const sources = [...sourceMap.values()]
   if (sources.length === 0) throw new Error(`Fallback interno bloqueado: nenhuma fonte oficial permitida (${reason})`)
@@ -191,6 +208,7 @@ async function internalResearch({ item, internalEvidence, today, contentType, re
     fetchImpl,
     allowedSource: (url) => allowedSource(url, raceCoverage),
     requireExcerpts: true,
+    deriveEvidenceFromLookup: true,
     timeoutMs: Math.max(1000, Number(env.SOURCE_HTTP_TIMEOUT_MS || 30000)),
   })
   return assertResearchGrounding(validateResearch(verified), { requireFactReferences: true })

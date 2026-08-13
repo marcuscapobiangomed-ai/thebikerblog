@@ -83,6 +83,7 @@ export async function verifyResearchEvidence(research, {
   fetchImpl = fetch,
   allowedSource,
   requireExcerpts = true,
+  deriveEvidenceFromLookup = false,
   timeoutMs = 30000,
 } = {}) {
   if (typeof allowedSource !== 'function') throw new Error('allowedSource e obrigatorio')
@@ -102,11 +103,30 @@ export async function verifyResearchEvidence(research, {
   const retainedFacts = []
   let unsupportedFacts = 0
   for (const fact of research.confirmed_facts || []) {
-    const references = sourceReferences(fact)
-    const evidence = normalized(fact?.evidence_quote)
+    let references = sourceReferences(fact)
+    let evidence = normalized(fact?.evidence_quote)
+    let derivedEvidence = false
+    if (!evidence && deriveEvidenceFromLookup) {
+      const lookup = normalized(fact?.evidence_lookup)
+      const candidates = [...new Set([...references, ...(Array.isArray(fact?.evidence_candidate_ids) ? fact.evidence_candidate_ids : [])])]
+      const matchedReference = lookup.length >= 4 ? candidates.find((reference) => verified.get(reference)?.text.includes(lookup)) : null
+      const source = matchedReference ? verified.get(matchedReference) : null
+      const position = matchedReference ? source.text.indexOf(lookup) : -1
+      if (position >= 0) {
+        const before = source.text.slice(0, position).split(' ').filter(Boolean).slice(-6)
+        const matchAndAfter = source.text.slice(position).split(' ').filter(Boolean).slice(0, Math.max(6, lookup.split(' ').length + 5))
+        evidence = [...before, ...matchAndAfter].join(' ')
+        fact.evidence_quote = evidence
+        delete fact.evidence_lookup
+        delete fact.evidence_candidate_ids
+        fact.source_ids = [matchedReference]
+        references = [matchedReference]
+        derivedEvidence = true
+      }
+    }
     const supported = references.length > 0 && references.every((reference) => {
       const source = verified.get(reference)
-      return source && (!requireExcerpts || (evidence.length >= 12 && source.text.includes(evidence)))
+      return source && (!requireExcerpts || derivedEvidence || (evidence.length >= 12 && source.text.includes(evidence)))
     })
     if (supported) retainedFacts.push(fact)
     else unsupportedFacts += 1
