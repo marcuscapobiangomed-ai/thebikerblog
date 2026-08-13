@@ -37,6 +37,15 @@ function setOptionalField(content, field, value) {
   return content.replace(/^---\s*\r?\n/, (opening) => `${opening}${field}: ${value}\n`);
 }
 
+export function normalizeCategoryExamplePromotion(content, item) {
+  if (item?.heroImage?.relationship !== "category-example") return content;
+  const parsed = matter(content);
+  if (parsed.data.editorial_scope !== "portfolio") return content;
+  let normalized = setField(content, "brand", '""');
+  normalized = setField(normalized, "promoted_brands", "[]");
+  return normalized;
+}
+
 export async function cleanupFailedFinalization(root, item) {
   const draftRoot = path.resolve(root, "_posts/drafts") + path.sep;
   const draftPath = item.postPath ? path.resolve(root, item.postPath) : null;
@@ -96,12 +105,14 @@ async function finalizeInWorkspace({ root, now, imageProducer }) {
     }
     if ((item.aiReview?.finalBlockers || 0) > 0) throw new Error("Auditoria editorial final ainda possui bloqueadores");
     assertMarkdownPublicationGates(content);
+    content = normalizeCategoryExamplePromotion(content, item);
+    const normalizedArticle = matter(content).data;
     const [catalog, library] = await Promise.all([
       fs.readFile(path.join(root, "content/product-discovery/thebiker-media-catalog.json"), "utf8").then(JSON.parse),
       fs.readFile(path.join(root, "content/image-library/index.json"), "utf8").then(JSON.parse)
         .catch((error) => error?.code === "ENOENT" ? { assets: [] } : Promise.reject(error)),
     ]);
-    const visualAlignment = alignCampaignVisual({ item, article: parsed.data, catalog, library });
+    const visualAlignment = alignCampaignVisual({ item, article: normalizedArticle, catalog, library });
     const cover = await imageProducer({ root, item, approvedAt });
     content = setField(content, "date", item.publishDate);
     content = setField(content, "last_modified_at", approvedAt);
