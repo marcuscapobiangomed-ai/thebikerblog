@@ -779,16 +779,16 @@
         "rationale": "O câmbio Shimano GRX real exemplifica a transmissão para terreno misto citada no artigo, preservando a marca promovida."
       },
       "imageAssetIds": [],
-      "attempts": 1,
-      "lastAttemptAt": "2026-08-09T13:52:49.906Z",
+      "attempts": 2,
+      "lastAttemptAt": "2026-08-13T15:19:43.781Z",
       "failure": {
         "code": "RESEARCH_INSUFFICIENT",
         "retryable": false,
-        "stage": "grounding-audit",
-        "message": "Pesquisa bloqueada por integridade de fontes: fatos referenciam fontes ausentes da ficha",
-        "recordedAt": "2026-08-13T15:00:00.000Z"
+        "stage": "production",
+        "message": "Pesquisa bloqueada por integridade de fontes: fato 4 referencia fonte inexistente: src-3",
+        "recordedAt": "2026-08-13T15:19:43.781Z"
       },
-      "blockReason": "[RESEARCH_INSUFFICIENT] Pesquisa bloqueada por integridade de fontes: fatos referenciam fontes ausentes da ficha"
+      "blockReason": "[RESEARCH_INSUFFICIENT] Pesquisa bloqueada por integridade de fontes: fato 4 referencia fonte inexistente: src-3"
     },
     {
       "day": 13,
@@ -1035,8 +1035,7 @@
         "rationale": "Fotografia real do catálogo TheBiker selecionada deterministicamente como exemplo visual da categoria técnica abordada."
       },
       "imageAssetIds": [],
-      "attempts": 2,
-      "lastAttemptAt": "2026-08-13T14:51:06.631Z",
+      "blockReason": "[RESEARCH_INSUFFICIENT] Pesquisa bloqueada por integridade de fontes: fatos referenciam fontes inexistentes",
       "failure": {
         "code": "RESEARCH_INSUFFICIENT",
         "retryable": false,
@@ -1044,7 +1043,8 @@
         "message": "Pesquisa bloqueada por integridade de fontes: fatos referenciam fontes inexistentes",
         "recordedAt": "2026-08-13T15:00:00.000Z"
       },
-      "blockReason": "[RESEARCH_INSUFFICIENT] Pesquisa bloqueada por integridade de fontes: fatos referenciam fontes inexistentes"
+      "attempts": 2,
+      "lastAttemptAt": "2026-08-13T14:51:06.631Z"
     },
     {
       "day": 17,
