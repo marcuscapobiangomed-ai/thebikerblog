@@ -65,7 +65,7 @@
       "title": "Scott Spark RC Expert 2027: leitura técnica da montagem confirmada pelas fontes atuais",
       "summary": "Ficha editorial do modelo limitada aos materiais, suspensão, transmissão e limites explicitamente recuperados das fontes.",
       "category": "review",
-      "status": "blocked"
+      "status": "scheduled"
     },
     {
       "day": 9,
@@ -73,7 +73,7 @@
       "title": "Scott Scale 940 e 980: diferenças verificáveis de quadro, suspensão e componentes",
       "summary": "Comparação limitada às especificações atualmente recuperáveis nas páginas oficiais e no catálogo TheBiker.",
       "category": "comparativo",
-      "status": "planned"
+      "status": "blocked"
     },
     {
       "day": 10,
@@ -81,7 +81,7 @@
       "title": "Addict RC 20 ou RC Pro: onde estão as diferenças que importam na montagem",
       "summary": "Comparação entre Ultegra e Dura-Ace Di2, rodas, cockpit, pneus, peso declarado e custo observado na TheBiker.",
       "category": "comparativo",
-      "status": "blocked"
+      "status": "planned"
     },
     {
       "day": 11,

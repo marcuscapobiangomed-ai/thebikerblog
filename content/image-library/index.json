@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-08-13T23:03:02.957Z",
+  "updatedAt": "2026-08-13T23:36:10.735Z",
   "assets": [
     {
       "assetId": "thebiker-scott-addict-rc-pro-hmx-frame-set-def10da96a",
@@ -235,6 +235,23 @@
       "uses": [
         {
           "postId": "reserva-limpeza-transmissao-metodo",
+          "position": "hero",
+          "usedAt": "2026-08-13T12:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "assetId": "thebiker-bicicleta-scott-spark-rc-expert-2027-b1b10a0596",
+      "sha256": "b1b10a05967f309b89c4cf75c87a9e00ac6cf97fe3501092d434f391cbef3227",
+      "perceptualHash": "0000000001100000011110001111111011111111111011110000011000000000",
+      "sourcePageUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-spark-rc-expert-2027/",
+      "sourceFileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/4275478350b-ed3eb9027372ade53d17812055711316-1024-1024.webp",
+      "productId": "bicicleta-scott-spark-rc-expert-2027",
+      "productName": "Bicicleta Scott Spark RC Expert 2027",
+      "rightsPolicyId": "thebiker-official-editorial-v1",
+      "uses": [
+        {
+          "postId": "reserva-spark-rc-expert-ficha",
           "position": "hero",
           "usedAt": "2026-08-13T12:00:00.000Z"
         }

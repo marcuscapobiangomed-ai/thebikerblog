@@ -470,7 +470,7 @@
       "summary": "Ficha editorial do modelo limitada aos materiais, suspensão, transmissão e limites explicitamente recuperados das fontes.",
       "category": "review",
       "freshness": "revalidate-24h",
-      "status": "blocked",
+      "status": "scheduled",
       "productIds": [
         "bicicleta-scott-spark-rc-expert-2027"
       ],
@@ -479,7 +479,12 @@
         "productId": "bicicleta-scott-spark-rc-expert-2027"
       },
       "postPath": "_posts/drafts/2026-08-15-reserva-spark-rc-expert-ficha.md",
-      "imageAssetIds": [],
+      "imageManifestPath": "assets/img/posts/reserva-spark-rc-expert-ficha/image-manifest.json",
+      "imageStatus": "approved",
+      "imageAssetIds": [
+        "thebiker-bicicleta-scott-spark-rc-expert-2027-b1b10a0596"
+      ],
+      "imageValidatedAt": "2026-08-13T23:36:09.081Z",
       "attempts": 1,
       "lastAttemptAt": "2026-08-13T23:27:35.504Z",
       "aiReview": {
@@ -499,14 +504,37 @@
         "sourceHash": "f10a5adab76326ba1c73b14dce4fc85a95919c8bfe292393a56da272a2aadfc5",
         "deterministicFullArticleFallbackUsed": true
       },
-      "failure": {
-        "code": "RESEARCH_INSUFFICIENT",
-        "retryable": false,
-        "stage": "finalization",
-        "message": "Pesquisa bloqueada por evidência não recuperada: pesquisa sem contrato de evidência recuperada retrieved-excerpt-v1",
-        "recordedAt": "2026-08-13T23:27:35.504Z"
+      "editorialReceipt": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-editorial-2026-08-v2",
+        "origin": "pipeline",
+        "reviewedContentHash": "sha256:5a3059d86a24243dc9352b6b73453e083023baa623ae672585ed42ddbc381282",
+        "scheduledContentHash": "sha256:1149e34ae580eb74dd332109e8501766c7ed8a988cb91ee406079ab89eae9cb7",
+        "researchHash": "sha256:1c2af4ac4210c9d015b002f13b6891bf50bfb0b2811e3fad0c686c1e60cfff29",
+        "sourceHash": "f10a5adab76326ba1c73b14dce4fc85a95919c8bfe292393a56da272a2aadfc5",
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "issuedAt": "2026-08-13T23:36:09.081Z"
       },
-      "blockReason": "Validação final: [RESEARCH_INSUFFICIENT] Pesquisa bloqueada por evidência não recuperada: pesquisa sem contrato de evidência recuperada retrieved-excerpt-v1"
+      "visualDecision": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-visual-autonomy-v1",
+        "inputHash": "sha256:69920c8c092779e16e46b80eea1f2a0a53cd859de021ca0de19bc513c50cfe6f",
+        "mode": "exact-product",
+        "productId": "bicicleta-scott-spark-rc-expert-2027",
+        "score": 100,
+        "hardGates": {
+          "semanticMatch": true,
+          "realAsset": true,
+          "explicitProduct": true,
+          "officialSource": true,
+          "approvedRights": true,
+          "publishableResolution": true,
+          "uniqueAsset": true
+        },
+        "blockers": [],
+        "issuedAt": "2026-08-13T23:36:09.081Z"
+      }
     },
     {
       "day": 9,
@@ -516,7 +544,7 @@
       "summary": "Comparação limitada às especificações atualmente recuperáveis nas páginas oficiais e no catálogo TheBiker.",
       "category": "comparativo",
       "freshness": "revalidate-24h",
-      "status": "planned",
+      "status": "blocked",
       "productIds": [
         "bicicleta-scott-scale-940-black",
         "bicicleta-scott-scale-980-black"
@@ -525,8 +553,29 @@
         "mode": "exact-product",
         "productId": "bicicleta-scott-scale-940-black"
       },
+      "postPath": "_posts/drafts/2026-08-16-reserva-scale-940-980-comparativo.md",
       "imageAssetIds": [],
-      "attempts": 0
+      "attempts": 1,
+      "lastAttemptAt": "2026-08-13T23:36:09.081Z",
+      "aiReview": {
+        "score": null,
+        "finalScore": null,
+        "finalBlockers": 0,
+        "premiumEditUsed": false,
+        "providers": {},
+        "generatedAt": "2026-08-13T23:36:09.081Z",
+        "contentHash": "sha256:2e669554b19d745cdb00b4c563e0ac71f84a7a0b07e405b562035ee854439046",
+        "deterministicFullArticleFallbackUsed": true,
+        "deterministicFullArticleFallbackTrigger": "pipeline-failure"
+      },
+      "failure": {
+        "code": "AI_REVIEW_REJECTED",
+        "retryable": false,
+        "stage": "finalization",
+        "message": "Recibo editorial exige nota final >= 90 e zero bloqueadores",
+        "recordedAt": "2026-08-13T23:36:09.081Z"
+      },
+      "blockReason": "Validação final: [AI_REVIEW_REJECTED] Recibo editorial exige nota final >= 90 e zero bloqueadores"
     },
     {
       "day": 10,
@@ -536,7 +585,7 @@
       "summary": "Comparação entre Ultegra e Dura-Ace Di2, rodas, cockpit, pneus, peso declarado e custo observado na TheBiker.",
       "category": "comparativo",
       "freshness": "revalidate-24h",
-      "status": "blocked",
+      "status": "planned",
       "productIds": [
         "bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9",
         "bicicleta-scott-addict-rc-pro-di2-2026-pre-venda"
@@ -545,16 +594,7 @@
         "mode": "exact-product",
         "productId": "bicicleta-scott-addict-rc-pro-di2-2026-pre-venda"
       },
-      "imageStatus": "blocked",
       "imageAssetIds": [],
-      "blockReason": "[RESEARCH_INSUFFICIENT] pesquisa sem contrato de evidência recuperada retrieved-excerpt-v1; pesquisa sem data de verificação ativa das fontes; fato 1 sem trecho literal verificável; fato 2 sem trecho literal verificável; fato 3 sem trecho literal verificável; fato 4 sem trecho literal verificável; fato 5 sem trecho literal verificável; fato 6 sem trecho literal verificável; fato 7 sem trecho literal verificável; fato 8 sem trecho literal verificável",
-      "failure": {
-        "code": "RESEARCH_INSUFFICIENT",
-        "retryable": true,
-        "stage": "source-verification-audit",
-        "message": "pesquisa sem contrato de evidência recuperada retrieved-excerpt-v1; pesquisa sem data de verificação ativa das fontes; fato 1 sem trecho literal verificável; fato 2 sem trecho literal verificável; fato 3 sem trecho literal verificável; fato 4 sem trecho literal verificável; fato 5 sem trecho literal verificável; fato 6 sem trecho literal verificável; fato 7 sem trecho literal verificável; fato 8 sem trecho literal verificável",
-        "recordedAt": "2026-08-13T18:15:00.000Z"
-      },
       "attempts": 1,
       "lastAttemptAt": "2026-08-13T18:15:00.000Z"
     },
