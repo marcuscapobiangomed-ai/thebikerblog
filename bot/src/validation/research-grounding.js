@@ -79,3 +79,22 @@ export function assertResearchGrounding(research, options) {
   if (errors.length > 0) throw new Error(`Pesquisa bloqueada por integridade de fontes: ${errors.join("; ")}`);
   return research;
 }
+
+export function researchEvidenceContractErrors(research) {
+  if (!research || research.status !== "pesquisa_concluida") return [];
+  const errors = [];
+  if (research.grounding?.evidenceContract !== "retrieved-excerpt-v1") {
+    errors.push("pesquisa sem contrato de evidência recuperada retrieved-excerpt-v1");
+  }
+  if (!research.grounding?.verifiedAt) errors.push("pesquisa sem data de verificação ativa das fontes");
+  for (const [index, fact] of factEntries(research).entries()) {
+    if (text(fact?.evidence_quote).length < 12) errors.push(`fato ${index + 1} sem trecho literal verificável`);
+  }
+  return errors;
+}
+
+export function assertResearchEvidenceContract(research) {
+  const errors = researchEvidenceContractErrors(research);
+  if (errors.length > 0) throw new Error(`Pesquisa bloqueada por evidência não recuperada: ${errors.join("; ")}`);
+  return research;
+}
