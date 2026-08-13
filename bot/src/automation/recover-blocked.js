@@ -48,11 +48,11 @@ function clearDiscardedDraftState(item) {
 const RECOVERY_RESERVES = [
   { id: 'reserva-radar-profissional-oficial', title: 'Radar profissional: próxima prova com calendário e resultados oficialmente verificáveis', summary: 'Reserva de cobertura profissional que só avança depois de ser vinculada a um evento e a fontes oficiais revalidadas.', category: 'competicoes', race: { track: 'professional-coverage', format: 'weekly-roundup', eventIds: [], sourceStatus: 'pending' } },
   { id: 'reserva-calendario-participativo-oficial', title: 'Calendário brasileiro de provas: atualização com inscrições e mudanças verificadas', summary: 'Reserva participativa que permanece pendente até receber eventos oficiais, situação de inscrição e checagem recente das fontes.', category: 'competicoes', race: { track: 'participant-calendar', format: 'calendar-roundup', eventIds: [], sourceStatus: 'pending' } },
-  { id: 'reserva-diagnostico-ruidos-bike', title: 'Diagnóstico de ruídos na bicicleta: método por carga, frequência e interface', summary: 'Protocolo técnico para isolar ruídos de transmissão, cockpit, rodas e quadro sem substituir componentes por tentativa e erro.', category: 'manutencao-ajustes' },
-  { id: 'reserva-pressao-pneus-terreno', title: 'Pressão de pneus por terreno: como testar sem transformar sensação em dado', summary: 'Método de campo para ajustar pressão, registrar comportamento e separar aderência, suporte lateral, impacto e resistência ao rolamento.', category: 'engenharia' },
-  { id: 'reserva-inspecao-pos-chuva', title: 'Inspeção pós-chuva: os pontos que concentram contaminação, corrosão e desgaste', summary: 'Rotina técnica depois de treinos molhados, priorizando rolamentos, transmissão, freios, suspensão e interfaces do quadro.', category: 'manutencao-ajustes' },
-  { id: 'reserva-cabos-mangueiras-roteamento', title: 'Cabos e mangueiras: roteamento, atrito e sinais de montagem que pedem correção', summary: 'Leitura técnica de curvas, fixações, contato com o quadro e interferências que alteram comando, ruído e durabilidade.', category: 'componentes' },
-  { id: 'reserva-limpeza-transmissao-metodo', title: 'Limpeza de transmissão: como remover contaminantes sem deslocar o problema', summary: 'Sequência de limpeza, inspeção e relubrificação que considera corrente, cassete, coroas, roldanas e compatibilidade química.', category: 'manutencao-ajustes' },
+  { id: 'reserva-scale-940-980-comparativo', title: 'Scott Scale 940 e 980: diferenças verificáveis de quadro, suspensão e componentes', summary: 'Comparação limitada às especificações atualmente recuperáveis nas páginas oficiais e no catálogo TheBiker.', category: 'comparativo', productIds: ['bicicleta-scott-scale-940-black', 'bicicleta-scott-scale-980-black'], heroImage: { mode: 'exact-product', productId: 'bicicleta-scott-scale-940-black' } },
+  { id: 'reserva-addict-50-rc20-comparativo', title: 'Scott Addict 50 e Addict RC 20: duas propostas de estrada confrontadas pelas fichas oficiais', summary: 'Análise comparativa restrita a geometria, materiais e montagens comprovados nas fontes atuais dos dois modelos.', category: 'comparativo', productIds: ['bicicleta-scott-addict-50-2026-pre-venda-1bxzy', 'bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9'], heroImage: { mode: 'exact-product', productId: 'bicicleta-scott-addict-50-2026-pre-venda-1bxzy' } },
+  { id: 'reserva-spark-rc-expert-ficha', title: 'Scott Spark RC Expert 2027: leitura técnica da montagem confirmada pelas fontes atuais', summary: 'Ficha editorial do modelo limitada aos materiais, suspensão, transmissão e limites explicitamente recuperados das fontes.', category: 'review', productIds: ['bicicleta-scott-spark-rc-expert-2027'], heroImage: { mode: 'exact-product', productId: 'bicicleta-scott-spark-rc-expert-2027' } },
+  { id: 'reserva-scale-940-ficha', title: 'Scott Scale 940: o que a ficha atual confirma sobre quadro, suspensão e transmissão', summary: 'Leitura de produto sem extrapolações, baseada somente nos campos que continuam presentes nas páginas recuperadas.', category: 'review', productIds: ['bicicleta-scott-scale-940-black'], heroImage: { mode: 'exact-product', productId: 'bicicleta-scott-scale-940-black' } },
+  { id: 'reserva-spark-rc-world-cup-ficha', title: 'Scott Spark RC World Cup 2027: especificações confirmadas e limites da análise documental', summary: 'Revisão documental que publica apenas características localizadas literalmente nas fontes oficiais recuperadas no dia.', category: 'review', productIds: ['bicicleta-scott-spark-rc-world-cup-20271'], heroImage: { mode: 'exact-product', productId: 'bicicleta-scott-spark-rc-world-cup-20271' } },
 ]
 
 function localDate(now, timezone) {
@@ -61,6 +61,8 @@ function localDate(now, timezone) {
 
 function reserveToItem(reserve, blocked) {
   const visual = realContextPolicy(reserve)
+  const productIds = [...new Set(reserve.productIds?.length ? reserve.productIds : visual ? [visual.productId] : [])]
+  const heroImage = reserve.heroImage || visual?.heroImage || { mode: 'conceptual' }
   return {
     day: blocked.day,
     publishDate: blocked.publishDate,
@@ -71,8 +73,8 @@ function reserveToItem(reserve, blocked) {
     ...(reserve.race ? { race: structuredClone(reserve.race) } : {}),
     freshness: reserve.category === 'competicoes' ? 'event-driven' : ['review', 'comparativo', 'lancamentos'].includes(reserve.category) ? 'revalidate-24h' : 'evergreen',
     status: 'planned',
-    productIds: visual ? [visual.productId] : [],
-    ...(visual ? { heroImage: visual.heroImage } : {}),
+    productIds,
+    heroImage,
     imageAssetIds: [],
     attempts: 0,
   }
@@ -82,7 +84,7 @@ function nextReserve(campaign, blocked) {
   const used = new Set(campaign.items.map((item) => item.id))
   const available = [...campaign.reserves, ...RECOVERY_RESERVES].filter((item, index, items) => !used.has(item.id) && items.findIndex((candidate) => candidate.id === item.id) === index)
   if (blocked.race) return available.find((item) => item.race?.track === blocked.race.track) || null
-  return available.find((item) => item.category !== 'competicoes') || null
+  return available.find((item) => item.category !== 'competicoes' && item.productIds?.length > 0) || null
 }
 
 export function recoverBlockedCampaign(campaignInput, {
@@ -184,7 +186,6 @@ export function recoverBlockedCampaign(campaignInput, {
   campaign.items[blocked.day - 1] = reserveToItem(reserve, blocked)
   campaign.reserves = campaign.reserves.filter((item) => item.id !== reserve.id)
   for (const fallback of RECOVERY_RESERVES) {
-    if (campaign.reserves.length >= 3 && campaign.reserves.some((item) => item.id === fallback.id)) continue
     if (!campaign.items.some((item) => item.id === fallback.id) && !campaign.reserves.some((item) => item.id === fallback.id)) campaign.reserves.push(fallback)
     if (campaign.reserves.length >= 5) break
   }

@@ -212,4 +212,8 @@ assert.equal(replaced.campaign.items[unsupported.day - 1].publishDate, unsupport
 assert.notEqual(replaced.campaign.items[unsupported.day - 1].id, unsupported.id)
 assert.ok(replaced.exception)
 assert.ok(replaced.campaign.reserves.length >= 3)
+const executableReplacement = replaced.campaign.items[unsupported.day - 1]
+assert.ok(executableReplacement.productIds.length > 0, 'reserva comum precisa carregar evidência de produto recuperável')
+assert.ok(['exact-product', 'real-context'].includes(executableReplacement.heroImage.mode), 'reserva comum precisa carregar política visual publicável')
+assert.ok(replaced.campaign.reserves.some((reserve) => reserve.productIds.length > 0), 'reposição precisa manter ao menos uma reserva executável')
 console.log('Recuperação autônoma de pautas bloqueadas validada com sucesso.')
