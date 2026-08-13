@@ -3,6 +3,7 @@ const LEGAL_CONTEXT = /\bno brasil\b[^.!?\n]*(?:limit|permit|proib|dispens|obrig
 const NUMBER = "(?:\\d+(?:[.,]\\d+)?|um|uma|dois|duas|tres|quatro|cinco|seis|sete|oito|nove|dez|onze|doze)";
 const UNIT = "(?:km\\/h|wh\\/km|km|wh|kw|w|nm|kg|rpm|mm|cm|mes(?:es)?|dia(?:s)?|ano(?:s)?|%)";
 const NUMERIC_CLAIM = new RegExp(`\\b${NUMBER}\\s*${UNIT}\\b`, "giu");
+const TECHNICAL_INFERENCE = /\b(?:rigidez(?:\s+torsional)?|mais\s+leve|reduz(?:ir|indo|em|\s+o|\s+a)|aumenta|melhora|evita|garante|ideal|adequad[ao]s?|vantagem|eficiencia|transferencia\s+de\s+potencia|manutencao\s+simples|confiabilidade|precisao|modulacao|progressiv[ao]|resposta\s+mais\s+suave|sob\s+carga|estabilidade|agilidade|inspira\s+confianca|tolerancia\s+a\s+impactos|nivel\s+profissional|topo\s+da\s+hierarquia|escolha\s+(?:ideal|versatil)|deve\s+optar|mais\s+adequad[ao])\b/iu;
 
 function normalize(value) {
   return String(value || "")
@@ -28,6 +29,34 @@ function governmentSource(source) {
   }
 }
 
+function proseSentences(value) {
+  return normalize(String(value || "")
+    .replace(/^---[\s\S]*?---/u, "")
+    .replace(/<[^>]+>/gu, " ")
+    .replace(/\[[^\]]+\]\([^\)]+\)/gu, " "))
+    .split(/(?<=[.!?])\s+|\n+/u)
+    .map((sentence) => sentence.replace(/^#+\s*/u, "").trim())
+    .filter(Boolean);
+}
+
+function repeatedParagraphs(value) {
+  const paragraphs = String(value || "")
+    .replace(/^---[\s\S]*?---/u, "")
+    .replace(/<[^>]+>/gu, " ")
+    .split(/\n\s*\n/u)
+    .map(normalize)
+    .filter((paragraph) => paragraph.length >= 160 && !/^de onde vem os dados/u.test(paragraph));
+  const repeated = [];
+  for (let left = 0; left < paragraphs.length; left += 1) {
+    for (let right = left + 1; right < paragraphs.length; right += 1) {
+      const shorter = paragraphs[left].length <= paragraphs[right].length ? paragraphs[left] : paragraphs[right];
+      const longer = paragraphs[left].length > paragraphs[right].length ? paragraphs[left] : paragraphs[right];
+      if (shorter === longer || longer.includes(shorter)) repeated.push(shorter.slice(0, 90));
+    }
+  }
+  return [...new Set(repeated)];
+}
+
 export function articleResearchGroundingErrors({ content, research }) {
   const errors = [];
   const article = normalize(content);
@@ -39,6 +68,14 @@ export function articleResearchGroundingErrors({ content, research }) {
   if (unsupportedNumbers.length > 0) {
     errors.push(`alegações numéricas ausentes dos fatos confirmados: ${unsupportedNumbers.join(", ")}`);
   }
+
+  const unsupportedInferences = proseSentences(content).filter((sentence) => TECHNICAL_INFERENCE.test(sentence));
+  if (unsupportedInferences.length > 0) {
+    errors.push(`inferencias tecnicas ausentes dos fatos confirmados: ${unsupportedInferences.slice(0, 3).join(" | ")}`);
+  }
+
+  const duplicates = repeatedParagraphs(content);
+  if (duplicates.length > 0) errors.push(`paragrafos repetidos ou expandidos por copia: ${duplicates.slice(0, 2).join(" | ")}`);
 
   const sources = Array.isArray(research?.sources) ? research.sources : [];
   const governmentSourceIds = new Set(sources.filter(governmentSource).map((source) => source.id));

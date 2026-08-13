@@ -490,6 +490,13 @@ export class AIProvider {
       if (!Number.isInteger(index) || index < 0 || index >= article.sections.length || !addition) {
         throw new Error("Reparo aditivo inválido: seção ou conteúdo inválido");
       }
+      const normalizeExpansion = (value) => String(value || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s+/g, " ").trim().toLowerCase();
+      const existing = normalizeExpansion(article.sections[index].content);
+      const candidate = normalizeExpansion(addition);
+      const copiedPrefix = candidate.slice(0, Math.min(existing.length, 220));
+      if (copiedPrefix.length >= 120 && existing.includes(copiedPrefix)) {
+        throw new Error("Reparo aditivo inválido: complemento repete o conteúdo existente");
+      }
       article.sections[index].content = `${article.sections[index].content.trim()}\n\n${addition}`;
       touched.add(index);
     }
