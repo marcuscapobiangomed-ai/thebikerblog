@@ -13,20 +13,21 @@ await fs.mkdir(path.join(fixtureRoot, "bot"), { recursive: true });
 
 const fixture = structuredClone(sourceCampaign);
 const next = fixture.items.find((item) => item.publishDate === "2026-08-14");
-next.status = "planned";
-next.postPath = undefined;
-next.aiReview = undefined;
-next.editorialReceipt = undefined;
-next.visualDecision = undefined;
-next.imageManifestPath = undefined;
-next.imageStatus = undefined;
-next.imageValidatedAt = undefined;
-next.imageAssetIds = [];
-next.failure = undefined;
-next.blockReason = undefined;
-for (const item of fixture.items.filter((candidate) => candidate.publishDate > "2026-08-14")) {
-  if (item.status === "scheduled" || item.status === "published") continue;
-  item.status = item.status === "blocked" ? "blocked" : "planned";
+// This fixture exercises the retry path itself. It must not inherit a live
+// scheduled item from the production campaign, otherwise the buffer target is
+// already satisfied and the producer/finalizer are never called.
+for (const item of fixture.items.filter((candidate) => candidate.publishDate >= "2026-08-13" && candidate.status !== "published")) {
+  item.status = "planned";
+  item.postPath = undefined;
+  item.aiReview = undefined;
+  item.editorialReceipt = undefined;
+  item.visualDecision = undefined;
+  item.imageManifestPath = undefined;
+  item.imageStatus = undefined;
+  item.imageValidatedAt = undefined;
+  item.imageAssetIds = [];
+  item.failure = undefined;
+  item.blockReason = undefined;
 }
 await fs.writeFile(path.join(fixtureRoot, "bot/editorial-campaign.json"), JSON.stringify(fixture, null, 2) + "\n");
 
