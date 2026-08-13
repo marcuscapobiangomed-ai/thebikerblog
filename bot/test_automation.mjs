@@ -223,6 +223,36 @@ assert.equal(grounded.portfolio_evidence_url, 'https://thebikershop.com.br/compo
 assert.equal(grounded.portfolio_verified_at, '2026-08-04');
 assert.equal(groundedRequest.model, 'groq/compound-mini');
 assert.deepEqual(groundedRequest.compound_custom.tools.enabled_tools, ['web_search', 'visit_website']);
+let evidenceFallbackCalls = 0;
+const evidenceFallbackResearcher = new GroundedResearcher({
+  GROQ_API_KEY: 'test',
+  GEMINI_API_KEY: 'test-gemini',
+  AI_HTTP_RETRY_ATTEMPTS: '1',
+}, async (_url, init) => {
+  evidenceFallbackCalls += 1;
+  if (init.headers.Authorization) return { ok: true, json: async () => groqPayload };
+  return {
+    ok: true,
+    json: async () => ({ candidates: [{
+      content: { parts: [{ text: JSON.stringify({
+        confirmed_facts: [{ fact: 'Troca eletrônica', evidence_quote: 'Sistema eletrônico de troca para bicicletas', source_ids: ['src-shimano'] }],
+        limitations: [],
+        sources: [{ id: 'src-shimano', name: 'Shimano', type: 'manufacturer', url: 'https://bike.shimano.com/en-US/technology/test', accessed: '2026-08-04' }],
+      }) }] },
+      groundingMetadata: { webSearchQueries: ['fallback-evidence'] },
+    }] }),
+  };
+}, async (url) => ({
+  ok: url.includes('bike.shimano.com'),
+  status: url.includes('bike.shimano.com') ? 200 : 404,
+  url,
+  headers: { get: (name) => name === 'content-type' ? 'text/html' : null },
+  arrayBuffer: async () => new TextEncoder().encode('<html>Sistema eletrônico de troca para bicicletas.</html>').buffer,
+}));
+const evidenceFallback = await evidenceFallbackResearcher.research({ item: campaign.items[0], internalEvidence: [], today: '2026-08-04' });
+assert.equal(evidenceFallbackCalls, 2);
+assert.equal(evidenceFallback.grounding.provider, 'gemini-google-search');
+assert.deepEqual(evidenceFallback.grounding.queries, ['fallback-evidence']);
 const fabricatedSourceResearcher = new GroundedResearcher(
   { GROQ_API_KEY: 'test' },
   async () => ({ ok: true, json: async () => groqPayload }),
