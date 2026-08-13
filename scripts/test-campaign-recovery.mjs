@@ -80,6 +80,27 @@ const resumed = recoverBlockedCampaign(finalization, { now: new Date('2026-08-07
 assert.equal(resumed.result.status, 'retry-finalization')
 assert.equal(resumed.campaign.items.find((item) => item.id === finalizable.id).status, 'validation')
 
+const staleBriefCampaign = structuredClone(campaignFixture)
+for (const item of staleBriefCampaign.items) if (item.status === 'blocked') { item.status = 'planned'; delete item.blockReason; delete item.failure }
+const staleBrief = staleBriefCampaign.items.find((item) => item.status === 'published' && item.postPath && item.aiReview?.contentHash)
+assert.ok(staleBrief, 'A campanha precisa ter uma pauta produzida para testar regeneração do boletim')
+staleBrief.status = 'blocked'
+staleBrief.attempts = 3
+delete staleBrief.publishedAt
+staleBrief.aiReview.evidenceBriefUsed = true
+staleBrief.failure = {
+  code: 'IMAGE_NOT_PUBLISHABLE', retryable: false, stage: 'finalization',
+  message: 'Imagem incompatível com o artigo: marca da imagem (Scott) não corresponde à marca promovida (fox)',
+  recordedAt: '2026-08-13T19:11:05.738Z',
+}
+staleBrief.blockReason = `Validação final: [IMAGE_NOT_PUBLISHABLE] ${staleBrief.failure.message}`
+const regeneratedBrief = recoverBlockedCampaign(staleBriefCampaign, { now: new Date(`${staleBrief.publishDate}T12:00:00Z`) })
+assert.equal(regeneratedBrief.result.status, 'regenerate-evidence-brief-brand')
+const regeneratedBriefItem = regeneratedBrief.campaign.items.find((item) => item.id === staleBrief.id)
+assert.equal(regeneratedBriefItem.status, 'planned')
+assert.equal(regeneratedBriefItem.postPath, undefined)
+assert.equal(regeneratedBriefItem.aiReview, undefined)
+
 const conceptualFinalization = structuredClone(campaignFixture)
 for (const item of conceptualFinalization.items) if (item.status === 'blocked') { item.status = 'planned'; delete item.blockReason; delete item.failure }
 const conceptualPolicyId = 'reserva-pressao-pneus-terreno'
