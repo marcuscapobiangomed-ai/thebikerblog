@@ -486,6 +486,39 @@ export class AIProvider {
     return JSON.stringify(article);
   }
 
+  _mergeRepairCandidate(articleText, repairText) {
+    try {
+      const original = structuredClone(this._extractJson(articleText));
+      const repair = structuredClone(this._extractJson(repairText));
+      if (["PESQUISA INSUFICIENTE", "PORTFÓLIO NÃO CONFIRMADO"].includes(repair?.status)) {
+        return JSON.stringify(repair);
+      }
+      const merge = (base, patch, key = "") => {
+        if (patch === undefined || patch === null || patch === "") return base;
+        if (Array.isArray(patch)) {
+          if (patch.length === 0) {
+            return ["sections", "sources", "imagePlan", "tags"].includes(key) && Array.isArray(base) && base.length > 0
+              ? base
+              : patch;
+          }
+          if (key === "sections" && Array.isArray(base) && patch.length < base.length) {
+            return base.map((entry, index) => index < patch.length ? merge(entry, patch[index], "section") : entry);
+          }
+          return patch;
+        }
+        if (typeof patch === "object") {
+          const baseObject = base && typeof base === "object" && !Array.isArray(base) ? base : {};
+          return Object.fromEntries([...new Set([...Object.keys(baseObject), ...Object.keys(patch)])]
+            .map((field) => [field, merge(baseObject[field], patch[field], field)]));
+        }
+        return patch;
+      };
+      return JSON.stringify(merge(original, repair));
+    } catch {
+      return repairText;
+    }
+  }
+
   async processCase(descricaoCurta, researchData = null) {
     const contentType = researchData?.content_type || inferContentType(descricaoCurta);
     const template = getTemplate(resolveTemplateKey(contentType, researchData));
@@ -584,7 +617,7 @@ export class AIProvider {
               continue;
             }
           } else {
-            candidateText = repaired.content;
+            candidateText = this._mergeRepairCandidate(candidateText, repaired.content);
           }
           try {
             return {

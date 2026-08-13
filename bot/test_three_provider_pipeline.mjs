@@ -172,6 +172,42 @@ assert.equal(repairRounds, 2);
 assert.equal(retryResult.pipelineMetadata.finalRepairRounds, 2);
 assert.equal(retryResult.content, "repair-2");
 
+const completeCandidate = JSON.stringify({
+  title: "Estrutura original preservada",
+  description: "Descrição editorial suficientemente completa para permanecer válida durante um reparo parcial devolvido pelo provedor de inteligência artificial.",
+  direct_answer: "Resposta direta original suficientemente detalhada para o contrato editorial da publicação automatizada.",
+  sections: [
+    { heading: "Primeiro eixo técnico", content: "Conteúdo original um." },
+    { heading: "Segundo eixo técnico", content: "Conteúdo original dois." },
+  ],
+  claimsRequiringReview: ["Alegação que o reparo resolveu"],
+});
+let partialRepairParses = 0;
+const partialRepairProvider = new AIProvider({
+  pipeline: {
+    runtime,
+    clients: { isConfigured: () => true },
+    run: async () => ({ content: completeCandidate, metadata: { sourceHash: "partial-repair-test", providers: {} } }),
+    callStep: async () => ({
+      provider: "deepseek",
+      content: JSON.stringify({ description: "", sections: [], claimsRequiringReview: [], direct_answer: "Resposta direta corrigida sem apagar os demais campos estruturais já válidos do candidato original." }),
+    }),
+  },
+});
+partialRepairProvider._parseStructuredResponse = (content) => {
+  partialRepairParses += 1;
+  if (partialRepairParses === 1) throw new Error("Campo reparável fora do contrato");
+  const merged = JSON.parse(content);
+  assert.equal(merged.description, JSON.parse(completeCandidate).description);
+  assert.equal(merged.sections.length, 2);
+  assert.deepEqual(merged.claimsRequiringReview, []);
+  assert.match(merged.direct_answer, /corrigida/);
+  return { content, title: merged.title };
+};
+const partialRepairResult = await partialRepairProvider.processCase("Pauta com reparo parcial", { content_type: "guia-tecnico", editorialPriority: "P1" });
+assert.equal(partialRepairResult.pipelineMetadata.finalRepairRounds, 1);
+assert.equal(partialRepairParses, 2);
+
 const additiveArticle = JSON.stringify({
   sections: Array.from({ length: 5 }, (_, index) => ({ heading: `Seção ${index}`, content: `Conteúdo original ${index}.` })),
 });
