@@ -1004,16 +1004,16 @@
         "rationale": "Fotografia real do catálogo TheBiker usada apenas como exemplo visual da categoria técnica abordada."
       },
       "imageAssetIds": [],
-      "attempts": 2,
-      "lastAttemptAt": "2026-08-13T12:05:24.534Z",
+      "attempts": 3,
+      "lastAttemptAt": "2026-08-13T12:19:22.290Z",
       "failure": {
         "code": "VALIDATION_FAILED",
         "retryable": false,
         "stage": "production",
-        "message": "Gates editoriais não atendidos: extensão insuficiente: 1532 palavras; mínimo 1600",
-        "recordedAt": "2026-08-13T12:05:24.534Z"
+        "message": "Rascunho bloqueado apÃ³s 2 reparos: Gates editoriais não atendidos: extensão insuficiente: 1333 palavras; mínimo 1600",
+        "recordedAt": "2026-08-13T12:19:22.290Z"
       },
-      "blockReason": "[VALIDATION_FAILED] Gates editoriais não atendidos: extensão insuficiente: 1532 palavras; mínimo 1600"
+      "blockReason": "[VALIDATION_FAILED] Rascunho bloqueado apÃ³s 2 reparos: Gates editoriais não atendidos: extensão insuficiente: 1333 palavras; mínimo 1600"
     },
     {
       "day": 16,
