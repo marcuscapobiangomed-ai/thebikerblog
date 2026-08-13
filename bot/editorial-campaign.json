@@ -318,32 +318,32 @@
     {
       "day": 6,
       "publishDate": "2026-08-13",
-      "id": "spark-rc-team-expert-world-cup",
-      "title": "Spark RC Team, Expert e World Cup: três montagens, três decisões técnicas",
-      "summary": "Comparação interna entre as três Spark RC vendidas pela TheBiker, cobrindo carbono, suspensões, transmissão, rodas, peso e limite do sistema.",
-      "category": "comparativo",
-      "freshness": "revalidate-24h",
+      "id": "reserva-limpeza-transmissao-metodo",
+      "title": "Limpeza de transmissão: como remover contaminantes sem deslocar o problema",
+      "summary": "Sequência de limpeza, inspeção e relubrificação que considera corrente, cassete, coroas, roldanas e compatibilidade química.",
+      "category": "manutencao-ajustes",
+      "freshness": "evergreen",
       "status": "blocked",
       "productIds": [
-        "bicicleta-scott-spark-rc-world-cup-2027",
-        "bicicleta-scott-spark-rc-expert-2027",
-        "bicicleta-scott-spark-rc-world-cup-20271"
+        "corrente-sram-nx-eagle"
       ],
       "heroImage": {
-        "mode": "exact-product",
-        "productId": "bicicleta-scott-spark-rc-world-cup-20271"
+        "mode": "real-context",
+        "productId": "corrente-sram-nx-eagle",
+        "relationship": "category-example",
+        "rationale": "Fotografia real do catálogo TheBiker usada apenas como exemplo visual da categoria técnica abordada."
       },
       "imageAssetIds": [],
-      "attempts": 6,
-      "lastAttemptAt": "2026-08-13T18:05:32.987Z",
+      "attempts": 1,
+      "lastAttemptAt": "2026-08-13T18:10:40.435Z",
       "failure": {
-        "code": "VALIDATION_FAILED",
+        "code": "RESEARCH_INSUFFICIENT",
         "retryable": false,
         "stage": "production",
-        "message": "STATUS: PESQUISA INSUFICIENTE\nConflitos nas fontes: Não há conflitos factuais entre as fontes fornecidas.",
-        "recordedAt": "2026-08-13T18:05:32.987Z"
+        "message": "Pesquisa bloqueada por integridade de fontes: pesquisa concluída sem fontes rastreáveis; pesquisa sem fatos explicitamente fundamentados",
+        "recordedAt": "2026-08-13T18:10:40.435Z"
       },
-      "blockReason": "[VALIDATION_FAILED] STATUS: PESQUISA INSUFICIENTE\nConflitos nas fontes: Não há conflitos factuais entre as fontes fornecidas."
+      "blockReason": "[RESEARCH_INSUFFICIENT] Pesquisa bloqueada por integridade de fontes: pesquisa concluída sem fontes rastreáveis; pesquisa sem fatos explicitamente fundamentados"
     },
     {
       "day": 7,
@@ -903,12 +903,6 @@
         "eventIds": [],
         "sourceStatus": "pending"
       }
-    },
-    {
-      "id": "reserva-limpeza-transmissao-metodo",
-      "title": "Limpeza de transmissão: como remover contaminantes sem deslocar o problema",
-      "summary": "Sequência de limpeza, inspeção e relubrificação que considera corrente, cassete, coroas, roldanas e compatibilidade química.",
-      "category": "manutencao-ajustes"
     },
     {
       "id": "reserva-diagnostico-ruidos-bike",
