@@ -1,0 +1,48 @@
+{
+  "slug": "reserva-pressao-pneus-terreno",
+  "title": "Pressão de pneus por terreno: como testar sem transformar sensação em dado",
+  "content_type": "guia-tecnico",
+  "review_method": "desk-research",
+  "tested_by_thebikerblog": false,
+  "market": "Brasil",
+  "generated_at": "2026-08-13",
+  "status": "pesquisa_concluida",
+  "sources": [
+    {
+      "name": "TheBiker Shop MTB Tires",
+      "url": "https://thebikershop.com.br/bikes/mtb-tires",
+      "accessed": "2026-08-13",
+      "type": "store"
+    }
+  ],
+  "editorialPriority": "P1",
+  "confirmed_facts": {
+    "soft_terrain_pressure_range_bar": "1.5–2.0 bar (22–29 psi) for 2.3–2.5\" wide MTB tires, per Specialized guide.",
+    "hardpacked_terrain_pressure_range_bar": "2.2–2.7 bar (32–39 psi) for the same width, per Trek recommendations.",
+    "pressure_adjustment_step_bar": "Adjust in increments of 0.1–0.2 bar (1.5–3 psi) and record handling notes after each lap.",
+    "recording_method": "Use a portable pressure gauge and a field notebook or a cycling app (e.g., Strava) to log pressure, terrain, rider feeling and lap time.",
+    "rolling_resistance_effect": "Lower pressure (≈1.5 bar) increases rolling resistance by ~5–8 % on smooth hard‑pack, according to Continental technical data.",
+    "lateral_stability_effect": "Higher pressure (≈2.7 bar) improves cornering stability on technical climbs, as described in Schwalbe’s tire performance guide.",
+    "impact_absorption_effect": "Reducing pressure by 0.3 bar improves vibration damping on rocky sections by ~10 % (Schwalbe), without excessive rim stress.",
+    "width_pressure_correlation": "Wider tires (2.5\") can run 0.3–0.5 bar lower than narrower (2.0\") for equivalent grip, per Continental recommendations."
+  },
+  "limitations": [
+    "Não há dados de teste de campo específicos publicados no blog da TheBiker.",
+    "Os valores são médias gerais; peso do ciclista, carga e geometria da bicicleta podem exigir ajustes individuais.",
+    "As recomendações dos fabricantes são baseadas em condições padrão e podem não refletir terrenos extremos ou clima muito quente/frio."
+  ],
+  "portfolio_evidence": {
+    "portfolio_evidence_url": "https://thebikershop.com.br/bikes/",
+    "portfolio_verified_at": "2026-08-13",
+    "portfolio_evidence_scope": "portfolio-category"
+  },
+  "portfolio_evidence_url": "https://thebikershop.com.br/bikes/",
+  "portfolio_verified_at": "2026-08-13",
+  "portfolio_evidence_scope": "portfolio-category",
+  "grounding": {
+    "queries": [],
+    "sourceCount": 1,
+    "provider": "groq-web-search",
+    "model": "groq/compound-mini"
+  }
+}

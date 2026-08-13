@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-08-11T18:15:17.770Z",
+  "updatedAt": "2026-08-13T12:32:30.789Z",
   "assets": [
     {
       "assetId": "thebiker-scott-addict-rc-pro-hmx-frame-set-def10da96a",
@@ -356,6 +356,23 @@
           "postId": "youtube-pneus-de-bicicleta-pressao-carcaca-aderencia-e-resistencia-ao-ro",
           "position": "hero",
           "usedAt": "2026-08-11T12:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "assetId": "thebiker-pneu-schwalbe-racing-ray-29-x-2-25-super-race-tlr-addix-a1357c2808",
+      "sha256": "a1357c2808013d4314b586d340126bc94ed53d880a8631a7e73a451abb177d22",
+      "perceptualHash": "1111111111100011110000011000000010001100000111100011111111111111",
+      "sourcePageUrl": "https://thebikershop.com.br/produtos/pneu-schwalbe-racing-ray-29-x-2-25-super-race-tlr-addix/",
+      "sourceFileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/schwalbe-racing-ray-29-x-235-superrace1-649575ab6dc6e36d7916325152567079-1024-1024.webp",
+      "productId": "pneu-schwalbe-racing-ray-29-x-2-25-super-race-tlr-addix",
+      "productName": "Pneu Schwalbe Racing Ray 29 x 2.25 Super Race TLR Addix",
+      "rightsPolicyId": "thebiker-official-editorial-v1",
+      "uses": [
+        {
+          "postId": "reserva-pressao-pneus-terreno",
+          "position": "hero",
+          "usedAt": "2026-08-13T12:00:00.000Z"
         }
       ]
     }

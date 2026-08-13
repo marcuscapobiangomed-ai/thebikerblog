@@ -993,7 +993,7 @@
       "summary": "Método de campo para ajustar pressão, registrar comportamento e separar aderência, suporte lateral, impacto e resistência ao rolamento.",
       "category": "engenharia",
       "freshness": "evergreen",
-      "status": "blocked",
+      "status": "scheduled",
       "productIds": [
         "pneu-schwalbe-racing-ray-29-x-2-25-super-race-tlr-addix"
       ],
@@ -1003,17 +1003,63 @@
         "relationship": "category-example",
         "rationale": "Fotografia real do catálogo TheBiker usada apenas como exemplo visual da categoria técnica abordada."
       },
-      "imageAssetIds": [],
-      "attempts": 3,
-      "lastAttemptAt": "2026-08-13T12:19:22.290Z",
-      "failure": {
-        "code": "VALIDATION_FAILED",
-        "retryable": false,
-        "stage": "production",
-        "message": "Rascunho bloqueado apÃ³s 2 reparos: Gates editoriais não atendidos: extensão insuficiente: 1333 palavras; mínimo 1600",
-        "recordedAt": "2026-08-13T12:19:22.290Z"
+      "postPath": "_posts/drafts/2026-08-22-reserva-pressao-pneus-terreno.md",
+      "imageAssetIds": [
+        "thebiker-pneu-schwalbe-racing-ray-29-x-2-25-super-race-tlr-addix-a1357c2808"
+      ],
+      "attempts": 4,
+      "lastAttemptAt": "2026-08-13T12:30:25.342Z",
+      "aiReview": {
+        "score": 72,
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "premiumEditUsed": true,
+        "providers": {
+          "factSheet": "deepseek",
+          "draft": "gemini",
+          "critique": "deepseek",
+          "final": "deepseek",
+          "finalAudit": "deepseek",
+          "finalRepair": "deepseek"
+        },
+        "generatedAt": "2026-08-13T12:30:25.342Z",
+        "contentHash": "sha256:de6ae7ad5acc3e5ade54b7aa5c9c5f1b2e244a1a45bdcd661051371a8868ddc8",
+        "sourceHash": "de636fc998fed25604268cfc118bf4464bbf561fc602dc631ec494b4935f8d30"
       },
-      "blockReason": "[VALIDATION_FAILED] Rascunho bloqueado apÃ³s 2 reparos: Gates editoriais não atendidos: extensão insuficiente: 1333 palavras; mínimo 1600"
+      "visualDecision": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-visual-autonomy-v1",
+        "inputHash": "sha256:4f36774a1ce06f11d34587594722e678bdcb2678e1922a1a925c68c2adcc70e6",
+        "mode": "real-context",
+        "productId": "pneu-schwalbe-racing-ray-29-x-2-25-super-race-tlr-addix",
+        "score": 100,
+        "hardGates": {
+          "semanticMatch": true,
+          "realAsset": true,
+          "explicitProduct": true,
+          "officialSource": true,
+          "approvedRights": true,
+          "publishableResolution": true,
+          "uniqueAsset": true
+        },
+        "blockers": [],
+        "issuedAt": "2026-08-13T12:32:29.112Z"
+      },
+      "editorialReceipt": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-editorial-2026-08-v2",
+        "origin": "pipeline",
+        "reviewedContentHash": "sha256:de6ae7ad5acc3e5ade54b7aa5c9c5f1b2e244a1a45bdcd661051371a8868ddc8",
+        "scheduledContentHash": "sha256:7503ffb7245207c4546320ba13c658957c25e31f82622ac795117ec52101847d",
+        "researchHash": "sha256:d772b0936875c68758f03c9c1e06612db528fa47d08db5a43c0e557525b2231d",
+        "sourceHash": "de636fc998fed25604268cfc118bf4464bbf561fc602dc631ec494b4935f8d30",
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "issuedAt": "2026-08-13T12:32:29.112Z"
+      },
+      "imageManifestPath": "assets/img/posts/reserva-pressao-pneus-terreno/image-manifest.json",
+      "imageStatus": "approved",
+      "imageValidatedAt": "2026-08-13T12:32:29.112Z"
     },
     {
       "day": 16,
