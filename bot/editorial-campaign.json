@@ -323,7 +323,7 @@
       "summary": "Comparação interna entre as três Spark RC vendidas pela TheBiker, cobrindo carbono, suspensões, transmissão, rodas, peso e limite do sistema.",
       "category": "comparativo",
       "freshness": "revalidate-24h",
-      "status": "blocked",
+      "status": "scheduled",
       "productIds": [
         "bicicleta-scott-spark-rc-world-cup-2027",
         "bicicleta-scott-spark-rc-expert-2027",
@@ -337,16 +337,8 @@
       "imageAssetIds": [
         "thebiker-bicicleta-scott-spark-rc-world-cup-20271-078d5ce90f"
       ],
-      "attempts": 1,
-      "lastAttemptAt": "2026-08-13T18:25:03.650Z",
-      "blockReason": "[RESEARCH_INSUFFICIENT] Auditoria independente detectou inferências técnicas sem fato confirmado e parágrafos repetidos; artefato impedido de publicar.",
-      "failure": {
-        "code": "RESEARCH_INSUFFICIENT",
-        "retryable": false,
-        "stage": "post-run-grounding-audit",
-        "message": "Auditoria independente detectou inferências técnicas sem fato confirmado e parágrafos repetidos; artefato impedido de publicar.",
-        "recordedAt": "2026-08-13T18:30:00.000Z"
-      },
+      "attempts": 2,
+      "lastAttemptAt": "2026-08-13T18:38:19.075Z",
       "aiReview": {
         "score": 85,
         "finalScore": 95,
@@ -357,12 +349,11 @@
           "draft": "gemini",
           "critique": "deepseek",
           "final": "deepseek",
-          "finalAudit": "deepseek",
-          "finalRepair": "deepseek"
+          "finalAudit": "deepseek"
         },
-        "generatedAt": "2026-08-13T18:25:03.650Z",
-        "contentHash": "sha256:44595abc21999c312a1e36e5824e1ff9def5833d4469bffe826fb47f1cfa1f6a",
-        "sourceHash": "0ac6c18c154903b25a02971e2729ed808ced9571640ad50f452e53f480ebef54"
+        "generatedAt": "2026-08-13T18:38:19.075Z",
+        "contentHash": "sha256:6bb4700ce56409acf5ce83dd82b5ac8ca21f0c3ee88f732ee792e8f66a90835c",
+        "sourceHash": "80804878aa18b7d035cced68887d38c28837dd6edc1f983be2d6b35375deca3a"
       },
       "visualDecision": {
         "schemaVersion": 1,
@@ -381,23 +372,23 @@
           "uniqueAsset": true
         },
         "blockers": [],
-        "issuedAt": "2026-08-13T18:27:12.387Z"
+        "issuedAt": "2026-08-13T18:40:51.996Z"
       },
       "editorialReceipt": {
         "schemaVersion": 1,
         "policyVersion": "thebiker-editorial-2026-08-v2",
         "origin": "pipeline",
-        "reviewedContentHash": "sha256:44595abc21999c312a1e36e5824e1ff9def5833d4469bffe826fb47f1cfa1f6a",
-        "scheduledContentHash": "sha256:9823caeb5a9644f14adf761dc88e4582bc410e3ad2eafb5f768cc1aa558f0c5b",
-        "researchHash": "sha256:081a6df0c10edd837550d43dd67d6b97d500a2634005a8b70e36370d241796cb",
-        "sourceHash": "0ac6c18c154903b25a02971e2729ed808ced9571640ad50f452e53f480ebef54",
+        "reviewedContentHash": "sha256:6bb4700ce56409acf5ce83dd82b5ac8ca21f0c3ee88f732ee792e8f66a90835c",
+        "scheduledContentHash": "sha256:d69c060c06269bb7f7e83e4dbf8b663b363485f2cec7973223f6d04e8950fc68",
+        "researchHash": "sha256:19d1b486d0dfe8c16d8d88983dd61bbfb9a2083a2d24d335f1f3f81afed3440f",
+        "sourceHash": "80804878aa18b7d035cced68887d38c28837dd6edc1f983be2d6b35375deca3a",
         "finalScore": 95,
         "finalBlockers": 0,
-        "issuedAt": "2026-08-13T18:27:12.387Z"
+        "issuedAt": "2026-08-13T18:40:51.996Z"
       },
       "imageManifestPath": "assets/img/posts/spark-rc-team-expert-world-cup/image-manifest.json",
-      "imageStatus": "blocked",
-      "imageValidatedAt": "2026-08-13T18:27:12.387Z"
+      "imageStatus": "approved",
+      "imageValidatedAt": "2026-08-13T18:40:51.996Z"
     },
     {
       "day": 7,
