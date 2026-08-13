@@ -9,6 +9,7 @@ import { classifyEditorialFailure } from './validation/editorial-failures.js'
 import { RaceProgramSchema, selectRaceEventsForEditorialItem, validateRaceEditorialStructure } from './automation/race-program.js'
 import { linkTheBikerProducts, loadTheBikerLinkData } from './editorial/product-linker.js'
 import { assertResearchGrounding } from './validation/research-grounding.js'
+import { assertArticleResearchGrounding } from './validation/article-research-grounding.js'
 
 const defaultRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..')
 
@@ -96,6 +97,7 @@ export async function runCampaignProducer({ root = defaultRoot, env = process.en
     const post = await ai.processCase(item.title, research)
     if (post.pipelineMetadata?.premiumEditPending) throw new Error('Revisão premium necessária, mas DeepSeek não está disponível')
     const linkedPost = linkTheBikerProducts(post.content, loadTheBikerLinkData(root))
+    assertArticleResearchGrounding({ content: linkedPost.content, research })
     const draftDir = path.join(root, '_posts/drafts')
     await fs.mkdir(draftDir, { recursive: true })
     const postPath = `_posts/drafts/${item.publishDate}-${item.id}.md`

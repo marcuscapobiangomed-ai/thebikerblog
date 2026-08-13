@@ -3,6 +3,7 @@ import { assertResearchGrounding, pruneUnsupportedFacts } from '../validation/re
 
 const PRODUCT_DOMAINS = ['thebikershop.com.br', 'scott-sports.com', 'syncros.com', 'bike.shimano.com', 'si.shimano.com', 'sram.com', 'rockshox.com', 'ridefox.com', 'maxxis.com', 'oggi.com.br']
 const SPORT_DOMAINS = ['uci.org', 'cbc.esp.br', 'ucimtbworldseries.com', 'olympics.com']
+const REGULATORY_DOMAINS = ['gov.br']
 const PORTFOLIO_CATEGORY_URLS = {
   'manutencao-ajustes': 'https://thebikershop.com.br/componentes/',
   componentes: 'https://thebikershop.com.br/componentes/',
@@ -59,7 +60,7 @@ function extractJson(text) {
 
 function allowedSource(url, raceCoverage) {
   const host = new URL(url).hostname.toLowerCase().replace(/^www\./, '')
-  return [...PRODUCT_DOMAINS, ...(raceCoverage ? SPORT_DOMAINS : [])].some((domain) => host === domain || host.endsWith(`.${domain}`))
+  return [...PRODUCT_DOMAINS, ...REGULATORY_DOMAINS, ...(raceCoverage ? SPORT_DOMAINS : [])].some((domain) => host === domain || host.endsWith(`.${domain}`))
 }
 
 function compactEvidence(records) {
@@ -182,7 +183,7 @@ function internalResearch({ item, internalEvidence, today, contentType, reason, 
     confirmed_facts: confirmedFacts,
     limitations: [`Pesquisa web indisponível nesta execução (${reason}); conteúdo limitado à base interna com fontes oficiais.`],
     sources,
-    grounding: { queries: [], sourceCount: sources.length, fallback: curated.length > 0 ? 'curated-official-knowledge' : 'internal-product-knowledge' },
+    grounding: { queries: [], sourceCount: sources.length, fallback: curated.length > 0 ? 'curated-official-knowledge' : 'internal-product-knowledge', claimContract: 'explicit-units-v1' },
     ...portfolioEvidenceFor(item, today),
   })
   return assertResearchGrounding(research, { requireFactReferences: true })
@@ -218,6 +219,8 @@ export class GroundedResearcher {
       'Priorize documentos oficiais, manuais dos fabricantes, TheBiker Shop e, em competições, organizadores oficiais.',
       'É proibido promover produtos ou marcas concorrentes. Não invente testes, medidas, resultados ou disponibilidade.',
       'Toda afirmação técnica deve aparecer em confirmed_facts e ter suporte em uma fonte URL permitida.',
+      'Alegações legais brasileiras exigem fonte primária gov.br, preferencialmente a resolução vigente do CONTRAN. Não atribua limites legais a fonte comercial ou fabricante.',
+      'Qualquer número com unidade usado no artigo precisa aparecer literalmente em um confirmed_fact.',
       'Seja conciso: retorne no máximo 8 fatos confirmados, 5 fontes e 3 limitações.',
       `Título: ${item.title}`,
       `Resumo editorial: ${item.summary}`,
@@ -337,6 +340,7 @@ export class GroundedResearcher {
       sourceCount: research.sources.length,
       provider: groundingProvider,
       model: groundingModel,
+      claimContract: 'explicit-units-v1',
     }
     const validated = validateResearch(research)
     try {
