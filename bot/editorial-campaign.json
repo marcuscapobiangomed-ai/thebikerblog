@@ -390,32 +390,30 @@
     {
       "day": 7,
       "publishDate": "2026-08-14",
-      "id": "reserva-inspecao-pos-chuva",
-      "title": "Inspeção pós-chuva: os pontos que concentram contaminação, corrosão e desgaste",
-      "summary": "Rotina técnica depois de treinos molhados, priorizando rolamentos, transmissão, freios, suspensão e interfaces do quadro.",
-      "category": "manutencao-ajustes",
-      "freshness": "evergreen",
+      "id": "reserva-spark-rc-expert-ficha",
+      "title": "Scott Spark RC Expert 2027: leitura técnica da montagem confirmada pelas fontes atuais",
+      "summary": "Ficha editorial do modelo limitada aos materiais, suspensão, transmissão e limites explicitamente recuperados das fontes.",
+      "category": "review",
+      "freshness": "revalidate-24h",
       "status": "blocked",
       "productIds": [
-        "corrente-sram-nx-eagle"
+        "bicicleta-scott-spark-rc-expert-2027"
       ],
       "heroImage": {
-        "mode": "real-context",
-        "productId": "corrente-sram-nx-eagle",
-        "relationship": "maintenance-example",
-        "rationale": "A corrente SRAM real exemplifica o componente mais exposto a água, abrasivos, corrosão e desgaste na inspeção pós-chuva."
+        "mode": "exact-product",
+        "productId": "bicicleta-scott-spark-rc-expert-2027"
       },
       "imageAssetIds": [],
-      "attempts": 4,
-      "lastAttemptAt": "2026-08-13T20:50:53.993Z",
+      "attempts": 1,
+      "lastAttemptAt": "2026-08-13T20:56:04.280Z",
       "failure": {
         "code": "RESEARCH_INSUFFICIENT",
         "retryable": false,
         "stage": "production",
-        "message": "Pesquisa bloqueada por integridade de fontes: pesquisa concluída sem fontes rastreáveis; pesquisa sem fatos explicitamente fundamentados",
-        "recordedAt": "2026-08-13T20:50:53.993Z"
+        "message": "Rascunho bloqueado apÃ³s 2 reparos: Artigo bloqueado por integridade de claims: alegações numéricas ausentes dos fatos confirmados: 100mm; inferencias tecnicas ausentes dos fatos confirmados: arquitetura do quadro e integracao de curso a scott spark rc expert 2027 e construida sobre a plataforma hmf carbon gen5, uma estrutura que prioriza a rigidez torsional e a eficiencia na transferencia de potencia. | a geometria do quadro permite ajustes no angulo de direcao, uma caracteristica tecnica que permite ao ciclista adaptar a bicicleta conforme as exigencias do percurso. | com 120 mm de curso tanto na dianteira quanto na traseira, a plataforma b",
+        "recordedAt": "2026-08-13T20:56:04.280Z"
       },
-      "blockReason": "[RESEARCH_INSUFFICIENT] Pesquisa bloqueada por integridade de fontes: pesquisa concluída sem fontes rastreáveis; pesquisa sem fatos explicitamente fundamentados"
+      "blockReason": "[RESEARCH_INSUFFICIENT] Rascunho bloqueado apÃ³s 2 reparos: Artigo bloqueado por integridade de claims: alegações numéricas ausentes dos fatos confirmados: 100mm; inferencias tecnicas ausentes dos fatos confirmados: arquitetura do quadro e integracao de curso a scott spark rc expert 2027 e construida sobre a plataforma hmf carbon gen5, uma estrutura que prioriza a rigidez torsional e a eficiencia na transferencia de potencia. | a geometria do quadro permite ajustes no angulo de direcao, uma caracteristica tecnica que permite ao ciclista adaptar a bicicleta conforme as exigencias do percurso. | com 120 mm de curso tanto na dianteira quanto na traseira, a plataforma b"
     },
     {
       "day": 8,
@@ -944,6 +942,34 @@
       "summary": "Protocolo técnico para isolar ruídos de transmissão, cockpit, rodas e quadro sem substituir componentes por tentativa e erro.",
       "category": "manutencao-ajustes",
       "productIds": []
+    },
+    {
+      "id": "reserva-scale-940-980-comparativo",
+      "title": "Scott Scale 940 e 980: diferenças verificáveis de quadro, suspensão e componentes",
+      "summary": "Comparação limitada às especificações atualmente recuperáveis nas páginas oficiais e no catálogo TheBiker.",
+      "category": "comparativo",
+      "productIds": [
+        "bicicleta-scott-scale-940-black",
+        "bicicleta-scott-scale-980-black"
+      ],
+      "heroImage": {
+        "mode": "exact-product",
+        "productId": "bicicleta-scott-scale-940-black"
+      }
+    },
+    {
+      "id": "reserva-addict-50-rc20-comparativo",
+      "title": "Scott Addict 50 e Addict RC 20: duas propostas de estrada confrontadas pelas fichas oficiais",
+      "summary": "Análise comparativa restrita a geometria, materiais e montagens comprovados nas fontes atuais dos dois modelos.",
+      "category": "comparativo",
+      "productIds": [
+        "bicicleta-scott-addict-50-2026-pre-venda-1bxzy",
+        "bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9"
+      ],
+      "heroImage": {
+        "mode": "exact-product",
+        "productId": "bicicleta-scott-addict-50-2026-pre-venda-1bxzy"
+      }
     }
   ]
 }
