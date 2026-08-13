@@ -202,6 +202,32 @@ assert.deepEqual(articleResearchGroundingErrors({
   research: curatedMaintenanceResearch,
 }), []);
 assert.equal(deterministicArticle.sections.length, 10);
+const genericCachedResearch = {
+  ...curatedMaintenanceResearch,
+  title: "Scott Spark RC Expert 2027: ficha tecnica",
+  content_type: "review",
+  confirmed_facts: [
+    { fact: "frame.material: Spark RC HMF Carbon Gen5" },
+    { fact: "suspension.frontTravel: 120 mm" },
+    { fact: "suspension.rearTravel: 120 mm" },
+    { fact: "drivetrain.speeds: 12 velocidades" },
+    { fact: "drivetrain.shifting: wireless electronic" },
+  ],
+  sources: [{ name: "Scott Sports", type: "manufacturer", url: "https://www.scott-sports.com/global/en/product/scott-spark-rc-expert-bike", accessed_at: "2026-08-13" }],
+};
+const genericDeterministicArticle = buildDeterministicGroundedArticle({
+  topic: genericCachedResearch.title,
+  researchData: genericCachedResearch,
+  contentType: "review",
+  today: "2026-08-13",
+});
+assert.equal(genericDeterministicArticle.category, "reviews");
+assert.doesNotThrow(() => validateArticle(genericDeterministicArticle));
+assert.doesNotThrow(() => assertEditorialPublicationGates(genericDeterministicArticle, { AI_MIN_ARTICLE_WORDS: "1800" }));
+assert.deepEqual(articleResearchGroundingErrors({
+  content: generateMarkdown(genericDeterministicArticle),
+  research: genericCachedResearch,
+}), []);
 
 assert.throws(() => assertResearchGrounding({
     ...groundedEditorialResearch,

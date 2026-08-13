@@ -23,6 +23,23 @@ const minimalResearch = {
   confirmed_facts: [{ fact: "frame.material: Spark RC Carbon HMX" }, { fact: "suspension.frontTravel: 120 mm" }],
   sources: [],
 };
+const cacheResearcher = new GroundedResearcher({
+  RESEARCH_PROVIDER: "groq",
+  CAMPAIGN_CURATED_OFFLINE_FALLBACK: "true",
+}, async () => { throw new Error("rede indisponÃ­vel"); });
+const cachedCampaignResearch = await cacheResearcher.research({
+  item: {
+    id: "reserva-diagnostico-ruidos-bike",
+    title: "DiagnÃ³stico de ruÃ­dos na bicicleta: mÃ©todo por carga, frequÃªncia e interface",
+    summary: "Guia tÃ©cnico",
+    category: "manutencao-ajustes",
+  },
+  internalEvidence: [],
+  today: "2026-08-13",
+});
+assert.equal(cachedCampaignResearch.grounding.fallback, "campaign-research-offline-cache-v1");
+assert.ok(cachedCampaignResearch.confirmed_facts.length >= 5);
+assert.ok(cachedCampaignResearch.sources.every((source) => source.id && source.url));
 assert.throws(() => assertArticleResearchGrounding({
   content: "O carbono HMX possui rigidez torsional superior e converte cada watt com menos perdas.",
   research: minimalResearch,
@@ -291,7 +308,7 @@ assert.equal(evidenceFallbackCalls, 2);
 assert.equal(evidenceFallback.grounding.provider, 'gemini-google-search');
 assert.deepEqual(evidenceFallback.grounding.queries, ['fallback-evidence']);
 const exhaustedProvidersResearcher = new GroundedResearcher({
-  GROQ_API_KEY: 'test', GEMINI_API_KEY: 'test-gemini', AI_HTTP_RETRY_ATTEMPTS: '1',
+  GROQ_API_KEY: 'test', GEMINI_API_KEY: 'test-gemini', AI_HTTP_RETRY_ATTEMPTS: '1', CAMPAIGN_CURATED_OFFLINE_FALLBACK: 'false',
 }, async (_url, init) => init.headers.Authorization
   ? ({ ok: true, json: async () => groqPayload })
   : ({ ok: false, status: 429, text: async () => 'quota' }), (() => {
@@ -314,7 +331,7 @@ const exhaustedProvidersFallback = await exhaustedProvidersResearcher.research({
 assert.equal(exhaustedProvidersFallback.grounding.fallback, 'internal-product-knowledge');
 assert.equal(exhaustedProvidersFallback.grounding.evidenceContract, 'retrieved-excerpt-v1');
 const fabricatedSourceResearcher = new GroundedResearcher(
-  { GROQ_API_KEY: 'test' },
+  { GROQ_API_KEY: 'test', CAMPAIGN_CURATED_OFFLINE_FALLBACK: 'false' },
   async () => ({ ok: true, json: async () => groqPayload }),
   async (url) => ({
     ok: false,

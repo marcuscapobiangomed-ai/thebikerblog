@@ -113,6 +113,10 @@ export async function runCampaignProducer({ root = defaultRoot, env = process.en
       generatedAt: now.toISOString(),
       contentHash: hashEditorialText(linkedPost.content),
       sourceHash: post.pipelineMetadata?.sourceHash,
+      ...(post.pipelineMetadata?.deterministicFullArticleFallbackUsed ? {
+        deterministicFullArticleFallbackUsed: true,
+        deterministicFullArticleFallbackTrigger: post.pipelineMetadata.deterministicFullArticleFallbackTrigger,
+      } : {}),
     }
     delete item.failure
     await persist(root, campaign)

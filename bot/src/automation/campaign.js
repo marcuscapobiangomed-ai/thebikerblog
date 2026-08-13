@@ -58,6 +58,8 @@ const CampaignItemSchema = z.object({
     generatedAt: z.string().datetime(),
     contentHash: HashSchema.optional(),
     sourceHash: z.string().min(8).optional(),
+    deterministicFullArticleFallbackUsed: z.boolean().optional(),
+    deterministicFullArticleFallbackTrigger: z.string().optional(),
   }).optional(),
   editorialReceipt: z.object({
     schemaVersion: z.literal(1),
