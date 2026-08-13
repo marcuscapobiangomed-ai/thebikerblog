@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "source": "https://thebikershop.com.br/",
-  "discoveredAt": "2026-08-13T14:51:05.736Z",
+  "discoveredAt": "2026-08-13T15:52:35.143Z",
   "rightsPolicyId": "thebiker-official-editorial-v1",
   "total": 487,
   "products": [
@@ -2709,17 +2709,6 @@
       "sku": null
     },
     {
-      "id": "waterproof-essentials-case-estojo-impermeavel-ciclismo",
-      "name": "Muc Off Waterproof Essentials Case — Carteira Impermeável para Ciclismo",
-      "brand": "Muc Off",
-      "category": "acessorios",
-      "productUrl": "https://thebikershop.com.br/produtos/waterproof-essentials-case-estojo-impermeavel-ciclismo/",
-      "images": [
-        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/21110-muc-off-waterproof-essential-case-lifestyle_1_x550_crop_center2x-jpg-dc6dacf26973eded4417766821095868-480-0.webp"
-      ],
-      "sku": "101622"
-    },
-    {
       "id": "protetor-de-quadro-scott-scale-houston",
       "name": "Protetor de quadro Scott Scale Houston",
       "brand": "Syncros",
@@ -3719,6 +3708,17 @@
         "https://acdn-us.mitiendanube.com/stores/001/062/247/products/162776-1200-auto-5bd63f974a6c5732b117519244155956-480-0.webp"
       ],
       "sku": "010-13388-00"
+    },
+    {
+      "id": "farol-inteligente-igpsports-vs800",
+      "name": "Farol Inteligente IGPSports VS800",
+      "brand": "IgpSports",
+      "category": "acessorios",
+      "productUrl": "https://thebikershop.com.br/produtos/farol-inteligente-igpsports-vs800/",
+      "images": [
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/b8421501ceee8ed8defa49d79fc692df_77dda38c-cc92-4f73-8aa6-5589540ba633-jpg-f220a4dc77c2b7661517474236318963-480-0.webp"
+      ],
+      "sku": null
     },
     {
       "id": "espuma-interna-capacete-giro-agilis",

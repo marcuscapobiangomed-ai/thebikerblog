@@ -768,7 +768,7 @@
       "summary": "Compare critérios técnicos que as competições de ciclocross aplicam à bike, e saiba como orientar a escolha de pneus e geometria para prova.",
       "category": "competicoes",
       "freshness": "evergreen",
-      "status": "blocked",
+      "status": "scheduled",
       "productIds": [
         "cambio-traseiro-shimano-grx-11v"
       ],
@@ -778,17 +778,63 @@
         "relationship": "component-example",
         "rationale": "O câmbio Shimano GRX real exemplifica a transmissão para terreno misto citada no artigo, preservando a marca promovida."
       },
-      "imageAssetIds": [],
-      "attempts": 4,
-      "lastAttemptAt": "2026-08-13T15:41:38.762Z",
-      "failure": {
-        "code": "VALIDATION_FAILED",
-        "retryable": false,
-        "stage": "production",
-        "message": "Rascunho bloqueado apÃ³s 2 reparos: Artigo inválido:\nsections.0.heading: Too small: expected string to have >=1 characters\nsections.1.heading: Too small: expected string to have >=1 characters\nsections.2.heading: Too small: expected string to have >=1 characters\nsections.3.heading: Too small: expected string to have >=1 characters\nsections.4.heading: Too small: expected string to have >=1 characters\nsections.5.heading: Too small: expected string to have >=1 characters\nsections.6.heading: Too small: expected string to have >=1 characters\nsections.7.heading: Too small: expected string to have >=1 characters\nsections.8.heading: Too small: expect",
-        "recordedAt": "2026-08-13T15:41:38.762Z"
+      "postPath": "_posts/drafts/2026-08-19-ciclocross-regulamento-preparacao.md",
+      "imageAssetIds": [
+        "thebiker-cambio-traseiro-shimano-grx-11v-f0c0a6abf1"
+      ],
+      "attempts": 5,
+      "lastAttemptAt": "2026-08-13T15:52:35.991Z",
+      "aiReview": {
+        "score": 72,
+        "finalScore": 92,
+        "finalBlockers": 0,
+        "premiumEditUsed": true,
+        "providers": {
+          "factSheet": "deepseek",
+          "draft": "gemini",
+          "critique": "deepseek",
+          "final": "deepseek",
+          "finalAudit": "deepseek",
+          "finalRepair": "deepseek"
+        },
+        "generatedAt": "2026-08-13T15:52:35.991Z",
+        "contentHash": "sha256:724844fc3c4d0cc442dbf1dc0640412562d0b03e0958684c8c11bd03de9a8477",
+        "sourceHash": "cc3c4e0738e09fc1ef6fbf0fd39976c45d35c8bae60789ad7f76dfe489ee3c1b"
       },
-      "blockReason": "[VALIDATION_FAILED] Rascunho bloqueado apÃ³s 2 reparos: Artigo inválido:\nsections.0.heading: Too small: expected string to have >=1 characters\nsections.1.heading: Too small: expected string to have >=1 characters\nsections.2.heading: Too small: expected string to have >=1 characters\nsections.3.heading: Too small: expected string to have >=1 characters\nsections.4.heading: Too small: expected string to have >=1 characters\nsections.5.heading: Too small: expected string to have >=1 characters\nsections.6.heading: Too small: expected string to have >=1 characters\nsections.7.heading: Too small: expected string to have >=1 characters\nsections.8.heading: Too small: expect"
+      "visualDecision": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-visual-autonomy-v1",
+        "inputHash": "sha256:1b3bf05ece46860b4508924706906dbbd16d9c4a359b4d17fd2fffe18cb59584",
+        "mode": "real-context",
+        "productId": "cambio-traseiro-shimano-grx-11v",
+        "score": 100,
+        "hardGates": {
+          "semanticMatch": true,
+          "realAsset": true,
+          "explicitProduct": true,
+          "officialSource": true,
+          "approvedRights": true,
+          "publishableResolution": true,
+          "uniqueAsset": true
+        },
+        "blockers": [],
+        "issuedAt": "2026-08-13T15:54:28.537Z"
+      },
+      "editorialReceipt": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-editorial-2026-08-v2",
+        "origin": "pipeline",
+        "reviewedContentHash": "sha256:724844fc3c4d0cc442dbf1dc0640412562d0b03e0958684c8c11bd03de9a8477",
+        "scheduledContentHash": "sha256:6f491e380a15ff9c113b87616a5266a9addc998118260efbd9579dbb2ee9584e",
+        "researchHash": "sha256:b4645240c50909c2379e0ca20d672f9b5dee179d2b7b68f392d06e5976962a5b",
+        "sourceHash": "cc3c4e0738e09fc1ef6fbf0fd39976c45d35c8bae60789ad7f76dfe489ee3c1b",
+        "finalScore": 92,
+        "finalBlockers": 0,
+        "issuedAt": "2026-08-13T15:54:28.537Z"
+      },
+      "imageManifestPath": "assets/img/posts/ciclocross-regulamento-preparacao/image-manifest.json",
+      "imageStatus": "approved",
+      "imageValidatedAt": "2026-08-13T15:54:28.537Z"
     },
     {
       "day": 13,
