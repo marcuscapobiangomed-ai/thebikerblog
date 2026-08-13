@@ -89,7 +89,6 @@ jobs:
         working-directory: bot
       - name: Pesquisar, produzir e revisar no máximo uma pauta
         id: automation
-        if: steps.buffer_audit.outcome != 'failure'
         continue-on-error: true
         env:
           AUTOMATION_ENABLED: "true"
@@ -112,7 +111,7 @@ jobs:
         working-directory: bot
       - name: Substituir artigo reprovado e tentar pauta-reserva
         id: automation_retry
-        if: steps.automation.outcome == 'failure' && steps.buffer_audit.outcome != 'failure' && (github.event_name == 'schedule' || inputs.dry_run == false)
+        if: steps.automation.outcome == 'failure' && (github.event_name == 'schedule' || inputs.dry_run == false)
         continue-on-error: true
         env:
           AUTOMATION_ENABLED: "true"
@@ -136,7 +135,31 @@ jobs:
       - name: Produzir imagem e agendar pauta validada
         id: finalization
         if: steps.automation.outcome == 'success' || steps.automation_retry.outcome == 'success'
+        continue-on-error: true
         run: npm run campaign:finalize
+        working-directory: bot
+      - name: Recompor pauta-reserva apÃ³s falha de finalizaÃ§Ã£o
+        id: finalization_retry
+        if: steps.finalization.outcome == 'failure' && (github.event_name == 'schedule' || inputs.dry_run == false)
+        continue-on-error: true
+        env:
+          AUTOMATION_ENABLED: "true"
+          AUTOMATION_DRY_RUN: "false"
+          AI_PIPELINE_MODE: three-provider
+          AI_MONTHLY_BUDGET_USD: ${{ vars.AI_MONTHLY_BUDGET_USD || '5.00' }}
+          DEEPSEEK_FLASH_MODEL: ${{ vars.DEEPSEEK_FLASH_MODEL || 'deepseek-v4-flash' }}
+          DEEPSEEK_PRO_MODEL: ${{ vars.DEEPSEEK_PRO_MODEL || 'deepseek-v4-pro' }}
+          AI_HTTP_TIMEOUT_MS: ${{ vars.AI_HTTP_TIMEOUT_MS || '120000' }}
+          AI_HTTP_RETRY_ATTEMPTS: ${{ vars.AI_HTTP_RETRY_ATTEMPTS || '2' }}
+          AI_FINAL_REPAIR_ATTEMPTS: ${{ vars.AI_FINAL_REPAIR_ATTEMPTS || '2' }}
+          AI_FINAL_REPAIR_TIMEOUT_MS: ${{ vars.AI_FINAL_REPAIR_TIMEOUT_MS || '75000' }}
+          DEEPSEEK_MAX_TOKENS: ${{ vars.DEEPSEEK_MAX_TOKENS || '14000' }}
+          RESEARCH_PROVIDER: ${{ vars.RESEARCH_PROVIDER || 'groq' }}
+          GEMINI_RESEARCH_MODEL: ${{ vars.GEMINI_RESEARCH_MODEL || 'gemini-3.6-flash' }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+        run: npm run campaign:replenish -- --target-buffer=1 --max-attempts=2
         working-directory: bot
       - name: Verificar links TheBiker após as transformações
         if: steps.automation.outcome == 'success' || steps.automation_retry.outcome == 'success'
@@ -146,7 +169,7 @@ jobs:
         if: always()
         run: npm run validate
       - name: Persistir somente candidato integralmente validado
-        if: (steps.automation.outcome == 'success' || steps.automation_retry.outcome == 'success') && steps.finalization.outcome == 'success' && steps.validation.outcome == 'success' && (github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.dry_run == false))
+        if: (steps.automation.outcome == 'success' || steps.automation_retry.outcome == 'success') && (steps.finalization.outcome == 'success' || steps.finalization_retry.outcome == 'success') && steps.validation.outcome == 'success' && (github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.dry_run == false))
         run: |
           git config user.name "thebiker-editorial-bot"
           git config user.email "thebiker-editorial-bot@users.noreply.github.com"
@@ -159,7 +182,7 @@ jobs:
           done
           exit 1
       - name: Persistir candidato revisado para retomar finalização
-        if: always() && (steps.automation.outcome == 'success' || steps.automation_retry.outcome == 'success') && steps.finalization.outcome == 'failure' && (github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.dry_run == false))
+        if: always() && (steps.automation.outcome == 'success' || steps.automation_retry.outcome == 'success') && steps.finalization.outcome == 'failure' && steps.finalization_retry.outcome != 'success' && (github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.dry_run == false))
         run: |
           git config user.name "thebiker-editorial-bot"
           git config user.email "thebiker-editorial-bot@users.noreply.github.com"
@@ -172,7 +195,7 @@ jobs:
           done
           exit 1
       - name: Persistir somente estado seguro da falha
-        if: always() && ((steps.automation.outcome == 'failure' && steps.automation_retry.outcome != 'success') || steps.buffer_audit.outcome == 'failure') && (github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.dry_run == false))
+        if: always() && ((steps.automation.outcome == 'failure' && steps.automation_retry.outcome != 'success') || (steps.finalization.outcome == 'failure' && steps.finalization_retry.outcome != 'success')) && (github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.dry_run == false))
         run: |
           git config user.name "thebiker-editorial-bot"
           git config user.email "thebiker-editorial-bot@users.noreply.github.com"
@@ -187,8 +210,8 @@ jobs:
       - name: Propagar falha da produção
         if: steps.automation.outcome == 'failure' && steps.automation_retry.outcome != 'success'
         run: exit 1
-      - name: Propagar falha da auditoria do buffer
-        if: steps.buffer_audit.outcome == 'failure'
+      - name: Propagar falha de finalização
+        if: steps.finalization.outcome == 'failure' && steps.finalization_retry.outcome != 'success'
         run: exit 1
       - name: Resumo operacional
         if: always()
@@ -197,6 +220,7 @@ jobs:
           echo "- Produção: ${{ steps.automation.outcome }}" >> "$GITHUB_STEP_SUMMARY"
           echo "- Pauta-reserva: ${{ steps.automation_retry.outcome }}" >> "$GITHUB_STEP_SUMMARY"
           echo "- Finalização: ${{ steps.finalization.outcome }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Failover da finalização: ${{ steps.finalization_retry.outcome }}" >> "$GITHUB_STEP_SUMMARY"
           echo "- Validação transacional: ${{ steps.validation.outcome }}" >> "$GITHUB_STEP_SUMMARY"
           echo "- Auditoria do buffer: ${{ steps.buffer_audit.outcome }}" >> "$GITHUB_STEP_SUMMARY"
 

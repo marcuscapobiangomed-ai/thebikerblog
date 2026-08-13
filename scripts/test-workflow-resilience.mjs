@@ -40,6 +40,19 @@ assert.match(editorial, /Persistir candidato revisado para retomar finalização
   "uma falha de finalização deve preservar draft e pesquisa revisados junto do estado que aponta para eles");
 assert.match(editorial, /\(steps\.automation\.outcome == 'success' \|\| steps\.automation_retry\.outcome == 'success'\) && steps\.finalization\.outcome == 'failure'/,
   "a persistência recuperável deve ser exclusiva de candidatos produzidos e reprovados na finalização");
+assert.match(editorial, /id: finalization_retry[\s\S]*campaign:replenish[\s\S]*target-buffer=1/,
+  "uma falha de imagem ou gate final deve acionar recomposição no mesmo ciclo");
+assert.match(editorial, /steps\.finalization\.outcome == 'success' \|\| steps\.finalization_retry\.outcome == 'success'/,
+  "somente a finalização original ou o failover aprovado pode ser persistido como candidato seguro");
+assert.match(publication, /Garantir artigo aprovado para hoje antes da promoção[\s\S]*campaign:replenish[\s\S]*required-date/,
+  "a publicação diária deve recompor a pauta de hoje antes de promover qualquer arquivo");
+const replenisher = read("replenish-buffer.yml");
+assert.match(replenisher, /cron: "15 2,8,14,20 \* \* \*"/,
+  "o buffer deve ser recomposto automaticamente em múltiplas janelas");
+assert.match(replenisher, /campaign:replenish[\s\S]*target-buffer=.*max-attempts=.*allow-partial/,
+  "a recomposição deve ser limitada, idempotente e permitir avanço parcial sem publicar rascunhos");
+assert.match(replenisher, /group: thebiker-editorial-write/,
+  "a recomposição deve compartilhar o lock com produção e publicação");
 
 assert.match(read("deploy.yml"), /Run publication gates[\s\S]*npm run validate:ci/,
   "o deploy deve renovar derivados temporais antes dos gates");
