@@ -508,16 +508,20 @@ export class AIProvider {
           throw new Error(`Rascunho bloqueado após o pipeline: ${err.message}`);
         }
 
-        const repairPrompt = buildRepairPrompt({
+        const maximumRepairRounds = Number(process.env.AI_FINAL_REPAIR_ROUNDS || 2);
+        let candidateText = rawText;
+        let validationError = err;
+        for (let round = 1; round <= maximumRepairRounds; round += 1) {
+          const repairPrompt = buildRepairPrompt({
           topic: descricaoCurta,
-          rawText,
-          validationError: err.message,
+          rawText: candidateText,
+          validationError: validationError.message,
           contentType,
           template,
           today,
         });
-        const repaired = await this.pipeline.callStep({
-          step: "final-repair",
+          const repaired = await this.pipeline.callStep({
+          step: `final-repair-${round}`,
           providers: ["deepseek", "gemini", "groq"],
           sourceHash: pipelineMetadata?.sourceHash,
           system: [
@@ -536,14 +540,22 @@ export class AIProvider {
             timeoutMs: Number(process.env.AI_FINAL_REPAIR_TIMEOUT_MS || 75000),
           },
         });
-        return {
-          ...this._parseStructuredResponse(repaired.content, descricaoCurta),
-          pipelineMetadata: {
-            ...pipelineMetadata,
-            finalRepairUsed: true,
-            providers: { ...pipelineMetadata?.providers, finalRepair: repaired.provider },
-          },
-        };
+          candidateText = repaired.content;
+          try {
+            return {
+              ...this._parseStructuredResponse(candidateText, descricaoCurta),
+              pipelineMetadata: {
+                ...pipelineMetadata,
+                finalRepairUsed: true,
+                finalRepairRounds: round,
+                providers: { ...pipelineMetadata?.providers, finalRepair: repaired.provider },
+              },
+            };
+          } catch (repairError) {
+            validationError = repairError;
+          }
+        }
+        throw new Error(`Rascunho bloqueado apÃ³s ${maximumRepairRounds} reparos: ${validationError.message}`);
       }
 
       const repairPrompt = buildRepairPrompt({
