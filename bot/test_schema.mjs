@@ -6,6 +6,7 @@ import { generateMarkdown } from "./src/generator.js";
 import { buildProductKnowledgeRecord } from "./src/knowledge/product-knowledge.js";
 import { extractPortfolioBikeUrls, productFromJsonLd } from "../scripts/discover-thebiker-catalog.js";
 import { assertResearchGrounding, researchGroundingErrors } from "./src/validation/research-grounding.js";
+import { articleResearchGroundingErrors } from "./src/validation/article-research-grounding.js";
 
 const validArticle = {
   title: "Comparativo de bikes endurance e race em 2026",
@@ -178,6 +179,40 @@ assert.deepEqual(researchGroundingErrors({
   ...groundedEditorialResearch,
   confirmed_facts: [],
 }, { requireFactReferences: true }), ["pesquisa sem fatos explicitamente fundamentados"]);
+assert.deepEqual(articleResearchGroundingErrors({
+  content: "A lei limita a assistência a 25 km/h e recomenda revisão a cada 1000 km.",
+  research: {
+    confirmed_facts: [{ fact: "A bateria foi testada a 25 km/h.", source_ids: ["src-shimano"] }],
+    sources: [{ id: "src-shimano", url: "https://bike.shimano.com/steps" }],
+  },
+}), [
+  "alegações numéricas ausentes dos fatos confirmados: 1000km",
+  "alegações legais exigem fonte governamental oficial",
+  "alegações legais numéricas sem suporte governamental: 25km/h, 1000km",
+]);
+assert.deepEqual(articleResearchGroundingErrors({
+  content: "A legislação limita a assistência a 25 km/h e exige revisão em seis meses.",
+  research: {
+    confirmed_facts: [
+      { fact: "O fabricante mede autonomia a 25 km/h.", source_ids: ["src-shimano"] },
+      { fact: "O CONTRAN admite propulsão auxiliar até 32 km/h e 1000 W.", source_ids: ["src-contran"] },
+    ],
+    sources: [
+      { id: "src-shimano", url: "https://bike.shimano.com/steps" },
+      { id: "src-contran", url: "https://www.gov.br/transportes/resolucao-996.pdf" },
+    ],
+  },
+}), [
+  "alegações numéricas ausentes dos fatos confirmados: seismeses",
+  "alegações legais numéricas sem suporte governamental: 25km/h, seismeses",
+]);
+assert.deepEqual(articleResearchGroundingErrors({
+  content: "A Resolução CONTRAN limita a propulsão auxiliar a 32 km/h e 1000 W.",
+  research: {
+    confirmed_facts: [{ fact: "A propulsão auxiliar é limitada a 32 km/h e 1000 W.", source_ids: ["src-contran"] }],
+    sources: [{ id: "src-contran", url: "https://www.gov.br/transportes/resolucao-996.pdf" }],
+  },
+}), []);
 
 const productKnowledgeResearch = {
   slug: "scott-addict-50-2026",

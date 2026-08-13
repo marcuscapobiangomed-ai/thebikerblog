@@ -1070,7 +1070,7 @@
       "summary": "Criar resposta técnica original para ciclista intermediário ou avançado, com método e limitações declarados. Sinal observado: 394 visualizações globais do vídeo; 127 por dia; encontrado em 1 busca(s) configurada(s) para o Brasil.",
       "category": "engenharia",
       "freshness": "event-driven",
-      "status": "scheduled",
+      "status": "blocked",
       "productIds": [
         "bicicleta-eletrica-oggi-big-wheel-8-0-2025"
       ],
@@ -1080,63 +1080,17 @@
         "relationship": "category-example",
         "rationale": "Fotografia real do catálogo TheBiker selecionada deterministicamente como exemplo visual da categoria técnica abordada."
       },
-      "postPath": "_posts/drafts/2026-08-23-youtube-bicicletas-eletricas-arquitetura-autonomia-limites-e-criterios-t.md",
-      "imageAssetIds": [
-        "thebiker-bicicleta-eletrica-oggi-big-wheel-8-0-2025-b87711d99d"
-      ],
-      "attempts": 3,
+      "imageAssetIds": [],
+      "attempts": 2,
       "lastAttemptAt": "2026-08-13T15:57:18.260Z",
-      "aiReview": {
-        "score": 72,
-        "finalScore": 95,
-        "finalBlockers": 0,
-        "premiumEditUsed": true,
-        "providers": {
-          "factSheet": "deepseek",
-          "draft": "gemini",
-          "critique": "deepseek",
-          "final": "deepseek",
-          "finalAudit": "deepseek",
-          "finalRepair": "deepseek"
-        },
-        "generatedAt": "2026-08-13T15:57:18.260Z",
-        "contentHash": "sha256:e43634e436254b8cb873d04063389ffbc0fdd4b8f718ee259d48478c4e5d039a",
-        "sourceHash": "582b17d8d834e21779d9aad321447c322e0124ba91202969c2d7cb385d99c4c4"
+      "failure": {
+        "code": "RESEARCH_INSUFFICIENT",
+        "retryable": false,
+        "stage": "claim-grounding-audit",
+        "message": "Artigo bloqueado por integridade de claims: alegações legais sem fonte governamental e números ausentes dos fatos confirmados",
+        "recordedAt": "2026-08-13T16:15:00.000Z"
       },
-      "visualDecision": {
-        "schemaVersion": 1,
-        "policyVersion": "thebiker-visual-autonomy-v1",
-        "inputHash": "sha256:678100e2c236e41d31943cce8598515f5026cb919de61f4ff564a1b18b4537af",
-        "mode": "real-context",
-        "productId": "bicicleta-eletrica-oggi-big-wheel-8-0-2025",
-        "score": 100,
-        "hardGates": {
-          "semanticMatch": true,
-          "realAsset": true,
-          "explicitProduct": true,
-          "officialSource": true,
-          "approvedRights": true,
-          "publishableResolution": true,
-          "uniqueAsset": true
-        },
-        "blockers": [],
-        "issuedAt": "2026-08-13T16:10:12.712Z"
-      },
-      "editorialReceipt": {
-        "schemaVersion": 1,
-        "policyVersion": "thebiker-editorial-2026-08-v2",
-        "origin": "pipeline",
-        "reviewedContentHash": "sha256:e43634e436254b8cb873d04063389ffbc0fdd4b8f718ee259d48478c4e5d039a",
-        "scheduledContentHash": "sha256:c3fb99d59acefdea9a0a534f4b95ec6e9ef411c142cc8df11a59205d1efcf155",
-        "researchHash": "sha256:6f7982f4f1e13a6c65515eff08a124536be620d8c41b9338d5de27afc5b8cf8c",
-        "sourceHash": "582b17d8d834e21779d9aad321447c322e0124ba91202969c2d7cb385d99c4c4",
-        "finalScore": 95,
-        "finalBlockers": 0,
-        "issuedAt": "2026-08-13T16:10:12.712Z"
-      },
-      "imageManifestPath": "assets/img/posts/youtube-bicicletas-eletricas-arquitetura-autonomia-limites-e-criterios-t/image-manifest.json",
-      "imageStatus": "approved",
-      "imageValidatedAt": "2026-08-13T16:10:12.712Z"
+      "blockReason": "[RESEARCH_INSUFFICIENT] Artigo bloqueado por integridade de claims: alegações legais sem fonte governamental e números ausentes dos fatos confirmados"
     },
     {
       "day": 17,

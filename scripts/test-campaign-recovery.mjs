@@ -31,6 +31,16 @@ const groundedRetryItem = groundingRetry.campaign.items.find((item) => item.id =
 assert.equal(groundedRetryItem.status, 'planned')
 assert.equal(groundedRetryItem.postPath, undefined)
 assert.equal(groundedRetryItem.aiReview, undefined)
+ungrounded.status = 'blocked'
+ungrounded.attempts = 3
+ungrounded.failure = { code: 'RESEARCH_INSUFFICIENT', retryable: false, stage: 'claim-grounding-audit', message: 'Artigo bloqueado por integridade de claims', recordedAt: '2026-08-13T15:02:00.000Z' }
+ungrounded.blockReason = `[RESEARCH_INSUFFICIENT] ${ungrounded.failure.message}`
+const finalGroundingRetry = recoverBlockedCampaign(groundingFailure, { now: new Date('2026-08-13T15:03:00Z') })
+assert.equal(finalGroundingRetry.result.status, 'retry-research-grounding')
+ungrounded.status = 'blocked'
+ungrounded.attempts = 4
+const cappedGroundingRetry = recoverBlockedCampaign(groundingFailure, { now: new Date('2026-08-13T15:04:00Z') })
+assert.notEqual(cappedGroundingRetry.result.status, 'retry-research-grounding')
 
 const structuralFailure = structuredClone(campaignFixture)
 for (const item of structuralFailure.items) if (item.status === 'blocked') { item.status = 'planned'; delete item.blockReason; delete item.failure }
