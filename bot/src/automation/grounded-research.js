@@ -1,4 +1,5 @@
 import { validateResearch } from '../schemas/research.schema.js'
+import { assertResearchGrounding } from '../validation/research-grounding.js'
 
 const PRODUCT_DOMAINS = ['thebikershop.com.br', 'scott-sports.com', 'syncros.com', 'bike.shimano.com', 'si.shimano.com', 'sram.com', 'rockshox.com', 'ridefox.com', 'maxxis.com', 'oggi.com.br']
 const SPORT_DOMAINS = ['uci.org', 'cbc.esp.br', 'ucimtbworldseries.com', 'olympics.com']
@@ -148,20 +149,27 @@ function internalResearch({ item, internalEvidence, today, contentType, reason, 
   const curated = curatedEvidence(item, today)
   const evidence = [...internalEvidence, ...curated]
   const sourceMap = new Map()
+  const confirmedFacts = []
   for (const record of evidence) {
+    const sourceIds = []
     for (const source of record.sources || []) {
       if (!source.url || !allowedSource(source.url, raceCoverage)) continue
-      sourceMap.set(source.url, {
-        name: source.name,
-        type: source.type || 'official-website',
-        url: source.url,
-        accessed: source.accessedAt || today,
-      })
+      if (!sourceMap.has(source.url)) {
+        sourceMap.set(source.url, {
+          id: `internal-src-${sourceMap.size + 1}`,
+          name: source.name,
+          type: source.type || 'official-website',
+          url: source.url,
+          accessed: source.accessedAt || today,
+        })
+      }
+      sourceIds.push(sourceMap.get(source.url).id)
     }
+    if (sourceIds.length > 0) confirmedFacts.push({ fact: record.facts || {}, source_ids: [...new Set(sourceIds)] })
   }
   const sources = [...sourceMap.values()]
   if (sources.length === 0) throw new Error(`Fallback interno bloqueado: nenhuma fonte oficial permitida (${reason})`)
-  return validateResearch({
+  const research = validateResearch({
     slug: item.id,
     title: item.title,
     content_type: contentType,
@@ -171,12 +179,13 @@ function internalResearch({ item, internalEvidence, today, contentType, reason, 
     generated_at: today,
     status: 'pesquisa_concluida',
     editorialPriority: 'P1',
-    confirmed_facts: Object.fromEntries(evidence.map((record) => [record.id, record.facts || {}])),
+    confirmed_facts: confirmedFacts,
     limitations: [`Pesquisa web indisponível nesta execução (${reason}); conteúdo limitado à base interna com fontes oficiais.`],
     sources,
     grounding: { queries: [], sourceCount: sources.length, fallback: curated.length > 0 ? 'curated-official-knowledge' : 'internal-product-knowledge' },
     ...portfolioEvidenceFor(item, today),
   })
+  return assertResearchGrounding(research, { requireFactReferences: true })
 }
 
 export function contentTypeForCampaignItem(item) {
@@ -218,7 +227,8 @@ export class GroundedResearcher {
       `Data: ${today}`,
       `Evidência de portfólio TheBiker obrigatória: ${JSON.stringify(portfolioEvidenceFor(item, today))}`,
       `Conteúdo interno já validado: ${JSON.stringify(compactEvidence(internalEvidence))}`,
-      `Retorne: {"slug":"${item.id}","title":"${item.title}","content_type":"${contentType}","review_method":"desk-research","tested_by_thebikerblog":false,"market":"Brasil","generated_at":"${today}","status":"pesquisa_concluida","editorialPriority":"P1","confirmed_facts":{},"limitations":[],"sources":[{"name":"...","type":"manufacturer|store|official-website","url":"https://...","accessed":"${today}"}]}`
+      'Cada fonte deve ter id único. Cada fato deve usar source_ids e referenciar somente IDs presentes em sources.',
+      `Retorne: {"slug":"${item.id}","title":"${item.title}","content_type":"${contentType}","review_method":"desk-research","tested_by_thebikerblog":false,"market":"Brasil","generated_at":"${today}","status":"pesquisa_concluida","editorialPriority":"P1","confirmed_facts":[{"fact":"...","source_ids":["src-1"]}],"limitations":[],"sources":[{"id":"src-1","name":"...","type":"manufacturer|store|official-website","url":"https://...","accessed":"${today}"}]}`
     ].join('\n')
     if (provider !== 'groq') throw new Error(`Provedor de pesquisa não suportado: ${provider}`)
     if (!this.env.GROQ_API_KEY) throw new Error('GROQ_API_KEY é obrigatória para pesquisa atual')
@@ -327,6 +337,14 @@ export class GroundedResearcher {
       provider: groundingProvider,
       model: groundingModel,
     }
-    return validateResearch(research)
+    const validated = validateResearch(research)
+    try {
+      return assertResearchGrounding(validated, { requireFactReferences: true })
+    } catch (error) {
+      if (!raceCoverage) {
+        return internalResearch({ item, internalEvidence, today, contentType, reason: error.message, raceCoverage })
+      }
+      throw error
+    }
   }
 }

@@ -5,6 +5,7 @@ import { validateResearch } from "./src/schemas/research.schema.js";
 import { generateMarkdown } from "./src/generator.js";
 import { buildProductKnowledgeRecord } from "./src/knowledge/product-knowledge.js";
 import { extractPortfolioBikeUrls, productFromJsonLd } from "../scripts/discover-thebiker-catalog.js";
+import { assertResearchGrounding, researchGroundingErrors } from "./src/validation/research-grounding.js";
 
 const validArticle = {
   title: "Comparativo de bikes endurance e race em 2026",
@@ -151,6 +152,28 @@ assert.throws(
   /site oficial da TheBiker/i,
 );
 assert.doesNotThrow(() => validateResearch(validResearch));
+const groundedEditorialResearch = {
+  slug: "grounded-test",
+  title: "Pesquisa técnica rastreável",
+  content_type: "guia-tecnico",
+  review_method: "desk-research",
+  tested_by_thebikerblog: false,
+  market: "Brasil",
+  generated_at: "2026-08-13",
+  status: "pesquisa_concluida",
+  sources: [{ id: "src-1", name: "Fonte oficial", type: "official-website", url: "https://example.com/oficial", accessed: "2026-08-13" }],
+  confirmed_facts: [{ fact: "Fato confirmado.", source_ids: ["src-1"] }],
+  grounding: { sourceCount: 1, provider: "test-web-search" },
+};
+assert.doesNotThrow(() => assertResearchGrounding(groundedEditorialResearch, { requireFactReferences: true }));
+assert.throws(() => assertResearchGrounding({
+    ...groundedEditorialResearch,
+    confirmed_facts: [{ fact: "Fato órfão.", source_ids: ["src-inexistente"] }],
+  }, { requireFactReferences: true }), /fonte inexistente: src-inexistente/);
+assert.deepEqual(researchGroundingErrors({
+  ...groundedEditorialResearch,
+  grounding: { ...groundedEditorialResearch.grounding, sourceCount: 2 },
+}), ["grounding.sourceCount=2 diverge de sources.length=1"]);
 
 const productKnowledgeResearch = {
   slug: "scott-addict-50-2026",

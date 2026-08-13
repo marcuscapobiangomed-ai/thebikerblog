@@ -172,7 +172,7 @@ assert.deepEqual(selectScheduledPublication(catchUpCampaign, catchUpCampaign.ite
   catchUp: true,
 });
 const groundedPayload = {
-  candidates: [{ content: { parts: [{ text: JSON.stringify({ confirmed_facts: { material: 'Carbono HMF' }, limitations: [], sources: [{ name: 'Scott', type: 'manufacturer', url: 'https://www.scott-sports.com/global/en/product/test', accessed: '2026-08-04' }] }) }] }, groundingMetadata: { webSearchQueries: ['site:scott-sports.com teste'] } }]
+  candidates: [{ content: { parts: [{ text: JSON.stringify({ confirmed_facts: [{ fact: 'Carbono HMF', source_ids: ['src-scott'] }], limitations: [], sources: [{ id: 'src-scott', name: 'Scott', type: 'manufacturer', url: 'https://www.scott-sports.com/global/en/product/test', accessed: '2026-08-04' }] }) }] }, groundingMetadata: { webSearchQueries: ['site:scott-sports.com teste'] } }]
 };
 const groqPayload = { choices: [{ message: { content: groundedPayload.candidates[0].content.parts[0].text } }] };
 let groundedRequest;
@@ -187,6 +187,24 @@ assert.equal(grounded.portfolio_evidence_url, 'https://thebikershop.com.br/compo
 assert.equal(grounded.portfolio_verified_at, '2026-08-04');
 assert.equal(groundedRequest.model, 'groq/compound-mini');
 assert.deepEqual(groundedRequest.compound_custom.tools.enabled_tools, ['web_search', 'visit_website']);
+const orphanedSourcePayload = {
+  choices: [{ message: { content: JSON.stringify({
+    confirmed_facts: [{ fact: 'Carbono HMF', source_ids: ['fonte-ausente'] }],
+    limitations: [],
+    sources: [{ id: 'src-scott', name: 'Scott', type: 'manufacturer', url: 'https://www.scott-sports.com/global/en/product/test', accessed: '2026-08-04' }],
+  }) } }],
+};
+const orphanedSourceResearcher = new GroundedResearcher({ GROQ_API_KEY: 'test' }, async () => ({
+  ok: true,
+  json: async () => orphanedSourcePayload,
+}));
+const orphanedSourceFallback = await orphanedSourceResearcher.research({
+  item: campaign.items[0],
+  internalEvidence: [{ id: 'spark', facts: { suspension: '120 mm' }, sources: [{ name: 'Scott', type: 'manufacturer', url: 'https://www.scott-sports.com/global/en/product/test', accessedAt: '2026-08-04' }] }],
+  today: '2026-08-05',
+});
+assert.equal(orphanedSourceFallback.grounding.fallback, 'internal-product-knowledge');
+assert.match(orphanedSourceFallback.limitations[0], /fonte inexistente/);
 const fallbackResearcher = new GroundedResearcher({ GROQ_API_KEY: 'test', AI_HTTP_RETRY_ATTEMPTS: '1' }, async () => ({ ok: false, status: 429, text: async () => 'quota' }));
 const fallbackGrounded = await fallbackResearcher.research({
   item: campaign.items[0],

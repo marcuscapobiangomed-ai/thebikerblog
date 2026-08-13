@@ -147,6 +147,13 @@ export function recoverBlockedCampaign(campaignInput, {
     delete blocked.failure
     return { campaign: CampaignSchema.parse(campaign), result: { status: 'retry-policy-normalization', itemId: blocked.id, attempts: blocked.attempts || 0 }, exception: null }
   }
+  if (classified.code === 'RESEARCH_INSUFFICIENT' && (blocked.attempts || 0) < 3) {
+    clearDiscardedDraftState(blocked)
+    blocked.status = 'planned'
+    delete blocked.blockReason
+    delete blocked.failure
+    return { campaign: CampaignSchema.parse(campaign), result: { status: 'retry-research-grounding', itemId: blocked.id, attempts: blocked.attempts || 0 }, exception: null }
+  }
   const lengthMatch = reason.match(NEAR_MISS_LENGTH)
   const legacyRepairFailure = EXHAUSTED_LEGACY_REPAIR.test(reason)
   const lengthRetryRatio = legacyRepairFailure ? 0.8 : 0.9

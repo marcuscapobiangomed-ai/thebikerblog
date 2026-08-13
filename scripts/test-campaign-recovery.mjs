@@ -6,7 +6,7 @@ import campaignFixture from '../bot/editorial-campaign.json' with { type: 'json'
 import { recoverBlockedCampaign, recoverBlockedCampaignFiles } from '../bot/src/automation/recover-blocked.js'
 
 const transient = structuredClone(campaignFixture)
-for (const item of transient.items) if (item.status === 'blocked') { item.status = 'planned'; delete item.blockReason }
+for (const item of transient.items) if (item.status === 'blocked') { item.status = 'planned'; delete item.blockReason; delete item.failure }
 const timeout = transient.items.find((item) => item.status === 'planned')
 assert.ok(timeout, 'A campanha precisa ter ao menos uma pauta planejada para o teste transitório')
 timeout.status = 'blocked'
@@ -16,8 +16,24 @@ const retried = recoverBlockedCampaign(transient, { now: new Date('2026-08-07T12
 assert.equal(retried.result.status, 'retry')
 assert.equal(retried.campaign.items.find((item) => item.id === timeout.id).status, 'planned')
 
+const groundingFailure = structuredClone(campaignFixture)
+for (const item of groundingFailure.items) if (item.status === 'blocked') { item.status = 'planned'; delete item.blockReason; delete item.failure }
+const ungrounded = groundingFailure.items.find((item) => item.status === 'planned')
+ungrounded.status = 'blocked'
+ungrounded.attempts = 1
+ungrounded.postPath = `_posts/drafts/${ungrounded.publishDate}-${ungrounded.id}.md`
+ungrounded.aiReview = { score: 85, finalScore: 95, finalBlockers: 0, premiumEditUsed: true, providers: {}, generatedAt: '2026-08-13T15:00:00.000Z', contentHash: `sha256:${'a'.repeat(64)}` }
+ungrounded.failure = { code: 'RESEARCH_INSUFFICIENT', retryable: false, stage: 'grounding-audit', message: 'Pesquisa bloqueada por integridade de fontes', recordedAt: '2026-08-13T15:00:00.000Z' }
+ungrounded.blockReason = `[RESEARCH_INSUFFICIENT] ${ungrounded.failure.message}`
+const groundingRetry = recoverBlockedCampaign(groundingFailure, { now: new Date('2026-08-13T15:01:00Z') })
+assert.equal(groundingRetry.result.status, 'retry-research-grounding')
+const groundedRetryItem = groundingRetry.campaign.items.find((item) => item.id === ungrounded.id)
+assert.equal(groundedRetryItem.status, 'planned')
+assert.equal(groundedRetryItem.postPath, undefined)
+assert.equal(groundedRetryItem.aiReview, undefined)
+
 const finalization = structuredClone(campaignFixture)
-for (const item of finalization.items) if (item.status === 'blocked') { item.status = 'planned'; delete item.blockReason }
+for (const item of finalization.items) if (item.status === 'blocked') { item.status = 'planned'; delete item.blockReason; delete item.failure }
 const finalizable = finalization.items.find((item) => item.status === 'scheduled' && item.postPath && item.aiReview && item.publishDate >= '2026-08-07')
 assert.ok(finalizable, 'A campanha precisa ter uma pauta produzida para testar retomada de finalização')
 finalizable.status = 'blocked'
@@ -147,11 +163,11 @@ Este produto é imbatível.
 }
 
 const permanent = structuredClone(campaignFixture)
-for (const item of permanent.items) if (item.status === 'blocked') { item.status = 'planned'; delete item.blockReason }
+for (const item of permanent.items) if (item.status === 'blocked') { item.status = 'planned'; delete item.blockReason; delete item.failure }
 const unsupported = permanent.items.find((item) => item.status === 'planned')
 assert.ok(unsupported, 'A campanha precisa ter ao menos uma pauta planejada para o teste permanente')
 unsupported.status = 'blocked'
-unsupported.blockReason = 'Pesquisa bloqueada: nenhuma fonte oficial permitida foi retornada'
+unsupported.blockReason = 'Falha editorial permanente sem estratégia segura de recuperação'
 const replaced = recoverBlockedCampaign(permanent, { now: new Date('2026-08-07T12:00:00Z') })
 assert.equal(replaced.result.status, 'replaced')
 assert.equal(replaced.campaign.items[unsupported.day - 1].publishDate, unsupported.publishDate)
