@@ -1081,16 +1081,16 @@
         "rationale": "Fotografia real do catálogo TheBiker usada apenas como exemplo visual da categoria técnica abordada."
       },
       "imageAssetIds": [],
-      "attempts": 2,
-      "lastAttemptAt": "2026-08-13T16:50:54.892Z",
+      "attempts": 3,
+      "lastAttemptAt": "2026-08-13T17:01:53.725Z",
       "failure": {
         "code": "RESEARCH_INSUFFICIENT",
         "retryable": false,
         "stage": "production",
-        "message": "Rascunho bloqueado apÃ³s 2 reparos: Artigo bloqueado por integridade de claims: alegações legais numéricas sem suporte governamental: 6mm, 2mm",
-        "recordedAt": "2026-08-13T16:50:54.892Z"
+        "message": "Rascunho bloqueado apÃ³s 2 reparos: Artigo bloqueado por integridade de claims: alegações legais numéricas sem suporte governamental: 30mm",
+        "recordedAt": "2026-08-13T17:01:53.725Z"
       },
-      "blockReason": "[RESEARCH_INSUFFICIENT] Rascunho bloqueado apÃ³s 2 reparos: Artigo bloqueado por integridade de claims: alegações legais numéricas sem suporte governamental: 6mm, 2mm"
+      "blockReason": "[RESEARCH_INSUFFICIENT] Rascunho bloqueado apÃ³s 2 reparos: Artigo bloqueado por integridade de claims: alegações legais numéricas sem suporte governamental: 30mm"
     },
     {
       "day": 17,
