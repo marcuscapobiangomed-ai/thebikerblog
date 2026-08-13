@@ -1004,16 +1004,16 @@
         "rationale": "Fotografia real do catálogo TheBiker usada apenas como exemplo visual da categoria técnica abordada."
       },
       "imageAssetIds": [],
-      "attempts": 1,
-      "lastAttemptAt": "2026-08-13T10:12:09.040Z",
+      "attempts": 2,
+      "lastAttemptAt": "2026-08-13T12:05:24.534Z",
       "failure": {
         "code": "VALIDATION_FAILED",
         "retryable": false,
         "stage": "production",
-        "message": "Artigo inválido:\npromoted_brands: Política TheBiker: promoção bloqueada para marca fora do portfólio: TheBiker Shop.",
-        "recordedAt": "2026-08-13T10:12:09.040Z"
+        "message": "Gates editoriais não atendidos: extensão insuficiente: 1532 palavras; mínimo 1600",
+        "recordedAt": "2026-08-13T12:05:24.534Z"
       },
-      "blockReason": "[VALIDATION_FAILED] Artigo inválido:\npromoted_brands: Política TheBiker: promoção bloqueada para marca fora do portfólio: TheBiker Shop."
+      "blockReason": "[VALIDATION_FAILED] Gates editoriais não atendidos: extensão insuficiente: 1532 palavras; mínimo 1600"
     },
     {
       "day": 16,
