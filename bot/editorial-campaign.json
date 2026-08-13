@@ -360,7 +360,7 @@
         "retryable": false,
         "stage": "finalization",
         "message": "Imagem incompatível com o artigo: marca da imagem (Scott) não corresponde à marca promovida (fox)",
-        "recordedAt": "2026-08-13T19:06:37.368Z"
+        "recordedAt": "2026-08-13T19:11:05.738Z"
       },
       "blockReason": "Validação final: [IMAGE_NOT_PUBLISHABLE] Imagem incompatível com o artigo: marca da imagem (Scott) não corresponde à marca promovida (fox)"
     },
