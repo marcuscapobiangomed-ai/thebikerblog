@@ -760,6 +760,119 @@
         "title": "Scott Spark RC Expert 2027: leitura técnica da montagem confirmada pelas fontes atuais"
       },
       "reason": "[RESEARCH_INSUFFICIENT] Rascunho bloqueado apÃ³s 2 reparos: Artigo bloqueado por integridade de claims: alegações numéricas ausentes dos fatos confirmados: 40mm, 34mm; inferencias tecnicas ausentes dos fatos confirmados: a scott classifica o hmx como um carbono de maior desempenho, mas as fichas oficiais nao trazem dados de peso, rigidez ou empilhamento que permitam quantificar essa diferenca. | o grupo shimano 105, com 24 velocidades e cambio mecanico, e reconhecido pela confiabilidade e custo de manutencao mais acessivel. | os freios a disco hidraulicos shimano br-r7170 oferecem modulacao e potencia de frenagem consistentes."
+    },
+    {
+      "recordedAt": "2026-08-13T21:11:10.778Z",
+      "campaignId": "thebiker-rolling-2026-08-08",
+      "replacedItem": {
+        "day": 7,
+        "publishDate": "2026-08-14",
+        "id": "reserva-spark-rc-expert-ficha",
+        "title": "Scott Spark RC Expert 2027: leitura técnica da montagem confirmada pelas fontes atuais",
+        "summary": "Ficha editorial do modelo limitada aos materiais, suspensão, transmissão e limites explicitamente recuperados das fontes.",
+        "category": "review",
+        "freshness": "revalidate-24h",
+        "status": "blocked",
+        "productIds": [
+          "bicicleta-scott-spark-rc-expert-2027"
+        ],
+        "heroImage": {
+          "mode": "exact-product",
+          "productId": "bicicleta-scott-spark-rc-expert-2027"
+        },
+        "imageAssetIds": [],
+        "blockReason": "[RESEARCH_INSUFFICIENT] Rascunho bloqueado apÃ³s 2 reparos: Artigo bloqueado por integridade de claims: alegações numéricas ausentes dos fatos confirmados: 100mm; inferencias tecnicas ausentes dos fatos confirmados: arquitetura do quadro e integracao de curso a scott spark rc expert 2027 e construida sobre a plataforma hmf carbon gen5, uma estrutura que prioriza a rigidez torsional e a eficiencia na transferencia de potencia. | a geometria do quadro permite ajustes no angulo de direcao, uma caracteristica tecnica que permite ao ciclista adaptar a bicicleta conforme as exigencias do percurso. | com 120 mm de curso tanto na dianteira quanto na traseira, a plataforma b",
+        "failure": {
+          "code": "RESEARCH_INSUFFICIENT",
+          "retryable": false,
+          "stage": "production",
+          "message": "Rascunho bloqueado apÃ³s 2 reparos: Artigo bloqueado por integridade de claims: alegações numéricas ausentes dos fatos confirmados: 100mm; inferencias tecnicas ausentes dos fatos confirmados: arquitetura do quadro e integracao de curso a scott spark rc expert 2027 e construida sobre a plataforma hmf carbon gen5, uma estrutura que prioriza a rigidez torsional e a eficiencia na transferencia de potencia. | a geometria do quadro permite ajustes no angulo de direcao, uma caracteristica tecnica que permite ao ciclista adaptar a bicicleta conforme as exigencias do percurso. | com 120 mm de curso tanto na dianteira quanto na traseira, a plataforma b",
+          "recordedAt": "2026-08-13T20:56:04.280Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-13T20:56:04.280Z"
+      },
+      "replacement": {
+        "id": "reserva-scale-940-980-comparativo",
+        "title": "Scott Scale 940 e 980: diferenças verificáveis de quadro, suspensão e componentes"
+      },
+      "reason": "[RESEARCH_INSUFFICIENT] Rascunho bloqueado apÃ³s 2 reparos: Artigo bloqueado por integridade de claims: alegações numéricas ausentes dos fatos confirmados: 100mm; inferencias tecnicas ausentes dos fatos confirmados: arquitetura do quadro e integracao de curso a scott spark rc expert 2027 e construida sobre a plataforma hmf carbon gen5, uma estrutura que prioriza a rigidez torsional e a eficiencia na transferencia de potencia. | a geometria do quadro permite ajustes no angulo de direcao, uma caracteristica tecnica que permite ao ciclista adaptar a bicicleta conforme as exigencias do percurso. | com 120 mm de curso tanto na dianteira quanto na traseira, a plataforma b"
+    },
+    {
+      "recordedAt": "2026-08-13T21:11:10.778Z",
+      "campaignId": "thebiker-rolling-2026-08-08",
+      "replacedItem": {
+        "day": 7,
+        "publishDate": "2026-08-14",
+        "id": "reserva-scale-940-980-comparativo",
+        "title": "Scott Scale 940 e 980: diferenças verificáveis de quadro, suspensão e componentes",
+        "summary": "Comparação limitada às especificações atualmente recuperáveis nas páginas oficiais e no catálogo TheBiker.",
+        "category": "comparativo",
+        "freshness": "revalidate-24h",
+        "status": "blocked",
+        "productIds": [
+          "bicicleta-scott-scale-940-black",
+          "bicicleta-scott-scale-980-black"
+        ],
+        "heroImage": {
+          "mode": "exact-product",
+          "productId": "bicicleta-scott-scale-940-black"
+        },
+        "imageAssetIds": [],
+        "blockReason": "[RESEARCH_INSUFFICIENT] Rascunho bloqueado apÃ³s 2 reparos: Artigo bloqueado por integridade de claims: alegações numéricas ausentes dos fatos confirmados: 100mm, 55mm; inferencias tecnicas ausentes dos fatos confirmados: a rockshox e uma referencia consolidada em garfos de entrada, com manutencao amplamente difundida; a suntour x1 e uma opcao funcional, porem com menor presenca em upgrades. | alem disso, a 940 possui o syncros cable integration system, que roteia cabos internamente pelo quadro, reduzindo o acumulo de lama e facilitando a limpeza; a 980 nao tem essa informacao confirmada nas fontes. | essa diferenca afeta a manutencao e a estetica, mas nao altera a ",
+        "failure": {
+          "code": "RESEARCH_INSUFFICIENT",
+          "retryable": false,
+          "stage": "production",
+          "message": "Rascunho bloqueado apÃ³s 2 reparos: Artigo bloqueado por integridade de claims: alegações numéricas ausentes dos fatos confirmados: 100mm, 55mm; inferencias tecnicas ausentes dos fatos confirmados: a rockshox e uma referencia consolidada em garfos de entrada, com manutencao amplamente difundida; a suntour x1 e uma opcao funcional, porem com menor presenca em upgrades. | alem disso, a 940 possui o syncros cable integration system, que roteia cabos internamente pelo quadro, reduzindo o acumulo de lama e facilitando a limpeza; a 980 nao tem essa informacao confirmada nas fontes. | essa diferenca afeta a manutencao e a estetica, mas nao altera a ",
+          "recordedAt": "2026-08-13T21:11:10.778Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-13T21:11:10.778Z"
+      },
+      "replacement": {
+        "id": "reserva-addict-50-rc20-comparativo",
+        "title": "Scott Addict 50 e Addict RC 20: duas propostas de estrada confrontadas pelas fichas oficiais"
+      },
+      "reason": "[RESEARCH_INSUFFICIENT] Rascunho bloqueado apÃ³s 2 reparos: Artigo bloqueado por integridade de claims: alegações numéricas ausentes dos fatos confirmados: 100mm, 55mm; inferencias tecnicas ausentes dos fatos confirmados: a rockshox e uma referencia consolidada em garfos de entrada, com manutencao amplamente difundida; a suntour x1 e uma opcao funcional, porem com menor presenca em upgrades. | alem disso, a 940 possui o syncros cable integration system, que roteia cabos internamente pelo quadro, reduzindo o acumulo de lama e facilitando a limpeza; a 980 nao tem essa informacao confirmada nas fontes. | essa diferenca afeta a manutencao e a estetica, mas nao altera a "
+    },
+    {
+      "recordedAt": "2026-08-13T21:11:10.778Z",
+      "campaignId": "thebiker-rolling-2026-08-08",
+      "replacedItem": {
+        "day": 7,
+        "publishDate": "2026-08-14",
+        "id": "reserva-addict-50-rc20-comparativo",
+        "title": "Scott Addict 50 e Addict RC 20: duas propostas de estrada confrontadas pelas fichas oficiais",
+        "summary": "Análise comparativa restrita a geometria, materiais e montagens comprovados nas fontes atuais dos dois modelos.",
+        "category": "comparativo",
+        "freshness": "revalidate-24h",
+        "status": "blocked",
+        "productIds": [
+          "bicicleta-scott-addict-50-2026-pre-venda-1bxzy",
+          "bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9"
+        ],
+        "heroImage": {
+          "mode": "exact-product",
+          "productId": "bicicleta-scott-addict-50-2026-pre-venda-1bxzy"
+        },
+        "imageAssetIds": [],
+        "blockReason": "[IMAGE_NOT_PUBLISHABLE] Rascunho bloqueado apÃ³s 2 reparos: Artigo inválido:\nimagePlan: Pelo menos uma imagem obrigatória",
+        "failure": {
+          "code": "IMAGE_NOT_PUBLISHABLE",
+          "retryable": false,
+          "stage": "production",
+          "message": "Rascunho bloqueado apÃ³s 2 reparos: Artigo inválido:\nimagePlan: Pelo menos uma imagem obrigatória",
+          "recordedAt": "2026-08-13T21:11:10.778Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-13T21:11:10.778Z"
+      },
+      "replacement": {
+        "id": "reserva-limpeza-transmissao-metodo",
+        "title": "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação"
+      },
+      "reason": "[IMAGE_NOT_PUBLISHABLE] Rascunho bloqueado apÃ³s 2 reparos: Artigo inválido:\nimagePlan: Pelo menos uma imagem obrigatória"
     }
   ]
 }

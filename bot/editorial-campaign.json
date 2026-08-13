@@ -390,30 +390,32 @@
     {
       "day": 7,
       "publishDate": "2026-08-14",
-      "id": "reserva-spark-rc-expert-ficha",
-      "title": "Scott Spark RC Expert 2027: leitura técnica da montagem confirmada pelas fontes atuais",
-      "summary": "Ficha editorial do modelo limitada aos materiais, suspensão, transmissão e limites explicitamente recuperados das fontes.",
-      "category": "review",
-      "freshness": "revalidate-24h",
+      "id": "reserva-limpeza-transmissao-metodo",
+      "title": "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação",
+      "summary": "Procedimento técnico baseado em orientações oficiais para remover contaminantes, verificar danos e devolver a corrente ao uso seguro.",
+      "category": "manutencao-ajustes",
+      "freshness": "evergreen",
       "status": "blocked",
       "productIds": [
-        "bicicleta-scott-spark-rc-expert-2027"
+        "corrente-sram-nx-eagle"
       ],
       "heroImage": {
-        "mode": "exact-product",
-        "productId": "bicicleta-scott-spark-rc-expert-2027"
+        "mode": "real-context",
+        "productId": "corrente-sram-nx-eagle",
+        "relationship": "category-example",
+        "rationale": "Fotografia real do catálogo TheBiker usada apenas como exemplo visual da categoria técnica abordada."
       },
       "imageAssetIds": [],
       "attempts": 1,
-      "lastAttemptAt": "2026-08-13T20:56:04.280Z",
+      "lastAttemptAt": "2026-08-13T21:11:10.778Z",
       "failure": {
         "code": "RESEARCH_INSUFFICIENT",
         "retryable": false,
         "stage": "production",
-        "message": "Rascunho bloqueado apÃ³s 2 reparos: Artigo bloqueado por integridade de claims: alegações numéricas ausentes dos fatos confirmados: 100mm; inferencias tecnicas ausentes dos fatos confirmados: arquitetura do quadro e integracao de curso a scott spark rc expert 2027 e construida sobre a plataforma hmf carbon gen5, uma estrutura que prioriza a rigidez torsional e a eficiencia na transferencia de potencia. | a geometria do quadro permite ajustes no angulo de direcao, uma caracteristica tecnica que permite ao ciclista adaptar a bicicleta conforme as exigencias do percurso. | com 120 mm de curso tanto na dianteira quanto na traseira, a plataforma b",
-        "recordedAt": "2026-08-13T20:56:04.280Z"
+        "message": "Pesquisa bloqueada por integridade de fontes: pesquisa concluída sem fontes rastreáveis; pesquisa sem fatos explicitamente fundamentados",
+        "recordedAt": "2026-08-13T21:11:10.778Z"
       },
-      "blockReason": "[RESEARCH_INSUFFICIENT] Rascunho bloqueado apÃ³s 2 reparos: Artigo bloqueado por integridade de claims: alegações numéricas ausentes dos fatos confirmados: 100mm; inferencias tecnicas ausentes dos fatos confirmados: arquitetura do quadro e integracao de curso a scott spark rc expert 2027 e construida sobre a plataforma hmf carbon gen5, uma estrutura que prioriza a rigidez torsional e a eficiencia na transferencia de potencia. | a geometria do quadro permite ajustes no angulo de direcao, uma caracteristica tecnica que permite ao ciclista adaptar a bicicleta conforme as exigencias do percurso. | com 120 mm de curso tanto na dianteira quanto na traseira, a plataforma b"
+      "blockReason": "[RESEARCH_INSUFFICIENT] Pesquisa bloqueada por integridade de fontes: pesquisa concluída sem fontes rastreáveis; pesquisa sem fatos explicitamente fundamentados"
     },
     {
       "day": 8,
