@@ -779,16 +779,16 @@
         "rationale": "O câmbio Shimano GRX real exemplifica a transmissão para terreno misto citada no artigo, preservando a marca promovida."
       },
       "imageAssetIds": [],
-      "attempts": 3,
-      "lastAttemptAt": "2026-08-13T15:29:21.944Z",
+      "attempts": 4,
+      "lastAttemptAt": "2026-08-13T15:41:38.762Z",
       "failure": {
         "code": "VALIDATION_FAILED",
         "retryable": false,
         "stage": "production",
-        "message": "Rascunho bloqueado apÃ³s 2 reparos: Artigo inválido:\ndescription: Description precisa ter ao menos 100 caracteres\nsections: Mínimo de 2 seções",
-        "recordedAt": "2026-08-13T15:29:21.944Z"
+        "message": "Rascunho bloqueado apÃ³s 2 reparos: Artigo inválido:\nsections.0.heading: Too small: expected string to have >=1 characters\nsections.1.heading: Too small: expected string to have >=1 characters\nsections.2.heading: Too small: expected string to have >=1 characters\nsections.3.heading: Too small: expected string to have >=1 characters\nsections.4.heading: Too small: expected string to have >=1 characters\nsections.5.heading: Too small: expected string to have >=1 characters\nsections.6.heading: Too small: expected string to have >=1 characters\nsections.7.heading: Too small: expected string to have >=1 characters\nsections.8.heading: Too small: expect",
+        "recordedAt": "2026-08-13T15:41:38.762Z"
       },
-      "blockReason": "[VALIDATION_FAILED] Rascunho bloqueado apÃ³s 2 reparos: Artigo inválido:\ndescription: Description precisa ter ao menos 100 caracteres\nsections: Mínimo de 2 seções"
+      "blockReason": "[VALIDATION_FAILED] Rascunho bloqueado apÃ³s 2 reparos: Artigo inválido:\nsections.0.heading: Too small: expected string to have >=1 characters\nsections.1.heading: Too small: expected string to have >=1 characters\nsections.2.heading: Too small: expected string to have >=1 characters\nsections.3.heading: Too small: expected string to have >=1 characters\nsections.4.heading: Too small: expected string to have >=1 characters\nsections.5.heading: Too small: expected string to have >=1 characters\nsections.6.heading: Too small: expected string to have >=1 characters\nsections.7.heading: Too small: expected string to have >=1 characters\nsections.8.heading: Too small: expect"
     },
     {
       "day": 13,
