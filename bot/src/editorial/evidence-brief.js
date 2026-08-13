@@ -78,9 +78,17 @@ function renderTable(rows, emptyText) {
 }
 
 function findBrand(item, research) {
-  const haystack = `${item?.title || ""} ${(research.confirmed_facts || []).map((entry) => entry.fact).join(" ")}`.toLowerCase();
-  const match = THEBIKER_PORTFOLIO.brands.find((brand) => haystack.includes(brand.toLowerCase()));
-  return canonicalPortfolioBrand(match || "");
+  const identityFacts = (research.confirmed_facts || [])
+    .filter((entry) => String(entry.fact || "").startsWith("identity.storeName: "))
+    .map((entry) => entry.fact);
+  const sourceNames = (research.sources || []).map((source) => source.name);
+  const candidates = [item?.title || "", identityFacts.join(" "), sourceNames.join(" ")];
+  for (const candidate of candidates) {
+    const normalized = candidate.toLowerCase();
+    const match = THEBIKER_PORTFOLIO.brands.find((brand) => normalized.includes(brand.toLowerCase()));
+    if (match) return canonicalPortfolioBrand(match);
+  }
+  return "";
 }
 
 function categoryFor(contentType) {
