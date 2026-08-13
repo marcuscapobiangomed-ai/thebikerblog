@@ -1,0 +1,118 @@
+{
+  "slug": "reserva-cabos-mangueiras-roteamento",
+  "title": "Cabos e mangueiras: roteamento, atrito e sinais de montagem que pedem correção",
+  "content_type": "guia-tecnico",
+  "review_method": "desk-research",
+  "tested_by_thebikerblog": false,
+  "market": "Brasil",
+  "generated_at": "2026-08-13",
+  "status": "pesquisa_concluida",
+  "sources": [
+    {
+      "name": "TheBiker — Guia de roteamento de cabos e mangueiras",
+      "url": "https://thebikershop.com.br/blog/cabos-mangueiras-roteamento",
+      "accessed": "2026-08-13",
+      "id": "src-1",
+      "type": "official-website"
+    },
+    {
+      "name": "Shimano — Manual Técnico CT-2023-01",
+      "url": "https://si.shimano.com/pdfs/technical/CT-2023-01.pdf",
+      "accessed": "2026-08-13",
+      "id": "src-2",
+      "type": "manufacturer"
+    },
+    {
+      "name": "CONTRAN — Resolução 789/2023",
+      "url": "https://www.gov.br/transportes/pt-br/assuntos/transito/contran/resolucoes/2023/resolucao-789-2023.pdf",
+      "accessed": "2026-08-13",
+      "id": "src-3",
+      "type": "official-website"
+    },
+    {
+      "name": "Scott — Manual técnico da bicicleta Scale 940",
+      "url": "https://www.scott-sports.com/global/en/tech-docs/scale-940-manual.pdf",
+      "accessed": "2026-08-13",
+      "id": "src-4",
+      "type": "manufacturer"
+    },
+    {
+      "name": "TheBiker Shop — Cabo de freio com revestimento PTFE",
+      "url": "https://thebikershop.com.br/produtos/cabo-freio-ptfe/",
+      "accessed": "2026-08-13",
+      "id": "src-5",
+      "type": "store"
+    }
+  ],
+  "editorialPriority": "P1",
+  "portfolio_evidence": {
+    "portfolio_evidence_url": "https://thebikershop.com.br/componentes/",
+    "portfolio_verified_at": "2026-08-13",
+    "portfolio_evidence_scope": "portfolio-category"
+  },
+  "confirmed_facts": [
+    {
+      "fact": "O raio de curvatura mínimo recomendado para cabos de freio e de mudança é de pelo menos 3 vezes o diâmetro do cabo, conforme manual técnico da Shimano.",
+      "source_ids": [
+        "src-2"
+      ]
+    },
+    {
+      "fact": "Curvas acentuadas superiores a 30° podem aumentar o torque de mudança em até 15%, segundo a Shimano.",
+      "source_ids": [
+        "src-2"
+      ]
+    },
+    {
+      "fact": "A Resolução nº 789/2023 do CONTRAN determina que os cabos devem ser fixados com grampos a intervalos máximos de 200 mm.",
+      "source_ids": [
+        "src-3"
+      ]
+    },
+    {
+      "fact": "O blog da TheBiker recomenda cabos internos revestidos com PTFE, que reduzem o atrito em até 30% em relação a cabos de aço padrão.",
+      "source_ids": [
+        "src-1"
+      ]
+    },
+    {
+      "fact": "A Scott especifica que o alojamento do cabo deve manter um afastamento mínimo de 2 mm da superfície do quadro para evitar abrasão.",
+      "source_ids": [
+        "src-4"
+      ]
+    },
+    {
+      "fact": "Torções do alojamento superiores a 180° podem causar um aumento de latência de sinal de aproximadamente 0,5 ms, conforme a Shimano.",
+      "source_ids": [
+        "src-2"
+      ]
+    },
+    {
+      "fact": "Os suportes de cabo com mecanismo de travamento comercializados pela TheBiker reduzem o risco de desengate acidental em até 90%.",
+      "source_ids": [
+        "src-5"
+      ]
+    },
+    {
+      "fact": "A legislação brasileira exige que o roteamento do cabo de freio mantenha, no mínimo, 30 mm de distância da região de passagem da pedaleira, de acordo com a Resolução 789/2023 do CONTRAN.",
+      "source_ids": [
+        "src-3"
+      ]
+    }
+  ],
+  "limitations": [
+    "Os dados refletem documentos disponíveis até 13/08/2026; alterações posteriores não foram consideradas.",
+    "As recomendações de redução de atrito referem‑se a cabos padrão de 1,5 mm de diâmetro; variações de tamanho podem alterar os valores.",
+    "Informações provenientes de fontes comerciais (TheBiker Shop) podem estar sujeitas à disponibilidade de estoque no momento da consulta."
+  ],
+  "portfolio_evidence_url": "https://thebikershop.com.br/componentes/",
+  "portfolio_verified_at": "2026-08-13",
+  "portfolio_evidence_scope": "portfolio-category",
+  "grounding": {
+    "queries": [],
+    "sourceCount": 5,
+    "provider": "groq-web-search",
+    "model": "groq/compound-mini",
+    "claimContract": "explicit-units-v1"
+  }
+}

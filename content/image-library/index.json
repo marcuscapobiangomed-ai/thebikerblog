@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-08-13T14:52:56.215Z",
+  "updatedAt": "2026-08-13T17:17:32.723Z",
   "assets": [
     {
       "assetId": "thebiker-scott-addict-rc-pro-hmx-frame-set-def10da96a",
@@ -388,6 +388,23 @@
       "uses": [
         {
           "postId": "youtube-bicicletas-eletricas-arquitetura-autonomia-limites-e-criterios-t",
+          "position": "hero",
+          "usedAt": "2026-08-13T12:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "assetId": "thebiker-bicicleta-scott-scale-940-black-bf34dbe9f9",
+      "sha256": "bf34dbe9f9f9f7756f1e122a39ee9194dc63f217a91d473fed9d75c540887cf6",
+      "perceptualHash": "1111111111111111110100110000000000000000000110001111111111111111",
+      "sourcePageUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-scale-940-black/",
+      "sourceFileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/scale-940-2023-tbkr1-b34ba1914f53fbad3716736160099253-1024-1024.webp",
+      "productId": "bicicleta-scott-scale-940-black",
+      "productName": "Bicicleta Scott Scale 940 - Black",
+      "rightsPolicyId": "thebiker-official-editorial-v1",
+      "uses": [
+        {
+          "postId": "reserva-cabos-mangueiras-roteamento",
           "position": "hero",
           "usedAt": "2026-08-13T12:00:00.000Z"
         }

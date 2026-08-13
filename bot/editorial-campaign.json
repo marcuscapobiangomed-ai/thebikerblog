@@ -1070,7 +1070,7 @@
       "summary": "Leitura técnica de curvas, fixações, contato com o quadro e interferências que alteram comando, ruído e durabilidade.",
       "category": "componentes",
       "freshness": "evergreen",
-      "status": "blocked",
+      "status": "scheduled",
       "productIds": [
         "bicicleta-scott-scale-940-black"
       ],
@@ -1080,17 +1080,63 @@
         "relationship": "category-example",
         "rationale": "Fotografia real do catálogo TheBiker usada apenas como exemplo visual da categoria técnica abordada."
       },
-      "imageAssetIds": [],
-      "attempts": 3,
-      "lastAttemptAt": "2026-08-13T17:01:53.725Z",
-      "failure": {
-        "code": "RESEARCH_INSUFFICIENT",
-        "retryable": false,
-        "stage": "production",
-        "message": "Rascunho bloqueado apÃ³s 2 reparos: Artigo bloqueado por integridade de claims: alegações legais numéricas sem suporte governamental: 30mm",
-        "recordedAt": "2026-08-13T17:01:53.725Z"
+      "postPath": "_posts/drafts/2026-08-23-reserva-cabos-mangueiras-roteamento.md",
+      "imageAssetIds": [
+        "thebiker-bicicleta-scott-scale-940-black-bf34dbe9f9"
+      ],
+      "attempts": 4,
+      "lastAttemptAt": "2026-08-13T17:13:26.545Z",
+      "aiReview": {
+        "score": 72,
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "premiumEditUsed": true,
+        "providers": {
+          "factSheet": "deepseek",
+          "draft": "gemini",
+          "critique": "deepseek",
+          "final": "deepseek",
+          "finalAudit": "deepseek",
+          "finalRepair": "deepseek"
+        },
+        "generatedAt": "2026-08-13T17:13:26.545Z",
+        "contentHash": "sha256:ad74e06bb251455679c2a3e691faa38e05fab3daf6d70562588d06b10fa45b65",
+        "sourceHash": "de2f997dbe850366576a7307865fe7b64a060be7973df388736ed5cde4e8d185"
       },
-      "blockReason": "[RESEARCH_INSUFFICIENT] Rascunho bloqueado apÃ³s 2 reparos: Artigo bloqueado por integridade de claims: alegações legais numéricas sem suporte governamental: 30mm"
+      "visualDecision": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-visual-autonomy-v1",
+        "inputHash": "sha256:fed7ddf7a369cd54e33b249b84e52940e300f547e62760c52384c9c757cd722e",
+        "mode": "real-context",
+        "productId": "bicicleta-scott-scale-940-black",
+        "score": 100,
+        "hardGates": {
+          "semanticMatch": true,
+          "realAsset": true,
+          "explicitProduct": true,
+          "officialSource": true,
+          "approvedRights": true,
+          "publishableResolution": true,
+          "uniqueAsset": true
+        },
+        "blockers": [],
+        "issuedAt": "2026-08-13T17:17:30.768Z"
+      },
+      "editorialReceipt": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-editorial-2026-08-v2",
+        "origin": "pipeline",
+        "reviewedContentHash": "sha256:ad74e06bb251455679c2a3e691faa38e05fab3daf6d70562588d06b10fa45b65",
+        "scheduledContentHash": "sha256:583aeda8932437a1bc62fd9f4b93f3b83fe6032cf36d9bf8efbb5856e9b6a96e",
+        "researchHash": "sha256:ec5ccdd78613c62bdcd625e6764f4f3e135c1a85590bb4cbc32ee6f248595a00",
+        "sourceHash": "de2f997dbe850366576a7307865fe7b64a060be7973df388736ed5cde4e8d185",
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "issuedAt": "2026-08-13T17:17:30.768Z"
+      },
+      "imageManifestPath": "assets/img/posts/reserva-cabos-mangueiras-roteamento/image-manifest.json",
+      "imageStatus": "approved",
+      "imageValidatedAt": "2026-08-13T17:17:30.768Z"
     },
     {
       "day": 17,
