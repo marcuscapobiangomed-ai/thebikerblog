@@ -44,10 +44,13 @@ assert.equal(parseIntelligenceMarkdown(markdown).runKey, report.runKey)
 assert.equal(intelligenceSourceDigest(report), intelligenceSourceDigest(structuredClone(report)))
 assert.notEqual(intelligenceSourceDigest(report), intelligenceSourceDigest({ ...report, generatedAt: '2026-08-07T10:11:00.000Z' }))
 
-const scheduledIndex = campaignFixture.items.findIndex((item) => item.status === 'scheduled')
-const fixtureStart = campaignFixture.items[scheduledIndex].publishDate
-const fixtureNextDay = campaignFixture.items[scheduledIndex + 1].publishDate
 const activeToday = structuredClone(campaignFixture)
+const scheduledIndex = activeToday.items.findLastIndex((item) => item.status === 'published')
+assert.ok(scheduledIndex >= 0 && scheduledIndex + 1 < activeToday.items.length, 'fixture precisa de um item publicado seguido por outro item')
+activeToday.items[scheduledIndex].status = 'scheduled'
+delete activeToday.items[scheduledIndex].publishedAt
+const fixtureStart = activeToday.items[scheduledIndex].publishDate
+const fixtureNextDay = activeToday.items[scheduledIndex + 1].publishDate
 const blockedTomorrow = activeToday.items.find((item) => item.publishDate === fixtureNextDay)
 blockedTomorrow.status = 'blocked'
 blockedTomorrow.blockReason = 'Falha permanente usada pelo teste de renovação'
