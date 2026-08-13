@@ -779,16 +779,16 @@
         "rationale": "O câmbio Shimano GRX real exemplifica a transmissão para terreno misto citada no artigo, preservando a marca promovida."
       },
       "imageAssetIds": [],
-      "attempts": 2,
-      "lastAttemptAt": "2026-08-13T15:19:43.781Z",
+      "attempts": 3,
+      "lastAttemptAt": "2026-08-13T15:29:21.944Z",
       "failure": {
-        "code": "RESEARCH_INSUFFICIENT",
+        "code": "VALIDATION_FAILED",
         "retryable": false,
         "stage": "production",
-        "message": "Pesquisa bloqueada por integridade de fontes: fato 4 referencia fonte inexistente: src-3",
-        "recordedAt": "2026-08-13T15:19:43.781Z"
+        "message": "Rascunho bloqueado apÃ³s 2 reparos: Artigo inválido:\ndescription: Description precisa ter ao menos 100 caracteres\nsections: Mínimo de 2 seções",
+        "recordedAt": "2026-08-13T15:29:21.944Z"
       },
-      "blockReason": "[RESEARCH_INSUFFICIENT] Pesquisa bloqueada por integridade de fontes: fato 4 referencia fonte inexistente: src-3"
+      "blockReason": "[VALIDATION_FAILED] Rascunho bloqueado apÃ³s 2 reparos: Artigo inválido:\ndescription: Description precisa ter ao menos 100 caracteres\nsections: Mínimo de 2 seções"
     },
     {
       "day": 13,
