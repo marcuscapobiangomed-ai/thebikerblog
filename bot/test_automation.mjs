@@ -2,10 +2,11 @@ import assert from "node:assert/strict";
 import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
+import matter from "gray-matter";
 import { loadQueue, selectReadyItem } from "./src/automation/queue.js";
 import { CampaignSchema, selectProductionCandidate, selectPublicationCandidate, publicCampaignSummary } from "./src/automation/campaign.js";
 import { GroundedResearcher } from "./src/automation/grounded-research.js";
-import { cleanupFailedFinalization, finalizeCampaignItem } from "./src/campaign_finalize.js";
+import { cleanupFailedFinalization, finalizeCampaignItem, normalizeCategoryExamplePromotion } from "./src/campaign_finalize.js";
 import { produceCampaignCover } from "./src/images/campaign-cover.js";
 import { classifyOfficialImageQuality } from "./src/images/official-campaign-image.js";
 import { selectKnowledgeEvidence } from "./src/campaign_producer.js";
@@ -15,6 +16,26 @@ import { produceCampaignVisual } from "./src/campaign_finalize.js";
 import { markdownPublicationErrors, neutralizeMarkdownPolicyPhrases } from "./src/validation/markdown-publication-gates.js";
 import { scheduledDraftErrors } from "./src/validation/validate-scheduled-publications.js";
 import { assertScheduledReceipt, hashEditorialText } from "./src/validation/editorial-receipt.js";
+
+const neutralCategoryExample = normalizeCategoryExamplePromotion(`---
+brand: "Shimano"
+promoted_brands: ["Shimano"]
+editorial_scope: "portfolio"
+---
+Texto técnico que cita o fabricante como fonte.`, {
+  heroImage: { mode: "real-context", relationship: "category-example", productId: "bicicleta-eletrica-oggi" },
+});
+assert.equal(matter(neutralCategoryExample).data.brand, "");
+assert.deepEqual(matter(neutralCategoryExample).data.promoted_brands, []);
+assert.match(neutralCategoryExample, /cita o fabricante como fonte/);
+const exactPromotion = normalizeCategoryExamplePromotion(`---
+brand: "Shimano"
+promoted_brands: ["Shimano"]
+editorial_scope: "portfolio"
+---`, {
+  heroImage: { mode: "exact-product", relationship: "exact-product", productId: "grupo-shimano" },
+});
+assert.equal(matter(exactPromotion).data.brand, "Shimano");
 
 assert.deepEqual(markdownPublicationErrors(`---
 tags: ["ciclismo", "cambio-eletronico"]
