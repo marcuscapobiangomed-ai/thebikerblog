@@ -347,40 +347,52 @@ export class GroundedResearcher {
         } else throw error
       }
     }
-    research.sources = (research.sources || []).filter((source) => source.url && allowedSource(source.url, raceCoverage))
-    research = pruneUnsupportedFacts(research)
-    if (research.sources.length === 0) throw new Error('Pesquisa bloqueada: nenhuma fonte oficial permitida foi retornada')
-    research.slug = item.id
-    research.title = item.title
-    research.content_type = contentType
-    research.review_method = 'desk-research'
-    research.tested_by_thebikerblog = false
-    research.market = 'Brasil'
-    research.generated_at = today
-    research.status = 'pesquisa_concluida'
-    research.editorialPriority = 'P1'
-    Object.assign(research, portfolioEvidenceFor(item, today))
-    research.grounding = {
-      queries: groundingQueries,
-      sourceCount: research.sources.length,
-      provider: groundingProvider,
-      model: groundingModel,
-      claimContract: 'explicit-units-v1',
-    }
-    try {
-      research = await verifyResearchEvidence(research, {
+    const verifyCandidate = async (candidate, { providerName, modelName, queries }) => {
+      candidate.sources = (candidate.sources || []).filter((source) => source.url && allowedSource(source.url, raceCoverage))
+      candidate = pruneUnsupportedFacts(candidate)
+      if (candidate.sources.length === 0) throw new Error('nenhuma fonte oficial permitida foi retornada')
+      candidate.slug = item.id
+      candidate.title = item.title
+      candidate.content_type = contentType
+      candidate.review_method = 'desk-research'
+      candidate.tested_by_thebikerblog = false
+      candidate.market = 'Brasil'
+      candidate.generated_at = today
+      candidate.status = 'pesquisa_concluida'
+      candidate.editorialPriority = 'P1'
+      Object.assign(candidate, portfolioEvidenceFor(item, today))
+      candidate.grounding = {
+        queries,
+        sourceCount: candidate.sources.length,
+        provider: providerName,
+        model: modelName,
+        claimContract: 'explicit-units-v1',
+      }
+      candidate = await verifyResearchEvidence(candidate, {
         fetchImpl: this.sourceFetch,
         allowedSource: (url) => allowedSource(url, raceCoverage),
         requireExcerpts: true,
         timeoutMs: Math.max(1000, Number(this.env.SOURCE_HTTP_TIMEOUT_MS || 30000)),
       })
-      const validated = validateResearch(research)
+      const validated = validateResearch(candidate)
       return assertResearchGrounding(validated, { requireFactReferences: true })
-    } catch (error) {
-      if (!raceCoverage) {
-        return internalResearch({ item, internalEvidence, today, contentType, reason: error.message, raceCoverage, fetchImpl: this.sourceFetch, env: this.env })
+    }
+    try {
+      return await verifyCandidate(research, { providerName: groundingProvider, modelName: groundingModel, queries: groundingQueries })
+    } catch (primaryError) {
+      if (groundingProvider !== 'gemini-google-search' && this.env.GEMINI_API_KEY) {
+        try {
+          const gemini = await fetchGeminiGrounded(this.fetch, prompt, this.env)
+          return await verifyCandidate(gemini.research, {
+            providerName: 'gemini-google-search',
+            modelName: gemini.model,
+            queries: gemini.queries,
+          })
+        } catch (fallbackError) {
+          throw new Error(`Pesquisa bloqueada após verificação em Groq e Gemini: Groq: ${primaryError.message}; Gemini: ${fallbackError.message}`)
+        }
       }
-      throw error
+      throw new Error(`Pesquisa bloqueada após verificação documental: ${primaryError.message}`)
     }
   }
 }
