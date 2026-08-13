@@ -57,6 +57,15 @@ ungrounded.status = 'blocked'
 ungrounded.attempts = 8
 const cappedGroundingRetry = recoverBlockedCampaign(groundingFailure, { now: new Date('2026-08-13T15:08:00Z') })
 assert.notEqual(cappedGroundingRetry.result.status, 'retry-research-grounding')
+const earlyReplacement = structuredClone(groundingFailure)
+const earlyBlocked = earlyReplacement.items.find((item) => item.id === ungrounded.id)
+earlyBlocked.attempts = 2
+const replacedAfterAutomaticResearchCap = recoverBlockedCampaign(earlyReplacement, {
+  now: new Date('2026-08-13T15:09:00Z'),
+  maximumResearchAttempts: 2,
+})
+assert.equal(replacedAfterAutomaticResearchCap.result.status, 'replaced',
+  'a recomposição automática deve avançar para uma reserva após duas falhas de grounding')
 
 const rejectedArticleCampaign = structuredClone(campaignFixture)
 for (const item of rejectedArticleCampaign.items) if (item.status === 'blocked') { item.status = 'planned'; delete item.blockReason; delete item.failure }

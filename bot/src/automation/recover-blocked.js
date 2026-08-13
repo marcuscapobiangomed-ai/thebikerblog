@@ -91,6 +91,7 @@ function nextReserve(campaign, blocked) {
 export function recoverBlockedCampaign(campaignInput, {
   now = new Date(),
   maximumTransientAttempts = 2,
+  maximumResearchAttempts = 8,
   finalizationDraftErrors = [],
 } = {}) {
   const campaign = CampaignSchema.parse(structuredClone(campaignInput))
@@ -151,7 +152,7 @@ export function recoverBlockedCampaign(campaignInput, {
     delete blocked.failure
     return { campaign: CampaignSchema.parse(campaign), result: { status: 'retry-policy-normalization', itemId: blocked.id, attempts: blocked.attempts || 0 }, exception: null }
   }
-  if (classified.code === 'RESEARCH_INSUFFICIENT' && !REJECTED_FULL_ARTICLE.test(reason) && (blocked.attempts || 0) < 8) {
+  if (classified.code === 'RESEARCH_INSUFFICIENT' && !REJECTED_FULL_ARTICLE.test(reason) && (blocked.attempts || 0) < maximumResearchAttempts) {
     clearDiscardedDraftState(blocked)
     blocked.status = 'planned'
     delete blocked.blockReason
@@ -193,7 +194,7 @@ export function recoverBlockedCampaign(campaignInput, {
   return { campaign: CampaignSchema.parse(campaign), result: { status: 'replaced', itemId: blocked.id, replacementId: reserve.id, publishDate: blocked.publishDate }, exception }
 }
 
-export async function recoverBlockedCampaignFiles({ root, now = new Date() } = {}) {
+export async function recoverBlockedCampaignFiles({ root, now = new Date(), maximumResearchAttempts = 8 } = {}) {
   const campaignPath = path.join(root, 'bot/editorial-campaign.json')
   const campaign = JSON.parse(await fs.readFile(campaignPath, 'utf8'))
   const parsedCampaign = CampaignSchema.parse(campaign)
@@ -215,7 +216,7 @@ export async function recoverBlockedCampaignFiles({ root, now = new Date() } = {
       }
     }
   }
-  const recovered = recoverBlockedCampaign(parsedCampaign, { now, finalizationDraftErrors })
+  const recovered = recoverBlockedCampaign(parsedCampaign, { now, finalizationDraftErrors, maximumResearchAttempts })
   if (recovered.result.status === 'idle' || recovered.result.status === 'blocked') return recovered.result
   await fs.writeFile(campaignPath, JSON.stringify(recovered.campaign, null, 2) + '\n')
   await fs.writeFile(path.join(root, '_data/editorial-calendar.json'), JSON.stringify(publicCampaignSummary(recovered.campaign), null, 2) + '\n')

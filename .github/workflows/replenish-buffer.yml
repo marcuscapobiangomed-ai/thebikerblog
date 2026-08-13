@@ -53,6 +53,7 @@ jobs:
         env:
           AUTOMATION_ENABLED: "true"
           AUTOMATION_DRY_RUN: "false"
+          CAMPAIGN_RESEARCH_MAX_ATTEMPTS: "2"
           AI_PIPELINE_MODE: three-provider
           AI_MONTHLY_BUDGET_USD: ${{ vars.AI_MONTHLY_BUDGET_USD || '5.00' }}
           DEEPSEEK_FLASH_MODEL: ${{ vars.DEEPSEEK_FLASH_MODEL || 'deepseek-v4-flash' }}
