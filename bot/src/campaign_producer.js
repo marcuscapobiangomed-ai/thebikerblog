@@ -8,6 +8,7 @@ import { hashEditorialText } from './validation/editorial-receipt.js'
 import { classifyEditorialFailure } from './validation/editorial-failures.js'
 import { RaceProgramSchema, selectRaceEventsForEditorialItem, validateRaceEditorialStructure } from './automation/race-program.js'
 import { linkTheBikerProducts, loadTheBikerLinkData } from './editorial/product-linker.js'
+import { buildEvidenceBrief } from './editorial/evidence-brief.js'
 import { assertResearchGrounding } from './validation/research-grounding.js'
 import { assertArticleResearchGrounding } from './validation/article-research-grounding.js'
 
@@ -94,10 +95,21 @@ export async function runCampaignProducer({ root = defaultRoot, env = process.en
     await persist(root, campaign)
     item.status = 'drafting'
     await persist(root, campaign)
-    const post = await ai.processCase(item.title, research)
-    if (post.pipelineMetadata?.premiumEditPending) throw new Error('Revisão premium necessária, mas DeepSeek não está disponível')
-    const linkedPost = linkTheBikerProducts(post.content, loadTheBikerLinkData(root))
-    assertArticleResearchGrounding({ content: linkedPost.content, research })
+    let post
+    let linkedPost
+    let fallbackReason
+    try {
+      post = await ai.processCase(item.title, research)
+      if (post.pipelineMetadata?.premiumEditPending) throw new Error('Revisão premium necessária, mas DeepSeek não está disponível')
+      linkedPost = linkTheBikerProducts(post.content, loadTheBikerLinkData(root))
+      assertArticleResearchGrounding({ content: linkedPost.content, research })
+    } catch (articleError) {
+      if (item.race) throw articleError
+      post = buildEvidenceBrief({ item, research, today, env })
+      fallbackReason = String(articleError?.message || articleError).slice(0, 650)
+      linkedPost = linkTheBikerProducts(post.content, loadTheBikerLinkData(root))
+      assertArticleResearchGrounding({ content: linkedPost.content, research })
+    }
     const draftDir = path.join(root, '_posts/drafts')
     await fs.mkdir(draftDir, { recursive: true })
     const postPath = `_posts/drafts/${item.publishDate}-${item.id}.md`
@@ -109,6 +121,8 @@ export async function runCampaignProducer({ root = defaultRoot, env = process.en
       finalScore: post.pipelineMetadata?.finalScore ?? null,
       finalBlockers: post.pipelineMetadata?.finalBlockers ?? 0,
       premiumEditUsed: post.pipelineMetadata?.premiumEditUsed === true,
+      evidenceBriefUsed: post.pipelineMetadata?.evidenceBriefUsed === true,
+      ...(fallbackReason ? { fallbackReason } : {}),
       providers: post.pipelineMetadata?.providers || {},
       generatedAt: now.toISOString(),
       contentHash: hashEditorialText(linkedPost.content),

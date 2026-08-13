@@ -11,6 +11,8 @@ const MIN_WORDS = {
   "guia-prova": 1200,
 };
 
+const EVIDENCE_BRIEF_MIN_WORDS = 250;
+
 function wordCount(article) {
   return article.sections.reduce((total, section) => {
     return total + (section.content.match(/[\p{L}\p{N}][\p{L}\p{N}-]*/gu) || []).length;
@@ -19,7 +21,12 @@ function wordCount(article) {
 
 export function assertEditorialPublicationGates(article, env = process.env) {
   const errors = [];
-  const minimum = Number(env.AI_MIN_ARTICLE_WORDS || MIN_WORDS[article.content_type] || 900);
+  const isEvidenceBrief = article.editorial_format === "evidence-brief-v1";
+  const minimum = Number(
+    isEvidenceBrief
+      ? (env.EVIDENCE_BRIEF_MIN_WORDS || EVIDENCE_BRIEF_MIN_WORDS)
+      : (env.AI_MIN_ARTICLE_WORDS || MIN_WORDS[article.content_type] || 900),
+  );
   const words = wordCount(article);
   if (words < minimum) errors.push(`extensão insuficiente: ${words} palavras; mínimo ${minimum}`);
 
