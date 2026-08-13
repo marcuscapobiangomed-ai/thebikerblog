@@ -265,6 +265,7 @@
         "thebiker-bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9-b1c99140af"
       ],
       "imageValidatedAt": "2026-08-05T17:11:20.434Z",
+      "publishedAt": "2026-08-12T18:24:51.394Z",
       "attempts": 0,
       "aiReview": {
         "score": 0,
@@ -287,12 +288,12 @@
         "origin": "legacy-backfill",
         "reviewedContentHash": "sha256:a07650a3446b56e577af89d5cfbb8021b43cf39988aa6df222f2f7bcf29a2880",
         "scheduledContentHash": "sha256:a07650a3446b56e577af89d5cfbb8021b43cf39988aa6df222f2f7bcf29a2880",
+        "publishedContentHash": "sha256:edf1b3e5434f3efb4ac3e751528ac2f0546d562be37dcbdd822a4db5ec7240ec",
         "researchHash": "sha256:27814354c29307616d2643d3e5af2685de2da32a787ba7114c3570a1fa7279f9",
         "sourceHash": null,
         "finalScore": 92,
         "finalBlockers": 0,
-        "issuedAt": "2026-08-11T17:13:56.190Z",
-        "publishedContentHash": "sha256:edf1b3e5434f3efb4ac3e751528ac2f0546d562be37dcbdd822a4db5ec7240ec"
+        "issuedAt": "2026-08-11T17:13:56.190Z"
       },
       "visualDecision": {
         "schemaVersion": 1,
@@ -312,8 +313,7 @@
         },
         "blockers": [],
         "issuedAt": "2026-08-11T18:15:18.931Z"
-      },
-      "publishedAt": "2026-08-12T18:24:51.394Z"
+      }
     },
     {
       "day": 6,
@@ -988,32 +988,32 @@
     {
       "day": 15,
       "publishDate": "2026-08-22",
-      "id": "reserva-diagnostico-ruidos-bike",
-      "title": "Diagnóstico de ruídos na bicicleta: método por carga, frequência e interface",
-      "summary": "Protocolo técnico para isolar ruídos de transmissão, cockpit, rodas e quadro sem substituir componentes por tentativa e erro.",
-      "category": "manutencao-ajustes",
+      "id": "reserva-pressao-pneus-terreno",
+      "title": "Pressão de pneus por terreno: como testar sem transformar sensação em dado",
+      "summary": "Método de campo para ajustar pressão, registrar comportamento e separar aderência, suporte lateral, impacto e resistência ao rolamento.",
+      "category": "engenharia",
       "freshness": "evergreen",
       "status": "blocked",
       "productIds": [
-        "bicicleta-scott-scale-940-black"
+        "pneu-schwalbe-racing-ray-29-x-2-25-super-race-tlr-addix"
       ],
       "heroImage": {
         "mode": "real-context",
-        "productId": "bicicleta-scott-scale-940-black",
+        "productId": "pneu-schwalbe-racing-ray-29-x-2-25-super-race-tlr-addix",
         "relationship": "category-example",
         "rationale": "Fotografia real do catálogo TheBiker usada apenas como exemplo visual da categoria técnica abordada."
       },
       "imageAssetIds": [],
-      "blockReason": "[VALIDATION_FAILED] Gates editoriais não atendidos: extensão insuficiente: 1225 palavras; mínimo 1600",
+      "attempts": 1,
+      "lastAttemptAt": "2026-08-13T10:12:09.040Z",
       "failure": {
         "code": "VALIDATION_FAILED",
         "retryable": false,
         "stage": "production",
-        "message": "Gates editoriais não atendidos: extensão insuficiente: 1225 palavras; mínimo 1600",
-        "recordedAt": "2026-08-12T17:59:31.173Z"
+        "message": "Artigo inválido:\npromoted_brands: Política TheBiker: promoção bloqueada para marca fora do portfólio: TheBiker Shop.",
+        "recordedAt": "2026-08-13T10:12:09.040Z"
       },
-      "attempts": 1,
-      "lastAttemptAt": "2026-08-12T17:59:31.173Z"
+      "blockReason": "[VALIDATION_FAILED] Artigo inválido:\npromoted_brands: Política TheBiker: promoção bloqueada para marca fora do portfólio: TheBiker Shop."
     },
     {
       "day": 16,
@@ -1282,12 +1282,6 @@
       }
     },
     {
-      "id": "reserva-pressao-pneus-terreno",
-      "title": "Pressão de pneus por terreno: como testar sem transformar sensação em dado",
-      "summary": "Método de campo para ajustar pressão, registrar comportamento e separar aderência, suporte lateral, impacto e resistência ao rolamento.",
-      "category": "engenharia"
-    },
-    {
       "id": "reserva-cabos-mangueiras-roteamento",
       "title": "Cabos e mangueiras: roteamento, atrito e sinais de montagem que pedem correção",
       "summary": "Leitura técnica de curvas, fixações, contato com o quadro e interferências que alteram comando, ruído e durabilidade.",
@@ -1297,6 +1291,12 @@
       "id": "reserva-limpeza-transmissao-metodo",
       "title": "Limpeza de transmissão: como remover contaminantes sem deslocar o problema",
       "summary": "Sequência de limpeza, inspeção e relubrificação que considera corrente, cassete, coroas, roldanas e compatibilidade química.",
+      "category": "manutencao-ajustes"
+    },
+    {
+      "id": "reserva-diagnostico-ruidos-bike",
+      "title": "Diagnóstico de ruídos na bicicleta: método por carga, frequência e interface",
+      "summary": "Protocolo técnico para isolar ruídos de transmissão, cockpit, rodas e quadro sem substituir componentes por tentativa e erro.",
       "category": "manutencao-ajustes"
     }
   ]

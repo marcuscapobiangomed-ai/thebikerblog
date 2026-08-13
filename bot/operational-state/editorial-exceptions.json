@@ -528,6 +528,45 @@
         "title": "Diagnóstico de ruídos na bicicleta: método por carga, frequência e interface"
       },
       "reason": "Validação final: [IMAGE_NOT_PUBLISHABLE] Imagem incompatível com o artigo: marca da imagem (SRAM) não corresponde à marca promovida (shimano); rascunho ainda reprovado: rascunho indisponível (ENOENT)"
+    },
+    {
+      "recordedAt": "2026-08-13T10:12:08.685Z",
+      "campaignId": "thebiker-rolling-2026-08-08",
+      "replacedItem": {
+        "day": 15,
+        "publishDate": "2026-08-22",
+        "id": "reserva-diagnostico-ruidos-bike",
+        "title": "Diagnóstico de ruídos na bicicleta: método por carga, frequência e interface",
+        "summary": "Protocolo técnico para isolar ruídos de transmissão, cockpit, rodas e quadro sem substituir componentes por tentativa e erro.",
+        "category": "manutencao-ajustes",
+        "freshness": "evergreen",
+        "status": "blocked",
+        "productIds": [
+          "bicicleta-scott-scale-940-black"
+        ],
+        "heroImage": {
+          "mode": "real-context",
+          "productId": "bicicleta-scott-scale-940-black",
+          "relationship": "category-example",
+          "rationale": "Fotografia real do catálogo TheBiker usada apenas como exemplo visual da categoria técnica abordada."
+        },
+        "imageAssetIds": [],
+        "blockReason": "[VALIDATION_FAILED] Gates editoriais não atendidos: extensão insuficiente: 1225 palavras; mínimo 1600",
+        "failure": {
+          "code": "VALIDATION_FAILED",
+          "retryable": false,
+          "stage": "production",
+          "message": "Gates editoriais não atendidos: extensão insuficiente: 1225 palavras; mínimo 1600",
+          "recordedAt": "2026-08-12T17:59:31.173Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-12T17:59:31.173Z"
+      },
+      "replacement": {
+        "id": "reserva-pressao-pneus-terreno",
+        "title": "Pressão de pneus por terreno: como testar sem transformar sensação em dado"
+      },
+      "reason": "[VALIDATION_FAILED] Gates editoriais não atendidos: extensão insuficiente: 1225 palavras; mínimo 1600"
     }
   ]
 }
