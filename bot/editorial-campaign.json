@@ -1081,16 +1081,16 @@
         "rationale": "Fotografia real do catálogo TheBiker selecionada deterministicamente como exemplo visual da categoria técnica abordada."
       },
       "imageAssetIds": [],
-      "attempts": 3,
-      "lastAttemptAt": "2026-08-13T16:25:13.614Z",
+      "attempts": 4,
+      "lastAttemptAt": "2026-08-13T16:34:28.693Z",
       "failure": {
-        "code": "RESEARCH_INSUFFICIENT",
+        "code": "IMAGE_NOT_PUBLISHABLE",
         "retryable": false,
         "stage": "production",
-        "message": "Artigo bloqueado por integridade de claims: alegações numéricas ausentes dos fatos confirmados: 90rpm, 500km, 1000km, seismeses, cincoanos; alegações legais numéricas sem suporte governamental: 60km, 120km, 400wh, 630wh",
-        "recordedAt": "2026-08-13T16:25:13.614Z"
+        "message": "Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq retornou JSON inválido: Expected ',' or ']' after array element in JSON at position 2291 (line 43 column 6))",
+        "recordedAt": "2026-08-13T16:34:28.693Z"
       },
-      "blockReason": "[RESEARCH_INSUFFICIENT] Artigo bloqueado por integridade de claims: alegações numéricas ausentes dos fatos confirmados: 90rpm, 500km, 1000km, seismeses, cincoanos; alegações legais numéricas sem suporte governamental: 60km, 120km, 400wh, 630wh"
+      "blockReason": "[IMAGE_NOT_PUBLISHABLE] Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq retornou JSON inválido: Expected ',' or ']' after array element in JSON at position 2291 (line 43 column 6))"
     },
     {
       "day": 17,
