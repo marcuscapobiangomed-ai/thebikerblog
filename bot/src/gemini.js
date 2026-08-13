@@ -14,6 +14,7 @@ import { assertEditorialPublicationGates } from "./validation/editorial-publicat
 import { assertMarkdownPublicationGates, neutralizeMarkdownPolicyPhrases } from "./validation/markdown-publication-gates.js";
 import { buildImageProductionPlan } from "./image-manifest.js";
 import { assertArticleResearchGrounding, sanitizeStructuredArticleClaims } from "./validation/article-research-grounding.js";
+import { buildDeterministicGroundedArticle } from "./automation/deterministic-article.js";
 
 const CATEGORY_ALIASES = {
   review: "reviews",
@@ -334,7 +335,9 @@ export class AIProvider {
     next.methodologyNotice = neutralize(this._sanitizeHtml(next.methodologyNotice || ""));
     next.brand = this._sanitizeHtml(next.brand || "");
     next.product_name = this._sanitizeHtml(next.product_name || "");
-    next.model_year = toNumber(next.model_year, undefined);
+    const modelYear = toNumber(next.model_year, null);
+    if (modelYear === null) delete next.model_year;
+    else next.model_year = modelYear;
     next.market = this._sanitizeHtml(next.market || "Brasil");
     next.weight = this._sanitizeHtml(next.weight || "Não informado");
     next.weight_source = this._sanitizeHtml(next.weight_source || "Não informado");
@@ -560,23 +563,54 @@ export class AIProvider {
       }
       return parsed;
     };
-    if (process.env.AI_PIPELINE_MODE === "legacy") {
-      rawText = await this.generate(AIProvider.systemPrompt(), userPrompt, {
-        jsonMode: true,
-        maxTokens: Number(process.env.DEEPSEEK_MAX_TOKENS || 8192),
-      });
-    } else {
-      const pipelineResult = await this.pipeline.run({
+    const deterministicFallbackEnabled = researchData?.grounding?.fallback === "curated-official-offline-cache-v1"
+      && String(process.env.AI_DETERMINISTIC_CURATED_FALLBACK || "true").toLowerCase() !== "false";
+    const buildDeterministicFallback = (metadata, trigger) => {
+      if (!deterministicFallbackEnabled) return null;
+      const deterministic = buildDeterministicGroundedArticle({
         topic: descricaoCurta,
         researchData,
         contentType,
-        template,
-        systemPrompt: AIProvider.systemPrompt(),
-        draftPrompt: userPrompt,
-        priority: researchData?.editorialPriority || researchData?.editorial_priority || "P1",
+        today,
       });
-      rawText = pipelineResult.content;
-      pipelineMetadata = pipelineResult.metadata;
+      return {
+        ...parseGroundedResponse(JSON.stringify(deterministic)),
+        pipelineMetadata: {
+          ...metadata,
+          finalRepairUsed: true,
+          deterministicFullArticleFallbackUsed: true,
+          deterministicFullArticleFallbackTrigger: trigger,
+        },
+      };
+    };
+
+    try {
+      if (process.env.AI_PIPELINE_MODE === "legacy") {
+        rawText = await this.generate(AIProvider.systemPrompt(), userPrompt, {
+          jsonMode: true,
+          maxTokens: Number(process.env.DEEPSEEK_MAX_TOKENS || 8192),
+        });
+      } else {
+        const pipelineResult = await this.pipeline.run({
+          topic: descricaoCurta,
+          researchData,
+          contentType,
+          template,
+          systemPrompt: AIProvider.systemPrompt(),
+          draftPrompt: userPrompt,
+          priority: researchData?.editorialPriority || researchData?.editorial_priority || "P1",
+        });
+        rawText = pipelineResult.content;
+        pipelineMetadata = pipelineResult.metadata;
+      }
+    } catch (pipelineError) {
+      try {
+        const fallback = buildDeterministicFallback(pipelineMetadata, "pipeline-failure");
+        if (fallback) return fallback;
+      } catch (fallbackError) {
+        throw new Error(`${pipelineError.message}; fallback determinÃ­stico: ${fallbackError.message}`);
+      }
+      throw pipelineError;
     }
 
     try {
@@ -586,11 +620,24 @@ export class AIProvider {
       };
     } catch (err) {
       if (String(err.message || "").includes("STATUS: PESQUISA INSUFICIENTE")) {
+        if (!deterministicFallbackEnabled) throw err;
+        try {
+          const fallback = buildDeterministicFallback(pipelineMetadata, "research-status");
+          if (fallback) return fallback;
+        } catch (fallbackError) {
+          throw new Error(`${err.message}; fallback determinÃ­stico: ${fallbackError.message}`);
+        }
         throw err;
       }
 
       if (process.env.AI_PIPELINE_MODE !== "legacy") {
         if (!this.pipeline.clients.isConfigured("deepseek")) {
+          try {
+            const fallback = buildDeterministicFallback(pipelineMetadata, "deepseek-unavailable");
+            if (fallback) return fallback;
+          } catch (fallbackError) {
+            throw new Error(`${err.message}; fallback determinÃ­stico: ${fallbackError.message}`);
+          }
           throw new Error(`Rascunho bloqueado após o pipeline: ${err.message}`);
         }
 
@@ -674,6 +721,27 @@ export class AIProvider {
           };
         } catch {
           // Mantém o erro original do gate para diagnóstico e fail-closed.
+        }
+        if (researchData?.grounding?.fallback === "curated-official-offline-cache-v1"
+            && String(process.env.AI_DETERMINISTIC_CURATED_FALLBACK || "true").toLowerCase() !== "false") {
+          try {
+            const deterministic = buildDeterministicGroundedArticle({
+              topic: descricaoCurta,
+              researchData,
+              contentType,
+              today,
+            });
+            return {
+              ...parseGroundedResponse(JSON.stringify(deterministic)),
+              pipelineMetadata: {
+                ...pipelineMetadata,
+                finalRepairUsed: true,
+                deterministicFullArticleFallbackUsed: true,
+              },
+            };
+          } catch (deterministicError) {
+            validationError = new Error(`${validationError.message}; fallback determinístico: ${deterministicError.message}`);
+          }
         }
         throw new Error(`Rascunho bloqueado apÃ³s ${maximumRepairRounds} reparos: ${validationError.message}`);
       }

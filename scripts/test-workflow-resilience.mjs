@@ -20,6 +20,7 @@ assert.match(publication, /permissions:[\s\S]*actions: write/);
 assert.equal((publication.match(/gh workflow run deploy\.yml/g) || []).length, 1);
 assert.match(publication, /if: \$\{\{ steps\.publication\.outputs\.status == 'published' \}\}[\s\S]*gh workflow run deploy\.yml/);
 assert.match(publication, /Garantir artigo aprovado para hoje antes da promo\u00e7\u00e3o[\s\S]*campaign:replenish[\s\S]*required-date/);
+assert.match(publication, /CAMPAIGN_CURATED_OFFLINE_FALLBACK: "true"[\s\S]*AI_DETERMINISTIC_CURATED_FALLBACK: "true"/);
 
 const editorial = read("cron-post.yml");
 assert.equal((editorial.match(/npm run catalog:revalidate/g) || []).length, 2);
@@ -31,12 +32,14 @@ assert.match(editorial, /Persistir candidato revisado para retomar finaliza\u00e
 assert.match(editorial, /\(steps\.automation\.outcome == 'success' \|\| steps\.automation_retry\.outcome == 'success'\) && steps\.finalization\.outcome == 'failure'/);
 assert.match(editorial, /id: finalization_retry[\s\S]*campaign:replenish[\s\S]*target-buffer=1/);
 assert.match(editorial, /steps\.finalization\.outcome == 'success' \|\| steps\.finalization_retry\.outcome == 'success'/);
+assert.equal((editorial.match(/AI_DETERMINISTIC_CURATED_FALLBACK: "true"/g) || []).length, 3);
 
 const replenisher = read("replenish-buffer.yml");
 assert.match(replenisher, /cron: "15 2,8,14,20 \* \* \*"/);
 assert.match(replenisher, /campaign:replenish[\s\S]*target-buffer=.*max-attempts=.*allow-partial/);
 assert.match(replenisher, /CAMPAIGN_RESEARCH_MAX_ATTEMPTS: "2"/);
 assert.match(replenisher, /CAMPAIGN_CURATED_OFFLINE_FALLBACK: "true"/);
+assert.match(replenisher, /CAMPAIGN_CURATED_OFFLINE_FALLBACK: "true"[\s\S]*AI_DETERMINISTIC_CURATED_FALLBACK: "true"/);
 assert.match(replenisher, /group: thebiker-editorial-write/);
 
 assert.match(read("deploy.yml"), /Run publication gates[\s\S]*npm run validate:ci/);
