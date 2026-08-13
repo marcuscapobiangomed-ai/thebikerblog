@@ -7,6 +7,7 @@ import { buildProductKnowledgeRecord } from "./src/knowledge/product-knowledge.j
 import { extractPortfolioBikeUrls, productFromJsonLd } from "../scripts/discover-thebiker-catalog.js";
 import { assertResearchGrounding, researchGroundingErrors } from "./src/validation/research-grounding.js";
 import { articleResearchGroundingErrors } from "./src/validation/article-research-grounding.js";
+import { buildRepairPrompt } from "./src/editorial-prompt.js";
 
 const validArticle = {
   title: "Comparativo de bikes endurance e race em 2026",
@@ -213,6 +214,20 @@ assert.deepEqual(articleResearchGroundingErrors({
     sources: [{ id: "src-contran", url: "https://www.gov.br/transportes/resolucao-996.pdf" }],
   },
 }), []);
+const groundedRepairPrompt = buildRepairPrompt({
+  topic: "Bicicletas elétricas",
+  rawText: '{"sections":[]}',
+  validationError: "alegações numéricas ausentes: 90rpm",
+  contentType: "guia-tecnico",
+  template: { label: "Guia técnico" },
+  today: "2026-08-13",
+  researchData: {
+    confirmed_facts: [{ fact: "A propulsão auxiliar é limitada a 32 km/h.", source_ids: ["src-gov"] }],
+    sources: [{ id: "src-gov", url: "https://www.gov.br/transportes/resolucao.pdf" }],
+  },
+});
+assert.match(groundedRepairPrompt, /32 km\/h/);
+assert.match(groundedRepairPrompt, /remova a frase quando não houver fato confirmado equivalente/);
 
 const productKnowledgeResearch = {
   slug: "scott-addict-50-2026",

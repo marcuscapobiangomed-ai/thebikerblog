@@ -214,7 +214,7 @@ export function buildUserPrompt({ topic, researchData, contentType, template, to
   ].join("\n");
 }
 
-export function buildRepairPrompt({ topic, rawText, validationError, contentType, template, today }) {
+export function buildRepairPrompt({ topic, rawText, validationError, contentType, template, today, researchData = null }) {
   const minimumWords = {
     review: 1800,
     comparativo: 2000,
@@ -243,12 +243,16 @@ export function buildRepairPrompt({ topic, rawText, validationError, contentType
     "Resposta original:",
     rawText,
     "",
+    "Pesquisa confirmada que limita os claims do artigo:",
+    researchData ? prettyJson(researchData) : "Não fornecida.",
+    "",
     "Regras:",
     `- entregue ao menos ${repairTargetWords} palavras reais no corpo para superar com margem o gate de ${minimumWords};`,
     "- para ampliar, aprofunde método, critérios de decisão e limitações já sustentados; não repita parágrafos nem crie fatos;",
     "- mantenha apenas informações verificáveis;",
     "- não acrescente números com unidade ausentes dos fatos confirmados da resposta original;",
     "- preserve a fonte governamental de qualquer alegação legal brasileira e remova a alegação se essa fonte não existir;",
+    "- corrija integralmente cada claim enumerado no erro de integridade; remova a frase quando não houver fato confirmado equivalente;",
     "- preserve o máximo possível do conteúdo útil já fornecido;",
     "- corrija campos faltantes ou inválidos;",
     "- substitua qualquer intertítulo genérico por um intertítulo específico ao assunto e preserve a informação da seção;",
