@@ -768,7 +768,7 @@
       "summary": "Compare critérios técnicos que as competições de ciclocross aplicam à bike, e saiba como orientar a escolha de pneus e geometria para prova.",
       "category": "competicoes",
       "freshness": "evergreen",
-      "status": "scheduled",
+      "status": "blocked",
       "productIds": [
         "cambio-traseiro-shimano-grx-11v"
       ],
@@ -778,62 +778,17 @@
         "relationship": "component-example",
         "rationale": "O câmbio Shimano GRX real exemplifica a transmissão para terreno misto citada no artigo, preservando a marca promovida."
       },
-      "postPath": "_posts/drafts/2026-08-19-ciclocross-regulamento-preparacao.md",
-      "imageManifestPath": "assets/img/posts/ciclocross-regulamento-preparacao/image-manifest.json",
-      "imageStatus": "approved",
-      "imageAssetIds": [
-        "thebiker-cambio-traseiro-shimano-grx-11v-f0c0a6abf1"
-      ],
-      "imageValidatedAt": "2026-08-11T18:08:05.051Z",
+      "imageAssetIds": [],
       "attempts": 1,
       "lastAttemptAt": "2026-08-09T13:52:49.906Z",
-      "aiReview": {
-        "score": 85,
-        "finalScore": 95,
-        "finalBlockers": 0,
-        "premiumEditUsed": true,
-        "providers": {
-          "factSheet": "deepseek",
-          "draft": "gemini",
-          "critique": "deepseek",
-          "final": "deepseek",
-          "finalAudit": "deepseek",
-          "finalRepair": "deepseek"
-        },
-        "generatedAt": "2026-08-09T13:52:49.906Z",
-        "contentHash": "sha256:cbcb76216609cd34ec43907689fb771d6c7671f17c947edbe976e3b340ab1303"
+      "failure": {
+        "code": "RESEARCH_INSUFFICIENT",
+        "retryable": false,
+        "stage": "grounding-audit",
+        "message": "Pesquisa bloqueada por integridade de fontes: fatos referenciam fontes ausentes da ficha",
+        "recordedAt": "2026-08-13T15:00:00.000Z"
       },
-      "editorialReceipt": {
-        "schemaVersion": 1,
-        "policyVersion": "thebiker-editorial-2026-08-v2",
-        "origin": "deterministic-transform",
-        "reviewedContentHash": "sha256:cbcb76216609cd34ec43907689fb771d6c7671f17c947edbe976e3b340ab1303",
-        "scheduledContentHash": "sha256:2c38b145d015dac2ce60552ff9e80946bfc4f88e16b8a336771f6b531d899369",
-        "researchHash": "sha256:3d6616b4ab31e0782abf9b3524a693b9b68af25e67fe06bd7a58487eb575b53c",
-        "sourceHash": null,
-        "finalScore": 95,
-        "finalBlockers": 0,
-        "issuedAt": "2026-08-11T18:08:05.051Z"
-      },
-      "visualDecision": {
-        "schemaVersion": 1,
-        "policyVersion": "thebiker-visual-autonomy-v1",
-        "inputHash": "sha256:1b3bf05ece46860b4508924706906dbbd16d9c4a359b4d17fd2fffe18cb59584",
-        "mode": "real-context",
-        "productId": "cambio-traseiro-shimano-grx-11v",
-        "score": 100,
-        "hardGates": {
-          "semanticMatch": true,
-          "realAsset": true,
-          "explicitProduct": true,
-          "officialSource": true,
-          "approvedRights": true,
-          "publishableResolution": true,
-          "uniqueAsset": true
-        },
-        "blockers": [],
-        "issuedAt": "2026-08-11T18:15:18.955Z"
-      }
+      "blockReason": "[RESEARCH_INSUFFICIENT] Pesquisa bloqueada por integridade de fontes: fatos referenciam fontes ausentes da ficha"
     },
     {
       "day": 13,
@@ -1069,7 +1024,7 @@
       "summary": "Criar resposta técnica original para ciclista intermediário ou avançado, com método e limitações declarados. Sinal observado: 394 visualizações globais do vídeo; 127 por dia; encontrado em 1 busca(s) configurada(s) para o Brasil.",
       "category": "engenharia",
       "freshness": "event-driven",
-      "status": "scheduled",
+      "status": "blocked",
       "productIds": [
         "bicicleta-eletrica-oggi-big-wheel-8-0-2025"
       ],
@@ -1079,63 +1034,17 @@
         "relationship": "category-example",
         "rationale": "Fotografia real do catálogo TheBiker selecionada deterministicamente como exemplo visual da categoria técnica abordada."
       },
-      "postPath": "_posts/drafts/2026-08-23-youtube-bicicletas-eletricas-arquitetura-autonomia-limites-e-criterios-t.md",
-      "imageAssetIds": [
-        "thebiker-bicicleta-eletrica-oggi-big-wheel-8-0-2025-b87711d99d"
-      ],
+      "imageAssetIds": [],
       "attempts": 2,
       "lastAttemptAt": "2026-08-13T14:51:06.631Z",
-      "aiReview": {
-        "score": 72,
-        "finalScore": 95,
-        "finalBlockers": 0,
-        "premiumEditUsed": true,
-        "providers": {
-          "factSheet": "deepseek",
-          "draft": "gemini",
-          "critique": "deepseek",
-          "final": "deepseek",
-          "finalAudit": "deepseek",
-          "finalRepair": "deepseek"
-        },
-        "generatedAt": "2026-08-13T14:51:06.631Z",
-        "contentHash": "sha256:bbeb244fcf8f18eba205efbaaa2aa1c8d1383f98b9be75a08404eb468a90e74f",
-        "sourceHash": "ce0fc9419850760ca1b061479043071de9b6e494829ac696140deb418e183950"
+      "failure": {
+        "code": "RESEARCH_INSUFFICIENT",
+        "retryable": false,
+        "stage": "grounding-audit",
+        "message": "Pesquisa bloqueada por integridade de fontes: fatos referenciam fontes inexistentes",
+        "recordedAt": "2026-08-13T15:00:00.000Z"
       },
-      "visualDecision": {
-        "schemaVersion": 1,
-        "policyVersion": "thebiker-visual-autonomy-v1",
-        "inputHash": "sha256:678100e2c236e41d31943cce8598515f5026cb919de61f4ff564a1b18b4537af",
-        "mode": "real-context",
-        "productId": "bicicleta-eletrica-oggi-big-wheel-8-0-2025",
-        "score": 100,
-        "hardGates": {
-          "semanticMatch": true,
-          "realAsset": true,
-          "explicitProduct": true,
-          "officialSource": true,
-          "approvedRights": true,
-          "publishableResolution": true,
-          "uniqueAsset": true
-        },
-        "blockers": [],
-        "issuedAt": "2026-08-13T14:52:54.309Z"
-      },
-      "editorialReceipt": {
-        "schemaVersion": 1,
-        "policyVersion": "thebiker-editorial-2026-08-v2",
-        "origin": "pipeline",
-        "reviewedContentHash": "sha256:bbeb244fcf8f18eba205efbaaa2aa1c8d1383f98b9be75a08404eb468a90e74f",
-        "scheduledContentHash": "sha256:f357f617c5ec1758a473f0251f04f9c9c98e74b488351c645837fb935eb53b9e",
-        "researchHash": "sha256:7e19be5e05b0462652a39a1817a989943f4f403ade3cf46ff0412e39a35aa2ef",
-        "sourceHash": "ce0fc9419850760ca1b061479043071de9b6e494829ac696140deb418e183950",
-        "finalScore": 95,
-        "finalBlockers": 0,
-        "issuedAt": "2026-08-13T14:52:54.309Z"
-      },
-      "imageManifestPath": "assets/img/posts/youtube-bicicletas-eletricas-arquitetura-autonomia-limites-e-criterios-t/image-manifest.json",
-      "imageStatus": "approved",
-      "imageValidatedAt": "2026-08-13T14:52:54.309Z"
+      "blockReason": "[RESEARCH_INSUFFICIENT] Pesquisa bloqueada por integridade de fontes: fatos referenciam fontes inexistentes"
     },
     {
       "day": 17,

@@ -8,6 +8,7 @@ import { hashEditorialText } from './validation/editorial-receipt.js'
 import { classifyEditorialFailure } from './validation/editorial-failures.js'
 import { RaceProgramSchema, selectRaceEventsForEditorialItem, validateRaceEditorialStructure } from './automation/race-program.js'
 import { linkTheBikerProducts, loadTheBikerLinkData } from './editorial/product-linker.js'
+import { assertResearchGrounding } from './validation/research-grounding.js'
 
 const defaultRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..')
 
@@ -79,6 +80,7 @@ export async function runCampaignProducer({ root = defaultRoot, env = process.en
     item.status = 'researching'
     await persist(root, campaign)
     const research = await researcher.research({ item, internalEvidence: knowledge.evidence, raceEvents, today })
+    assertResearchGrounding(research, { requireFactReferences: true })
     if (item.race) {
       if (!Array.isArray(research.sources) || research.sources.length === 0) throw new Error('Pesquisa de corrida sem fontes oficiais rastreáveis')
       item.race.sourceStatus = 'verified'
