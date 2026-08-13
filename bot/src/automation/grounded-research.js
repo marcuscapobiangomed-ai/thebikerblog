@@ -309,7 +309,20 @@ export class GroundedResearcher {
       try {
         research = extractJson(text)
       } catch (error) {
-        if (!raceCoverage) {
+        if (this.env.GEMINI_API_KEY) {
+          try {
+            const gemini = await fetchGeminiGrounded(this.fetch, prompt, this.env)
+            research = gemini.research
+            groundingProvider = 'gemini-google-search'
+            groundingModel = gemini.model
+            groundingQueries = gemini.queries
+          } catch (geminiError) {
+            if (!raceCoverage) {
+              return internalResearch({ item, internalEvidence, today, contentType, reason: `Groq retornou JSON inválido; ${geminiError.message}`, raceCoverage })
+            }
+            throw geminiError
+          }
+        } else if (!raceCoverage) {
           return internalResearch({
             item,
             internalEvidence,
@@ -318,8 +331,7 @@ export class GroundedResearcher {
             reason: `Groq retornou JSON inválido: ${error.message}`,
             raceCoverage,
           })
-        }
-        throw error
+        } else throw error
       }
     }
     research.sources = (research.sources || []).filter((source) => source.url && allowedSource(source.url, raceCoverage))
