@@ -779,9 +779,12 @@
         "rationale": "O câmbio Shimano GRX real exemplifica a transmissão para terreno misto citada no artigo, preservando a marca promovida."
       },
       "postPath": "_posts/drafts/2026-08-19-ciclocross-regulamento-preparacao.md",
+      "imageManifestPath": "assets/img/posts/ciclocross-regulamento-preparacao/image-manifest.json",
+      "imageStatus": "approved",
       "imageAssetIds": [
         "thebiker-cambio-traseiro-shimano-grx-11v-f0c0a6abf1"
       ],
+      "imageValidatedAt": "2026-08-13T15:54:28.537Z",
       "attempts": 5,
       "lastAttemptAt": "2026-08-13T15:52:35.991Z",
       "aiReview": {
@@ -801,6 +804,18 @@
         "contentHash": "sha256:724844fc3c4d0cc442dbf1dc0640412562d0b03e0958684c8c11bd03de9a8477",
         "sourceHash": "cc3c4e0738e09fc1ef6fbf0fd39976c45d35c8bae60789ad7f76dfe489ee3c1b"
       },
+      "editorialReceipt": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-editorial-2026-08-v2",
+        "origin": "pipeline",
+        "reviewedContentHash": "sha256:724844fc3c4d0cc442dbf1dc0640412562d0b03e0958684c8c11bd03de9a8477",
+        "scheduledContentHash": "sha256:6f491e380a15ff9c113b87616a5266a9addc998118260efbd9579dbb2ee9584e",
+        "researchHash": "sha256:b4645240c50909c2379e0ca20d672f9b5dee179d2b7b68f392d06e5976962a5b",
+        "sourceHash": "cc3c4e0738e09fc1ef6fbf0fd39976c45d35c8bae60789ad7f76dfe489ee3c1b",
+        "finalScore": 92,
+        "finalBlockers": 0,
+        "issuedAt": "2026-08-13T15:54:28.537Z"
+      },
       "visualDecision": {
         "schemaVersion": 1,
         "policyVersion": "thebiker-visual-autonomy-v1",
@@ -819,22 +834,7 @@
         },
         "blockers": [],
         "issuedAt": "2026-08-13T15:54:28.537Z"
-      },
-      "editorialReceipt": {
-        "schemaVersion": 1,
-        "policyVersion": "thebiker-editorial-2026-08-v2",
-        "origin": "pipeline",
-        "reviewedContentHash": "sha256:724844fc3c4d0cc442dbf1dc0640412562d0b03e0958684c8c11bd03de9a8477",
-        "scheduledContentHash": "sha256:6f491e380a15ff9c113b87616a5266a9addc998118260efbd9579dbb2ee9584e",
-        "researchHash": "sha256:b4645240c50909c2379e0ca20d672f9b5dee179d2b7b68f392d06e5976962a5b",
-        "sourceHash": "cc3c4e0738e09fc1ef6fbf0fd39976c45d35c8bae60789ad7f76dfe489ee3c1b",
-        "finalScore": 92,
-        "finalBlockers": 0,
-        "issuedAt": "2026-08-13T15:54:28.537Z"
-      },
-      "imageManifestPath": "assets/img/posts/ciclocross-regulamento-preparacao/image-manifest.json",
-      "imageStatus": "approved",
-      "imageValidatedAt": "2026-08-13T15:54:28.537Z"
+      }
     },
     {
       "day": 13,
@@ -1080,17 +1080,35 @@
         "relationship": "category-example",
         "rationale": "Fotografia real do catálogo TheBiker selecionada deterministicamente como exemplo visual da categoria técnica abordada."
       },
+      "postPath": "_posts/drafts/2026-08-23-youtube-bicicletas-eletricas-arquitetura-autonomia-limites-e-criterios-t.md",
       "imageAssetIds": [],
-      "blockReason": "[RESEARCH_INSUFFICIENT] Pesquisa bloqueada por integridade de fontes: fatos referenciam fontes inexistentes",
-      "failure": {
-        "code": "RESEARCH_INSUFFICIENT",
-        "retryable": false,
-        "stage": "grounding-audit",
-        "message": "Pesquisa bloqueada por integridade de fontes: fatos referenciam fontes inexistentes",
-        "recordedAt": "2026-08-13T15:00:00.000Z"
+      "attempts": 3,
+      "lastAttemptAt": "2026-08-13T15:57:18.260Z",
+      "aiReview": {
+        "score": 72,
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "premiumEditUsed": true,
+        "providers": {
+          "factSheet": "deepseek",
+          "draft": "gemini",
+          "critique": "deepseek",
+          "final": "deepseek",
+          "finalAudit": "deepseek",
+          "finalRepair": "deepseek"
+        },
+        "generatedAt": "2026-08-13T15:57:18.260Z",
+        "contentHash": "sha256:e43634e436254b8cb873d04063389ffbc0fdd4b8f718ee259d48478c4e5d039a",
+        "sourceHash": "582b17d8d834e21779d9aad321447c322e0124ba91202969c2d7cb385d99c4c4"
       },
-      "attempts": 2,
-      "lastAttemptAt": "2026-08-13T14:51:06.631Z"
+      "failure": {
+        "code": "IMAGE_NOT_PUBLISHABLE",
+        "retryable": false,
+        "stage": "finalization",
+        "message": "Nenhuma fotografia real semanticamente compatível com as marcas promovidas (shimano) para youtube-bicicletas-eletricas-arquitetura-autonomia-limites-e-criterios-t",
+        "recordedAt": "2026-08-13T15:59:05.073Z"
+      },
+      "blockReason": "Validação final: [IMAGE_NOT_PUBLISHABLE] Nenhuma fotografia real semanticamente compatível com as marcas promovidas (shimano) para youtube-bicicletas-eletricas-arquitetura-autonomia-limites-e-criterios-t"
     },
     {
       "day": 17,
