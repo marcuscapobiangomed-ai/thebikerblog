@@ -62,6 +62,20 @@ const policyRetried = recoverBlockedCampaign(policyAlias, { now: new Date('2026-
 assert.equal(policyRetried.result.status, 'retry-policy-normalization')
 assert.equal(policyRetried.campaign.items.find((item) => item.id === aliasBlocked.id).status, 'planned')
 
+const nearMiss = structuredClone(campaignFixture)
+for (const item of nearMiss.items) if (item.status === 'blocked') { item.status = 'planned'; delete item.blockReason; delete item.failure }
+const shortItem = nearMiss.items.find((item) => item.id === conceptualPolicyId) || nearMiss.items.find((item) => item.status === 'planned')
+shortItem.status = 'blocked'
+shortItem.attempts = 2
+shortItem.failure = { code: 'VALIDATION_FAILED', retryable: false, stage: 'production', message: 'Gates editoriais não atendidos: extensão insuficiente: 1532 palavras; mínimo 1600', recordedAt: '2026-08-13T12:05:24.534Z' }
+shortItem.blockReason = `[VALIDATION_FAILED] ${shortItem.failure.message}`
+const expandedRetry = recoverBlockedCampaign(nearMiss, { now: new Date('2026-08-13T13:00:00Z') })
+assert.equal(expandedRetry.result.status, 'retry-editorial-expansion')
+assert.equal(expandedRetry.campaign.items.find((item) => item.id === shortItem.id).status, 'planned')
+shortItem.attempts = 3
+const cappedRetry = recoverBlockedCampaign(nearMiss, { now: new Date('2026-08-13T13:00:00Z') })
+assert.notEqual(cappedRetry.result.status, 'retry-editorial-expansion')
+
 const invalidFinalization = structuredClone(finalization)
 const invalidDraft = invalidFinalization.items.find((item) => item.id === finalizable.id)
 invalidDraft.status = 'blocked'
