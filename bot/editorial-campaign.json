@@ -36,6 +36,7 @@
         "finalScore": 92,
         "finalBlockers": 0,
         "premiumEditUsed": true,
+        "evidenceBriefUsed": false,
         "providers": {
           "factSheet": "deepseek",
           "draft": "deepseek",
@@ -95,6 +96,7 @@
         "finalScore": 92,
         "finalBlockers": 0,
         "premiumEditUsed": true,
+        "evidenceBriefUsed": false,
         "providers": {
           "factSheet": "deepseek",
           "draft": "deepseek",
@@ -154,6 +156,7 @@
         "finalScore": 92,
         "finalBlockers": 0,
         "premiumEditUsed": true,
+        "evidenceBriefUsed": false,
         "providers": {
           "factSheet": "deepseek",
           "draft": "deepseek",
@@ -213,6 +216,7 @@
         "finalScore": 95,
         "finalBlockers": 0,
         "premiumEditUsed": true,
+        "evidenceBriefUsed": false,
         "providers": {
           "factSheet": "deepseek",
           "draft": "deepseek",
@@ -272,6 +276,7 @@
         "finalScore": 92,
         "finalBlockers": 0,
         "premiumEditUsed": true,
+        "evidenceBriefUsed": false,
         "providers": {
           "factSheet": "deepseek",
           "draft": "deepseek",
@@ -334,69 +339,30 @@
         "productId": "bicicleta-scott-spark-rc-world-cup-20271"
       },
       "postPath": "_posts/drafts/2026-08-13-spark-rc-team-expert-world-cup.md",
-      "imageAssetIds": [
-        "thebiker-bicicleta-scott-spark-rc-world-cup-20271-078d5ce90f"
-      ],
-      "attempts": 2,
-      "lastAttemptAt": "2026-08-13T18:38:19.075Z",
-      "blockReason": "[RESEARCH_INSUFFICIENT] Auditoria independente detectou relações causais sem evidência e ressalvas repetidas como enchimento; artefato impedido de publicar.",
-      "failure": {
-        "code": "RESEARCH_INSUFFICIENT",
-        "retryable": false,
-        "stage": "post-run-grounding-audit",
-        "message": "Auditoria independente detectou relações causais sem evidência e ressalvas repetidas como enchimento; artefato impedido de publicar.",
-        "recordedAt": "2026-08-13T18:45:00.000Z"
-      },
+      "imageAssetIds": [],
+      "attempts": 3,
+      "lastAttemptAt": "2026-08-13T19:04:29.744Z",
       "aiReview": {
-        "score": 85,
-        "finalScore": 95,
-        "finalBlockers": 0,
-        "premiumEditUsed": true,
-        "providers": {
-          "factSheet": "deepseek",
-          "draft": "gemini",
-          "critique": "deepseek",
-          "final": "deepseek",
-          "finalAudit": "deepseek"
-        },
-        "generatedAt": "2026-08-13T18:38:19.075Z",
-        "contentHash": "sha256:6bb4700ce56409acf5ce83dd82b5ac8ca21f0c3ee88f732ee792e8f66a90835c",
-        "sourceHash": "80804878aa18b7d035cced68887d38c28837dd6edc1f983be2d6b35375deca3a"
-      },
-      "visualDecision": {
-        "schemaVersion": 1,
-        "policyVersion": "thebiker-visual-autonomy-v1",
-        "inputHash": "sha256:15fefe1241882aa16014b677f2e8297ccce728f1f943d0e3a594611ce889c0ac",
-        "mode": "exact-product",
-        "productId": "bicicleta-scott-spark-rc-world-cup-20271",
         "score": 100,
-        "hardGates": {
-          "semanticMatch": true,
-          "realAsset": true,
-          "explicitProduct": true,
-          "officialSource": true,
-          "approvedRights": true,
-          "publishableResolution": true,
-          "uniqueAsset": true
-        },
-        "blockers": [],
-        "issuedAt": "2026-08-13T18:40:51.996Z"
-      },
-      "editorialReceipt": {
-        "schemaVersion": 1,
-        "policyVersion": "thebiker-editorial-2026-08-v2",
-        "origin": "pipeline",
-        "reviewedContentHash": "sha256:6bb4700ce56409acf5ce83dd82b5ac8ca21f0c3ee88f732ee792e8f66a90835c",
-        "scheduledContentHash": "sha256:d69c060c06269bb7f7e83e4dbf8b663b363485f2cec7973223f6d04e8950fc68",
-        "researchHash": "sha256:19d1b486d0dfe8c16d8d88983dd61bbfb9a2083a2d24d335f1f3f81afed3440f",
-        "sourceHash": "80804878aa18b7d035cced68887d38c28837dd6edc1f983be2d6b35375deca3a",
-        "finalScore": 95,
+        "finalScore": 100,
         "finalBlockers": 0,
-        "issuedAt": "2026-08-13T18:40:51.996Z"
+        "premiumEditUsed": false,
+        "evidenceBriefUsed": true,
+        "fallbackReason": "Rascunho bloqueado apÃ³s 2 reparos: Artigo bloqueado por integridade de claims: inferencias tecnicas ausentes dos fatos confirmados: ja o hmx, ao priorizar fibras de modulo mais alto, reduz a massa total do quadro e aumenta a rigidez torcional, mas exige um processo de laminacao mais preciso para evitar concentracoes de tensao. | na pratica, isso significa que o quadro da world cup pode ser construido com paredes mais finas em areas de baixa solicitacao, enquanto o hmf das versoes expert e team mantem uma margem de seguranca maior para impactos laterais e uso em condicoes adversas. | a spark rc expert posiciona-se como uma escolha robusta par",
+        "providers": {
+          "fallback": "deterministic-evidence-brief-v1"
+        },
+        "generatedAt": "2026-08-13T19:04:29.744Z",
+        "contentHash": "sha256:6f13a0030272a15d203e4cb0623b48971d5f94b7356fbc61d20e22755ec32293"
       },
-      "imageManifestPath": "assets/img/posts/spark-rc-team-expert-world-cup/image-manifest.json",
-      "imageStatus": "blocked",
-      "imageValidatedAt": "2026-08-13T18:40:51.996Z"
+      "failure": {
+        "code": "IMAGE_NOT_PUBLISHABLE",
+        "retryable": false,
+        "stage": "finalization",
+        "message": "Imagem incompatível com o artigo: marca da imagem (Scott) não corresponde à marca promovida (fox)",
+        "recordedAt": "2026-08-13T19:06:37.368Z"
+      },
+      "blockReason": "Validação final: [IMAGE_NOT_PUBLISHABLE] Imagem incompatível com o artigo: marca da imagem (Scott) não corresponde à marca promovida (fox)"
     },
     {
       "day": 7,
