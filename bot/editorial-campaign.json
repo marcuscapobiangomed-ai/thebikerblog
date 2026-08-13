@@ -1004,9 +1004,12 @@
         "rationale": "Fotografia real do catálogo TheBiker usada apenas como exemplo visual da categoria técnica abordada."
       },
       "postPath": "_posts/drafts/2026-08-22-reserva-pressao-pneus-terreno.md",
+      "imageManifestPath": "assets/img/posts/reserva-pressao-pneus-terreno/image-manifest.json",
+      "imageStatus": "approved",
       "imageAssetIds": [
         "thebiker-pneu-schwalbe-racing-ray-29-x-2-25-super-race-tlr-addix-a1357c2808"
       ],
+      "imageValidatedAt": "2026-08-13T12:32:29.112Z",
       "attempts": 4,
       "lastAttemptAt": "2026-08-13T12:30:25.342Z",
       "aiReview": {
@@ -1026,6 +1029,18 @@
         "contentHash": "sha256:de6ae7ad5acc3e5ade54b7aa5c9c5f1b2e244a1a45bdcd661051371a8868ddc8",
         "sourceHash": "de636fc998fed25604268cfc118bf4464bbf561fc602dc631ec494b4935f8d30"
       },
+      "editorialReceipt": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-editorial-2026-08-v2",
+        "origin": "pipeline",
+        "reviewedContentHash": "sha256:de6ae7ad5acc3e5ade54b7aa5c9c5f1b2e244a1a45bdcd661051371a8868ddc8",
+        "scheduledContentHash": "sha256:7503ffb7245207c4546320ba13c658957c25e31f82622ac795117ec52101847d",
+        "researchHash": "sha256:d772b0936875c68758f03c9c1e06612db528fa47d08db5a43c0e557525b2231d",
+        "sourceHash": "de636fc998fed25604268cfc118bf4464bbf561fc602dc631ec494b4935f8d30",
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "issuedAt": "2026-08-13T12:32:29.112Z"
+      },
       "visualDecision": {
         "schemaVersion": 1,
         "policyVersion": "thebiker-visual-autonomy-v1",
@@ -1044,22 +1059,7 @@
         },
         "blockers": [],
         "issuedAt": "2026-08-13T12:32:29.112Z"
-      },
-      "editorialReceipt": {
-        "schemaVersion": 1,
-        "policyVersion": "thebiker-editorial-2026-08-v2",
-        "origin": "pipeline",
-        "reviewedContentHash": "sha256:de6ae7ad5acc3e5ade54b7aa5c9c5f1b2e244a1a45bdcd661051371a8868ddc8",
-        "scheduledContentHash": "sha256:7503ffb7245207c4546320ba13c658957c25e31f82622ac795117ec52101847d",
-        "researchHash": "sha256:d772b0936875c68758f03c9c1e06612db528fa47d08db5a43c0e557525b2231d",
-        "sourceHash": "de636fc998fed25604268cfc118bf4464bbf561fc602dc631ec494b4935f8d30",
-        "finalScore": 95,
-        "finalBlockers": 0,
-        "issuedAt": "2026-08-13T12:32:29.112Z"
-      },
-      "imageManifestPath": "assets/img/posts/reserva-pressao-pneus-terreno/image-manifest.json",
-      "imageStatus": "approved",
-      "imageValidatedAt": "2026-08-13T12:32:29.112Z"
+      }
     },
     {
       "day": 16,
@@ -1069,13 +1069,40 @@
       "summary": "Criar resposta técnica original para ciclista intermediário ou avançado, com método e limitações declarados. Sinal observado: 394 visualizações globais do vídeo; 127 por dia; encontrado em 1 busca(s) configurada(s) para o Brasil.",
       "category": "engenharia",
       "freshness": "event-driven",
-      "status": "planned",
+      "status": "blocked",
       "productIds": [],
       "heroImage": {
         "mode": "conceptual"
       },
+      "postPath": "_posts/drafts/2026-08-23-youtube-bicicletas-eletricas-arquitetura-autonomia-limites-e-criterios-t.md",
       "imageAssetIds": [],
-      "attempts": 0
+      "attempts": 1,
+      "lastAttemptAt": "2026-08-13T14:24:34.237Z",
+      "aiReview": {
+        "score": 85,
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "premiumEditUsed": true,
+        "providers": {
+          "factSheet": "deepseek",
+          "draft": "gemini",
+          "critique": "deepseek",
+          "final": "deepseek",
+          "finalAudit": "deepseek",
+          "finalRepair": "deepseek"
+        },
+        "generatedAt": "2026-08-13T14:24:34.237Z",
+        "contentHash": "sha256:888510b9f885e93e07a9f36ca385023e11167a8a95be68a7ff650d3d5306e1fe",
+        "sourceHash": "c9a182610b857c5d92a540c1db6b18ff57f4021c43b933a6d8f46a1ba0447af9"
+      },
+      "failure": {
+        "code": "IMAGE_NOT_PUBLISHABLE",
+        "retryable": false,
+        "stage": "finalization",
+        "message": "Politica visual conceptual: agendamento exige fotografia real explicitamente vinculada",
+        "recordedAt": "2026-08-13T14:26:16.026Z"
+      },
+      "blockReason": "Validação final: [IMAGE_NOT_PUBLISHABLE] Politica visual conceptual: agendamento exige fotografia real explicitamente vinculada"
     },
     {
       "day": 17,
