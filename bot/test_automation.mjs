@@ -14,7 +14,7 @@ import { publishScheduled, selectScheduledPublication } from "./src/publish_sche
 import { buildRepairPrompt } from "./src/editorial-prompt.js";
 import { produceCampaignVisual } from "./src/campaign_finalize.js";
 import { markdownPublicationErrors, neutralizeMarkdownPolicyPhrases } from "./src/validation/markdown-publication-gates.js";
-import { scheduledDraftErrors } from "./src/validation/validate-scheduled-publications.js";
+import { orphanedCampaignDraftErrors, scheduledDraftErrors } from "./src/validation/validate-scheduled-publications.js";
 import { assertScheduledReceipt, hashEditorialText } from "./src/validation/editorial-receipt.js";
 
 const neutralCategoryExample = normalizeCategoryExamplePromotion(`---
@@ -97,6 +97,11 @@ assert.equal(selectReadyItem(queue, new Date("2026-08-04T12:00:00Z")).id, "ready
 assert.equal(selectReadyItem({ items: [] }), null);
 const campaign = CampaignSchema.parse(JSON.parse(await fs.readFile(new URL('./editorial-campaign.json', import.meta.url), 'utf8')));
 assert.equal(campaign.items.length, 30);
+assert.deepEqual(orphanedCampaignDraftErrors({
+  campaign,
+  drafts: [{ path: '_posts/drafts/orfao.md', slug: 'pauta-orfao' }, { path: '_posts/drafts/legado.md', slug: 'legado' }],
+  researchSlugs: new Set(['pauta-orfao']),
+}), ['pauta-orfao: rascunho de campanha órfão, sem referência no estado editorial']);
 const conceptualComparison = structuredClone(campaign);
 conceptualComparison.items[0] = {
   ...conceptualComparison.items[0],

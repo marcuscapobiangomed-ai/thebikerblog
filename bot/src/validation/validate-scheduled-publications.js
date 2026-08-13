@@ -26,6 +26,13 @@ export function scheduledDraftErrors(content) {
   return [...errors, ...markdownPublicationErrors(content)];
 }
 
+export function orphanedCampaignDraftErrors({ campaign, drafts, researchSlugs }) {
+  const referencedDrafts = new Set(campaign.items.map((item) => item.postPath).filter(Boolean));
+  return drafts
+    .filter((draft) => draft.slug && researchSlugs.has(draft.slug) && !referencedDrafts.has(draft.path))
+    .map((draft) => `${draft.slug}: rascunho de campanha órfão, sem referência no estado editorial`);
+}
+
 export async function validateScheduledPublications({ root = defaultRoot } = {}) {
   const campaignPath = path.join(root, "bot/editorial-campaign.json");
   const campaign = CampaignSchema.parse(JSON.parse(await fs.readFile(campaignPath, "utf8")));
@@ -96,6 +103,22 @@ export async function validateScheduledPublications({ root = defaultRoot } = {})
       }
     } catch (error) {
       errors.push(`${item.id}: manifesto de imagem inválido (${error.message})`);
+    }
+  }
+
+  const referencedDrafts = new Set(campaign.items.map((item) => item.postPath).filter(Boolean));
+  for (const entry of await fs.readdir(draftsRoot, { withFileTypes: true }).catch((error) => error.code === "ENOENT" ? [] : Promise.reject(error))) {
+    if (!entry.isFile() || !entry.name.endsWith(".md")) continue;
+    const relativeDraft = `_posts/drafts/${entry.name}`;
+    if (referencedDrafts.has(relativeDraft)) continue;
+    const draftContent = await fs.readFile(path.join(draftsRoot, entry.name), "utf8");
+    const slug = String(matter(draftContent).data.slug || "").trim();
+    if (!slug) continue;
+    try {
+      await fs.access(path.join(root, "content/research/campaign", `${slug}.json`));
+      errors.push(`${slug}: rascunho de campanha órfão, sem referência no estado editorial`);
+    } catch (error) {
+      if (error.code !== "ENOENT") throw error;
     }
   }
 
