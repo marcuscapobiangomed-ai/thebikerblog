@@ -17,6 +17,8 @@ assert.ok(item, "a pauta usada no teste precisa existir na campanha");
 const result = buildEvidenceBrief({ item, research, today: "2026-08-13", env: {} });
 const parsed = matter(result.content);
 assert.equal(parsed.data.editorial_format, "evidence-brief-v1");
+assert.equal(parsed.data.brand, "Scott", "a marca da bicicleta deve prevalecer sobre marcas de componentes");
+assert.deepEqual(parsed.data.promoted_brands, ["Scott"]);
 assert.equal(parsed.data.published, false);
 assert.equal(parsed.data.editorial_status, "draft");
 assert.equal(result.pipelineMetadata.evidenceBriefUsed, true);
