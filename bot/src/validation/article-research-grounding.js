@@ -3,7 +3,7 @@ const LEGAL_CONTEXT = /\bno brasil\b[^.!?\n]*(?:limit|permit|proib|dispens|obrig
 const NUMBER = "(?:\\d+(?:[.,]\\d+)?|um|uma|dois|duas|tres|quatro|cinco|seis|sete|oito|nove|dez|onze|doze)";
 const UNIT = "(?:km\\/h|wh\\/km|km|wh|kw|w|nm|kg|rpm|mm|cm|mes(?:es)?|dia(?:s)?|ano(?:s)?|%)";
 const NUMERIC_CLAIM = new RegExp(`\\b${NUMBER}\\s*${UNIT}\\b`, "giu");
-const TECHNICAL_INFERENCE = /\b(?:rigidez(?:\s+torsional)?|mais\s+leve|reduz(?:ir|indo|em|\s+o|\s+a)|aumenta|melhora|evita|garante|ideal|adequad[ao]s?|vantagem|eficiencia|transferencia\s+de\s+potencia|manutencao\s+simples|confiabilidade|precisao|modulacao|progressiv[ao]|resposta\s+mais\s+suave|sob\s+carga|estabilidade|agilidade|inspira\s+confianca|tolerancia\s+a\s+impactos|nivel\s+profissional|topo\s+da\s+hierarquia|escolha\s+(?:ideal|versatil)|deve\s+optar|mais\s+adequad[ao])\b/iu;
+const TECHNICAL_INFERENCE = /\b(?:rigidez(?:\s+torsional)?|mais\s+leve|reduz(?:ir|indo|em|\s+o|\s+a)|aumenta|melhora|evita|garante|ideal|adequad[ao]s?|vantagem|eficiencia|transferencia\s+de\s+potencia|manutencao|confiabilidade|precisao|modulacao|progressiv[ao]|resposta\s+mais\s+suave|sob\s+carga|estabilidade|agilidade|inspira\s+confianca|tolerancia\s+a\s+impactos|nivel\s+profissional|topo\s+da\s+hierarquia|escolha\s+(?:ideal|versatil|logica)|deve\s+optar|mais\s+adequad[ao]|influencia|contribui|significa|sensibilidade|fluidez|simplifica|permite|prioriza|suporta.+seguranca|disponibilidade|tendencia|evolucao|comportamento\s+dinamico|fator\s+critico|maior\s+resistencia|refinamento\s+mecanico|distribuicao\s+de\s+peso|gestao\s+de\s+energia|intervalos\s+de\s+manutencao)\b/iu;
 
 function normalize(value) {
   return String(value || "")
@@ -57,6 +57,15 @@ function repeatedParagraphs(value) {
   return [...new Set(repeated)];
 }
 
+function repeatedSentences(value) {
+  const counts = new Map();
+  for (const sentence of proseSentences(value)) {
+    if (sentence.length < 80 || /^thebiker |^scott pagina/u.test(sentence)) continue;
+    counts.set(sentence, (counts.get(sentence) || 0) + 1);
+  }
+  return [...counts.entries()].filter(([, count]) => count >= 3).map(([sentence]) => sentence.slice(0, 100));
+}
+
 export function articleResearchGroundingErrors({ content, research }) {
   const errors = [];
   const article = normalize(content);
@@ -76,6 +85,8 @@ export function articleResearchGroundingErrors({ content, research }) {
 
   const duplicates = repeatedParagraphs(content);
   if (duplicates.length > 0) errors.push(`paragrafos repetidos ou expandidos por copia: ${duplicates.slice(0, 2).join(" | ")}`);
+  const sentenceDuplicates = repeatedSentences(content);
+  if (sentenceDuplicates.length > 0) errors.push(`sentencas repetidas como enchimento: ${sentenceDuplicates.slice(0, 2).join(" | ")}`);
 
   const sources = Array.isArray(research?.sources) ? research.sources : [];
   const governmentSourceIds = new Set(sources.filter(governmentSource).map((source) => source.id));
