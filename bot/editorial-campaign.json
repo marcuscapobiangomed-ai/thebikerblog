@@ -1081,16 +1081,16 @@
         "rationale": "Fotografia real do catálogo TheBiker selecionada deterministicamente como exemplo visual da categoria técnica abordada."
       },
       "imageAssetIds": [],
-      "attempts": 2,
-      "lastAttemptAt": "2026-08-13T15:57:18.260Z",
+      "attempts": 3,
+      "lastAttemptAt": "2026-08-13T16:25:13.614Z",
       "failure": {
         "code": "RESEARCH_INSUFFICIENT",
         "retryable": false,
-        "stage": "claim-grounding-audit",
-        "message": "Artigo bloqueado por integridade de claims: alegações legais sem fonte governamental e números ausentes dos fatos confirmados",
-        "recordedAt": "2026-08-13T16:15:00.000Z"
+        "stage": "production",
+        "message": "Artigo bloqueado por integridade de claims: alegações numéricas ausentes dos fatos confirmados: 90rpm, 500km, 1000km, seismeses, cincoanos; alegações legais numéricas sem suporte governamental: 60km, 120km, 400wh, 630wh",
+        "recordedAt": "2026-08-13T16:25:13.614Z"
       },
-      "blockReason": "[RESEARCH_INSUFFICIENT] Artigo bloqueado por integridade de claims: alegações legais sem fonte governamental e números ausentes dos fatos confirmados"
+      "blockReason": "[RESEARCH_INSUFFICIENT] Artigo bloqueado por integridade de claims: alegações numéricas ausentes dos fatos confirmados: 90rpm, 500km, 1000km, seismeses, cincoanos; alegações legais numéricas sem suporte governamental: 60km, 120km, 400wh, 630wh"
     },
     {
       "day": 17,
