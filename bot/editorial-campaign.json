@@ -465,31 +465,48 @@
     {
       "day": 8,
       "publishDate": "2026-08-15",
-      "id": "reserva-addict-50-rc20-comparativo",
-      "title": "Scott Addict 50 e Addict RC 20: duas propostas de estrada confrontadas pelas fichas oficiais",
-      "summary": "Análise comparativa restrita a geometria, materiais e montagens comprovados nas fontes atuais dos dois modelos.",
-      "category": "comparativo",
+      "id": "reserva-spark-rc-expert-ficha",
+      "title": "Scott Spark RC Expert 2027: leitura técnica da montagem confirmada pelas fontes atuais",
+      "summary": "Ficha editorial do modelo limitada aos materiais, suspensão, transmissão e limites explicitamente recuperados das fontes.",
+      "category": "review",
       "freshness": "revalidate-24h",
       "status": "blocked",
       "productIds": [
-        "bicicleta-scott-addict-50-2026-pre-venda-1bxzy",
-        "bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9"
+        "bicicleta-scott-spark-rc-expert-2027"
       ],
       "heroImage": {
         "mode": "exact-product",
-        "productId": "bicicleta-scott-addict-50-2026-pre-venda-1bxzy"
+        "productId": "bicicleta-scott-spark-rc-expert-2027"
       },
+      "postPath": "_posts/drafts/2026-08-15-reserva-spark-rc-expert-ficha.md",
       "imageAssetIds": [],
       "attempts": 1,
-      "lastAttemptAt": "2026-08-13T23:00:54.384Z",
+      "lastAttemptAt": "2026-08-13T23:27:35.504Z",
+      "aiReview": {
+        "score": 85,
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "premiumEditUsed": true,
+        "providers": {
+          "factSheet": "deepseek",
+          "draft": "gemini",
+          "critique": "deepseek",
+          "final": "deepseek",
+          "finalAudit": "deepseek"
+        },
+        "generatedAt": "2026-08-13T23:27:35.504Z",
+        "contentHash": "sha256:5a3059d86a24243dc9352b6b73453e083023baa623ae672585ed42ddbc381282",
+        "sourceHash": "f10a5adab76326ba1c73b14dce4fc85a95919c8bfe292393a56da272a2aadfc5",
+        "deterministicFullArticleFallbackUsed": true
+      },
       "failure": {
         "code": "RESEARCH_INSUFFICIENT",
         "retryable": false,
-        "stage": "production",
-        "message": "Rascunho bloqueado apÃ³s 2 reparos: Artigo bloqueado por integridade de claims: alegações numéricas ausentes dos fatos confirmados: 34mm, 27.2mm, 30mm, 40mm; inferencias tecnicas ausentes dos fatos confirmados: a distincao entre os layups hmf e hmx nao se limita a nomenclatura comercial: enquanto o hmf (high modulus fiber) utiliza uma combinacao de fibras de carbono de modulo intermediario para equilibrar rigidez e custo, o hmx (high modulus xtreme) incorpora fibras de modulo mais elevado em areas criticas do quadro, permitindo reduzir a espessura das paredes sem sacrificar a resistencia torsional. | essa diferenca de engenharia se traduz em ",
-        "recordedAt": "2026-08-13T23:00:54.384Z"
+        "stage": "finalization",
+        "message": "Pesquisa bloqueada por evidência não recuperada: pesquisa sem contrato de evidência recuperada retrieved-excerpt-v1",
+        "recordedAt": "2026-08-13T23:27:35.504Z"
       },
-      "blockReason": "[RESEARCH_INSUFFICIENT] Rascunho bloqueado apÃ³s 2 reparos: Artigo bloqueado por integridade de claims: alegações numéricas ausentes dos fatos confirmados: 34mm, 27.2mm, 30mm, 40mm; inferencias tecnicas ausentes dos fatos confirmados: a distincao entre os layups hmf e hmx nao se limita a nomenclatura comercial: enquanto o hmf (high modulus fiber) utiliza uma combinacao de fibras de carbono de modulo intermediario para equilibrar rigidez e custo, o hmx (high modulus xtreme) incorpora fibras de modulo mais elevado em areas criticas do quadro, permitindo reduzir a espessura das paredes sem sacrificar a resistencia torsional. | essa diferenca de engenharia se traduz em "
+      "blockReason": "Validação final: [RESEARCH_INSUFFICIENT] Pesquisa bloqueada por evidência não recuperada: pesquisa sem contrato de evidência recuperada retrieved-excerpt-v1"
     },
     {
       "day": 9,
@@ -987,19 +1004,6 @@
       "productIds": []
     },
     {
-      "id": "reserva-spark-rc-expert-ficha",
-      "title": "Scott Spark RC Expert 2027: leitura técnica da montagem confirmada pelas fontes atuais",
-      "summary": "Ficha editorial do modelo limitada aos materiais, suspensão, transmissão e limites explicitamente recuperados das fontes.",
-      "category": "review",
-      "productIds": [
-        "bicicleta-scott-spark-rc-expert-2027"
-      ],
-      "heroImage": {
-        "mode": "exact-product",
-        "productId": "bicicleta-scott-spark-rc-expert-2027"
-      }
-    },
-    {
       "id": "reserva-scale-940-ficha",
       "title": "Scott Scale 940: o que a ficha atual confirma sobre quadro, suspensão e transmissão",
       "summary": "Leitura de produto sem extrapolações, baseada somente nos campos que continuam presentes nas páginas recuperadas.",
@@ -1010,6 +1014,20 @@
       "heroImage": {
         "mode": "exact-product",
         "productId": "bicicleta-scott-scale-940-black"
+      }
+    },
+    {
+      "id": "reserva-addict-50-rc20-comparativo",
+      "title": "Scott Addict 50 e Addict RC 20: duas propostas de estrada confrontadas pelas fichas oficiais",
+      "summary": "Análise comparativa restrita a geometria, materiais e montagens comprovados nas fontes atuais dos dois modelos.",
+      "category": "comparativo",
+      "productIds": [
+        "bicicleta-scott-addict-50-2026-pre-venda-1bxzy",
+        "bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9"
+      ],
+      "heroImage": {
+        "mode": "exact-product",
+        "productId": "bicicleta-scott-addict-50-2026-pre-venda-1bxzy"
       }
     }
   ]

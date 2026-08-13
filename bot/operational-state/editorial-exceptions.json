@@ -1067,6 +1067,44 @@
         "title": "Scott Addict 50 e Addict RC 20: duas propostas de estrada confrontadas pelas fichas oficiais"
       },
       "reason": "[RESEARCH_INSUFFICIENT] Pesquisa bloqueada por integridade de fontes: pesquisa concluída sem fontes rastreáveis; pesquisa sem fatos explicitamente fundamentados"
+    },
+    {
+      "recordedAt": "2026-08-13T23:27:35.504Z",
+      "campaignId": "thebiker-rolling-2026-08-08",
+      "replacedItem": {
+        "day": 8,
+        "publishDate": "2026-08-15",
+        "id": "reserva-addict-50-rc20-comparativo",
+        "title": "Scott Addict 50 e Addict RC 20: duas propostas de estrada confrontadas pelas fichas oficiais",
+        "summary": "Análise comparativa restrita a geometria, materiais e montagens comprovados nas fontes atuais dos dois modelos.",
+        "category": "comparativo",
+        "freshness": "revalidate-24h",
+        "status": "blocked",
+        "productIds": [
+          "bicicleta-scott-addict-50-2026-pre-venda-1bxzy",
+          "bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9"
+        ],
+        "heroImage": {
+          "mode": "exact-product",
+          "productId": "bicicleta-scott-addict-50-2026-pre-venda-1bxzy"
+        },
+        "imageAssetIds": [],
+        "blockReason": "[RESEARCH_INSUFFICIENT] Rascunho bloqueado apÃ³s 2 reparos: Artigo bloqueado por integridade de claims: alegações numéricas ausentes dos fatos confirmados: 34mm, 27.2mm, 30mm, 40mm; inferencias tecnicas ausentes dos fatos confirmados: a distincao entre os layups hmf e hmx nao se limita a nomenclatura comercial: enquanto o hmf (high modulus fiber) utiliza uma combinacao de fibras de carbono de modulo intermediario para equilibrar rigidez e custo, o hmx (high modulus xtreme) incorpora fibras de modulo mais elevado em areas criticas do quadro, permitindo reduzir a espessura das paredes sem sacrificar a resistencia torsional. | essa diferenca de engenharia se traduz em ",
+        "failure": {
+          "code": "RESEARCH_INSUFFICIENT",
+          "retryable": false,
+          "stage": "production",
+          "message": "Rascunho bloqueado apÃ³s 2 reparos: Artigo bloqueado por integridade de claims: alegações numéricas ausentes dos fatos confirmados: 34mm, 27.2mm, 30mm, 40mm; inferencias tecnicas ausentes dos fatos confirmados: a distincao entre os layups hmf e hmx nao se limita a nomenclatura comercial: enquanto o hmf (high modulus fiber) utiliza uma combinacao de fibras de carbono de modulo intermediario para equilibrar rigidez e custo, o hmx (high modulus xtreme) incorpora fibras de modulo mais elevado em areas criticas do quadro, permitindo reduzir a espessura das paredes sem sacrificar a resistencia torsional. | essa diferenca de engenharia se traduz em ",
+          "recordedAt": "2026-08-13T23:00:54.384Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-13T23:00:54.384Z"
+      },
+      "replacement": {
+        "id": "reserva-spark-rc-expert-ficha",
+        "title": "Scott Spark RC Expert 2027: leitura técnica da montagem confirmada pelas fontes atuais"
+      },
+      "reason": "[RESEARCH_INSUFFICIENT] Rascunho bloqueado apÃ³s 2 reparos: Artigo bloqueado por integridade de claims: alegações numéricas ausentes dos fatos confirmados: 34mm, 27.2mm, 30mm, 40mm; inferencias tecnicas ausentes dos fatos confirmados: a distincao entre os layups hmf e hmx nao se limita a nomenclatura comercial: enquanto o hmf (high modulus fiber) utiliza uma combinacao de fibras de carbono de modulo intermediario para equilibrar rigidez e custo, o hmx (high modulus xtreme) incorpora fibras de modulo mais elevado em areas criticas do quadro, permitindo reduzir a espessura das paredes sem sacrificar a resistencia torsional. | essa diferenca de engenharia se traduz em "
     }
   ]
 }
