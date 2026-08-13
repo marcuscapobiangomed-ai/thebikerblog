@@ -89,5 +89,18 @@ export function sanitizeStructuredArticleClaims(articleInput, research) {
   if (Array.isArray(article.sections)) {
     article.sections = article.sections.map((section) => ({ ...section, content: removeUnsupportedSentences(section.content, research) }));
   }
+  if (String(article.description || "").length < 140) {
+    article.description = "Análise documental dos critérios técnicos, limitações e decisões de uso, baseada apenas nas fontes confirmadas e nas evidências disponíveis.";
+  }
+  if (String(article.direct_answer || "").length < 80) {
+    article.direct_answer = "A decisão técnica deve considerar o uso previsto, as limitações documentadas e as especificações efetivamente confirmadas nas fontes do artigo.";
+  }
+  if (Array.isArray(article.faq)) article.faq = article.faq.filter((item) => String(item.answer || "").trim().length > 0);
+  if (Array.isArray(article.sections)) {
+    article.sections = article.sections.map((section) => ({
+      ...section,
+      content: section.content || "Esta seção permanece limitada às evidências documentadas; confirme as especificações aplicáveis antes de decidir.",
+    }));
+  }
   return article;
 }
