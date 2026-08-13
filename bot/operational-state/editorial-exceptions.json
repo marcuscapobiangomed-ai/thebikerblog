@@ -567,6 +567,45 @@
         "title": "Pressão de pneus por terreno: como testar sem transformar sensação em dado"
       },
       "reason": "[VALIDATION_FAILED] Gates editoriais não atendidos: extensão insuficiente: 1225 palavras; mínimo 1600"
+    },
+    {
+      "recordedAt": "2026-08-13T16:40:51.102Z",
+      "campaignId": "thebiker-rolling-2026-08-08",
+      "replacedItem": {
+        "day": 16,
+        "publishDate": "2026-08-23",
+        "id": "youtube-bicicletas-eletricas-arquitetura-autonomia-limites-e-criterios-t",
+        "title": "Bicicletas elétricas: arquitetura, autonomia, limites e critérios técnicos",
+        "summary": "Criar resposta técnica original para ciclista intermediário ou avançado, com método e limitações declarados. Sinal observado: 394 visualizações globais do vídeo; 127 por dia; encontrado em 1 busca(s) configurada(s) para o Brasil.",
+        "category": "engenharia",
+        "freshness": "event-driven",
+        "status": "blocked",
+        "productIds": [
+          "bicicleta-eletrica-oggi-big-wheel-8-0-2025"
+        ],
+        "heroImage": {
+          "mode": "real-context",
+          "productId": "bicicleta-eletrica-oggi-big-wheel-8-0-2025",
+          "relationship": "category-example",
+          "rationale": "Fotografia real do catálogo TheBiker selecionada deterministicamente como exemplo visual da categoria técnica abordada."
+        },
+        "imageAssetIds": [],
+        "blockReason": "[IMAGE_NOT_PUBLISHABLE] Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq retornou JSON inválido: Expected ',' or ']' after array element in JSON at position 2291 (line 43 column 6))",
+        "failure": {
+          "code": "IMAGE_NOT_PUBLISHABLE",
+          "retryable": false,
+          "stage": "production",
+          "message": "Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq retornou JSON inválido: Expected ',' or ']' after array element in JSON at position 2291 (line 43 column 6))",
+          "recordedAt": "2026-08-13T16:34:28.693Z"
+        },
+        "attempts": 4,
+        "lastAttemptAt": "2026-08-13T16:34:28.693Z"
+      },
+      "replacement": {
+        "id": "reserva-cabos-mangueiras-roteamento",
+        "title": "Cabos e mangueiras: roteamento, atrito e sinais de montagem que pedem correção"
+      },
+      "reason": "[IMAGE_NOT_PUBLISHABLE] Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq retornou JSON inválido: Expected ',' or ']' after array element in JSON at position 2291 (line 43 column 6))"
     }
   ]
 }
