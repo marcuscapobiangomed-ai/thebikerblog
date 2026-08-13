@@ -174,6 +174,10 @@ assert.deepEqual(researchGroundingErrors({
   ...groundedEditorialResearch,
   grounding: { ...groundedEditorialResearch.grounding, sourceCount: 2 },
 }), ["grounding.sourceCount=2 diverge de sources.length=1"]);
+assert.deepEqual(researchGroundingErrors({
+  ...groundedEditorialResearch,
+  confirmed_facts: [],
+}, { requireFactReferences: true }), ["pesquisa sem fatos explicitamente fundamentados"]);
 
 const productKnowledgeResearch = {
   slug: "scott-addict-50-2026",

@@ -1,5 +1,5 @@
 import { validateResearch } from '../schemas/research.schema.js'
-import { assertResearchGrounding } from '../validation/research-grounding.js'
+import { assertResearchGrounding, pruneUnsupportedFacts } from '../validation/research-grounding.js'
 
 const PRODUCT_DOMAINS = ['thebikershop.com.br', 'scott-sports.com', 'syncros.com', 'bike.shimano.com', 'si.shimano.com', 'sram.com', 'rockshox.com', 'ridefox.com', 'maxxis.com', 'oggi.com.br']
 const SPORT_DOMAINS = ['uci.org', 'cbc.esp.br', 'ucimtbworldseries.com', 'olympics.com']
@@ -320,6 +320,7 @@ export class GroundedResearcher {
       }
     }
     research.sources = (research.sources || []).filter((source) => source.url && allowedSource(source.url, raceCoverage))
+    research = pruneUnsupportedFacts(research)
     if (research.sources.length === 0) throw new Error('Pesquisa bloqueada: nenhuma fonte oficial permitida foi retornada')
     research.slug = item.id
     research.title = item.title
