@@ -28,10 +28,14 @@ assert.equal(resumed.campaign.items.find((item) => item.id === finalizable.id).s
 
 const conceptualFinalization = structuredClone(campaignFixture)
 for (const item of conceptualFinalization.items) if (item.status === 'blocked') { item.status = 'planned'; delete item.blockReason; delete item.failure }
-const conceptual = conceptualFinalization.items.find((item) => item.id === finalizable.id)
+const conceptualPolicyId = 'reserva-pressao-pneus-terreno'
+conceptualFinalization.reserves = conceptualFinalization.reserves.filter((item) => item.id !== conceptualPolicyId)
+const conceptual = conceptualFinalization.items.find((item) => item.id === conceptualPolicyId)
+  || conceptualFinalization.items.find((item) => item.id === finalizable.id)
 assert.ok(conceptual, 'A campanha precisa conter uma pauta produzida para testar o reparo visual')
-conceptualFinalization.reserves = conceptualFinalization.reserves.filter((item) => item.id !== 'reserva-pressao-pneus-terreno')
-conceptual.id = 'reserva-pressao-pneus-terreno'
+conceptual.id = conceptualPolicyId
+conceptual.postPath = finalizable.postPath
+conceptual.aiReview = structuredClone(finalizable.aiReview)
 conceptual.status = 'blocked'
 conceptual.heroImage = { mode: 'conceptual' }
 conceptual.blockReason = 'Validação final: Politica visual conceptual: agendamento exige fotografia real explicitamente vinculada'
@@ -46,6 +50,17 @@ const repairedVisualItem = visualRecovered.campaign.items.find((item) => item.id
 assert.equal(repairedVisualItem.status, 'validation')
 assert.equal(repairedVisualItem.heroImage.mode, 'real-context')
 assert.deepEqual(repairedVisualItem.productIds, [repairedVisualItem.heroImage.productId])
+
+const policyAlias = structuredClone(campaignFixture)
+for (const item of policyAlias.items) if (item.status === 'blocked') { item.status = 'planned'; delete item.blockReason; delete item.failure }
+const aliasBlocked = policyAlias.items.find((item) => item.id === conceptualPolicyId) || policyAlias.items.find((item) => item.status === 'planned')
+assert.ok(aliasBlocked, 'A campanha precisa conter uma pauta para testar normalização de marca')
+aliasBlocked.status = 'blocked'
+aliasBlocked.failure = { code: 'VALIDATION_FAILED', retryable: false, stage: 'production', message: 'Política TheBiker: promoção bloqueada para marca fora do portfólio: TheBiker Shop.', recordedAt: '2026-08-13T10:12:09.040Z' }
+aliasBlocked.blockReason = `[VALIDATION_FAILED] ${aliasBlocked.failure.message}`
+const policyRetried = recoverBlockedCampaign(policyAlias, { now: new Date('2026-08-13T12:00:00Z') })
+assert.equal(policyRetried.result.status, 'retry-policy-normalization')
+assert.equal(policyRetried.campaign.items.find((item) => item.id === aliasBlocked.id).status, 'planned')
 
 const invalidFinalization = structuredClone(finalization)
 const invalidDraft = invalidFinalization.items.find((item) => item.id === finalizable.id)

@@ -1,15 +1,65 @@
 {
-  "id": "scott-addict-rc-pro-di2-2026-thebiker-br", "type": "bike", "status": "pre-release",
-  "brand": "Scott", "model": "Addict RC Pro Di2", "modelYear": 2026, "market": "BR", "category": "road-race",
-  "officialUrl": "https://www.scott-sports.com/", "storeProductUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-addict-rc-pro-di2-2026-pre-venda/",
+  "id": "scott-addict-rc-pro-di2-2026-thebiker-br",
+  "type": "bike",
+  "status": "pre-release",
+  "brand": "Scott",
+  "model": "Addict RC Pro Di2",
+  "modelYear": 2026,
+  "market": "BR",
+  "category": "road-race",
+  "officialUrl": "https://www.scott-sports.com/",
+  "storeProductUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-addict-rc-pro-di2-2026-pre-venda/",
   "image": "/assets/img/products/comparator/scott-addict-rc-pro-di2-2026.webp",
-  "portfolioStatus": "verified", "portfolioVerifiedAt": "2026-08-05", "theBikerPrice": 94990,
-  "frame": { "material": "carbon", "technology": "HMX", "internalCableRouting": true },
-  "fork": { "material": "carbon", "model": "Addict RC HMX Flatmount Disc" },
-  "drivetrain": { "brand": "Shimano", "groupset": "Dura-Ace Di2", "speeds": 12, "shifting": "electronic", "chainrings": [52, 36], "cassette": { "smallest": 11, "largest": 34 } },
-  "brakes": { "type": "hydraulic-disc", "brand": "Shimano", "model": "BR-R9270" },
-  "wheels": { "brand": "Syncros", "model": "Capital Carbon 1.0S 40 mm", "material": "carbon" },
-  "tires": { "brand": "Schwalbe", "model": "PRO ONE TL-Easy", "widthMm": 30, "tubelessReady": true },
-  "declaredWeight": { "valueKg": 6.7, "size": "não informado", "sourceId": "thebiker-scott-addict-rc-pro-2026" },
-  "testedByTheBikerBlog": false, "createdAt": "2026-08-04", "updatedAt": "2026-08-05", "reviewStatus": "verified", "sourceId": "thebiker-scott-addict-rc-pro-2026"
+  "portfolioStatus": "verified",
+  "portfolioVerifiedAt": "2026-08-13",
+  "theBikerPrice": 94990,
+  "frame": {
+    "material": "carbon",
+    "technology": "HMX",
+    "internalCableRouting": true
+  },
+  "fork": {
+    "material": "carbon",
+    "model": "Addict RC HMX Flatmount Disc"
+  },
+  "drivetrain": {
+    "brand": "Shimano",
+    "groupset": "Dura-Ace Di2",
+    "speeds": 12,
+    "shifting": "electronic",
+    "chainrings": [
+      52,
+      36
+    ],
+    "cassette": {
+      "smallest": 11,
+      "largest": 34
+    }
+  },
+  "brakes": {
+    "type": "hydraulic-disc",
+    "brand": "Shimano",
+    "model": "BR-R9270"
+  },
+  "wheels": {
+    "brand": "Syncros",
+    "model": "Capital Carbon 1.0S 40 mm",
+    "material": "carbon"
+  },
+  "tires": {
+    "brand": "Schwalbe",
+    "model": "PRO ONE TL-Easy",
+    "widthMm": 30,
+    "tubelessReady": true
+  },
+  "declaredWeight": {
+    "valueKg": 6.7,
+    "size": "não informado",
+    "sourceId": "thebiker-scott-addict-rc-pro-2026"
+  },
+  "testedByTheBikerBlog": false,
+  "createdAt": "2026-08-04",
+  "updatedAt": "2026-08-13",
+  "reviewStatus": "verified",
+  "sourceId": "thebiker-scott-addict-rc-pro-2026"
 }

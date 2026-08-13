@@ -1,5 +1,6 @@
 import { ProviderClients } from "./provider-clients.js";
 import { AIRuntime, hashPayload } from "./runtime.js";
+import { canonicalPortfolioBrand } from "../portfolio-policy.js";
 
 function extractJson(text) {
   let value = String(text || "").trim();
@@ -24,7 +25,10 @@ export function applyPortfolioEvidence(article, researchData) {
   article.portfolio_evidence_url = evidenceUrl
   article.portfolio_verified_at = verifiedAt
   if (article.editorial_scope !== 'race-coverage') article.editorial_scope = 'portfolio'
-  if (!Array.isArray(article.promoted_brands) || article.promoted_brands.length === 0) article.promoted_brands = ['TheBiker']
+  const promoted = Array.isArray(article.promoted_brands) ? article.promoted_brands : []
+  article.promoted_brands = [...new Set(promoted.map((brand) => canonicalPortfolioBrand(brand) || brand).filter(Boolean))]
+  if (article.promoted_brands.length === 0) article.promoted_brands = ['TheBiker']
+  if (article.brand) article.brand = canonicalPortfolioBrand(article.brand) || article.brand
   return article
 }
 
