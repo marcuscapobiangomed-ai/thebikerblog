@@ -148,7 +148,7 @@ export function recoverBlockedCampaign(campaignInput, {
     delete blocked.failure
     return { campaign: CampaignSchema.parse(campaign), result: { status: 'retry-policy-normalization', itemId: blocked.id, attempts: blocked.attempts || 0 }, exception: null }
   }
-  if (classified.code === 'RESEARCH_INSUFFICIENT' && (blocked.attempts || 0) < 4) {
+  if (classified.code === 'RESEARCH_INSUFFICIENT' && (blocked.attempts || 0) < 5) {
     clearDiscardedDraftState(blocked)
     blocked.status = 'planned'
     delete blocked.blockReason

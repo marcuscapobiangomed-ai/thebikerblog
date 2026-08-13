@@ -293,6 +293,29 @@ const resilientGrounded = await resilientResearcher.research({ item: campaign.it
 assert.equal(resilientResearchCalls, 2);
 assert.equal(resilientGrounded.grounding.provider, 'gemini-google-search');
 assert.deepEqual(resilientGrounded.grounding.queries, ['site:scott-sports.com pressão pneus']);
+let malformedJsonCalls = 0;
+const malformedJsonResearcher = new GroundedResearcher({
+  GROQ_API_KEY: 'test',
+  GEMINI_API_KEY: 'test-gemini',
+  AI_HTTP_RETRY_ATTEMPTS: '1',
+}, async (_url, init) => {
+  malformedJsonCalls += 1;
+  if (init.headers.Authorization) return { ok: true, json: async () => ({ choices: [{ message: { content: '{"confirmed_facts":[' } }] }) };
+  return {
+    ok: true,
+    status: 200,
+    json: async () => ({
+      candidates: [{
+        content: { parts: [{ text: groundedPayload.candidates[0].content.parts[0].text }] },
+        groundingMetadata: { webSearchQueries: ['fallback-after-invalid-json'] },
+      }],
+    }),
+  };
+});
+const malformedJsonGrounded = await malformedJsonResearcher.research({ item: campaign.items[0], internalEvidence: [], today: '2026-08-05' });
+assert.equal(malformedJsonCalls, 2);
+assert.equal(malformedJsonGrounded.grounding.provider, 'gemini-google-search');
+assert.deepEqual(malformedJsonGrounded.grounding.queries, ['fallback-after-invalid-json']);
 const contextLengthDetail = JSON.stringify({ error: { code: 'context_length_exceeded', message: 'Please reduce the length of the messages or completion.' } });
 const contextLengthResearcher = new GroundedResearcher({ GROQ_API_KEY: 'test' }, async () => ({
   ok: false,
