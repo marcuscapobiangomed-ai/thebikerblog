@@ -32,6 +32,17 @@ assert.equal(groundedRetryItem.status, 'planned')
 assert.equal(groundedRetryItem.postPath, undefined)
 assert.equal(groundedRetryItem.aiReview, undefined)
 
+const structuralFailure = structuredClone(campaignFixture)
+for (const item of structuralFailure.items) if (item.status === 'blocked') { item.status = 'planned'; delete item.blockReason; delete item.failure }
+const malformedDraft = structuralFailure.items.find((item) => item.status === 'planned')
+malformedDraft.status = 'blocked'
+malformedDraft.attempts = 3
+malformedDraft.failure = { code: 'VALIDATION_FAILED', retryable: false, stage: 'production', message: 'Rascunho bloqueado após 2 reparos: Artigo inválido: Description precisa ter ao menos 100 caracteres; Mínimo de 2 seções', recordedAt: '2026-08-13T15:32:32.000Z' }
+malformedDraft.blockReason = `[VALIDATION_FAILED] ${malformedDraft.failure.message}`
+const structureRetry = recoverBlockedCampaign(structuralFailure, { now: new Date('2026-08-13T15:35:00Z') })
+assert.equal(structureRetry.result.status, 'retry-editorial-structure')
+assert.equal(structureRetry.campaign.items.find((item) => item.id === malformedDraft.id).status, 'planned')
+
 const finalization = structuredClone(campaignFixture)
 for (const item of finalization.items) if (item.status === 'blocked') { item.status = 'planned'; delete item.blockReason; delete item.failure }
 const finalizable = finalization.items.find((item) => item.status === 'scheduled' && item.postPath && item.aiReview && item.publishDate >= '2026-08-07')

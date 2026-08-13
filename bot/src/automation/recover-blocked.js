@@ -9,6 +9,7 @@ const FINALIZATION = /^Valida(?:ção|cao) final:/i
 const NORMALIZABLE_PORTFOLIO_ALIAS = /promo(?:ção|cao) bloqueada[^\n]*TheBiker Shop/i
 const NEAR_MISS_LENGTH = /extens(?:ão|ao) insuficiente:\s*(\d+) palavras; m(?:í|i)nimo\s*(\d+)/i
 const EXHAUSTED_LEGACY_REPAIR = /Rascunho bloqueado.+\d+ reparos/i
+const STRUCTURAL_REPAIR_FAILURE = /Rascunho bloqueado.+\d+ reparos[\s\S]*(?:Description precisa|M[ií]nimo de 2 se[cç][oõ]es)/i
 const MISSING_DRAFT = /rascunho indisponível/i
 
 const REAL_CONTEXT_BY_RESERVE_ID = Object.freeze({
@@ -156,6 +157,13 @@ export function recoverBlockedCampaign(campaignInput, {
   }
   const lengthMatch = reason.match(NEAR_MISS_LENGTH)
   const legacyRepairFailure = EXHAUSTED_LEGACY_REPAIR.test(reason)
+  if (STRUCTURAL_REPAIR_FAILURE.test(reason) && (blocked.attempts || 0) < 4) {
+    clearDiscardedDraftState(blocked)
+    blocked.status = 'planned'
+    delete blocked.blockReason
+    delete blocked.failure
+    return { campaign: CampaignSchema.parse(campaign), result: { status: 'retry-editorial-structure', itemId: blocked.id, attempts: blocked.attempts || 0 }, exception: null }
+  }
   const lengthRetryRatio = legacyRepairFailure ? 0.8 : 0.9
   const lengthRetryCap = legacyRepairFailure ? 4 : 3
   if (lengthMatch && Number(lengthMatch[1]) / Number(lengthMatch[2]) >= lengthRetryRatio && (blocked.attempts || 0) < lengthRetryCap) {
