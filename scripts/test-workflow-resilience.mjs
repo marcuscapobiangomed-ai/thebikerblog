@@ -51,6 +51,8 @@ assert.match(replenisher, /cron: "15 2,8,14,20 \* \* \*"/,
   "o buffer deve ser recomposto automaticamente em múltiplas janelas");
 assert.match(replenisher, /campaign:replenish[\s\S]*target-buffer=.*max-attempts=.*allow-partial/,
   "a recomposição deve ser limitada, idempotente e permitir avanço parcial sem publicar rascunhos");
+assert.match(replenisher, /CAMPAIGN_RESEARCH_MAX_ATTEMPTS: "2"/,
+  "a recomposição automática deve substituir rapidamente uma pauta sem grounding persistente");
 assert.match(replenisher, /group: thebiker-editorial-write/,
   "a recomposição deve compartilhar o lock com produção e publicação");
 

@@ -64,6 +64,7 @@ export async function replenishCampaignBuffer({
   targetBuffer,
   requiredDate = null,
   maxAttempts = parsePositiveInteger(env.CAMPAIGN_REPLENISH_MAX_ATTEMPTS, 3),
+  maximumResearchAttempts = parsePositiveInteger(env.CAMPAIGN_RESEARCH_MAX_ATTEMPTS, 2),
   producer = runCampaignProducer,
   finalizer = finalizeCampaignItem,
   recoverer = recoverBlockedCampaignFiles,
@@ -83,7 +84,7 @@ export async function replenishCampaignBuffer({
     attemptsMade = attempt;
 
     try {
-      const recovered = await recoverer({ root, now });
+      const recovered = await recoverer({ root, now, maximumResearchAttempts });
       actions.push({ attempt, stage: "recovery", result: recovered?.status || "unknown" });
     } catch (error) {
       lastError = error;
