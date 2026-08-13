@@ -108,6 +108,7 @@ const FaqItemSchema = z.object({
 });
 
 export const ArticleSchema = z.object({
+  editorial_format: z.enum(["full-article-v1", "evidence-brief-v1"]).default("full-article-v1"),
   title: z.string().min(10, "Título precisa ter ao menos 10 caracteres").max(120, "Título muito longo"),
   description: z.string().min(100, "Description precisa ter ao menos 100 caracteres").max(200, "Description muito longa"),
   direct_answer: z.string().min(80, "Resposta direta precisa ter ao menos 80 caracteres").max(420, "Resposta direta muito longa"),

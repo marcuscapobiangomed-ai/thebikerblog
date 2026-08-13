@@ -58,6 +58,7 @@ export function generateMarkdown(article) {
     'author: "Equipe TheBiker"',
     'reviewed_by: ""',
     `content_type: "${escapeYaml(data.content_type)}"`,
+    `editorial_format: "${escapeYaml(data.editorial_format)}"`,
     `audience_segment: "${escapeYaml(data.audience_segment)}"`,
     `audience_intent: "${escapeYaml(data.audience_intent)}"`,
     `experience_level_target: "${escapeYaml(data.experience_level_target)}"`,
