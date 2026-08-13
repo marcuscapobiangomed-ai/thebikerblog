@@ -333,14 +333,14 @@
         "productId": "bicicleta-scott-spark-rc-world-cup-20271"
       },
       "imageAssetIds": [],
-      "attempts": 4,
-      "lastAttemptAt": "2026-08-13T17:59:24.802Z",
+      "attempts": 5,
+      "lastAttemptAt": "2026-08-13T18:01:11.649Z",
       "failure": {
         "code": "RESEARCH_INSUFFICIENT",
         "retryable": false,
         "stage": "production",
         "message": "Pesquisa bloqueada após verificação em Groq e Gemini: Groq: Pesquisa bloqueada por integridade de fontes: pesquisa concluída sem fontes rastreáveis; pesquisa sem fatos explicitamente fundamentados; Gemini: Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat",
-        "recordedAt": "2026-08-13T17:59:24.802Z"
+        "recordedAt": "2026-08-13T18:01:11.649Z"
       },
       "blockReason": "[RESEARCH_INSUFFICIENT] Pesquisa bloqueada após verificação em Groq e Gemini: Groq: Pesquisa bloqueada por integridade de fontes: pesquisa concluída sem fontes rastreáveis; pesquisa sem fatos explicitamente fundamentados; Gemini: Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat"
     },
