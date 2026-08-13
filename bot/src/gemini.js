@@ -374,10 +374,22 @@ export class AIProvider {
       answer: truncateAtWordBoundary(neutralize(this._sanitizeHtml(item.answer || "")), 600),
     }));
 
-    next.sections = normalizeList(next.sections).map((section) => ({
-      heading: neutralize(this._sanitizeHtml(section.heading || "")),
-      content: neutralize(this._sanitizeHtml(section.content || "")),
-    }));
+    next.sections = normalizeList(next.sections).map((section, index) => {
+      const content = neutralize(this._sanitizeHtml(section.content || ""));
+      let heading = neutralize(this._sanitizeHtml(section.heading || "")).trim();
+      if (!heading && content) {
+        const contentLead = content
+          .replace(/^#+\s*/, "")
+          .replace(/[*_`]/g, "")
+          .split(/(?<=[.!?])\s|\n/)[0]
+          .trim();
+        heading = truncateAtWordBoundary(contentLead, 100);
+      }
+      if (!heading) {
+        heading = truncateAtWordBoundary(`Critério técnico ${index + 1} — ${next.title}`, 100);
+      }
+      return { heading, content };
+    });
 
     next.imagePlan = normalizeList(next.imagePlan).map((item) => ({
       position: this._sanitizeHtml(item.position || "hero"),

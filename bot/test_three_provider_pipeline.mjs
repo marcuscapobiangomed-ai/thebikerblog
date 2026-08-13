@@ -208,6 +208,18 @@ const partialRepairResult = await partialRepairProvider.processCase("Pauta com r
 assert.equal(partialRepairResult.pipelineMetadata.finalRepairRounds, 1);
 assert.equal(partialRepairParses, 2);
 
+const blankHeadingProvider = new AIProvider({ pipeline: { runtime, clients: { isConfigured: () => true } } });
+const recoveredHeadings = blankHeadingProvider._sanitizeStructuredArticle({
+  title: "Ciclocross com critérios oficiais",
+  sections: Array.from({ length: 22 }, (_, index) => ({
+    heading: "",
+    content: `O critério técnico ${index + 1} relaciona regulamento, equipamento e decisão de uso sem extrapolar as fontes. Conteúdo complementar.`,
+  })),
+});
+assert.equal(recoveredHeadings.sections.length, 22);
+assert.ok(recoveredHeadings.sections.every((section) => section.heading.length > 0));
+assert.match(recoveredHeadings.sections[0].heading, /critério técnico 1/i);
+
 const additiveArticle = JSON.stringify({
   sections: Array.from({ length: 5 }, (_, index) => ({ heading: `Seção ${index}`, content: `Conteúdo original ${index}.` })),
 });
