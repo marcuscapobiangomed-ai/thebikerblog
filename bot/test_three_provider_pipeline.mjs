@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import assert from "node:assert/strict";
 import { ThreeProviderPipeline, applyPortfolioEvidence } from "./src/ai/three-provider-pipeline.js";
+import { AIProvider } from "./src/gemini.js";
 import { assertEditorialPublicationGates } from "./src/validation/editorial-publication-gates.js";
 
 const calls = [];
@@ -144,6 +145,34 @@ assert.deepEqual(fallbackProviders, [
   { provider: "deepseek", attempts: 2, timeoutMs: 75000 },
   { provider: "gemini", attempts: 2, timeoutMs: 75000 },
 ]);
+
+const previousPipelineMode = process.env.AI_PIPELINE_MODE;
+process.env.AI_PIPELINE_MODE = "three-provider";
+let repairRounds = 0;
+let parseRounds = 0;
+const retryingProvider = new AIProvider({
+  pipeline: {
+    runtime,
+    clients: { isConfigured: () => true },
+    run: async () => ({ content: "initial", metadata: { sourceHash: "repair-test", providers: {} } }),
+    callStep: async ({ step }) => {
+      repairRounds += 1;
+      assert.equal(step, `final-repair-${repairRounds}`);
+      return { content: `repair-${repairRounds}`, provider: "deepseek" };
+    },
+  },
+});
+retryingProvider._parseStructuredResponse = (content) => {
+  parseRounds += 1;
+  if (parseRounds < 3) throw new Error(`Gates editoriais não atendidos: extensão insuficiente na tentativa ${parseRounds}`);
+  return { content, title: "Reparo validado" };
+};
+const retryResult = await retryingProvider.processCase("Pauta de reparo", { content_type: "guia-tecnico", editorialPriority: "P1" });
+assert.equal(repairRounds, 2);
+assert.equal(retryResult.pipelineMetadata.finalRepairRounds, 2);
+assert.equal(retryResult.content, "repair-2");
+if (previousPipelineMode === undefined) delete process.env.AI_PIPELINE_MODE;
+else process.env.AI_PIPELINE_MODE = previousPipelineMode;
 
 let remediationCalls = 0;
 let remediationPrompt = "";
