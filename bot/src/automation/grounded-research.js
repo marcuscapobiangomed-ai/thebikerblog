@@ -407,9 +407,20 @@ export class GroundedResearcher {
             queries: gemini.queries,
           })
         } catch (fallbackError) {
+          if (!raceCoverage) return internalResearch({
+            item,
+            internalEvidence,
+            today,
+            contentType,
+            reason: `Groq sem evidência: ${primaryError.message}; Gemini sem evidência: ${fallbackError.message}`,
+            raceCoverage,
+            fetchImpl: this.sourceFetch,
+            env: this.env,
+          })
           throw new Error(`Pesquisa bloqueada após verificação em Groq e Gemini: Groq: ${primaryError.message}; Gemini: ${fallbackError.message}`)
         }
       }
+      if (!raceCoverage) return internalResearch({ item, internalEvidence, today, contentType, reason: primaryError.message, raceCoverage, fetchImpl: this.sourceFetch, env: this.env })
       throw new Error(`Pesquisa bloqueada após verificação documental: ${primaryError.message}`)
     }
   }

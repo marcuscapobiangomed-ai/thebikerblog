@@ -253,6 +253,29 @@ const evidenceFallback = await evidenceFallbackResearcher.research({ item: campa
 assert.equal(evidenceFallbackCalls, 2);
 assert.equal(evidenceFallback.grounding.provider, 'gemini-google-search');
 assert.deepEqual(evidenceFallback.grounding.queries, ['fallback-evidence']);
+const exhaustedProvidersResearcher = new GroundedResearcher({
+  GROQ_API_KEY: 'test', GEMINI_API_KEY: 'test-gemini', AI_HTTP_RETRY_ATTEMPTS: '1',
+}, async (_url, init) => init.headers.Authorization
+  ? ({ ok: true, json: async () => groqPayload })
+  : ({ ok: false, status: 429, text: async () => 'quota' }), (() => {
+    let sourceCalls = 0;
+    return async (url) => {
+      sourceCalls += 1;
+      if (sourceCalls === 1) return {
+        ok: true, status: 200, url,
+        headers: { get: (name) => name === 'content-type' ? 'text/html' : null },
+        arrayBuffer: async () => new TextEncoder().encode('<html>Página sem o trecho alegado.</html>').buffer,
+      };
+      return verifiedSourceResponse(url);
+    };
+  })());
+const exhaustedProvidersFallback = await exhaustedProvidersResearcher.research({
+  item: campaign.items[0],
+  internalEvidence: [{ id: 'spark', facts: { suspension: '120 mm' }, sources: [{ name: 'Scott', type: 'manufacturer', url: 'https://www.scott-sports.com/global/en/product/test', accessedAt: '2026-08-04' }] }],
+  today: '2026-08-04',
+});
+assert.equal(exhaustedProvidersFallback.grounding.fallback, 'internal-product-knowledge');
+assert.equal(exhaustedProvidersFallback.grounding.evidenceContract, 'retrieved-excerpt-v1');
 const fabricatedSourceResearcher = new GroundedResearcher(
   { GROQ_API_KEY: 'test' },
   async () => ({ ok: true, json: async () => groqPayload }),
@@ -307,11 +330,12 @@ const orphanedSourceResearcher = new GroundedResearcher({ GROQ_API_KEY: 'test' }
   ok: true,
   json: async () => orphanedSourcePayload,
 }), verifiedSourceResponse);
-await assert.rejects(orphanedSourceResearcher.research({
+const orphanedSourceFallback = await orphanedSourceResearcher.research({
   item: campaign.items[0],
   internalEvidence: [{ id: 'spark', facts: { suspension: '120 mm' }, sources: [{ name: 'Scott', type: 'manufacturer', url: 'https://www.scott-sports.com/global/en/product/test', accessedAt: '2026-08-04' }] }],
   today: '2026-08-05',
-}), /sem fatos explicitamente fundamentados|sem fontes rastreáveis/);
+});
+assert.equal(orphanedSourceFallback.grounding.fallback, 'internal-product-knowledge');
 const mixedRacePayload = {
   choices: [{ message: { content: JSON.stringify({
     confirmed_facts: [
