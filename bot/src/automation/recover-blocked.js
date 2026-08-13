@@ -84,7 +84,7 @@ function reserveToItem(reserve, blocked) {
 
 function nextReserve(campaign, blocked) {
   const used = new Set(campaign.items.map((item) => item.id))
-  const available = [...campaign.reserves, ...RECOVERY_RESERVES].filter((item, index, items) => !used.has(item.id) && items.findIndex((candidate) => candidate.id === item.id) === index)
+  const available = [...RECOVERY_RESERVES, ...campaign.reserves].filter((item, index, items) => !used.has(item.id) && items.findIndex((candidate) => candidate.id === item.id) === index)
   if (blocked.race) return available.find((item) => item.race?.track === blocked.race.track) || null
   return available.find((item) => item.category !== 'competicoes' && item.productIds?.length > 0) || null
 }

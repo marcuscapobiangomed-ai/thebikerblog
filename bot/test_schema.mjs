@@ -8,6 +8,8 @@ import { extractPortfolioBikeUrls, productFromJsonLd } from "../scripts/discover
 import { assertResearchGrounding, researchGroundingErrors } from "./src/validation/research-grounding.js";
 import { articleResearchGroundingErrors, sanitizeStructuredArticleClaims } from "./src/validation/article-research-grounding.js";
 import { buildRepairPrompt } from "./src/editorial-prompt.js";
+import { buildDeterministicGroundedArticle } from "./src/automation/deterministic-article.js";
+import { assertEditorialPublicationGates } from "./src/validation/editorial-publication-gates.js";
 
 const validArticle = {
   title: "Comparativo de bikes endurance e race em 2026",
@@ -168,6 +170,39 @@ const groundedEditorialResearch = {
   grounding: { sourceCount: 1, provider: "test-web-search" },
 };
 assert.doesNotThrow(() => assertResearchGrounding(groundedEditorialResearch, { requireFactReferences: true }));
+
+const curatedMaintenanceResearch = {
+  title: "Como limpar a transmissÃ£o depois de chuva e lama",
+  market: "Brasil",
+  confirmed_facts: [
+    { fact: "drivetrainCleaning: use o limpador recomendado pelo fabricante e seque a corrente depois da limpeza." },
+    { fact: "pressureWashing: jatos de alta pressÃ£o podem danificar componentes e vedaÃ§Ãµes." },
+    { fact: "brakeInspection: inspecione pastilhas, rotores, comando e vazamentos antes de voltar a pedalar." },
+    { fact: "wetBraking: a distÃ¢ncia de frenagem aumenta em piso molhado." },
+    { fact: "escalation: procure uma oficina quando houver dano, vazamento ou funcionamento irregular." },
+  ],
+  sources: [
+    { name: "SRAM Support", type: "official-website", url: "https://support.sram.com/hc/en-us/articles/", accessed_at: "2026-08-13" },
+    { name: "Shimano Manuals", type: "official-website", url: "https://si.shimano.com/", accessed_at: "2026-08-13" },
+  ],
+  portfolio_evidence_url: "https://thebikershop.com.br/componentes/",
+  portfolio_verified_at: "2026-08-13",
+  grounding: { fallback: "curated-official-offline-cache-v1" },
+};
+const deterministicArticle = buildDeterministicGroundedArticle({
+  topic: curatedMaintenanceResearch.title,
+  researchData: curatedMaintenanceResearch,
+  contentType: "guia-tecnico",
+  today: "2026-08-13",
+});
+assert.doesNotThrow(() => validateArticle(deterministicArticle));
+assert.doesNotThrow(() => assertEditorialPublicationGates(deterministicArticle, { AI_MIN_ARTICLE_WORDS: "1600" }));
+assert.deepEqual(articleResearchGroundingErrors({
+  content: generateMarkdown(deterministicArticle),
+  research: curatedMaintenanceResearch,
+}), []);
+assert.equal(deterministicArticle.sections.length, 10);
+
 assert.throws(() => assertResearchGrounding({
     ...groundedEditorialResearch,
     confirmed_facts: [{ fact: "Fato órfão.", source_ids: ["src-inexistente"] }],

@@ -259,6 +259,67 @@ additiveProvider._parseStructuredResponse = (content) => {
 const additiveResult = await additiveProvider.processCase("Pauta para expansão", { content_type: "guia-tecnico", editorialPriority: "P1" });
 assert.equal(additiveResult.pipelineMetadata.finalRepairRounds, 1);
 assert.equal(additiveParseRounds, 2);
+
+const previousDeterministicFallback = process.env.AI_DETERMINISTIC_CURATED_FALLBACK;
+process.env.AI_DETERMINISTIC_CURATED_FALLBACK = "true";
+const deterministicFallbackProvider = new AIProvider({
+  pipeline: {
+    runtime,
+    clients: { isConfigured: () => false },
+    run: async () => ({ content: "{}", metadata: { sourceHash: "deterministic-fallback-test", providers: {} } }),
+    callStep: async () => ({ provider: "deepseek", content: "{}" }),
+  },
+});
+const deterministicFallbackResult = await deterministicFallbackProvider.processCase(
+  "Limpeza da transmissÃ£o depois de chuva e lama",
+  {
+    title: "Limpeza da transmissÃ£o depois de chuva e lama",
+    content_type: "guia-tecnico",
+    editorialPriority: "P1",
+    portfolio_evidence_url: "https://thebikershop.com.br/componentes/",
+    portfolio_verified_at: "2026-08-13",
+    confirmed_facts: [
+      { fact: "drivetrainCleaning: use o limpador recomendado pelo fabricante e seque a corrente depois da limpeza." },
+      { fact: "pressureWashing: jatos de alta pressÃ£o podem danificar componentes e vedaÃ§Ãµes." },
+      { fact: "brakeInspection: inspecione pastilhas, rotores, comando e vazamentos antes de voltar a pedalar." },
+      { fact: "wetBraking: a distÃ¢ncia de frenagem aumenta em piso molhado." },
+      { fact: "escalation: procure uma oficina quando houver dano, vazamento ou funcionamento irregular." },
+    ],
+    sources: [
+      { name: "SRAM Support", type: "official-website", url: "https://www.sram.com/en/learn/axs-bike-care-and-maintenance", accessed: "2026-08-13" },
+      { name: "Shimano Manuals", type: "official-website", url: "https://si.shimano.com/", accessed: "2026-08-13" },
+    ],
+    grounding: { fallback: "curated-official-offline-cache-v1" },
+  },
+);
+assert.equal(deterministicFallbackResult.pipelineMetadata.deterministicFullArticleFallbackUsed, true);
+assert.equal(deterministicFallbackResult.pipelineMetadata.deterministicFullArticleFallbackTrigger, "deepseek-unavailable");
+assert.equal(JSON.parse(deterministicFallbackResult.rawJson).sections.length, 10);
+assert.doesNotThrow(() => assertEditorialPublicationGates(JSON.parse(deterministicFallbackResult.rawJson), { AI_MIN_ARTICLE_WORDS: "1600" }));
+const pipelineFailureProvider = new AIProvider({
+  pipeline: {
+    runtime,
+    clients: { isConfigured: () => false },
+    run: async () => { throw new Error("Nenhum provedor configurado"); },
+  },
+});
+const pipelineFailureResult = await pipelineFailureProvider.processCase("Fallback sem provedor", {
+  content_type: "guia-tecnico",
+  portfolio_evidence_url: "https://thebikershop.com.br/componentes/",
+  portfolio_verified_at: "2026-08-13",
+  confirmed_facts: [
+    { fact: "drivetrainCleaning: use o limpador recomendado pelo fabricante e seque a corrente depois da limpeza." },
+    { fact: "pressureWashing: jatos de alta pressÃ£o podem danificar componentes e vedaÃ§Ãµes." },
+    { fact: "brakeInspection: inspecione pastilhas, rotores, comando e vazamentos antes de voltar a pedalar." },
+    { fact: "wetBraking: a distÃ¢ncia de frenagem aumenta em piso molhado." },
+    { fact: "escalation: procure uma oficina quando houver dano, vazamento ou funcionamento irregular." },
+  ],
+  sources: [{ name: "Fonte oficial", type: "official-website", url: "https://www.sram.com/", accessed: "2026-08-13" }],
+  grounding: { fallback: "curated-official-offline-cache-v1" },
+});
+assert.equal(pipelineFailureResult.pipelineMetadata.deterministicFullArticleFallbackTrigger, "pipeline-failure");
+if (previousDeterministicFallback === undefined) delete process.env.AI_DETERMINISTIC_CURATED_FALLBACK;
+else process.env.AI_DETERMINISTIC_CURATED_FALLBACK = previousDeterministicFallback;
 if (previousPipelineMode === undefined) delete process.env.AI_PIPELINE_MODE;
 else process.env.AI_PIPELINE_MODE = previousPipelineMode;
 
