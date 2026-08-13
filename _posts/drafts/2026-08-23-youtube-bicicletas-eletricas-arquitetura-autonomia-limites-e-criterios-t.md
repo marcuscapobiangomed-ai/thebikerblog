@@ -1,12 +1,13 @@
 ---
+image_subject_id: "bicicleta-eletrica-oggi-big-wheel-8-0-2025"
 layout: post
 published: false
 title: "Bicicletas elétricas: arquitetura, autonomia, limites e critérios técnicos"
 slug: "bicicletas-eletricas-arquitetura-autonomia-limites-e-criterios-tecnicos"
-date: 2026-08-13
+date: 2026-08-23
 last_modified_at: 2026-08-13
 author: "Equipe TheBiker"
-reviewed_by: ""
+reviewed_by: "TheBiker AI Editorial Gate"
 content_type: "guia-tecnico"
 audience_segment: "core_technical_cyclists"
 audience_intent: "technical_learning"
@@ -14,7 +15,7 @@ experience_level_target: "intermediate_advanced"
 review_method: "desk-research"
 tested_by_thebikerblog: false
 ai_assisted: true
-brand: "Shimano"
+brand: ""
 product_name: "Sistemas de assistência elétrica (STEPS)"
 model_year: 2026
 market: "Brasil"
@@ -33,24 +34,24 @@ faq:
     answer: "A autonomia é calculada pela divisão da capacidade da bateria (Wh) pelo consumo médio (W). Baterias entre 400 Wh e 600 Wh oferecem, em condições ideais de terreno plano e ciclista de 75 kg, entre 60 km e 120 km de assistência, variando conforme o nível de potência utilizado."
   - question: "Qual o impacto do modo de assistência no consumo energético?"
     answer: "O consumo energético é diretamente proporcional ao nível de assistência. O modo Turbo pode dobrar o consumo de energia em comparação ao modo Eco, reduzindo drasticamente a autonomia prevista da bateria."
-image: "/assets/img/system/covers/guia/hero.webp"
-image_mobile: "/assets/img/system/covers/guia/hero.webp"
-thumbnail: "/assets/img/system/covers/guia/thumb-480.webp"
+image: "/assets/img/posts/youtube-bicicletas-eletricas-arquitetura-autonomia-limites-e-criterios-t/hero-1600.webp"
+image_mobile: "/assets/img/posts/youtube-bicicletas-eletricas-arquitetura-autonomia-limites-e-criterios-t/hero-800.webp"
+thumbnail: "/assets/img/posts/youtube-bicicletas-eletricas-arquitetura-autonomia-limites-e-criterios-t/card-640.webp"
 image_manifest_version: 2
-image_asset_type: "system-fallback"
-image_status: "draft"
-image_alt: "Componentes de sistema de assistência elétrica Shimano STEPS"
-image_caption: "Integração de sistemas de assistência elétrica em quadros de alta performance."
-image_credit: "TheBiker com geração assistida por IA"
-image_license: "Uso editorial interno TheBiker"
+image_asset_type: "official-product-photo"
+image_status: "approved"
+image_alt: "Bicicleta Elétrica Oggi Big Wheel 8.0 2025 em fotografia oficial de TheBiker Shop"
+image_caption: "Bicicleta Elétrica Oggi Big Wheel 8.0 2025, em fotografia oficial de TheBiker Shop."
+image_credit: "TheBiker Shop"
+image_license: "Uso editorial no blog oficial TheBiker"
 affiliate_links: false
 editorial_scope: "portfolio"
-promoted_brands: ["Shimano"]
+promoted_brands: []
 context_only_brands: []
 portfolio_evidence_url: "https://thebikershop.com.br/bikes/"
 portfolio_verified_at: "2026-08-13"
-editorial_status: "draft"
-status: "draft"
+editorial_status: "reviewed"
+status: "scheduled"
 sources:
   - name: "TheBiker Shop – Catálogo de bicicletas elétricas"
     type: "store"
