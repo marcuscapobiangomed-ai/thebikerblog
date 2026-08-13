@@ -20,7 +20,7 @@
     "check:claims": "npm --prefix bot run check:claims",
     "audit:editorial": "npm --prefix bot run audit:editorial",
     "audit:seo": "node scripts/audit-seo.mjs",
-    "test": "npm --prefix bot test && node scripts/test-calculators.mjs && node scripts/test-homepage-recent.mjs && node scripts/test-editorial-intelligence.mjs && node scripts/test-monthly-campaign.mjs && node scripts/test-campaign-recovery.mjs && node scripts/test-editorial-governance.mjs && node scripts/test-audience-strategy.mjs && node scripts/test-primary-navigation.mjs && node scripts/test-race-program.mjs && node scripts/test-race-calendar-sync.mjs && node scripts/test-race-navigation.mjs && node scripts/test-public-catalog.mjs && node scripts/test-workflow-resilience.mjs",
+    "test": "npm --prefix bot test && node scripts/test-calculators.mjs && node scripts/test-homepage-recent.mjs && node scripts/test-editorial-intelligence.mjs && node scripts/test-monthly-campaign.mjs && node scripts/test-campaign-recovery.mjs && node scripts/test-campaign-replenishment.mjs && node scripts/test-editorial-governance.mjs && node scripts/test-audience-strategy.mjs && node scripts/test-primary-navigation.mjs && node scripts/test-race-program.mjs && node scripts/test-race-calendar-sync.mjs && node scripts/test-race-navigation.mjs && node scripts/test-public-catalog.mjs && node scripts/test-workflow-resilience.mjs",
     "test:analytics": "node scripts/test-analytics-tracking.mjs",
     "intelligence:run": "node scripts/run-editorial-intelligence.mjs",
     "build:n8n": "node scripts/build-n8n-workflows.mjs",

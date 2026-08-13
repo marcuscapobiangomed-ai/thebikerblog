@@ -33,6 +33,7 @@
     "media:audit": "node ../scripts/audit-media-catalog.js",
     "campaign:audit-buffer": "node src/audit_campaign_buffer.js",
     "campaign:simulate": "node src/automation/simulate-campaign.js",
+    "campaign:replenish": "node src/automation/replenish-buffer.js",
     "campaign:repair-buffer": "node src/repair_campaign_buffer.js",
     "campaign:renew": "node src/renew_monthly_campaign.js",
     "campaign:recover": "node src/recover_blocked_campaign.js"
