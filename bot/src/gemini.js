@@ -563,7 +563,7 @@ export class AIProvider {
       }
       return parsed;
     };
-    const deterministicFallbackEnabled = researchData?.grounding?.fallback === "curated-official-offline-cache-v1"
+    const deterministicFallbackEnabled = ["curated-official-offline-cache-v1", "campaign-research-offline-cache-v1"].includes(researchData?.grounding?.fallback)
       && String(process.env.AI_DETERMINISTIC_CURATED_FALLBACK || "true").toLowerCase() !== "false";
     const buildDeterministicFallback = (metadata, trigger) => {
       if (!deterministicFallbackEnabled) return null;
@@ -722,8 +722,7 @@ export class AIProvider {
         } catch {
           // Mantém o erro original do gate para diagnóstico e fail-closed.
         }
-        if (researchData?.grounding?.fallback === "curated-official-offline-cache-v1"
-            && String(process.env.AI_DETERMINISTIC_CURATED_FALLBACK || "true").toLowerCase() !== "false") {
+        if (deterministicFallbackEnabled) {
           try {
             const deterministic = buildDeterministicGroundedArticle({
               topic: descricaoCurta,
