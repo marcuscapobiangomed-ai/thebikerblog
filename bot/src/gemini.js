@@ -13,6 +13,7 @@ import { AIRuntime } from "./ai/runtime.js";
 import { assertEditorialPublicationGates } from "./validation/editorial-publication-gates.js";
 import { assertMarkdownPublicationGates, neutralizeMarkdownPolicyPhrases } from "./validation/markdown-publication-gates.js";
 import { buildImageProductionPlan } from "./image-manifest.js";
+import { assertArticleResearchGrounding } from "./validation/article-research-grounding.js";
 
 const CATEGORY_ALIASES = {
   review: "reviews",
@@ -545,6 +546,13 @@ export class AIProvider {
 
     let rawText;
     let pipelineMetadata = null;
+    const parseGroundedResponse = (candidateText) => {
+      const parsed = this._parseStructuredResponse(candidateText, descricaoCurta);
+      if (researchData?.grounding?.claimContract === "explicit-units-v1") {
+        assertArticleResearchGrounding({ content: parsed.content, research: researchData });
+      }
+      return parsed;
+    };
     if (process.env.AI_PIPELINE_MODE === "legacy") {
       rawText = await this.generate(AIProvider.systemPrompt(), userPrompt, {
         jsonMode: true,
@@ -566,7 +574,7 @@ export class AIProvider {
 
     try {
       return {
-        ...this._parseStructuredResponse(rawText, descricaoCurta),
+        ...parseGroundedResponse(rawText),
         pipelineMetadata,
       };
     } catch (err) {
@@ -599,6 +607,7 @@ export class AIProvider {
               contentType,
               template,
               today,
+              researchData,
             });
           const repaired = await this.pipeline.callStep({
           step: `final-repair-${round}`,
@@ -633,7 +642,7 @@ export class AIProvider {
           }
           try {
             return {
-              ...this._parseStructuredResponse(candidateText, descricaoCurta),
+              ...parseGroundedResponse(candidateText),
               pipelineMetadata: {
                 ...pipelineMetadata,
                 finalRepairUsed: true,
@@ -655,6 +664,7 @@ export class AIProvider {
         contentType,
         template,
         today,
+        researchData,
       });
 
       const repairedText = await this.generate(AIProvider.systemPrompt(), repairPrompt, {
@@ -663,7 +673,7 @@ export class AIProvider {
         maxTokens: Number(process.env.DEEPSEEK_MAX_TOKENS || 8192),
       });
 
-      return this._parseStructuredResponse(repairedText, descricaoCurta);
+      return parseGroundedResponse(repairedText);
     }
   }
 }
