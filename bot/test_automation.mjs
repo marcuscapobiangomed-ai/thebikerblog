@@ -16,6 +16,21 @@ import { produceCampaignVisual } from "./src/campaign_finalize.js";
 import { markdownPublicationErrors, neutralizeMarkdownPolicyPhrases } from "./src/validation/markdown-publication-gates.js";
 import { orphanedCampaignDraftErrors, scheduledDraftErrors } from "./src/validation/validate-scheduled-publications.js";
 import { assertScheduledReceipt, hashEditorialText } from "./src/validation/editorial-receipt.js";
+import { assertArticleResearchGrounding } from "./src/validation/article-research-grounding.js";
+
+const minimalResearch = {
+  confirmed_facts: [{ fact: "frame.material: Spark RC Carbon HMX" }, { fact: "suspension.frontTravel: 120 mm" }],
+  sources: [],
+};
+assert.throws(() => assertArticleResearchGrounding({
+  content: "O carbono HMX possui rigidez torsional superior e converte cada watt com menos perdas.",
+  research: minimalResearch,
+}), /inferencias tecnicas ausentes/);
+const repeatedTechnicalParagraph = "A Spark utiliza carbono HMX e suspensão com 120 mm. Esta frase longa descreve apenas os campos confirmados na ficha e permanece deliberadamente extensa para representar um parágrafo editorial completo sem acrescentar uma conclusão causal.";
+assert.throws(() => assertArticleResearchGrounding({
+  content: `${repeatedTechnicalParagraph}\n\n${repeatedTechnicalParagraph} Outro complemento foi anexado.`,
+  research: minimalResearch,
+}), /paragrafos repetidos ou expandidos por copia/);
 
 const neutralCategoryExample = normalizeCategoryExamplePromotion(`---
 brand: "Shimano"
