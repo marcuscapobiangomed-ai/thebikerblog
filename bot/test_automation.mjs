@@ -335,11 +335,14 @@ assert.equal(mixedRaceGrounded.confirmed_facts.length, 1);
 assert.deepEqual(mixedRaceGrounded.confirmed_facts[0].source_ids, ['src-uci']);
 assert.match(mixedRaceGrounded.limitations[0], /1 fato\(s\) removido/);
 const fallbackResearcher = new GroundedResearcher({ GROQ_API_KEY: 'test', AI_HTTP_RETRY_ATTEMPTS: '1' }, async () => ({ ok: false, status: 429, text: async () => 'quota' }), verifiedSourceResponse);
-await assert.rejects(fallbackResearcher.research({
+const fallbackGrounded = await fallbackResearcher.research({
   item: campaign.items[0],
   internalEvidence: [{ id: 'spark', facts: { suspension: '120 mm' }, sources: [{ name: 'Scott', type: 'manufacturer', url: 'https://www.scott-sports.com/global/en/product/test', accessedAt: '2026-08-04' }] }],
   today: '2026-08-05',
-}), /sem fatos explicitamente fundamentados|sem fontes rastreáveis/);
+});
+assert.equal(fallbackGrounded.grounding.fallback, 'internal-product-knowledge');
+assert.equal(fallbackGrounded.grounding.evidenceContract, 'retrieved-excerpt-v1');
+assert.match(fallbackGrounded.confirmed_facts[0].evidence_quote, /suspensao com 120 mm/i);
 await assert.rejects(fallbackResearcher.research({
   item: {
     id: 'reserva-inspecao-pos-chuva',
@@ -405,11 +408,12 @@ const contextLengthResearcher = new GroundedResearcher({ GROQ_API_KEY: 'test' },
   clone: () => ({ text: async () => contextLengthDetail }),
   text: async () => contextLengthDetail,
 }), verifiedSourceResponse);
-await assert.rejects(contextLengthResearcher.research({
+const contextLengthFallback = await contextLengthResearcher.research({
   item: campaign.items[0],
   internalEvidence: [{ id: 'spark', facts: { suspension: '120 mm' }, sources: [{ name: 'Scott', type: 'manufacturer', url: 'https://www.scott-sports.com/global/en/product/test', accessedAt: '2026-08-04' }] }],
   today: '2026-08-05',
-}), /sem fatos explicitamente fundamentados|sem fontes rastreáveis/);
+});
+assert.equal(contextLengthFallback.grounding.fallback, 'internal-product-knowledge');
 let parseFailureAttempts = 0;
 const parseFailureResearcher = new GroundedResearcher({
   GROQ_API_KEY: 'test',
@@ -445,12 +449,13 @@ const timeoutResearcher = new GroundedResearcher({
   error.name = 'TimeoutError';
   throw error;
 }, verifiedSourceResponse);
-await assert.rejects(timeoutResearcher.research({
+const timeoutFallback = await timeoutResearcher.research({
   item: campaign.items[0],
   internalEvidence: [{ id: 'spark', facts: { suspension: '120 mm' }, sources: [{ name: 'Scott', type: 'manufacturer', url: 'https://www.scott-sports.com/global/en/product/test', accessedAt: '2026-08-04' }] }],
   today: '2026-08-05',
-}), /sem fatos explicitamente fundamentados|sem fontes rastreáveis/);
+});
 assert.equal(timeoutAttempts, 2);
+assert.equal(timeoutFallback.grounding.fallback, 'internal-product-knowledge');
 
 const finalizeRoot = path.join(root, "finalize");
 await fs.mkdir(path.join(finalizeRoot, "bot"), { recursive: true });
