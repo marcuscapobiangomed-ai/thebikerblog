@@ -31,6 +31,15 @@ assert.throws(() => assertArticleResearchGrounding({
   content: `${repeatedTechnicalParagraph}\n\n${repeatedTechnicalParagraph} Outro complemento foi anexado.`,
   research: minimalResearch,
 }), /paragrafos repetidos ou expandidos por copia/);
+assert.throws(() => assertArticleResearchGrounding({
+  content: "A diferença de módulo influencia a espessura das paredes e significa maior resposta no terreno.",
+  research: minimalResearch,
+}), /inferencias tecnicas ausentes/);
+const repeatedDisclaimer = "Sem confirmação explícita nas fontes aceitas, o artigo não atribui medida a esse aspecto e mantém a análise limitada aos dados rastreáveis.";
+assert.throws(() => assertArticleResearchGrounding({
+  content: [repeatedDisclaimer, repeatedDisclaimer, repeatedDisclaimer].join(" "),
+  research: minimalResearch,
+}), /sentencas repetidas como enchimento/);
 
 const neutralCategoryExample = normalizeCategoryExamplePromotion(`---
 brand: "Shimano"
