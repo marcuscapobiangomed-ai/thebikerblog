@@ -54,8 +54,6 @@ const CampaignItemSchema = z.object({
     finalScore: z.number().nullable().default(null),
     finalBlockers: z.number().int().min(0).default(0),
     premiumEditUsed: z.boolean(),
-    evidenceBriefUsed: z.boolean().default(false),
-    fallbackReason: z.string().max(650).optional(),
     providers: z.record(z.string(), z.string()),
     generatedAt: z.string().datetime(),
     contentHash: HashSchema.optional(),

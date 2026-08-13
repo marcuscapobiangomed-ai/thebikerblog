@@ -11,7 +11,7 @@
     "batch:30": "node src/batch.js 1 30",
     "publish": "node src/publish_post.js",
     "lint": "node scripts/check-js.mjs",
-    "test": "node test_schema.mjs && node test_ai_runtime.mjs && node test_three_provider_pipeline.mjs && node test_image_system.mjs && node test_product_linker.mjs && node test_file_transaction.mjs && node test_evidence_brief.mjs && node test_automation.mjs",
+    "test": "node test_schema.mjs && node test_ai_runtime.mjs && node test_three_provider_pipeline.mjs && node test_image_system.mjs && node test_product_linker.mjs && node test_file_transaction.mjs && node test_automation.mjs",
     "validate:research": "node src/validation/validate-research.js",
     "validate:scheduled": "node src/validation/validate-scheduled-publications.js",
     "audit:buffer-shadow": "node src/validation/audit-campaign-shadow.js",
