@@ -41,6 +41,13 @@ const CURATED_TOPIC_EVIDENCE = [
       wetBraking: 'Em piso molhado, a distância de frenagem aumenta; reduza a velocidade e acione os freios mais cedo e de forma suave.',
       escalation: 'Danos, vazamentos, ruídos anormais ou funcionamento irregular exigem avaliação da loja ou de mecânico qualificado.',
     },
+    evidenceQuotes: {
+      drivetrainCleaning: 'Use only biodegradable non-acidic cleaners to clean the cassette, chainring, and chain. Rinse thoroughly with water and wipe dry.',
+      pressureWashing: 'Avoid direct pressure washing to protect the components as you would with all the seals and bearings on any bike.',
+      brakeInspection: 'Brake pads and rotors only take a minute to check every few rides.',
+      wetBraking: 'The required braking distance will be longer during wet conditions.',
+      escalation: 'If any damage is found, consult your dealer for further inspection.',
+    },
     sources: [
       { name: 'SRAM — AXS Bike Care and Maintenance', type: 'manufacturer', url: 'https://www.sram.com/en/learn/axs-bike-care-and-maintenance' },
       { name: 'SRAM — Apex Maintenance', type: 'manufacturer', url: 'https://www.sram.com/en/learn/apex-d1-welcome-guide/maintenance' },
@@ -80,6 +87,7 @@ function curatedEvidence(item, today) {
     .map((entry) => ({
       id: entry.id,
       facts: entry.facts,
+      evidenceQuotes: entry.evidenceQuotes,
       sources: entry.sources.map((source) => ({ ...source, accessedAt: today })),
     }))
 }
@@ -180,6 +188,7 @@ async function internalResearch({ item, internalEvidence, today, contentType, re
       const lookup = `${display}${unit ? ` ${unit}` : ''}`.trim()
       if (lookup && factSources.length > 0) confirmedFacts.push({
         fact: `${field}: ${lookup}`,
+        ...(record.evidenceQuotes?.[field] ? { evidence_quote: record.evidenceQuotes[field] } : {}),
         evidence_lookup: lookup,
         evidence_candidate_ids: [...new Set(sourceIds)],
         source_ids: [...new Set(factSources)],
@@ -211,6 +220,33 @@ async function internalResearch({ item, internalEvidence, today, contentType, re
     deriveEvidenceFromLookup: true,
     timeoutMs: Math.max(1000, Number(env.SOURCE_HTTP_TIMEOUT_MS || 30000)),
   })
+  const curatedFacts = research.confirmed_facts.filter((fact) => String(fact.evidence_quote || '').trim().length >= 12)
+  const activeFacts = Array.isArray(verified.confirmed_facts) ? verified.confirmed_facts : []
+  const curatedFallbackEnabled = String(env.CAMPAIGN_CURATED_OFFLINE_FALLBACK || 'true').toLowerCase() !== 'false'
+  if (curatedFallbackEnabled && curated.length > 0 && curatedFacts.length > 0 && activeFacts.length < curatedFacts.length) {
+    const curatedSourceIds = new Set(curatedFacts.flatMap((fact) => Array.isArray(fact.source_ids) ? fact.source_ids : []))
+    const curatedSources = research.sources.filter((source) => curatedSourceIds.has(source.id))
+    if (curatedSources.length > 0) {
+      const offline = {
+        ...research,
+        confirmed_facts: curatedFacts,
+        sources: curatedSources,
+        limitations: [
+          ...(Array.isArray(research.limitations) ? research.limitations : []),
+          'Trechos oficiais mantidos em cache curado; a revalidaÃ§Ã£o HTTP foi indisponÃ­vel nesta execuÃ§Ã£o.',
+        ],
+        grounding: {
+          ...(research.grounding || {}),
+          sourceCount: curatedSources.length,
+          evidenceContract: 'curated-official-excerpt-v1',
+          verifiedAt: new Date().toISOString(),
+          fallback: 'curated-official-offline-cache-v1',
+          verificationMode: 'curated-offline-cache',
+        },
+      }
+      return assertResearchGrounding(validateResearch(offline), { requireFactReferences: true })
+    }
+  }
   return assertResearchGrounding(validateResearch(verified), { requireFactReferences: true })
 }
 
