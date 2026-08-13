@@ -13,7 +13,7 @@ import { AIRuntime } from "./ai/runtime.js";
 import { assertEditorialPublicationGates } from "./validation/editorial-publication-gates.js";
 import { assertMarkdownPublicationGates, neutralizeMarkdownPolicyPhrases } from "./validation/markdown-publication-gates.js";
 import { buildImageProductionPlan } from "./image-manifest.js";
-import { assertArticleResearchGrounding } from "./validation/article-research-grounding.js";
+import { assertArticleResearchGrounding, sanitizeStructuredArticleClaims } from "./validation/article-research-grounding.js";
 
 const CATEGORY_ALIASES = {
   review: "reviews",
@@ -653,6 +653,20 @@ export class AIProvider {
           } catch (repairError) {
             validationError = repairError;
           }
+        }
+        try {
+          const sanitizedText = JSON.stringify(sanitizeStructuredArticleClaims(this._extractJson(candidateText), researchData));
+          return {
+            ...parseGroundedResponse(sanitizedText),
+            pipelineMetadata: {
+              ...pipelineMetadata,
+              finalRepairUsed: true,
+              finalRepairRounds: maximumRepairRounds,
+              deterministicClaimRepairUsed: true,
+            },
+          };
+        } catch {
+          // Mantém o erro original do gate para diagnóstico e fail-closed.
         }
         throw new Error(`Rascunho bloqueado apÃ³s ${maximumRepairRounds} reparos: ${validationError.message}`);
       }

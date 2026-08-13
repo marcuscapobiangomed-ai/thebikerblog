@@ -6,7 +6,7 @@ import { generateMarkdown } from "./src/generator.js";
 import { buildProductKnowledgeRecord } from "./src/knowledge/product-knowledge.js";
 import { extractPortfolioBikeUrls, productFromJsonLd } from "../scripts/discover-thebiker-catalog.js";
 import { assertResearchGrounding, researchGroundingErrors } from "./src/validation/research-grounding.js";
-import { articleResearchGroundingErrors } from "./src/validation/article-research-grounding.js";
+import { articleResearchGroundingErrors, sanitizeStructuredArticleClaims } from "./src/validation/article-research-grounding.js";
 import { buildRepairPrompt } from "./src/editorial-prompt.js";
 
 const validArticle = {
@@ -228,6 +228,18 @@ const groundedRepairPrompt = buildRepairPrompt({
 });
 assert.match(groundedRepairPrompt, /32 km\/h/);
 assert.match(groundedRepairPrompt, /remova a frase quando não houver fato confirmado equivalente/);
+const sanitizedClaims = sanitizeStructuredArticleClaims({
+  description: "Guia técnico de bicicletas elétricas.",
+  direct_answer: "A revisão ocorre em seis meses. A assistência legal chega a 32 km/h.",
+  methodologyNotice: "Análise documental.",
+  faq: [],
+  sections: [{ heading: "Manutenção", content: "Revise em seis meses. Confirme sempre o manual do fabricante." }],
+}, {
+  confirmed_facts: [{ fact: "O CONTRAN admite propulsão auxiliar até 32 km/h.", source_ids: ["src-gov"] }],
+  sources: [{ id: "src-gov", url: "https://www.gov.br/transportes/resolucao.pdf" }],
+});
+assert.equal(sanitizedClaims.direct_answer, "A assistência legal chega a 32 km/h.");
+assert.equal(sanitizedClaims.sections[0].content, "Confirme sempre o manual do fabricante.");
 
 const productKnowledgeResearch = {
   slug: "scott-addict-50-2026",
