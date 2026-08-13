@@ -32,3 +32,9 @@ Use o botão **Preferências de analytics** no rodapé. É possível aceitar ou 
 Também é possível limpar o armazenamento e os cookies nas configurações do navegador. Nesse caso, o site solicitará uma nova escolha no próximo acesso.
 
 Consulte também a [Política de privacidade]({{ '/legal/privacidade/' | relative_url }}).
+---
+layout: default
+title: "Política de cookies"
+description: "Como o TheBiker Blog utiliza cookies essenciais, de preferência e de medição."
+permalink: /legal/cookie-policy/
+---

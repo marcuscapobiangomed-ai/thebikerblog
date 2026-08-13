@@ -1,33 +1,25 @@
 {% assign p = include.product %}
-{% assign price_lowest = include.price_lowest %}
-{% assign price_highest = include.price_highest %}
-{% capture fallback_description %}{{ p.brand }} {{ p.model }} {{ p.modelYear }}: ficha técnica, componentes, peso declarado e disponibilidade verificada na TheBiker.{% endcapture %}
+{% capture model_year %}{{ p.modelYear }}{% endcapture %}
+{% capture product_name %}{{ p.brand }} {{ p.model }}{% unless p.model contains model_year %} {{ p.modelYear }}{% endunless %}{% endcapture %}
+{% capture fallback_description %}{{ product_name | strip }}: ficha técnica, componentes e dados documentais disponíveis no catálogo da TheBiker.{% endcapture %}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Product",
-  "name": "{{ p.brand }} {{ p.model }} {{ p.modelYear }}",
+  "@id": {{ page.url | absolute_url | append: '#product' | jsonify }},
+  "name": {{ product_name | strip | jsonify }},
   "brand": {
     "@type": "Brand",
-    "name": "{{ p.brand }}"
+    "name": {{ p.brand | jsonify }}
   },
   "description": {{ p.description | default: fallback_description | strip | jsonify }},
-  {% if p.image %}"image": "{{ p.image | absolute_url }}",{% endif %}
-  "category": "{{ p.category | replace: '-', ' ' }}",
+  {% if p.image %}"image": {{ p.image | absolute_url | jsonify }},{% endif %}
+  "category": {{ p.category | replace: '-', ' ' | jsonify }},
   "modelYear": {{ p.modelYear }},
-  "material": "{{ p.frame.material }}",
-  "productID": "{{ p.id | default: p.product_id }}",
-  "sku": "{{ p.id | default: p.product_id }}",
-  "url": "{{ page.url | absolute_url }}",
-  {% if price_lowest %}
-  "offers": {
-    "@type": "AggregateOffer",
-    "lowPrice": {{ price_lowest }},
-    "highPrice": {{ price_highest }},
-    "priceCurrency": "BRL",
-    "availability": "{% if p.status == 'active' %}https://schema.org/InStock{% else %}https://schema.org/OutOfStock{% endif %}"
-  },
-  {% endif %}
+  "material": {{ p.frame.material | jsonify }},
+  "productID": {{ p.id | default: p.product_id | jsonify }},
+  "sku": {{ p.id | default: p.product_id | jsonify }},
+  "url": {{ page.url | absolute_url | jsonify }},
   {% if p.declaredWeight %}
   "weight": {
     "@type": "QuantitativeValue",
@@ -37,11 +29,11 @@
   },
   {% endif %}
   "additionalProperty": [
-    {"@type": "PropertyValue", "name": "Grupo", "value": "{{ p.drivetrain.brand }} {{ p.drivetrain.groupset }}"},
-    {"@type": "PropertyValue", "name": "Velocidades", "value": "{{ p.drivetrain.speeds }}"},
-    {"@type": "PropertyValue", "name": "Transmissão", "value": "{{ p.drivetrain.shifting }}"},
-    {"@type": "PropertyValue", "name": "Freios", "value": "{{ p.brakes.type | replace: '-', ' ' }}"},
-    {"@type": "PropertyValue", "name": "Material do quadro", "value": "{{ p.frame.material }}"}
+    {"@type": "PropertyValue", "name": "Grupo", "value": {{ p.drivetrain.brand | append: ' ' | append: p.drivetrain.groupset | strip | jsonify }}},
+    {"@type": "PropertyValue", "name": "Velocidades", "value": {{ p.drivetrain.speeds | jsonify }}},
+    {"@type": "PropertyValue", "name": "Transmissão", "value": {{ p.drivetrain.shifting | jsonify }}},
+    {"@type": "PropertyValue", "name": "Freios", "value": {{ p.brakes.type | replace: '-', ' ' | jsonify }}},
+    {"@type": "PropertyValue", "name": "Material do quadro", "value": {{ p.frame.material | jsonify }}}
   ]
 }
 </script>
@@ -53,7 +45,7 @@
   "itemListElement": [
     {"@type": "ListItem", "position": 1, "name": "Início", "item": "{{ site.url }}{{ site.baseurl }}/"},
     {"@type": "ListItem", "position": 2, "name": "Bicicletas", "item": "{{ site.url }}{{ site.baseurl }}/bikes/"},
-    {"@type": "ListItem", "position": 3, "name": "{{ p.brand }} {{ p.model }}", "item": "{{ page.url | absolute_url }}"}
+    {"@type": "ListItem", "position": 3, "name": {{ product_name | strip | jsonify }}, "item": {{ page.url | absolute_url | jsonify }}}
   ]
 }
 </script>

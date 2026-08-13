@@ -5,7 +5,7 @@ published: true
 title: "Spark RC Team 2027: plataforma de 120 mm e transmissão AXS"
 slug: "review-spark-rc-team-2027"
 date: 2026-08-07
-last_modified_at: 2026-08-05
+last_modified_at: 2026-08-07
 author: "Equipe TheBiker"
 reviewed_by: "TheBiker AI Editorial Gate"
 content_type: "review"

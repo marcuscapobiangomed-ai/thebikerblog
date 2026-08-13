@@ -2,6 +2,8 @@
 layout: default
 title: "Ciclismo vivido, testado e explicado"
 description: "Reviews técnicos, guias, comparativos e fichas verificadas para ciclistas que levam performance, equipamento e manutenção a sério."
+image: "/assets/img/brand/hero-road-culture-1600x900.webp"
+image_alt: "Dois ciclistas de estrada descendo uma serra com vista para o litoral brasileiro"
 ---
 
 {% assign published_posts = site.posts | where_exp: "p", "p.status != 'draft'" %}
@@ -17,7 +19,10 @@ description: "Reviews técnicos, guias, comparativos e fichas verificadas para c
 
 <div class="brand-home">
   <section class="brand-hero" aria-labelledby="brand-hero-title">
-    <img class="brand-hero-media" src="{{ site.baseurl }}/assets/img/brand/hero-road-culture-1600x900.jpg" alt="Dois ciclistas de estrada descendo uma serra com vista para o litoral brasileiro" width="1600" height="900" fetchpriority="high">
+    <picture>
+      <source media="(max-width: 720px)" srcset="{{ site.baseurl }}/assets/img/brand/hero-road-culture-800x450.webp">
+      <img class="brand-hero-media" src="{{ site.baseurl }}/assets/img/brand/hero-road-culture-1600x900.webp" alt="Dois ciclistas de estrada descendo uma serra com vista para o litoral brasileiro" width="1600" height="900" fetchpriority="high" decoding="async">
+    </picture>
     <div class="brand-hero-shade" aria-hidden="true"></div>
     <div class="container brand-hero-content">
       <span class="brand-kicker">TheBiker Blog</span>
@@ -57,7 +62,7 @@ description: "Reviews técnicos, guias, comparativos e fichas verificadas para c
       {% if carbon_post %}
       <article class="brand-story-card">
         <a class="brand-story-image" href="{{ site.baseurl }}{{ carbon_post.url }}">
-          <img src="{{ site.baseurl }}/assets/img/brand/story-aero-bike-1200x675.jpg" alt="Bicicleta de estrada preta em um mirante de montanha" width="1200" height="675" loading="lazy">
+          <img src="{{ site.baseurl }}/assets/img/brand/story-aero-bike-1200x675.webp" alt="Bicicleta de estrada preta em um mirante de montanha" width="1200" height="675" loading="lazy" decoding="async">
         </a>
         <div class="brand-story-meta"><time datetime="{{ carbon_post.date | date_to_xmlschema }}">{{ carbon_post.date | date: "%d.%m.%Y" }}</time><span>Guia</span></div>
         <h2><a href="{{ site.baseurl }}{{ carbon_post.url }}">Carbono ou alumínio: onde o investimento realmente aparece</a></h2>
@@ -69,7 +74,7 @@ description: "Reviews técnicos, guias, comparativos e fichas verificadas para c
       {% if wheels_post %}
       <article class="brand-story-card">
         <a class="brand-story-image" href="{{ site.baseurl }}{{ wheels_post.url }}">
-          <img src="{{ site.baseurl }}/assets/img/brand/card-carbon-wheel-1200x675.jpg" alt="Detalhe de roda de carbono e freio a disco de uma bicicleta de estrada" width="1200" height="675" loading="lazy">
+          <img src="{{ site.baseurl }}/assets/img/brand/card-carbon-wheel-1200x675.webp" alt="Detalhe de roda de carbono e freio a disco de uma bicicleta de estrada" width="1200" height="675" loading="lazy" decoding="async">
         </a>
         <div class="brand-story-meta"><time datetime="{{ wheels_post.date | date_to_xmlschema }}">{{ wheels_post.date | date: "%d.%m.%Y" }}</time><span>Equipamentos</span></div>
         <h2><a href="{{ site.baseurl }}{{ wheels_post.url }}">Rodas de carbono: aerodinâmica e controle na prática</a></h2>
@@ -81,7 +86,7 @@ description: "Reviews técnicos, guias, comparativos e fichas verificadas para c
       {% if routes_post %}
       <article class="brand-story-card">
         <a class="brand-story-image" href="{{ site.baseurl }}{{ routes_post.url }}">
-          <img src="{{ site.baseurl }}/assets/img/brand/card-winter-training-1200x675.jpg" alt="Ciclista treinando em uma estrada de serra próxima ao litoral" width="1200" height="675" loading="lazy">
+          <img src="{{ site.baseurl }}/assets/img/brand/card-winter-training-1200x675.webp" alt="Ciclista treinando em uma estrada de serra próxima ao litoral" width="1200" height="675" loading="lazy" decoding="async">
         </a>
         <div class="brand-story-meta"><time datetime="{{ routes_post.date | date_to_xmlschema }}">{{ routes_post.date | date: "%d.%m.%Y" }}</time><span>Rotas</span></div>
         <h2><a href="{{ site.baseurl }}{{ routes_post.url }}">Estradas brasileiras para viver um grande dia de pedal</a></h2>
@@ -100,7 +105,7 @@ description: "Reviews técnicos, guias, comparativos e fichas verificadas para c
     <div class="brand-guide-grid">
       {% if pedals_post %}
       <article class="brand-guide-card">
-        <a href="{{ site.baseurl }}{{ pedals_post.url }}"><img src="{{ site.baseurl }}/assets/img/brand/guide-cycling-shoe-900x600.jpg" alt="Sapatilha branca para ciclismo de estrada" width="900" height="600" loading="lazy"></a>
+        <a href="{{ site.baseurl }}{{ pedals_post.url }}"><img src="{{ site.baseurl }}/assets/img/brand/guide-cycling-shoe-900x600.webp" alt="Sapatilha branca para ciclismo de estrada" width="900" height="600" loading="lazy" decoding="async"></a>
         <time datetime="{{ pedals_post.date | date_to_xmlschema }}">{{ pedals_post.date | date: "%d.%m.%Y" }}</time>
         <h3><a href="{{ site.baseurl }}{{ pedals_post.url }}">Como escolher pedais e sapatilhas para começar</a></h3>
         <p>Encaixe, ajuste e conforto para uma transição segura ao pedal clipless.</p>
@@ -108,7 +113,7 @@ description: "Reviews técnicos, guias, comparativos e fichas verificadas para c
       {% endif %}
       {% if groups_post %}
       <article class="brand-guide-card">
-        <a href="{{ site.baseurl }}{{ groups_post.url }}"><img src="{{ site.baseurl }}/assets/img/brand/guide-drivetrain-900x600.jpg" alt="Transmissão de bicicleta de estrada com cassete e câmbio traseiro" width="900" height="600" loading="lazy"></a>
+        <a href="{{ site.baseurl }}{{ groups_post.url }}"><img src="{{ site.baseurl }}/assets/img/brand/guide-drivetrain-900x600.webp" alt="Transmissão de bicicleta de estrada com cassete e câmbio traseiro" width="900" height="600" loading="lazy" decoding="async"></a>
         <time datetime="{{ groups_post.date | date_to_xmlschema }}">{{ groups_post.date | date: "%d.%m.%Y" }}</time>
         <h3><a href="{{ site.baseurl }}{{ groups_post.url }}">Shimano 105 ou Ultegra: qual faz mais sentido?</a></h3>
         <p>As diferenças que importam em funcionamento, peso, preço e manutenção.</p>
@@ -116,7 +121,7 @@ description: "Reviews técnicos, guias, comparativos e fichas verificadas para c
       {% endif %}
       {% if helmets_post %}
       <article class="brand-guide-card">
-        <a href="{{ site.baseurl }}{{ helmets_post.url }}"><img src="{{ site.baseurl }}/assets/img/brand/guide-road-helmets-900x600.jpg" alt="Capacetes para ciclismo de estrada em fundo escuro" width="900" height="600" loading="lazy"></a>
+        <a href="{{ site.baseurl }}{{ helmets_post.url }}"><img src="{{ site.baseurl }}/assets/img/brand/guide-road-helmets-900x600.webp" alt="Capacetes para ciclismo de estrada em fundo escuro" width="900" height="600" loading="lazy" decoding="async"></a>
         <time datetime="{{ helmets_post.date | date_to_xmlschema }}">{{ helmets_post.date | date: "%d.%m.%Y" }}</time>
         <h3><a href="{{ site.baseurl }}{{ helmets_post.url }}">Capacetes de estrada: segurança e desempenho</a></h3>
         <p>Ventilação, ajuste, certificações e tecnologias de proteção explicadas.</p>
@@ -124,7 +129,7 @@ description: "Reviews técnicos, guias, comparativos e fichas verificadas para c
       {% endif %}
       {% if maintenance_post %}
       <article class="brand-guide-card">
-        <a href="{{ site.baseurl }}{{ maintenance_post.url }}"><img src="{{ site.baseurl }}/assets/img/brand/guide-bike-lights-900x600.jpg" alt="Conjunto de luzes dianteira e traseira para bicicleta" width="900" height="600" loading="lazy"></a>
+        <a href="{{ site.baseurl }}{{ maintenance_post.url }}"><img src="{{ site.baseurl }}/assets/img/brand/guide-bike-lights-900x600.webp" alt="Conjunto de luzes dianteira e traseira para bicicleta" width="900" height="600" loading="lazy" decoding="async"></a>
         <time datetime="{{ maintenance_post.date | date_to_xmlschema }}">{{ maintenance_post.date | date: "%d.%m.%Y" }}</time>
         <h3><a href="{{ site.baseurl }}{{ maintenance_post.url }}">Equipamentos essenciais para pedalar com segurança</a></h3>
         <p>Itens e cuidados que ajudam você a sair mais preparado em qualquer horário.</p>

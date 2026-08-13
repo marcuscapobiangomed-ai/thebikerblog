@@ -51,6 +51,7 @@ defaults:
 exclude:
   # Operação, governança e evidências ficam no repositório, não no índice público.
   - admin
+  - automation
   - audit
   - bot
   - content
@@ -81,3 +82,4 @@ plugins:
   - jekyll-sitemap
   - jekyll-paginate
   - jekyll-feed
+  - jekyll-redirect-from

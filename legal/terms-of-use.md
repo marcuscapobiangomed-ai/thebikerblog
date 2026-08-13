@@ -1,3 +1,10 @@
+---
+layout: default
+title: "Termos de uso"
+description: "Termos de uso do TheBiker Blog, incluindo regras de acesso, conteúdo e responsabilidades."
+permalink: /legal/terms-of-use/
+---
+
 # Termos de Uso — TheBikerBlog
 
 ## 1. Aceitação
