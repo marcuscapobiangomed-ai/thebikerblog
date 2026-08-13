@@ -1,6 +1,7 @@
 import { validateArticle } from "./schemas/article.schema.js";
 import { generateMarkdown } from "./generator.js";
 import {
+  buildLengthExpansionPrompt,
   buildRepairPrompt,
   buildSystemPrompt,
   buildUserPrompt,
@@ -10,7 +11,7 @@ import { getTemplate } from "./templates.js";
 import { ThreeProviderPipeline } from "./ai/three-provider-pipeline.js";
 import { AIRuntime } from "./ai/runtime.js";
 import { assertEditorialPublicationGates } from "./validation/editorial-publication-gates.js";
-import { assertMarkdownPublicationGates } from "./validation/markdown-publication-gates.js";
+import { assertMarkdownPublicationGates, neutralizeMarkdownPolicyPhrases } from "./validation/markdown-publication-gates.js";
 import { buildImageProductionPlan } from "./image-manifest.js";
 
 const CATEGORY_ALIASES = {
@@ -32,6 +33,8 @@ const CATEGORY_ALIASES = {
   campeonatos: "campeonatos",
   mercado: "mercado",
 };
+
+const LENGTH_GATE = /Gates editoriais não atendidos:\s*extensão insuficiente:\s*(\d+) palavras; mínimo (\d+)\s*$/i;
 
 const CONTENT_TYPE_ALIASES = {
   review: "review",
@@ -311,22 +314,23 @@ export class AIProvider {
 
   _sanitizeStructuredArticle(parsed) {
     const next = JSON.parse(JSON.stringify(parsed));
+    const requestedHandsOn =
+      toText(next.review_method, "").trim() === "hands-on-test" ||
+      toBoolean(next.tested_by_thebikerblog, false);
+    const neutralize = (value) => neutralizeMarkdownPolicyPhrases(value, { deskResearch: !requestedHandsOn });
 
-    next.title = this._sanitizeHtml(next.title);
-    next.description = truncateAtWordBoundary(this._sanitizeHtml(next.description), 200);
-    next.direct_answer = truncateAtWordBoundary(this._sanitizeHtml(next.direct_answer), 420);
+    next.title = neutralize(this._sanitizeHtml(next.title));
+    next.description = truncateAtWordBoundary(neutralize(this._sanitizeHtml(next.description)), 200);
+    next.direct_answer = truncateAtWordBoundary(neutralize(this._sanitizeHtml(next.direct_answer)), 420);
     next.slug = this._sanitizeHtml(next.slug);
     next.category = this._normalizeCategory(next.category);
     next.content_type = this._normalizeContentType(next.content_type);
     next.audience_segment = this._sanitizeHtml(next.audience_segment || "core_technical_cyclists");
     next.audience_intent = this._sanitizeHtml(next.audience_intent || "technical_learning");
     next.experience_level_target = this._sanitizeHtml(next.experience_level_target || "intermediate_advanced");
-    const requestedHandsOn =
-      toText(next.review_method, "").trim() === "hands-on-test" ||
-      toBoolean(next.tested_by_thebikerblog, false);
     next.review_method = requestedHandsOn ? "hands-on-test" : "desk-research";
     next.tested_by_thebikerblog = requestedHandsOn;
-    next.methodologyNotice = this._sanitizeHtml(next.methodologyNotice || "");
+    next.methodologyNotice = neutralize(this._sanitizeHtml(next.methodologyNotice || ""));
     next.brand = this._sanitizeHtml(next.brand || "");
     next.product_name = this._sanitizeHtml(next.product_name || "");
     next.model_year = toNumber(next.model_year, undefined);
@@ -366,14 +370,26 @@ export class AIProvider {
     }));
 
     next.faq = normalizeList(next.faq).slice(0, 5).map((item) => ({
-      question: truncateAtWordBoundary(this._sanitizeHtml(item.question || ""), 180),
-      answer: truncateAtWordBoundary(this._sanitizeHtml(item.answer || ""), 600),
+      question: truncateAtWordBoundary(neutralize(this._sanitizeHtml(item.question || "")), 180),
+      answer: truncateAtWordBoundary(neutralize(this._sanitizeHtml(item.answer || "")), 600),
     }));
 
-    next.sections = normalizeList(next.sections).map((section) => ({
-      heading: this._sanitizeHtml(section.heading || ""),
-      content: this._sanitizeHtml(section.content || ""),
-    }));
+    next.sections = normalizeList(next.sections).map((section, index) => {
+      const content = neutralize(this._sanitizeHtml(section.content || ""));
+      let heading = neutralize(this._sanitizeHtml(section.heading || "")).trim();
+      if (!heading && content) {
+        const contentLead = content
+          .replace(/^#+\s*/, "")
+          .replace(/[*_`]/g, "")
+          .split(/(?<=[.!?])\s|\n/)[0]
+          .trim();
+        heading = truncateAtWordBoundary(contentLead, 100);
+      }
+      if (!heading) {
+        heading = truncateAtWordBoundary(`Critério técnico ${index + 1} — ${next.title}`, 100);
+      }
+      return { heading, content };
+    });
 
     next.imagePlan = normalizeList(next.imagePlan).map((item) => ({
       position: this._sanitizeHtml(item.position || "hero"),
@@ -390,14 +406,14 @@ export class AIProvider {
       aiGeneratedAllowed: toBoolean(item.aiGeneratedAllowed, false),
     }));
 
-    next.claimsRequiringReview = normalizeList(next.claimsRequiringReview).map((item) => this._sanitizeHtml(item));
+    next.claimsRequiringReview = normalizeList(next.claimsRequiringReview).map((item) => neutralize(this._sanitizeHtml(item)));
 
     next.frontmatter = next.frontmatter || {};
     next.frontmatter.author = this._sanitizeHtml(next.frontmatter.author || "Equipe TheBiker");
     next.frontmatter.image = this._sanitizeHtml(next.frontmatter.image || "/assets/img/logo.svg");
     next.frontmatter.thumbnail = this._sanitizeHtml(next.frontmatter.thumbnail || "");
-    next.frontmatter.image_alt = this._sanitizeHtml(next.frontmatter.image_alt || next.description || "");
-    next.frontmatter.image_caption = this._sanitizeHtml(next.frontmatter.image_caption || "");
+    next.frontmatter.image_alt = neutralize(this._sanitizeHtml(next.frontmatter.image_alt || next.description || ""));
+    next.frontmatter.image_caption = neutralize(this._sanitizeHtml(next.frontmatter.image_caption || ""));
     next.frontmatter.image_credit = this._sanitizeHtml(next.frontmatter.image_credit || "TheBiker");
     next.frontmatter.image_license = this._sanitizeHtml(next.frontmatter.image_license || "Uso editorial da TheBiker");
 
@@ -459,6 +475,62 @@ export class AIProvider {
     };
   }
 
+  _applySectionExpansions(articleText, expansionText) {
+    const article = structuredClone(this._extractJson(articleText));
+    const response = this._extractJson(expansionText);
+    const expansions = response?.section_expansions;
+    if (!Array.isArray(article?.sections) || !Array.isArray(expansions) || expansions.length === 0) {
+      throw new Error("Reparo aditivo inválido: section_expansions ausente");
+    }
+    const touched = new Set();
+    for (const expansion of expansions) {
+      const index = Number(expansion?.section_index);
+      const addition = String(expansion?.additional_content || "").trim();
+      if (!Number.isInteger(index) || index < 0 || index >= article.sections.length || !addition) {
+        throw new Error("Reparo aditivo inválido: seção ou conteúdo inválido");
+      }
+      article.sections[index].content = `${article.sections[index].content.trim()}\n\n${addition}`;
+      touched.add(index);
+    }
+    if (touched.size < Math.min(3, article.sections.length)) {
+      throw new Error("Reparo aditivo inválido: complementos pouco distribuídos");
+    }
+    return JSON.stringify(article);
+  }
+
+  _mergeRepairCandidate(articleText, repairText) {
+    try {
+      const original = structuredClone(this._extractJson(articleText));
+      const repair = structuredClone(this._extractJson(repairText));
+      if (["PESQUISA INSUFICIENTE", "PORTFÓLIO NÃO CONFIRMADO"].includes(repair?.status)) {
+        return JSON.stringify(repair);
+      }
+      const merge = (base, patch, key = "") => {
+        if (patch === undefined || patch === null || patch === "") return base;
+        if (Array.isArray(patch)) {
+          if (patch.length === 0) {
+            return ["sections", "sources", "imagePlan", "tags"].includes(key) && Array.isArray(base) && base.length > 0
+              ? base
+              : patch;
+          }
+          if (key === "sections" && Array.isArray(base) && patch.length < base.length) {
+            return base.map((entry, index) => index < patch.length ? merge(entry, patch[index], "section") : entry);
+          }
+          return patch;
+        }
+        if (typeof patch === "object") {
+          const baseObject = base && typeof base === "object" && !Array.isArray(base) ? base : {};
+          return Object.fromEntries([...new Set([...Object.keys(baseObject), ...Object.keys(patch)])]
+            .map((field) => [field, merge(baseObject[field], patch[field], field)]));
+        }
+        return patch;
+      };
+      return JSON.stringify(merge(original, repair));
+    } catch {
+      return repairText;
+    }
+  }
+
   async processCase(descricaoCurta, researchData = null) {
     const contentType = researchData?.content_type || inferContentType(descricaoCurta);
     const template = getTemplate(resolveTemplateKey(contentType, researchData));
@@ -507,24 +579,39 @@ export class AIProvider {
           throw new Error(`Rascunho bloqueado após o pipeline: ${err.message}`);
         }
 
-        const repairPrompt = buildRepairPrompt({
-          topic: descricaoCurta,
-          rawText,
-          validationError: err.message,
-          contentType,
-          template,
-          today,
-        });
-        const repaired = await this.pipeline.callStep({
-          step: "final-repair",
+        const maximumRepairRounds = Number(process.env.AI_FINAL_REPAIR_ROUNDS || 2);
+        let candidateText = rawText;
+        let validationError = err;
+        for (let round = 1; round <= maximumRepairRounds; round += 1) {
+          const lengthFailure = String(validationError.message || "").match(LENGTH_GATE);
+          const repairPrompt = lengthFailure
+            ? buildLengthExpansionPrompt({
+              topic: descricaoCurta,
+              rawText: candidateText,
+              currentWords: Number(lengthFailure[1]),
+              minimumWords: Number(lengthFailure[2]),
+              today,
+            })
+            : buildRepairPrompt({
+              topic: descricaoCurta,
+              rawText: candidateText,
+              validationError: validationError.message,
+              contentType,
+              template,
+              today,
+            });
+          const repaired = await this.pipeline.callStep({
+          step: `final-repair-${round}`,
           providers: ["deepseek", "gemini", "groq"],
           sourceHash: pipelineMetadata?.sourceHash,
-          system: [
-            AIProvider.systemPrompt(),
-            "Repare somente os gates informados. Preserve todos os fatos, fontes, limitações e campos do JSON.",
-            "Responda com JSON completo de no máximo 32000 caracteres; compacte repetições e limite cada seção a 250 palavras.",
-            "Não introduza novas especificações, sensações de teste, marcas ou disponibilidade.",
-          ].join("\n"),
+          system: lengthFailure
+            ? "Gere somente complementos aditivos factuais no schema solicitado. Não reescreva o artigo nem introduza fatos ausentes."
+            : [
+              AIProvider.systemPrompt(),
+              "Repare somente os gates informados. Preserve todos os fatos, fontes, limitações e campos do JSON.",
+              "Responda com JSON completo de no máximo 32000 caracteres; compacte repetições e limite cada seção a 250 palavras.",
+              "Não introduza novas especificações, sensações de teste, marcas ou disponibilidade.",
+            ].join("\n"),
           user: repairPrompt,
           options: {
             jsonMode: true,
@@ -535,14 +622,30 @@ export class AIProvider {
             timeoutMs: Number(process.env.AI_FINAL_REPAIR_TIMEOUT_MS || 75000),
           },
         });
-        return {
-          ...this._parseStructuredResponse(repaired.content, descricaoCurta),
-          pipelineMetadata: {
-            ...pipelineMetadata,
-            finalRepairUsed: true,
-            providers: { ...pipelineMetadata?.providers, finalRepair: repaired.provider },
-          },
-        };
+          if (lengthFailure) {
+            try {
+              candidateText = this._applySectionExpansions(candidateText, repaired.content);
+            } catch {
+              continue;
+            }
+          } else {
+            candidateText = this._mergeRepairCandidate(candidateText, repaired.content);
+          }
+          try {
+            return {
+              ...this._parseStructuredResponse(candidateText, descricaoCurta),
+              pipelineMetadata: {
+                ...pipelineMetadata,
+                finalRepairUsed: true,
+                finalRepairRounds: round,
+                providers: { ...pipelineMetadata?.providers, finalRepair: repaired.provider },
+              },
+            };
+          } catch (repairError) {
+            validationError = repairError;
+          }
+        }
+        throw new Error(`Rascunho bloqueado apÃ³s ${maximumRepairRounds} reparos: ${validationError.message}`);
       }
 
       const repairPrompt = buildRepairPrompt({

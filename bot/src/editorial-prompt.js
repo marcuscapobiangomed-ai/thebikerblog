@@ -254,3 +254,31 @@ export function buildRepairPrompt({ topic, rawText, validationError, contentType
     "- não adicione markdown fora do JSON.",
   ].join("\n");
 }
+
+export function buildLengthExpansionPrompt({ topic, rawText, currentWords, minimumWords, today }) {
+  const missingWords = Math.max(minimumWords - currentWords, 0);
+  const requestedWords = missingWords + Math.max(Math.ceil(minimumWords * 0.15), 200);
+  return [
+    "Amplie um artigo da TheBiker sem reescrever nem remover o texto existente.",
+    "Devolva somente um objeto JSON com o campo section_expansions.",
+    "Cada item deve ter section_index (índice base zero de uma seção existente) e additional_content.",
+    "O sistema anexará os complementos às seções indicadas e validará novamente o artigo completo.",
+    "",
+    `Tema: ${JSON.stringify(topic)}`,
+    `Data de produção: ${today}`,
+    `Contagem atual: ${currentWords} palavras`,
+    `Gate obrigatório: ${minimumWords} palavras`,
+    `Produza ao menos ${requestedWords} palavras adicionais reais no total para criar margem segura.`,
+    "",
+    "Regras:",
+    "- use somente fatos, fontes, método, critérios e limitações já presentes no JSON;",
+    "- aprofunde relações e consequências práticas sustentadas pelo texto, sem inventar testes, números ou especificações;",
+    "- não repita frases, parágrafos ou a mesma ideia com outras palavras;",
+    "- não altere título, metadados, fontes, marcas, intertítulos ou qualquer outro campo;",
+    "- distribua os complementos entre pelo menos três seções existentes;",
+    '- formato exato: {"section_expansions":[{"section_index":0,"additional_content":"..."}]}.',
+    "",
+    "Artigo original imutável:",
+    rawText,
+  ].join("\n");
+}

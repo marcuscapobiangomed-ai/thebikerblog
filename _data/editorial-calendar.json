@@ -41,7 +41,7 @@
       "title": "Addict RC 20: Ultegra Di2, rodas de 40 mm e o equilíbrio da montagem",
       "summary": "Review técnico da Addict RC 20 com foco na transmissão, frenagem, rodas, pneus, massa declarada e limites de uso publicados pela Scott.",
       "category": "review",
-      "status": "scheduled"
+      "status": "published"
     },
     {
       "day": 6,
@@ -97,7 +97,7 @@
       "title": "Ciclocross: regulamento, pneus e preparação da bike para prova",
       "summary": "Compare critérios técnicos que as competições de ciclocross aplicam à bike, e saiba como orientar a escolha de pneus e geometria para prova.",
       "category": "competicoes",
-      "status": "scheduled"
+      "status": "blocked"
     },
     {
       "day": 13,
@@ -118,10 +118,10 @@
     {
       "day": 15,
       "publishDate": "2026-08-22",
-      "title": "Freios de bicicleta: diagnóstico, ajuste e controle térmico",
-      "summary": "Criar resposta técnica original para ciclista intermediário ou avançado, com método e limitações declarados. Sinal observado: 937 visualizações globais do vídeo; 79 por dia; encontrado em 1 busca(s) configurada(s) para o Brasil.",
-      "category": "componentes",
-      "status": "blocked"
+      "title": "Pressão de pneus por terreno: como testar sem transformar sensação em dado",
+      "summary": "Método de campo para ajustar pressão, registrar comportamento e separar aderência, suporte lateral, impacto e resistência ao rolamento.",
+      "category": "engenharia",
+      "status": "scheduled"
     },
     {
       "day": 16,
@@ -129,7 +129,7 @@
       "title": "Bicicletas elétricas: arquitetura, autonomia, limites e critérios técnicos",
       "summary": "Criar resposta técnica original para ciclista intermediário ou avançado, com método e limitações declarados. Sinal observado: 394 visualizações globais do vídeo; 127 por dia; encontrado em 1 busca(s) configurada(s) para o Brasil.",
       "category": "engenharia",
-      "status": "planned"
+      "status": "blocked"
     },
     {
       "day": 17,

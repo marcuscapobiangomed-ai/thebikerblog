@@ -54,6 +54,9 @@ jobs:
         run: npm ci
         working-directory: bot
 
+      - name: Preparar artefatos derivados temporais
+        run: npm run prepare:derived
+
       - name: Bloquear credenciais no repositorio
         run: npm run security:secrets
 

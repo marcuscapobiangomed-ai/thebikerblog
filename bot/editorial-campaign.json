@@ -250,7 +250,7 @@
       "summary": "Review técnico da Addict RC 20 com foco na transmissão, frenagem, rodas, pneus, massa declarada e limites de uso publicados pela Scott.",
       "category": "review",
       "freshness": "revalidate-24h",
-      "status": "scheduled",
+      "status": "published",
       "productIds": [
         "bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9"
       ],
@@ -258,13 +258,14 @@
         "mode": "exact-product",
         "productId": "bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9"
       },
-      "postPath": "_posts/drafts/2026-08-12-review-addict-rc-20.md",
+      "postPath": "_posts/2026-08-12-review-addict-rc-20.md",
       "imageManifestPath": "assets/img/posts/review-addict-rc-20/image-manifest.json",
       "imageStatus": "approved",
       "imageAssetIds": [
         "thebiker-bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9-b1c99140af"
       ],
       "imageValidatedAt": "2026-08-05T17:11:20.434Z",
+      "publishedAt": "2026-08-12T18:24:51.394Z",
       "attempts": 0,
       "aiReview": {
         "score": 0,
@@ -287,6 +288,7 @@
         "origin": "legacy-backfill",
         "reviewedContentHash": "sha256:a07650a3446b56e577af89d5cfbb8021b43cf39988aa6df222f2f7bcf29a2880",
         "scheduledContentHash": "sha256:a07650a3446b56e577af89d5cfbb8021b43cf39988aa6df222f2f7bcf29a2880",
+        "publishedContentHash": "sha256:edf1b3e5434f3efb4ac3e751528ac2f0546d562be37dcbdd822a4db5ec7240ec",
         "researchHash": "sha256:27814354c29307616d2643d3e5af2685de2da32a787ba7114c3570a1fa7279f9",
         "sourceHash": null,
         "finalScore": 92,
@@ -766,7 +768,7 @@
       "summary": "Compare critérios técnicos que as competições de ciclocross aplicam à bike, e saiba como orientar a escolha de pneus e geometria para prova.",
       "category": "competicoes",
       "freshness": "evergreen",
-      "status": "scheduled",
+      "status": "blocked",
       "productIds": [
         "cambio-traseiro-shimano-grx-11v"
       ],
@@ -776,62 +778,17 @@
         "relationship": "component-example",
         "rationale": "O câmbio Shimano GRX real exemplifica a transmissão para terreno misto citada no artigo, preservando a marca promovida."
       },
-      "postPath": "_posts/drafts/2026-08-19-ciclocross-regulamento-preparacao.md",
-      "imageManifestPath": "assets/img/posts/ciclocross-regulamento-preparacao/image-manifest.json",
-      "imageStatus": "approved",
-      "imageAssetIds": [
-        "thebiker-cambio-traseiro-shimano-grx-11v-f0c0a6abf1"
-      ],
-      "imageValidatedAt": "2026-08-11T18:08:05.051Z",
-      "attempts": 1,
-      "lastAttemptAt": "2026-08-09T13:52:49.906Z",
-      "aiReview": {
-        "score": 85,
-        "finalScore": 95,
-        "finalBlockers": 0,
-        "premiumEditUsed": true,
-        "providers": {
-          "factSheet": "deepseek",
-          "draft": "gemini",
-          "critique": "deepseek",
-          "final": "deepseek",
-          "finalAudit": "deepseek",
-          "finalRepair": "deepseek"
-        },
-        "generatedAt": "2026-08-09T13:52:49.906Z",
-        "contentHash": "sha256:cbcb76216609cd34ec43907689fb771d6c7671f17c947edbe976e3b340ab1303"
+      "imageAssetIds": [],
+      "attempts": 4,
+      "lastAttemptAt": "2026-08-13T15:41:38.762Z",
+      "failure": {
+        "code": "VALIDATION_FAILED",
+        "retryable": false,
+        "stage": "production",
+        "message": "Rascunho bloqueado apÃ³s 2 reparos: Artigo inválido:\nsections.0.heading: Too small: expected string to have >=1 characters\nsections.1.heading: Too small: expected string to have >=1 characters\nsections.2.heading: Too small: expected string to have >=1 characters\nsections.3.heading: Too small: expected string to have >=1 characters\nsections.4.heading: Too small: expected string to have >=1 characters\nsections.5.heading: Too small: expected string to have >=1 characters\nsections.6.heading: Too small: expected string to have >=1 characters\nsections.7.heading: Too small: expected string to have >=1 characters\nsections.8.heading: Too small: expect",
+        "recordedAt": "2026-08-13T15:41:38.762Z"
       },
-      "editorialReceipt": {
-        "schemaVersion": 1,
-        "policyVersion": "thebiker-editorial-2026-08-v2",
-        "origin": "deterministic-transform",
-        "reviewedContentHash": "sha256:cbcb76216609cd34ec43907689fb771d6c7671f17c947edbe976e3b340ab1303",
-        "scheduledContentHash": "sha256:2c38b145d015dac2ce60552ff9e80946bfc4f88e16b8a336771f6b531d899369",
-        "researchHash": "sha256:3d6616b4ab31e0782abf9b3524a693b9b68af25e67fe06bd7a58487eb575b53c",
-        "sourceHash": null,
-        "finalScore": 95,
-        "finalBlockers": 0,
-        "issuedAt": "2026-08-11T18:08:05.051Z"
-      },
-      "visualDecision": {
-        "schemaVersion": 1,
-        "policyVersion": "thebiker-visual-autonomy-v1",
-        "inputHash": "sha256:1b3bf05ece46860b4508924706906dbbd16d9c4a359b4d17fd2fffe18cb59584",
-        "mode": "real-context",
-        "productId": "cambio-traseiro-shimano-grx-11v",
-        "score": 100,
-        "hardGates": {
-          "semanticMatch": true,
-          "realAsset": true,
-          "explicitProduct": true,
-          "officialSource": true,
-          "approvedRights": true,
-          "publishableResolution": true,
-          "uniqueAsset": true
-        },
-        "blockers": [],
-        "issuedAt": "2026-08-11T18:15:18.955Z"
-      }
+      "blockReason": "[VALIDATION_FAILED] Rascunho bloqueado apÃ³s 2 reparos: Artigo inválido:\nsections.0.heading: Too small: expected string to have >=1 characters\nsections.1.heading: Too small: expected string to have >=1 characters\nsections.2.heading: Too small: expected string to have >=1 characters\nsections.3.heading: Too small: expected string to have >=1 characters\nsections.4.heading: Too small: expected string to have >=1 characters\nsections.5.heading: Too small: expected string to have >=1 characters\nsections.6.heading: Too small: expected string to have >=1 characters\nsections.7.heading: Too small: expected string to have >=1 characters\nsections.8.heading: Too small: expect"
     },
     {
       "day": 13,
@@ -986,27 +943,78 @@
     {
       "day": 15,
       "publishDate": "2026-08-22",
-      "id": "youtube-freios-de-bicicleta-diagnostico-ajuste-e-controle-termico",
-      "title": "Freios de bicicleta: diagnóstico, ajuste e controle térmico",
-      "summary": "Criar resposta técnica original para ciclista intermediário ou avançado, com método e limitações declarados. Sinal observado: 937 visualizações globais do vídeo; 79 por dia; encontrado em 1 busca(s) configurada(s) para o Brasil.",
-      "category": "componentes",
-      "freshness": "event-driven",
-      "status": "blocked",
-      "productIds": [],
+      "id": "reserva-pressao-pneus-terreno",
+      "title": "Pressão de pneus por terreno: como testar sem transformar sensação em dado",
+      "summary": "Método de campo para ajustar pressão, registrar comportamento e separar aderência, suporte lateral, impacto e resistência ao rolamento.",
+      "category": "engenharia",
+      "freshness": "evergreen",
+      "status": "scheduled",
+      "productIds": [
+        "pneu-schwalbe-racing-ray-29-x-2-25-super-race-tlr-addix"
+      ],
       "heroImage": {
-        "mode": "conceptual"
+        "mode": "real-context",
+        "productId": "pneu-schwalbe-racing-ray-29-x-2-25-super-race-tlr-addix",
+        "relationship": "category-example",
+        "rationale": "Fotografia real do catálogo TheBiker usada apenas como exemplo visual da categoria técnica abordada."
       },
-      "imageAssetIds": [],
-      "attempts": 1,
-      "lastAttemptAt": "2026-08-11T17:59:29.839Z",
-      "failure": {
-        "code": "POLICY_MARKETING_LANGUAGE",
-        "retryable": false,
-        "stage": "production",
-        "message": "Gate Markdown reprovado: linguagem publicitária proibida: perfeito",
-        "recordedAt": "2026-08-11T17:59:29.839Z"
+      "postPath": "_posts/drafts/2026-08-22-reserva-pressao-pneus-terreno.md",
+      "imageManifestPath": "assets/img/posts/reserva-pressao-pneus-terreno/image-manifest.json",
+      "imageStatus": "approved",
+      "imageAssetIds": [
+        "thebiker-pneu-schwalbe-racing-ray-29-x-2-25-super-race-tlr-addix-a1357c2808"
+      ],
+      "imageValidatedAt": "2026-08-13T12:32:29.112Z",
+      "attempts": 4,
+      "lastAttemptAt": "2026-08-13T12:30:25.342Z",
+      "aiReview": {
+        "score": 72,
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "premiumEditUsed": true,
+        "providers": {
+          "factSheet": "deepseek",
+          "draft": "gemini",
+          "critique": "deepseek",
+          "final": "deepseek",
+          "finalAudit": "deepseek",
+          "finalRepair": "deepseek"
+        },
+        "generatedAt": "2026-08-13T12:30:25.342Z",
+        "contentHash": "sha256:de6ae7ad5acc3e5ade54b7aa5c9c5f1b2e244a1a45bdcd661051371a8868ddc8",
+        "sourceHash": "de636fc998fed25604268cfc118bf4464bbf561fc602dc631ec494b4935f8d30"
       },
-      "blockReason": "[POLICY_MARKETING_LANGUAGE] Gate Markdown reprovado: linguagem publicitária proibida: perfeito"
+      "editorialReceipt": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-editorial-2026-08-v2",
+        "origin": "pipeline",
+        "reviewedContentHash": "sha256:de6ae7ad5acc3e5ade54b7aa5c9c5f1b2e244a1a45bdcd661051371a8868ddc8",
+        "scheduledContentHash": "sha256:7503ffb7245207c4546320ba13c658957c25e31f82622ac795117ec52101847d",
+        "researchHash": "sha256:d772b0936875c68758f03c9c1e06612db528fa47d08db5a43c0e557525b2231d",
+        "sourceHash": "de636fc998fed25604268cfc118bf4464bbf561fc602dc631ec494b4935f8d30",
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "issuedAt": "2026-08-13T12:32:29.112Z"
+      },
+      "visualDecision": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-visual-autonomy-v1",
+        "inputHash": "sha256:4f36774a1ce06f11d34587594722e678bdcb2678e1922a1a925c68c2adcc70e6",
+        "mode": "real-context",
+        "productId": "pneu-schwalbe-racing-ray-29-x-2-25-super-race-tlr-addix",
+        "score": 100,
+        "hardGates": {
+          "semanticMatch": true,
+          "realAsset": true,
+          "explicitProduct": true,
+          "officialSource": true,
+          "approvedRights": true,
+          "publishableResolution": true,
+          "uniqueAsset": true
+        },
+        "blockers": [],
+        "issuedAt": "2026-08-13T12:32:29.112Z"
+      }
     },
     {
       "day": 16,
@@ -1016,13 +1024,27 @@
       "summary": "Criar resposta técnica original para ciclista intermediário ou avançado, com método e limitações declarados. Sinal observado: 394 visualizações globais do vídeo; 127 por dia; encontrado em 1 busca(s) configurada(s) para o Brasil.",
       "category": "engenharia",
       "freshness": "event-driven",
-      "status": "planned",
-      "productIds": [],
+      "status": "blocked",
+      "productIds": [
+        "bicicleta-eletrica-oggi-big-wheel-8-0-2025"
+      ],
       "heroImage": {
-        "mode": "conceptual"
+        "mode": "real-context",
+        "productId": "bicicleta-eletrica-oggi-big-wheel-8-0-2025",
+        "relationship": "category-example",
+        "rationale": "Fotografia real do catálogo TheBiker selecionada deterministicamente como exemplo visual da categoria técnica abordada."
       },
       "imageAssetIds": [],
-      "attempts": 0
+      "blockReason": "[RESEARCH_INSUFFICIENT] Pesquisa bloqueada por integridade de fontes: fatos referenciam fontes inexistentes",
+      "failure": {
+        "code": "RESEARCH_INSUFFICIENT",
+        "retryable": false,
+        "stage": "grounding-audit",
+        "message": "Pesquisa bloqueada por integridade de fontes: fatos referenciam fontes inexistentes",
+        "recordedAt": "2026-08-13T15:00:00.000Z"
+      },
+      "attempts": 2,
+      "lastAttemptAt": "2026-08-13T14:51:06.631Z"
     },
     {
       "day": 17,
@@ -1251,16 +1273,28 @@
   ],
   "reserves": [
     {
-      "id": "reserva-diagnostico-ruidos-bike",
-      "title": "Diagnóstico de ruídos na bicicleta: método por carga, frequência e interface",
-      "summary": "Protocolo técnico para isolar ruídos de transmissão, cockpit, rodas e quadro sem substituir componentes por tentativa e erro.",
-      "category": "manutencao-ajustes"
+      "id": "reserva-radar-profissional-oficial",
+      "title": "Radar profissional: próxima prova com calendário e resultados oficialmente verificáveis",
+      "summary": "Reserva de cobertura profissional que só avança depois de ser vinculada a um evento e a fontes oficiais revalidadas.",
+      "category": "competicoes",
+      "race": {
+        "track": "professional-coverage",
+        "format": "weekly-roundup",
+        "eventIds": [],
+        "sourceStatus": "pending"
+      }
     },
     {
-      "id": "reserva-pressao-pneus-terreno",
-      "title": "Pressão de pneus por terreno: como testar sem transformar sensação em dado",
-      "summary": "Método de campo para ajustar pressão, registrar comportamento e separar aderência, suporte lateral, impacto e resistência ao rolamento.",
-      "category": "engenharia"
+      "id": "reserva-calendario-participativo-oficial",
+      "title": "Calendário brasileiro de provas: atualização com inscrições e mudanças verificadas",
+      "summary": "Reserva participativa que permanece pendente até receber eventos oficiais, situação de inscrição e checagem recente das fontes.",
+      "category": "competicoes",
+      "race": {
+        "track": "participant-calendar",
+        "format": "calendar-roundup",
+        "eventIds": [],
+        "sourceStatus": "pending"
+      }
     },
     {
       "id": "reserva-cabos-mangueiras-roteamento",
@@ -1272,6 +1306,12 @@
       "id": "reserva-limpeza-transmissao-metodo",
       "title": "Limpeza de transmissão: como remover contaminantes sem deslocar o problema",
       "summary": "Sequência de limpeza, inspeção e relubrificação que considera corrente, cassete, coroas, roldanas e compatibilidade química.",
+      "category": "manutencao-ajustes"
+    },
+    {
+      "id": "reserva-diagnostico-ruidos-bike",
+      "title": "Diagnóstico de ruídos na bicicleta: método por carga, frequência e interface",
+      "summary": "Protocolo técnico para isolar ruídos de transmissão, cockpit, rodas e quadro sem substituir componentes por tentativa e erro.",
       "category": "manutencao-ajustes"
     }
   ]

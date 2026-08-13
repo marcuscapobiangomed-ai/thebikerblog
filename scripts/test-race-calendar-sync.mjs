@@ -124,6 +124,14 @@ const snapshotFallback = brazilianEventsFromVerifiedSnapshot({
 }, '2026-08-11')
 assert.equal(snapshotFallback[0].validationMethod, 'verified-snapshot-plus-organizer')
 assert.equal(snapshotFallback[0].discoveryCheckedAt, '2026-08-11T20:01:29.236Z')
+const repeatedSnapshotFallback = brazilianEventsFromVerifiedSnapshot({
+  upcoming: [{
+    id: 'br-mtb-10616', name: brazilian.name, venue: brazilian.venue, startsOn: brazilian.startsOn, endsOn: brazilian.endsOn,
+    source: { ...snapshotFallback[0], validationMethod: 'verified-snapshot-plus-organizer' },
+  }],
+}, '2026-08-11')
+assert.equal(repeatedSnapshotFallback.length, 1, 'snapshot já revalidado deve continuar disponível em uma nova contingência')
+assert.equal(repeatedSnapshotFallback[0].validationMethod, 'verified-snapshot-plus-organizer')
 assert.throws(() => brazilianEventFromJsonLd({ ...brazilJsonLd, name: 'WOS Trail Run' }, { sourceId: '1', discoveryUrl: brazilDiscoveryUrl }), /exclusivamente de trail run/)
 const mixedUpcoming = mergeBrazilPriority(
   [{ name: 'World race', startsOn: '2026-08-17' }],

@@ -34,7 +34,7 @@ jobs:
           npm ci --prefix bot
 
       - name: Run publication gates
-        run: npm run validate
+        run: npm run validate:ci
 
       - uses: ruby/setup-ruby@v1
         with:

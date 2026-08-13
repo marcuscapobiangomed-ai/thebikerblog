@@ -7,6 +7,7 @@ import { assertMarkdownPublicationGates } from "./validation/markdown-publicatio
 import matter from "gray-matter";
 import { assertImageArticleConsistency } from "./validation/image-article-consistency.js";
 import { assertScheduledReceipt, hashEditorialText } from "./validation/editorial-receipt.js";
+import { createStagedWorkspace, discardStagedWorkspace, promoteStagedPaths } from "./automation/file-transaction.js";
 
 const defaultRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 
@@ -39,7 +40,7 @@ export function selectScheduledPublication(campaign, date) {
   return { item: null, catchUp: false, alreadyPublished: due?.status === "published" };
 }
 
-export async function publishScheduled({ now = new Date(), dryRun = false, root = defaultRoot } = {}) {
+async function publishInWorkspace({ now, dryRun, root }) {
   const campaignPath = path.join(root, "bot/editorial-campaign.json");
   const calendarPath = path.join(root, "_data/editorial-calendar.json");
   const campaign = CampaignSchema.parse(JSON.parse(await fs.readFile(campaignPath, "utf8")));
@@ -115,6 +116,36 @@ export async function publishScheduled({ now = new Date(), dryRun = false, root 
     catchUp: selected.catchUp,
     targetPath,
   };
+}
+
+export async function publishScheduled({ now = new Date(), dryRun = false, root = defaultRoot, beforePromote } = {}) {
+  if (dryRun) return publishInWorkspace({ now, dryRun: true, root });
+  const campaignPath = path.join(root, "bot/editorial-campaign.json");
+  const campaign = CampaignSchema.parse(JSON.parse(await fs.readFile(campaignPath, "utf8")));
+  const date = localDate(now);
+  const selected = selectScheduledPublication(campaign, date);
+  if (!selected.item) return publishInWorkspace({ now, dryRun: false, root });
+  const item = selected.item;
+  const imageDirectory = item.imageManifestPath ? path.dirname(item.imageManifestPath).replace(/\\/g, "/") : null;
+  const transaction = await createStagedWorkspace(root, [
+    "bot/editorial-campaign.json",
+    "_data/editorial-calendar.json",
+    item.postPath,
+    imageDirectory,
+    "content/product-discovery/thebiker-media-catalog.json",
+  ].filter(Boolean), { transactionId: `publish-${item.id}-${process.pid}-${Date.now()}` });
+  try {
+    const result = await publishInWorkspace({ now, dryRun: false, root: transaction.workspaceRoot });
+    const targetRelative = path.relative(transaction.workspaceRoot, result.targetPath).replace(/\\/g, "/");
+    await promoteStagedPaths(
+      transaction,
+      [targetRelative, "bot/editorial-campaign.json", "_data/editorial-calendar.json"],
+      { beforePromote, deletions: [item.postPath] },
+    );
+    return { ...result, targetPath: path.join(root, targetRelative), transactionId: transaction.id };
+  } finally {
+    await discardStagedWorkspace(transaction);
+  }
 }
 
 if (path.resolve(process.argv[1] || "") === fileURLToPath(import.meta.url)) {

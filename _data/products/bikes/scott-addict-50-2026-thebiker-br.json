@@ -11,21 +11,60 @@
   "storeProductUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-addict-50-2026-pre-venda-cumulus-white/",
   "image": "/assets/img/products/comparator/scott-addict-50-2026.webp",
   "portfolioStatus": "verified",
-  "portfolioVerifiedAt": "2026-08-04",
+  "portfolioVerifiedAt": "2026-08-13",
   "theBikerPrice": 28999,
-  "frame": { "material": "carbon", "technology": "HMF", "internalCableRouting": true, "derailleurHanger": "UDH" },
-  "fork": { "material": "carbon", "model": "Addict HMF Flatmount Disc", "steerer": "carbono excêntrico" },
-  "drivetrain": { "brand": "Shimano", "groupset": "105", "speeds": 12, "shifting": "mechanical", "configuration": "2x12" },
-  "brakes": { "type": "hydraulic-disc", "brand": "Shimano", "model": "BR-R7170" },
-  "wheels": { "brand": "Syncros", "model": "RP2.0 Disc", "material": null },
-  "tires": { "brand": "Schwalbe", "model": "ONE", "widthMm": 34, "tubelessReady": null },
-  "declaredWeight": { "valueKg": 8.9, "approximate": true, "size": "não informado", "sourceId": "scott-addict-50-global-product" },
-  "maxTireClearanceMm": { "value": 38, "sourceId": "scott-addict-manual-2026-pt" },
-  "maximumSystemWeightKg": { "value": 120, "sourceId": "thebiker-scott-addict-50-2026" },
+  "frame": {
+    "material": "carbon",
+    "technology": "HMF",
+    "internalCableRouting": true,
+    "derailleurHanger": "UDH"
+  },
+  "fork": {
+    "material": "carbon",
+    "model": "Addict HMF Flatmount Disc",
+    "steerer": "carbono excêntrico"
+  },
+  "drivetrain": {
+    "brand": "Shimano",
+    "groupset": "105",
+    "speeds": 12,
+    "shifting": "mechanical",
+    "configuration": "2x12"
+  },
+  "brakes": {
+    "type": "hydraulic-disc",
+    "brand": "Shimano",
+    "model": "BR-R7170"
+  },
+  "wheels": {
+    "brand": "Syncros",
+    "model": "RP2.0 Disc",
+    "material": null
+  },
+  "tires": {
+    "brand": "Schwalbe",
+    "model": "ONE",
+    "widthMm": 34,
+    "tubelessReady": null
+  },
+  "declaredWeight": {
+    "valueKg": 8.9,
+    "approximate": true,
+    "size": "não informado",
+    "sourceId": "scott-addict-50-global-product"
+  },
+  "maxTireClearanceMm": {
+    "value": 38,
+    "sourceId": "scott-addict-manual-2026-pt"
+  },
+  "maximumSystemWeightKg": {
+    "value": 120,
+    "sourceId": "thebiker-scott-addict-50-2026"
+  },
   "knowledgeRecord": "_data/product-knowledge/bikes/scott-addict-50-2026-thebiker-br.json",
   "testedByTheBikerBlog": false,
   "createdAt": "2026-08-04",
-  "updatedAt": "2026-08-04",
+  "updatedAt": "2026-08-13",
   "reviewStatus": "verified",
   "sourceId": "thebiker-scott-addict-50-2026"
 }

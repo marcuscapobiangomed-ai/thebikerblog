@@ -8,6 +8,7 @@ import { validateImageManifestV2 } from "./image-manifest-v2.js";
 import { imageArticleConsistencyErrors } from "./image-article-consistency.js";
 import { assertScheduledReceipt } from "./editorial-receipt.js";
 import { visualDecisionErrors } from "./visual-decision.js";
+import { researchGroundingErrors } from "./research-grounding.js";
 
 const defaultRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../../..");
 
@@ -54,6 +55,12 @@ export async function validateScheduledPublications({ root = defaultRoot } = {})
 
     for (const error of scheduledDraftErrors(content)) {
       errors.push(`${item.id}: ${error}`);
+    }
+    try {
+      const research = JSON.parse(await fs.readFile(path.join(root, "content/research/campaign", `${item.id}.json`), "utf8"));
+      for (const error of researchGroundingErrors(research)) errors.push(`${item.id}: ${error}`);
+    } catch (error) {
+      errors.push(`${item.id}: pesquisa indisponível ou inválida (${error.code || error.message})`);
     }
     try {
       assertScheduledReceipt(content, item);

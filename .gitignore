@@ -9,4 +9,5 @@ _generated/
 .playwright-cli/
 output/
 tmp/
+.automation/staging/
 data/price-audit-log.json

@@ -17,9 +17,9 @@ const RULES = [
   [EditorialFailureCode.POLICY_NON_CANONICAL_TAG, /tags? n[aã]o can[oô]nic/i, false],
   [EditorialFailureCode.POLICY_UNSUPPORTED_TEST, /teste pr[aá]tico proibid|testamos|durante o pedal/i, false],
   [EditorialFailureCode.UNSAFE_PATH, /postpath inseguro|precisa apontar para _posts\/drafts/i, false],
-  [EditorialFailureCode.IMAGE_NOT_PUBLISHABLE, /imagem|image|variante public[aá]vel|fallback/i, false],
+  [EditorialFailureCode.IMAGE_NOT_PUBLISHABLE, /imagem|image|variante public[aá]vel|fallback|pol[ií]tica visual|fotografia real/i, false],
   [EditorialFailureCode.AI_REVIEW_REJECTED, /nota editorial final insuficiente|revis[aã]o final reprovada|bloqueadores/i, false],
-  [EditorialFailureCode.RESEARCH_INSUFFICIENT, /sem fontes editoriais|nenhuma fonte oficial|pesquisa bloqueada/i, false],
+  [EditorialFailureCode.RESEARCH_INSUFFICIENT, /sem fontes editoriais|nenhuma fonte oficial|pesquisa bloqueada|integridade de fontes/i, false],
   [EditorialFailureCode.TRANSIENT_PROVIDER, /timeout|timed out|aborted|429|rate limit|temporar|econnreset|fetch failed/i, true],
 ];
 

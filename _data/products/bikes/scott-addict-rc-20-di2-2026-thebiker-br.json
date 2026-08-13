@@ -1,14 +1,50 @@
 {
-  "id": "scott-addict-rc-20-di2-2026-thebiker-br", "type": "bike", "status": "pre-release",
-  "brand": "Scott", "model": "Addict RC 20 Di2", "modelYear": 2026, "market": "BR", "category": "road-race",
-  "officialUrl": "https://www.scott-sports.com/", "storeProductUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9/",
+  "id": "scott-addict-rc-20-di2-2026-thebiker-br",
+  "type": "bike",
+  "status": "pre-release",
+  "brand": "Scott",
+  "model": "Addict RC 20 Di2",
+  "modelYear": 2026,
+  "market": "BR",
+  "category": "road-race",
+  "officialUrl": "https://www.scott-sports.com/",
+  "storeProductUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9/",
   "image": "/assets/img/products/comparator/scott-addict-rc-20-di2-2026.webp",
-  "portfolioStatus": "verified", "portfolioVerifiedAt": "2026-08-05", "theBikerPrice": 59990,
-  "frame": { "material": "carbon", "technology": "HMX", "internalCableRouting": true },
-  "fork": { "material": "carbon", "model": "Addict RC HMX Flatmount Disc" },
-  "drivetrain": { "brand": "não confirmado", "groupset": "Di2 — configuração pendente de confirmação", "shifting": "electronic" },
-  "brakes": { "type": "não confirmado", "brand": "não confirmado", "model": "não confirmado" },
-  "wheels": { "brand": "não confirmado", "model": "não confirmado", "material": "não confirmado" },
-  "tires": { "brand": "não confirmado", "model": "não confirmado", "tubelessReady": false },
-  "testedByTheBikerBlog": false, "createdAt": "2026-08-04", "updatedAt": "2026-08-05", "reviewStatus": "needs-review", "sourceId": "thebiker-scott-addict-rc-20-2026"
+  "portfolioStatus": "verified",
+  "portfolioVerifiedAt": "2026-08-13",
+  "theBikerPrice": 59990,
+  "frame": {
+    "material": "carbon",
+    "technology": "HMX",
+    "internalCableRouting": true
+  },
+  "fork": {
+    "material": "carbon",
+    "model": "Addict RC HMX Flatmount Disc"
+  },
+  "drivetrain": {
+    "brand": "não confirmado",
+    "groupset": "Di2 — configuração pendente de confirmação",
+    "shifting": "electronic"
+  },
+  "brakes": {
+    "type": "não confirmado",
+    "brand": "não confirmado",
+    "model": "não confirmado"
+  },
+  "wheels": {
+    "brand": "não confirmado",
+    "model": "não confirmado",
+    "material": "não confirmado"
+  },
+  "tires": {
+    "brand": "não confirmado",
+    "model": "não confirmado",
+    "tubelessReady": false
+  },
+  "testedByTheBikerBlog": false,
+  "createdAt": "2026-08-04",
+  "updatedAt": "2026-08-13",
+  "reviewStatus": "needs-review",
+  "sourceId": "thebiker-scott-addict-rc-20-2026"
 }

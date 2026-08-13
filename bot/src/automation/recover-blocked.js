@@ -6,6 +6,44 @@ import { classifyEditorialFailure } from '../validation/editorial-failures.js'
 
 const TRANSIENT = /timeout|timed out|aborted|429|rate limit|temporar|econnreset|fetch failed/i
 const FINALIZATION = /^Valida(?:ção|cao) final:/i
+const NORMALIZABLE_PORTFOLIO_ALIAS = /promo(?:ção|cao) bloqueada[^\n]*TheBiker Shop/i
+const NEAR_MISS_LENGTH = /extens(?:ão|ao) insuficiente:\s*(\d+) palavras; m(?:í|i)nimo\s*(\d+)/i
+const EXHAUSTED_LEGACY_REPAIR = /Rascunho bloqueado.+\d+ reparos/i
+const STRUCTURAL_REPAIR_FAILURE = /Rascunho bloqueado.+\d+ reparos[\s\S]*(?:Description precisa|M[ií]nimo de 2 se[cç][oõ]es|sections\.\d+\.heading)/i
+const MISSING_DRAFT = /rascunho indisponível/i
+
+const REAL_CONTEXT_BY_RESERVE_ID = Object.freeze({
+  'reserva-diagnostico-ruidos-bike': 'bicicleta-scott-scale-940-black',
+  'reserva-pressao-pneus-terreno': 'pneu-schwalbe-racing-ray-29-x-2-25-super-race-tlr-addix',
+  'reserva-inspecao-pos-chuva': 'corrente-sram-nx-eagle',
+  'reserva-cabos-mangueiras-roteamento': 'bicicleta-scott-scale-940-black',
+  'reserva-limpeza-transmissao-metodo': 'corrente-sram-nx-eagle',
+})
+
+function realContextPolicy(item) {
+  const productId = REAL_CONTEXT_BY_RESERVE_ID[item.id]
+  if (!productId) return null
+  return {
+    productId,
+    heroImage: {
+      mode: 'real-context',
+      productId,
+      relationship: 'category-example',
+      rationale: 'Fotografia real do catálogo TheBiker usada apenas como exemplo visual da categoria técnica abordada.',
+    },
+  }
+}
+
+function clearDiscardedDraftState(item) {
+  delete item.postPath
+  delete item.aiReview
+  delete item.editorialReceipt
+  delete item.visualDecision
+  delete item.imageManifestPath
+  delete item.imageStatus
+  delete item.imageValidatedAt
+  item.imageAssetIds = []
+}
 
 const RECOVERY_RESERVES = [
   { id: 'reserva-radar-profissional-oficial', title: 'Radar profissional: próxima prova com calendário e resultados oficialmente verificáveis', summary: 'Reserva de cobertura profissional que só avança depois de ser vinculada a um evento e a fontes oficiais revalidadas.', category: 'competicoes', race: { track: 'professional-coverage', format: 'weekly-roundup', eventIds: [], sourceStatus: 'pending' } },
@@ -22,6 +60,7 @@ function localDate(now, timezone) {
 }
 
 function reserveToItem(reserve, blocked) {
+  const visual = realContextPolicy(reserve)
   return {
     day: blocked.day,
     publishDate: blocked.publishDate,
@@ -32,7 +71,8 @@ function reserveToItem(reserve, blocked) {
     ...(reserve.race ? { race: structuredClone(reserve.race) } : {}),
     freshness: reserve.category === 'competicoes' ? 'event-driven' : ['review', 'comparativo', 'lancamentos'].includes(reserve.category) ? 'revalidate-24h' : 'evergreen',
     status: 'planned',
-    productIds: [],
+    productIds: visual ? [visual.productId] : [],
+    ...(visual ? { heroImage: visual.heroImage } : {}),
     imageAssetIds: [],
     attempts: 0,
   }
@@ -55,6 +95,40 @@ export function recoverBlockedCampaign(campaignInput, {
   const blocked = campaign.items.find((item) => item.status === 'blocked' && item.publishDate >= today)
   if (!blocked) return { campaign, result: { status: 'idle' }, exception: null }
   let reason = blocked.blockReason || 'Motivo não informado'
+  const classified = blocked.failure || classifyEditorialFailure(reason, { stage: 'recovery', now })
+  const visual = realContextPolicy(blocked)
+  if (FINALIZATION.test(reason)
+      && classified.code === 'IMAGE_NOT_PUBLISHABLE'
+      && blocked.heroImage?.mode === 'conceptual'
+      && blocked.postPath
+      && finalizationDraftErrors.length === 0
+      && visual) {
+    blocked.productIds = [visual.productId]
+    blocked.heroImage = visual.heroImage
+    blocked.status = 'validation'
+    delete blocked.blockReason
+    delete blocked.failure
+    return {
+      campaign: CampaignSchema.parse(campaign),
+      result: { status: 'repair-finalization-visual', itemId: blocked.id, productId: visual.productId },
+      exception: null,
+    }
+  }
+  if (FINALIZATION.test(reason)
+      && classified.code === 'IMAGE_NOT_PUBLISHABLE'
+      && blocked.heroImage?.mode === 'conceptual'
+      && finalizationDraftErrors.some((message) => MISSING_DRAFT.test(message))
+      && (blocked.attempts || 0) < 2) {
+    clearDiscardedDraftState(blocked)
+    blocked.status = 'planned'
+    delete blocked.blockReason
+    delete blocked.failure
+    return {
+      campaign: CampaignSchema.parse(campaign),
+      result: { status: 'retry-production-with-semantic-visual', itemId: blocked.id, attempts: blocked.attempts || 0 },
+      exception: null,
+    }
+  }
   if (FINALIZATION.test(reason) && blocked.postPath && finalizationDraftErrors.length === 0) {
     blocked.status = 'validation'
     delete blocked.blockReason
@@ -68,7 +142,36 @@ export function recoverBlockedCampaign(campaignInput, {
   if (FINALIZATION.test(reason) && finalizationDraftErrors.length > 0) {
     reason = `${reason}; rascunho ainda reprovado: ${finalizationDraftErrors.join('; ')}`
   }
-  const classified = blocked.failure || classifyEditorialFailure(reason, { stage: 'recovery', now })
+  if (NORMALIZABLE_PORTFOLIO_ALIAS.test(reason)) {
+    blocked.status = 'planned'
+    delete blocked.blockReason
+    delete blocked.failure
+    return { campaign: CampaignSchema.parse(campaign), result: { status: 'retry-policy-normalization', itemId: blocked.id, attempts: blocked.attempts || 0 }, exception: null }
+  }
+  if (classified.code === 'RESEARCH_INSUFFICIENT' && (blocked.attempts || 0) < 3) {
+    clearDiscardedDraftState(blocked)
+    blocked.status = 'planned'
+    delete blocked.blockReason
+    delete blocked.failure
+    return { campaign: CampaignSchema.parse(campaign), result: { status: 'retry-research-grounding', itemId: blocked.id, attempts: blocked.attempts || 0 }, exception: null }
+  }
+  const lengthMatch = reason.match(NEAR_MISS_LENGTH)
+  const legacyRepairFailure = EXHAUSTED_LEGACY_REPAIR.test(reason)
+  if (STRUCTURAL_REPAIR_FAILURE.test(reason) && (blocked.attempts || 0) < 5) {
+    clearDiscardedDraftState(blocked)
+    blocked.status = 'planned'
+    delete blocked.blockReason
+    delete blocked.failure
+    return { campaign: CampaignSchema.parse(campaign), result: { status: 'retry-editorial-structure', itemId: blocked.id, attempts: blocked.attempts || 0 }, exception: null }
+  }
+  const lengthRetryRatio = legacyRepairFailure ? 0.8 : 0.9
+  const lengthRetryCap = legacyRepairFailure ? 4 : 3
+  if (lengthMatch && Number(lengthMatch[1]) / Number(lengthMatch[2]) >= lengthRetryRatio && (blocked.attempts || 0) < lengthRetryCap) {
+    blocked.status = 'planned'
+    delete blocked.blockReason
+    delete blocked.failure
+    return { campaign: CampaignSchema.parse(campaign), result: { status: 'retry-editorial-expansion', itemId: blocked.id, attempts: blocked.attempts || 0 }, exception: null }
+  }
   if (finalizationDraftErrors.length === 0 && (classified.retryable || TRANSIENT.test(reason)) && (blocked.attempts || 0) < maximumTransientAttempts) {
     blocked.status = 'planned'
     delete blocked.blockReason

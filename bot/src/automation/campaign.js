@@ -85,6 +85,27 @@ const CampaignItemSchema = z.object({
   }).optional(),
 })
 
+export function campaignItemInvariantErrors(item) {
+  const errors = []
+  const reviewed = ['validation', 'approved', 'scheduled'].includes(item.status)
+  if (reviewed && !item.postPath) errors.push({ path: ['postPath'], message: `${item.status} exige postPath` })
+  if (reviewed && !item.aiReview?.contentHash) errors.push({ path: ['aiReview', 'contentHash'], message: `${item.status} exige revisão com hash do conteúdo` })
+  if (item.status === 'scheduled') {
+    if ((item.aiReview?.finalScore ?? 0) < 90 || (item.aiReview?.finalBlockers ?? 1) !== 0) {
+      errors.push({ path: ['aiReview'], message: 'scheduled exige nota final >= 90 e zero bloqueadores' })
+    }
+    if (!item.editorialReceipt) errors.push({ path: ['editorialReceipt'], message: 'scheduled exige recibo editorial' })
+    if (!item.visualDecision || item.visualDecision.blockers.length > 0) errors.push({ path: ['visualDecision'], message: 'scheduled exige decisão visual sem bloqueadores' })
+    if (item.imageStatus !== 'approved' || !item.imageManifestPath || item.imageAssetIds.length === 0) {
+      errors.push({ path: ['imageStatus'], message: 'scheduled exige imagem, manifesto e ativo aprovados' })
+    }
+  }
+  if (item.status === 'published' && !item.postPath) errors.push({ path: ['postPath'], message: 'published exige postPath' })
+  if (item.status === 'published' && !item.publishedAt) errors.push({ path: ['publishedAt'], message: 'published exige publishedAt' })
+  if (item.status === 'blocked' && !item.blockReason && !item.failure) errors.push({ path: ['blockReason'], message: 'blocked exige motivo ou falha tipada' })
+  return errors
+}
+
 const ReserveSchema = z.object({
   id: z.string(),
   title: z.string(),
@@ -105,6 +126,9 @@ export const CampaignSchema = z.object({
 }).superRefine((campaign, context) => {
   const ids = new Set()
   for (const [index, item] of campaign.items.entries()) {
+    for (const error of campaignItemInvariantErrors(item)) {
+      context.addIssue({ code: 'custom', path: ['items', index, ...error.path], message: error.message })
+    }
     if (ids.has(item.id)) context.addIssue({ code: 'custom', path: ['items', index, 'id'], message: 'id duplicado' })
     ids.add(item.id)
     if (item.day !== index + 1) context.addIssue({ code: 'custom', path: ['items', index, 'day'], message: 'dias precisam ser sequenciais' })

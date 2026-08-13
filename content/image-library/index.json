@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-08-11T18:15:17.770Z",
+  "updatedAt": "2026-08-13T14:52:56.215Z",
   "assets": [
     {
       "assetId": "thebiker-scott-addict-rc-pro-hmx-frame-set-def10da96a",
@@ -356,6 +356,40 @@
           "postId": "youtube-pneus-de-bicicleta-pressao-carcaca-aderencia-e-resistencia-ao-ro",
           "position": "hero",
           "usedAt": "2026-08-11T12:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "assetId": "thebiker-pneu-schwalbe-racing-ray-29-x-2-25-super-race-tlr-addix-a1357c2808",
+      "sha256": "a1357c2808013d4314b586d340126bc94ed53d880a8631a7e73a451abb177d22",
+      "perceptualHash": "1111111111100011110000011000000010001100000111100011111111111111",
+      "sourcePageUrl": "https://thebikershop.com.br/produtos/pneu-schwalbe-racing-ray-29-x-2-25-super-race-tlr-addix/",
+      "sourceFileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/schwalbe-racing-ray-29-x-235-superrace1-649575ab6dc6e36d7916325152567079-1024-1024.webp",
+      "productId": "pneu-schwalbe-racing-ray-29-x-2-25-super-race-tlr-addix",
+      "productName": "Pneu Schwalbe Racing Ray 29 x 2.25 Super Race TLR Addix",
+      "rightsPolicyId": "thebiker-official-editorial-v1",
+      "uses": [
+        {
+          "postId": "reserva-pressao-pneus-terreno",
+          "position": "hero",
+          "usedAt": "2026-08-13T12:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "assetId": "thebiker-bicicleta-eletrica-oggi-big-wheel-8-0-2025-b87711d99d",
+      "sha256": "b87711d99d09c526fe2d631ff76d0e302123b63b770d915a71f458be1473026d",
+      "perceptualHash": "1111111111011011111100111000000101000010000000000100101010011001",
+      "sourcePageUrl": "https://thebikershop.com.br/produtos/bicicleta-eletrica-oggi-big-wheel-8-0-2025/",
+      "sourceFileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/bw-8-0-cinza-fb-scaled-2baedd2dda8a8af23a17387887132853-1024-1024.webp",
+      "productId": "bicicleta-eletrica-oggi-big-wheel-8-0-2025",
+      "productName": "Bicicleta Elétrica Oggi Big Wheel 8.0 2025",
+      "rightsPolicyId": "thebiker-official-editorial-v1",
+      "uses": [
+        {
+          "postId": "youtube-bicicletas-eletricas-arquitetura-autonomia-limites-e-criterios-t",
+          "position": "hero",
+          "usedAt": "2026-08-13T12:00:00.000Z"
         }
       ]
     }

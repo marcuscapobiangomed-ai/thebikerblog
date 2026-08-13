@@ -44,11 +44,13 @@ assert.equal(parseIntelligenceMarkdown(markdown).runKey, report.runKey)
 assert.equal(intelligenceSourceDigest(report), intelligenceSourceDigest(structuredClone(report)))
 assert.notEqual(intelligenceSourceDigest(report), intelligenceSourceDigest({ ...report, generatedAt: '2026-08-07T10:11:00.000Z' }))
 
-const fixtureStart = campaignFixture.items[0].publishDate
-const fixtureNextDay = campaignFixture.items[1].publishDate
+const scheduledIndex = campaignFixture.items.findIndex((item) => item.status === 'scheduled')
+const fixtureStart = campaignFixture.items[scheduledIndex].publishDate
+const fixtureNextDay = campaignFixture.items[scheduledIndex + 1].publishDate
 const activeToday = structuredClone(campaignFixture)
-activeToday.items.find((item) => item.publishDate === fixtureStart).status = 'scheduled'
-activeToday.items.find((item) => item.publishDate === fixtureNextDay).status = 'blocked'
+const blockedTomorrow = activeToday.items.find((item) => item.publishDate === fixtureNextDay)
+blockedTomorrow.status = 'blocked'
+blockedTomorrow.blockReason = 'Falha permanente usada pelo teste de renovação'
 const scheduledFixtureId = activeToday.items.find((item) => item.publishDate === fixtureStart).id
 const plannedFixtureId = activeToday.items.find((item) => item.publishDate === fixtureNextDay).id
 const staleReserveId = activeToday.reserves[0].id
@@ -72,7 +74,9 @@ assert.match(plannerPrompt, /brazilRankings/)
 assert.match(plannerPrompt, /ajuste suspensão mtb/)
 
 const publishedToday = structuredClone(campaignFixture)
-publishedToday.items.find((item) => item.publishDate === fixtureStart).status = 'published'
+const publishedFixture = publishedToday.items.find((item) => item.publishDate === fixtureStart)
+publishedFixture.status = 'published'
+publishedFixture.publishedAt = `${fixtureStart}T15:00:00.000Z`
 const shifted = await buildRollingCampaign({ existing: publishedToday, report, now: new Date(`${fixtureStart}T18:00:00-03:00`), ai })
 assert.equal(shifted.startsOn, fixtureNextDay)
 console.log('Renovação mensal de 30 dias validada com sucesso.')

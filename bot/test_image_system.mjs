@@ -14,6 +14,7 @@ import sharp from "sharp";
 import { selectImageCandidate } from "./src/images/select-image.js";
 import { imageArticleConsistencyErrors } from "./src/validation/image-article-consistency.js";
 import { issueVisualDecision, visualDecisionErrors } from "./src/validation/visual-decision.js";
+import { alignCampaignVisual, alignRealContextVisual } from "./src/images/align-campaign-visual.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const catalog = { products: [{
@@ -63,6 +64,63 @@ const productCatalog = { products: [
   { id: "grupo-shimano-105-di2", name: "Grupo Shimano 105 Di2", brand: "Shimano" },
   { id: "bateria-sram-axs", name: "Bateria Sram AXS", brand: "Sram" },
 ] };
+
+const cleaningItem = {
+  id: "reserva-limpeza-transmissao-metodo",
+  title: "Limpeza de transmissão: como remover contaminantes sem deslocar o problema",
+  summary: "Sequência de limpeza de corrente, cassete, coroas e roldanas.",
+  productIds: ["corrente-sram-nx-eagle"],
+  heroImage: {
+    mode: "real-context",
+    productId: "corrente-sram-nx-eagle",
+    relationship: "category-example",
+    rationale: "Fotografia real usada como exemplo visual da categoria técnica abordada.",
+  },
+};
+const componentCatalog = { products: [
+  { id: "corrente-sram-nx-eagle", name: "Corrente Sram NX Eagle", brand: "Sram", category: "componentes", images: ["sram.webp"] },
+  { id: "pedal-shimano-m520", name: "Pedal Shimano MTB M520", brand: "Shimano", category: "componentes", images: ["pedal.webp"] },
+  { id: "corrente-shimano-dura-ace", name: "Corrente Shimano Dura Ace 12v", brand: "Shimano", category: "componentes", images: ["corrente.webp"] },
+] };
+const alignment = alignRealContextVisual({ item: cleaningItem, article: shimanoArticle, catalog: componentCatalog });
+assert.equal(alignment.changed, true);
+assert.equal(alignment.previousProductId, "corrente-sram-nx-eagle");
+assert.equal(cleaningItem.heroImage.productId, "corrente-shimano-dura-ace");
+assert.equal(cleaningItem.productIds[0], "corrente-shimano-dura-ace");
+const exactItem = { ...cleaningItem, heroImage: { mode: "exact-product", productId: "corrente-sram-nx-eagle" } };
+assert.equal(alignRealContextVisual({ item: exactItem, article: shimanoArticle, catalog: componentCatalog }).changed, false);
+assert.throws(() => alignRealContextVisual({
+  item: { ...cleaningItem, productIds: ["corrente-sram-nx-eagle"], heroImage: { ...cleaningItem.heroImage, productId: "corrente-sram-nx-eagle" } },
+  article: { brand: "Marca sem foto", promoted_brands: ["Marca sem foto"] },
+  catalog: componentCatalog,
+}), /Nenhuma fotografia real semanticamente compatível/);
+const electricItem = {
+  id: "youtube-bicicletas-eletricas-arquitetura-autonomia-limites-e-criterios-t",
+  title: "Bicicletas elétricas: arquitetura, autonomia, limites e critérios técnicos",
+  summary: "Método para compreender autonomia e arquitetura de bicicletas elétricas.",
+  productIds: [],
+  heroImage: { mode: "conceptual" },
+};
+const electricCatalog = { products: [
+  { id: "bomba-eletrica", name: "Bomba Elétrica Session", brand: "Session", category: "acessorios", images: ["bomba.webp"] },
+  { id: "bicicleta-eletrica-oggi", name: "Bicicleta Elétrica Oggi Razzo T-130", brand: "Oggi", category: "bikes", images: ["oggi.webp"] },
+] };
+const electricAlignment = alignCampaignVisual({
+  item: electricItem,
+  article: { brand: "TheBiker", promoted_brands: ["TheBiker"], product_name: "Bicicletas elétricas" },
+  catalog: electricCatalog,
+  library: { assets: [] },
+});
+assert.equal(electricAlignment.changed, true);
+assert.equal(electricAlignment.previousMode, "conceptual");
+assert.equal(electricAlignment.productId, "bicicleta-eletrica-oggi");
+assert.equal(electricItem.heroImage.mode, "real-context");
+assert.deepEqual(electricItem.productIds, ["bicicleta-eletrica-oggi"]);
+assert.throws(() => alignCampaignVisual({
+  item: { id: "tema-sem-foto", title: "Tema sem produto relacionado", summary: "Assunto abstrato", productIds: [], heroImage: { mode: "conceptual" } },
+  article: { brand: "TheBiker", promoted_brands: ["TheBiker"] },
+  catalog: electricCatalog,
+}), /Nenhuma fotografia real semanticamente compatível/);
 assert.deepEqual(imageArticleConsistencyErrors({
   article: shimanoArticle,
   manifest: shimanoManifest,

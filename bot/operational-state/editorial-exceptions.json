@@ -312,6 +312,261 @@
         "title": "Serviço de garfo e amortecedor: quando trocar óleo e vedação"
       },
       "reason": "Gates editoriais não atendidos: extensão insuficiente: 1518 palavras; mínimo 1600"
+    },
+    {
+      "recordedAt": "2026-08-11T22:31:50.510Z",
+      "campaignId": "thebiker-rolling-2026-08-08",
+      "replacedItem": {
+        "day": 15,
+        "publishDate": "2026-08-22",
+        "id": "youtube-freios-de-bicicleta-diagnostico-ajuste-e-controle-termico",
+        "title": "Freios de bicicleta: diagnóstico, ajuste e controle térmico",
+        "summary": "Criar resposta técnica original para ciclista intermediário ou avançado, com método e limitações declarados. Sinal observado: 937 visualizações globais do vídeo; 79 por dia; encontrado em 1 busca(s) configurada(s) para o Brasil.",
+        "category": "componentes",
+        "freshness": "event-driven",
+        "status": "blocked",
+        "productIds": [],
+        "heroImage": {
+          "mode": "conceptual"
+        },
+        "imageAssetIds": [],
+        "blockReason": "[POLICY_MARKETING_LANGUAGE] Gate Markdown reprovado: linguagem publicitária proibida: perfeito",
+        "failure": {
+          "code": "POLICY_MARKETING_LANGUAGE",
+          "retryable": false,
+          "stage": "production",
+          "message": "Gate Markdown reprovado: linguagem publicitária proibida: perfeito",
+          "recordedAt": "2026-08-11T17:59:29.839Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-11T17:59:29.839Z"
+      },
+      "replacement": {
+        "id": "reserva-diagnostico-ruidos-bike",
+        "title": "Diagnóstico de ruídos na bicicleta: método por carga, frequência e interface"
+      },
+      "reason": "[POLICY_MARKETING_LANGUAGE] Gate Markdown reprovado: linguagem publicitária proibida: perfeito"
+    },
+    {
+      "recordedAt": "2026-08-11T22:51:18.738Z",
+      "campaignId": "thebiker-rolling-2026-08-08",
+      "replacedItem": {
+        "day": 15,
+        "publishDate": "2026-08-22",
+        "id": "reserva-diagnostico-ruidos-bike",
+        "title": "Diagnóstico de ruídos na bicicleta: método por carga, frequência e interface",
+        "summary": "Protocolo técnico para isolar ruídos de transmissão, cockpit, rodas e quadro sem substituir componentes por tentativa e erro.",
+        "category": "manutencao-ajustes",
+        "freshness": "evergreen",
+        "status": "blocked",
+        "productIds": [],
+        "heroImage": {
+          "mode": "conceptual"
+        },
+        "imageAssetIds": [],
+        "blockReason": "[POLICY_UNSUPPORTED_TEST] Gate Markdown reprovado: alegação de teste prático proibida: durante o pedal",
+        "failure": {
+          "code": "POLICY_UNSUPPORTED_TEST",
+          "retryable": false,
+          "stage": "production",
+          "message": "Gate Markdown reprovado: alegação de teste prático proibida: durante o pedal",
+          "recordedAt": "2026-08-11T22:31:50.904Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-11T22:31:50.904Z"
+      },
+      "replacement": {
+        "id": "reserva-pressao-pneus-terreno",
+        "title": "Pressão de pneus por terreno: como testar sem transformar sensação em dado"
+      },
+      "reason": "[POLICY_UNSUPPORTED_TEST] Gate Markdown reprovado: alegação de teste prático proibida: durante o pedal"
+    },
+    {
+      "recordedAt": "2026-08-11T22:58:57.930Z",
+      "campaignId": "thebiker-rolling-2026-08-08",
+      "replacedItem": {
+        "day": 15,
+        "publishDate": "2026-08-22",
+        "id": "reserva-pressao-pneus-terreno",
+        "title": "Pressão de pneus por terreno: como testar sem transformar sensação em dado",
+        "summary": "Método de campo para ajustar pressão, registrar comportamento e separar aderência, suporte lateral, impacto e resistência ao rolamento.",
+        "category": "engenharia",
+        "freshness": "evergreen",
+        "status": "blocked",
+        "productIds": [],
+        "heroImage": {
+          "mode": "conceptual"
+        },
+        "postPath": "_posts/drafts/2026-08-22-reserva-pressao-pneus-terreno.md",
+        "imageAssetIds": [],
+        "blockReason": "Validação final: [VALIDATION_FAILED] Politica visual conceptual: agendamento exige fotografia real explicitamente vinculada",
+        "failure": {
+          "code": "VALIDATION_FAILED",
+          "retryable": false,
+          "stage": "finalization",
+          "message": "Politica visual conceptual: agendamento exige fotografia real explicitamente vinculada",
+          "recordedAt": "2026-08-11T22:53:28.408Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-11T22:51:19.284Z",
+        "aiReview": {
+          "score": 45,
+          "finalScore": 95,
+          "finalBlockers": 0,
+          "premiumEditUsed": true,
+          "providers": {
+            "factSheet": "deepseek",
+            "draft": "gemini",
+            "critique": "deepseek",
+            "final": "deepseek",
+            "finalAudit": "deepseek",
+            "finalRepair": "deepseek"
+          },
+          "generatedAt": "2026-08-11T22:51:19.284Z",
+          "contentHash": "sha256:1b398a6edf700799c696b8f221ff6266e02915f4b450eff0c26909146c00c370",
+          "sourceHash": "927572092feecb63ed36af766f4cbc815af921b21512a96f84cc8b6c409460ea"
+        }
+      },
+      "replacement": {
+        "id": "reserva-cabos-mangueiras-roteamento",
+        "title": "Cabos e mangueiras: roteamento, atrito e sinais de montagem que pedem correção"
+      },
+      "reason": "Validação final: [VALIDATION_FAILED] Politica visual conceptual: agendamento exige fotografia real explicitamente vinculada; rascunho ainda reprovado: rascunho indisponível (ENOENT)"
+    },
+    {
+      "recordedAt": "2026-08-12T14:22:22.018Z",
+      "campaignId": "thebiker-rolling-2026-08-08",
+      "replacedItem": {
+        "day": 15,
+        "publishDate": "2026-08-22",
+        "id": "reserva-cabos-mangueiras-roteamento",
+        "title": "Cabos e mangueiras: roteamento, atrito e sinais de montagem que pedem correção",
+        "summary": "Leitura técnica de curvas, fixações, contato com o quadro e interferências que alteram comando, ruído e durabilidade.",
+        "category": "componentes",
+        "freshness": "evergreen",
+        "status": "blocked",
+        "productIds": [
+          "bicicleta-scott-scale-940-black"
+        ],
+        "heroImage": {
+          "mode": "real-context",
+          "productId": "bicicleta-scott-scale-940-black",
+          "relationship": "category-example",
+          "rationale": "Fotografia real do catálogo TheBiker usada apenas como exemplo visual da categoria técnica abordada."
+        },
+        "imageAssetIds": [],
+        "blockReason": "[VALIDATION_FAILED] Gates editoriais não atendidos: extensão insuficiente: 1157 palavras; mínimo 1600",
+        "failure": {
+          "code": "VALIDATION_FAILED",
+          "retryable": false,
+          "stage": "production",
+          "message": "Gates editoriais não atendidos: extensão insuficiente: 1157 palavras; mínimo 1600",
+          "recordedAt": "2026-08-11T22:58:58.793Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-11T22:58:58.793Z"
+      },
+      "replacement": {
+        "id": "reserva-limpeza-transmissao-metodo",
+        "title": "Limpeza de transmissão: como remover contaminantes sem deslocar o problema"
+      },
+      "reason": "[VALIDATION_FAILED] Gates editoriais não atendidos: extensão insuficiente: 1157 palavras; mínimo 1600"
+    },
+    {
+      "recordedAt": "2026-08-12T17:59:30.595Z",
+      "campaignId": "thebiker-rolling-2026-08-08",
+      "replacedItem": {
+        "day": 15,
+        "publishDate": "2026-08-22",
+        "id": "reserva-limpeza-transmissao-metodo",
+        "title": "Limpeza de transmissão: como remover contaminantes sem deslocar o problema",
+        "summary": "Sequência de limpeza, inspeção e relubrificação que considera corrente, cassete, coroas, roldanas e compatibilidade química.",
+        "category": "manutencao-ajustes",
+        "freshness": "evergreen",
+        "status": "blocked",
+        "productIds": [
+          "corrente-sram-nx-eagle"
+        ],
+        "heroImage": {
+          "mode": "real-context",
+          "productId": "corrente-sram-nx-eagle",
+          "relationship": "category-example",
+          "rationale": "Fotografia real do catálogo TheBiker usada apenas como exemplo visual da categoria técnica abordada."
+        },
+        "postPath": "_posts/drafts/2026-08-22-reserva-limpeza-transmissao-metodo.md",
+        "imageAssetIds": [],
+        "blockReason": "Validação final: [IMAGE_NOT_PUBLISHABLE] Imagem incompatível com o artigo: marca da imagem (SRAM) não corresponde à marca promovida (shimano)",
+        "failure": {
+          "code": "IMAGE_NOT_PUBLISHABLE",
+          "retryable": false,
+          "stage": "finalization",
+          "message": "Imagem incompatível com o artigo: marca da imagem (SRAM) não corresponde à marca promovida (shimano)",
+          "recordedAt": "2026-08-12T14:25:26.910Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-12T14:22:22.746Z",
+        "aiReview": {
+          "score": 85,
+          "finalScore": 95,
+          "finalBlockers": 0,
+          "premiumEditUsed": true,
+          "providers": {
+            "factSheet": "deepseek",
+            "draft": "gemini",
+            "critique": "deepseek",
+            "final": "deepseek",
+            "finalAudit": "deepseek",
+            "finalRepair": "gemini"
+          },
+          "generatedAt": "2026-08-12T14:22:22.746Z",
+          "contentHash": "sha256:0beec4a3f8654dd8a1b3c6d28d16989ba3bdb25e16eb50f39184ebdac998b5c3",
+          "sourceHash": "31bb92be82b3e41dbf8afa9b3db400c3d99dde39d98d208309f891a198ea5d42"
+        }
+      },
+      "replacement": {
+        "id": "reserva-diagnostico-ruidos-bike",
+        "title": "Diagnóstico de ruídos na bicicleta: método por carga, frequência e interface"
+      },
+      "reason": "Validação final: [IMAGE_NOT_PUBLISHABLE] Imagem incompatível com o artigo: marca da imagem (SRAM) não corresponde à marca promovida (shimano); rascunho ainda reprovado: rascunho indisponível (ENOENT)"
+    },
+    {
+      "recordedAt": "2026-08-13T10:12:08.685Z",
+      "campaignId": "thebiker-rolling-2026-08-08",
+      "replacedItem": {
+        "day": 15,
+        "publishDate": "2026-08-22",
+        "id": "reserva-diagnostico-ruidos-bike",
+        "title": "Diagnóstico de ruídos na bicicleta: método por carga, frequência e interface",
+        "summary": "Protocolo técnico para isolar ruídos de transmissão, cockpit, rodas e quadro sem substituir componentes por tentativa e erro.",
+        "category": "manutencao-ajustes",
+        "freshness": "evergreen",
+        "status": "blocked",
+        "productIds": [
+          "bicicleta-scott-scale-940-black"
+        ],
+        "heroImage": {
+          "mode": "real-context",
+          "productId": "bicicleta-scott-scale-940-black",
+          "relationship": "category-example",
+          "rationale": "Fotografia real do catálogo TheBiker usada apenas como exemplo visual da categoria técnica abordada."
+        },
+        "imageAssetIds": [],
+        "blockReason": "[VALIDATION_FAILED] Gates editoriais não atendidos: extensão insuficiente: 1225 palavras; mínimo 1600",
+        "failure": {
+          "code": "VALIDATION_FAILED",
+          "retryable": false,
+          "stage": "production",
+          "message": "Gates editoriais não atendidos: extensão insuficiente: 1225 palavras; mínimo 1600",
+          "recordedAt": "2026-08-12T17:59:31.173Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-12T17:59:31.173Z"
+      },
+      "replacement": {
+        "id": "reserva-pressao-pneus-terreno",
+        "title": "Pressão de pneus por terreno: como testar sem transformar sensação em dado"
+      },
+      "reason": "[VALIDATION_FAILED] Gates editoriais não atendidos: extensão insuficiente: 1225 palavras; mínimo 1600"
     }
   ]
 }

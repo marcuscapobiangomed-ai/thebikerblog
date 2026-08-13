@@ -1,16 +1,55 @@
 {
-  "id": "scott-spark-rc-team-2027-thebiker-br", "type": "bike", "status": "active",
-  "brand": "Scott", "model": "Spark RC Team", "modelYear": 2027, "market": "BR", "category": "mtb-cross-country",
-  "officialUrl": "https://www.scott-sports.com/global/en/product/scott-spark-rc-team-bike", "storeProductUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-spark-rc-world-cup-2027/",
+  "id": "scott-spark-rc-team-2027-thebiker-br",
+  "type": "bike",
+  "status": "active",
+  "brand": "Scott",
+  "model": "Spark RC Team",
+  "modelYear": 2027,
+  "market": "BR",
+  "category": "mtb-cross-country",
+  "officialUrl": "https://www.scott-sports.com/global/en/product/scott-spark-rc-team-bike",
+  "storeProductUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-spark-rc-world-cup-2027/",
   "image": "/assets/img/products/comparator/scott-spark-rc-team-2027.webp",
-  "portfolioStatus": "verified", "portfolioVerifiedAt": "2026-08-05", "theBikerPrice": 45999,
-  "frame": { "material": "carbon", "technology": "Spark RC Carbon HMF" },
-  "fork": { "model": "RockShox SID Select 3P" },
-  "drivetrain": { "brand": "SRAM", "groupset": "S1000 Eagle AXS", "speeds": 12, "shifting": "wireless" },
-  "brakes": { "type": "hydraulic-disc", "brand": "SRAM", "model": "DB6 4-Piston" },
-  "wheels": { "brand": "Syncros", "model": "Silverton 2.0" },
-  "tires": { "brand": "Maxxis", "model": "Rekon Race", "tubelessReady": true },
-  "declaredWeight": { "valueKg": 12.5, "approximate": true, "size": "não informado", "sourceId": "manufacturer-bicicleta-scott-spark-rc-world-cup-2027" },
+  "portfolioStatus": "verified",
+  "portfolioVerifiedAt": "2026-08-13",
+  "theBikerPrice": 45999,
+  "frame": {
+    "material": "carbon",
+    "technology": "Spark RC Carbon HMF"
+  },
+  "fork": {
+    "model": "RockShox SID Select 3P"
+  },
+  "drivetrain": {
+    "brand": "SRAM",
+    "groupset": "S1000 Eagle AXS",
+    "speeds": 12,
+    "shifting": "wireless"
+  },
+  "brakes": {
+    "type": "hydraulic-disc",
+    "brand": "SRAM",
+    "model": "DB6 4-Piston"
+  },
+  "wheels": {
+    "brand": "Syncros",
+    "model": "Silverton 2.0"
+  },
+  "tires": {
+    "brand": "Maxxis",
+    "model": "Rekon Race",
+    "tubelessReady": true
+  },
+  "declaredWeight": {
+    "valueKg": 12.5,
+    "approximate": true,
+    "size": "não informado",
+    "sourceId": "manufacturer-bicicleta-scott-spark-rc-world-cup-2027"
+  },
   "knowledgeRecord": "_data/product-knowledge/bikes/bicicleta-scott-spark-rc-world-cup-2027.json",
-  "testedByTheBikerBlog": false, "createdAt": "2026-08-05", "updatedAt": "2026-08-05", "reviewStatus": "verified", "sourceId": "thebiker-bicicleta-scott-spark-rc-world-cup-2027"
+  "testedByTheBikerBlog": false,
+  "createdAt": "2026-08-05",
+  "updatedAt": "2026-08-13",
+  "reviewStatus": "verified",
+  "sourceId": "thebiker-bicicleta-scott-spark-rc-world-cup-2027"
 }

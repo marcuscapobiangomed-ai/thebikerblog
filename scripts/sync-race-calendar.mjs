@@ -365,7 +365,7 @@ function brazilianEventsFromVerifiedSnapshot(publicCalendar, asOfDate) {
   const events = [...(publicCalendar?.today || []), ...(publicCalendar?.upcoming || [])]
   return events
     .filter((event) => event.id.startsWith('br-mtb-')
-      && event.source?.validationMethod === 'discovery-plus-organizer'
+      && ['discovery-plus-organizer', 'verified-snapshot-plus-organizer'].includes(event.source?.validationMethod)
       && event.source.discoveryUrl
       && event.endsOn >= asOfDate
       && event.startsOn <= horizon)
