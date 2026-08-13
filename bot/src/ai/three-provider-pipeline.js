@@ -67,7 +67,10 @@ function minimumWordsFor(contentType) {
 
 function verifiedSourceConflicts(value) {
   return (Array.isArray(value) ? value : []).filter((conflict) => {
-    if (typeof conflict === "string") return conflict.trim().length > 0;
+    if (typeof conflict === "string") {
+      const text = conflict.trim();
+      return text.length > 0 && !/^(?:n[aã]o (?:h[aá]|existem?)|nenhum(?:a|s)?|sem) conflito/i.test(text);
+    }
     if (!conflict || typeof conflict !== "object") return false;
     const sources = Array.isArray(conflict.sources)
       ? conflict.sources

@@ -13,7 +13,7 @@ const clients = {
       return {
         provider,
         model: "test",
-        content: JSON.stringify({ facts: [], gaps: [], conflicts: [], forbiddenClaims: [], technicalAngles: [] }),
+        content: JSON.stringify({ facts: [], gaps: [], conflicts: ["Não há conflitos factuais entre as fontes fornecidas."], forbiddenClaims: [], technicalAngles: [] }),
         usage: {},
         durationMs: 1,
       };
