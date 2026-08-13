@@ -21,6 +21,26 @@ function factReferences(fact) {
   return [...new Set(values.map(text).filter(Boolean))];
 }
 
+export function pruneUnsupportedFacts(research) {
+  if (!Array.isArray(research?.confirmed_facts)) return research;
+  const sources = Array.isArray(research.sources) ? research.sources : [];
+  const knownReferences = new Set(sources.flatMap((source) => [text(source?.id), text(source?.name)]).filter(Boolean));
+  const retained = research.confirmed_facts.filter((fact) => {
+    const references = factReferences(fact);
+    return references.length > 0 && references.every((reference) => knownReferences.has(reference));
+  });
+  const dropped = research.confirmed_facts.length - retained.length;
+  if (dropped === 0) return research;
+  return {
+    ...research,
+    confirmed_facts: retained,
+    limitations: [
+      ...(Array.isArray(research.limitations) ? research.limitations : []),
+      `${dropped} fato(s) removido(s) porque suas fontes não permaneceram no conjunto oficial permitido.`,
+    ],
+  };
+}
+
 export function researchGroundingErrors(research, { requireFactReferences = false } = {}) {
   if (!research || research.status !== "pesquisa_concluida") return [];
   const errors = [];
@@ -40,6 +60,7 @@ export function researchGroundingErrors(research, { requireFactReferences = fals
   }
 
   const facts = factEntries(research);
+  if (requireFactReferences && facts.length === 0) errors.push("pesquisa sem fatos explicitamente fundamentados");
   for (const [index, fact] of facts.entries()) {
     const references = factReferences(fact);
     if (requireFactReferences && references.length === 0) {

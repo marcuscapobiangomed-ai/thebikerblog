@@ -204,7 +204,29 @@ const orphanedSourceFallback = await orphanedSourceResearcher.research({
   today: '2026-08-05',
 });
 assert.equal(orphanedSourceFallback.grounding.fallback, 'internal-product-knowledge');
-assert.match(orphanedSourceFallback.limitations[0], /fonte inexistente/);
+assert.match(orphanedSourceFallback.limitations[0], /sem fatos explicitamente fundamentados/);
+const mixedRacePayload = {
+  choices: [{ message: { content: JSON.stringify({
+    confirmed_facts: [
+      { fact: 'Regra oficial confirmada', source_ids: ['src-uci'] },
+      { fact: 'Afirmação de fonte não permitida', source_ids: ['src-blog'] },
+    ],
+    limitations: [],
+    sources: [
+      { id: 'src-uci', name: 'UCI', type: 'official-website', url: 'https://www.uci.org/discipline/cyclo-cross/7Er2tPWKRkAm9uFQW6PUS3', accessed: '2026-08-04' },
+      { id: 'src-blog', name: 'Blog externo', type: 'official-website', url: 'https://example.com/ciclocross', accessed: '2026-08-04' },
+    ],
+  }) } }],
+};
+const mixedRaceResearcher = new GroundedResearcher({ GROQ_API_KEY: 'test' }, async () => ({ ok: true, json: async () => mixedRacePayload }));
+const mixedRaceGrounded = await mixedRaceResearcher.research({
+  item: { ...campaign.items[0], category: 'competicoes', race: { format: 'event-guide', track: 'cyclocross' } },
+  internalEvidence: [],
+  today: '2026-08-05',
+});
+assert.equal(mixedRaceGrounded.confirmed_facts.length, 1);
+assert.deepEqual(mixedRaceGrounded.confirmed_facts[0].source_ids, ['src-uci']);
+assert.match(mixedRaceGrounded.limitations[0], /1 fato\(s\) removido/);
 const fallbackResearcher = new GroundedResearcher({ GROQ_API_KEY: 'test', AI_HTTP_RETRY_ATTEMPTS: '1' }, async () => ({ ok: false, status: 429, text: async () => 'quota' }));
 const fallbackGrounded = await fallbackResearcher.research({
   item: campaign.items[0],
