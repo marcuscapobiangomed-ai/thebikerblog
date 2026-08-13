@@ -84,12 +84,17 @@ export function researchEvidenceContractErrors(research) {
   if (!research || research.status !== "pesquisa_concluida") return [];
   const errors = [];
   const evidenceContract = research.grounding?.evidenceContract;
-  if (!new Set(["retrieved-excerpt-v1", "curated-official-excerpt-v1"]).has(evidenceContract)) {
+  const offlineCampaignCache = evidenceContract === "campaign-research-cache-v1";
+  if (!new Set(["retrieved-excerpt-v1", "curated-official-excerpt-v1", "campaign-research-cache-v1"]).has(evidenceContract)) {
     errors.push("pesquisa sem contrato de evidência recuperada retrieved-excerpt-v1");
   }
   if (!research.grounding?.verifiedAt) errors.push("pesquisa sem data de verificação ativa das fontes");
   for (const [index, fact] of factEntries(research).entries()) {
-    if (text(fact?.evidence_quote).length < 12) errors.push(`fato ${index + 1} sem trecho literal verificável`);
+    if (offlineCampaignCache) {
+      if (text(fact?.fact || fact?.statement).length < 12) errors.push(`fato ${index + 1} sem registro rastreável no cache`);
+    } else if (text(fact?.evidence_quote).length < 12) {
+      errors.push(`fato ${index + 1} sem trecho literal verificável`);
+    }
   }
   return errors;
 }

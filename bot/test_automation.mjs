@@ -40,6 +40,7 @@ const cachedCampaignResearch = await cacheResearcher.research({
 assert.equal(cachedCampaignResearch.grounding.fallback, "campaign-research-offline-cache-v1");
 assert.ok(cachedCampaignResearch.confirmed_facts.length >= 5);
 assert.ok(cachedCampaignResearch.sources.every((source) => source.id && source.url));
+assert.doesNotThrow(() => assertResearchEvidenceContract(cachedCampaignResearch));
 assert.throws(() => assertArticleResearchGrounding({
   content: "O carbono HMX possui rigidez torsional superior e converte cada watt com menos perdas.",
   research: minimalResearch,
