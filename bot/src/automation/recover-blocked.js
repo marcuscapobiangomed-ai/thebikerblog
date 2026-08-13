@@ -11,6 +11,7 @@ const NEAR_MISS_LENGTH = /extens(?:ão|ao) insuficiente:\s*(\d+) palavras; m(?:�
 const EXHAUSTED_LEGACY_REPAIR = /Rascunho bloqueado.+\d+ reparos/i
 const STRUCTURAL_REPAIR_FAILURE = /Rascunho bloqueado.+\d+ reparos[\s\S]*(?:Description precisa|M[ií]nimo de 2 se[cç][oõ]es|sections\.\d+\.heading)/i
 const MISSING_DRAFT = /rascunho indisponível/i
+const IMAGE_BRAND_MISMATCH = /marca da imagem.+n[aã]o corresponde.+marca promovida/i
 
 const REAL_CONTEXT_BY_RESERVE_ID = Object.freeze({
   'reserva-diagnostico-ruidos-bike': 'bicicleta-scott-scale-940-black',
@@ -99,6 +100,21 @@ export function recoverBlockedCampaign(campaignInput, {
   let reason = blocked.blockReason || 'Motivo não informado'
   const classified = blocked.failure || classifyEditorialFailure(reason, { stage: 'recovery', now })
   const visual = realContextPolicy(blocked)
+  if (FINALIZATION.test(reason)
+      && classified.code === 'IMAGE_NOT_PUBLISHABLE'
+      && IMAGE_BRAND_MISMATCH.test(reason)
+      && blocked.aiReview?.evidenceBriefUsed === true
+      && (blocked.attempts || 0) < 5) {
+    clearDiscardedDraftState(blocked)
+    blocked.status = 'planned'
+    delete blocked.blockReason
+    delete blocked.failure
+    return {
+      campaign: CampaignSchema.parse(campaign),
+      result: { status: 'regenerate-evidence-brief-brand', itemId: blocked.id, attempts: blocked.attempts || 0 },
+      exception: null,
+    }
+  }
   if (FINALIZATION.test(reason)
       && classified.code === 'IMAGE_NOT_PUBLISHABLE'
       && blocked.heroImage?.mode === 'conceptual'
