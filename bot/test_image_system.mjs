@@ -14,7 +14,7 @@ import sharp from "sharp";
 import { selectImageCandidate } from "./src/images/select-image.js";
 import { imageArticleConsistencyErrors } from "./src/validation/image-article-consistency.js";
 import { issueVisualDecision, visualDecisionErrors } from "./src/validation/visual-decision.js";
-import { alignRealContextVisual } from "./src/images/align-campaign-visual.js";
+import { alignCampaignVisual, alignRealContextVisual } from "./src/images/align-campaign-visual.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const catalog = { products: [{
@@ -93,6 +93,33 @@ assert.throws(() => alignRealContextVisual({
   item: { ...cleaningItem, productIds: ["corrente-sram-nx-eagle"], heroImage: { ...cleaningItem.heroImage, productId: "corrente-sram-nx-eagle" } },
   article: { brand: "Marca sem foto", promoted_brands: ["Marca sem foto"] },
   catalog: componentCatalog,
+}), /Nenhuma fotografia real semanticamente compatível/);
+const electricItem = {
+  id: "youtube-bicicletas-eletricas-arquitetura-autonomia-limites-e-criterios-t",
+  title: "Bicicletas elétricas: arquitetura, autonomia, limites e critérios técnicos",
+  summary: "Método para compreender autonomia e arquitetura de bicicletas elétricas.",
+  productIds: [],
+  heroImage: { mode: "conceptual" },
+};
+const electricCatalog = { products: [
+  { id: "bomba-eletrica", name: "Bomba Elétrica Session", brand: "Session", category: "acessorios", images: ["bomba.webp"] },
+  { id: "bicicleta-eletrica-oggi", name: "Bicicleta Elétrica Oggi Razzo T-130", brand: "Oggi", category: "bikes", images: ["oggi.webp"] },
+] };
+const electricAlignment = alignCampaignVisual({
+  item: electricItem,
+  article: { brand: "TheBiker", promoted_brands: ["TheBiker"], product_name: "Bicicletas elétricas" },
+  catalog: electricCatalog,
+  library: { assets: [] },
+});
+assert.equal(electricAlignment.changed, true);
+assert.equal(electricAlignment.previousMode, "conceptual");
+assert.equal(electricAlignment.productId, "bicicleta-eletrica-oggi");
+assert.equal(electricItem.heroImage.mode, "real-context");
+assert.deepEqual(electricItem.productIds, ["bicicleta-eletrica-oggi"]);
+assert.throws(() => alignCampaignVisual({
+  item: { id: "tema-sem-foto", title: "Tema sem produto relacionado", summary: "Assunto abstrato", productIds: [], heroImage: { mode: "conceptual" } },
+  article: { brand: "TheBiker", promoted_brands: ["TheBiker"] },
+  catalog: electricCatalog,
 }), /Nenhuma fotografia real semanticamente compatível/);
 assert.deepEqual(imageArticleConsistencyErrors({
   article: shimanoArticle,

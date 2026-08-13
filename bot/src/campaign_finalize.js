@@ -10,7 +10,7 @@ import { assertImageArticleConsistency } from "./validation/image-article-consis
 import { assertReviewedContentIntegrity, issueEditorialReceipt } from "./validation/editorial-receipt.js";
 import { classifyEditorialFailure } from "./validation/editorial-failures.js";
 import { assertVisualDecision, issueVisualDecision } from "./validation/visual-decision.js";
-import { alignRealContextVisual } from "./images/align-campaign-visual.js";
+import { alignCampaignVisual } from "./images/align-campaign-visual.js";
 import { releaseAssetUse } from "./images/asset-library.js";
 import { createStagedWorkspace, discardStagedWorkspace, promoteStagedPaths } from "./automation/file-transaction.js";
 
@@ -96,8 +96,12 @@ async function finalizeInWorkspace({ root, now, imageProducer }) {
     }
     if ((item.aiReview?.finalBlockers || 0) > 0) throw new Error("Auditoria editorial final ainda possui bloqueadores");
     assertMarkdownPublicationGates(content);
-    const catalog = JSON.parse(await fs.readFile(path.join(root, "content/product-discovery/thebiker-media-catalog.json"), "utf8"));
-    const visualAlignment = alignRealContextVisual({ item, article: parsed.data, catalog });
+    const [catalog, library] = await Promise.all([
+      fs.readFile(path.join(root, "content/product-discovery/thebiker-media-catalog.json"), "utf8").then(JSON.parse),
+      fs.readFile(path.join(root, "content/image-library/index.json"), "utf8").then(JSON.parse)
+        .catch((error) => error?.code === "ENOENT" ? { assets: [] } : Promise.reject(error)),
+    ]);
+    const visualAlignment = alignCampaignVisual({ item, article: parsed.data, catalog, library });
     const cover = await imageProducer({ root, item, approvedAt });
     content = setField(content, "date", item.publishDate);
     content = setField(content, "last_modified_at", approvedAt);
