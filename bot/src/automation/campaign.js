@@ -112,6 +112,8 @@ const ReserveSchema = z.object({
   summary: z.string(),
   category: CampaignItemSchema.shape.category,
   race: RaceEditorialSchema.optional(),
+  productIds: z.array(z.string()).default([]),
+  heroImage: HeroImageSchema.optional(),
 })
 
 export const CampaignSchema = z.object({
