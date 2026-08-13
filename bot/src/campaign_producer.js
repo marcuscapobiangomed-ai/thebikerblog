@@ -98,17 +98,26 @@ export async function runCampaignProducer({ root = defaultRoot, env = process.en
     let post
     let linkedPost
     let fallbackReason
-    try {
-      post = await ai.processCase(item.title, research)
-      if (post.pipelineMetadata?.premiumEditPending) throw new Error('Revisão premium necessária, mas DeepSeek não está disponível')
-      linkedPost = linkTheBikerProducts(post.content, loadTheBikerLinkData(root))
-      assertArticleResearchGrounding({ content: linkedPost.content, research })
-    } catch (articleError) {
-      if (item.race) throw articleError
+    const evidenceBriefAttempt = Number(env.EVIDENCE_BRIEF_AFTER_ATTEMPT || 4)
+    const useImmediateEvidenceBrief = !item.race && Number.isFinite(evidenceBriefAttempt) && item.attempts >= evidenceBriefAttempt
+    if (useImmediateEvidenceBrief) {
       post = buildEvidenceBrief({ item, research, today, env })
-      fallbackReason = String(articleError?.message || articleError).slice(0, 650)
+      fallbackReason = `Contingência factual ativada após ${item.attempts} tentativas editoriais registradas`
       linkedPost = linkTheBikerProducts(post.content, loadTheBikerLinkData(root))
       assertArticleResearchGrounding({ content: linkedPost.content, research })
+    } else {
+      try {
+        post = await ai.processCase(item.title, research)
+        if (post.pipelineMetadata?.premiumEditPending) throw new Error('Revisão premium necessária, mas DeepSeek não está disponível')
+        linkedPost = linkTheBikerProducts(post.content, loadTheBikerLinkData(root))
+        assertArticleResearchGrounding({ content: linkedPost.content, research })
+      } catch (articleError) {
+        if (item.race) throw articleError
+        post = buildEvidenceBrief({ item, research, today, env })
+        fallbackReason = String(articleError?.message || articleError).slice(0, 650)
+        linkedPost = linkTheBikerProducts(post.content, loadTheBikerLinkData(root))
+        assertArticleResearchGrounding({ content: linkedPost.content, research })
+      }
     }
     const draftDir = path.join(root, '_posts/drafts')
     await fs.mkdir(draftDir, { recursive: true })

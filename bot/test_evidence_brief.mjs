@@ -63,15 +63,18 @@ try {
   delete stagedItem.blockReason;
   delete stagedItem.editorialReceipt;
   delete stagedItem.visualDecision;
+  stagedItem.attempts = 0;
   await fs.writeFile(path.join(stagedRoot, "bot/editorial-campaign.json"), `${JSON.stringify(stagedCampaign, null, 2)}\n`);
 
+  let aiCalls = 0;
   const produced = await runCampaignProducer({
     root: stagedRoot,
     now: new Date("2026-08-13T18:45:00.000Z"),
     env: {},
     researcher: { research: async () => structuredClone(research) },
-    ai: { processCase: async () => { throw new Error("falha de IA induzida"); } },
+    ai: { processCase: async () => { aiCalls += 1; throw new Error("falha de IA induzida"); } },
   });
+  assert.equal(aiCalls, 1);
   assert.equal(produced.status, "validation");
   const persistedCampaign = JSON.parse(await fs.readFile(path.join(stagedRoot, "bot/editorial-campaign.json"), "utf8"));
   const persistedItem = persistedCampaign.items.find((candidate) => candidate.id === research.slug);
@@ -79,6 +82,25 @@ try {
   assert.match(persistedItem.aiReview.fallbackReason, /falha de IA induzida/);
   assert.equal(persistedItem.aiReview.providers.fallback, "deterministic-evidence-brief-v1");
   assert.equal(matter(await fs.readFile(path.join(stagedRoot, produced.postPath), "utf8")).data.editorial_format, "evidence-brief-v1");
+
+  persistedItem.status = "planned";
+  persistedItem.attempts = 3;
+  delete persistedItem.postPath;
+  delete persistedItem.aiReview;
+  await fs.writeFile(path.join(stagedRoot, "bot/editorial-campaign.json"), `${JSON.stringify(persistedCampaign, null, 2)}\n`);
+  const retried = await runCampaignProducer({
+    root: stagedRoot,
+    now: new Date("2026-08-13T19:00:00.000Z"),
+    env: {},
+    researcher: { research: async () => structuredClone(research) },
+    ai: { processCase: async () => { aiCalls += 1; throw new Error("esta chamada não deve ocorrer"); } },
+  });
+  assert.equal(retried.status, "validation");
+  assert.equal(aiCalls, 1, "a quarta tentativa deve usar a contingência sem repetir chamadas de IA");
+  const retriedCampaign = JSON.parse(await fs.readFile(path.join(stagedRoot, "bot/editorial-campaign.json"), "utf8"));
+  const retriedItem = retriedCampaign.items.find((candidate) => candidate.id === research.slug);
+  assert.equal(retriedItem.aiReview.evidenceBriefUsed, true);
+  assert.match(retriedItem.aiReview.fallbackReason, /4 tentativas editoriais/);
 } finally {
   await fs.rm(stagedRoot, { recursive: true, force: true });
 }
