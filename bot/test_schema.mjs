@@ -238,8 +238,17 @@ const sanitizedClaims = sanitizeStructuredArticleClaims({
   confirmed_facts: [{ fact: "O CONTRAN admite propulsão auxiliar até 32 km/h.", source_ids: ["src-gov"] }],
   sources: [{ id: "src-gov", url: "https://www.gov.br/transportes/resolucao.pdf" }],
 });
-assert.equal(sanitizedClaims.direct_answer, "A assistência legal chega a 32 km/h.");
+assert.match(sanitizedClaims.direct_answer, /especificações efetivamente confirmadas/);
 assert.equal(sanitizedClaims.sections[0].content, "Confirme sempre o manual do fabricante.");
+const schemaSafeClaims = sanitizeStructuredArticleClaims({
+  description: "Revisão em seis meses.", direct_answer: "Revisão em seis meses.", methodologyNotice: "Análise.",
+  faq: [{ question: "Quando revisar?", answer: "Em seis meses." }],
+  sections: [{ heading: "Manutenção", content: "Revise em seis meses." }],
+}, { confirmed_facts: [], sources: [] });
+assert.equal(schemaSafeClaims.description.length, 140);
+assert.ok(schemaSafeClaims.direct_answer.length >= 80);
+assert.deepEqual(schemaSafeClaims.faq, []);
+assert.match(schemaSafeClaims.sections[0].content, /evidências documentadas/);
 
 const productKnowledgeResearch = {
   slug: "scott-addict-50-2026",
