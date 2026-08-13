@@ -1,16 +1,55 @@
 {
-  "id": "scott-spark-rc-world-cup-2027-thebiker-br", "type": "bike", "status": "active",
-  "brand": "Scott", "model": "Spark RC World Cup", "modelYear": 2027, "market": "BR", "category": "mtb-cross-country",
-  "officialUrl": "https://www.scott-sports.com/global/en/product/scott-spark-rc-world-cup-bike", "storeProductUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-spark-rc-world-cup-20271/",
+  "id": "scott-spark-rc-world-cup-2027-thebiker-br",
+  "type": "bike",
+  "status": "active",
+  "brand": "Scott",
+  "model": "Spark RC World Cup",
+  "modelYear": 2027,
+  "market": "BR",
+  "category": "mtb-cross-country",
+  "officialUrl": "https://www.scott-sports.com/global/en/product/scott-spark-rc-world-cup-bike",
+  "storeProductUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-spark-rc-world-cup-20271/",
   "image": "/assets/img/products/comparator/scott-spark-rc-world-cup-2027.webp",
-  "portfolioStatus": "verified", "portfolioVerifiedAt": "2026-08-05", "theBikerPrice": 89999,
-  "frame": { "material": "carbon", "technology": "Spark RC Carbon HMX" },
-  "fork": { "model": "RockShox SID Ultimate Flight Attendant" },
-  "drivetrain": { "brand": "SRAM", "groupset": "X01 Eagle AXS", "speeds": 12, "shifting": "wireless" },
-  "brakes": { "type": "hydraulic-disc", "brand": "SRAM", "model": "Level TLM" },
-  "wheels": { "brand": "Syncros", "model": "Silverton 1.0S" },
-  "tires": { "brand": "Maxxis", "model": "Aspen", "tubelessReady": true },
-  "declaredWeight": { "valueKg": 10.9, "approximate": true, "size": "não informado", "sourceId": "manufacturer-bicicleta-scott-spark-rc-world-cup-20271" },
+  "portfolioStatus": "verified",
+  "portfolioVerifiedAt": "2026-08-13",
+  "theBikerPrice": 89999,
+  "frame": {
+    "material": "carbon",
+    "technology": "Spark RC Carbon HMX"
+  },
+  "fork": {
+    "model": "RockShox SID Ultimate Flight Attendant"
+  },
+  "drivetrain": {
+    "brand": "SRAM",
+    "groupset": "X01 Eagle AXS",
+    "speeds": 12,
+    "shifting": "wireless"
+  },
+  "brakes": {
+    "type": "hydraulic-disc",
+    "brand": "SRAM",
+    "model": "Level TLM"
+  },
+  "wheels": {
+    "brand": "Syncros",
+    "model": "Silverton 1.0S"
+  },
+  "tires": {
+    "brand": "Maxxis",
+    "model": "Aspen",
+    "tubelessReady": true
+  },
+  "declaredWeight": {
+    "valueKg": 10.9,
+    "approximate": true,
+    "size": "não informado",
+    "sourceId": "manufacturer-bicicleta-scott-spark-rc-world-cup-20271"
+  },
   "knowledgeRecord": "_data/product-knowledge/bikes/bicicleta-scott-spark-rc-world-cup-20271.json",
-  "testedByTheBikerBlog": false, "createdAt": "2026-08-05", "updatedAt": "2026-08-05", "reviewStatus": "verified", "sourceId": "thebiker-bicicleta-scott-spark-rc-world-cup-20271"
+  "testedByTheBikerBlog": false,
+  "createdAt": "2026-08-05",
+  "updatedAt": "2026-08-13",
+  "reviewStatus": "verified",
+  "sourceId": "thebiker-bicicleta-scott-spark-rc-world-cup-20271"
 }

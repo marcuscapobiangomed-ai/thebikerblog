@@ -55,6 +55,20 @@ const portfolioArticle = applyPortfolioEvidence({ promoted_brands: [] }, {
 assert.equal(portfolioArticle.portfolio_evidence_url, 'https://thebikershop.com.br/componentes/');
 assert.equal(portfolioArticle.portfolio_verified_at, '2026-08-08');
 assert.deepEqual(portfolioArticle.promoted_brands, ['TheBiker']);
+const aliasedPortfolioArticle = applyPortfolioEvidence({
+  brand: 'TheBiker Shop',
+  promoted_brands: ['TheBiker Shop', 'Schwalbe'],
+}, {
+  portfolio_evidence_url: 'https://thebikershop.com.br/componentes/',
+  portfolio_verified_at: '2026-08-13',
+});
+assert.equal(aliasedPortfolioArticle.brand, 'TheBiker');
+assert.deepEqual(aliasedPortfolioArticle.promoted_brands, ['TheBiker', 'Schwalbe']);
+const blockedExternalBrand = applyPortfolioEvidence({ promoted_brands: ['Marca Externa'] }, {
+  portfolio_evidence_url: 'https://thebikershop.com.br/componentes/',
+  portfolio_verified_at: '2026-08-13',
+});
+assert.deepEqual(blockedExternalBrand.promoted_brands, ['Marca Externa']);
 const result = await pipeline.run({
   topic: "Notícia técnica",
   researchData: { sources: [{ name: "Fonte", url: "https://example.com" }] },

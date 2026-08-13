@@ -32,9 +32,22 @@ export function buildPublicCatalog(rootDir = root, now = new Date()) {
   return { version: '2.0', verifiedAt, totalBikes: bikes.length, bikes }
 }
 
+export function assertSafeCatalogTransition(previous, next, { allowEmpty = false } = {}) {
+  if (!allowEmpty && Number(previous?.totalBikes || 0) > 0 && Number(next?.totalBikes || 0) === 0) {
+    throw new Error(`Catálogo público recusado: transição de ${previous.totalBikes} produtos para zero sem confirmação explícita`)
+  }
+}
+
 export function run({ checkOnly = process.argv.includes('--check'), rootDir = root, now = new Date() } = {}) {
   const outputPath = path.join(rootDir, '_data', 'catalog-public.json')
   const catalog = buildPublicCatalog(rootDir, now)
+  const previous = fs.existsSync(outputPath) ? JSON.parse(fs.readFileSync(outputPath, 'utf8')) : null
+  try {
+    assertSafeCatalogTransition(previous, catalog, { allowEmpty: process.env.ALLOW_EMPTY_PUBLIC_CATALOG === 'true' })
+  } catch (error) {
+    console.error(error.message)
+    return 1
+  }
   const output = `${JSON.stringify(catalog, null, 2)}\n`
 
   if (checkOnly) {

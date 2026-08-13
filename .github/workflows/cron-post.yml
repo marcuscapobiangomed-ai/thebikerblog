@@ -39,6 +39,8 @@ jobs:
       - name: Validar fila e configuração estrutural
         run: npm run automation:doctor
         working-directory: bot
+      - name: Revalidar disponibilidade do catálogo TheBiker
+        run: npm run catalog:revalidate
       - name: Preparar derivados e validar baseline antes de consumir IA
         run: npm run validate:ci
 
@@ -62,6 +64,8 @@ jobs:
       - run: npm ci
       - run: npm ci
         working-directory: bot
+      - name: Revalidar disponibilidade do catálogo TheBiker
+        run: npm run catalog:revalidate
       - name: Revalidar baseline no workspace de produção
         run: npm run validate:ci
       - name: Atualizar catálogo visual oficial da TheBiker

@@ -1,16 +1,55 @@
 {
-  "id": "scott-spark-rc-expert-2027-thebiker-br", "type": "bike", "status": "active",
-  "brand": "Scott", "model": "Spark RC Expert", "modelYear": 2027, "market": "BR", "category": "mtb-cross-country",
-  "officialUrl": "https://www.scott-sports.com/global/en/product/scott-spark-rc-expert-bike", "storeProductUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-spark-rc-expert-2027/",
+  "id": "scott-spark-rc-expert-2027-thebiker-br",
+  "type": "bike",
+  "status": "active",
+  "brand": "Scott",
+  "model": "Spark RC Expert",
+  "modelYear": 2027,
+  "market": "BR",
+  "category": "mtb-cross-country",
+  "officialUrl": "https://www.scott-sports.com/global/en/product/scott-spark-rc-expert-bike",
+  "storeProductUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-spark-rc-expert-2027/",
   "image": "/assets/img/products/comparator/scott-spark-rc-expert-2027.webp",
-  "portfolioStatus": "verified", "portfolioVerifiedAt": "2026-08-05", "theBikerPrice": 57999,
-  "frame": { "material": "carbon", "technology": "Spark RC HMF Carbon Gen5" },
-  "fork": { "model": "Fox 34SL Factory Grip SL" },
-  "drivetrain": { "brand": "Shimano", "groupset": "XT Di2", "speeds": 12, "shifting": "wireless" },
-  "brakes": { "type": "hydraulic-disc", "brand": "Shimano", "model": "Deore BR-M6220 4-Piston" },
-  "wheels": { "brand": "Syncros", "model": "Silverton AL2" },
-  "tires": { "brand": "Maxxis", "model": "Aspen", "tubelessReady": true },
-  "declaredWeight": { "valueKg": 11.8, "approximate": true, "size": "não informado", "sourceId": "manufacturer-bicicleta-scott-spark-rc-expert-2027" },
+  "portfolioStatus": "verified",
+  "portfolioVerifiedAt": "2026-08-13",
+  "theBikerPrice": 57999,
+  "frame": {
+    "material": "carbon",
+    "technology": "Spark RC HMF Carbon Gen5"
+  },
+  "fork": {
+    "model": "Fox 34SL Factory Grip SL"
+  },
+  "drivetrain": {
+    "brand": "Shimano",
+    "groupset": "XT Di2",
+    "speeds": 12,
+    "shifting": "wireless"
+  },
+  "brakes": {
+    "type": "hydraulic-disc",
+    "brand": "Shimano",
+    "model": "Deore BR-M6220 4-Piston"
+  },
+  "wheels": {
+    "brand": "Syncros",
+    "model": "Silverton AL2"
+  },
+  "tires": {
+    "brand": "Maxxis",
+    "model": "Aspen",
+    "tubelessReady": true
+  },
+  "declaredWeight": {
+    "valueKg": 11.8,
+    "approximate": true,
+    "size": "não informado",
+    "sourceId": "manufacturer-bicicleta-scott-spark-rc-expert-2027"
+  },
   "knowledgeRecord": "_data/product-knowledge/bikes/bicicleta-scott-spark-rc-expert-2027.json",
-  "testedByTheBikerBlog": false, "createdAt": "2026-08-05", "updatedAt": "2026-08-05", "reviewStatus": "verified", "sourceId": "thebiker-bicicleta-scott-spark-rc-expert-2027"
+  "testedByTheBikerBlog": false,
+  "createdAt": "2026-08-05",
+  "updatedAt": "2026-08-13",
+  "reviewStatus": "verified",
+  "sourceId": "thebiker-bicicleta-scott-spark-rc-expert-2027"
 }

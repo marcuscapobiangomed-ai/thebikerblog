@@ -41,6 +41,8 @@ jobs:
       - run: npm ci
       - run: npm ci
         working-directory: bot
+      - name: Revalidar disponibilidade do catálogo TheBiker
+        run: npm run catalog:revalidate
       - name: Preparar derivados e validar baseline antes de publicar
         run: npm run validate:ci
       - name: Publicar somente o conteúdo aprovado para hoje

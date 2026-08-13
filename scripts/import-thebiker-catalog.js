@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url'
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const productsDir = path.join(root, '_data', 'products', 'bikes')
 const imagesDir = path.join(root, 'assets', 'img', 'products', 'comparator')
-const verifiedAt = '2026-08-05'
+const verifiedAt = new Date().toISOString().slice(0, 10)
 
 const products = [
   ['oggi-big-wheel-7-1', 'Oggi', 'Big Wheel 7.1', 2025, 'mtb-cross-country', 'bicicleta-oggi-big-wheel-7-1'],

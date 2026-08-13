@@ -11,6 +11,8 @@ assert.match(packageJson.scripts["prepare:derived"], /catalog:public.*build:mach
   "o preparo deve renovar o catálogo e todos os endpoints que dependem dele");
 
 const publication = read("publish-daily.yml");
+assert.ok(publication.indexOf("npm run catalog:revalidate") < publication.indexOf("npm run validate:ci"),
+  "a publicação deve renovar a evidência comercial antes dos gates temporais");
 const baselineIndex = publication.indexOf("npm run validate:ci");
 const mutationIndex = publication.indexOf("node src/publish_scheduled.js");
 assert.ok(baselineIndex >= 0 && baselineIndex < mutationIndex, "a publicação deve validar e renovar derivados antes de alterar o post");
@@ -24,6 +26,8 @@ assert.match(publication, /if: \$\{\{ steps\.publication\.outputs\.status == 'pu
   "o deploy explícito só pode ocorrer apó uma publicação confirmada");
 
 const editorial = read("cron-post.yml");
+assert.equal((editorial.match(/npm run catalog:revalidate/g) || []).length, 2,
+  "preflight e produção devem revalidar o catálogo em seus workspaces isolados");
 assert.ok((editorial.match(/npm run validate:ci/g) || []).length >= 2,
   "a automação deve validar o baseline no preflight e novamente no workspace que consumirá IA");
 assert.ok(editorial.indexOf("npm run validate:ci", editorial.indexOf("generate-draft:")) < editorial.indexOf("npm run campaign:produce"),
