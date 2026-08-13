@@ -57,7 +57,7 @@
       "title": "Inspeção pós-chuva: os pontos que concentram contaminação, corrosão e desgaste",
       "summary": "Rotina técnica depois de treinos molhados, priorizando rolamentos, transmissão, freios, suspensão e interfaces do quadro.",
       "category": "manutencao-ajustes",
-      "status": "planned"
+      "status": "blocked"
     },
     {
       "day": 8,
@@ -65,7 +65,7 @@
       "title": "Bike de fábrica vs. bike de competição: o que realmente muda na prática",
       "summary": "Muitas diferenças vêm de ajustes, pneus e posição, não do quadro. Aprenda a identificar o que importa para o seu tipo de pedal.",
       "category": "comparativo",
-      "status": "blocked"
+      "status": "planned"
     },
     {
       "day": 9,

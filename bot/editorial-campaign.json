@@ -340,6 +340,7 @@
         "thebiker-bicicleta-scott-spark-rc-world-cup-20271-078d5ce90f"
       ],
       "imageValidatedAt": "2026-08-13T19:22:37.658Z",
+      "publishedAt": "2026-08-13T19:24:10.851Z",
       "attempts": 4,
       "lastAttemptAt": "2026-08-13T19:16:17.734Z",
       "aiReview": {
@@ -359,12 +360,12 @@
         "origin": "deterministic-transform",
         "reviewedContentHash": "sha256:670b3b46d273658830c8fdf6f8ae2b75324bc22a42923491457f3d0eba6c0269",
         "scheduledContentHash": "sha256:670b3b46d273658830c8fdf6f8ae2b75324bc22a42923491457f3d0eba6c0269",
+        "publishedContentHash": "sha256:670b3b46d273658830c8fdf6f8ae2b75324bc22a42923491457f3d0eba6c0269",
         "researchHash": "sha256:36bee914d64c0899977567c896a14fa9eaedaa7940570315c6d327b60f773c2e",
         "sourceHash": null,
         "finalScore": 100,
         "finalBlockers": 0,
-        "issuedAt": "2026-08-13T19:30:00.000Z",
-        "publishedContentHash": "sha256:670b3b46d273658830c8fdf6f8ae2b75324bc22a42923491457f3d0eba6c0269"
+        "issuedAt": "2026-08-13T19:30:00.000Z"
       },
       "visualDecision": {
         "schemaVersion": 1,
@@ -384,8 +385,7 @@
         },
         "blockers": [],
         "issuedAt": "2026-08-13T19:22:37.658Z"
-      },
-      "publishedAt": "2026-08-13T19:24:10.851Z"
+      }
     },
     {
       "day": 7,
@@ -395,7 +395,7 @@
       "summary": "Rotina técnica depois de treinos molhados, priorizando rolamentos, transmissão, freios, suspensão e interfaces do quadro.",
       "category": "manutencao-ajustes",
       "freshness": "evergreen",
-      "status": "planned",
+      "status": "blocked",
       "productIds": [
         "corrente-sram-nx-eagle"
       ],
@@ -406,8 +406,16 @@
         "rationale": "A corrente SRAM real exemplifica o componente mais exposto a água, abrasivos, corrosão e desgaste na inspeção pós-chuva."
       },
       "imageAssetIds": [],
-      "attempts": 1,
-      "lastAttemptAt": "2026-08-13T18:15:00.000Z"
+      "attempts": 4,
+      "lastAttemptAt": "2026-08-13T20:50:53.993Z",
+      "failure": {
+        "code": "RESEARCH_INSUFFICIENT",
+        "retryable": false,
+        "stage": "production",
+        "message": "Pesquisa bloqueada por integridade de fontes: pesquisa concluída sem fontes rastreáveis; pesquisa sem fatos explicitamente fundamentados",
+        "recordedAt": "2026-08-13T20:50:53.993Z"
+      },
+      "blockReason": "[RESEARCH_INSUFFICIENT] Pesquisa bloqueada por integridade de fontes: pesquisa concluída sem fontes rastreáveis; pesquisa sem fatos explicitamente fundamentados"
     },
     {
       "day": 8,
@@ -417,7 +425,7 @@
       "summary": "Muitas diferenças vêm de ajustes, pneus e posição, não do quadro. Aprenda a identificar o que importa para o seu tipo de pedal.",
       "category": "comparativo",
       "freshness": "revalidate-24h",
-      "status": "blocked",
+      "status": "planned",
       "productIds": [
         "foil-rc-hmx-sl-bicicleta-aero-24v-sram-red-axs"
       ],
@@ -427,16 +435,7 @@
         "relationship": "platform-example",
         "rationale": "A Scott Foil RC Ultimate real funciona como plataforma concreta para explicar integração, aerodinâmica e montagem de competição."
       },
-      "imageStatus": "blocked",
       "imageAssetIds": [],
-      "blockReason": "[RESEARCH_INSUFFICIENT] pesquisa sem contrato de evidência recuperada retrieved-excerpt-v1; pesquisa sem data de verificação ativa das fontes; fato 1 sem trecho literal verificável; fato 2 sem trecho literal verificável; fato 3 sem trecho literal verificável; fato 4 sem trecho literal verificável; fato 5 sem trecho literal verificável; fato 6 sem trecho literal verificável; fato 7 sem trecho literal verificável; fato 8 sem trecho literal verificável",
-      "failure": {
-        "code": "RESEARCH_INSUFFICIENT",
-        "retryable": true,
-        "stage": "source-verification-audit",
-        "message": "pesquisa sem contrato de evidência recuperada retrieved-excerpt-v1; pesquisa sem data de verificação ativa das fontes; fato 1 sem trecho literal verificável; fato 2 sem trecho literal verificável; fato 3 sem trecho literal verificável; fato 4 sem trecho literal verificável; fato 5 sem trecho literal verificável; fato 6 sem trecho literal verificável; fato 7 sem trecho literal verificável; fato 8 sem trecho literal verificável",
-        "recordedAt": "2026-08-13T18:15:00.000Z"
-      },
       "attempts": 1,
       "lastAttemptAt": "2026-08-13T18:15:00.000Z"
     },
