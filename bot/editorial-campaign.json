@@ -573,7 +573,7 @@
         "retryable": false,
         "stage": "finalization",
         "message": "Recibo editorial exige nota final >= 90 e zero bloqueadores",
-        "recordedAt": "2026-08-13T23:36:09.081Z"
+        "recordedAt": "2026-08-13T23:46:14.538Z"
       },
       "blockReason": "Validação final: [AI_REVIEW_REJECTED] Recibo editorial exige nota final >= 90 e zero bloqueadores"
     },
