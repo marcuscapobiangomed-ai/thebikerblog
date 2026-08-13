@@ -9,6 +9,7 @@ const FINALIZATION = /^Valida(?:ção|cao) final:/i
 const NORMALIZABLE_PORTFOLIO_ALIAS = /promo(?:ção|cao) bloqueada[^\n]*TheBiker Shop/i
 const NEAR_MISS_LENGTH = /extens(?:ão|ao) insuficiente:\s*(\d+) palavras; m(?:í|i)nimo\s*(\d+)/i
 const EXHAUSTED_LEGACY_REPAIR = /Rascunho bloqueado.+\d+ reparos/i
+const MISSING_DRAFT = /rascunho indisponível/i
 
 const REAL_CONTEXT_BY_RESERVE_ID = Object.freeze({
   'reserva-diagnostico-ruidos-bike': 'bicicleta-scott-scale-940-black',
@@ -30,6 +31,17 @@ function realContextPolicy(item) {
       rationale: 'Fotografia real do catálogo TheBiker usada apenas como exemplo visual da categoria técnica abordada.',
     },
   }
+}
+
+function clearDiscardedDraftState(item) {
+  delete item.postPath
+  delete item.aiReview
+  delete item.editorialReceipt
+  delete item.visualDecision
+  delete item.imageManifestPath
+  delete item.imageStatus
+  delete item.imageValidatedAt
+  item.imageAssetIds = []
 }
 
 const RECOVERY_RESERVES = [
@@ -98,6 +110,21 @@ export function recoverBlockedCampaign(campaignInput, {
     return {
       campaign: CampaignSchema.parse(campaign),
       result: { status: 'repair-finalization-visual', itemId: blocked.id, productId: visual.productId },
+      exception: null,
+    }
+  }
+  if (FINALIZATION.test(reason)
+      && classified.code === 'IMAGE_NOT_PUBLISHABLE'
+      && blocked.heroImage?.mode === 'conceptual'
+      && finalizationDraftErrors.some((message) => MISSING_DRAFT.test(message))
+      && (blocked.attempts || 0) < 2) {
+    clearDiscardedDraftState(blocked)
+    blocked.status = 'planned'
+    delete blocked.blockReason
+    delete blocked.failure
+    return {
+      campaign: CampaignSchema.parse(campaign),
+      result: { status: 'retry-production-with-semantic-visual', itemId: blocked.id, attempts: blocked.attempts || 0 },
       exception: null,
     }
   }

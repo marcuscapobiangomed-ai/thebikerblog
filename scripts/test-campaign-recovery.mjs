@@ -51,6 +51,28 @@ assert.equal(repairedVisualItem.status, 'validation')
 assert.equal(repairedVisualItem.heroImage.mode, 'real-context')
 assert.deepEqual(repairedVisualItem.productIds, [repairedVisualItem.heroImage.productId])
 
+const missingDynamicDraft = structuredClone(campaignFixture)
+for (const item of missingDynamicDraft.items) if (item.status === 'blocked') { item.status = 'planned'; delete item.blockReason; delete item.failure }
+const dynamicItem = missingDynamicDraft.items.find((item) => item.id === 'youtube-bicicletas-eletricas-arquitetura-autonomia-limites-e-criterios-t')
+  || missingDynamicDraft.items.find((item) => item.status === 'planned')
+dynamicItem.status = 'blocked'
+dynamicItem.attempts = 1
+dynamicItem.heroImage = { mode: 'conceptual' }
+dynamicItem.postPath = `_posts/drafts/${dynamicItem.publishDate}-${dynamicItem.id}.md`
+dynamicItem.aiReview = { score: 85, finalScore: 95, finalBlockers: 0, premiumEditUsed: true, providers: {}, generatedAt: '2026-08-13T14:24:34.237Z', contentHash: `sha256:${'a'.repeat(64)}` }
+dynamicItem.failure = { code: 'IMAGE_NOT_PUBLISHABLE', retryable: false, stage: 'finalization', message: 'Politica visual conceptual: agendamento exige fotografia real explicitamente vinculada', recordedAt: '2026-08-13T14:26:16.026Z' }
+dynamicItem.blockReason = `Validação final: [IMAGE_NOT_PUBLISHABLE] ${dynamicItem.failure.message}`
+const regeneratedDynamic = recoverBlockedCampaign(missingDynamicDraft, {
+  now: new Date('2026-08-13T15:00:00Z'),
+  finalizationDraftErrors: ['rascunho indisponível (ENOENT)'],
+})
+assert.equal(regeneratedDynamic.result.status, 'retry-production-with-semantic-visual')
+const resetDynamicItem = regeneratedDynamic.campaign.items.find((item) => item.id === dynamicItem.id)
+assert.equal(resetDynamicItem.status, 'planned')
+assert.equal(resetDynamicItem.postPath, undefined)
+assert.equal(resetDynamicItem.aiReview, undefined)
+assert.equal(resetDynamicItem.attempts, 1)
+
 const policyAlias = structuredClone(campaignFixture)
 for (const item of policyAlias.items) if (item.status === 'blocked') { item.status = 'planned'; delete item.blockReason; delete item.failure }
 const aliasBlocked = policyAlias.items.find((item) => item.id === conceptualPolicyId) || policyAlias.items.find((item) => item.status === 'planned')

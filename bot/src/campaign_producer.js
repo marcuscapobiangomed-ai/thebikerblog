@@ -7,6 +7,7 @@ import { GroundedResearcher } from './automation/grounded-research.js'
 import { hashEditorialText } from './validation/editorial-receipt.js'
 import { classifyEditorialFailure } from './validation/editorial-failures.js'
 import { RaceProgramSchema, selectRaceEventsForEditorialItem, validateRaceEditorialStructure } from './automation/race-program.js'
+import { linkTheBikerProducts, loadTheBikerLinkData } from './editorial/product-linker.js'
 
 const defaultRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..')
 
@@ -92,10 +93,11 @@ export async function runCampaignProducer({ root = defaultRoot, env = process.en
     await persist(root, campaign)
     const post = await ai.processCase(item.title, research)
     if (post.pipelineMetadata?.premiumEditPending) throw new Error('Revisão premium necessária, mas DeepSeek não está disponível')
+    const linkedPost = linkTheBikerProducts(post.content, loadTheBikerLinkData(root))
     const draftDir = path.join(root, '_posts/drafts')
     await fs.mkdir(draftDir, { recursive: true })
     const postPath = `_posts/drafts/${item.publishDate}-${item.id}.md`
-    await fs.writeFile(path.join(root, postPath), post.content)
+    await fs.writeFile(path.join(root, postPath), linkedPost.content)
     item.postPath = postPath
     item.status = 'validation'
     item.aiReview = {
@@ -105,12 +107,12 @@ export async function runCampaignProducer({ root = defaultRoot, env = process.en
       premiumEditUsed: post.pipelineMetadata?.premiumEditUsed === true,
       providers: post.pipelineMetadata?.providers || {},
       generatedAt: now.toISOString(),
-      contentHash: hashEditorialText(post.content),
+      contentHash: hashEditorialText(linkedPost.content),
       sourceHash: post.pipelineMetadata?.sourceHash,
     }
     delete item.failure
     await persist(root, campaign)
-    return { status: 'validation', itemId: item.id, postPath, researchPath: `content/research/campaign/${item.id}.json` }
+    return { status: 'validation', itemId: item.id, postPath, researchPath: `content/research/campaign/${item.id}.json`, theBikerLinks: linkedPost.links.length }
   } catch (error) {
     item.status = 'blocked'
     if (item.race) item.race.sourceStatus = 'blocked'
