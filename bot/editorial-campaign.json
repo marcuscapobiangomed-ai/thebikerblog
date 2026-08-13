@@ -323,7 +323,7 @@
       "summary": "Comparação interna entre as três Spark RC vendidas pela TheBiker, cobrindo carbono, suspensões, transmissão, rodas, peso e limite do sistema.",
       "category": "comparativo",
       "freshness": "revalidate-24h",
-      "status": "scheduled",
+      "status": "blocked",
       "productIds": [
         "bicicleta-scott-spark-rc-world-cup-2027",
         "bicicleta-scott-spark-rc-world-cup-20271"
@@ -332,61 +332,18 @@
         "mode": "exact-product",
         "productId": "bicicleta-scott-spark-rc-world-cup-20271"
       },
-      "postPath": "_posts/drafts/2026-08-13-spark-rc-team-expert-world-cup.md",
-      "imageManifestPath": "assets/img/posts/spark-rc-team-expert-world-cup/image-manifest.json",
-      "imageStatus": "approved",
-      "imageAssetIds": [
-        "thebiker-bicicleta-scott-spark-rc-world-cup-20271-078d5ce90f"
-      ],
-      "imageValidatedAt": "2026-08-07T19:30:36.256Z",
+      "imageStatus": "blocked",
+      "imageAssetIds": [],
+      "blockReason": "[RESEARCH_INSUFFICIENT] pesquisa sem contrato de evidência recuperada retrieved-excerpt-v1; pesquisa sem data de verificação ativa das fontes; fato 1 sem trecho literal verificável; fato 2 sem trecho literal verificável; fato 3 sem trecho literal verificável; fato 4 sem trecho literal verificável; fato 5 sem trecho literal verificável; fato 6 sem trecho literal verificável; fato 7 sem trecho literal verificável; fato 8 sem trecho literal verificável",
+      "failure": {
+        "code": "RESEARCH_INSUFFICIENT",
+        "retryable": true,
+        "stage": "source-verification-audit",
+        "message": "pesquisa sem contrato de evidência recuperada retrieved-excerpt-v1; pesquisa sem data de verificação ativa das fontes; fato 1 sem trecho literal verificável; fato 2 sem trecho literal verificável; fato 3 sem trecho literal verificável; fato 4 sem trecho literal verificável; fato 5 sem trecho literal verificável; fato 6 sem trecho literal verificável; fato 7 sem trecho literal verificável; fato 8 sem trecho literal verificável",
+        "recordedAt": "2026-08-13T18:15:00.000Z"
+      },
       "attempts": 1,
-      "lastAttemptAt": "2026-08-07T19:17:24.628Z",
-      "aiReview": {
-        "score": 85,
-        "finalScore": 95,
-        "finalBlockers": 0,
-        "premiumEditUsed": true,
-        "providers": {
-          "factSheet": "deepseek",
-          "draft": "deepseek",
-          "critique": "deepseek",
-          "final": "deepseek",
-          "finalAudit": "deepseek"
-        },
-        "generatedAt": "2026-08-07T19:17:24.628Z",
-        "contentHash": "sha256:807bae988ec20d4e55abbd9af63f62adfe8e88418082175dc0f1399c175a8a36"
-      },
-      "editorialReceipt": {
-        "schemaVersion": 1,
-        "policyVersion": "thebiker-editorial-2026-08-v2",
-        "origin": "legacy-backfill",
-        "reviewedContentHash": "sha256:807bae988ec20d4e55abbd9af63f62adfe8e88418082175dc0f1399c175a8a36",
-        "scheduledContentHash": "sha256:807bae988ec20d4e55abbd9af63f62adfe8e88418082175dc0f1399c175a8a36",
-        "researchHash": "sha256:bbf782703711cc533ce77cb18b8d4d249d85397142fc335cd90984c2c1c45629",
-        "sourceHash": null,
-        "finalScore": 95,
-        "finalBlockers": 0,
-        "issuedAt": "2026-08-11T17:13:56.194Z"
-      },
-      "visualDecision": {
-        "schemaVersion": 1,
-        "policyVersion": "thebiker-visual-autonomy-v1",
-        "inputHash": "sha256:15fefe1241882aa16014b677f2e8297ccce728f1f943d0e3a594611ce889c0ac",
-        "mode": "exact-product",
-        "productId": "bicicleta-scott-spark-rc-world-cup-20271",
-        "score": 100,
-        "hardGates": {
-          "semanticMatch": true,
-          "realAsset": true,
-          "explicitProduct": true,
-          "officialSource": true,
-          "approvedRights": true,
-          "publishableResolution": true,
-          "uniqueAsset": true
-        },
-        "blockers": [],
-        "issuedAt": "2026-08-11T18:15:18.935Z"
-      }
+      "lastAttemptAt": "2026-08-13T18:15:00.000Z"
     },
     {
       "day": 7,
@@ -396,7 +353,7 @@
       "summary": "Rotina técnica depois de treinos molhados, priorizando rolamentos, transmissão, freios, suspensão e interfaces do quadro.",
       "category": "manutencao-ajustes",
       "freshness": "evergreen",
-      "status": "scheduled",
+      "status": "blocked",
       "productIds": [
         "corrente-sram-nx-eagle"
       ],
@@ -406,61 +363,18 @@
         "relationship": "maintenance-example",
         "rationale": "A corrente SRAM real exemplifica o componente mais exposto a água, abrasivos, corrosão e desgaste na inspeção pós-chuva."
       },
-      "postPath": "_posts/drafts/2026-08-14-reserva-inspecao-pos-chuva.md",
-      "imageManifestPath": "assets/img/posts/reserva-inspecao-pos-chuva/image-manifest.json",
-      "imageStatus": "approved",
-      "imageAssetIds": [
-        "thebiker-corrente-sram-nx-eagle-ab2209342e"
-      ],
-      "imageValidatedAt": "2026-08-11T18:07:59.683Z",
+      "imageStatus": "blocked",
+      "imageAssetIds": [],
+      "blockReason": "[RESEARCH_INSUFFICIENT] pesquisa sem contrato de evidência recuperada retrieved-excerpt-v1; pesquisa sem data de verificação ativa das fontes; fato 1 sem trecho literal verificável",
+      "failure": {
+        "code": "RESEARCH_INSUFFICIENT",
+        "retryable": true,
+        "stage": "source-verification-audit",
+        "message": "pesquisa sem contrato de evidência recuperada retrieved-excerpt-v1; pesquisa sem data de verificação ativa das fontes; fato 1 sem trecho literal verificável",
+        "recordedAt": "2026-08-13T18:15:00.000Z"
+      },
       "attempts": 1,
-      "lastAttemptAt": "2026-08-08T04:08:25.560Z",
-      "aiReview": {
-        "score": 72,
-        "finalScore": 92,
-        "finalBlockers": 0,
-        "premiumEditUsed": true,
-        "providers": {
-          "factSheet": "deepseek",
-          "draft": "deepseek",
-          "critique": "deepseek",
-          "final": "deepseek",
-          "finalAudit": "deepseek"
-        },
-        "generatedAt": "2026-08-08T04:08:25.560Z",
-        "contentHash": "sha256:587b3bec49f22c0197f1daeb5b7b5ed8892303242afa0683b0013339479aa72e"
-      },
-      "editorialReceipt": {
-        "schemaVersion": 1,
-        "policyVersion": "thebiker-editorial-2026-08-v2",
-        "origin": "deterministic-transform",
-        "reviewedContentHash": "sha256:587b3bec49f22c0197f1daeb5b7b5ed8892303242afa0683b0013339479aa72e",
-        "scheduledContentHash": "sha256:b014e6b0420cd644ac6ad0782341c56ec0ef400c5e04af5d43d8e75dc3d8b566",
-        "researchHash": "sha256:37e23f674005c64320d443317d12ac2453225620d627d12fcb40fb0cc20f5751",
-        "sourceHash": null,
-        "finalScore": 92,
-        "finalBlockers": 0,
-        "issuedAt": "2026-08-11T18:07:59.685Z"
-      },
-      "visualDecision": {
-        "schemaVersion": 1,
-        "policyVersion": "thebiker-visual-autonomy-v1",
-        "inputHash": "sha256:c15cafa4ce2ecd3dbe93f6f6384df6a79d8791be523c60296b772469ffabc2bc",
-        "mode": "real-context",
-        "productId": "corrente-sram-nx-eagle",
-        "score": 100,
-        "hardGates": {
-          "semanticMatch": true,
-          "realAsset": true,
-          "explicitProduct": true,
-          "officialSource": true,
-          "approvedRights": true,
-          "publishableResolution": true,
-          "uniqueAsset": true
-        },
-        "blockers": [],
-        "issuedAt": "2026-08-11T18:15:18.938Z"
-      }
+      "lastAttemptAt": "2026-08-13T18:15:00.000Z"
     },
     {
       "day": 8,
@@ -470,7 +384,7 @@
       "summary": "Muitas diferenças vêm de ajustes, pneus e posição, não do quadro. Aprenda a identificar o que importa para o seu tipo de pedal.",
       "category": "comparativo",
       "freshness": "revalidate-24h",
-      "status": "scheduled",
+      "status": "blocked",
       "productIds": [
         "foil-rc-hmx-sl-bicicleta-aero-24v-sram-red-axs"
       ],
@@ -480,62 +394,18 @@
         "relationship": "platform-example",
         "rationale": "A Scott Foil RC Ultimate real funciona como plataforma concreta para explicar integração, aerodinâmica e montagem de competição."
       },
-      "postPath": "_posts/drafts/2026-08-15-bike-de-fabrica-vs-bike-de-competicao.md",
-      "imageManifestPath": "assets/img/posts/bike-de-fabrica-vs-bike-de-competicao/image-manifest.json",
-      "imageStatus": "approved",
-      "imageAssetIds": [
-        "thebiker-foil-rc-hmx-sl-bicicleta-aero-24v-sram-red-axs-4f08a0b5be"
-      ],
-      "imageValidatedAt": "2026-08-11T18:11:00.347Z",
+      "imageStatus": "blocked",
+      "imageAssetIds": [],
+      "blockReason": "[RESEARCH_INSUFFICIENT] pesquisa sem contrato de evidência recuperada retrieved-excerpt-v1; pesquisa sem data de verificação ativa das fontes; fato 1 sem trecho literal verificável; fato 2 sem trecho literal verificável; fato 3 sem trecho literal verificável; fato 4 sem trecho literal verificável; fato 5 sem trecho literal verificável; fato 6 sem trecho literal verificável; fato 7 sem trecho literal verificável; fato 8 sem trecho literal verificável",
+      "failure": {
+        "code": "RESEARCH_INSUFFICIENT",
+        "retryable": true,
+        "stage": "source-verification-audit",
+        "message": "pesquisa sem contrato de evidência recuperada retrieved-excerpt-v1; pesquisa sem data de verificação ativa das fontes; fato 1 sem trecho literal verificável; fato 2 sem trecho literal verificável; fato 3 sem trecho literal verificável; fato 4 sem trecho literal verificável; fato 5 sem trecho literal verificável; fato 6 sem trecho literal verificável; fato 7 sem trecho literal verificável; fato 8 sem trecho literal verificável",
+        "recordedAt": "2026-08-13T18:15:00.000Z"
+      },
       "attempts": 1,
-      "lastAttemptAt": "2026-08-08T13:47:43.047Z",
-      "aiReview": {
-        "score": 72,
-        "finalScore": 95,
-        "finalBlockers": 0,
-        "premiumEditUsed": true,
-        "providers": {
-          "factSheet": "deepseek",
-          "draft": "gemini",
-          "critique": "deepseek",
-          "final": "deepseek",
-          "finalAudit": "deepseek",
-          "finalRepair": "deepseek"
-        },
-        "generatedAt": "2026-08-08T13:47:43.047Z",
-        "contentHash": "sha256:f4f2833a61c3fb5f8c391a3accbfcb6616e4e4f083c48ab59bcf54613231f3aa"
-      },
-      "editorialReceipt": {
-        "schemaVersion": 1,
-        "policyVersion": "thebiker-editorial-2026-08-v2",
-        "origin": "deterministic-transform",
-        "reviewedContentHash": "sha256:f4f2833a61c3fb5f8c391a3accbfcb6616e4e4f083c48ab59bcf54613231f3aa",
-        "scheduledContentHash": "sha256:3c7fc5367962919d0a59878c0840365f08743f59126fcb77dbac3c692aeeb9ba",
-        "researchHash": "sha256:e474a815421ca7e4b6186d037a238deaf4256079783b65f77370efba35e85f8e",
-        "sourceHash": null,
-        "finalScore": 95,
-        "finalBlockers": 0,
-        "issuedAt": "2026-08-11T18:11:00.347Z"
-      },
-      "visualDecision": {
-        "schemaVersion": 1,
-        "policyVersion": "thebiker-visual-autonomy-v1",
-        "inputHash": "sha256:6904b7a83d868715d6b27fcaff93287c2398d64894f6585bc8fd7030153e2954",
-        "mode": "real-context",
-        "productId": "foil-rc-hmx-sl-bicicleta-aero-24v-sram-red-axs",
-        "score": 100,
-        "hardGates": {
-          "semanticMatch": true,
-          "realAsset": true,
-          "explicitProduct": true,
-          "officialSource": true,
-          "approvedRights": true,
-          "publishableResolution": true,
-          "uniqueAsset": true
-        },
-        "blockers": [],
-        "issuedAt": "2026-08-11T18:15:18.942Z"
-      }
+      "lastAttemptAt": "2026-08-13T18:15:00.000Z"
     },
     {
       "day": 9,
@@ -545,7 +415,7 @@
       "summary": "Criar resposta técnica original para ciclista intermediário ou avançado, com método e limitações declarados. Sinal observado: 54.278 visualizações globais do vídeo; 2.578 por dia; encontrado em 1 busca(s) configurada(s) para o Brasil.",
       "category": "componentes",
       "freshness": "event-driven",
-      "status": "scheduled",
+      "status": "blocked",
       "productIds": [
         "bicicleta-scott-addict-gravel-30-2026-pre-venda"
       ],
@@ -555,61 +425,18 @@
         "relationship": "category-example",
         "rationale": "A Scott Addict Gravel 30 real representa visualmente a categoria discutida, sem transformar o guia técnico em review do modelo."
       },
-      "postPath": "_posts/drafts/2026-08-16-youtube-bicicletas-gravel-geometria-pneus-transmissao-e-criterios-de-uso.md",
-      "imageManifestPath": "assets/img/posts/youtube-bicicletas-gravel-geometria-pneus-transmissao-e-criterios-de-uso/image-manifest.json",
-      "imageStatus": "approved",
-      "imageAssetIds": [
-        "thebiker-bicicleta-scott-addict-gravel-30-2026-pre-venda-e60f05d57b"
-      ],
-      "imageValidatedAt": "2026-08-11T18:11:01.402Z",
+      "imageStatus": "blocked",
+      "imageAssetIds": [],
+      "blockReason": "[RESEARCH_INSUFFICIENT] pesquisa sem contrato de evidência recuperada retrieved-excerpt-v1; pesquisa sem data de verificação ativa das fontes; fato 1 sem trecho literal verificável; fato 2 sem trecho literal verificável; fato 3 sem trecho literal verificável; fato 4 sem trecho literal verificável; fato 5 sem trecho literal verificável; fato 6 sem trecho literal verificável; fato 7 sem trecho literal verificável; fato 8 sem trecho literal verificável",
+      "failure": {
+        "code": "RESEARCH_INSUFFICIENT",
+        "retryable": true,
+        "stage": "source-verification-audit",
+        "message": "pesquisa sem contrato de evidência recuperada retrieved-excerpt-v1; pesquisa sem data de verificação ativa das fontes; fato 1 sem trecho literal verificável; fato 2 sem trecho literal verificável; fato 3 sem trecho literal verificável; fato 4 sem trecho literal verificável; fato 5 sem trecho literal verificável; fato 6 sem trecho literal verificável; fato 7 sem trecho literal verificável; fato 8 sem trecho literal verificável",
+        "recordedAt": "2026-08-13T18:15:00.000Z"
+      },
       "attempts": 2,
-      "lastAttemptAt": "2026-08-08T15:35:33.560Z",
-      "aiReview": {
-        "score": 72,
-        "finalScore": 95,
-        "finalBlockers": 0,
-        "premiumEditUsed": true,
-        "providers": {
-          "factSheet": "deepseek",
-          "draft": "gemini",
-          "critique": "deepseek",
-          "final": "deepseek",
-          "finalAudit": "deepseek"
-        },
-        "generatedAt": "2026-08-08T15:35:33.560Z",
-        "contentHash": "sha256:51b54651ec0fd02248b0bd7247a3c6745d759ce7abe436d09fd98fe8450cdfac"
-      },
-      "editorialReceipt": {
-        "schemaVersion": 1,
-        "policyVersion": "thebiker-editorial-2026-08-v2",
-        "origin": "deterministic-transform",
-        "reviewedContentHash": "sha256:51b54651ec0fd02248b0bd7247a3c6745d759ce7abe436d09fd98fe8450cdfac",
-        "scheduledContentHash": "sha256:88555c23290b94dda1f462c76bdf658ac7e706c8f6a93e2eb2291bc95967f04d",
-        "researchHash": "sha256:dfc39e303356d18f592805ecd330cb2925b7eb7ba07889697b817fc6bb6d111a",
-        "sourceHash": null,
-        "finalScore": 95,
-        "finalBlockers": 0,
-        "issuedAt": "2026-08-11T18:11:01.402Z"
-      },
-      "visualDecision": {
-        "schemaVersion": 1,
-        "policyVersion": "thebiker-visual-autonomy-v1",
-        "inputHash": "sha256:3957ec70832a688964c42ce6fc6d28336a8c0c9443f3d317a943d23e318180cd",
-        "mode": "real-context",
-        "productId": "bicicleta-scott-addict-gravel-30-2026-pre-venda",
-        "score": 100,
-        "hardGates": {
-          "semanticMatch": true,
-          "realAsset": true,
-          "explicitProduct": true,
-          "officialSource": true,
-          "approvedRights": true,
-          "publishableResolution": true,
-          "uniqueAsset": true
-        },
-        "blockers": [],
-        "issuedAt": "2026-08-11T18:15:18.945Z"
-      }
+      "lastAttemptAt": "2026-08-13T18:15:00.000Z"
     },
     {
       "day": 10,
@@ -619,7 +446,7 @@
       "summary": "Comparação entre Ultegra e Dura-Ace Di2, rodas, cockpit, pneus, peso declarado e custo observado na TheBiker.",
       "category": "comparativo",
       "freshness": "revalidate-24h",
-      "status": "scheduled",
+      "status": "blocked",
       "productIds": [
         "bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9",
         "bicicleta-scott-addict-rc-pro-di2-2026-pre-venda"
@@ -628,62 +455,18 @@
         "mode": "exact-product",
         "productId": "bicicleta-scott-addict-rc-pro-di2-2026-pre-venda"
       },
-      "postPath": "_posts/drafts/2026-08-17-addict-rc-20-vs-pro.md",
-      "imageManifestPath": "assets/img/posts/addict-rc-20-vs-pro/image-manifest.json",
-      "imageStatus": "approved",
-      "imageAssetIds": [
-        "manufacturer-bicicleta-scott-addict-rc-pro-di2-2026-pre-venda-3089622e12"
-      ],
-      "imageValidatedAt": "2026-08-07T14:42:06.848Z",
+      "imageStatus": "blocked",
+      "imageAssetIds": [],
+      "blockReason": "[RESEARCH_INSUFFICIENT] pesquisa sem contrato de evidência recuperada retrieved-excerpt-v1; pesquisa sem data de verificação ativa das fontes; fato 1 sem trecho literal verificável; fato 2 sem trecho literal verificável; fato 3 sem trecho literal verificável; fato 4 sem trecho literal verificável; fato 5 sem trecho literal verificável; fato 6 sem trecho literal verificável; fato 7 sem trecho literal verificável; fato 8 sem trecho literal verificável",
+      "failure": {
+        "code": "RESEARCH_INSUFFICIENT",
+        "retryable": true,
+        "stage": "source-verification-audit",
+        "message": "pesquisa sem contrato de evidência recuperada retrieved-excerpt-v1; pesquisa sem data de verificação ativa das fontes; fato 1 sem trecho literal verificável; fato 2 sem trecho literal verificável; fato 3 sem trecho literal verificável; fato 4 sem trecho literal verificável; fato 5 sem trecho literal verificável; fato 6 sem trecho literal verificável; fato 7 sem trecho literal verificável; fato 8 sem trecho literal verificável",
+        "recordedAt": "2026-08-13T18:15:00.000Z"
+      },
       "attempts": 1,
-      "lastAttemptAt": "2026-08-07T14:14:33.779Z",
-      "aiReview": {
-        "score": 85,
-        "finalScore": 95,
-        "finalBlockers": 0,
-        "premiumEditUsed": true,
-        "providers": {
-          "factSheet": "deepseek",
-          "draft": "deepseek",
-          "critique": "deepseek",
-          "final": "deepseek",
-          "finalAudit": "deepseek",
-          "finalRepair": "deepseek"
-        },
-        "generatedAt": "2026-08-07T14:14:33.779Z",
-        "contentHash": "sha256:8a4c9b05eae14d9f686a60a1f34ddc78e0a3075fc2bfae66cb7ac31b69767a3b"
-      },
-      "editorialReceipt": {
-        "schemaVersion": 1,
-        "policyVersion": "thebiker-editorial-2026-08-v2",
-        "origin": "legacy-backfill",
-        "reviewedContentHash": "sha256:8a4c9b05eae14d9f686a60a1f34ddc78e0a3075fc2bfae66cb7ac31b69767a3b",
-        "scheduledContentHash": "sha256:8a4c9b05eae14d9f686a60a1f34ddc78e0a3075fc2bfae66cb7ac31b69767a3b",
-        "researchHash": "sha256:32ada53aa0e15ed2803049f433d099a4e1d956058175a0ac2dae79d98c74af68",
-        "sourceHash": null,
-        "finalScore": 95,
-        "finalBlockers": 0,
-        "issuedAt": "2026-08-11T17:13:56.209Z"
-      },
-      "visualDecision": {
-        "schemaVersion": 1,
-        "policyVersion": "thebiker-visual-autonomy-v1",
-        "inputHash": "sha256:92501bd66a0eb4a5732b0a98d59ed661fc3e7dc19c4cf576da63945d51c62c0d",
-        "mode": "exact-product",
-        "productId": "bicicleta-scott-addict-rc-pro-di2-2026-pre-venda",
-        "score": 100,
-        "hardGates": {
-          "semanticMatch": true,
-          "realAsset": true,
-          "explicitProduct": true,
-          "officialSource": true,
-          "approvedRights": true,
-          "publishableResolution": true,
-          "uniqueAsset": true
-        },
-        "blockers": [],
-        "issuedAt": "2026-08-11T18:15:18.948Z"
-      }
+      "lastAttemptAt": "2026-08-13T18:15:00.000Z"
     },
     {
       "day": 11,
@@ -693,7 +476,7 @@
       "summary": "Criar resposta técnica original para ciclista intermediário ou avançado, com método e limitações declarados. Sinal observado: 5.047 visualizações globais do vídeo; 2.517 por dia; encontrado em 1 busca(s) configurada(s) para o Brasil.",
       "category": "manutencao-ajustes",
       "freshness": "event-driven",
-      "status": "scheduled",
+      "status": "blocked",
       "productIds": [
         "selim-syncros-belcarra-v1-0-neo-carbon-cut-out-145mm"
       ],
@@ -703,62 +486,18 @@
         "relationship": "component-example",
         "rationale": "O selim Syncros real materializa um dos principais pontos de contato e ajuste tratados no conteúdo técnico de bike fit."
       },
-      "postPath": "_posts/drafts/2026-08-18-youtube-bike-fit-e-posicao-criterios-tecnicos-para-ajuste-e-distribuicao.md",
-      "imageManifestPath": "assets/img/posts/youtube-bike-fit-e-posicao-criterios-tecnicos-para-ajuste-e-distribuicao/image-manifest.json",
-      "imageStatus": "approved",
-      "imageAssetIds": [
-        "thebiker-selim-syncros-belcarra-v1-0-neo-carbon-cut-out-145mm-948a3da94c"
-      ],
-      "imageValidatedAt": "2026-08-11T18:08:03.810Z",
+      "imageStatus": "blocked",
+      "imageAssetIds": [],
+      "blockReason": "[RESEARCH_INSUFFICIENT] pesquisa sem contrato de evidência recuperada retrieved-excerpt-v1; pesquisa sem data de verificação ativa das fontes; fato 1 sem trecho literal verificável; fato 2 sem trecho literal verificável; fato 3 sem trecho literal verificável; fato 4 sem trecho literal verificável; fato 5 sem trecho literal verificável; fato 6 sem trecho literal verificável; fato 7 sem trecho literal verificável; fato 8 sem trecho literal verificável",
+      "failure": {
+        "code": "RESEARCH_INSUFFICIENT",
+        "retryable": true,
+        "stage": "source-verification-audit",
+        "message": "pesquisa sem contrato de evidência recuperada retrieved-excerpt-v1; pesquisa sem data de verificação ativa das fontes; fato 1 sem trecho literal verificável; fato 2 sem trecho literal verificável; fato 3 sem trecho literal verificável; fato 4 sem trecho literal verificável; fato 5 sem trecho literal verificável; fato 6 sem trecho literal verificável; fato 7 sem trecho literal verificável; fato 8 sem trecho literal verificável",
+        "recordedAt": "2026-08-13T18:15:00.000Z"
+      },
       "attempts": 1,
-      "lastAttemptAt": "2026-08-08T17:34:02.509Z",
-      "aiReview": {
-        "score": 85,
-        "finalScore": 95,
-        "finalBlockers": 0,
-        "premiumEditUsed": true,
-        "providers": {
-          "factSheet": "deepseek",
-          "draft": "gemini",
-          "critique": "deepseek",
-          "final": "deepseek",
-          "finalAudit": "deepseek",
-          "finalRepair": "deepseek"
-        },
-        "generatedAt": "2026-08-08T17:34:02.509Z",
-        "contentHash": "sha256:765732be0e555edd5bde95401a93b99687803d8647a6c69d96f94f594b985dd6"
-      },
-      "editorialReceipt": {
-        "schemaVersion": 1,
-        "policyVersion": "thebiker-editorial-2026-08-v2",
-        "origin": "deterministic-transform",
-        "reviewedContentHash": "sha256:765732be0e555edd5bde95401a93b99687803d8647a6c69d96f94f594b985dd6",
-        "scheduledContentHash": "sha256:b7035cd04043e2229a631a26dedf007b6a72bf6c00d57d34027dec418f3aa6e0",
-        "researchHash": "sha256:f39f7bd9d7b6707137a3d21165080dae296309ba1e3f7a41cf7eae25b7feeea3",
-        "sourceHash": null,
-        "finalScore": 95,
-        "finalBlockers": 0,
-        "issuedAt": "2026-08-11T18:08:03.810Z"
-      },
-      "visualDecision": {
-        "schemaVersion": 1,
-        "policyVersion": "thebiker-visual-autonomy-v1",
-        "inputHash": "sha256:a7a41f4f8332c97912224ea4f6ae5c69d4da554a6944e08dc914ad1ff34cf684",
-        "mode": "real-context",
-        "productId": "selim-syncros-belcarra-v1-0-neo-carbon-cut-out-145mm",
-        "score": 100,
-        "hardGates": {
-          "semanticMatch": true,
-          "realAsset": true,
-          "explicitProduct": true,
-          "officialSource": true,
-          "approvedRights": true,
-          "publishableResolution": true,
-          "uniqueAsset": true
-        },
-        "blockers": [],
-        "issuedAt": "2026-08-11T18:15:18.952Z"
-      }
+      "lastAttemptAt": "2026-08-13T18:15:00.000Z"
     },
     {
       "day": 12,
@@ -768,7 +507,7 @@
       "summary": "Compare critérios técnicos que as competições de ciclocross aplicam à bike, e saiba como orientar a escolha de pneus e geometria para prova.",
       "category": "competicoes",
       "freshness": "evergreen",
-      "status": "scheduled",
+      "status": "blocked",
       "productIds": [
         "cambio-traseiro-shimano-grx-11v"
       ],
@@ -778,63 +517,18 @@
         "relationship": "component-example",
         "rationale": "O câmbio Shimano GRX real exemplifica a transmissão para terreno misto citada no artigo, preservando a marca promovida."
       },
-      "postPath": "_posts/drafts/2026-08-19-ciclocross-regulamento-preparacao.md",
-      "imageManifestPath": "assets/img/posts/ciclocross-regulamento-preparacao/image-manifest.json",
-      "imageStatus": "approved",
-      "imageAssetIds": [
-        "thebiker-cambio-traseiro-shimano-grx-11v-f0c0a6abf1"
-      ],
-      "imageValidatedAt": "2026-08-13T15:54:28.537Z",
+      "imageStatus": "blocked",
+      "imageAssetIds": [],
+      "blockReason": "[RESEARCH_INSUFFICIENT] pesquisa sem contrato de evidência recuperada retrieved-excerpt-v1; pesquisa sem data de verificação ativa das fontes; fato 1 sem trecho literal verificável; fato 2 sem trecho literal verificável; fato 3 sem trecho literal verificável; fato 4 sem trecho literal verificável; fato 5 sem trecho literal verificável; fato 6 sem trecho literal verificável",
+      "failure": {
+        "code": "RESEARCH_INSUFFICIENT",
+        "retryable": true,
+        "stage": "source-verification-audit",
+        "message": "pesquisa sem contrato de evidência recuperada retrieved-excerpt-v1; pesquisa sem data de verificação ativa das fontes; fato 1 sem trecho literal verificável; fato 2 sem trecho literal verificável; fato 3 sem trecho literal verificável; fato 4 sem trecho literal verificável; fato 5 sem trecho literal verificável; fato 6 sem trecho literal verificável",
+        "recordedAt": "2026-08-13T18:15:00.000Z"
+      },
       "attempts": 5,
-      "lastAttemptAt": "2026-08-13T15:52:35.991Z",
-      "aiReview": {
-        "score": 72,
-        "finalScore": 92,
-        "finalBlockers": 0,
-        "premiumEditUsed": true,
-        "providers": {
-          "factSheet": "deepseek",
-          "draft": "gemini",
-          "critique": "deepseek",
-          "final": "deepseek",
-          "finalAudit": "deepseek",
-          "finalRepair": "deepseek"
-        },
-        "generatedAt": "2026-08-13T15:52:35.991Z",
-        "contentHash": "sha256:724844fc3c4d0cc442dbf1dc0640412562d0b03e0958684c8c11bd03de9a8477",
-        "sourceHash": "cc3c4e0738e09fc1ef6fbf0fd39976c45d35c8bae60789ad7f76dfe489ee3c1b"
-      },
-      "editorialReceipt": {
-        "schemaVersion": 1,
-        "policyVersion": "thebiker-editorial-2026-08-v2",
-        "origin": "pipeline",
-        "reviewedContentHash": "sha256:724844fc3c4d0cc442dbf1dc0640412562d0b03e0958684c8c11bd03de9a8477",
-        "scheduledContentHash": "sha256:6f491e380a15ff9c113b87616a5266a9addc998118260efbd9579dbb2ee9584e",
-        "researchHash": "sha256:b4645240c50909c2379e0ca20d672f9b5dee179d2b7b68f392d06e5976962a5b",
-        "sourceHash": "cc3c4e0738e09fc1ef6fbf0fd39976c45d35c8bae60789ad7f76dfe489ee3c1b",
-        "finalScore": 92,
-        "finalBlockers": 0,
-        "issuedAt": "2026-08-13T15:54:28.537Z"
-      },
-      "visualDecision": {
-        "schemaVersion": 1,
-        "policyVersion": "thebiker-visual-autonomy-v1",
-        "inputHash": "sha256:1b3bf05ece46860b4508924706906dbbd16d9c4a359b4d17fd2fffe18cb59584",
-        "mode": "real-context",
-        "productId": "cambio-traseiro-shimano-grx-11v",
-        "score": 100,
-        "hardGates": {
-          "semanticMatch": true,
-          "realAsset": true,
-          "explicitProduct": true,
-          "officialSource": true,
-          "approvedRights": true,
-          "publishableResolution": true,
-          "uniqueAsset": true
-        },
-        "blockers": [],
-        "issuedAt": "2026-08-13T15:54:28.537Z"
-      }
+      "lastAttemptAt": "2026-08-13T18:15:00.000Z"
     },
     {
       "day": 13,
@@ -844,7 +538,7 @@
       "summary": "Sinais de que a suspensão precisa de serviço interno, como perda de amortecimento e vazamento de óleo. Inclui cuidados com vedação.",
       "category": "manutencao-ajustes",
       "freshness": "evergreen",
-      "status": "scheduled",
+      "status": "blocked",
       "productIds": [
         "kit-reparo-suspensao-rock-shox-sid-flight-attendant"
       ],
@@ -854,62 +548,18 @@
         "relationship": "maintenance-example",
         "rationale": "O kit real de reparo RockShox representa diretamente vedações e peças de desgaste envolvidas no serviço preventivo de suspensão."
       },
-      "postPath": "_posts/drafts/2026-08-20-servico-garfo-amortecedor-oleo-vedacao.md",
-      "imageManifestPath": "assets/img/posts/servico-garfo-amortecedor-oleo-vedacao/image-manifest.json",
-      "imageStatus": "approved",
-      "imageAssetIds": [
-        "thebiker-kit-reparo-suspensao-rock-shox-sid-flight-attendant-af0e2fa90b"
-      ],
-      "imageValidatedAt": "2026-08-11T18:11:30.500Z",
+      "imageStatus": "blocked",
+      "imageAssetIds": [],
+      "blockReason": "[RESEARCH_INSUFFICIENT] pesquisa sem contrato de evidência recuperada retrieved-excerpt-v1; pesquisa sem data de verificação ativa das fontes; fato 1 sem trecho literal verificável; fato 2 sem trecho literal verificável; fato 3 sem trecho literal verificável; fato 4 sem trecho literal verificável; fato 5 sem trecho literal verificável; fato 6 sem trecho literal verificável; fato 7 sem trecho literal verificável; fato 8 sem trecho literal verificável",
+      "failure": {
+        "code": "RESEARCH_INSUFFICIENT",
+        "retryable": true,
+        "stage": "source-verification-audit",
+        "message": "pesquisa sem contrato de evidência recuperada retrieved-excerpt-v1; pesquisa sem data de verificação ativa das fontes; fato 1 sem trecho literal verificável; fato 2 sem trecho literal verificável; fato 3 sem trecho literal verificável; fato 4 sem trecho literal verificável; fato 5 sem trecho literal verificável; fato 6 sem trecho literal verificável; fato 7 sem trecho literal verificável; fato 8 sem trecho literal verificável",
+        "recordedAt": "2026-08-13T18:15:00.000Z"
+      },
       "attempts": 1,
-      "lastAttemptAt": "2026-08-10T14:22:05.926Z",
-      "aiReview": {
-        "score": 45,
-        "finalScore": 95,
-        "finalBlockers": 0,
-        "premiumEditUsed": true,
-        "providers": {
-          "factSheet": "deepseek",
-          "draft": "gemini",
-          "critique": "deepseek",
-          "final": "deepseek",
-          "finalAudit": "deepseek",
-          "finalRepair": "deepseek"
-        },
-        "generatedAt": "2026-08-10T14:22:05.926Z",
-        "contentHash": "sha256:4834b2fa919c56cd22f68388caa73852e2fb5dfc9054863e34f7b2e81ddbf6db"
-      },
-      "editorialReceipt": {
-        "schemaVersion": 1,
-        "policyVersion": "thebiker-editorial-2026-08-v2",
-        "origin": "deterministic-transform",
-        "reviewedContentHash": "sha256:4834b2fa919c56cd22f68388caa73852e2fb5dfc9054863e34f7b2e81ddbf6db",
-        "scheduledContentHash": "sha256:183d9a945b5c75696353ab470f79d6147ffac038d9fbd593920ec1ab1cf69491",
-        "researchHash": "sha256:53aac02ec38e6653e0c111a9328b3622e86cad05ba2a53543c2d90d11cbde881",
-        "sourceHash": null,
-        "finalScore": 95,
-        "finalBlockers": 0,
-        "issuedAt": "2026-08-11T18:11:30.501Z"
-      },
-      "visualDecision": {
-        "schemaVersion": 1,
-        "policyVersion": "thebiker-visual-autonomy-v1",
-        "inputHash": "sha256:72a235cdc96c6699bf665404956e22426847a7e42a7fcb73e4bf6b49f1b37028",
-        "mode": "real-context",
-        "productId": "kit-reparo-suspensao-rock-shox-sid-flight-attendant",
-        "score": 100,
-        "hardGates": {
-          "semanticMatch": true,
-          "realAsset": true,
-          "explicitProduct": true,
-          "officialSource": true,
-          "approvedRights": true,
-          "publishableResolution": true,
-          "uniqueAsset": true
-        },
-        "blockers": [],
-        "issuedAt": "2026-08-11T18:15:18.958Z"
-      }
+      "lastAttemptAt": "2026-08-13T18:15:00.000Z"
     },
     {
       "day": 14,
@@ -919,7 +569,7 @@
       "summary": "Criar resposta técnica original para ciclista intermediário ou avançado, com método e limitações declarados. Sinal observado: 32.958 visualizações globais do vídeo; 2.235 por dia; encontrado em 1 busca(s) configurada(s) para o Brasil.",
       "category": "componentes",
       "freshness": "event-driven",
-      "status": "scheduled",
+      "status": "blocked",
       "productIds": [
         "pneu-schwalbe-racing-ray-29-x-2-25-super-race-tlr-addix"
       ],
@@ -929,62 +579,18 @@
         "relationship": "category-example",
         "rationale": "O pneu Schwalbe real exemplifica carcaça, contato com o solo e resistência ao rolamento sem sugerir teste específico do modelo."
       },
-      "postPath": "_posts/drafts/2026-08-21-youtube-pneus-de-bicicleta-pressao-carcaca-aderencia-e-resistencia-ao-ro.md",
-      "imageManifestPath": "assets/img/posts/youtube-pneus-de-bicicleta-pressao-carcaca-aderencia-e-resistencia-ao-ro/image-manifest.json",
-      "imageStatus": "approved",
-      "imageAssetIds": [
-        "thebiker-pneu-schwalbe-racing-ray-29-x-2-25-super-race-tlr-addix-c7d82b6fc2"
-      ],
-      "imageValidatedAt": "2026-08-11T18:15:17.779Z",
+      "imageStatus": "blocked",
+      "imageAssetIds": [],
+      "blockReason": "[RESEARCH_INSUFFICIENT] pesquisa sem contrato de evidência recuperada retrieved-excerpt-v1; pesquisa sem data de verificação ativa das fontes; fato 1 sem trecho literal verificável; fato 2 sem trecho literal verificável; fato 3 sem trecho literal verificável; fato 4 sem trecho literal verificável; fato 5 sem trecho literal verificável; fato 6 sem trecho literal verificável; fato 7 sem trecho literal verificável; fato 8 sem trecho literal verificável",
+      "failure": {
+        "code": "RESEARCH_INSUFFICIENT",
+        "retryable": true,
+        "stage": "source-verification-audit",
+        "message": "pesquisa sem contrato de evidência recuperada retrieved-excerpt-v1; pesquisa sem data de verificação ativa das fontes; fato 1 sem trecho literal verificável; fato 2 sem trecho literal verificável; fato 3 sem trecho literal verificável; fato 4 sem trecho literal verificável; fato 5 sem trecho literal verificável; fato 6 sem trecho literal verificável; fato 7 sem trecho literal verificável; fato 8 sem trecho literal verificável",
+        "recordedAt": "2026-08-13T18:15:00.000Z"
+      },
       "attempts": 1,
-      "lastAttemptAt": "2026-08-10T17:54:02.687Z",
-      "aiReview": {
-        "score": 72,
-        "finalScore": 95,
-        "finalBlockers": 0,
-        "premiumEditUsed": true,
-        "providers": {
-          "factSheet": "deepseek",
-          "draft": "gemini",
-          "critique": "deepseek",
-          "final": "deepseek",
-          "finalAudit": "deepseek",
-          "finalRepair": "deepseek"
-        },
-        "generatedAt": "2026-08-10T17:54:02.687Z",
-        "contentHash": "sha256:d7508be1f25eef1ebe5194394cb30ccca7b9f434feab6b86f5e9f8d09b4c7436"
-      },
-      "editorialReceipt": {
-        "schemaVersion": 1,
-        "policyVersion": "thebiker-editorial-2026-08-v2",
-        "origin": "deterministic-transform",
-        "reviewedContentHash": "sha256:d7508be1f25eef1ebe5194394cb30ccca7b9f434feab6b86f5e9f8d09b4c7436",
-        "scheduledContentHash": "sha256:650f4cb8a171171e5fc58e3ef207976937e1975d3fa703307ceb62f93ee7e255",
-        "researchHash": "sha256:69e0e05d24cdaf3f4aec457128026aaba626a771b4396210ff3f26ba6608a859",
-        "sourceHash": null,
-        "finalScore": 95,
-        "finalBlockers": 0,
-        "issuedAt": "2026-08-11T18:15:17.780Z"
-      },
-      "visualDecision": {
-        "schemaVersion": 1,
-        "policyVersion": "thebiker-visual-autonomy-v1",
-        "inputHash": "sha256:ba55f6fc5344da582acea409449b5838aad8403799f41834ee9c737b5c35575d",
-        "mode": "real-context",
-        "productId": "pneu-schwalbe-racing-ray-29-x-2-25-super-race-tlr-addix",
-        "score": 100,
-        "hardGates": {
-          "semanticMatch": true,
-          "realAsset": true,
-          "explicitProduct": true,
-          "officialSource": true,
-          "approvedRights": true,
-          "publishableResolution": true,
-          "uniqueAsset": true
-        },
-        "blockers": [],
-        "issuedAt": "2026-08-11T18:15:18.961Z"
-      }
+      "lastAttemptAt": "2026-08-13T18:15:00.000Z"
     },
     {
       "day": 15,
@@ -994,7 +600,7 @@
       "summary": "Método de campo para ajustar pressão, registrar comportamento e separar aderência, suporte lateral, impacto e resistência ao rolamento.",
       "category": "engenharia",
       "freshness": "evergreen",
-      "status": "scheduled",
+      "status": "blocked",
       "productIds": [
         "pneu-schwalbe-racing-ray-29-x-2-25-super-race-tlr-addix"
       ],
@@ -1004,63 +610,18 @@
         "relationship": "category-example",
         "rationale": "Fotografia real do catálogo TheBiker usada apenas como exemplo visual da categoria técnica abordada."
       },
-      "postPath": "_posts/drafts/2026-08-22-reserva-pressao-pneus-terreno.md",
-      "imageManifestPath": "assets/img/posts/reserva-pressao-pneus-terreno/image-manifest.json",
-      "imageStatus": "approved",
-      "imageAssetIds": [
-        "thebiker-pneu-schwalbe-racing-ray-29-x-2-25-super-race-tlr-addix-a1357c2808"
-      ],
-      "imageValidatedAt": "2026-08-13T12:32:29.112Z",
+      "imageStatus": "blocked",
+      "imageAssetIds": [],
+      "blockReason": "[RESEARCH_INSUFFICIENT] pesquisa sem contrato de evidência recuperada retrieved-excerpt-v1; pesquisa sem data de verificação ativa das fontes; fato 1 sem trecho literal verificável; fato 2 sem trecho literal verificável; fato 3 sem trecho literal verificável; fato 4 sem trecho literal verificável; fato 5 sem trecho literal verificável; fato 6 sem trecho literal verificável; fato 7 sem trecho literal verificável; fato 8 sem trecho literal verificável",
+      "failure": {
+        "code": "RESEARCH_INSUFFICIENT",
+        "retryable": true,
+        "stage": "source-verification-audit",
+        "message": "pesquisa sem contrato de evidência recuperada retrieved-excerpt-v1; pesquisa sem data de verificação ativa das fontes; fato 1 sem trecho literal verificável; fato 2 sem trecho literal verificável; fato 3 sem trecho literal verificável; fato 4 sem trecho literal verificável; fato 5 sem trecho literal verificável; fato 6 sem trecho literal verificável; fato 7 sem trecho literal verificável; fato 8 sem trecho literal verificável",
+        "recordedAt": "2026-08-13T18:15:00.000Z"
+      },
       "attempts": 4,
-      "lastAttemptAt": "2026-08-13T12:30:25.342Z",
-      "aiReview": {
-        "score": 72,
-        "finalScore": 95,
-        "finalBlockers": 0,
-        "premiumEditUsed": true,
-        "providers": {
-          "factSheet": "deepseek",
-          "draft": "gemini",
-          "critique": "deepseek",
-          "final": "deepseek",
-          "finalAudit": "deepseek",
-          "finalRepair": "deepseek"
-        },
-        "generatedAt": "2026-08-13T12:30:25.342Z",
-        "contentHash": "sha256:de6ae7ad5acc3e5ade54b7aa5c9c5f1b2e244a1a45bdcd661051371a8868ddc8",
-        "sourceHash": "de636fc998fed25604268cfc118bf4464bbf561fc602dc631ec494b4935f8d30"
-      },
-      "editorialReceipt": {
-        "schemaVersion": 1,
-        "policyVersion": "thebiker-editorial-2026-08-v2",
-        "origin": "pipeline",
-        "reviewedContentHash": "sha256:de6ae7ad5acc3e5ade54b7aa5c9c5f1b2e244a1a45bdcd661051371a8868ddc8",
-        "scheduledContentHash": "sha256:7503ffb7245207c4546320ba13c658957c25e31f82622ac795117ec52101847d",
-        "researchHash": "sha256:d772b0936875c68758f03c9c1e06612db528fa47d08db5a43c0e557525b2231d",
-        "sourceHash": "de636fc998fed25604268cfc118bf4464bbf561fc602dc631ec494b4935f8d30",
-        "finalScore": 95,
-        "finalBlockers": 0,
-        "issuedAt": "2026-08-13T12:32:29.112Z"
-      },
-      "visualDecision": {
-        "schemaVersion": 1,
-        "policyVersion": "thebiker-visual-autonomy-v1",
-        "inputHash": "sha256:4f36774a1ce06f11d34587594722e678bdcb2678e1922a1a925c68c2adcc70e6",
-        "mode": "real-context",
-        "productId": "pneu-schwalbe-racing-ray-29-x-2-25-super-race-tlr-addix",
-        "score": 100,
-        "hardGates": {
-          "semanticMatch": true,
-          "realAsset": true,
-          "explicitProduct": true,
-          "officialSource": true,
-          "approvedRights": true,
-          "publishableResolution": true,
-          "uniqueAsset": true
-        },
-        "blockers": [],
-        "issuedAt": "2026-08-13T12:32:29.112Z"
-      }
+      "lastAttemptAt": "2026-08-13T18:15:00.000Z"
     },
     {
       "day": 16,
@@ -1070,7 +631,7 @@
       "summary": "Leitura técnica de curvas, fixações, contato com o quadro e interferências que alteram comando, ruído e durabilidade.",
       "category": "componentes",
       "freshness": "evergreen",
-      "status": "scheduled",
+      "status": "blocked",
       "productIds": [
         "bicicleta-scott-scale-940-black"
       ],
@@ -1080,63 +641,18 @@
         "relationship": "category-example",
         "rationale": "Fotografia real do catálogo TheBiker usada apenas como exemplo visual da categoria técnica abordada."
       },
-      "postPath": "_posts/drafts/2026-08-23-reserva-cabos-mangueiras-roteamento.md",
-      "imageAssetIds": [
-        "thebiker-bicicleta-scott-scale-940-black-bf34dbe9f9"
-      ],
+      "imageStatus": "blocked",
+      "imageAssetIds": [],
+      "blockReason": "[RESEARCH_INSUFFICIENT] pesquisa verificada indisponível",
+      "failure": {
+        "code": "RESEARCH_INSUFFICIENT",
+        "retryable": true,
+        "stage": "source-verification-audit",
+        "message": "pesquisa verificada indisponível",
+        "recordedAt": "2026-08-13T18:15:00.000Z"
+      },
       "attempts": 4,
-      "lastAttemptAt": "2026-08-13T17:13:26.545Z",
-      "aiReview": {
-        "score": 72,
-        "finalScore": 95,
-        "finalBlockers": 0,
-        "premiumEditUsed": true,
-        "providers": {
-          "factSheet": "deepseek",
-          "draft": "gemini",
-          "critique": "deepseek",
-          "final": "deepseek",
-          "finalAudit": "deepseek",
-          "finalRepair": "deepseek"
-        },
-        "generatedAt": "2026-08-13T17:13:26.545Z",
-        "contentHash": "sha256:ad74e06bb251455679c2a3e691faa38e05fab3daf6d70562588d06b10fa45b65",
-        "sourceHash": "de2f997dbe850366576a7307865fe7b64a060be7973df388736ed5cde4e8d185"
-      },
-      "visualDecision": {
-        "schemaVersion": 1,
-        "policyVersion": "thebiker-visual-autonomy-v1",
-        "inputHash": "sha256:fed7ddf7a369cd54e33b249b84e52940e300f547e62760c52384c9c757cd722e",
-        "mode": "real-context",
-        "productId": "bicicleta-scott-scale-940-black",
-        "score": 100,
-        "hardGates": {
-          "semanticMatch": true,
-          "realAsset": true,
-          "explicitProduct": true,
-          "officialSource": true,
-          "approvedRights": true,
-          "publishableResolution": true,
-          "uniqueAsset": true
-        },
-        "blockers": [],
-        "issuedAt": "2026-08-13T17:17:30.768Z"
-      },
-      "editorialReceipt": {
-        "schemaVersion": 1,
-        "policyVersion": "thebiker-editorial-2026-08-v2",
-        "origin": "pipeline",
-        "reviewedContentHash": "sha256:ad74e06bb251455679c2a3e691faa38e05fab3daf6d70562588d06b10fa45b65",
-        "scheduledContentHash": "sha256:583aeda8932437a1bc62fd9f4b93f3b83fe6032cf36d9bf8efbb5856e9b6a96e",
-        "researchHash": "sha256:ec5ccdd78613c62bdcd625e6764f4f3e135c1a85590bb4cbc32ee6f248595a00",
-        "sourceHash": "de2f997dbe850366576a7307865fe7b64a060be7973df388736ed5cde4e8d185",
-        "finalScore": 95,
-        "finalBlockers": 0,
-        "issuedAt": "2026-08-13T17:17:30.768Z"
-      },
-      "imageManifestPath": "assets/img/posts/reserva-cabos-mangueiras-roteamento/image-manifest.json",
-      "imageStatus": "approved",
-      "imageValidatedAt": "2026-08-13T17:17:30.768Z"
+      "lastAttemptAt": "2026-08-13T18:15:00.000Z"
     },
     {
       "day": 17,

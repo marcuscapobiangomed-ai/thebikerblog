@@ -13,6 +13,8 @@ import { assertVisualDecision, issueVisualDecision } from "./validation/visual-d
 import { alignCampaignVisual } from "./images/align-campaign-visual.js";
 import { releaseAssetUse } from "./images/asset-library.js";
 import { createStagedWorkspace, discardStagedWorkspace, promoteStagedPaths } from "./automation/file-transaction.js";
+import { assertResearchEvidenceContract, assertResearchGrounding } from "./validation/research-grounding.js";
+import { assertArticleResearchGrounding } from "./validation/article-research-grounding.js";
 
 const defaultRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 
@@ -90,6 +92,11 @@ async function finalizeInWorkspace({ root, now, imageProducer }) {
     const draftRoot = path.resolve(root, "_posts/drafts") + path.sep;
     if (!absolutePost.startsWith(draftRoot)) throw new Error(`postPath inseguro: ${item.postPath}`);
     let content = await fs.readFile(absolutePost, "utf8");
+    const researchPath = path.join(root, "content/research/campaign", `${item.id}.json`);
+    const research = JSON.parse(await fs.readFile(researchPath, "utf8"));
+    assertResearchGrounding(research, { requireFactReferences: true });
+    assertResearchEvidenceContract(research);
+    assertArticleResearchGrounding({ content, research });
     assertReviewedContentIntegrity(content, item.aiReview);
     const parsed = matter(content);
     if (parsed.data.published !== false) throw new Error("Rascunho precisa permanecer com published: false");
@@ -148,8 +155,8 @@ async function finalizeInWorkspace({ root, now, imageProducer }) {
     content = linkResult.content;
     if (/\/assets\/img\/system\/covers\//.test(content.split("---", 3)[1] || "")) throw new Error("Fallback de imagem ainda presente no frontmatter");
     assertMarkdownPublicationGates(content);
-    const researchPath = path.join(root, "content/research/campaign", `${item.id}.json`);
-    const researchContent = await fs.readFile(researchPath, "utf8").catch((error) => error?.code === "ENOENT" ? null : Promise.reject(error));
+    const receiptResearchPath = path.join(root, "content/research/campaign", `${item.id}.json`);
+    const researchContent = await fs.readFile(receiptResearchPath, "utf8").catch((error) => error?.code === "ENOENT" ? null : Promise.reject(error));
     item.editorialReceipt = issueEditorialReceipt({ content, researchContent, aiReview: item.aiReview, now, origin: "pipeline" });
     await fs.writeFile(absolutePost, content);
     item.imageManifestPath = `assets/img/posts/${item.id}/image-manifest.json`;

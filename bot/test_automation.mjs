@@ -111,7 +111,10 @@ const reviewWithoutProduct = structuredClone(campaign);
 reviewWithoutProduct.items[0] = { ...reviewWithoutProduct.items[0], category: 'review', status: 'validation', productIds: [] };
 assert.throws(() => CampaignSchema.parse(reviewWithoutProduct), /review validado exige ao menos um produto rastreável/);
 const scheduledWithoutReceipt = structuredClone(campaign);
-delete scheduledWithoutReceipt.items.find((item) => item.status === "scheduled").editorialReceipt;
+const scheduledFixture = scheduledWithoutReceipt.items.find((item) => item.status === "published");
+scheduledFixture.status = "scheduled";
+delete scheduledFixture.publishedAt;
+delete scheduledFixture.editorialReceipt;
 assert.throws(() => CampaignSchema.parse(scheduledWithoutReceipt), /scheduled exige recibo editorial/);
 const blockedWithoutReason = structuredClone(campaign);
 const plannedWithoutReason = blockedWithoutReason.items.find((item) => item.status === "planned");
@@ -193,14 +196,21 @@ assert.deepEqual(selectScheduledPublication(catchUpCampaign, catchUpCampaign.ite
   catchUp: true,
 });
 const groundedPayload = {
-  candidates: [{ content: { parts: [{ text: JSON.stringify({ confirmed_facts: [{ fact: 'Carbono HMF', source_ids: ['src-scott'] }], limitations: [], sources: [{ id: 'src-scott', name: 'Scott', type: 'manufacturer', url: 'https://www.scott-sports.com/global/en/product/test', accessed: '2026-08-04' }] }) }] }, groundingMetadata: { webSearchQueries: ['site:scott-sports.com teste'] } }]
+  candidates: [{ content: { parts: [{ text: JSON.stringify({ confirmed_facts: [{ fact: 'Carbono HMF', evidence_quote: 'Quadro construído integralmente em carbono HMF para competição', source_ids: ['src-scott'] }], limitations: [], sources: [{ id: 'src-scott', name: 'Scott', type: 'manufacturer', url: 'https://www.scott-sports.com/global/en/product/test', accessed: '2026-08-04' }] }) }] }, groundingMetadata: { webSearchQueries: ['site:scott-sports.com teste'] } }]
 };
 const groqPayload = { choices: [{ message: { content: groundedPayload.candidates[0].content.parts[0].text } }] };
+const verifiedSourceResponse = async (url) => ({
+  ok: true,
+  status: 200,
+  url,
+  headers: { get: (name) => name === 'content-type' ? 'text/html; charset=utf-8' : null },
+  arrayBuffer: async () => new TextEncoder().encode('<html>Quadro construído integralmente em carbono HMF para competição. Regra oficial confirmada. Suspensão com 120 mm.</html>').buffer,
+});
 let groundedRequest;
 const researcher = new GroundedResearcher({ GROQ_API_KEY: 'test' }, async (_url, init) => {
   groundedRequest = JSON.parse(init.body);
   return { ok: true, json: async () => groqPayload };
-});
+}, verifiedSourceResponse);
 const grounded = await researcher.research({ item: { ...campaign.items[0], freshness: 'revalidate-24h' }, internalEvidence: [], today: '2026-08-04' });
 assert.equal(grounded.status, 'pesquisa_concluida');
 assert.equal(grounded.sources.length, 1);
@@ -208,6 +218,49 @@ assert.equal(grounded.portfolio_evidence_url, 'https://thebikershop.com.br/compo
 assert.equal(grounded.portfolio_verified_at, '2026-08-04');
 assert.equal(groundedRequest.model, 'groq/compound-mini');
 assert.deepEqual(groundedRequest.compound_custom.tools.enabled_tools, ['web_search', 'visit_website']);
+const fabricatedSourceResearcher = new GroundedResearcher(
+  { GROQ_API_KEY: 'test' },
+  async () => ({ ok: true, json: async () => groqPayload }),
+  async (url) => ({
+    ok: false,
+    status: 404,
+    url,
+    headers: { get: () => null },
+    arrayBuffer: async () => new ArrayBuffer(0),
+  }),
+);
+await assert.rejects(
+  fabricatedSourceResearcher.research({ item: campaign.items[0], internalEvidence: [], today: '2026-08-04' }),
+  /Fallback interno bloqueado|sem fontes rastreáveis/,
+);
+const escapedRedirectResearcher = new GroundedResearcher(
+  { GROQ_API_KEY: 'test' },
+  async () => ({ ok: true, json: async () => groqPayload }),
+  async () => ({
+    ok: false,
+    status: 302,
+    headers: { get: (name) => name === 'location' ? 'https://example.com/fonte-injetada' : null },
+  }),
+);
+await assert.rejects(
+  escapedRedirectResearcher.research({ item: campaign.items[0], internalEvidence: [], today: '2026-08-04' }),
+  /Fallback interno bloqueado|sem fontes rastreáveis/,
+);
+const unrelatedPageResearcher = new GroundedResearcher(
+  { GROQ_API_KEY: 'test' },
+  async () => ({ ok: true, json: async () => groqPayload }),
+  async (url) => ({
+    ok: true,
+    status: 200,
+    url,
+    headers: { get: (name) => name === 'content-type' ? 'text/html' : null },
+    arrayBuffer: async () => new TextEncoder().encode('<html>Página real, porém sem a evidência alegada.</html>').buffer,
+  }),
+);
+await assert.rejects(
+  unrelatedPageResearcher.research({ item: campaign.items[0], internalEvidence: [], today: '2026-08-04' }),
+  /Fallback interno bloqueado|sem fontes rastreáveis/,
+);
 const orphanedSourcePayload = {
   choices: [{ message: { content: JSON.stringify({
     confirmed_facts: [{ fact: 'Carbono HMF', source_ids: ['fonte-ausente'] }],
@@ -218,19 +271,17 @@ const orphanedSourcePayload = {
 const orphanedSourceResearcher = new GroundedResearcher({ GROQ_API_KEY: 'test' }, async () => ({
   ok: true,
   json: async () => orphanedSourcePayload,
-}));
-const orphanedSourceFallback = await orphanedSourceResearcher.research({
+}), verifiedSourceResponse);
+await assert.rejects(orphanedSourceResearcher.research({
   item: campaign.items[0],
   internalEvidence: [{ id: 'spark', facts: { suspension: '120 mm' }, sources: [{ name: 'Scott', type: 'manufacturer', url: 'https://www.scott-sports.com/global/en/product/test', accessedAt: '2026-08-04' }] }],
   today: '2026-08-05',
-});
-assert.equal(orphanedSourceFallback.grounding.fallback, 'internal-product-knowledge');
-assert.match(orphanedSourceFallback.limitations[0], /sem fatos explicitamente fundamentados/);
+}), /sem fatos explicitamente fundamentados|sem fontes rastreáveis/);
 const mixedRacePayload = {
   choices: [{ message: { content: JSON.stringify({
     confirmed_facts: [
-      { fact: 'Regra oficial confirmada', source_ids: ['src-uci'] },
-      { fact: 'Afirmação de fonte não permitida', source_ids: ['src-blog'] },
+      { fact: 'Regra oficial confirmada', evidence_quote: 'Regra oficial confirmada', source_ids: ['src-uci'] },
+      { fact: 'Afirmação de fonte não permitida', evidence_quote: 'Afirmação de fonte não permitida', source_ids: ['src-blog'] },
     ],
     limitations: [],
     sources: [
@@ -239,7 +290,7 @@ const mixedRacePayload = {
     ],
   }) } }],
 };
-const mixedRaceResearcher = new GroundedResearcher({ GROQ_API_KEY: 'test' }, async () => ({ ok: true, json: async () => mixedRacePayload }));
+const mixedRaceResearcher = new GroundedResearcher({ GROQ_API_KEY: 'test' }, async () => ({ ok: true, json: async () => mixedRacePayload }), verifiedSourceResponse);
 const mixedRaceGrounded = await mixedRaceResearcher.research({
   item: { ...campaign.items[0], category: 'competicoes', race: { format: 'event-guide', track: 'cyclocross' } },
   internalEvidence: [],
@@ -248,15 +299,13 @@ const mixedRaceGrounded = await mixedRaceResearcher.research({
 assert.equal(mixedRaceGrounded.confirmed_facts.length, 1);
 assert.deepEqual(mixedRaceGrounded.confirmed_facts[0].source_ids, ['src-uci']);
 assert.match(mixedRaceGrounded.limitations[0], /1 fato\(s\) removido/);
-const fallbackResearcher = new GroundedResearcher({ GROQ_API_KEY: 'test', AI_HTTP_RETRY_ATTEMPTS: '1' }, async () => ({ ok: false, status: 429, text: async () => 'quota' }));
-const fallbackGrounded = await fallbackResearcher.research({
+const fallbackResearcher = new GroundedResearcher({ GROQ_API_KEY: 'test', AI_HTTP_RETRY_ATTEMPTS: '1' }, async () => ({ ok: false, status: 429, text: async () => 'quota' }), verifiedSourceResponse);
+await assert.rejects(fallbackResearcher.research({
   item: campaign.items[0],
   internalEvidence: [{ id: 'spark', facts: { suspension: '120 mm' }, sources: [{ name: 'Scott', type: 'manufacturer', url: 'https://www.scott-sports.com/global/en/product/test', accessedAt: '2026-08-04' }] }],
   today: '2026-08-05',
-});
-assert.equal(fallbackGrounded.grounding.fallback, 'internal-product-knowledge');
-assert.equal(fallbackGrounded.sources.length, 1);
-const curatedFallback = await fallbackResearcher.research({
+}), /sem fatos explicitamente fundamentados|sem fontes rastreáveis/);
+await assert.rejects(fallbackResearcher.research({
   item: {
     id: 'reserva-inspecao-pos-chuva',
     title: 'Inspeção da bicicleta após pedalar na chuva',
@@ -265,9 +314,7 @@ const curatedFallback = await fallbackResearcher.research({
   },
   internalEvidence: [],
   today: '2026-08-05',
-});
-assert.equal(curatedFallback.grounding.fallback, 'curated-official-knowledge');
-assert.ok(curatedFallback.sources.length >= 2);
+}), /sem fatos explicitamente fundamentados|sem fontes rastreáveis/);
 let resilientResearchCalls = 0;
 const resilientResearcher = new GroundedResearcher({
   GROQ_API_KEY: 'test',
@@ -288,7 +335,7 @@ const resilientResearcher = new GroundedResearcher({
       }],
     }),
   };
-});
+}, verifiedSourceResponse);
 const resilientGrounded = await resilientResearcher.research({ item: campaign.items[0], internalEvidence: [], today: '2026-08-05' });
 assert.equal(resilientResearchCalls, 2);
 assert.equal(resilientGrounded.grounding.provider, 'gemini-google-search');
@@ -311,7 +358,7 @@ const malformedJsonResearcher = new GroundedResearcher({
       }],
     }),
   };
-});
+}, verifiedSourceResponse);
 const malformedJsonGrounded = await malformedJsonResearcher.research({ item: campaign.items[0], internalEvidence: [], today: '2026-08-05' });
 assert.equal(malformedJsonCalls, 2);
 assert.equal(malformedJsonGrounded.grounding.provider, 'gemini-google-search');
@@ -322,14 +369,12 @@ const contextLengthResearcher = new GroundedResearcher({ GROQ_API_KEY: 'test' },
   status: 400,
   clone: () => ({ text: async () => contextLengthDetail }),
   text: async () => contextLengthDetail,
-}));
-const contextLengthFallback = await contextLengthResearcher.research({
+}), verifiedSourceResponse);
+await assert.rejects(contextLengthResearcher.research({
   item: campaign.items[0],
   internalEvidence: [{ id: 'spark', facts: { suspension: '120 mm' }, sources: [{ name: 'Scott', type: 'manufacturer', url: 'https://www.scott-sports.com/global/en/product/test', accessedAt: '2026-08-04' }] }],
   today: '2026-08-05',
-});
-assert.equal(contextLengthFallback.grounding.fallback, 'internal-product-knowledge');
-assert.match(contextLengthFallback.limitations[0], /context_length_exceeded/);
+}), /sem fatos explicitamente fundamentados|sem fontes rastreáveis/);
 let parseFailureAttempts = 0;
 const parseFailureResearcher = new GroundedResearcher({
   GROQ_API_KEY: 'test',
@@ -346,7 +391,7 @@ const parseFailureResearcher = new GroundedResearcher({
     };
   }
   return { ok: true, status: 200, json: async () => groqPayload };
-});
+}, verifiedSourceResponse);
 const recoveredAfterParseFailure = await parseFailureResearcher.research({
   item: campaign.items[0],
   internalEvidence: [],
@@ -364,20 +409,20 @@ const timeoutResearcher = new GroundedResearcher({
   const error = new Error('timeout');
   error.name = 'TimeoutError';
   throw error;
-});
-const timeoutFallback = await timeoutResearcher.research({
+}, verifiedSourceResponse);
+await assert.rejects(timeoutResearcher.research({
   item: campaign.items[0],
   internalEvidence: [{ id: 'spark', facts: { suspension: '120 mm' }, sources: [{ name: 'Scott', type: 'manufacturer', url: 'https://www.scott-sports.com/global/en/product/test', accessedAt: '2026-08-04' }] }],
   today: '2026-08-05',
-});
+}), /sem fatos explicitamente fundamentados|sem fontes rastreáveis/);
 assert.equal(timeoutAttempts, 2);
-assert.equal(timeoutFallback.grounding.fallback, 'internal-product-knowledge');
 
 const finalizeRoot = path.join(root, "finalize");
 await fs.mkdir(path.join(finalizeRoot, "bot"), { recursive: true });
 await fs.mkdir(path.join(finalizeRoot, "_data"), { recursive: true });
 await fs.mkdir(path.join(finalizeRoot, "_posts/drafts"), { recursive: true });
 await fs.mkdir(path.join(finalizeRoot, "content/product-discovery"), { recursive: true });
+await fs.mkdir(path.join(finalizeRoot, "content/research/campaign"), { recursive: true });
 const testProduct = { id: "scott-spark-test", name: "Scott Spark Test", brand: "Scott", productUrl: "https://thebikershop.com.br/produtos/scott-spark-test/", images: ["https://thebikershop.com.br/test.webp"] };
 await fs.writeFile(path.join(finalizeRoot, "content/product-discovery/thebiker-media-catalog.json"), JSON.stringify({ products: [testProduct] }));
 const finalizeCampaign = structuredClone(campaign);
@@ -388,6 +433,20 @@ finalizeCampaign.items[0].aiReview.finalScore = 95;
 finalizeCampaign.items[0].aiReview.finalBlockers = 0;
 finalizeCampaign.items[0].postPath = `_posts/drafts/${finalizeCampaign.items[0].publishDate}-${finalizeCampaign.items[0].id}.md`;
 await fs.writeFile(path.join(finalizeRoot, "bot/editorial-campaign.json"), JSON.stringify(finalizeCampaign));
+await fs.writeFile(path.join(finalizeRoot, "content/research/campaign", `${finalizeCampaign.items[0].id}.json`), JSON.stringify({
+  slug: finalizeCampaign.items[0].id,
+  title: finalizeCampaign.items[0].title,
+  content_type: "guia-tecnico",
+  review_method: "desk-research",
+  tested_by_thebikerblog: false,
+  market: "Brasil",
+  generated_at: "2026-08-05",
+  status: "pesquisa_concluida",
+  confirmed_facts: [{ fact: "Conteúdo técnico sustentado por fonte oficial.", evidence_quote: "Conteúdo técnico sustentado por fonte oficial", source_ids: ["src-scott"] }],
+  limitations: [],
+  sources: [{ id: "src-scott", name: "Scott", type: "manufacturer", url: "https://www.scott-sports.com/", accessed: "2026-08-05" }],
+  grounding: { sourceCount: 1, claimContract: "explicit-units-v1", evidenceContract: "retrieved-excerpt-v1", verifiedAt: "2026-08-05T08:00:00.000Z" },
+}));
 const sections = Array.from({ length: 5 }, (_, index) => `## Seção técnica ${index + 1}\n\nConteúdo técnico sustentado pelas fontes editoriais.`).join("\n\n");
 await fs.writeFile(path.join(finalizeRoot, finalizeCampaign.items[0].postPath), `---\nlayout: post\npublished: false\ndate: 2026-08-04\nlast_modified_at: 2026-08-04\ndirect_answer: "Este guia apresenta um diagnóstico técnico verificável, baseado nas fontes declaradas, para orientar ajustes sem transformar hipótese em constatação."\nimage: "/assets/img/system/covers/guia-tecnico-v2/hero-1600.webp"\nimage_mobile: "/assets/img/system/covers/guia-tecnico-v2/hero-800.webp"\nthumbnail: "/assets/img/system/covers/guia-tecnico-v2/card-640.webp"\nimage_asset_type: "system-fallback"\nimage_status: "draft"\nimage_alt: "Capa"\nimage_caption: "Capa"\nimage_credit: "TheBiker"\nimage_license: "Interno"\nreviewed_by: ""\neditorial_status: "draft"\nstatus: "draft"\nsources:\n  - name: "Scott"\n    url: "https://www.scott-sports.com/"\n---\n\n${sections}\n`);
 finalizeCampaign.items[0].aiReview.contentHash = hashEditorialText(await fs.readFile(path.join(finalizeRoot, finalizeCampaign.items[0].postPath), "utf8"));

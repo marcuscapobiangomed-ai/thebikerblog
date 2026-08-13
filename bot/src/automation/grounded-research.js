@@ -1,5 +1,6 @@
 import { validateResearch } from '../schemas/research.schema.js'
 import { assertResearchGrounding, pruneUnsupportedFacts } from '../validation/research-grounding.js'
+import { verifyResearchEvidence } from '../validation/source-evidence.js'
 
 const PRODUCT_DOMAINS = ['thebikershop.com.br', 'scott-sports.com', 'syncros.com', 'bike.shimano.com', 'si.shimano.com', 'sram.com', 'rockshox.com', 'ridefox.com', 'maxxis.com', 'oggi.com.br']
 const SPORT_DOMAINS = ['uci.org', 'cbc.esp.br', 'ucimtbworldseries.com', 'olympics.com']
@@ -146,7 +147,7 @@ async function fetchGeminiGrounded(fetchImpl, prompt, env) {
   }
 }
 
-function internalResearch({ item, internalEvidence, today, contentType, reason, raceCoverage = false }) {
+async function internalResearch({ item, internalEvidence, today, contentType, reason, raceCoverage = false, fetchImpl = fetch, env = process.env }) {
   const curated = curatedEvidence(item, today)
   const evidence = [...internalEvidence, ...curated]
   const sourceMap = new Map()
@@ -170,7 +171,7 @@ function internalResearch({ item, internalEvidence, today, contentType, reason, 
   }
   const sources = [...sourceMap.values()]
   if (sources.length === 0) throw new Error(`Fallback interno bloqueado: nenhuma fonte oficial permitida (${reason})`)
-  const research = validateResearch({
+  const research = {
     slug: item.id,
     title: item.title,
     content_type: contentType,
@@ -185,8 +186,14 @@ function internalResearch({ item, internalEvidence, today, contentType, reason, 
     sources,
     grounding: { queries: [], sourceCount: sources.length, fallback: curated.length > 0 ? 'curated-official-knowledge' : 'internal-product-knowledge', claimContract: 'explicit-units-v1' },
     ...portfolioEvidenceFor(item, today),
+  }
+  const verified = await verifyResearchEvidence(research, {
+    fetchImpl,
+    allowedSource: (url) => allowedSource(url, raceCoverage),
+    requireExcerpts: true,
+    timeoutMs: Math.max(1000, Number(env.SOURCE_HTTP_TIMEOUT_MS || 30000)),
   })
-  return assertResearchGrounding(research, { requireFactReferences: true })
+  return assertResearchGrounding(validateResearch(verified), { requireFactReferences: true })
 }
 
 export function contentTypeForCampaignItem(item) {
@@ -205,9 +212,10 @@ export function contentTypeForCampaignItem(item) {
 }
 
 export class GroundedResearcher {
-  constructor(env = process.env, fetchImpl = fetch) {
+  constructor(env = process.env, fetchImpl = fetch, sourceFetchImpl = fetchImpl) {
     this.env = env
     this.fetch = fetchImpl
+    this.sourceFetch = sourceFetchImpl
   }
 
   async research({ item, internalEvidence, raceEvents = [], today }) {
@@ -219,6 +227,7 @@ export class GroundedResearcher {
       'Priorize documentos oficiais, manuais dos fabricantes, TheBiker Shop e, em competições, organizadores oficiais.',
       'É proibido promover produtos ou marcas concorrentes. Não invente testes, medidas, resultados ou disponibilidade.',
       'Toda afirmação técnica deve aparecer em confirmed_facts e ter suporte em uma fonte URL permitida.',
+      'Para cada fato, inclua evidence_quote com um trecho literal curto (12 a 20 palavras) encontrado na URL indicada. Sem trecho literal, o fato será descartado.',
       'Alegações legais brasileiras exigem fonte primária gov.br, preferencialmente a resolução vigente do CONTRAN. Não atribua limites legais a fonte comercial ou fabricante.',
       'Qualquer número com unidade usado no artigo precisa aparecer literalmente em um confirmed_fact.',
       'Seja conciso: retorne no máximo 8 fatos confirmados, 5 fontes e 3 limitações.',
@@ -231,7 +240,7 @@ export class GroundedResearcher {
       `Evidência de portfólio TheBiker obrigatória: ${JSON.stringify(portfolioEvidenceFor(item, today))}`,
       `Conteúdo interno já validado: ${JSON.stringify(compactEvidence(internalEvidence))}`,
       'Cada fonte deve ter id único. Cada fato deve usar source_ids e referenciar somente IDs presentes em sources.',
-      `Retorne: {"slug":"${item.id}","title":"${item.title}","content_type":"${contentType}","review_method":"desk-research","tested_by_thebikerblog":false,"market":"Brasil","generated_at":"${today}","status":"pesquisa_concluida","editorialPriority":"P1","confirmed_facts":[{"fact":"...","source_ids":["src-1"]}],"limitations":[],"sources":[{"id":"src-1","name":"...","type":"manufacturer|store|official-website","url":"https://...","accessed":"${today}"}]}`
+      `Retorne: {"slug":"${item.id}","title":"${item.title}","content_type":"${contentType}","review_method":"desk-research","tested_by_thebikerblog":false,"market":"Brasil","generated_at":"${today}","status":"pesquisa_concluida","editorialPriority":"P1","confirmed_facts":[{"fact":"...","evidence_quote":"trecho literal curto da fonte","source_ids":["src-1"]}],"limitations":[],"sources":[{"id":"src-1","name":"...","type":"manufacturer|store|official-website","url":"https://...","accessed":"${today}"}]}`
     ].join('\n')
     if (provider !== 'groq') throw new Error(`Provedor de pesquisa não suportado: ${provider}`)
     if (!this.env.GROQ_API_KEY) throw new Error('GROQ_API_KEY é obrigatória para pesquisa atual')
@@ -260,7 +269,7 @@ export class GroundedResearcher {
       }, this.env)
     } catch (error) {
       if (!raceCoverage) {
-        return internalResearch({ item, internalEvidence, today, contentType, reason: `Groq indisponível: ${error.name || error.message}`, raceCoverage })
+        return internalResearch({ item, internalEvidence, today, contentType, reason: `Groq indisponível: ${error.name || error.message}`, raceCoverage, fetchImpl: this.sourceFetch, env: this.env })
       }
       throw error
     }
@@ -289,6 +298,8 @@ export class GroundedResearcher {
               contentType,
               reason: `Groq ${response.status}; ${geminiError.message}`,
               raceCoverage,
+              fetchImpl: this.sourceFetch,
+              env: this.env,
             })
           }
           throw geminiError
@@ -299,7 +310,7 @@ export class GroundedResearcher {
           : contextLengthExceeded
             ? 'Groq 400 context_length_exceeded'
             : `Groq ${response.status}`
-        return internalResearch({ item, internalEvidence, today, contentType, reason, raceCoverage })
+        return internalResearch({ item, internalEvidence, today, contentType, reason, raceCoverage, fetchImpl: this.sourceFetch, env: this.env })
       } else {
         throw new Error(`Groq grounded research: ${response.status} - ${detail}`)
       }
@@ -318,7 +329,7 @@ export class GroundedResearcher {
             groundingQueries = gemini.queries
           } catch (geminiError) {
             if (!raceCoverage) {
-              return internalResearch({ item, internalEvidence, today, contentType, reason: `Groq retornou JSON inválido; ${geminiError.message}`, raceCoverage })
+              return internalResearch({ item, internalEvidence, today, contentType, reason: `Groq retornou JSON inválido; ${geminiError.message}`, raceCoverage, fetchImpl: this.sourceFetch, env: this.env })
             }
             throw geminiError
           }
@@ -330,6 +341,8 @@ export class GroundedResearcher {
             contentType,
             reason: `Groq retornou JSON inválido: ${error.message}`,
             raceCoverage,
+            fetchImpl: this.sourceFetch,
+            env: this.env,
           })
         } else throw error
       }
@@ -354,12 +367,18 @@ export class GroundedResearcher {
       model: groundingModel,
       claimContract: 'explicit-units-v1',
     }
-    const validated = validateResearch(research)
     try {
+      research = await verifyResearchEvidence(research, {
+        fetchImpl: this.sourceFetch,
+        allowedSource: (url) => allowedSource(url, raceCoverage),
+        requireExcerpts: true,
+        timeoutMs: Math.max(1000, Number(this.env.SOURCE_HTTP_TIMEOUT_MS || 30000)),
+      })
+      const validated = validateResearch(research)
       return assertResearchGrounding(validated, { requireFactReferences: true })
     } catch (error) {
       if (!raceCoverage) {
-        return internalResearch({ item, internalEvidence, today, contentType, reason: error.message, raceCoverage })
+        return internalResearch({ item, internalEvidence, today, contentType, reason: error.message, raceCoverage, fetchImpl: this.sourceFetch, env: this.env })
       }
       throw error
     }

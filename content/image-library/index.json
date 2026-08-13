@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-08-13T17:17:32.723Z",
+  "updatedAt": "2026-08-13T17:31:01.070Z",
   "assets": [
     {
       "assetId": "thebiker-scott-addict-rc-pro-hmx-frame-set-def10da96a",
@@ -173,40 +173,6 @@
       ]
     },
     {
-      "assetId": "manufacturer-bicicleta-scott-addict-rc-pro-di2-2026-pre-venda-3089622e12",
-      "sha256": "3089622e123d7e3c5cf1edf0888c74c9df6672134cc2b35f4e5f923846e23d8d",
-      "perceptualHash": "1111111100111111111111111100111111000000100000001111111111111111",
-      "sourcePageUrl": "https://www.scott-sports.com/global/en/product/scott-addict-rc-pro-bike",
-      "sourceFileUrl": "https://static.scott-sports.com/image/upload/v1779976553/2217847.png",
-      "productId": "bicicleta-scott-addict-rc-pro-di2-2026-pre-venda",
-      "productName": "Bicicleta Scott Addict RC Pró Di2 2026 - Pré Venda",
-      "rightsPolicyId": "official-brand-editorial-v1",
-      "uses": [
-        {
-          "postId": "addict-rc-20-vs-pro",
-          "position": "hero",
-          "usedAt": "2026-08-07T12:00:00.000Z"
-        }
-      ]
-    },
-    {
-      "assetId": "thebiker-bicicleta-scott-spark-rc-world-cup-20271-078d5ce90f",
-      "sha256": "078d5ce90fdb41e035842d1ced77a560327922d730a11afef0eaf933f3c044c2",
-      "perceptualHash": "0000000000101100001111001111111011111111111001110000011000000000",
-      "sourcePageUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-spark-rc-world-cup-20271/",
-      "sourceFileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/4275448086a-69855010392fd33f6117812058566683-1024-1024.webp",
-      "productId": "bicicleta-scott-spark-rc-world-cup-20271",
-      "productName": "Bicicleta Scott Spark RC World Cup 2027",
-      "rightsPolicyId": "thebiker-official-editorial-v1",
-      "uses": [
-        {
-          "postId": "spark-rc-team-expert-world-cup",
-          "position": "hero",
-          "usedAt": "2026-08-07T12:00:00.000Z"
-        }
-      ]
-    },
-    {
       "assetId": "thebiker-grupo-shimano-105-di2-2a6b056cb4",
       "sha256": "2a6b056cb47e4f84b19f13eef3f1e4bf7e73b49fb77b57c49ebfe9e0b0caf74b",
       "perceptualHash": "1101101110000001100000011110001111100011100111111100101110111111",
@@ -241,142 +207,6 @@
       ]
     },
     {
-      "assetId": "thebiker-corrente-sram-nx-eagle-ab2209342e",
-      "sha256": "ab2209342e5fd903a29f5c82548eded8c02bd40095494077d600118d08be785b",
-      "perceptualHash": "1111111111000011000000110000000110000001100000011100011111111111",
-      "sourcePageUrl": "https://thebikershop.com.br/produtos/corrente-sram-nx-eagle/",
-      "sourceFileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/corrente-2b4150b6e6dc14ca9017127097004077-1024-1024.webp",
-      "productId": "corrente-sram-nx-eagle",
-      "productName": "Corrente Sram NX Eagle",
-      "rightsPolicyId": "thebiker-official-editorial-v1",
-      "uses": [
-        {
-          "postId": "reserva-inspecao-pos-chuva",
-          "position": "hero",
-          "usedAt": "2026-08-11T12:00:00.000Z"
-        }
-      ]
-    },
-    {
-      "assetId": "thebiker-selim-syncros-belcarra-v1-0-neo-carbon-cut-out-145mm-948a3da94c",
-      "sha256": "948a3da94cd3b916055f7392cab81e190c876c03139a7dcb0c04ee5d506c0ad2",
-      "perceptualHash": "1111111111111111100011110000011110000011110000001111110111111111",
-      "sourcePageUrl": "https://thebikershop.com.br/produtos/selim-syncros-belcarra-v1-0-neo-carbon-cut-out-145mm/",
-      "sourceFileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/2959140001a_2038209-png-1b693fdb1f8864545817368895919841-1024-1024.webp",
-      "productId": "selim-syncros-belcarra-v1-0-neo-carbon-cut-out-145mm",
-      "productName": "Selim Syncros Belcarra V1.0 Neo Carbon Cut Out - 145mm",
-      "rightsPolicyId": "thebiker-official-editorial-v1",
-      "uses": [
-        {
-          "postId": "youtube-bike-fit-e-posicao-criterios-tecnicos-para-ajuste-e-distribuicao",
-          "position": "hero",
-          "usedAt": "2026-08-11T12:00:00.000Z"
-        }
-      ]
-    },
-    {
-      "assetId": "thebiker-cambio-traseiro-shimano-grx-11v-f0c0a6abf1",
-      "sha256": "f0c0a6abf153bfe34283a1e09a0f7769c01dd2e062b311d63597bd2b2470d79e",
-      "perceptualHash": "1000111110000000100000001111001110000111000111110001111110111111",
-      "sourcePageUrl": "https://thebikershop.com.br/produtos/cambio-traseiro-shimano-grx-11v/",
-      "sourceFileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/shimano-desviador-traseiro-grx-rd-rx810-shadow-rd-direct1-09aa717cff5cd0fba116616197453563-1024-1024.webp",
-      "productId": "cambio-traseiro-shimano-grx-11v",
-      "productName": "Câmbio Traseiro Shimano GRX 11v RD-RX812",
-      "rightsPolicyId": "thebiker-official-editorial-v1",
-      "uses": [
-        {
-          "postId": "ciclocross-regulamento-preparacao",
-          "position": "hero",
-          "usedAt": "2026-08-11T12:00:00.000Z"
-        }
-      ]
-    },
-    {
-      "assetId": "thebiker-foil-rc-hmx-sl-bicicleta-aero-24v-sram-red-axs-4f08a0b5be",
-      "sha256": "4f08a0b5be05197c12dc078c33c3090bc536cd3b6af40e6a08e704e92dcc4a90",
-      "perceptualHash": "0001111111000111111001101011000100000001101000011100111100011111",
-      "sourcePageUrl": "https://thebikershop.com.br/produtos/foil-rc-hmx-sl-bicicleta-aero-24v-sram-red-axs/",
-      "sourceFileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/55e6b8d6-eb06-11f0-9677-5e507c77730f-2d8781528e23601a0417794468698826-1024-1024.webp",
-      "productId": "foil-rc-hmx-sl-bicicleta-aero-24v-sram-red-axs",
-      "productName": "Bicicleta Scott Foil RC Ultimate 2026",
-      "rightsPolicyId": "thebiker-official-editorial-v1",
-      "uses": [
-        {
-          "postId": "bike-de-fabrica-vs-bike-de-competicao",
-          "position": "hero",
-          "usedAt": "2026-08-11T12:00:00.000Z"
-        }
-      ]
-    },
-    {
-      "assetId": "thebiker-bicicleta-scott-addict-gravel-30-2026-pre-venda-e60f05d57b",
-      "sha256": "e60f05d57b30022b402e6ebe6156078bd86f2f09065df4ec2740b4c0cbe96994",
-      "perceptualHash": "1111111111010001101110010101000000000010000001101001100011111111",
-      "sourcePageUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-addict-gravel-30-2026-pre-venda/",
-      "sourceFileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/f06d9586-eb02-11f0-9eff-c24f74839598-a97f08e701a24ec31a17751348830787-1024-1024.webp",
-      "productId": "bicicleta-scott-addict-gravel-30-2026-pre-venda",
-      "productName": "Bicicleta Scott Addict Gravel 30 2026 - Pré Venda",
-      "rightsPolicyId": "thebiker-official-editorial-v1",
-      "uses": [
-        {
-          "postId": "youtube-bicicletas-gravel-geometria-pneus-transmissao-e-criterios-de-uso",
-          "position": "hero",
-          "usedAt": "2026-08-11T12:00:00.000Z"
-        }
-      ]
-    },
-    {
-      "assetId": "thebiker-kit-reparo-suspensao-rock-shox-sid-flight-attendant-af0e2fa90b",
-      "sha256": "af0e2fa90b5f814226b360969b90b274f4677dd5b1cd76ffb59f4b4a2af82396",
-      "perceptualHash": "1111111111111111000011111000111100001011000000011111111111111111",
-      "sourcePageUrl": "https://thebikershop.com.br/produtos/kit-reparo-suspensao-rock-shox-sid-flight-attendant/",
-      "sourceFileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/fork-servicekit-1912847-8173335d4ce719cf4d17803506184697-1024-1024.webp",
-      "productId": "kit-reparo-suspensao-rock-shox-sid-flight-attendant",
-      "productName": "Kit Reparo Suspensão RockShox SID SL 32 Flight Attendant 2026+",
-      "rightsPolicyId": "thebiker-official-editorial-v1",
-      "uses": [
-        {
-          "postId": "servico-garfo-amortecedor-oleo-vedacao",
-          "position": "hero",
-          "usedAt": "2026-08-11T12:00:00.000Z"
-        }
-      ]
-    },
-    {
-      "assetId": "thebiker-pneu-schwalbe-racing-ray-29-x-2-25-super-race-tlr-addix-c7d82b6fc2",
-      "sha256": "c7d82b6fc24457debbab8d5f19a637cfd2e3181153cdb7b06396d5a100312a31",
-      "perceptualHash": "1011011110100011100000111100101111001011110010111100101111001011",
-      "sourcePageUrl": "https://thebikershop.com.br/produtos/pneu-schwalbe-racing-ray-29-x-2-25-super-race-tlr-addix/",
-      "sourceFileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/schwalbe-racing-ray-evolution-addixspeed-superrace-transparent-skin-8608241-e2539507e196474cc716325152570604-1024-1024.webp",
-      "productId": "pneu-schwalbe-racing-ray-29-x-2-25-super-race-tlr-addix",
-      "productName": "Pneu Schwalbe Racing Ray 29 x 2.25 Super Race TLR Addix",
-      "rightsPolicyId": "thebiker-official-editorial-v1",
-      "uses": [
-        {
-          "postId": "youtube-pneus-de-bicicleta-pressao-carcaca-aderencia-e-resistencia-ao-ro",
-          "position": "hero",
-          "usedAt": "2026-08-11T12:00:00.000Z"
-        }
-      ]
-    },
-    {
-      "assetId": "thebiker-pneu-schwalbe-racing-ray-29-x-2-25-super-race-tlr-addix-a1357c2808",
-      "sha256": "a1357c2808013d4314b586d340126bc94ed53d880a8631a7e73a451abb177d22",
-      "perceptualHash": "1111111111100011110000011000000010001100000111100011111111111111",
-      "sourcePageUrl": "https://thebikershop.com.br/produtos/pneu-schwalbe-racing-ray-29-x-2-25-super-race-tlr-addix/",
-      "sourceFileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/schwalbe-racing-ray-29-x-235-superrace1-649575ab6dc6e36d7916325152567079-1024-1024.webp",
-      "productId": "pneu-schwalbe-racing-ray-29-x-2-25-super-race-tlr-addix",
-      "productName": "Pneu Schwalbe Racing Ray 29 x 2.25 Super Race TLR Addix",
-      "rightsPolicyId": "thebiker-official-editorial-v1",
-      "uses": [
-        {
-          "postId": "reserva-pressao-pneus-terreno",
-          "position": "hero",
-          "usedAt": "2026-08-13T12:00:00.000Z"
-        }
-      ]
-    },
-    {
       "assetId": "thebiker-bicicleta-eletrica-oggi-big-wheel-8-0-2025-b87711d99d",
       "sha256": "b87711d99d09c526fe2d631ff76d0e302123b63b770d915a71f458be1473026d",
       "perceptualHash": "1111111111011011111100111000000101000010000000000100101010011001",
@@ -388,23 +218,6 @@
       "uses": [
         {
           "postId": "youtube-bicicletas-eletricas-arquitetura-autonomia-limites-e-criterios-t",
-          "position": "hero",
-          "usedAt": "2026-08-13T12:00:00.000Z"
-        }
-      ]
-    },
-    {
-      "assetId": "thebiker-bicicleta-scott-scale-940-black-bf34dbe9f9",
-      "sha256": "bf34dbe9f9f9f7756f1e122a39ee9194dc63f217a91d473fed9d75c540887cf6",
-      "perceptualHash": "1111111111111111110100110000000000000000000110001111111111111111",
-      "sourcePageUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-scale-940-black/",
-      "sourceFileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/scale-940-2023-tbkr1-b34ba1914f53fbad3716736160099253-1024-1024.webp",
-      "productId": "bicicleta-scott-scale-940-black",
-      "productName": "Bicicleta Scott Scale 940 - Black",
-      "rightsPolicyId": "thebiker-official-editorial-v1",
-      "uses": [
-        {
-          "postId": "reserva-cabos-mangueiras-roteamento",
           "position": "hero",
           "usedAt": "2026-08-13T12:00:00.000Z"
         }

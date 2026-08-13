@@ -49,7 +49,7 @@
       "title": "Spark RC Team, Expert e World Cup: três montagens, três decisões técnicas",
       "summary": "Comparação interna entre as três Spark RC vendidas pela TheBiker, cobrindo carbono, suspensões, transmissão, rodas, peso e limite do sistema.",
       "category": "comparativo",
-      "status": "scheduled"
+      "status": "blocked"
     },
     {
       "day": 7,
@@ -57,7 +57,7 @@
       "title": "Inspeção pós-chuva: os pontos que concentram contaminação, corrosão e desgaste",
       "summary": "Rotina técnica depois de treinos molhados, priorizando rolamentos, transmissão, freios, suspensão e interfaces do quadro.",
       "category": "manutencao-ajustes",
-      "status": "scheduled"
+      "status": "blocked"
     },
     {
       "day": 8,
@@ -65,7 +65,7 @@
       "title": "Bike de fábrica vs. bike de competição: o que realmente muda na prática",
       "summary": "Muitas diferenças vêm de ajustes, pneus e posição, não do quadro. Aprenda a identificar o que importa para o seu tipo de pedal.",
       "category": "comparativo",
-      "status": "scheduled"
+      "status": "blocked"
     },
     {
       "day": 9,
@@ -73,7 +73,7 @@
       "title": "Bicicletas gravel: geometria, pneus, transmissão e critérios de uso",
       "summary": "Criar resposta técnica original para ciclista intermediário ou avançado, com método e limitações declarados. Sinal observado: 54.278 visualizações globais do vídeo; 2.578 por dia; encontrado em 1 busca(s) configurada(s) para o Brasil.",
       "category": "componentes",
-      "status": "scheduled"
+      "status": "blocked"
     },
     {
       "day": 10,
@@ -81,7 +81,7 @@
       "title": "Addict RC 20 ou RC Pro: onde estão as diferenças que importam na montagem",
       "summary": "Comparação entre Ultegra e Dura-Ace Di2, rodas, cockpit, pneus, peso declarado e custo observado na TheBiker.",
       "category": "comparativo",
-      "status": "scheduled"
+      "status": "blocked"
     },
     {
       "day": 11,
@@ -89,7 +89,7 @@
       "title": "Bike fit e posição: critérios técnicos para ajuste e distribuição de carga",
       "summary": "Criar resposta técnica original para ciclista intermediário ou avançado, com método e limitações declarados. Sinal observado: 5.047 visualizações globais do vídeo; 2.517 por dia; encontrado em 1 busca(s) configurada(s) para o Brasil.",
       "category": "manutencao-ajustes",
-      "status": "scheduled"
+      "status": "blocked"
     },
     {
       "day": 12,
@@ -97,7 +97,7 @@
       "title": "Ciclocross: regulamento, pneus e preparação da bike para prova",
       "summary": "Compare critérios técnicos que as competições de ciclocross aplicam à bike, e saiba como orientar a escolha de pneus e geometria para prova.",
       "category": "competicoes",
-      "status": "scheduled"
+      "status": "blocked"
     },
     {
       "day": 13,
@@ -105,7 +105,7 @@
       "title": "Serviço de garfo e amortecedor: quando trocar óleo e vedação",
       "summary": "Sinais de que a suspensão precisa de serviço interno, como perda de amortecimento e vazamento de óleo. Inclui cuidados com vedação.",
       "category": "manutencao-ajustes",
-      "status": "scheduled"
+      "status": "blocked"
     },
     {
       "day": 14,
@@ -113,7 +113,7 @@
       "title": "Pneus de bicicleta: pressão, carcaça, aderência e resistência ao rolamento",
       "summary": "Criar resposta técnica original para ciclista intermediário ou avançado, com método e limitações declarados. Sinal observado: 32.958 visualizações globais do vídeo; 2.235 por dia; encontrado em 1 busca(s) configurada(s) para o Brasil.",
       "category": "componentes",
-      "status": "scheduled"
+      "status": "blocked"
     },
     {
       "day": 15,
@@ -121,7 +121,7 @@
       "title": "Pressão de pneus por terreno: como testar sem transformar sensação em dado",
       "summary": "Método de campo para ajustar pressão, registrar comportamento e separar aderência, suporte lateral, impacto e resistência ao rolamento.",
       "category": "engenharia",
-      "status": "scheduled"
+      "status": "blocked"
     },
     {
       "day": 16,
@@ -129,7 +129,7 @@
       "title": "Cabos e mangueiras: roteamento, atrito e sinais de montagem que pedem correção",
       "summary": "Leitura técnica de curvas, fixações, contato com o quadro e interferências que alteram comando, ruído e durabilidade.",
       "category": "componentes",
-      "status": "scheduled"
+      "status": "blocked"
     },
     {
       "day": 17,

@@ -8,6 +8,8 @@ import matter from "gray-matter";
 import { assertImageArticleConsistency } from "./validation/image-article-consistency.js";
 import { assertScheduledReceipt, hashEditorialText } from "./validation/editorial-receipt.js";
 import { createStagedWorkspace, discardStagedWorkspace, promoteStagedPaths } from "./automation/file-transaction.js";
+import { assertResearchEvidenceContract, assertResearchGrounding } from "./validation/research-grounding.js";
+import { assertArticleResearchGrounding } from "./validation/article-research-grounding.js";
 
 const defaultRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 
@@ -77,6 +79,10 @@ async function publishInWorkspace({ now, dryRun, root }) {
   const draftsRoot = path.join(root, "_posts", "drafts") + path.sep;
   if (!sourcePath.startsWith(draftsRoot)) throw new Error(`postPath inseguro: ${item.postPath}`);
   let content = await fs.readFile(sourcePath, "utf8");
+  const research = JSON.parse(await fs.readFile(path.join(root, "content/research/campaign", `${item.id}.json`), "utf8"));
+  assertResearchGrounding(research, { requireFactReferences: true });
+  assertResearchEvidenceContract(research);
+  assertArticleResearchGrounding({ content, research });
   const catalog = JSON.parse(await fs.readFile(path.join(root, "content/product-discovery/thebiker-media-catalog.json"), "utf8"));
   assertImageArticleConsistency({ article: matter(content).data, manifest: validatedManifest, campaignItem: item, catalog });
   assertScheduledReceipt(content, item);
@@ -132,6 +138,7 @@ export async function publishScheduled({ now = new Date(), dryRun = false, root 
     "_data/editorial-calendar.json",
     item.postPath,
     imageDirectory,
+    `content/research/campaign/${item.id}.json`,
     "content/product-discovery/thebiker-media-catalog.json",
   ].filter(Boolean), { transactionId: `publish-${item.id}-${process.pid}-${Date.now()}` });
   try {
