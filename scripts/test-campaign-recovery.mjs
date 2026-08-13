@@ -76,6 +76,18 @@ shortItem.attempts = 3
 const cappedRetry = recoverBlockedCampaign(nearMiss, { now: new Date('2026-08-13T13:00:00Z') })
 assert.notEqual(cappedRetry.result.status, 'retry-editorial-expansion')
 
+const legacyRepairRegression = structuredClone(nearMiss)
+const regressedItem = legacyRepairRegression.items.find((item) => item.id === shortItem.id)
+regressedItem.status = 'blocked'
+regressedItem.attempts = 3
+regressedItem.failure = { code: 'VALIDATION_FAILED', retryable: false, stage: 'production', message: 'Rascunho bloqueado após 2 reparos: Gates editoriais não atendidos: extensão insuficiente: 1333 palavras; mínimo 1600', recordedAt: '2026-08-13T12:19:22.290Z' }
+regressedItem.blockReason = `[VALIDATION_FAILED] ${regressedItem.failure.message}`
+const regressionRetry = recoverBlockedCampaign(legacyRepairRegression, { now: new Date('2026-08-13T13:00:00Z') })
+assert.equal(regressionRetry.result.status, 'retry-editorial-expansion')
+regressedItem.attempts = 4
+const cappedRegression = recoverBlockedCampaign(legacyRepairRegression, { now: new Date('2026-08-13T13:00:00Z') })
+assert.notEqual(cappedRegression.result.status, 'retry-editorial-expansion')
+
 const invalidFinalization = structuredClone(finalization)
 const invalidDraft = invalidFinalization.items.find((item) => item.id === finalizable.id)
 invalidDraft.status = 'blocked'

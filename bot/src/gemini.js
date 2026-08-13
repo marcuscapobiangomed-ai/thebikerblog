@@ -1,6 +1,7 @@
 import { validateArticle } from "./schemas/article.schema.js";
 import { generateMarkdown } from "./generator.js";
 import {
+  buildLengthExpansionPrompt,
   buildRepairPrompt,
   buildSystemPrompt,
   buildUserPrompt,
@@ -32,6 +33,8 @@ const CATEGORY_ALIASES = {
   campeonatos: "campeonatos",
   mercado: "mercado",
 };
+
+const LENGTH_GATE = /Gates editoriais não atendidos:\s*extensão insuficiente:\s*(\d+) palavras; mínimo (\d+)\s*$/i;
 
 const CONTENT_TYPE_ALIASES = {
   review: "review",
@@ -460,6 +463,29 @@ export class AIProvider {
     };
   }
 
+  _applySectionExpansions(articleText, expansionText) {
+    const article = structuredClone(this._extractJson(articleText));
+    const response = this._extractJson(expansionText);
+    const expansions = response?.section_expansions;
+    if (!Array.isArray(article?.sections) || !Array.isArray(expansions) || expansions.length === 0) {
+      throw new Error("Reparo aditivo inválido: section_expansions ausente");
+    }
+    const touched = new Set();
+    for (const expansion of expansions) {
+      const index = Number(expansion?.section_index);
+      const addition = String(expansion?.additional_content || "").trim();
+      if (!Number.isInteger(index) || index < 0 || index >= article.sections.length || !addition) {
+        throw new Error("Reparo aditivo inválido: seção ou conteúdo inválido");
+      }
+      article.sections[index].content = `${article.sections[index].content.trim()}\n\n${addition}`;
+      touched.add(index);
+    }
+    if (touched.size < Math.min(3, article.sections.length)) {
+      throw new Error("Reparo aditivo inválido: complementos pouco distribuídos");
+    }
+    return JSON.stringify(article);
+  }
+
   async processCase(descricaoCurta, researchData = null) {
     const contentType = researchData?.content_type || inferContentType(descricaoCurta);
     const template = getTemplate(resolveTemplateKey(contentType, researchData));
@@ -512,24 +538,35 @@ export class AIProvider {
         let candidateText = rawText;
         let validationError = err;
         for (let round = 1; round <= maximumRepairRounds; round += 1) {
-          const repairPrompt = buildRepairPrompt({
-          topic: descricaoCurta,
-          rawText: candidateText,
-          validationError: validationError.message,
-          contentType,
-          template,
-          today,
-        });
+          const lengthFailure = String(validationError.message || "").match(LENGTH_GATE);
+          const repairPrompt = lengthFailure
+            ? buildLengthExpansionPrompt({
+              topic: descricaoCurta,
+              rawText: candidateText,
+              currentWords: Number(lengthFailure[1]),
+              minimumWords: Number(lengthFailure[2]),
+              today,
+            })
+            : buildRepairPrompt({
+              topic: descricaoCurta,
+              rawText: candidateText,
+              validationError: validationError.message,
+              contentType,
+              template,
+              today,
+            });
           const repaired = await this.pipeline.callStep({
           step: `final-repair-${round}`,
           providers: ["deepseek", "gemini", "groq"],
           sourceHash: pipelineMetadata?.sourceHash,
-          system: [
-            AIProvider.systemPrompt(),
-            "Repare somente os gates informados. Preserve todos os fatos, fontes, limitações e campos do JSON.",
-            "Responda com JSON completo de no máximo 32000 caracteres; compacte repetições e limite cada seção a 250 palavras.",
-            "Não introduza novas especificações, sensações de teste, marcas ou disponibilidade.",
-          ].join("\n"),
+          system: lengthFailure
+            ? "Gere somente complementos aditivos factuais no schema solicitado. Não reescreva o artigo nem introduza fatos ausentes."
+            : [
+              AIProvider.systemPrompt(),
+              "Repare somente os gates informados. Preserve todos os fatos, fontes, limitações e campos do JSON.",
+              "Responda com JSON completo de no máximo 32000 caracteres; compacte repetições e limite cada seção a 250 palavras.",
+              "Não introduza novas especificações, sensações de teste, marcas ou disponibilidade.",
+            ].join("\n"),
           user: repairPrompt,
           options: {
             jsonMode: true,
@@ -540,7 +577,15 @@ export class AIProvider {
             timeoutMs: Number(process.env.AI_FINAL_REPAIR_TIMEOUT_MS || 75000),
           },
         });
-          candidateText = repaired.content;
+          if (lengthFailure) {
+            try {
+              candidateText = this._applySectionExpansions(candidateText, repaired.content);
+            } catch {
+              continue;
+            }
+          } else {
+            candidateText = repaired.content;
+          }
           try {
             return {
               ...this._parseStructuredResponse(candidateText, descricaoCurta),
