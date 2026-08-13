@@ -83,7 +83,8 @@ export function assertResearchGrounding(research, options) {
 export function researchEvidenceContractErrors(research) {
   if (!research || research.status !== "pesquisa_concluida") return [];
   const errors = [];
-  if (research.grounding?.evidenceContract !== "retrieved-excerpt-v1") {
+  const evidenceContract = research.grounding?.evidenceContract;
+  if (!new Set(["retrieved-excerpt-v1", "curated-official-excerpt-v1"]).has(evidenceContract)) {
     errors.push("pesquisa sem contrato de evidência recuperada retrieved-excerpt-v1");
   }
   if (!research.grounding?.verifiedAt) errors.push("pesquisa sem data de verificação ativa das fontes");

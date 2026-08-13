@@ -17,6 +17,7 @@ import { markdownPublicationErrors, neutralizeMarkdownPolicyPhrases } from "./sr
 import { orphanedCampaignDraftErrors, scheduledDraftErrors } from "./src/validation/validate-scheduled-publications.js";
 import { assertScheduledReceipt, hashEditorialText } from "./src/validation/editorial-receipt.js";
 import { assertArticleResearchGrounding } from "./src/validation/article-research-grounding.js";
+import { assertResearchEvidenceContract } from "./src/validation/research-grounding.js";
 
 const minimalResearch = {
   confirmed_facts: [{ fact: "frame.material: Spark RC Carbon HMX" }, { fact: "suspension.frontTravel: 120 mm" }],
@@ -394,7 +395,7 @@ const mixedRaceGrounded = await mixedRaceResearcher.research({
 assert.equal(mixedRaceGrounded.confirmed_facts.length, 1);
 assert.deepEqual(mixedRaceGrounded.confirmed_facts[0].source_ids, ['src-uci']);
 assert.match(mixedRaceGrounded.limitations[0], /1 fato\(s\) removido/);
-const fallbackResearcher = new GroundedResearcher({ GROQ_API_KEY: 'test', AI_HTTP_RETRY_ATTEMPTS: '1' }, async () => ({ ok: false, status: 429, text: async () => 'quota' }), verifiedSourceResponse);
+const fallbackResearcher = new GroundedResearcher({ GROQ_API_KEY: 'test', AI_HTTP_RETRY_ATTEMPTS: '1', CAMPAIGN_CURATED_OFFLINE_FALLBACK: 'false' }, async () => ({ ok: false, status: 429, text: async () => 'quota' }), verifiedSourceResponse);
 const fallbackGrounded = await fallbackResearcher.research({
   item: campaign.items[0],
   internalEvidence: [{ id: 'spark', facts: { suspension: '120 mm' }, sources: [{ name: 'Scott', type: 'manufacturer', url: 'https://www.scott-sports.com/global/en/product/test', accessedAt: '2026-08-04' }] }],
@@ -413,6 +414,28 @@ await assert.rejects(fallbackResearcher.research({
   internalEvidence: [],
   today: '2026-08-05',
 }), /sem fatos explicitamente fundamentados|sem fontes rastreáveis/);
+const curatedOfflineResearcher = new GroundedResearcher({ GROQ_API_KEY: 'test', AI_HTTP_RETRY_ATTEMPTS: '1' }, async () => ({ ok: false, status: 429, text: async () => 'quota' }), async (url) => ({
+  ok: true,
+  status: 200,
+  url,
+  headers: { get: (name) => name === 'content-type' ? 'text/html' : null },
+  arrayBuffer: async () => new TextEncoder().encode('<html>PÃ¡gina oficial indisponÃ­vel no runner.</html>').buffer,
+}));
+const curatedOffline = await curatedOfflineResearcher.research({
+  item: {
+    id: 'reserva-inspecao-pos-chuva',
+    title: 'InspeÃ§Ã£o da bicicleta apÃ³s pedalar na chuva',
+    summary: 'Procedimento tÃ©cnico pÃ³s-pedal molhado.',
+    category: 'manutencao-ajustes',
+  },
+  internalEvidence: [],
+  today: '2026-08-05',
+});
+assert.equal(curatedOffline.grounding.fallback, 'curated-official-offline-cache-v1');
+assert.equal(curatedOffline.grounding.evidenceContract, 'curated-official-excerpt-v1');
+assert.equal(curatedOffline.grounding.verificationMode, 'curated-offline-cache');
+assert.ok(curatedOffline.confirmed_facts.length >= 3);
+assertResearchEvidenceContract(curatedOffline);
 let resilientResearchCalls = 0;
 const resilientResearcher = new GroundedResearcher({
   GROQ_API_KEY: 'test',
