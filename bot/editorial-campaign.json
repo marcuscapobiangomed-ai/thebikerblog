@@ -328,7 +328,7 @@
       "summary": "Comparação interna entre as três Spark RC vendidas pela TheBiker, cobrindo carbono, suspensões, transmissão, rodas, peso e limite do sistema.",
       "category": "comparativo",
       "freshness": "revalidate-24h",
-      "status": "blocked",
+      "status": "scheduled",
       "productIds": [
         "bicicleta-scott-spark-rc-world-cup-2027",
         "bicicleta-scott-spark-rc-expert-2027",
@@ -339,30 +339,58 @@
         "productId": "bicicleta-scott-spark-rc-world-cup-20271"
       },
       "postPath": "_posts/drafts/2026-08-13-spark-rc-team-expert-world-cup.md",
-      "imageAssetIds": [],
-      "attempts": 3,
-      "lastAttemptAt": "2026-08-13T19:04:29.744Z",
+      "imageAssetIds": [
+        "thebiker-bicicleta-scott-spark-rc-world-cup-20271-078d5ce90f"
+      ],
+      "attempts": 4,
+      "lastAttemptAt": "2026-08-13T19:16:17.734Z",
       "aiReview": {
         "score": 100,
         "finalScore": 100,
         "finalBlockers": 0,
         "premiumEditUsed": false,
         "evidenceBriefUsed": true,
-        "fallbackReason": "Rascunho bloqueado apÃ³s 2 reparos: Artigo bloqueado por integridade de claims: inferencias tecnicas ausentes dos fatos confirmados: ja o hmx, ao priorizar fibras de modulo mais alto, reduz a massa total do quadro e aumenta a rigidez torcional, mas exige um processo de laminacao mais preciso para evitar concentracoes de tensao. | na pratica, isso significa que o quadro da world cup pode ser construido com paredes mais finas em areas de baixa solicitacao, enquanto o hmf das versoes expert e team mantem uma margem de seguranca maior para impactos laterais e uso em condicoes adversas. | a spark rc expert posiciona-se como uma escolha robusta par",
+        "fallbackReason": "Rascunho bloqueado apÃ³s 2 reparos: Artigo bloqueado por integridade de claims: inferencias tecnicas ausentes dos fatos confirmados: a diferenca entre hmf e hmx esta no modulo de carbono, que influencia diretamente o peso e a rigidez do quadro. | a expert e a unica com fox factory, um componente de alta performance que costuma agradar quem prioriza ajuste fino e suavidade. | a escolha entre fox e rockshox e muitas vezes pessoal, mas a fox factory e reconhecida pelo acabamento kashima e pela cartuchografia grip sl, que reduz o atrito e melhora a sensibilidade.",
         "providers": {
           "fallback": "deterministic-evidence-brief-v1"
         },
-        "generatedAt": "2026-08-13T19:04:29.744Z",
-        "contentHash": "sha256:6f13a0030272a15d203e4cb0623b48971d5f94b7356fbc61d20e22755ec32293"
+        "generatedAt": "2026-08-13T19:16:17.734Z",
+        "contentHash": "sha256:78d3d9d773a9c2b7cfd172a5716aff07f0605137cec707a2eb1a7b49406ec215"
       },
-      "failure": {
-        "code": "IMAGE_NOT_PUBLISHABLE",
-        "retryable": false,
-        "stage": "finalization",
-        "message": "Imagem incompatível com o artigo: marca da imagem (Scott) não corresponde à marca promovida (fox)",
-        "recordedAt": "2026-08-13T19:11:05.738Z"
+      "visualDecision": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-visual-autonomy-v1",
+        "inputHash": "sha256:15fefe1241882aa16014b677f2e8297ccce728f1f943d0e3a594611ce889c0ac",
+        "mode": "exact-product",
+        "productId": "bicicleta-scott-spark-rc-world-cup-20271",
+        "score": 100,
+        "hardGates": {
+          "semanticMatch": true,
+          "realAsset": true,
+          "explicitProduct": true,
+          "officialSource": true,
+          "approvedRights": true,
+          "publishableResolution": true,
+          "uniqueAsset": true
+        },
+        "blockers": [],
+        "issuedAt": "2026-08-13T19:22:37.658Z"
       },
-      "blockReason": "Validação final: [IMAGE_NOT_PUBLISHABLE] Imagem incompatível com o artigo: marca da imagem (Scott) não corresponde à marca promovida (fox)"
+      "editorialReceipt": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-editorial-2026-08-v2",
+        "origin": "pipeline",
+        "reviewedContentHash": "sha256:78d3d9d773a9c2b7cfd172a5716aff07f0605137cec707a2eb1a7b49406ec215",
+        "scheduledContentHash": "sha256:7d944decf00b8e4d2eb5f1b9e3fa76118ea2f9cac69939c33e3a62d4e8efb59c",
+        "researchHash": "sha256:36bee914d64c0899977567c896a14fa9eaedaa7940570315c6d327b60f773c2e",
+        "sourceHash": null,
+        "finalScore": 100,
+        "finalBlockers": 0,
+        "issuedAt": "2026-08-13T19:22:37.658Z"
+      },
+      "imageManifestPath": "assets/img/posts/spark-rc-team-expert-world-cup/image-manifest.json",
+      "imageStatus": "approved",
+      "imageValidatedAt": "2026-08-13T19:22:37.658Z"
     },
     {
       "day": 7,

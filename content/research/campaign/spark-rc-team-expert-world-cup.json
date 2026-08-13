@@ -356,7 +356,7 @@
     }
   ],
   "limitations": [
-    "Pesquisa web indisponível nesta execução (Groq sem evidência: Pesquisa bloqueada por integridade de fontes: pesquisa concluída sem fontes rastreáveis; pesquisa sem fatos explicitamente fundamentados; Gemini sem evidência: Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat); conteúdo limitado à base interna com fontes oficiais.",
+    "Pesquisa web indisponível nesta execução (Groq 429; Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat); conteúdo limitado à base interna com fontes oficiais.",
     "25 fato(s) removido(s) por falta de trecho verificavel na fonte recuperada."
   ],
   "grounding": {
@@ -365,7 +365,7 @@
     "fallback": "internal-product-knowledge",
     "claimContract": "explicit-units-v1",
     "evidenceContract": "retrieved-excerpt-v1",
-    "verifiedAt": "2026-08-13T19:04:41.974Z"
+    "verifiedAt": "2026-08-13T19:16:20.550Z"
   },
   "portfolio_evidence_url": "https://thebikershop.com.br/bikes/",
   "portfolio_verified_at": "2026-08-13",

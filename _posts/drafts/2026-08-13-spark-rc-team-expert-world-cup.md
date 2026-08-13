@@ -1,4 +1,5 @@
 ---
+image_subject_id: "bicicleta-scott-spark-rc-world-cup-20271"
 layout: post
 published: false
 title: "Spark RC Team, Expert e World Cup: três montagens, três decisões técnicas"
@@ -6,7 +7,7 @@ slug: "spark-rc-team-expert-world-cup"
 date: 2026-08-13
 last_modified_at: 2026-08-13
 author: "Equipe TheBiker"
-reviewed_by: ""
+reviewed_by: "TheBiker AI Editorial Gate"
 content_type: "comparativo"
 editorial_format: "evidence-brief-v1"
 audience_segment: "core_technical_cyclists"
@@ -15,7 +16,7 @@ experience_level_target: "intermediate_advanced"
 review_method: "desk-research"
 tested_by_thebikerblog: false
 ai_assisted: true
-brand: "Fox"
+brand: "Scott"
 product_name: "Bicicleta Scott Spark RC Expert 2027 | Bicicleta Scott Spark RC Team 2027 | Bicicleta Scott Spark RC World Cup 2027"
 model_year: 2027
 market: "Brasil"
@@ -26,27 +27,27 @@ price_max: 0
 price_currency: "BRL"
 price_checked_at: "2026-08-13"
 category: "comparativos"
-tags: ["fox", "carbono"]
+tags: ["scott", "carbono"]
 description: "Boletim factual com especificações localizadas nas fontes oficiais e comerciais recuperadas, sem teste prático, estimativas ou preenchimento de campos ausentes."
 direct_answer: "Este boletim registra somente especificações ligadas a trechos das fontes recuperadas. Não houve teste prático, e qualquer campo ausente permanece sem afirmação editorial."
-image: "/assets/img/system/covers/comparativo/hero.webp"
-image_mobile: "/assets/img/system/covers/comparativo/hero.webp"
-thumbnail: "/assets/img/system/covers/comparativo/thumb-480.webp"
+image: "/assets/img/posts/spark-rc-team-expert-world-cup/hero-1600.webp"
+image_mobile: "/assets/img/posts/spark-rc-team-expert-world-cup/hero-800.webp"
+thumbnail: "/assets/img/posts/spark-rc-team-expert-world-cup/card-640.webp"
 image_manifest_version: 2
-image_asset_type: "system-fallback"
-image_status: "draft"
-image_alt: "Boletim factual com especificações localizadas nas fontes oficiais e comerciais recuperadas, sem teste prático, estimativas ou preenchimento de campos ausentes."
-image_caption: "Imagem conceitual temporária; será substituída por material editorial aprovado."
-image_credit: "TheBiker com geração assistida por IA"
-image_license: "Uso editorial interno TheBiker"
+image_asset_type: "official-product-photo"
+image_status: "approved"
+image_alt: "Bicicleta Scott Spark RC World Cup 2027 em fotografia oficial de TheBiker Shop"
+image_caption: "Bicicleta Scott Spark RC World Cup 2027, em fotografia oficial de TheBiker Shop."
+image_credit: "TheBiker Shop"
+image_license: "Uso editorial no blog oficial TheBiker"
 affiliate_links: false
 editorial_scope: "portfolio"
-promoted_brands: ["Fox"]
+promoted_brands: ["Scott"]
 context_only_brands: []
 portfolio_evidence_url: "https://thebikershop.com.br/bikes/"
 portfolio_verified_at: "2026-08-13"
-editorial_status: "draft"
-status: "draft"
+editorial_status: "reviewed"
+status: "scheduled"
 sources:
   - name: "TheBiker — Bicicleta Scott Spark RC Expert 2027"
     type: "store"
