@@ -76,6 +76,10 @@ function inlineTags(content) {
 
 export function markdownPublicationErrors(content) {
   const errors = [];
+  const editorialFormat = frontmatterValue(content, "editorial_format").replace(/^['"]|['"]$/g, "");
+  if (editorialFormat && editorialFormat !== "full-article-v1") {
+    errors.push(`formato editorial não publicável: ${editorialFormat}`);
+  }
   const tags = inlineTags(content);
   const invalidTags = tags.filter((tag) => !CANONICAL_TAG_PATTERN.test(tag));
   if (invalidTags.length > 0) errors.push(`tags não canônicas: ${invalidTags.join(", ")}`);

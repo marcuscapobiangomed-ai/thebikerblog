@@ -62,6 +62,7 @@ editorial_scope: "portfolio"
 assert.equal(matter(exactPromotion).data.brand, "Shimano");
 
 assert.deepEqual(markdownPublicationErrors(`---
+editorial_format: "full-article-v1"
 tags: ["ciclismo", "cambio-eletronico"]
 review_method: "desk-research"
 tested_by_thebikerblog: false
@@ -69,6 +70,7 @@ tested_by_thebikerblog: false
 
 Diagnóstico técnico baseado em fontes.`), []);
 assert.deepEqual(markdownPublicationErrors(`---
+editorial_format: "full-article-v1"
 tags: ["câmbio eletrônico"]
 review_method: "desk-research"
 tested_by_thebikerblog: false
@@ -90,6 +92,7 @@ assert.equal(
 assert.doesNotMatch(neutralizedDeskCopy, /durante o pedal|percebemos|tecnologia de ponta|perfeita/i);
 assert.deepEqual(scheduledDraftErrors(`---
 published: false
+editorial_format: "full-article-v1"
 tags: ["ciclismo", "guia-tecnico"]
 review_method: "desk-research"
 tested_by_thebikerblog: false
@@ -98,6 +101,7 @@ tested_by_thebikerblog: false
 Diagnóstico técnico baseado em fontes.`), []);
 assert.deepEqual(scheduledDraftErrors(`---
 published: true
+editorial_format: "full-article-v1"
 tags: ["guia técnico"]
 review_method: "desk-research"
 tested_by_thebikerblog: false
@@ -107,6 +111,14 @@ Diagnóstico técnico baseado em fontes.`), [
   "rascunho scheduled precisa conter published: false",
   "tags não canônicas: guia técnico",
 ]);
+assert.deepEqual(markdownPublicationErrors(`---
+editorial_format: "evidence-brief-v1"
+tags: ["scott"]
+review_method: "desk-research"
+tested_by_thebikerblog: false
+---
+
+Conteúdo de contingência.`), ["formato editorial não publicável: evidence-brief-v1"]);
 
 const root = await fs.mkdtemp(path.join(os.tmpdir(), "thebiker-queue-"));
 await fs.mkdir(path.join(root, "content/research"), { recursive: true });

@@ -58,6 +58,18 @@ ungrounded.attempts = 8
 const cappedGroundingRetry = recoverBlockedCampaign(groundingFailure, { now: new Date('2026-08-13T15:08:00Z') })
 assert.notEqual(cappedGroundingRetry.result.status, 'retry-research-grounding')
 
+const rejectedArticleCampaign = structuredClone(campaignFixture)
+for (const item of rejectedArticleCampaign.items) if (item.status === 'blocked') { item.status = 'planned'; delete item.blockReason; delete item.failure }
+const rejectedArticle = rejectedArticleCampaign.items.find((item) => item.status === 'planned')
+rejectedArticle.status = 'blocked'
+rejectedArticle.attempts = 1
+rejectedArticle.failure = { code: 'RESEARCH_INSUFFICIENT', retryable: false, stage: 'production', message: 'Rascunho bloqueado após 2 reparos: Artigo bloqueado por integridade de claims', recordedAt: '2026-08-13T15:09:00.000Z' }
+rejectedArticle.blockReason = `[RESEARCH_INSUFFICIENT] ${rejectedArticle.failure.message}`
+const replacedRejectedArticle = recoverBlockedCampaign(rejectedArticleCampaign, { now: new Date(`${rejectedArticle.publishDate}T12:00:00Z`) })
+assert.equal(replacedRejectedArticle.result.status, 'replaced')
+assert.notEqual(replacedRejectedArticle.result.replacementId, rejectedArticle.id)
+assert.equal(replacedRejectedArticle.campaign.items[rejectedArticle.day - 1].status, 'planned')
+
 const structuralFailure = structuredClone(campaignFixture)
 for (const item of structuralFailure.items) if (item.status === 'blocked') { item.status = 'planned'; delete item.blockReason; delete item.failure }
 const malformedDraft = structuralFailure.items.find((item) => item.status === 'planned')
@@ -79,27 +91,6 @@ finalizable.blockReason = 'Validação final: imagem oficial ainda sem variante 
 const resumed = recoverBlockedCampaign(finalization, { now: new Date('2026-08-07T12:00:00Z') })
 assert.equal(resumed.result.status, 'retry-finalization')
 assert.equal(resumed.campaign.items.find((item) => item.id === finalizable.id).status, 'validation')
-
-const staleBriefCampaign = structuredClone(campaignFixture)
-for (const item of staleBriefCampaign.items) if (item.status === 'blocked') { item.status = 'planned'; delete item.blockReason; delete item.failure }
-const staleBrief = staleBriefCampaign.items.find((item) => item.status === 'published' && item.postPath && item.aiReview?.contentHash)
-assert.ok(staleBrief, 'A campanha precisa ter uma pauta produzida para testar regeneração do boletim')
-staleBrief.status = 'blocked'
-staleBrief.attempts = 3
-delete staleBrief.publishedAt
-staleBrief.aiReview.evidenceBriefUsed = true
-staleBrief.failure = {
-  code: 'IMAGE_NOT_PUBLISHABLE', retryable: false, stage: 'finalization',
-  message: 'Imagem incompatível com o artigo: marca da imagem (Scott) não corresponde à marca promovida (fox)',
-  recordedAt: '2026-08-13T19:11:05.738Z',
-}
-staleBrief.blockReason = `Validação final: [IMAGE_NOT_PUBLISHABLE] ${staleBrief.failure.message}`
-const regeneratedBrief = recoverBlockedCampaign(staleBriefCampaign, { now: new Date(`${staleBrief.publishDate}T12:00:00Z`) })
-assert.equal(regeneratedBrief.result.status, 'regenerate-evidence-brief-brand')
-const regeneratedBriefItem = regeneratedBrief.campaign.items.find((item) => item.id === staleBrief.id)
-assert.equal(regeneratedBriefItem.status, 'planned')
-assert.equal(regeneratedBriefItem.postPath, undefined)
-assert.equal(regeneratedBriefItem.aiReview, undefined)
 
 const conceptualFinalization = structuredClone(campaignFixture)
 for (const item of conceptualFinalization.items) if (item.status === 'blocked') { item.status = 'planned'; delete item.blockReason; delete item.failure }

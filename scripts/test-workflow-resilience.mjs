@@ -32,11 +32,13 @@ assert.ok((editorial.match(/npm run validate:ci/g) || []).length >= 2,
   "a automação deve validar o baseline no preflight e novamente no workspace que consumirá IA");
 assert.ok(editorial.indexOf("npm run validate:ci", editorial.indexOf("generate-draft:")) < editorial.indexOf("npm run campaign:produce"),
   "o workspace editorial deve ser validado antes de consumir provedores de IA");
-assert.match(editorial, /Verificar links TheBiker[^]*if: steps\.automation\.outcome == 'success'/,
+assert.match(editorial, /Verificar links TheBiker[^]*if: steps\.automation\.outcome == 'success' \|\| steps\.automation_retry\.outcome == 'success'/,
   "a auditoria de links não deve criar uma segunda falha quando a produção não gerou candidato");
+assert.match(editorial, /Substituir artigo reprovado e tentar pauta-reserva[^]*npm run campaign:recover && npm run campaign:produce/,
+  "um artigo reprovado deve acionar uma pauta-reserva no mesmo workflow");
 assert.match(editorial, /Persistir candidato revisado para retomar finalização[^]*git add --[^\n]*_posts\/drafts[^\n]*content\/research\/campaign/,
   "uma falha de finalização deve preservar draft e pesquisa revisados junto do estado que aponta para eles");
-assert.match(editorial, /steps\.automation\.outcome == 'success' && steps\.finalization\.outcome == 'failure'/,
+assert.match(editorial, /\(steps\.automation\.outcome == 'success' \|\| steps\.automation_retry\.outcome == 'success'\) && steps\.finalization\.outcome == 'failure'/,
   "a persistência recuperável deve ser exclusiva de candidatos produzidos e reprovados na finalização");
 
 assert.match(read("deploy.yml"), /Run publication gates[\s\S]*npm run validate:ci/,
