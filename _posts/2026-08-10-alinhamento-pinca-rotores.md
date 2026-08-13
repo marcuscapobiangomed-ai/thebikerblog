@@ -2,10 +2,10 @@
 image_subject_id: "disco-de-freio-shimano-xtr-cl900-center-lock"
 layout: post
 published: true
-title: "Pinça, rotor e contato de pastilha: como eliminar atrito sem perder potência de frenagem"
+title: "Alinhamento de pinça e rotor: elimine atrito sem perder potência"
 slug: "alinhamento-pinca-rotores"
 date: 2026-08-10
-last_modified_at: 2026-08-05
+last_modified_at: 2026-08-13
 author: "Equipe TheBiker"
 reviewed_by: "TheBiker AI Editorial Gate"
 content_type: "guia-tecnico"
@@ -27,8 +27,8 @@ price_currency: "BRL"
 price_checked_at: "2026-08-05"
 category: "guia-tecnico"
 tags: ["ciclismo", "guia-tecnico", "freios", "manutencao"]
-description: "Guia técnico para ciclistas avançados: alinhe pinças, centralize rotores e escolha pastilhas para zerar o atrito sem sacrificar a potência de frenagem em bikes de estrada e MTB."
-direct_answer: "Guia técnico para ciclistas avançados: alinhe pinças, centralize rotores e escolha pastilhas para zerar o atrito sem sacrificar a potência de frenagem em bikes de estrada e MTB."
+description: "Como alinhar pinça, rotor e pastilhas para eliminar atrito sem reduzir a potência de frenagem em bicicletas de estrada e MTB."
+direct_answer: "Para eliminar atrito, confirme primeiro se o rotor está empenado, centralize a pinça com os pistões recuados e verifique o retorno uniforme das pastilhas. Rotor fora de tolerância, pistão travado ou frenagem irregular exigem correção antes do uso."
 image: "/assets/img/posts/alinhamento-pinca-rotores/hero-1600.webp"
 image_mobile: "/assets/img/posts/alinhamento-pinca-rotores/hero-800.webp"
 thumbnail: "/assets/img/posts/alinhamento-pinca-rotores/card-640.webp"

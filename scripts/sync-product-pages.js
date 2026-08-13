@@ -4,6 +4,8 @@ import { fileURLToPath } from 'url'
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const CHECK_ONLY = process.argv.includes('--check')
+const publicCatalog = JSON.parse(fs.readFileSync(path.join(ROOT, '_data', 'catalog-public.json'), 'utf8'))
+const publicProductIds = new Set((publicCatalog.bikes || []).map((product) => product.id))
 
 function walk(dir) {
   return fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
@@ -43,8 +45,10 @@ for (const pagePath of walk(path.join(ROOT, 'bikes'))) {
 
   const product = JSON.parse(fs.readFileSync(productPath, 'utf8'))
   let updated = original
-  const productName = `${product.brand} ${product.model} ${product.modelYear}`
-  const productDescription = `${productName}: ficha técnica, componentes, peso declarado e disponibilidade verificada na TheBiker.`
+  const model = String(product.model || '').trim()
+  const modelYear = String(product.modelYear || '').trim()
+  const productName = `${product.brand} ${model}${model.includes(modelYear) ? '' : ` ${modelYear}`}`.trim()
+  const productDescription = `${productName}: ficha técnica, componentes e dados documentais disponíveis no catálogo da TheBiker.`
   updated = setFrontmatterField(updated, 'title', productName)
   updated = setFrontmatterField(updated, 'description', productDescription)
   updated = setFrontmatterField(updated, 'image', product.image)
@@ -53,7 +57,7 @@ for (const pagePath of walk(path.join(ROOT, 'bikes'))) {
   updated = setFrontmatterField(updated, 'model', product.model)
   updated = setFrontmatterField(updated, 'modelYear', product.modelYear)
   updated = setFrontmatterField(updated, 'category', product.category)
-  const portfolioEligible = product.portfolioStatus === 'verified' &&
+  const portfolioEligible = publicProductIds.has(product.id) && product.portfolioStatus === 'verified' &&
     /^https:\/\/(www\.)?thebikershop\.com\.br\/produtos\//i.test(product.storeProductUrl || '')
   updated = setFrontmatterField(updated, 'published', portfolioEligible)
 

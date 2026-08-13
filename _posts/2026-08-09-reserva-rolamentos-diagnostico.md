@@ -5,7 +5,7 @@ published: true
 title: "Rolamentos sob carga: como localizar folga e contaminação"
 slug: "rolamentos-sob-carga-diagnostico"
 date: 2026-08-09
-last_modified_at: 2026-08-05
+last_modified_at: 2026-08-13
 author: "Equipe TheBiker"
 reviewed_by: "TheBiker AI Editorial Gate"
 content_type: "guia-tecnico"
@@ -27,8 +27,8 @@ price_currency: "BRL"
 price_checked_at: "2026-08-05"
 category: "guia-tecnico"
 tags: ["ciclismo", "manutencao", "rolamentos", "diagnostico", "guia-tecnico"]
-description: "Guia técnico para diagnosticar folga e contaminação em rolamentos de bicicletas sob carga. Aprenda a identificar ruídos, vibrações e folgas antes que comprometam a performance e a segurança."
-direct_answer: "Guia técnico para diagnosticar folga e contaminação em rolamentos de bicicletas sob carga. Aprenda a identificar ruídos, vibrações e folgas antes que comprometam a performance e a segurança."
+description: "Diagnóstico de folga, ruído e contaminação em rolamentos de bicicleta sob carga, com testes seguros e critérios para interromper o uso."
+direct_answer: "Para localizar folga em rolamentos, isole cada conjunto, aplique carga controlada e compare ruído, aspereza e movimento lateral. Contaminação, travamento ou folga persistente exigem desmontagem e avaliação técnica antes de continuar rodando."
 image: "/assets/img/posts/reserva-rolamentos-diagnostico/hero-1600.webp"
 image_mobile: "/assets/img/posts/reserva-rolamentos-diagnostico/hero-800.webp"
 thumbnail: "/assets/img/posts/reserva-rolamentos-diagnostico/card-640.webp"

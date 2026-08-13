@@ -1,3 +1,12 @@
+---
+layout: default
+title: "Acordo de contribuição"
+description: "Termos operacionais para contribuições editoriais e técnicas ao TheBiker Blog."
+permalink: /legal/contributor-agreement/
+robots: "noindex,follow"
+sitemap: false
+---
+
 # Acordo de Contribuição — TheBikerBlog
 
 ## Natureza

@@ -1,5 +1,6 @@
 ---
 layout: null
+sitemap: false
 ---
 [
   {% assign published_posts = site.posts | where_exp: "p", "p.status != 'draft'" %}

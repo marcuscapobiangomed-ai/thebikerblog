@@ -5,7 +5,7 @@ title: "Melhores Estradas e Rotas de Ciclismo no Brasil"
 description: "Descubra as melhores estradas e rotas para ciclismo de estrada no Brasil, organizadas por região."
 direct_answer: "Não existe uma única melhor rota no Brasil: a escolha deve combinar região, altimetria, pavimento, tráfego, clima, apoio e experiência do ciclista. O guia organiza alternativas por região e exige reconfirmação local das condições antes da saída."
 date: 2026-07-21
-last_modified_at: 2026-07-19
+last_modified_at: 2026-07-21
 author: "Equipe The Biker Blog"
 reviewed_by: "Equipe The Biker Blog"
 content_type: "guia-turistico"

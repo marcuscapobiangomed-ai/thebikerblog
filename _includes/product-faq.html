@@ -1,0 +1,18 @@
+{% assign faq_product = include.product %}
+{% if faq_product %}
+<section class="product-section post-faq" aria-labelledby="product-faq-title">
+  <h3 id="product-faq-title">Perguntas frequentes</h3>
+  <details>
+    <summary>Qual é o peso da {{ faq_product.brand }} {{ faq_product.model }}?</summary>
+    <p>{% if faq_product.declaredWeight %}O peso declarado é {{ faq_product.declaredWeight.valueKg }} kg no tamanho {{ faq_product.declaredWeight.size }}.{% else %}O peso não está publicado na ficha documental disponível. Confirme com o fabricante ou a loja antes da compra.{% endif %}</p>
+  </details>
+  <details>
+    <summary>Qual grupo equipa a {{ faq_product.brand }} {{ faq_product.model }}?</summary>
+    <p>A montagem cadastrada usa {{ faq_product.drivetrain.brand }} {{ faq_product.drivetrain.groupset }}, com {{ faq_product.drivetrain.speeds }} velocidades.</p>
+  </details>
+  <details>
+    <summary>Para qual tipo de uso ela foi projetada?</summary>
+    <p>Esta bicicleta está classificada como {{ faq_product.category | replace: '-', ' ' }}. Geometria, componentes e tamanho devem ser comparados com o uso e o ajuste do ciclista.</p>
+  </details>
+</section>
+{% endif %}

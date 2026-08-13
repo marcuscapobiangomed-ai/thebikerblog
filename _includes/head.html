@@ -6,15 +6,37 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet"></noscript>
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"></noscript>
 
 <link rel="preload" href="{{ site.baseurl }}/assets/css/style.css?v=10" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=10"></noscript>
 <link rel="icon" href="{{ site.baseurl }}{{ site.logo }}" type="image/svg+xml">
 <link rel="preload" href="{{ site.baseurl }}{{ site.logo }}" as="image">
 
-{% seo %}
+{% if page.layout == "post" %}
+  {% assign post_canonical = page.url | absolute_url %}
+  {% assign post_image = page.image | default: site.logo | absolute_url %}
+  <title>{{ page.title | escape }} | {{ site.title | escape }}</title>
+  <meta name="description" content="{{ page.description | escape }}">
+  <link rel="canonical" href="{{ post_canonical }}">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="{{ page.title | escape }}">
+  <meta property="og:description" content="{{ page.description | escape }}">
+  <meta property="og:url" content="{{ post_canonical }}">
+  <meta property="og:image" content="{{ post_image }}">
+  <meta property="og:image:alt" content="{{ page.image_alt | default: page.title | escape }}">
+  <meta property="og:site_name" content="{{ site.title | escape }}">
+  <meta property="og:locale" content="pt_BR">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ page.title | escape }}">
+  <meta name="twitter:description" content="{{ page.description | escape }}">
+  <meta name="twitter:image" content="{{ post_image }}">
+{% else %}
+  {% seo %}
+{% endif %}
 <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ '/feed.xml' | relative_url }}">
 <link rel="alternate" type="text/plain" title="TheBiker Blog para assistentes de IA" href="{{ '/llms.txt' | relative_url }}">
 <link rel="alternate" type="application/json" title="Índice editorial TheBiker Blog" href="{{ '/api/content-index.json' | relative_url }}">

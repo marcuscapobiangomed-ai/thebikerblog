@@ -7,18 +7,18 @@
   "mainEntity": [
     {
       "@type": "Question",
-      "name": {{ "Peso da " | append: faq_product.brand | append: " " | append: faq_product.model | append: "?" | jsonify }},
-      "acceptedAnswer": {"@type": "Answer", "text": {% if faq_product.declaredWeight %}{{ faq_product.declaredWeight.valueKg | append: " kg (tam. " | append: faq_product.declaredWeight.size | append: ")." | jsonify }}{% else %}"Consulte o fabricante."{% endif %}}
+      "name": {{ "Qual é o peso da " | append: faq_product.brand | append: " " | append: faq_product.model | append: "?" | jsonify }},
+      "acceptedAnswer": {"@type": "Answer", "text": {% if faq_product.declaredWeight %}{{ "O peso declarado é " | append: faq_product.declaredWeight.valueKg | append: " kg no tamanho " | append: faq_product.declaredWeight.size | append: "." | jsonify }}{% else %}"O peso não está publicado na ficha documental disponível. Confirme com o fabricante ou a loja antes da compra."{% endif %}}
     },
     {
       "@type": "Question",
-      "name": {{ "Grupo da " | append: faq_product.brand | append: " " | append: faq_product.model | append: "?" | jsonify }},
-      "acceptedAnswer": {"@type": "Answer", "text": {{ faq_product.drivetrain.brand | append: " " | append: faq_product.drivetrain.groupset | append: " (" | append: faq_product.drivetrain.speeds | append: " velocidades)." | jsonify }}}
+      "name": {{ "Qual grupo equipa a " | append: faq_product.brand | append: " " | append: faq_product.model | append: "?" | jsonify }},
+      "acceptedAnswer": {"@type": "Answer", "text": {{ "A montagem cadastrada usa " | append: faq_product.drivetrain.brand | append: " " | append: faq_product.drivetrain.groupset | append: ", com " | append: faq_product.drivetrain.speeds | append: " velocidades." | jsonify }}}
     },
     {
       "@type": "Question",
-      "name": {{ faq_product.brand | append: " " | append: faq_product.model | append: " é para iniciantes?" | jsonify }},
-      "acceptedAnswer": {"@type": "Answer", "text": {% if faq_product.category contains "entry" %}"Sim, é uma bicicleta da categoria de entrada."{% else %}{{ "É uma bicicleta da categoria " | append: faq_product.category | replace: "-", " " | append: "." | jsonify }}{% endif %}}
+      "name": "Para qual tipo de uso ela foi projetada?",
+      "acceptedAnswer": {"@type": "Answer", "text": {{ "Esta bicicleta está classificada como " | append: faq_product.category | replace: "-", " " | append: ". Geometria, componentes e tamanho devem ser comparados com o uso e o ajuste do ciclista." | jsonify }}}
     }
   ]
 }

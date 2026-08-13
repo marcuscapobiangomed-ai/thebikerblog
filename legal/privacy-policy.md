@@ -56,3 +56,9 @@ Solicitações: [{{ site.email }}](mailto:{{ site.email }}).
 TheBiker, responsável pelo TheBiker Blog. Contato: [{{ site.email }}](mailto:{{ site.email }}).
 
 Esta política deve ser revista quando houver mudança de fornecedores, finalidades, eventos coletados ou forma de tratamento.
+---
+layout: default
+title: "Política de privacidade"
+description: "Como o TheBiker Blog coleta, utiliza e protege dados pessoais conforme a legislação aplicável."
+permalink: /legal/privacy-policy/
+---

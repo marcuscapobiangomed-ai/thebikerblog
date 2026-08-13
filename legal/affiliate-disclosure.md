@@ -16,3 +16,9 @@ O TheBikerBlog participa de programas de afiliados. Quando um usuário clica em 
 
 ## Dúvidas
 Contato: contato@thebikerblog.com.br
+---
+layout: default
+title: "Transparência comercial e afiliados"
+description: "Como o TheBiker Blog identifica relações comerciais, links de afiliados e possíveis conflitos de interesse."
+permalink: /legal/affiliate-disclosure/
+---
