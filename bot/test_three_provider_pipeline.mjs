@@ -171,6 +171,46 @@ const retryResult = await retryingProvider.processCase("Pauta de reparo", { cont
 assert.equal(repairRounds, 2);
 assert.equal(retryResult.pipelineMetadata.finalRepairRounds, 2);
 assert.equal(retryResult.content, "repair-2");
+
+const additiveArticle = JSON.stringify({
+  sections: Array.from({ length: 5 }, (_, index) => ({ heading: `Seção ${index}`, content: `Conteúdo original ${index}.` })),
+});
+let additiveParseRounds = 0;
+const additiveProvider = new AIProvider({
+  pipeline: {
+    runtime,
+    clients: { isConfigured: () => true },
+    run: async () => ({ content: additiveArticle, metadata: { sourceHash: "additive-test", providers: {} } }),
+    callStep: async ({ system, user }) => {
+      assert.match(system, /complementos aditivos/);
+      assert.match(user, /section_expansions/);
+      return {
+        provider: "deepseek",
+        content: JSON.stringify({
+          section_expansions: [
+            { section_index: 0, additional_content: "Complemento factual zero." },
+            { section_index: 2, additional_content: "Complemento factual dois." },
+            { section_index: 4, additional_content: "Complemento factual quatro." },
+          ],
+        }),
+      };
+    },
+  },
+});
+additiveProvider._parseStructuredResponse = (content) => {
+  additiveParseRounds += 1;
+  if (additiveParseRounds === 1) {
+    throw new Error("Gates editoriais não atendidos: extensão insuficiente: 1532 palavras; mínimo 1600");
+  }
+  const expanded = JSON.parse(content);
+  assert.match(expanded.sections[0].content, /Conteúdo original 0[\s\S]*Complemento factual zero/);
+  assert.match(expanded.sections[2].content, /Conteúdo original 2[\s\S]*Complemento factual dois/);
+  assert.match(expanded.sections[4].content, /Conteúdo original 4[\s\S]*Complemento factual quatro/);
+  return { content, title: "Expansão validada" };
+};
+const additiveResult = await additiveProvider.processCase("Pauta para expansão", { content_type: "guia-tecnico", editorialPriority: "P1" });
+assert.equal(additiveResult.pipelineMetadata.finalRepairRounds, 1);
+assert.equal(additiveParseRounds, 2);
 if (previousPipelineMode === undefined) delete process.env.AI_PIPELINE_MODE;
 else process.env.AI_PIPELINE_MODE = previousPipelineMode;
 
