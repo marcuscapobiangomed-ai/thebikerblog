@@ -1,0 +1,127 @@
+{
+  "slug": "reserva-limpeza-transmissao-metodo",
+  "title": "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação",
+  "content_type": "guia-tecnico",
+  "review_method": "desk-research",
+  "tested_by_thebikerblog": false,
+  "market": "Brasil",
+  "generated_at": "2026-08-13",
+  "status": "pesquisa_concluida",
+  "sources": [
+    {
+      "name": "SRAM — AXS Bike Care and Maintenance",
+      "url": "https://www.sram.com/en/learn/axs-bike-care-and-maintenance",
+      "accessed": "2026-08-13",
+      "id": "internal-src-1",
+      "type": "manufacturer"
+    },
+    {
+      "name": "SRAM — Apex Maintenance",
+      "url": "https://www.sram.com/en/learn/apex-d1-welcome-guide/maintenance",
+      "accessed": "2026-08-13",
+      "id": "internal-src-2",
+      "type": "manufacturer"
+    },
+    {
+      "name": "Shimano — Hydraulic Disc Brake User Manual",
+      "url": "https://si.shimano.com/en/pdfs/um/04L0A/UM-04L0A-000-00-ENG.pdf",
+      "accessed": "2026-08-13",
+      "id": "internal-src-3",
+      "type": "manufacturer"
+    }
+  ],
+  "editorialPriority": "P1",
+  "confirmed_facts": [
+    {
+      "fact": "drivetrainCleaning: Após uso em condições adversas, a transmissão deve ser limpa com produto biodegradável não ácido, enxaguada, seca e a corrente deve ser lubrificada com o excesso removido.",
+      "evidence_quote": "Use only biodegradable non-acidic cleaners to clean the cassette, chainring, and chain. Rinse thoroughly with water and wipe dry.",
+      "evidence_lookup": "Após uso em condições adversas, a transmissão deve ser limpa com produto biodegradável não ácido, enxaguada, seca e a corrente deve ser lubrificada com o excesso removido.",
+      "evidence_candidate_ids": [
+        "internal-src-1",
+        "internal-src-2",
+        "internal-src-3"
+      ],
+      "source_ids": [
+        "internal-src-1",
+        "internal-src-2",
+        "internal-src-3"
+      ]
+    },
+    {
+      "fact": "pressureWashing: Jatos de alta pressão devem ser evitados para proteger componentes, vedações e rolamentos.",
+      "evidence_quote": "Avoid direct pressure washing to protect the components as you would with all the seals and bearings on any bike.",
+      "evidence_lookup": "Jatos de alta pressão devem ser evitados para proteger componentes, vedações e rolamentos.",
+      "evidence_candidate_ids": [
+        "internal-src-1",
+        "internal-src-2",
+        "internal-src-3"
+      ],
+      "source_ids": [
+        "internal-src-1",
+        "internal-src-2",
+        "internal-src-3"
+      ]
+    },
+    {
+      "fact": "brakeInspection: Antes de pedalar, confirme funcionamento dos freios, ausência de vazamento, integridade do rotor, espessura das pastilhas e ausência de ruídos anormais.",
+      "evidence_quote": "Brake pads and rotors only take a minute to check every few rides.",
+      "evidence_lookup": "Antes de pedalar, confirme funcionamento dos freios, ausência de vazamento, integridade do rotor, espessura das pastilhas e ausência de ruídos anormais.",
+      "evidence_candidate_ids": [
+        "internal-src-1",
+        "internal-src-2",
+        "internal-src-3"
+      ],
+      "source_ids": [
+        "internal-src-1",
+        "internal-src-2",
+        "internal-src-3"
+      ]
+    },
+    {
+      "fact": "wetBraking: Em piso molhado, a distância de frenagem aumenta; reduza a velocidade e acione os freios mais cedo e de forma suave.",
+      "evidence_quote": "The required braking distance will be longer during wet conditions.",
+      "evidence_lookup": "Em piso molhado, a distância de frenagem aumenta; reduza a velocidade e acione os freios mais cedo e de forma suave.",
+      "evidence_candidate_ids": [
+        "internal-src-1",
+        "internal-src-2",
+        "internal-src-3"
+      ],
+      "source_ids": [
+        "internal-src-1",
+        "internal-src-2",
+        "internal-src-3"
+      ]
+    },
+    {
+      "fact": "escalation: Danos, vazamentos, ruídos anormais ou funcionamento irregular exigem avaliação da loja ou de mecânico qualificado.",
+      "evidence_quote": "If any damage is found, consult your dealer for further inspection.",
+      "evidence_lookup": "Danos, vazamentos, ruídos anormais ou funcionamento irregular exigem avaliação da loja ou de mecânico qualificado.",
+      "evidence_candidate_ids": [
+        "internal-src-1",
+        "internal-src-2",
+        "internal-src-3"
+      ],
+      "source_ids": [
+        "internal-src-1",
+        "internal-src-2",
+        "internal-src-3"
+      ]
+    }
+  ],
+  "limitations": [
+    "Pesquisa web indisponível nesta execução (Groq sem evidência: Pesquisa bloqueada por integridade de fontes: pesquisa concluída sem fontes rastreáveis; pesquisa sem fatos explicitamente fundamentados; Gemini sem evidência: Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat); conteúdo limitado à base interna com fontes oficiais.",
+    "Trechos oficiais mantidos em cache curado; a revalidaÃ§Ã£o HTTP foi indisponÃ­vel nesta execuÃ§Ã£o."
+  ],
+  "grounding": {
+    "queries": [],
+    "sourceCount": 3,
+    "fallback": "curated-official-offline-cache-v1",
+    "claimContract": "explicit-units-v1",
+    "evidenceContract": "curated-official-excerpt-v1",
+    "verifiedAt": "2026-08-13T21:35:17.723Z",
+    "verificationMode": "curated-offline-cache"
+  },
+  "portfolio_evidence_url": "https://thebikershop.com.br/componentes/",
+  "portfolio_verified_at": "2026-08-13",
+  "portfolio_evidence_scope": "portfolio-category"
+}

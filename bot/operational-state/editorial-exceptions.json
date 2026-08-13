@@ -873,6 +873,83 @@
         "title": "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação"
       },
       "reason": "[IMAGE_NOT_PUBLISHABLE] Rascunho bloqueado apÃ³s 2 reparos: Artigo inválido:\nimagePlan: Pelo menos uma imagem obrigatória"
+    },
+    {
+      "recordedAt": "2026-08-13T21:35:07.971Z",
+      "campaignId": "thebiker-rolling-2026-08-08",
+      "replacedItem": {
+        "day": 7,
+        "publishDate": "2026-08-14",
+        "id": "reserva-limpeza-transmissao-metodo",
+        "title": "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação",
+        "summary": "Procedimento técnico baseado em orientações oficiais para remover contaminantes, verificar danos e devolver a corrente ao uso seguro.",
+        "category": "manutencao-ajustes",
+        "freshness": "evergreen",
+        "status": "blocked",
+        "productIds": [
+          "corrente-sram-nx-eagle"
+        ],
+        "heroImage": {
+          "mode": "real-context",
+          "productId": "corrente-sram-nx-eagle",
+          "relationship": "category-example",
+          "rationale": "Fotografia real do catálogo TheBiker usada apenas como exemplo visual da categoria técnica abordada."
+        },
+        "imageAssetIds": [],
+        "blockReason": "[RESEARCH_INSUFFICIENT] Rascunho bloqueado apÃ³s 2 reparos: Artigo bloqueado por integridade de claims: alegações numéricas ausentes dos fatos confirmados: seismeses; inferencias tecnicas ausentes dos fatos confirmados: este guia baseia-se em manuais tecnicos de fabricantes e diretrizes de manutencao preventiva para componentes de alta performance. | a aplicacao deve ser direcionada ao cassete, coroas e corrente, garantindo a remocao completa de residuos que, se mantidos, atuam como agentes abrasivos sob carga. | a umidade residual e um fator critico que pode comprometer a eficacia da lubrificacao subsequente e favorecer processos de oxidacao.",
+        "failure": {
+          "code": "RESEARCH_INSUFFICIENT",
+          "retryable": false,
+          "stage": "production",
+          "message": "Rascunho bloqueado apÃ³s 2 reparos: Artigo bloqueado por integridade de claims: alegações numéricas ausentes dos fatos confirmados: seismeses; inferencias tecnicas ausentes dos fatos confirmados: este guia baseia-se em manuais tecnicos de fabricantes e diretrizes de manutencao preventiva para componentes de alta performance. | a aplicacao deve ser direcionada ao cassete, coroas e corrente, garantindo a remocao completa de residuos que, se mantidos, atuam como agentes abrasivos sob carga. | a umidade residual e um fator critico que pode comprometer a eficacia da lubrificacao subsequente e favorecer processos de oxidacao.",
+          "recordedAt": "2026-08-13T21:35:07.971Z"
+        },
+        "attempts": 2,
+        "lastAttemptAt": "2026-08-13T21:35:07.971Z"
+      },
+      "replacement": {
+        "id": "reserva-scale-940-980-comparativo",
+        "title": "Scott Scale 940 e 980: diferenças verificáveis de quadro, suspensão e componentes"
+      },
+      "reason": "[RESEARCH_INSUFFICIENT] Rascunho bloqueado apÃ³s 2 reparos: Artigo bloqueado por integridade de claims: alegações numéricas ausentes dos fatos confirmados: seismeses; inferencias tecnicas ausentes dos fatos confirmados: este guia baseia-se em manuais tecnicos de fabricantes e diretrizes de manutencao preventiva para componentes de alta performance. | a aplicacao deve ser direcionada ao cassete, coroas e corrente, garantindo a remocao completa de residuos que, se mantidos, atuam como agentes abrasivos sob carga. | a umidade residual e um fator critico que pode comprometer a eficacia da lubrificacao subsequente e favorecer processos de oxidacao."
+    },
+    {
+      "recordedAt": "2026-08-13T21:35:07.971Z",
+      "campaignId": "thebiker-rolling-2026-08-08",
+      "replacedItem": {
+        "day": 7,
+        "publishDate": "2026-08-14",
+        "id": "reserva-scale-940-980-comparativo",
+        "title": "Scott Scale 940 e 980: diferenças verificáveis de quadro, suspensão e componentes",
+        "summary": "Comparação limitada às especificações atualmente recuperáveis nas páginas oficiais e no catálogo TheBiker.",
+        "category": "comparativo",
+        "freshness": "revalidate-24h",
+        "status": "blocked",
+        "productIds": [
+          "bicicleta-scott-scale-940-black",
+          "bicicleta-scott-scale-980-black"
+        ],
+        "heroImage": {
+          "mode": "exact-product",
+          "productId": "bicicleta-scott-scale-940-black"
+        },
+        "imageAssetIds": [],
+        "blockReason": "[RESEARCH_INSUFFICIENT] Rascunho bloqueado apÃ³s 2 reparos: Artigo bloqueado por integridade de claims: alegações numéricas ausentes dos fatos confirmados: 100mm, 100kg; inferencias tecnicas ausentes dos fatos confirmados: por exemplo, a presenca do mesmo cambio traseiro e freios nao garante que a experiencia de pilotagem seja identica, pois a suspensao dianteira influencia diretamente o controle e a absorcao de impactos. | alem disso, a diferenca na disponibilidade de tamanhos pode ser um fator eliminatorio para ciclistas fora da faixa s-xl. | para quem busca uma bike para uso recreativo em trilhas leves, ambas atendem, mas a escolha pode ser influenciada pela disp",
+        "failure": {
+          "code": "RESEARCH_INSUFFICIENT",
+          "retryable": false,
+          "stage": "production",
+          "message": "Rascunho bloqueado apÃ³s 2 reparos: Artigo bloqueado por integridade de claims: alegações numéricas ausentes dos fatos confirmados: 100mm, 100kg; inferencias tecnicas ausentes dos fatos confirmados: por exemplo, a presenca do mesmo cambio traseiro e freios nao garante que a experiencia de pilotagem seja identica, pois a suspensao dianteira influencia diretamente o controle e a absorcao de impactos. | alem disso, a diferenca na disponibilidade de tamanhos pode ser um fator eliminatorio para ciclistas fora da faixa s-xl. | para quem busca uma bike para uso recreativo em trilhas leves, ambas atendem, mas a escolha pode ser influenciada pela disp",
+          "recordedAt": "2026-08-13T21:35:07.971Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-13T21:35:07.971Z"
+      },
+      "replacement": {
+        "id": "reserva-addict-50-rc20-comparativo",
+        "title": "Scott Addict 50 e Addict RC 20: duas propostas de estrada confrontadas pelas fichas oficiais"
+      },
+      "reason": "[RESEARCH_INSUFFICIENT] Rascunho bloqueado apÃ³s 2 reparos: Artigo bloqueado por integridade de claims: alegações numéricas ausentes dos fatos confirmados: 100mm, 100kg; inferencias tecnicas ausentes dos fatos confirmados: por exemplo, a presenca do mesmo cambio traseiro e freios nao garante que a experiencia de pilotagem seja identica, pois a suspensao dianteira influencia diretamente o controle e a absorcao de impactos. | alem disso, a diferenca na disponibilidade de tamanhos pode ser um fator eliminatorio para ciclistas fora da faixa s-xl. | para quem busca uma bike para uso recreativo em trilhas leves, ambas atendem, mas a escolha pode ser influenciada pela disp"
     }
   ]
 }

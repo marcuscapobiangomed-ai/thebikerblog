@@ -390,32 +390,31 @@
     {
       "day": 7,
       "publishDate": "2026-08-14",
-      "id": "reserva-limpeza-transmissao-metodo",
-      "title": "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação",
-      "summary": "Procedimento técnico baseado em orientações oficiais para remover contaminantes, verificar danos e devolver a corrente ao uso seguro.",
-      "category": "manutencao-ajustes",
-      "freshness": "evergreen",
+      "id": "reserva-addict-50-rc20-comparativo",
+      "title": "Scott Addict 50 e Addict RC 20: duas propostas de estrada confrontadas pelas fichas oficiais",
+      "summary": "Análise comparativa restrita a geometria, materiais e montagens comprovados nas fontes atuais dos dois modelos.",
+      "category": "comparativo",
+      "freshness": "revalidate-24h",
       "status": "blocked",
       "productIds": [
-        "corrente-sram-nx-eagle"
+        "bicicleta-scott-addict-50-2026-pre-venda-1bxzy",
+        "bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9"
       ],
       "heroImage": {
-        "mode": "real-context",
-        "productId": "corrente-sram-nx-eagle",
-        "relationship": "category-example",
-        "rationale": "Fotografia real do catálogo TheBiker usada apenas como exemplo visual da categoria técnica abordada."
+        "mode": "exact-product",
+        "productId": "bicicleta-scott-addict-50-2026-pre-venda-1bxzy"
       },
       "imageAssetIds": [],
       "attempts": 1,
-      "lastAttemptAt": "2026-08-13T21:11:10.778Z",
+      "lastAttemptAt": "2026-08-13T21:35:07.971Z",
       "failure": {
         "code": "RESEARCH_INSUFFICIENT",
         "retryable": false,
         "stage": "production",
-        "message": "Pesquisa bloqueada por integridade de fontes: pesquisa concluída sem fontes rastreáveis; pesquisa sem fatos explicitamente fundamentados",
-        "recordedAt": "2026-08-13T21:11:10.778Z"
+        "message": "Rascunho bloqueado apÃ³s 2 reparos: Artigo bloqueado por integridade de claims: alegações numéricas ausentes dos fatos confirmados: 34mm, 40mm, 30mm; inferencias tecnicas ausentes dos fatos confirmados: ja a addict rc 20 emprega o carbono hmx, uma composicao de fibra de carbono de alta rigidez que visa maximizar a eficiencia de transferencia de potencia em esforcos de competicao. | a selecao entre hmf e hmx repercute no comportamento dinamico do conjunto: o carbono hmf, ao priorizar a absorcao de vibracoes, tende a reduzir a fadiga muscular em pavimentos irregulares, enquanto o hmx, com sua maior rigidez, pode transmitir mais feedback do asfa",
+        "recordedAt": "2026-08-13T21:35:07.971Z"
       },
-      "blockReason": "[RESEARCH_INSUFFICIENT] Pesquisa bloqueada por integridade de fontes: pesquisa concluída sem fontes rastreáveis; pesquisa sem fatos explicitamente fundamentados"
+      "blockReason": "[RESEARCH_INSUFFICIENT] Rascunho bloqueado apÃ³s 2 reparos: Artigo bloqueado por integridade de claims: alegações numéricas ausentes dos fatos confirmados: 34mm, 40mm, 30mm; inferencias tecnicas ausentes dos fatos confirmados: ja a addict rc 20 emprega o carbono hmx, uma composicao de fibra de carbono de alta rigidez que visa maximizar a eficiencia de transferencia de potencia em esforcos de competicao. | a selecao entre hmf e hmx repercute no comportamento dinamico do conjunto: o carbono hmf, ao priorizar a absorcao de vibracoes, tende a reduzir a fadiga muscular em pavimentos irregulares, enquanto o hmx, com sua maior rigidez, pode transmitir mais feedback do asfa"
     },
     {
       "day": 8,
@@ -946,6 +945,15 @@
       "productIds": []
     },
     {
+      "id": "reserva-limpeza-transmissao-metodo",
+      "title": "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação",
+      "summary": "Procedimento técnico baseado em orientações oficiais para remover contaminantes, verificar danos e devolver a corrente ao uso seguro.",
+      "category": "manutencao-ajustes",
+      "productIds": [
+        "corrente-sram-nx-eagle"
+      ]
+    },
+    {
       "id": "reserva-scale-940-980-comparativo",
       "title": "Scott Scale 940 e 980: diferenças verificáveis de quadro, suspensão e componentes",
       "summary": "Comparação limitada às especificações atualmente recuperáveis nas páginas oficiais e no catálogo TheBiker.",
@@ -957,20 +965,6 @@
       "heroImage": {
         "mode": "exact-product",
         "productId": "bicicleta-scott-scale-940-black"
-      }
-    },
-    {
-      "id": "reserva-addict-50-rc20-comparativo",
-      "title": "Scott Addict 50 e Addict RC 20: duas propostas de estrada confrontadas pelas fichas oficiais",
-      "summary": "Análise comparativa restrita a geometria, materiais e montagens comprovados nas fontes atuais dos dois modelos.",
-      "category": "comparativo",
-      "productIds": [
-        "bicicleta-scott-addict-50-2026-pre-venda-1bxzy",
-        "bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9"
-      ],
-      "heroImage": {
-        "mode": "exact-product",
-        "productId": "bicicleta-scott-addict-50-2026-pre-venda-1bxzy"
       }
     }
   ]
