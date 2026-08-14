@@ -152,6 +152,24 @@ assert.equal(alternativeVisualRetry.result.status, 'retry-finalization-alternati
 assert.equal(alternativeVisualRetry.campaign.items.find((item) => item.id === duplicateImageItem.id).status, 'validation')
 assert.ok(alternativeVisualRetry.campaign.items.find((item) => item.id === duplicateImageItem.id).productIds.length > 1)
 
+const exhaustedExactProduct = structuredClone(finalization)
+const exhaustedExactItem = exhaustedExactProduct.items.find((item) => item.id === finalizable.id)
+exhaustedExactItem.status = 'blocked'
+exhaustedExactItem.productIds = ['bicicleta-scott-scale-940-black']
+exhaustedExactItem.heroImage = { mode: 'exact-product', productId: 'bicicleta-scott-scale-940-black' }
+exhaustedExactItem.failure = {
+  code: 'IMAGE_NOT_PUBLISHABLE', retryable: false, stage: 'finalization',
+  message: 'Galeria oficial sem imagem inédita válida: Imagem duplicada | HTTP 403 | resolução insuficiente: 480x480',
+  recordedAt: '2026-08-14T10:08:48.000Z',
+}
+exhaustedExactItem.blockReason = `Validação final: [IMAGE_NOT_PUBLISHABLE] ${exhaustedExactItem.failure.message}`
+const exactReplacement = recoverBlockedCampaign(exhaustedExactProduct, { now: new Date('2026-08-07T12:00:00Z') })
+assert.equal(exactReplacement.result.status, 'replaced', 'imagem permanente de exact-product exige outra pauta, não nova tentativa idêntica')
+const exactReplacementItem = exactReplacement.campaign.items[exhaustedExactItem.day - 1]
+assert.notEqual(exactReplacementItem.id, exhaustedExactItem.id)
+assert.notEqual(exactReplacementItem.heroImage.productId, exhaustedExactItem.heroImage.productId,
+  'a reserva não pode reutilizar o produto cujo inventário visual foi esgotado')
+
 const deterministicReviewCampaign = structuredClone(campaignFixture)
 for (const item of deterministicReviewCampaign.items) if (item.status === 'blocked') { item.status = 'planned'; delete item.blockReason; delete item.failure }
 const deterministicReviewItem = deterministicReviewCampaign.items.find((item) => item.status === 'published' && item.publishDate >= '2026-08-13' && item.postPath && item.aiReview?.contentHash)
@@ -295,6 +313,32 @@ Este produto é imbatível.
   assert.notEqual(persistedCampaign.items[invalidDraft.day - 1].id, invalidDraft.id)
 } finally {
   await fs.rm(recoveryRoot, { recursive: true, force: true })
+}
+
+const exhaustedCleanupRoot = await fs.mkdtemp(path.join(os.tmpdir(), 'thebiker-exhausted-image-cleanup-'))
+try {
+  const cleanupCampaign = structuredClone(exhaustedExactProduct)
+  const cleanupItem = cleanupCampaign.items.find((item) => item.id === exhaustedExactItem.id)
+  cleanupItem.postPath = `_posts/drafts/${cleanupItem.publishDate}-${cleanupItem.id}.md`
+  const cleanupDraftPath = path.join(exhaustedCleanupRoot, cleanupItem.postPath)
+  const cleanupResearchPath = path.join(exhaustedCleanupRoot, 'content/research/campaign', `${cleanupItem.id}.json`)
+  await Promise.all([
+    fs.mkdir(path.join(exhaustedCleanupRoot, 'bot/operational-state'), { recursive: true }),
+    fs.mkdir(path.join(exhaustedCleanupRoot, '_data'), { recursive: true }),
+    fs.mkdir(path.dirname(cleanupDraftPath), { recursive: true }),
+    fs.mkdir(path.dirname(cleanupResearchPath), { recursive: true }),
+  ])
+  await Promise.all([
+    fs.writeFile(path.join(exhaustedCleanupRoot, 'bot/editorial-campaign.json'), `${JSON.stringify(cleanupCampaign, null, 2)}\n`),
+    fs.writeFile(cleanupDraftPath, '---\npublished: false\n---\n\nCandidato que será substituído.\n'),
+    fs.writeFile(cleanupResearchPath, '{}\n'),
+  ])
+  const cleanupRecovery = await recoverBlockedCampaignFiles({ root: exhaustedCleanupRoot, now: new Date('2026-08-07T12:00:00Z') })
+  assert.equal(cleanupRecovery.status, 'replaced')
+  await assert.rejects(() => fs.stat(cleanupDraftPath), { code: 'ENOENT' })
+  await assert.rejects(() => fs.stat(cleanupResearchPath), { code: 'ENOENT' })
+} finally {
+  await fs.rm(exhaustedCleanupRoot, { recursive: true, force: true })
 }
 
 const permanent = structuredClone(campaignFixture)

@@ -1,28 +1,45 @@
+import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { recoverBlockedCampaignFiles } from "./automation/recover-blocked.js";
-import { runCampaignProducer } from "./campaign_producer.js";
-import { finalizeCampaignItem } from "./campaign_finalize.js";
+import { CampaignSchema } from "./automation/campaign.js";
+import { campaignBufferSnapshot, replenishCampaignBuffer } from "./automation/replenish-buffer.js";
 
-const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
-const configuredResearchAttempts = Number(process.env.CAMPAIGN_RESEARCH_MAX_ATTEMPTS);
-const maximumResearchAttempts = Number.isInteger(configuredResearchAttempts) && configuredResearchAttempts > 0
-  ? configuredResearchAttempts
-  : undefined;
+const defaultRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 
-const recovered = await recoverBlockedCampaignFiles({ root, maximumResearchAttempts });
-if (["idle", "blocked"].includes(recovered?.status)) {
-  throw new Error(`Failover de finalização sem pauta recuperável: ${recovered?.status || "desconhecido"}`);
+function positiveInteger(value, fallback) {
+  const parsed = Number(value);
+  return Number.isInteger(parsed) && parsed > 0 ? parsed : fallback;
 }
 
-const produced = await runCampaignProducer({ root, env: process.env });
-if (produced?.status !== "validation") {
-  throw new Error(`Failover de finalização não produziu uma pauta para validação: ${produced?.status || "desconhecido"}`);
+export async function retryCampaignFinalization({
+  root = defaultRoot,
+  env = process.env,
+  now = new Date(),
+  replenisher = replenishCampaignBuffer,
+} = {}) {
+  const campaign = CampaignSchema.parse(JSON.parse(await fs.readFile(path.join(root, "bot/editorial-campaign.json"), "utf8")));
+  const blocked = campaign.items.find((item) =>
+    item.status === "blocked" && /^Valida(?:ção|cao) final:/i.test(item.blockReason || ""),
+  );
+  if (!blocked) throw new Error("Failover de finalização sem pauta bloqueada recuperável");
+
+  const before = campaignBufferSnapshot(campaign, { now, requiredDate: blocked.publishDate });
+  const result = await replenisher({
+    root,
+    env,
+    now,
+    targetBuffer: before.futureScheduled + 1,
+    requiredDate: blocked.publishDate,
+    maxAttempts: positiveInteger(env.CAMPAIGN_FINALIZATION_MAX_ATTEMPTS, 3),
+  });
+  if (result.status !== "replenished" || !result.requiredReady) {
+    throw new Error(`Failover de finalização não agendou um artigo para ${blocked.publishDate}`);
+  }
+  return { status: "scheduled", replacedItemId: blocked.id, publishDate: blocked.publishDate, result };
 }
 
-const finalized = await finalizeCampaignItem({ root });
-if (finalized?.status !== "scheduled") {
-  throw new Error(`Failover de finalização não agendou um artigo: ${finalized?.status || "desconhecido"}`);
+if (path.resolve(process.argv[1] || "") === fileURLToPath(import.meta.url)) {
+  retryCampaignFinalization()
+    .then((result) => console.log(JSON.stringify(result, null, 2)))
+    .catch((error) => { console.error(error.stack || error.message); process.exitCode = 1; });
 }
-
-console.log(JSON.stringify({ status: "scheduled", recovered, produced, finalized }, null, 2));

@@ -3,6 +3,7 @@ import path from 'node:path'
 import { CampaignSchema, publicCampaignSummary } from './campaign.js'
 import { markdownPublicationErrors } from '../validation/markdown-publication-gates.js'
 import { classifyEditorialFailure } from '../validation/editorial-failures.js'
+import { releaseAssetUse } from '../images/asset-library.js'
 
 const TRANSIENT = /timeout|timed out|aborted|429|rate limit|temporar|econnreset|fetch failed|insufficient balance|tokens per minute|rate_limit_exceeded|quota(?: exceeded| limit)?|payment required/i
 const FINALIZATION = /^Valida(?:ção|cao) final:/i
@@ -96,9 +97,22 @@ function reserveToItem(reserve, blocked) {
   }
 }
 
-function nextReserve(campaign, blocked) {
+function reserveVisualProductIds(reserve) {
+  const mapped = realContextPolicy(reserve)
+  const visual = reserve.heroImage || mapped?.heroImage || null
+  if (visual?.mode === 'exact-product') return [visual.productId]
+  if (visual?.mode === 'real-context') return [...new Set([visual.productId, ...(reserve.productIds || [])])]
+  return mapped?.productId ? [mapped.productId] : reserve.productIds || []
+}
+
+function nextReserve(campaign, blocked, { excludedVisualProductIds = [] } = {}) {
   const used = new Set(campaign.items.map((item) => item.id))
-  const available = [...RECOVERY_RESERVES, ...campaign.reserves].filter((item, index, items) => !used.has(item.id) && items.findIndex((candidate) => candidate.id === item.id) === index)
+  const excluded = new Set(excludedVisualProductIds)
+  const available = [...RECOVERY_RESERVES, ...campaign.reserves].filter((item, index, items) => {
+    if (used.has(item.id) || items.findIndex((candidate) => candidate.id === item.id) !== index) return false
+    const visualProductIds = reserveVisualProductIds(item)
+    return excluded.size === 0 || visualProductIds.some((productId) => !excluded.has(productId))
+  })
   if (blocked.race) return available.find((item) => item.race?.track === blocked.race.track) || null
   // Legacy reserves can omit productIds while still having a safe
   // real-context mapping. Treat that mapping as executable evidence instead
@@ -137,6 +151,9 @@ export function recoverBlockedCampaign(campaignInput, {
     ? classifyEditorialFailure(reason, { stage: blocked.failure.stage || 'recovery', now })
     : blocked.failure || classifyEditorialFailure(reason, { stage: 'recovery', now })
   const visual = realContextPolicy(blocked)
+  const permanentVisualFailure = FINALIZATION.test(reason)
+    && classified.code === 'IMAGE_NOT_PUBLISHABLE'
+    && IMAGE_ALTERNATIVE_REQUIRED.test(reason)
   if (FINALIZATION.test(reason)
       && classified.code === 'IMAGE_NOT_PUBLISHABLE'
       && blocked.heroImage?.mode === 'conceptual'
@@ -186,10 +203,8 @@ export function recoverBlockedCampaign(campaignInput, {
       exception: null,
     }
   }
-  if (FINALIZATION.test(reason)
-      && classified.code === 'IMAGE_NOT_PUBLISHABLE'
+  if (permanentVisualFailure
       && blocked.heroImage?.mode === 'real-context'
-      && IMAGE_ALTERNATIVE_REQUIRED.test(reason)
       && appendAlternativeVisualProducts(campaign, blocked)) {
     blocked.status = 'validation'
     delete blocked.blockReason
@@ -200,7 +215,7 @@ export function recoverBlockedCampaign(campaignInput, {
       exception: null,
     }
   }
-  if (FINALIZATION.test(reason) && blocked.postPath && finalizationDraftErrors.length === 0) {
+  if (FINALIZATION.test(reason) && !permanentVisualFailure && blocked.postPath && finalizationDraftErrors.length === 0) {
     blocked.status = 'validation'
     delete blocked.blockReason
     delete blocked.failure
@@ -249,7 +264,12 @@ export function recoverBlockedCampaign(campaignInput, {
     delete blocked.failure
     return { campaign: CampaignSchema.parse(campaign), result: { status: 'retry', itemId: blocked.id, attempts: blocked.attempts || 0 }, exception: null }
   }
-  const reserve = nextReserve(campaign, blocked)
+  const exhaustedVisualProducts = permanentVisualFailure
+    ? blocked.heroImage?.mode === 'exact-product'
+      ? [blocked.heroImage.productId]
+      : blocked.productIds || []
+    : []
+  const reserve = nextReserve(campaign, blocked, { excludedVisualProductIds: exhaustedVisualProducts })
   if (!reserve) return { campaign, result: { status: 'blocked', itemId: blocked.id, reason: 'Nenhuma pauta-reserva disponível' }, exception: null }
   const exception = { recordedAt: now.toISOString(), campaignId: campaign.id, replacedItem: blocked, replacement: { id: reserve.id, title: reserve.title }, reason }
   campaign.items[blocked.day - 1] = reserveToItem(reserve, blocked)
@@ -292,6 +312,16 @@ export async function recoverBlockedCampaignFiles({ root, now = new Date(), maxi
     const ledger = await fs.readFile(ledgerPath, 'utf8').then(JSON.parse).catch((error) => error?.code === 'ENOENT' ? { schemaVersion: 1, items: [] } : Promise.reject(error))
     ledger.items.push(recovered.exception)
     await fs.writeFile(ledgerPath, JSON.stringify(ledger, null, 2) + '\n')
+  }
+  if (recovered.result.status === 'replaced' && blocked?.postPath) {
+    const draftsRoot = path.resolve(root, '_posts/drafts') + path.sep
+    const draftPath = path.resolve(root, blocked.postPath)
+    if (draftPath.startsWith(draftsRoot)) {
+      await fs.rm(draftPath, { force: true })
+      await fs.rm(path.join(root, 'content/research/campaign', `${blocked.id}.json`), { force: true })
+      await fs.rm(path.join(root, 'assets/img/posts', blocked.id), { recursive: true, force: true })
+      await releaseAssetUse(root, { postId: blocked.id, position: 'hero' })
+    }
   }
   return recovered.result
 }
