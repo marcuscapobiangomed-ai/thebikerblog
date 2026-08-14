@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import assert from "node:assert/strict";
-import { ThreeProviderPipeline, applyPortfolioEvidence } from "./src/ai/three-provider-pipeline.js";
+import { ThreeProviderPipeline, applyPortfolioEvidence, buildAuditContext } from "./src/ai/three-provider-pipeline.js";
 import { AIProvider } from "./src/gemini.js";
 import { assertEditorialPublicationGates } from "./src/validation/editorial-publication-gates.js";
 
@@ -70,6 +70,23 @@ const blockedExternalBrand = applyPortfolioEvidence({ promoted_brands: ['Marca E
   portfolio_verified_at: '2026-08-13',
 });
 assert.deepEqual(blockedExternalBrand.promoted_brands, ['Marca Externa']);
+const oversizedAuditContext = buildAuditContext({
+  topic: "Tema com contexto extenso",
+  researchData: {
+    title: "Produto",
+    sources: [{ id: "source-1", name: "Fonte", type: "official", url: "https://example.com", accessed: "2026-08-13" }],
+    confirmed_facts: [{ fact: "campo: " + "fato ".repeat(500), source_ids: ["source-1"], evidence_quote: "trecho " + "evidencia ".repeat(500) }],
+    limitations: ["limite ".repeat(500)],
+  },
+  factSheet: { facts: [{ statement: "fato ".repeat(500), source: "Fonte" }] },
+  finalArticle: {
+    title: "Artigo",
+    sections: [{ heading: "Seção", content: "texto ".repeat(5000) }],
+  },
+});
+const oversizedAuditJson = JSON.stringify(oversizedAuditContext);
+assert.ok(oversizedAuditJson.length < 20000, `Contexto de auditoria excedeu o limite: ${oversizedAuditJson.length}`);
+assert.match(oversizedAuditJson, /conteúdo truncado para auditoria/);
 const result = await pipeline.run({
   topic: "Notícia técnica",
   researchData: { sources: [{ name: "Fonte", url: "https://example.com" }] },
@@ -322,6 +339,32 @@ const pipelineFailureResult = await pipelineFailureProvider.processCase("Fallbac
   grounding: { fallback: "curated-official-offline-cache-v1" },
 });
 assert.equal(pipelineFailureResult.pipelineMetadata.deterministicFullArticleFallbackTrigger, "pipeline-failure");
+const internalFallbackProvider = new AIProvider({
+  pipeline: {
+    runtime,
+    clients: { isConfigured: () => false },
+    run: async () => { throw new Error("Etapa final-audit falhou. deepseek: 402 Insufficient Balance | groq: 413 tokens per minute"); },
+  },
+});
+const internalFallbackResult = await internalFallbackProvider.processCase("Ficha documental com cota indisponível", {
+  status: "pesquisa_concluida",
+  content_type: "guia-tecnico",
+  confirmed_facts: [
+    { fact: "frame.material: alumínio 6061", source_ids: ["internal-src-1"], evidence_quote: "material alumínio 6061 informado na ficha" },
+    { fact: "suspension.fork: garfo documentado", source_ids: ["internal-src-1"], evidence_quote: "garfo documentado na página oficial" },
+    { fact: "drivetrain.rearDerailleur: câmbio documentado", source_ids: ["internal-src-1"], evidence_quote: "câmbio documentado na página oficial" },
+  ],
+  sources: [{ id: "internal-src-1", name: "Catálogo interno verificado", type: "store", url: "https://thebikershop.com.br/produtos/ficha", accessed: "2026-08-13" }],
+  grounding: {
+    fallback: "internal-product-knowledge",
+    evidenceContract: "retrieved-excerpt-v1",
+    claimContract: "explicit-units-v1",
+    verifiedAt: "2026-08-13T12:00:00.000Z",
+  },
+});
+assert.equal(internalFallbackResult.pipelineMetadata.deterministicFullArticleFallbackUsed, true);
+assert.equal(internalFallbackResult.pipelineMetadata.deterministicFullArticleFallbackTrigger, "pipeline-failure");
+assert.equal(internalFallbackResult.pipelineMetadata.finalScore, 95);
 if (previousDeterministicFallback === undefined) delete process.env.AI_DETERMINISTIC_CURATED_FALLBACK;
 else process.env.AI_DETERMINISTIC_CURATED_FALLBACK = previousDeterministicFallback;
 if (previousPipelineMode === undefined) delete process.env.AI_PIPELINE_MODE;
