@@ -544,7 +544,7 @@
       "summary": "Comparação limitada às especificações atualmente recuperáveis nas páginas oficiais e no catálogo TheBiker.",
       "category": "comparativo",
       "freshness": "revalidate-24h",
-      "status": "blocked",
+      "status": "scheduled",
       "productIds": [
         "bicicleta-scott-scale-940-black",
         "bicicleta-scott-scale-980-black"
@@ -554,49 +554,141 @@
         "productId": "bicicleta-scott-scale-940-black"
       },
       "postPath": "_posts/drafts/2026-08-16-reserva-scale-940-980-comparativo.md",
-      "imageAssetIds": [],
-      "attempts": 1,
-      "lastAttemptAt": "2026-08-13T23:36:09.081Z",
+      "imageManifestPath": "assets/img/posts/reserva-scale-940-980-comparativo/image-manifest.json",
+      "imageStatus": "approved",
+      "imageAssetIds": [
+        "thebiker-bicicleta-scott-scale-940-black-bf34dbe9f9"
+      ],
+      "imageValidatedAt": "2026-08-14T00:02:50.727Z",
+      "attempts": 2,
+      "lastAttemptAt": "2026-08-14T00:02:50.727Z",
       "aiReview": {
-        "score": null,
-        "finalScore": null,
+        "score": 92,
+        "finalScore": 95,
         "finalBlockers": 0,
         "premiumEditUsed": false,
-        "providers": {},
-        "generatedAt": "2026-08-13T23:36:09.081Z",
-        "contentHash": "sha256:2e669554b19d745cdb00b4c563e0ac71f84a7a0b07e405b562035ee854439046",
+        "providers": {
+          "factSheet": "deepseek",
+          "draft": "gemini",
+          "critique": "deepseek",
+          "final": "deepseek",
+          "finalAudit": "deepseek",
+          "deterministicFallback": "grounded-deterministic"
+        },
+        "generatedAt": "2026-08-14T00:02:50.727Z",
+        "contentHash": "sha256:a4398a0dc8b6dced7fcb71b70b6147dd18c9478d8f46c50bc09c2181cbd3b669",
+        "sourceHash": "a04ca97266905c7dcf3010828dfd42af3db9264e51d5e915dd54534b7cca7bf0",
         "deterministicFullArticleFallbackUsed": true,
-        "deterministicFullArticleFallbackTrigger": "pipeline-failure"
+        "deterministicFullArticleFallbackTrigger": "repair-fallback"
       },
-      "failure": {
-        "code": "AI_REVIEW_REJECTED",
-        "retryable": false,
-        "stage": "finalization",
-        "message": "Recibo editorial exige nota final >= 90 e zero bloqueadores",
-        "recordedAt": "2026-08-13T23:46:14.538Z"
+      "editorialReceipt": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-editorial-2026-08-v2",
+        "origin": "pipeline",
+        "reviewedContentHash": "sha256:a4398a0dc8b6dced7fcb71b70b6147dd18c9478d8f46c50bc09c2181cbd3b669",
+        "scheduledContentHash": "sha256:99fdde5769b79aaf6b35138a8a18660ebb8f19ce1b7c96be54a87e6e6db62ab8",
+        "researchHash": "sha256:e3771f98eaa500c4154e65463b9211e44c02e939e9725912539de98711d0a8b2",
+        "sourceHash": "a04ca97266905c7dcf3010828dfd42af3db9264e51d5e915dd54534b7cca7bf0",
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "issuedAt": "2026-08-14T00:02:50.727Z"
       },
-      "blockReason": "Validação final: [AI_REVIEW_REJECTED] Recibo editorial exige nota final >= 90 e zero bloqueadores"
+      "visualDecision": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-visual-autonomy-v1",
+        "inputHash": "sha256:81b4bf09b62d5ea279dad0c1598d0eb8f7c77b71537c1281af262cdcfb4456af",
+        "mode": "exact-product",
+        "productId": "bicicleta-scott-scale-940-black",
+        "score": 100,
+        "hardGates": {
+          "semanticMatch": true,
+          "realAsset": true,
+          "explicitProduct": true,
+          "officialSource": true,
+          "approvedRights": true,
+          "publishableResolution": true,
+          "uniqueAsset": true
+        },
+        "blockers": [],
+        "issuedAt": "2026-08-14T00:02:50.727Z"
+      }
     },
     {
       "day": 10,
       "publishDate": "2026-08-17",
-      "id": "addict-rc-20-vs-pro",
-      "title": "Addict RC 20 ou RC Pro: onde estão as diferenças que importam na montagem",
-      "summary": "Comparação entre Ultegra e Dura-Ace Di2, rodas, cockpit, pneus, peso declarado e custo observado na TheBiker.",
+      "id": "reserva-addict-50-rc20-comparativo",
+      "title": "Scott Addict 50 e Addict RC 20: duas propostas de estrada confrontadas pelas fichas oficiais",
+      "summary": "Análise comparativa restrita a geometria, materiais e montagens comprovados nas fontes atuais dos dois modelos.",
       "category": "comparativo",
       "freshness": "revalidate-24h",
-      "status": "planned",
+      "status": "scheduled",
       "productIds": [
-        "bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9",
-        "bicicleta-scott-addict-rc-pro-di2-2026-pre-venda"
+        "bicicleta-scott-addict-50-2026-pre-venda-1bxzy",
+        "bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9"
       ],
       "heroImage": {
         "mode": "exact-product",
-        "productId": "bicicleta-scott-addict-rc-pro-di2-2026-pre-venda"
+        "productId": "bicicleta-scott-addict-50-2026-pre-venda-1bxzy"
       },
-      "imageAssetIds": [],
+      "postPath": "_posts/drafts/2026-08-17-reserva-addict-50-rc20-comparativo.md",
+      "imageAssetIds": [
+        "thebiker-bicicleta-scott-addict-50-2026-pre-venda-1bxzy-31835875d4"
+      ],
       "attempts": 1,
-      "lastAttemptAt": "2026-08-13T18:15:00.000Z"
+      "lastAttemptAt": "2026-08-14T00:02:50.727Z",
+      "aiReview": {
+        "score": 92,
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "premiumEditUsed": false,
+        "providers": {
+          "factSheet": "deepseek",
+          "draft": "deepseek",
+          "critique": "deepseek",
+          "final": "deepseek",
+          "finalAudit": "deepseek",
+          "deterministicFallback": "grounded-deterministic"
+        },
+        "generatedAt": "2026-08-14T00:02:50.727Z",
+        "contentHash": "sha256:fe3f4e2a122f7a2cf1887cb53c84ecb3f8c6d7b41408e8b36d1490f1df8ef8ac",
+        "sourceHash": "2b9a948c27b4b174e50aa1034bbc18ef6a9f5305abeb2629a12a7bf5c223bd6e",
+        "deterministicFullArticleFallbackUsed": true,
+        "deterministicFullArticleFallbackTrigger": "repair-fallback"
+      },
+      "visualDecision": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-visual-autonomy-v1",
+        "inputHash": "sha256:f6b28934dd598d3b5dc108d38c04e49b8f905a9171293ea69d7ec7e2fc712b00",
+        "mode": "exact-product",
+        "productId": "bicicleta-scott-addict-50-2026-pre-venda-1bxzy",
+        "score": 100,
+        "hardGates": {
+          "semanticMatch": true,
+          "realAsset": true,
+          "explicitProduct": true,
+          "officialSource": true,
+          "approvedRights": true,
+          "publishableResolution": true,
+          "uniqueAsset": true
+        },
+        "blockers": [],
+        "issuedAt": "2026-08-14T00:02:50.727Z"
+      },
+      "editorialReceipt": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-editorial-2026-08-v2",
+        "origin": "pipeline",
+        "reviewedContentHash": "sha256:fe3f4e2a122f7a2cf1887cb53c84ecb3f8c6d7b41408e8b36d1490f1df8ef8ac",
+        "scheduledContentHash": "sha256:338c4517133a3456f7b92a507525f98561dd42dc116c2b38665a711416989220",
+        "researchHash": "sha256:da412fb7e39e6013eeec3ef7047e6052f65030b1ee5f4e6940ff7007b9b2ce42",
+        "sourceHash": "2b9a948c27b4b174e50aa1034bbc18ef6a9f5305abeb2629a12a7bf5c223bd6e",
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "issuedAt": "2026-08-14T00:02:50.727Z"
+      },
+      "imageManifestPath": "assets/img/posts/reserva-addict-50-rc20-comparativo/image-manifest.json",
+      "imageStatus": "approved",
+      "imageValidatedAt": "2026-08-14T00:02:50.727Z"
     },
     {
       "day": 11,
@@ -606,7 +698,7 @@
       "summary": "Criar resposta técnica original para ciclista intermediário ou avançado, com método e limitações declarados. Sinal observado: 5.047 visualizações globais do vídeo; 2.517 por dia; encontrado em 1 busca(s) configurada(s) para o Brasil.",
       "category": "manutencao-ajustes",
       "freshness": "event-driven",
-      "status": "blocked",
+      "status": "planned",
       "productIds": [
         "selim-syncros-belcarra-v1-0-neo-carbon-cut-out-145mm"
       ],
@@ -616,16 +708,7 @@
         "relationship": "component-example",
         "rationale": "O selim Syncros real materializa um dos principais pontos de contato e ajuste tratados no conteúdo técnico de bike fit."
       },
-      "imageStatus": "blocked",
       "imageAssetIds": [],
-      "blockReason": "[RESEARCH_INSUFFICIENT] pesquisa sem contrato de evidência recuperada retrieved-excerpt-v1; pesquisa sem data de verificação ativa das fontes; fato 1 sem trecho literal verificável; fato 2 sem trecho literal verificável; fato 3 sem trecho literal verificável; fato 4 sem trecho literal verificável; fato 5 sem trecho literal verificável; fato 6 sem trecho literal verificável; fato 7 sem trecho literal verificável; fato 8 sem trecho literal verificável",
-      "failure": {
-        "code": "RESEARCH_INSUFFICIENT",
-        "retryable": true,
-        "stage": "source-verification-audit",
-        "message": "pesquisa sem contrato de evidência recuperada retrieved-excerpt-v1; pesquisa sem data de verificação ativa das fontes; fato 1 sem trecho literal verificável; fato 2 sem trecho literal verificável; fato 3 sem trecho literal verificável; fato 4 sem trecho literal verificável; fato 5 sem trecho literal verificável; fato 6 sem trecho literal verificável; fato 7 sem trecho literal verificável; fato 8 sem trecho literal verificável",
-        "recordedAt": "2026-08-13T18:15:00.000Z"
-      },
       "attempts": 1,
       "lastAttemptAt": "2026-08-13T18:15:00.000Z"
     },
@@ -1057,17 +1140,16 @@
       }
     },
     {
-      "id": "reserva-addict-50-rc20-comparativo",
-      "title": "Scott Addict 50 e Addict RC 20: duas propostas de estrada confrontadas pelas fichas oficiais",
-      "summary": "Análise comparativa restrita a geometria, materiais e montagens comprovados nas fontes atuais dos dois modelos.",
-      "category": "comparativo",
+      "id": "reserva-spark-rc-world-cup-ficha",
+      "title": "Scott Spark RC World Cup 2027: especificações confirmadas e limites da análise documental",
+      "summary": "Revisão documental que publica apenas características localizadas literalmente nas fontes oficiais recuperadas no dia.",
+      "category": "review",
       "productIds": [
-        "bicicleta-scott-addict-50-2026-pre-venda-1bxzy",
-        "bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9"
+        "bicicleta-scott-spark-rc-world-cup-20271"
       ],
       "heroImage": {
         "mode": "exact-product",
-        "productId": "bicicleta-scott-addict-50-2026-pre-venda-1bxzy"
+        "productId": "bicicleta-scott-spark-rc-world-cup-20271"
       }
     }
   ]

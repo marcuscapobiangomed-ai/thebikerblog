@@ -73,15 +73,15 @@
       "title": "Scott Scale 940 e 980: diferenças verificáveis de quadro, suspensão e componentes",
       "summary": "Comparação limitada às especificações atualmente recuperáveis nas páginas oficiais e no catálogo TheBiker.",
       "category": "comparativo",
-      "status": "blocked"
+      "status": "scheduled"
     },
     {
       "day": 10,
       "publishDate": "2026-08-17",
-      "title": "Addict RC 20 ou RC Pro: onde estão as diferenças que importam na montagem",
-      "summary": "Comparação entre Ultegra e Dura-Ace Di2, rodas, cockpit, pneus, peso declarado e custo observado na TheBiker.",
+      "title": "Scott Addict 50 e Addict RC 20: duas propostas de estrada confrontadas pelas fichas oficiais",
+      "summary": "Análise comparativa restrita a geometria, materiais e montagens comprovados nas fontes atuais dos dois modelos.",
       "category": "comparativo",
-      "status": "planned"
+      "status": "scheduled"
     },
     {
       "day": 11,
@@ -89,7 +89,7 @@
       "title": "Bike fit e posição: critérios técnicos para ajuste e distribuição de carga",
       "summary": "Criar resposta técnica original para ciclista intermediário ou avançado, com método e limitações declarados. Sinal observado: 5.047 visualizações globais do vídeo; 2.517 por dia; encontrado em 1 busca(s) configurada(s) para o Brasil.",
       "category": "manutencao-ajustes",
-      "status": "blocked"
+      "status": "planned"
     },
     {
       "day": 12,

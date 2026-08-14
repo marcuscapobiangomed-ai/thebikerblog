@@ -1105,6 +1105,44 @@
         "title": "Scott Spark RC Expert 2027: leitura técnica da montagem confirmada pelas fontes atuais"
       },
       "reason": "[RESEARCH_INSUFFICIENT] Rascunho bloqueado apÃ³s 2 reparos: Artigo bloqueado por integridade de claims: alegações numéricas ausentes dos fatos confirmados: 34mm, 27.2mm, 30mm, 40mm; inferencias tecnicas ausentes dos fatos confirmados: a distincao entre os layups hmf e hmx nao se limita a nomenclatura comercial: enquanto o hmf (high modulus fiber) utiliza uma combinacao de fibras de carbono de modulo intermediario para equilibrar rigidez e custo, o hmx (high modulus xtreme) incorpora fibras de modulo mais elevado em areas criticas do quadro, permitindo reduzir a espessura das paredes sem sacrificar a resistencia torsional. | essa diferenca de engenharia se traduz em "
+    },
+    {
+      "recordedAt": "2026-08-14T00:02:50.727Z",
+      "campaignId": "thebiker-rolling-2026-08-08",
+      "replacedItem": {
+        "day": 10,
+        "publishDate": "2026-08-17",
+        "id": "addict-rc-20-vs-pro",
+        "title": "Addict RC 20 ou RC Pro: onde estão as diferenças que importam na montagem",
+        "summary": "Comparação entre Ultegra e Dura-Ace Di2, rodas, cockpit, pneus, peso declarado e custo observado na TheBiker.",
+        "category": "comparativo",
+        "freshness": "revalidate-24h",
+        "status": "blocked",
+        "productIds": [
+          "bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9",
+          "bicicleta-scott-addict-rc-pro-di2-2026-pre-venda"
+        ],
+        "heroImage": {
+          "mode": "exact-product",
+          "productId": "bicicleta-scott-addict-rc-pro-di2-2026-pre-venda"
+        },
+        "imageAssetIds": [],
+        "blockReason": "[IMAGE_NOT_PUBLISHABLE] Rascunho bloqueado apÃ³s 2 reparos: Artigo inválido:\nimagePlan.1.allowedSource: Invalid option: expected one of \"manufacturer-authorized\"|\"own-photo\"|\"ai-generated\"|\"public-domain\"",
+        "failure": {
+          "code": "IMAGE_NOT_PUBLISHABLE",
+          "retryable": false,
+          "stage": "production",
+          "message": "Rascunho bloqueado apÃ³s 2 reparos: Artigo inválido:\nimagePlan.1.allowedSource: Invalid option: expected one of \"manufacturer-authorized\"|\"own-photo\"|\"ai-generated\"|\"public-domain\"",
+          "recordedAt": "2026-08-14T00:02:50.727Z"
+        },
+        "attempts": 2,
+        "lastAttemptAt": "2026-08-14T00:02:50.727Z"
+      },
+      "replacement": {
+        "id": "reserva-addict-50-rc20-comparativo",
+        "title": "Scott Addict 50 e Addict RC 20: duas propostas de estrada confrontadas pelas fichas oficiais"
+      },
+      "reason": "[IMAGE_NOT_PUBLISHABLE] Rascunho bloqueado apÃ³s 2 reparos: Artigo inválido:\nimagePlan.1.allowedSource: Invalid option: expected one of \"manufacturer-authorized\"|\"own-photo\"|\"ai-generated\"|\"public-domain\""
     }
   ]
 }

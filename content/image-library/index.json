@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-08-13T23:36:10.735Z",
+  "updatedAt": "2026-08-14T00:15:12.727Z",
   "assets": [
     {
       "assetId": "thebiker-scott-addict-rc-pro-hmx-frame-set-def10da96a",
@@ -254,6 +254,40 @@
           "postId": "reserva-spark-rc-expert-ficha",
           "position": "hero",
           "usedAt": "2026-08-13T12:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "assetId": "thebiker-bicicleta-scott-scale-940-black-bf34dbe9f9",
+      "sha256": "bf34dbe9f9f9f7756f1e122a39ee9194dc63f217a91d473fed9d75c540887cf6",
+      "perceptualHash": "1111111111111111110100110000000000000000000110001111111111111111",
+      "sourcePageUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-scale-940-black/",
+      "sourceFileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/scale-940-2023-tbkr1-b34ba1914f53fbad3716736160099253-1024-1024.webp",
+      "productId": "bicicleta-scott-scale-940-black",
+      "productName": "Bicicleta Scott Scale 940 - Black",
+      "rightsPolicyId": "thebiker-official-editorial-v1",
+      "uses": [
+        {
+          "postId": "reserva-scale-940-980-comparativo",
+          "position": "hero",
+          "usedAt": "2026-08-14T12:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "assetId": "thebiker-bicicleta-scott-addict-50-2026-pre-venda-1bxzy-31835875d4",
+      "sha256": "31835875d40446c326d3c06589a93b6b10cb6c0907918d789e3d73099c36e968",
+      "perceptualHash": "0000000000000000001001101111111011111111111101110000000000000000",
+      "sourcePageUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-addict-50-2026-pre-venda-1bxzy/",
+      "sourceFileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/4253583649_2223060_4-8e571238ef09e63a1217761938113607-1024-1024.webp",
+      "productId": "bicicleta-scott-addict-50-2026-pre-venda-1bxzy",
+      "productName": "Bicicleta Scott Addict 50 2026 - Pré Venda",
+      "rightsPolicyId": "thebiker-official-editorial-v1",
+      "uses": [
+        {
+          "postId": "reserva-addict-50-rc20-comparativo",
+          "position": "hero",
+          "usedAt": "2026-08-14T12:00:00.000Z"
         }
       ]
     }

@@ -1,10 +1,10 @@
 ---
-image_subject_id: "bicicleta-scott-scale-940-black"
+image_subject_id: "bicicleta-scott-addict-50-2026-pre-venda-1bxzy"
 layout: post
 published: false
-title: "Scott Scale 940 e 980: diferenças verificáveis de quadro, suspensão e componentes"
-slug: "scott-scale-940-e-980-diferencas-verificaveis-de-quadro-suspensao-e-componentes"
-date: 2026-08-16
+title: "Scott Addict 50 e Addict RC 20: duas propostas de estrada confrontadas pelas fichas oficiais"
+slug: "scott-addict-50-e-addict-rc-20-duas-propostas-de-estrada-confrontadas-pelas-fichas-oficiais"
+date: 2026-08-17
 last_modified_at: 2026-08-14
 author: "Equipe TheBiker"
 reviewed_by: "TheBiker AI Editorial Gate"
@@ -28,21 +28,21 @@ price_currency: "BRL"
 price_checked_at: "2026-08-14"
 category: "comparativos"
 tags: ["ciclismo", "dados", "ficha-tecnica"]
-description: "Leitura documental de Scott Scale 940 e 980: diferenças verificáveis de quadro, suspensão e componentes, organizada por registros oficiais, limites e lacunas que precisam permanecer visiveis."
+description: "Leitura documental de Scott Addict 50 e Addict RC 20: duas propostas de estrada confrontadas pelas fichas oficiais, organizada por registros oficiais, limites e lacunas que precisam permanecer"
 direct_answer: "Use esta ficha como roteiro documental: confronte cada dado com a fonte oficial, registre lacunas e nao trate a leitura como teste presencial ou promessa de desempenho."
 faq:
   - question: "Como usar esta ficha técnica sem extrapolar os dados?"
     answer: "Leia cada registro junto da fonte oficial, confirme a identificação do item e mantenha como lacuna tudo o que não estiver explicitamente documentado."
   - question: "A leitura documental substitui um teste presencial?"
     answer: "Não. O artigo organiza dados rastreáveis e limites de consulta; a decisão final deve considerar a documentação específica e a avaliação apropriada."
-image: "/assets/img/posts/reserva-scale-940-980-comparativo/hero-1600.webp"
-image_mobile: "/assets/img/posts/reserva-scale-940-980-comparativo/hero-800.webp"
-thumbnail: "/assets/img/posts/reserva-scale-940-980-comparativo/card-640.webp"
+image: "/assets/img/posts/reserva-addict-50-rc20-comparativo/hero-1600.webp"
+image_mobile: "/assets/img/posts/reserva-addict-50-rc20-comparativo/hero-800.webp"
+thumbnail: "/assets/img/posts/reserva-addict-50-rc20-comparativo/card-640.webp"
 image_manifest_version: 2
 image_asset_type: "official-product-photo"
 image_status: "approved"
-image_alt: "Bicicleta Scott Scale 940 - Black em fotografia oficial de TheBiker Shop"
-image_caption: "Bicicleta Scott Scale 940 - Black, em fotografia oficial de TheBiker Shop."
+image_alt: "Bicicleta Scott Addict 50 2026 - Pré Venda em fotografia oficial de TheBiker Shop"
+image_caption: "Bicicleta Scott Addict 50 2026 - Pré Venda, em fotografia oficial de TheBiker Shop."
 image_credit: "TheBiker Shop"
 image_license: "Uso editorial no blog oficial TheBiker"
 affiliate_links: false
@@ -54,24 +54,28 @@ portfolio_verified_at: "2026-08-14"
 editorial_status: "reviewed"
 status: "scheduled"
 sources:
-  - name: "TheBiker — Bicicleta Scott Scale 940 - Black"
+  - name: "TheBiker — Bicicleta Scott Addict 50 2026 - Pré Venda"
     type: "store"
-    url: "https://thebikershop.com.br/produtos/bicicleta-scott-scale-940-black/"
+    url: "https://thebikershop.com.br/produtos/bicicleta-scott-addict-50-2026-pre-venda-1bxzy/"
     accessed_at: "2026-08-04"
   - name: "Scott — página oficial do modelo"
     type: "manufacturer"
-    url: "https://www.scott-sports.com/global/en/product/scott-scale-940-bike"
+    url: "https://www.scott-sports.com/global/en/product/scott-addict-50-bike"
     accessed_at: "2026-08-04"
-  - name: "TheBiker — Bicicleta Scott Scale 980 Black"
+  - name: "TheBiker — Bicicleta Scott Addict RC 20 Di2 2026 - Pré Venda"
     type: "store"
-    url: "https://thebikershop.com.br/produtos/bicicleta-scott-scale-980-black/"
+    url: "https://thebikershop.com.br/produtos/bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9/"
+    accessed_at: "2026-08-04"
+  - name: "Scott — página oficial do modelo"
+    type: "manufacturer"
+    url: "https://www.scott-sports.com/global/en/product/scott-addict-rc-20-bike"
     accessed_at: "2026-08-04"
 ---
 Como este artigo foi produzido: leitura documental de fontes oficiais e registros rastreáveis. A equipe não realizou teste presencial.
 
 ## Escopo e identificacao dos modelos
 
-Este comparativo parte de duas identificacoes documentais: <a href="https://thebikershop.com.br/produtos/bicicleta-scott-scale-940-black/" class="thebiker-product-link" target="_blank" rel="noopener">Bicicleta Scott Scale 940 - Black</a> e <a href="https://thebikershop.com.br/produtos/bicicleta-scott-scale-980-black/" class="thebiker-product-link" target="_blank" rel="noopener">Bicicleta Scott Scale 980 Black</a>. A pesquisa nao trata a leitura como teste de campo; cada afirmacao permanece ligada ao registro recuperado e ao limite declarado pela fonte.
+Este comparativo parte de duas identificacoes documentais: <a href="https://thebikershop.com.br/produtos/bicicleta-scott-addict-50-2026-pre-venda-flame-orange/" class="thebiker-product-link" target="_blank" rel="noopener">Bicicleta Scott Addict 50 2026 - Pré Venda</a> e <a href="https://thebikershop.com.br/produtos/bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9/" class="thebiker-product-link" target="_blank" rel="noopener">Bicicleta Scott Addict RC 20 Di2 2026 - Pré Venda</a>. A pesquisa nao trata a leitura como teste de campo; cada afirmacao permanece ligada ao registro recuperado e ao limite declarado pela fonte.
 
 Comece pela pagina oficial de cada modelo e registre o nome exatamente como aparece. Em seguida, anote qual fonte corresponde a cada conjunto, para que uma especificacao nao seja transferida de um item para outro.
 
@@ -87,7 +91,7 @@ A regra vale tambem para uma nova versao.
 
 ## Como separar as fichas consultadas
 
-A primeira ficha nomeia Bicicleta Scott Scale 940 - Black; a segunda registra Bicicleta Scott Scale 980 Black. Essa separacao e importante porque nomes comerciais parecidos podem reunir montagens diferentes, e o artigo so usa a descricao associada a cada fonte.
+A primeira ficha nomeia <a href="https://thebikershop.com.br/produtos/bicicleta-scott-addict-50-2026-pre-venda-1bxzy/" class="thebiker-product-link" target="_blank" rel="noopener">Bicicleta Scott Addict 50 2026 - Pré Venda</a>; a segunda registra Bicicleta Scott Addict RC 20 Di2 2026 - Pré Venda. Essa separacao e importante porque nomes comerciais parecidos podem reunir montagens diferentes, e o artigo so usa a descricao associada a cada fonte.
 
 Abra o registro de identidade, confira modelo, cor e codigo quando houver, e copie a grafia para a planilha de consulta. Marque como pendente qualquer campo que apareca somente em uma das paginas.
 
@@ -103,7 +107,7 @@ O registro fica pronto para a proxima checagem.
 
 ## Quadro e geometria registrados
 
-No quadro e na geometria, a evidencia localizada registra: Scale Alloy 6061 Custom Butted Tubing. O comparativo apresenta esse campo como dado de especificacao, sem converter material ou nome de tubo em promessa de resposta observada.
+No quadro e na geometria, a evidencia localizada registra: Addict HMF Carbon. O comparativo apresenta esse campo como dado de especificacao, sem converter material ou nome de tubo em promessa de resposta observada.
 
 Leia a linha completa da ficha, incluindo qualificadores como material, serie, tecnologia ou padrao de montagem. Registre a frase inteira antes de resumir, pois o qualificativo pode ser parte da identificacao do quadro.
 
@@ -119,7 +123,7 @@ A frase completa conserva o contexto original.
 
 ## Suspensao e campos de ajuste
 
-A parte de suspensao aparece na fonte como RockShox Judy Silver TK Coil. A frase e mantida em seu contexto para diferenciar modelo, curso, sistema e componente, sem inferir sensacoes ou desempenho a partir de uma unica linha.
+A parte de suspensao aparece na fonte como Addict HMF Flatmount Disc. A frase e mantida em seu contexto para diferenciar modelo, curso, sistema e componente, sem inferir sensacoes ou desempenho a partir de uma unica linha.
 
 Separe garfo, amortecedor, curso, trava e ajuste em linhas distintas quando esses campos existirem. Depois, associe cada linha ao modelo correto e preserve a unidade exatamente como foi publicada.
 
@@ -135,7 +139,7 @@ O manual continua sendo a referencia do conjunto.
 
 ## Transmissao descrita nas fontes
 
-Na transmissao, a base recuperada e: Shimano Deore RD-M6100 SGS. O dado entra na comparacao como identificacao de montagem e nao como classificacao automatica de troca, durabilidade ou faixa de uso.
+Na transmissao, a base recuperada e: Shimano 105. O dado entra na comparacao como identificacao de montagem e nao como classificacao automatica de troca, durabilidade ou faixa de uso.
 
 Confira cambio, <a href="https://thebikershop.com.br/componentes/cassetes/" class="thebiker-product-link" target="_blank" rel="noopener">cassete</a>, <a href="https://thebikershop.com.br/componentes/pedivela/" class="thebiker-product-link" target="_blank" rel="noopener">pedivela</a>, <a href="https://thebikershop.com.br/componentes/corrente/" class="thebiker-product-link" target="_blank" rel="noopener">corrente</a> e quantidade de velocidades em campos separados. Para cada componente, mantenha a fonte e a data de acesso ao lado do valor, mesmo quando a pagina de loja resuma a montagem.
 
@@ -151,7 +155,7 @@ A fonte comercial nao substitui a fonte tecnica.
 
 ## Freios, rodas e pneus
 
-Freios, rodas e <a href="https://thebikershop.com.br/componentes/pneus-para-ciclismo/" class="thebiker-product-link" target="_blank" rel="noopener">pneus</a> aparecem nos registros como Shimano MT200 Disc Brake. O texto organiza esses dados para leitura lado a lado, sem usar o nome do componente como atalho para potencia, aderencia ou seguranca.
+Freios, rodas e <a href="https://thebikershop.com.br/componentes/pneus-para-ciclismo/" class="thebiker-product-link" target="_blank" rel="noopener">pneus</a> aparecem nos registros como Shimano BR-R7170. O texto organiza esses dados para leitura lado a lado, sem usar o nome do componente como atalho para potencia, aderencia ou seguranca.
 
 Anote tipo de freio, rotor, aro, medida e carcaca apenas quando cada item estiver explicito. A unidade e o sufixo fazem parte do dado e nao devem ser removidos durante a transcricao.
 
@@ -167,7 +171,7 @@ A unidade acompanha o valor em qualquer revisao.
 
 ## Campos comuns e campos exclusivos
 
-Alguns campos se repetem entre os produtos; outros aparecem somente uma vez. O registro de referencia para esta leitura e Bicicleta Scott Scale 940 - Black, e ele serve para demonstrar como o artigo distingue dado comum de campo exclusivo.
+Alguns campos se repetem entre os produtos; outros aparecem somente uma vez. O registro de referencia para esta leitura e <a href="https://thebikershop.com.br/produtos/bicicleta-scott-addict-50-2026-pre-venda-cumulus-white/" class="thebiker-product-link" target="_blank" rel="noopener">Bicicleta Scott Addict 50 2026 - Pré Venda</a>, e ele serve para demonstrar como o artigo distingue dado comum de campo exclusivo.
 
 Crie duas listas: caracteristicas presentes nos dois registros e caracteristicas localizadas em apenas um. Inclua tamanho, cor, padrao e codigo quando estiverem escritos na fonte, sem harmonizar grafias diferentes.
 
@@ -183,7 +187,7 @@ A leitura final deve manter essa separacao.
 
 ## Diferencas que podem ser auditadas
 
-As diferencas confirmadas sao apresentadas por campo, nao por adjetivo. Neste conjunto, a pesquisa tambem registra https://thebikershop.com.br/produtos/bicicleta-scott-scale-940-black/, enquanto os demais pontos dependem das linhas tecnicas ja descritas nas secoes anteriores.
+As diferencas confirmadas sao apresentadas por campo, nao por adjetivo. Neste conjunto, a pesquisa tambem registra https://thebikershop.com.br/produtos/bicicleta-scott-addict-50-2026-pre-venda-1bxzy/, enquanto os demais pontos dependem das linhas tecnicas ja descritas nas secoes anteriores.
 
 Ao redigir a tabela final, use uma coluna para cada modelo e uma coluna de fonte. Escreva "nao localizado" quando o dado nao aparecer; essa expressao e mais fiel do que estimar ou importar uma especificacao vizinha.
 
@@ -231,7 +235,8 @@ O historico ajuda a explicar futuras alteracoes.
 
 ## De onde vêm os dados desta análise
 
-- **TheBiker — Bicicleta Scott Scale 940 - Black** (store) — https://thebikershop.com.br/produtos/bicicleta-scott-scale-940-black/ — acessado em 2026-08-04
-- **Scott — página oficial do modelo** (manufacturer) — https://www.scott-sports.com/global/en/product/scott-scale-940-bike — acessado em 2026-08-04
-- **TheBiker — Bicicleta Scott Scale 980 Black** (store) — https://thebikershop.com.br/produtos/bicicleta-scott-scale-980-black/ — acessado em 2026-08-04
+- **TheBiker — Bicicleta Scott Addict 50 2026 - Pré Venda** (store) — https://thebikershop.com.br/produtos/bicicleta-scott-addict-50-2026-pre-venda-1bxzy/ — acessado em 2026-08-04
+- **Scott — página oficial do modelo** (manufacturer) — https://www.scott-sports.com/global/en/product/scott-addict-50-bike — acessado em 2026-08-04
+- **TheBiker — Bicicleta Scott Addict RC 20 Di2 2026 - Pré Venda** (store) — https://thebikershop.com.br/produtos/bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9/ — acessado em 2026-08-04
+- **Scott — página oficial do modelo** (manufacturer) — https://www.scott-sports.com/global/en/product/scott-addict-rc-20-bike — acessado em 2026-08-04
 
