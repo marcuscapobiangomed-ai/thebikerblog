@@ -15,6 +15,7 @@ import { selectImageCandidate } from "./src/images/select-image.js";
 import { imageArticleConsistencyErrors } from "./src/validation/image-article-consistency.js";
 import { issueVisualDecision, visualDecisionErrors } from "./src/validation/visual-decision.js";
 import { alignCampaignVisual, alignRealContextVisual } from "./src/images/align-campaign-visual.js";
+import { productImageCandidates } from "./src/images/official-campaign-image.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const catalog = { products: [{
@@ -44,6 +45,26 @@ assert.equal(selectImageCandidate({
   summary: "A seleção precisa falhar fechada quando o produto solicitado não existe.",
   productIds: ["nao-existe"],
 }, catalog, { assets: [] }), null);
+const configuredManufacturerCandidates = await productImageCandidates({
+  id: "bicicleta-scott-scale-940-black",
+  brand: "Scott",
+  productUrl: "https://thebikershop.com.br/produtos/bicicleta-scott-scale-940-black/",
+  images: [],
+}, {
+  allowedPageHosts: ["thebikershop.com.br"],
+  officialProductImages: {
+    "bicicleta-scott-scale-940-black": {
+      officialPageUrl: "https://www.scott-sports.com/global/en/product/scott-scale-940-bike",
+      images: ["https://static.scott-sports.com/image/upload/v1779976552/2217844.png"],
+    },
+  },
+}, async () => { throw new Error("a página da loja não deve ser necessária quando há imagem oficial configurada"); });
+assert.deepEqual(configuredManufacturerCandidates[0], {
+  url: "https://static.scott-sports.com/image/upload/v1779976552/2217844.png",
+  sourceType: "manufacturer",
+  sourceName: "Scott",
+  sourcePageUrl: "https://www.scott-sports.com/global/en/product/scott-scale-940-bike",
+});
 
 const shimanoArticle = {
   slug: "cambio-eletronico-ajuste-diagnostico",

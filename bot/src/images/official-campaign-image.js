@@ -40,8 +40,12 @@ export async function productImageCandidates(product, config, fetchImpl) {
   if (!config.allowedPageHosts.some((host) => page.hostname === host || page.hostname.endsWith(`.${host}`))) {
     throw new Error(`Página de produto fora da allowlist: ${page.hostname}`);
   }
+  const configuredOfficial = config.officialProductImages?.[product.id] || null;
+  const officialImages = configuredOfficial?.images?.length
+    ? configuredOfficial.images
+    : product.officialImages || [];
   let gallery = [];
-  if (!(product.officialImages || []).length) {
+  if (officialImages.length === 0) {
     const response = await fetchImpl(page, { headers: { "user-agent": "TheBikerBlogMediaBot/1.0" }, signal: AbortSignal.timeout(20000) });
     if (!response.ok) throw new Error(`Página do produto: HTTP ${response.status}`);
     gallery = galleryUrls(await response.text());
@@ -50,11 +54,11 @@ export async function productImageCandidates(product, config, fetchImpl) {
     const largest = preferLargestStoreImage(url);
     return largest === url ? [url] : [largest, url];
   });
-  const manufacturer = (product.officialImages || []).map((url) => ({
+  const manufacturer = officialImages.map((url) => ({
     url,
     sourceType: "manufacturer",
     sourceName: product.brand,
-    sourcePageUrl: product.officialPageUrl,
+    sourcePageUrl: configuredOfficial?.officialPageUrl || product.officialPageUrl,
   }));
   const store = [...new Set([...withLargestFirst(gallery), ...withLargestFirst(product.images)])].map((url) => ({
     url,
