@@ -72,12 +72,22 @@ export async function produceCampaignVisual({ root, item, approvedAt, force = fa
   if (!["exact-product", "real-context"].includes(visualPolicy.mode)) {
     throw new Error(`Politica visual ${visualPolicy.mode}: agendamento exige fotografia real explicitamente vinculada`);
   }
-  return produceOfficialCampaignImage({
+  const productIds = visualPolicy.mode === "real-context"
+    ? [...new Set([visualPolicy.productId, ...(item.productIds || [])])]
+    : [visualPolicy.productId];
+  const cover = await produceOfficialCampaignImage({
     root,
-    item: { ...item, productIds: [visualPolicy.productId] },
+    item: { ...item, productIds },
     approvedAt,
     force,
   });
+  // A category-example image may use another real product when the preferred
+  // asset is already consumed. Keep the policy and audit trail aligned with
+  // the product that actually passed the image gates.
+  if (visualPolicy.mode === "real-context" && cover.manifest.matchedProduct?.id) {
+    item.heroImage = { ...visualPolicy, productId: cover.manifest.matchedProduct.id };
+  }
+  return cover;
 }
 
 async function finalizeInWorkspace({ root, now, imageProducer }) {

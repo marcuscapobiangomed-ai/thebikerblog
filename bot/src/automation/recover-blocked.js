@@ -14,6 +14,9 @@ const MISSING_DRAFT = /rascunho indisponível/i
 const REJECTED_FULL_ARTICLE = /Rascunho bloqueado|Gates editoriais n[aã]o atendidos/i
 
 const MISCLASSIFIED_RESEARCH_FALLBACK = /fallback interno bloqueado|nenhuma fonte oficial permitida/i
+// Retrying a duplicate, unavailable, or undersized visual cannot change the
+// outcome. Add alternate real products before finalization is attempted again.
+const IMAGE_ALTERNATIVE_REQUIRED = /imagem duplicada|HTTP \d{3}|insuficiente|Galeria oficial sem imagem/i
 
 const REAL_CONTEXT_BY_RESERVE_ID = Object.freeze({
   'reserva-diagnostico-ruidos-bike': 'bicicleta-scott-scale-940-black',
@@ -103,6 +106,20 @@ function nextReserve(campaign, blocked) {
   return available.find((item) => item.category !== 'competicoes' && (item.productIds?.length > 0 || realContextPolicy(item)?.productId)) || null
 }
 
+function appendAlternativeVisualProducts(campaign, item) {
+  const current = new Set(item.productIds || [])
+  const candidates = [...RECOVERY_RESERVES, ...campaign.reserves]
+    .flatMap((reserve) => reserve.productIds?.length
+      ? reserve.productIds
+      : realContextPolicy(reserve)?.productId
+        ? [realContextPolicy(reserve).productId]
+        : [])
+  const productIds = [...new Set([...current, ...candidates])]
+  if (productIds.length === current.size) return false
+  item.productIds = productIds
+  return true
+}
+
 export function recoverBlockedCampaign(campaignInput, {
   now = new Date(),
   maximumTransientAttempts = 2,
@@ -166,6 +183,20 @@ export function recoverBlockedCampaign(campaignInput, {
     return {
       campaign: CampaignSchema.parse(campaign),
       result: { status: 'retry-deterministic-fallback-review', itemId: blocked.id, attempts: blocked.attempts || 0 },
+      exception: null,
+    }
+  }
+  if (FINALIZATION.test(reason)
+      && classified.code === 'IMAGE_NOT_PUBLISHABLE'
+      && blocked.heroImage?.mode === 'real-context'
+      && IMAGE_ALTERNATIVE_REQUIRED.test(reason)
+      && appendAlternativeVisualProducts(campaign, blocked)) {
+    blocked.status = 'validation'
+    delete blocked.blockReason
+    delete blocked.failure
+    return {
+      campaign: CampaignSchema.parse(campaign),
+      result: { status: 'retry-finalization-alternative-visual', itemId: blocked.id, productIds: blocked.productIds },
       exception: null,
     }
   }
