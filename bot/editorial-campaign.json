@@ -776,17 +776,37 @@
         "mode": "exact-product",
         "productId": "bicicleta-scott-scale-940-black"
       },
+      "postPath": "_posts/drafts/2026-08-19-reserva-scale-940-ficha.md",
       "imageAssetIds": [],
-      "blockReason": "[VALIDATION_FAILED] Etapa final-audit falhou. deepseek: deepseek API: 402 - {\"error\":{\"message\":\"Insufficient Balance\",\"type\":\"unknown_error\",\"param\":null,\"code\":\"invalid_request_error\"}} | groq: groq API: 413 - {\"error\":{\"message\":\"Request too large for model `openai/gpt-oss-120b` in organization `org_01kj0m4aqqe21tf6c9pkbsvea0` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Requested 8890, please reduce your message size and try again. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}\n",
-      "failure": {
-        "code": "VALIDATION_FAILED",
-        "retryable": false,
-        "stage": "production",
-        "message": "Etapa final-audit falhou. deepseek: deepseek API: 402 - {\"error\":{\"message\":\"Insufficient Balance\",\"type\":\"unknown_error\",\"param\":null,\"code\":\"invalid_request_error\"}} | groq: groq API: 413 - {\"error\":{\"message\":\"Request too large for model `openai/gpt-oss-120b` in organization `org_01kj0m4aqqe21tf6c9pkbsvea0` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Requested 8890, please reduce your message size and try again. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}\n",
-        "recordedAt": "2026-08-14T00:45:57.301Z"
+      "attempts": 2,
+      "lastAttemptAt": "2026-08-14T01:04:09.766Z",
+      "aiReview": {
+        "score": 92,
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "premiumEditUsed": false,
+        "providers": {
+          "factSheet": "groq",
+          "draft": "gemini",
+          "critique": "gemini",
+          "final": "gemini",
+          "finalAudit": "groq",
+          "deterministicFallback": "grounded-deterministic"
+        },
+        "generatedAt": "2026-08-14T01:04:09.766Z",
+        "contentHash": "sha256:a76b7f6d58383fd0e327a80d3bdaf7a486d7369d4c1771423da119440858b25a",
+        "sourceHash": "1420d0717fbe9e521e40d23e55dd397ab19931ed8058d5229f5f861f66d9c0cf",
+        "deterministicFullArticleFallbackUsed": true,
+        "deterministicFullArticleFallbackTrigger": "repair-fallback"
       },
-      "attempts": 1,
-      "lastAttemptAt": "2026-08-14T00:45:57.301Z"
+      "failure": {
+        "code": "IMAGE_NOT_PUBLISHABLE",
+        "retryable": false,
+        "stage": "finalization",
+        "message": "Galeria oficial sem imagem inédita válida: Imagem duplicada: thebiker-bicicleta-scott-scale-940-black-bf34dbe9f9 | resolução insuficiente para o padrão editorial: 521x569 | resolução insuficiente para o padrão editorial: 506x565 | Download da imagem: HTTP 403",
+        "recordedAt": "2026-08-14T01:04:09.766Z"
+      },
+      "blockReason": "Validação final: [IMAGE_NOT_PUBLISHABLE] Galeria oficial sem imagem inédita válida: Imagem duplicada: thebiker-bicicleta-scott-scale-940-black-bf34dbe9f9 | resolução insuficiente para o padrão editorial: 521x569 | resolução insuficiente para o padrão editorial: 506x565 | Download da imagem: HTTP 403"
     },
     {
       "day": 13,
@@ -925,8 +945,7 @@
         "mode": "conceptual"
       },
       "imageAssetIds": [],
-      "attempts": 1,
-      "lastAttemptAt": "2026-08-14T00:45:57.301Z",
+      "blockReason": "[RESEARCH_INSUFFICIENT] Pesquisa bloqueada por integridade de fontes: pesquisa concluída sem fontes rastreáveis; pesquisa sem fatos explicitamente fundamentados",
       "failure": {
         "code": "RESEARCH_INSUFFICIENT",
         "retryable": false,
@@ -934,7 +953,8 @@
         "message": "Pesquisa bloqueada por integridade de fontes: pesquisa concluída sem fontes rastreáveis; pesquisa sem fatos explicitamente fundamentados",
         "recordedAt": "2026-08-14T00:45:57.301Z"
       },
-      "blockReason": "[RESEARCH_INSUFFICIENT] Pesquisa bloqueada por integridade de fontes: pesquisa concluída sem fontes rastreáveis; pesquisa sem fatos explicitamente fundamentados"
+      "attempts": 1,
+      "lastAttemptAt": "2026-08-14T00:45:57.301Z"
     },
     {
       "day": 18,
