@@ -20,6 +20,11 @@ assert.match(buildSystemPrompt(), /imbatível/);
 
 assert.equal(classifyEditorialFailure("Gate Markdown: linguagem publicitária proibida: imbatível").code, EditorialFailureCode.POLICY_MARKETING_LANGUAGE);
 assert.equal(classifyEditorialFailure("provider timeout").retryable, true);
+assert.equal(
+  classifyEditorialFailure("Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq 429)").code,
+  EditorialFailureCode.RESEARCH_INSUFFICIENT,
+  "indisponibilidade de pesquisa nao pode ser classificada como falha visual",
+);
 assert.equal(classifyEditorialFailure("Integridade editorial divergente").retryable, false);
 
 const content = `---
