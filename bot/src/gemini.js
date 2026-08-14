@@ -622,6 +622,23 @@ export class AIProvider {
       };
     };
 
+    // A verified offline research cache is already a complete editorial
+    // contract. When the workflow explicitly enables cache-first mode, use
+    // the same gated deterministic article immediately instead of waiting for
+    // every exhausted provider/retry timeout. Live research never enters this
+    // branch because its grounding fallback is different.
+    const deterministicCacheFirst = DETERMINISTIC_CACHE_FALLBACKS.has(researchData?.grounding?.fallback)
+      && String(process.env.AI_DETERMINISTIC_CACHE_FIRST || "false").toLowerCase() === "true";
+    if (deterministicCacheFirst) {
+      try {
+        const fallback = buildDeterministicFallback({}, "cache-first");
+        if (fallback) return fallback;
+      } catch {
+        // If the cache itself fails a gate, continue through the normal
+        // provider pipeline so the item can still be diagnosed/recovered.
+      }
+    }
+
     try {
       if (process.env.AI_PIPELINE_MODE === "legacy") {
         rawText = await this.generate(AIProvider.systemPrompt(), userPrompt, {

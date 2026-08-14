@@ -17,14 +17,18 @@ assert.ok(baselineIndex >= 0 && baselineIndex < mutationIndex);
 assert.match(publication, /git add .*_data\/catalog-public\.json/);
 assert.match(publication, /git add .*_data\/products\/bikes/);
 assert.match(publication, /git add .*api\/products\.json/);
+assert.match(publication, /git add .*content\/product-discovery\/thebiker-media-catalog\.json/);
+assert.match(publication, /git pull --rebase --autostash origin main/);
 assert.match(publication, /permissions:[\s\S]*actions: write/);
 assert.equal((publication.match(/gh workflow run deploy\.yml/g) || []).length, 1);
 assert.match(publication, /if: \$\{\{ steps\.publication\.outputs\.status == 'published' \}\}[\s\S]*gh workflow run deploy\.yml/);
 assert.match(publication, /Garantir artigo aprovado para hoje antes da promo\u00e7\u00e3o[\s\S]*campaign:replenish[\s\S]*required-date/);
 assert.match(publication, /CAMPAIGN_CURATED_OFFLINE_FALLBACK: "true"[\s\S]*AI_DETERMINISTIC_CURATED_FALLBACK: "true"/);
+assert.match(publication, /AI_DETERMINISTIC_CACHE_FIRST: "true"/);
 
 const editorial = read("cron-post.yml");
 assert.match(editorial, /CAMPAIGN_RESEARCH_MAX_ATTEMPTS: "2"/);
+assert.match(editorial, /AI_DETERMINISTIC_CACHE_FIRST: "true"/);
 assert.equal((editorial.match(/npm run catalog:revalidate/g) || []).length, 2);
 assert.ok((editorial.match(/npm run validate:ci/g) || []).length >= 2);
 assert.ok(editorial.indexOf("npm run validate:ci", editorial.indexOf("generate-draft:")) < editorial.indexOf("npm run campaign:produce"));
@@ -42,12 +46,14 @@ assert.match(replenisher, /campaign:replenish[\s\S]*target-buffer=.*max-attempts
 assert.match(replenisher, /CAMPAIGN_RESEARCH_MAX_ATTEMPTS: "2"/);
 assert.match(replenisher, /CAMPAIGN_CURATED_OFFLINE_FALLBACK: "true"/);
 assert.match(replenisher, /CAMPAIGN_CURATED_OFFLINE_FALLBACK: "true"[\s\S]*AI_DETERMINISTIC_CURATED_FALLBACK: "true"/);
+assert.match(replenisher, /AI_DETERMINISTIC_CACHE_FIRST: "true"/);
 assert.match(replenisher, /group: thebiker-editorial-write/);
 assert.match(replenisher, /git add _data\/products\/bikes/);
 assert.match(replenisher, /persist_status=1[\s\S]*if git pull --rebase --autostash origin main && git push[\s\S]*Falha ao persistir/);
 assert.match(replenisher, /id: validation[\s\S]*Validação\/persistência: \$\{\{ steps\.validation\.outcome \}\}/i);
 
 assert.match(editorial, /git add _data\/products\/bikes/);
+assert.match(editorial, /git add _data\/products\/bikes[^\n]*content\/product-discovery\/thebiker-media-catalog\.json/);
 
 assert.match(read("deploy.yml"), /Run publication gates[\s\S]*npm run validate:ci/);
 assert.match(read("pr-validate.yml"), /Preparar artefatos derivados temporais[\s\S]*npm run prepare:derived/);

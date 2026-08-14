@@ -56,6 +56,7 @@ jobs:
           CAMPAIGN_RESEARCH_MAX_ATTEMPTS: "2"
           CAMPAIGN_CURATED_OFFLINE_FALLBACK: "true"
           AI_DETERMINISTIC_CURATED_FALLBACK: "true"
+          AI_DETERMINISTIC_CACHE_FIRST: "true"
           AI_PIPELINE_MODE: three-provider
           AI_MONTHLY_BUDGET_USD: ${{ vars.AI_MONTHLY_BUDGET_USD || '5.00' }}
           DEEPSEEK_FLASH_MODEL: ${{ vars.DEEPSEEK_FLASH_MODEL || 'deepseek-v4-flash' }}
@@ -80,7 +81,7 @@ jobs:
           npm run validate || validation_status=$?
           git config user.name "thebiker-editorial-bot"
           git config user.email "thebiker-editorial-bot@users.noreply.github.com"
-          git add _data/products/bikes _posts/drafts content/research/campaign assets/img/posts content/image-library/index.json bot/editorial-campaign.json bot/operational-state _data/editorial-calendar.json _data/catalog-public.json api/products.json
+          git add _data/products/bikes _posts/drafts content/product-discovery/thebiker-media-catalog.json content/research/campaign assets/img/posts content/image-library/index.json bot/editorial-campaign.json bot/operational-state _data/editorial-calendar.json _data/catalog-public.json api/products.json
           git diff --cached --quiet || git commit -m "state: recompor buffer editorial"
           persist_status=1
           for attempt in 1 2 3; do
