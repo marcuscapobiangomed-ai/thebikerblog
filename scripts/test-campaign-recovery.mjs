@@ -7,6 +7,18 @@ import { recoverBlockedCampaign, recoverBlockedCampaignFiles } from '../bot/src/
 
 const transient = structuredClone(campaignFixture)
 for (const item of transient.items) if (item.status === 'blocked') { item.status = 'planned'; delete item.blockReason; delete item.failure }
+function addIsolatedReserve(campaign, id) {
+  campaign.reserves = campaign.reserves.filter((reserve) => reserve.id !== id)
+  campaign.reserves.unshift({
+    id,
+    title: 'Reserva isolada para teste de recomposição segura',
+    summary: 'Reserva de teste independente do calendário vivo para verificar a substituição automática de uma pauta bloqueada.',
+    category: 'manutencao-ajustes',
+    productIds: ['corrente-sram-nx-eagle'],
+    heroImage: { mode: 'exact-product', productId: 'corrente-sram-nx-eagle' },
+  })
+  return campaign
+}
 const timeout = transient.items.find((item) => item.status === 'planned')
 assert.ok(timeout, 'A campanha precisa ter ao menos uma pauta planejada para o teste transitório')
 timeout.status = 'blocked'
@@ -18,6 +30,17 @@ assert.equal(retried.campaign.items.find((item) => item.id === timeout.id).statu
 
 const groundingFailure = structuredClone(campaignFixture)
 for (const item of groundingFailure.items) if (item.status === 'blocked') { item.status = 'planned'; delete item.blockReason; delete item.failure }
+// Keep the replacement assertion independent from the live calendar: the
+// replenishment workflow legitimately consumes reserve IDs between runs.
+const isolatedGroundingReserveId = 'reserva-recovery-fixture-grounding'
+groundingFailure.reserves = groundingFailure.reserves.filter((reserve) => reserve.id !== isolatedGroundingReserveId)
+groundingFailure.reserves.unshift({
+  id: isolatedGroundingReserveId,
+  title: 'Reserva de teste para falha de grounding e recomposição',
+  summary: 'Reserva isolada para verificar a troca automática depois do limite de pesquisa sem tocar na pauta real.',
+  category: 'manutencao-ajustes',
+  productIds: ['corrente-sram-nx-eagle'],
+})
 const ungrounded = groundingFailure.items.find((item) => item.status === 'planned')
 ungrounded.status = 'blocked'
 ungrounded.attempts = 1
@@ -31,30 +54,29 @@ const groundedRetryItem = groundingRetry.campaign.items.find((item) => item.id =
 assert.equal(groundedRetryItem.status, 'planned')
 assert.equal(groundedRetryItem.postPath, undefined)
 assert.equal(groundedRetryItem.aiReview, undefined)
-ungrounded.status = 'blocked'
-ungrounded.attempts = 3
-ungrounded.failure = { code: 'RESEARCH_INSUFFICIENT', retryable: false, stage: 'claim-grounding-audit', message: 'Artigo bloqueado por integridade de claims', recordedAt: '2026-08-13T15:02:00.000Z' }
-ungrounded.blockReason = `[RESEARCH_INSUFFICIENT] ${ungrounded.failure.message}`
+const setGroundingFailure = (attempts, message, stage = 'claim-grounding-audit', recordedAt = '2026-08-13T15:02:00.000Z') => {
+  const item = groundingFailure.items.find((candidate) => candidate.id === ungrounded.id)
+  item.status = 'blocked'
+  item.attempts = attempts
+  item.failure = { code: 'RESEARCH_INSUFFICIENT', retryable: false, stage, message, recordedAt }
+  item.blockReason = `[RESEARCH_INSUFFICIENT] ${message}`
+}
+setGroundingFailure(3, 'Artigo bloqueado por integridade de claims')
 const finalGroundingRetry = recoverBlockedCampaign(groundingFailure, { now: new Date('2026-08-13T15:03:00Z') })
 assert.equal(finalGroundingRetry.result.status, 'retry-research-grounding')
-ungrounded.status = 'blocked'
-ungrounded.attempts = 4
+setGroundingFailure(4, 'Artigo bloqueado por integridade de claims')
 const providerGroundingRetry = recoverBlockedCampaign(groundingFailure, { now: new Date('2026-08-13T15:04:00Z') })
 assert.equal(providerGroundingRetry.result.status, 'retry-research-grounding')
-ungrounded.status = 'blocked'
-ungrounded.attempts = 5
+setGroundingFailure(5, 'Artigo bloqueado por integridade de claims')
 const deterministicGroundingRetry = recoverBlockedCampaign(groundingFailure, { now: new Date('2026-08-13T15:05:00Z') })
 assert.equal(deterministicGroundingRetry.result.status, 'retry-research-grounding')
-ungrounded.status = 'blocked'
-ungrounded.attempts = 6
+setGroundingFailure(6, 'Artigo bloqueado por integridade de claims')
 const schemaSafeGroundingRetry = recoverBlockedCampaign(groundingFailure, { now: new Date('2026-08-13T15:06:00Z') })
 assert.equal(schemaSafeGroundingRetry.result.status, 'retry-research-grounding')
-ungrounded.status = 'blocked'
-ungrounded.attempts = 7
+setGroundingFailure(7, 'Artigo bloqueado por integridade de claims')
 const neutralizedGroundingRetry = recoverBlockedCampaign(groundingFailure, { now: new Date('2026-08-13T15:07:00Z') })
 assert.equal(neutralizedGroundingRetry.result.status, 'retry-research-grounding')
-ungrounded.status = 'blocked'
-ungrounded.attempts = 8
+setGroundingFailure(8, 'Artigo bloqueado por integridade de claims')
 const cappedGroundingRetry = recoverBlockedCampaign(groundingFailure, { now: new Date('2026-08-13T15:08:00Z') })
 assert.notEqual(cappedGroundingRetry.result.status, 'retry-research-grounding')
 const earlyReplacement = structuredClone(groundingFailure)
@@ -69,6 +91,7 @@ assert.equal(replacedAfterAutomaticResearchCap.result.status, 'replaced',
 
 const rejectedArticleCampaign = structuredClone(campaignFixture)
 for (const item of rejectedArticleCampaign.items) if (item.status === 'blocked') { item.status = 'planned'; delete item.blockReason; delete item.failure }
+addIsolatedReserve(rejectedArticleCampaign, 'reserva-recovery-fixture-rejected-article')
 const rejectedArticle = rejectedArticleCampaign.items.find((item) => item.status === 'planned')
 rejectedArticle.status = 'blocked'
 rejectedArticle.attempts = 1
@@ -92,6 +115,7 @@ assert.equal(structureRetry.campaign.items.find((item) => item.id === malformedD
 
 const finalization = structuredClone(campaignFixture)
 for (const item of finalization.items) if (item.status === 'blocked') { item.status = 'planned'; delete item.blockReason; delete item.failure }
+addIsolatedReserve(finalization, 'reserva-recovery-fixture-finalization')
 const finalizable = finalization.items.find((item) => item.status === 'published' && item.postPath && item.aiReview?.contentHash)
 assert.ok(finalizable, 'A campanha precisa ter uma pauta produzida para testar retomada de finalização')
 finalizable.status = 'blocked'
@@ -210,6 +234,7 @@ const cappedRegression = recoverBlockedCampaign(legacyRepairRegression, { now: n
 assert.notEqual(cappedRegression.result.status, 'retry-editorial-expansion')
 
 const invalidFinalization = structuredClone(finalization)
+addIsolatedReserve(invalidFinalization, 'reserva-recovery-fixture-invalid-finalization')
 const invalidDraft = invalidFinalization.items.find((item) => item.id === finalizable.id)
 invalidDraft.status = 'blocked'
 invalidDraft.blockReason = 'Validação final: Gate Markdown reprovado: linguagem publicitária proibida: imbatível'
@@ -247,6 +272,7 @@ Este produto é imbatível.
 
 const permanent = structuredClone(campaignFixture)
 for (const item of permanent.items) if (item.status === 'blocked') { item.status = 'planned'; delete item.blockReason; delete item.failure }
+addIsolatedReserve(permanent, 'reserva-recovery-fixture-permanent')
 const unsupported = permanent.items.find((item) => item.status === 'planned')
 assert.ok(unsupported, 'A campanha precisa ter ao menos uma pauta planejada para o teste permanente')
 unsupported.status = 'blocked'
