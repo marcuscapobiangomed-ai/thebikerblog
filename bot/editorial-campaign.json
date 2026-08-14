@@ -862,9 +862,12 @@
         "rationale": "Fotografia real do catalogo usada somente como contexto visual para o diagnostico tecnico da bicicleta."
       },
       "postPath": "_posts/drafts/2026-08-20-reserva-diagnostico-ruidos-bike.md",
+      "imageManifestPath": "assets/img/posts/reserva-diagnostico-ruidos-bike/image-manifest.json",
+      "imageStatus": "approved",
       "imageAssetIds": [
         "thebiker-bicicleta-scott-scale-980-black-b6deebe2a6"
       ],
+      "imageValidatedAt": "2026-08-14T02:17:08.948Z",
       "attempts": 1,
       "lastAttemptAt": "2026-08-14T02:05:14.901Z",
       "aiReview": {
@@ -879,6 +882,18 @@
         "contentHash": "sha256:741f9a5d7189b1da60f778ec6145c9356bf2a6e02a659861f9a8688dbadcbf9c",
         "deterministicFullArticleFallbackUsed": true,
         "deterministicFullArticleFallbackTrigger": "cache-first"
+      },
+      "editorialReceipt": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-editorial-2026-08-v2",
+        "origin": "pipeline",
+        "reviewedContentHash": "sha256:741f9a5d7189b1da60f778ec6145c9356bf2a6e02a659861f9a8688dbadcbf9c",
+        "scheduledContentHash": "sha256:9d56727d0de620cacd4976cec5dc90073b09e3aacc00d10571b17126824d91db",
+        "researchHash": "sha256:8ac300dd183f44fefcc70f1374d5767151cdbad5e76514429d7299f76a097030",
+        "sourceHash": null,
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "issuedAt": "2026-08-14T02:17:08.948Z"
       },
       "visualDecision": {
         "schemaVersion": 1,
@@ -898,53 +913,49 @@
         },
         "blockers": [],
         "issuedAt": "2026-08-14T02:17:08.948Z"
-      },
-      "editorialReceipt": {
-        "schemaVersion": 1,
-        "policyVersion": "thebiker-editorial-2026-08-v2",
-        "origin": "pipeline",
-        "reviewedContentHash": "sha256:741f9a5d7189b1da60f778ec6145c9356bf2a6e02a659861f9a8688dbadcbf9c",
-        "scheduledContentHash": "sha256:9d56727d0de620cacd4976cec5dc90073b09e3aacc00d10571b17126824d91db",
-        "researchHash": "sha256:8ac300dd183f44fefcc70f1374d5767151cdbad5e76514429d7299f76a097030",
-        "sourceHash": null,
-        "finalScore": 95,
-        "finalBlockers": 0,
-        "issuedAt": "2026-08-14T02:17:08.948Z"
-      },
-      "imageManifestPath": "assets/img/posts/reserva-diagnostico-ruidos-bike/image-manifest.json",
-      "imageStatus": "approved",
-      "imageValidatedAt": "2026-08-14T02:17:08.948Z"
+      }
     },
     {
       "day": 14,
       "publishDate": "2026-08-21",
-      "id": "youtube-pneus-de-bicicleta-pressao-carcaca-aderencia-e-resistencia-ao-ro",
-      "title": "Pneus de bicicleta: pressão, carcaça, aderência e resistência ao rolamento",
-      "summary": "Criar resposta técnica original para ciclista intermediário ou avançado, com método e limitações declarados. Sinal observado: 32.958 visualizações globais do vídeo; 2.235 por dia; encontrado em 1 busca(s) configurada(s) para o Brasil.",
-      "category": "componentes",
-      "freshness": "event-driven",
+      "id": "reserva-scale-940-checklist-oficial",
+      "title": "Scott Scale 940: checklist documental para conferir quadro e montagem",
+      "summary": "Checklist editorial limitado aos campos de quadro, suspensao e componentes que permanecem comprovados nas fichas oficiais.",
+      "category": "review",
+      "freshness": "revalidate-24h",
       "status": "blocked",
       "productIds": [
-        "pneu-schwalbe-racing-ray-29-x-2-25-super-race-tlr-addix"
+        "bicicleta-scott-scale-940-black"
       ],
       "heroImage": {
-        "mode": "real-context",
-        "productId": "pneu-schwalbe-racing-ray-29-x-2-25-super-race-tlr-addix",
-        "relationship": "category-example",
-        "rationale": "O pneu Schwalbe real exemplifica carcaça, contato com o solo e resistência ao rolamento sem sugerir teste específico do modelo."
+        "mode": "exact-product",
+        "productId": "bicicleta-scott-scale-940-black"
       },
-      "imageStatus": "blocked",
+      "postPath": "_posts/drafts/2026-08-21-reserva-scale-940-checklist-oficial.md",
       "imageAssetIds": [],
-      "blockReason": "[RESEARCH_INSUFFICIENT] pesquisa sem contrato de evidência recuperada retrieved-excerpt-v1; pesquisa sem data de verificação ativa das fontes; fato 1 sem trecho literal verificável; fato 2 sem trecho literal verificável; fato 3 sem trecho literal verificável; fato 4 sem trecho literal verificável; fato 5 sem trecho literal verificável; fato 6 sem trecho literal verificável; fato 7 sem trecho literal verificável; fato 8 sem trecho literal verificável",
-      "failure": {
-        "code": "RESEARCH_INSUFFICIENT",
-        "retryable": true,
-        "stage": "source-verification-audit",
-        "message": "pesquisa sem contrato de evidência recuperada retrieved-excerpt-v1; pesquisa sem data de verificação ativa das fontes; fato 1 sem trecho literal verificável; fato 2 sem trecho literal verificável; fato 3 sem trecho literal verificável; fato 4 sem trecho literal verificável; fato 5 sem trecho literal verificável; fato 6 sem trecho literal verificável; fato 7 sem trecho literal verificável; fato 8 sem trecho literal verificável",
-        "recordedAt": "2026-08-13T18:15:00.000Z"
-      },
       "attempts": 1,
-      "lastAttemptAt": "2026-08-13T18:15:00.000Z"
+      "lastAttemptAt": "2026-08-14T10:07:25.026Z",
+      "aiReview": {
+        "score": 92,
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "premiumEditUsed": false,
+        "providers": {
+          "deterministicFallback": "grounded-deterministic"
+        },
+        "generatedAt": "2026-08-14T10:07:25.026Z",
+        "contentHash": "sha256:a86571b9c24fac15f12b69d468e34536e632f2d0cc5dba898a5591a98fc43e71",
+        "deterministicFullArticleFallbackUsed": true,
+        "deterministicFullArticleFallbackTrigger": "pipeline-failure"
+      },
+      "failure": {
+        "code": "IMAGE_NOT_PUBLISHABLE",
+        "retryable": false,
+        "stage": "finalization",
+        "message": "Galeria oficial sem imagem inédita válida: Imagem duplicada: manufacturer-bicicleta-scott-scale-940-black-5171146828 | Download da imagem: HTTP 403 | resolução insuficiente para o padrão editorial: 480x480",
+        "recordedAt": "2026-08-14T10:08:48.791Z"
+      },
+      "blockReason": "Validação final: [IMAGE_NOT_PUBLISHABLE] Galeria oficial sem imagem inédita válida: Imagem duplicada: manufacturer-bicicleta-scott-scale-940-black-5171146828 | Download da imagem: HTTP 403 | resolução insuficiente para o padrão editorial: 480x480"
     },
     {
       "day": 15,
@@ -1313,19 +1324,6 @@
         "sourceStatus": "pending"
       },
       "productIds": []
-    },
-    {
-      "id": "reserva-scale-940-checklist-oficial",
-      "title": "Scott Scale 940: checklist documental para conferir quadro e montagem",
-      "summary": "Checklist editorial limitado aos campos de quadro, suspensao e componentes que permanecem comprovados nas fichas oficiais.",
-      "category": "review",
-      "productIds": [
-        "bicicleta-scott-scale-940-black"
-      ],
-      "heroImage": {
-        "mode": "exact-product",
-        "productId": "bicicleta-scott-scale-940-black"
-      }
     },
     {
       "id": "reserva-addict-rc-pro-ficha-oficial",
