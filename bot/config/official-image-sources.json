@@ -17,6 +17,10 @@
   "allowedPageHosts": ["thebikershop.com.br"],
   "allowedAssetHosts": ["acdn-us.mitiendanube.com", "thebikershop.com.br", "api.elite-it.com", "static.scott-sports.com"],
   "officialProductImages": {
+    "bicicleta-scott-scale-940-black": {
+      "officialPageUrl": "https://www.scott-sports.com/global/en/product/scott-scale-940-bike",
+      "images": ["https://static.scott-sports.com/image/upload/v1779976552/2217844.png"]
+    },
     "bicicleta-scott-addict-rc-pro-di2-2026-pre-venda": {
       "officialPageUrl": "https://www.scott-sports.com/global/en/product/scott-addict-rc-pro-bike",
       "images": ["https://static.scott-sports.com/image/upload/v1779976553/2217847.png"]
