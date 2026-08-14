@@ -314,6 +314,10 @@ for (const item of legacyReserveFallback.items.filter((candidate) => candidate.p
   item.imageAssetIds = []
 }
 const legacyBlocked = legacyReserveFallback.items.find((item) => item.day === 13)
+// The live workflow may already have consumed this reserve before the test
+// suite runs. Give the blocked fixture its own id so the reserve selection is
+// deterministic and independent from persisted campaign state.
+legacyBlocked.id = 'legacy-research-failure-fixture'
 legacyBlocked.status = 'blocked'
 legacyBlocked.attempts = 2
 legacyBlocked.blockReason = '[IMAGE_NOT_PUBLISHABLE] Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq 429)'
