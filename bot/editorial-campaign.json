@@ -918,23 +918,25 @@
     {
       "day": 14,
       "publishDate": "2026-08-21",
-      "id": "reserva-scale-940-checklist-oficial",
-      "title": "Scott Scale 940: checklist documental para conferir quadro e montagem",
-      "summary": "Checklist editorial limitado aos campos de quadro, suspensao e componentes que permanecem comprovados nas fichas oficiais.",
+      "id": "reserva-addict-rc-pro-ficha-oficial",
+      "title": "Scott Addict RC Pro: ficha documental das especificacoes confirmadas",
+      "summary": "Leitura de produto sem teste pratico, restrita as especificacoes e aos limites explicitamente registrados nas fontes aceitas.",
       "category": "review",
       "freshness": "revalidate-24h",
-      "status": "blocked",
+      "status": "scheduled",
       "productIds": [
-        "bicicleta-scott-scale-940-black"
+        "bicicleta-scott-addict-rc-pro-di2-2026-pre-venda"
       ],
       "heroImage": {
         "mode": "exact-product",
-        "productId": "bicicleta-scott-scale-940-black"
+        "productId": "bicicleta-scott-addict-rc-pro-di2-2026-pre-venda"
       },
-      "postPath": "_posts/drafts/2026-08-21-reserva-scale-940-checklist-oficial.md",
-      "imageAssetIds": [],
+      "postPath": "_posts/drafts/2026-08-21-reserva-addict-rc-pro-ficha-oficial.md",
+      "imageAssetIds": [
+        "thebiker-bicicleta-scott-addict-rc-pro-di2-2026-pre-venda-65cdfb6ed9"
+      ],
       "attempts": 1,
-      "lastAttemptAt": "2026-08-14T10:07:25.026Z",
+      "lastAttemptAt": "2026-08-14T10:43:57.742Z",
       "aiReview": {
         "score": 92,
         "finalScore": 95,
@@ -943,19 +945,45 @@
         "providers": {
           "deterministicFallback": "grounded-deterministic"
         },
-        "generatedAt": "2026-08-14T10:07:25.026Z",
-        "contentHash": "sha256:a86571b9c24fac15f12b69d468e34536e632f2d0cc5dba898a5591a98fc43e71",
+        "generatedAt": "2026-08-14T10:43:57.742Z",
+        "contentHash": "sha256:9783ab5c6589a3c902fe3fde341e0c2d2de6ffa6bdd0c5ec9c8d6586dbc75bfe",
         "deterministicFullArticleFallbackUsed": true,
         "deterministicFullArticleFallbackTrigger": "pipeline-failure"
       },
-      "failure": {
-        "code": "IMAGE_NOT_PUBLISHABLE",
-        "retryable": false,
-        "stage": "finalization",
-        "message": "Galeria oficial sem imagem inédita válida: Imagem duplicada: manufacturer-bicicleta-scott-scale-940-black-5171146828 | Download da imagem: HTTP 403 | resolução insuficiente para o padrão editorial: 480x480",
-        "recordedAt": "2026-08-14T10:08:48.791Z"
+      "visualDecision": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-visual-autonomy-v1",
+        "inputHash": "sha256:4f5a2a5f291677c0b19db0eaae67102820d301f94a4890cb61d510b7b2d3846c",
+        "mode": "exact-product",
+        "productId": "bicicleta-scott-addict-rc-pro-di2-2026-pre-venda",
+        "score": 100,
+        "hardGates": {
+          "semanticMatch": true,
+          "realAsset": true,
+          "explicitProduct": true,
+          "officialSource": true,
+          "approvedRights": true,
+          "publishableResolution": true,
+          "uniqueAsset": true
+        },
+        "blockers": [],
+        "issuedAt": "2026-08-14T10:46:02.129Z"
       },
-      "blockReason": "Validação final: [IMAGE_NOT_PUBLISHABLE] Galeria oficial sem imagem inédita válida: Imagem duplicada: manufacturer-bicicleta-scott-scale-940-black-5171146828 | Download da imagem: HTTP 403 | resolução insuficiente para o padrão editorial: 480x480"
+      "editorialReceipt": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-editorial-2026-08-v2",
+        "origin": "pipeline",
+        "reviewedContentHash": "sha256:9783ab5c6589a3c902fe3fde341e0c2d2de6ffa6bdd0c5ec9c8d6586dbc75bfe",
+        "scheduledContentHash": "sha256:4d339c073ba37567dd41d3b442736c6f3e70aaa7f3c5de500dedb3475f7caef2",
+        "researchHash": "sha256:34db23417ea23027ca05aafc2899fe8feeed79419a1351bf202f5d9f1118d49f",
+        "sourceHash": null,
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "issuedAt": "2026-08-14T10:46:02.129Z"
+      },
+      "imageManifestPath": "assets/img/posts/reserva-addict-rc-pro-ficha-oficial/image-manifest.json",
+      "imageStatus": "approved",
+      "imageValidatedAt": "2026-08-14T10:46:02.129Z"
     },
     {
       "day": 15,
@@ -1326,19 +1354,6 @@
       "productIds": []
     },
     {
-      "id": "reserva-addict-rc-pro-ficha-oficial",
-      "title": "Scott Addict RC Pro: ficha documental das especificacoes confirmadas",
-      "summary": "Leitura de produto sem teste pratico, restrita as especificacoes e aos limites explicitamente registrados nas fontes aceitas.",
-      "category": "review",
-      "productIds": [
-        "bicicleta-scott-addict-rc-pro-di2-2026-pre-venda"
-      ],
-      "heroImage": {
-        "mode": "exact-product",
-        "productId": "bicicleta-scott-addict-rc-pro-di2-2026-pre-venda"
-      }
-    },
-    {
       "id": "reserva-addict-rc20-ficha-oficial",
       "title": "Scott Addict RC 20: o que a ficha oficial permite afirmar",
       "summary": "Resumo tecnico documental do modelo, sem extrapolar componentes, medidas ou desempenho alem do que esta rastreado.",
@@ -1349,6 +1364,19 @@
       "heroImage": {
         "mode": "exact-product",
         "productId": "bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9"
+      }
+    },
+    {
+      "id": "reserva-scale-940-checklist-oficial",
+      "title": "Scott Scale 940: checklist documental para conferir quadro e montagem",
+      "summary": "Checklist editorial limitado aos campos de quadro, suspensao e componentes que permanecem comprovados nas fichas oficiais.",
+      "category": "review",
+      "productIds": [
+        "bicicleta-scott-scale-940-black"
+      ],
+      "heroImage": {
+        "mode": "exact-product",
+        "productId": "bicicleta-scott-scale-940-black"
       }
     }
   ]

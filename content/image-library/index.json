@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-08-14T02:17:10.540Z",
+  "updatedAt": "2026-08-14T10:46:03.812Z",
   "assets": [
     {
       "assetId": "thebiker-scott-addict-rc-pro-hmx-frame-set-def10da96a",
@@ -337,6 +337,23 @@
       "uses": [
         {
           "postId": "reserva-diagnostico-ruidos-bike",
+          "position": "hero",
+          "usedAt": "2026-08-14T12:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "assetId": "thebiker-bicicleta-scott-addict-rc-pro-di2-2026-pre-venda-65cdfb6ed9",
+      "sha256": "65cdfb6ed95d55b568a5f58f568b5c1ce33da5bc5a44ba506f0b67c94c50c1da",
+      "perceptualHash": "1110111111100111111101111111011100010111000001111100001110100010",
+      "sourcePageUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-addict-rc-pro-di2-2026-pre-venda/",
+      "sourceFileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/c06db896-cb92-11f0-976b-421ea7c02475-6ef145bcd1b62ff2ea17751631326810-1024-1024.webp",
+      "productId": "bicicleta-scott-addict-rc-pro-di2-2026-pre-venda",
+      "productName": "Bicicleta Scott Addict RC Pró Di2 2026 - Pré Venda",
+      "rightsPolicyId": "thebiker-official-editorial-v1",
+      "uses": [
+        {
+          "postId": "reserva-addict-rc-pro-ficha-oficial",
           "position": "hero",
           "usedAt": "2026-08-14T12:00:00.000Z"
         }

@@ -1300,6 +1300,57 @@
         "title": "Scott Scale 940: checklist documental para conferir quadro e montagem"
       },
       "reason": "[RESEARCH_INSUFFICIENT] Pesquisa bloqueada por integridade de fontes: pesquisa concluída sem fontes rastreáveis; pesquisa sem fatos explicitamente fundamentados"
+    },
+    {
+      "recordedAt": "2026-08-14T10:43:57.085Z",
+      "campaignId": "thebiker-rolling-2026-08-08",
+      "replacedItem": {
+        "day": 14,
+        "publishDate": "2026-08-21",
+        "id": "reserva-scale-940-checklist-oficial",
+        "title": "Scott Scale 940: checklist documental para conferir quadro e montagem",
+        "summary": "Checklist editorial limitado aos campos de quadro, suspensao e componentes que permanecem comprovados nas fichas oficiais.",
+        "category": "review",
+        "freshness": "revalidate-24h",
+        "status": "blocked",
+        "productIds": [
+          "bicicleta-scott-scale-940-black"
+        ],
+        "heroImage": {
+          "mode": "exact-product",
+          "productId": "bicicleta-scott-scale-940-black"
+        },
+        "postPath": "_posts/drafts/2026-08-21-reserva-scale-940-checklist-oficial.md",
+        "imageAssetIds": [],
+        "blockReason": "Validação final: [IMAGE_NOT_PUBLISHABLE] Galeria oficial sem imagem inédita válida: Imagem duplicada: manufacturer-bicicleta-scott-scale-940-black-5171146828 | Download da imagem: HTTP 403 | resolução insuficiente para o padrão editorial: 480x480",
+        "failure": {
+          "code": "IMAGE_NOT_PUBLISHABLE",
+          "retryable": false,
+          "stage": "finalization",
+          "message": "Galeria oficial sem imagem inédita válida: Imagem duplicada: manufacturer-bicicleta-scott-scale-940-black-5171146828 | Download da imagem: HTTP 403 | resolução insuficiente para o padrão editorial: 480x480",
+          "recordedAt": "2026-08-14T10:08:48.791Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-14T10:07:25.026Z",
+        "aiReview": {
+          "score": 92,
+          "finalScore": 95,
+          "finalBlockers": 0,
+          "premiumEditUsed": false,
+          "providers": {
+            "deterministicFallback": "grounded-deterministic"
+          },
+          "generatedAt": "2026-08-14T10:07:25.026Z",
+          "contentHash": "sha256:a86571b9c24fac15f12b69d468e34536e632f2d0cc5dba898a5591a98fc43e71",
+          "deterministicFullArticleFallbackUsed": true,
+          "deterministicFullArticleFallbackTrigger": "pipeline-failure"
+        }
+      },
+      "replacement": {
+        "id": "reserva-addict-rc-pro-ficha-oficial",
+        "title": "Scott Addict RC Pro: ficha documental das especificacoes confirmadas"
+      },
+      "reason": "Validação final: [IMAGE_NOT_PUBLISHABLE] Galeria oficial sem imagem inédita válida: Imagem duplicada: manufacturer-bicicleta-scott-scale-940-black-5171146828 | Download da imagem: HTTP 403 | resolução insuficiente para o padrão editorial: 480x480"
     }
   ]
 }
