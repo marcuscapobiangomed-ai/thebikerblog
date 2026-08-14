@@ -839,32 +839,46 @@
     {
       "day": 13,
       "publishDate": "2026-08-20",
-      "id": "servico-garfo-amortecedor-oleo-vedacao",
-      "title": "Serviço de garfo e amortecedor: quando trocar óleo e vedação",
-      "summary": "Sinais de que a suspensão precisa de serviço interno, como perda de amortecimento e vazamento de óleo. Inclui cuidados com vedação.",
+      "id": "reserva-diagnostico-ruidos-bike",
+      "title": "Diagnostico de ruidos na bicicleta: metodo por carga, frequencia e interface",
+      "summary": "Protocolo tecnico para isolar ruidos de transmissao, cockpit, rodas e quadro sem substituir componentes por tentativa e erro.",
       "category": "manutencao-ajustes",
       "freshness": "evergreen",
       "status": "blocked",
       "productIds": [
-        "kit-reparo-suspensao-rock-shox-sid-flight-attendant"
+        "bicicleta-scott-scale-940-black"
       ],
       "heroImage": {
         "mode": "real-context",
-        "productId": "kit-reparo-suspensao-rock-shox-sid-flight-attendant",
-        "relationship": "maintenance-example",
-        "rationale": "O kit real de reparo RockShox representa diretamente vedações e peças de desgaste envolvidas no serviço preventivo de suspensão."
+        "productId": "bicicleta-scott-scale-940-black",
+        "relationship": "category-example",
+        "rationale": "Fotografia real do catalogo usada somente como contexto visual para o diagnostico tecnico da bicicleta."
       },
+      "postPath": "_posts/drafts/2026-08-20-reserva-diagnostico-ruidos-bike.md",
       "imageAssetIds": [],
-      "attempts": 4,
-      "lastAttemptAt": "2026-08-14T01:34:43.331Z",
-      "failure": {
-        "code": "RESEARCH_INSUFFICIENT",
-        "retryable": false,
-        "stage": "production",
-        "message": "Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq 429; Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat)",
-        "recordedAt": "2026-08-14T01:34:43.331Z"
+      "attempts": 1,
+      "lastAttemptAt": "2026-08-14T02:05:14.901Z",
+      "aiReview": {
+        "score": 92,
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "premiumEditUsed": false,
+        "providers": {
+          "deterministicFallback": "grounded-deterministic"
+        },
+        "generatedAt": "2026-08-14T02:05:14.901Z",
+        "contentHash": "sha256:741f9a5d7189b1da60f778ec6145c9356bf2a6e02a659861f9a8688dbadcbf9c",
+        "deterministicFullArticleFallbackUsed": true,
+        "deterministicFullArticleFallbackTrigger": "cache-first"
       },
-      "blockReason": "[RESEARCH_INSUFFICIENT] Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq 429; Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat)"
+      "failure": {
+        "code": "IMAGE_NOT_PUBLISHABLE",
+        "retryable": false,
+        "stage": "finalization",
+        "message": "Galeria oficial sem imagem inédita válida: Imagem duplicada: manufacturer-bicicleta-scott-scale-940-black-5171146828 | Download da imagem: HTTP 403 | resolução insuficiente para o padrão editorial: 480x480",
+        "recordedAt": "2026-08-14T02:05:23.787Z"
+      },
+      "blockReason": "Validação final: [IMAGE_NOT_PUBLISHABLE] Galeria oficial sem imagem inédita válida: Imagem duplicada: manufacturer-bicicleta-scott-scale-940-black-5171146828 | Download da imagem: HTTP 403 | resolução insuficiente para o padrão editorial: 480x480"
     },
     {
       "day": 14,
@@ -1266,11 +1280,43 @@
       "productIds": []
     },
     {
-      "id": "reserva-diagnostico-ruidos-bike",
-      "title": "Diagnóstico de ruídos na bicicleta: método por carga, frequência e interface",
-      "summary": "Protocolo técnico para isolar ruídos de transmissão, cockpit, rodas e quadro sem substituir componentes por tentativa e erro.",
-      "category": "manutencao-ajustes",
-      "productIds": []
+      "id": "reserva-scale-940-checklist-oficial",
+      "title": "Scott Scale 940: checklist documental para conferir quadro e montagem",
+      "summary": "Checklist editorial limitado aos campos de quadro, suspensao e componentes que permanecem comprovados nas fichas oficiais.",
+      "category": "review",
+      "productIds": [
+        "bicicleta-scott-scale-940-black"
+      ],
+      "heroImage": {
+        "mode": "exact-product",
+        "productId": "bicicleta-scott-scale-940-black"
+      }
+    },
+    {
+      "id": "reserva-addict-rc-pro-ficha-oficial",
+      "title": "Scott Addict RC Pro: ficha documental das especificacoes confirmadas",
+      "summary": "Leitura de produto sem teste pratico, restrita as especificacoes e aos limites explicitamente registrados nas fontes aceitas.",
+      "category": "review",
+      "productIds": [
+        "bicicleta-scott-addict-rc-pro-di2-2026-pre-venda"
+      ],
+      "heroImage": {
+        "mode": "exact-product",
+        "productId": "bicicleta-scott-addict-rc-pro-di2-2026-pre-venda"
+      }
+    },
+    {
+      "id": "reserva-addict-rc20-ficha-oficial",
+      "title": "Scott Addict RC 20: o que a ficha oficial permite afirmar",
+      "summary": "Resumo tecnico documental do modelo, sem extrapolar componentes, medidas ou desempenho alem do que esta rastreado.",
+      "category": "review",
+      "productIds": [
+        "bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9"
+      ],
+      "heroImage": {
+        "mode": "exact-product",
+        "productId": "bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9"
+      }
     }
   ]
 }

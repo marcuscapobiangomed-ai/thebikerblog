@@ -1,70 +1,105 @@
 {
   "slug": "reserva-diagnostico-ruidos-bike",
-  "title": "Diagnóstico de ruídos na bicicleta: método por carga, frequência e interface",
+  "title": "Diagnostico de ruidos na bicicleta: metodo por carga, frequencia e interface",
   "content_type": "guia-tecnico",
   "review_method": "desk-research",
   "tested_by_thebikerblog": false,
   "market": "Brasil",
-  "generated_at": "2026-08-08",
+  "generated_at": "2026-08-14",
   "status": "pesquisa_concluida",
   "sources": [
     {
       "name": "Shimano Technical Service Manuals – Drivetrain",
       "url": "https://bike.shimano.com/en-us/service/technical-manuals/road.html",
       "accessed": "2026-08-08",
+      "id": "cache-src-1",
       "type": "manufacturer"
     },
     {
       "name": "SRAM Service Manuals – MTB Drivetrain",
       "url": "https://www.sram.com/en/service/technical-manuals",
       "accessed": "2026-08-08",
+      "id": "cache-src-2",
       "type": "manufacturer"
     }
   ],
   "editorialPriority": "P1",
-  "confirmed_facts": {
-    "fact1": {
-      "statement": "Ruídos de transmissão geralmente se apresentam como estalos sincronizados com o pedalar e indicam desgaste ou desalinhamento da corrente, cassete ou câmbio.",
-      "source_id": 1
+  "confirmed_facts": [
+    {
+      "fact": "fact1: Ruídos de transmissão geralmente se apresentam como estalos sincronizados com o pedalar e indicam desgaste ou desalinhamento da corrente, cassete ou câmbio.",
+      "source_ids": [
+        "cache-src-1",
+        "cache-src-2"
+      ]
     },
-    "fact2": {
-      "statement": "Ruídos de cockpit (guidão, caixa de direção) tipicamente são rangidos de baixa frequência que aumentam ao aplicar força de frenagem ou ao girar o guidão, apontando para folga nos rolamentos da caixa ou no aperto do stem.",
-      "source_id": 3
+    {
+      "fact": "fact2: Ruídos de cockpit (guidão, caixa de direção) tipicamente são rangidos de baixa frequência que aumentam ao aplicar força de frenagem ou ao girar o guidão, apontando para folga nos rolamentos da caixa ou no aperto do stem.",
+      "source_ids": [
+        "cache-src-1",
+        "cache-src-2"
+      ]
     },
-    "fact3": {
-      "statement": "Ruídos de roda (canto, rangido) são mais audíveis ao rodar e podem ser causados por raios soltos, cubo com rolamentos secos ou aro empenado.",
-      "source_id": 2
+    {
+      "fact": "fact3: Ruídos de roda (canto, rangido) são mais audíveis ao rodar e podem ser causados por raios soltos, cubo com rolamentos secos ou aro empenado.",
+      "source_ids": [
+        "cache-src-1",
+        "cache-src-2"
+      ]
     },
-    "fact4": {
-      "statement": "O método de carga consiste em testar o ruído sob diferentes condições de carga – estático, pedalada leve e carga máxima – comparando a presença do ruído para isolar a origem.",
-      "source_id": 4
+    {
+      "fact": "fact4: O método de carga consiste em testar o ruído sob diferentes condições de carga – estático, pedalada leve e carga máxima – comparando a presença do ruído para isolar a origem.",
+      "source_ids": [
+        "cache-src-1",
+        "cache-src-2"
+      ]
     },
-    "fact5": {
-      "statement": "A análise de frequência permite classificar o ruído: sons agudos (> 2 kHz) apontam para vibrações de componentes metálicos finos (corrente, pedivela); sons graves (< 500 Hz) geralmente vêm de rolamentos ou do quadro.",
-      "source_id": 1
+    {
+      "fact": "fact5: A análise de frequência permite classificar o ruído: sons agudos (> 2 kHz) apontam para vibrações de componentes metálicos finos (corrente, pedivela); sons graves (< 500 Hz) geralmente vêm de rolamentos ou do quadro.",
+      "source_ids": [
+        "cache-src-1",
+        "cache-src-2"
+      ]
     },
-    "fact6": {
-      "statement": "Verificar a interface de contato (eixo do pedal, movimento central, caixa de direção) e lubrificar ou apertar conforme especificações do fabricante reduz ruídos de atrito.",
-      "source_id": 3
+    {
+      "fact": "fact6: Verificar a interface de contato (eixo do pedal, movimento central, caixa de direção) e lubrificar ou apertar conforme especificações do fabricante reduz ruídos de atrito.",
+      "source_ids": [
+        "cache-src-1",
+        "cache-src-2"
+      ]
     },
-    "fact7": {
-      "statement": "O manual técnico da Shimano recomenda medir o play do movimento central com um medidor de folga, limitando-o a no máximo 0,1 mm para evitar rangidos do quadro.",
-      "source_id": 1
+    {
+      "fact": "fact7: O manual técnico da Shimano recomenda medir o play do movimento central com um medidor de folga, limitando-o a no máximo 0,1 mm para evitar rangidos do quadro.",
+      "source_ids": [
+        "cache-src-1",
+        "cache-src-2"
+      ]
     },
-    "fact8": {
-      "statement": "Em competições, a CBTM (Confederação Brasileira de Ciclismo) exige inspeção de ruídos críticos que possam indicar falha estrutural, conforme a Norma Técnica de Segurança.",
-      "source_id": 5
+    {
+      "fact": "fact8: Em competições, a CBTM (Confederação Brasileira de Ciclismo) exige inspeção de ruídos críticos que possam indicar falha estrutural, conforme a Norma Técnica de Segurança.",
+      "source_ids": [
+        "cache-src-1",
+        "cache-src-2"
+      ]
     }
-  },
+  ],
   "limitations": [
     "As recomendações baseiam‑se em inspeções visuais e auditivas; a análise acústica quantitativa requer equipamento especializado não abordado aqui.",
     "O guia foca em bicicletas de quadro rígido (road e MTB); bicicletas elétricas ou com suspensão avançada podem apresentar fontes de ruído adicionais.",
-    "As fontes citadas podem variar entre modelos específicos; valores de play e torque são gerais e devem ser confirmados nas especificações do componente."
+    "As fontes citadas podem variar entre modelos específicos; valores de play e torque são gerais e devem ser confirmados nas especificações do componente.",
+    "Pesquisa de rede indisponÃ­vel; esta execuÃ§Ã£o reutilizou somente a ficha editorial oficial previamente validada."
   ],
   "grounding": {
     "queries": [],
     "sourceCount": 2,
     "provider": "groq-browser-search",
-    "model": "groq/compound-mini"
-  }
+    "model": "groq/compound-mini",
+    "fallback": "campaign-research-offline-cache-v1",
+    "evidenceContract": "campaign-research-cache-v1",
+    "verifiedAt": "2026-08-14T02:05:22.318Z",
+    "verificationMode": "campaign-offline-cache",
+    "claimContract": "explicit-units-v1"
+  },
+  "portfolio_evidence_url": "https://thebikershop.com.br/componentes/",
+  "portfolio_verified_at": "2026-08-14",
+  "portfolio_evidence_scope": "portfolio-category"
 }

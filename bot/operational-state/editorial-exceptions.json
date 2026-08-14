@@ -1222,6 +1222,45 @@
         "title": "Scott Spark RC World Cup 2027: especificações confirmadas e limites da análise documental"
       },
       "reason": "[IMAGE_NOT_PUBLISHABLE] Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq 429; Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat)"
+    },
+    {
+      "recordedAt": "2026-08-14T02:05:14.285Z",
+      "campaignId": "thebiker-rolling-2026-08-08",
+      "replacedItem": {
+        "day": 13,
+        "publishDate": "2026-08-20",
+        "id": "servico-garfo-amortecedor-oleo-vedacao",
+        "title": "Serviço de garfo e amortecedor: quando trocar óleo e vedação",
+        "summary": "Sinais de que a suspensão precisa de serviço interno, como perda de amortecimento e vazamento de óleo. Inclui cuidados com vedação.",
+        "category": "manutencao-ajustes",
+        "freshness": "evergreen",
+        "status": "blocked",
+        "productIds": [
+          "kit-reparo-suspensao-rock-shox-sid-flight-attendant"
+        ],
+        "heroImage": {
+          "mode": "real-context",
+          "productId": "kit-reparo-suspensao-rock-shox-sid-flight-attendant",
+          "relationship": "maintenance-example",
+          "rationale": "O kit real de reparo RockShox representa diretamente vedações e peças de desgaste envolvidas no serviço preventivo de suspensão."
+        },
+        "imageAssetIds": [],
+        "blockReason": "[RESEARCH_INSUFFICIENT] Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq 429; Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat)",
+        "failure": {
+          "code": "RESEARCH_INSUFFICIENT",
+          "retryable": false,
+          "stage": "production",
+          "message": "Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq 429; Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat)",
+          "recordedAt": "2026-08-14T01:34:43.331Z"
+        },
+        "attempts": 4,
+        "lastAttemptAt": "2026-08-14T01:34:43.331Z"
+      },
+      "replacement": {
+        "id": "reserva-diagnostico-ruidos-bike",
+        "title": "Diagnostico de ruidos na bicicleta: metodo por carga, frequencia e interface"
+      },
+      "reason": "[RESEARCH_INSUFFICIENT] Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq 429; Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat)"
     }
   ]
 }
