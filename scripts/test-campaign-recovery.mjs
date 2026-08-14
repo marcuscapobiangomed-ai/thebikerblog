@@ -101,6 +101,30 @@ const resumed = recoverBlockedCampaign(finalization, { now: new Date('2026-08-07
 assert.equal(resumed.result.status, 'retry-finalization')
 assert.equal(resumed.campaign.items.find((item) => item.id === finalizable.id).status, 'validation')
 
+const deterministicReviewCampaign = structuredClone(campaignFixture)
+for (const item of deterministicReviewCampaign.items) if (item.status === 'blocked') { item.status = 'planned'; delete item.blockReason; delete item.failure }
+const deterministicReviewItem = deterministicReviewCampaign.items.find((item) => item.status === 'published' && item.publishDate >= '2026-08-13' && item.postPath && item.aiReview?.contentHash)
+assert.ok(deterministicReviewItem, 'A campanha precisa de um item para testar a retomada do fallback deterministico')
+deterministicReviewItem.status = 'blocked'
+deterministicReviewItem.attempts = 1
+deterministicReviewItem.aiReview = {
+  ...structuredClone(deterministicReviewItem.aiReview),
+  finalScore: null,
+  finalBlockers: 0,
+  deterministicFullArticleFallbackUsed: true,
+}
+deterministicReviewItem.failure = {
+  code: 'AI_REVIEW_REJECTED', retryable: false, stage: 'finalization',
+  message: 'Recibo editorial exige nota final >= 90 e zero bloqueadores', recordedAt: '2026-08-13T15:00:00.000Z',
+}
+deterministicReviewItem.blockReason = `Validação final: [AI_REVIEW_REJECTED] ${deterministicReviewItem.failure.message}`
+const deterministicReviewRetry = recoverBlockedCampaign(deterministicReviewCampaign, { now: new Date('2026-08-13T15:01:00Z') })
+assert.equal(deterministicReviewRetry.result.status, 'retry-deterministic-fallback-review')
+const resetDeterministicReview = deterministicReviewRetry.campaign.items.find((item) => item.id === deterministicReviewItem.id)
+assert.equal(resetDeterministicReview.status, 'planned')
+assert.equal(resetDeterministicReview.postPath, undefined)
+assert.equal(resetDeterministicReview.aiReview, undefined)
+
 const conceptualFinalization = structuredClone(campaignFixture)
 for (const item of conceptualFinalization.items) if (item.status === 'blocked') { item.status = 'planned'; delete item.blockReason; delete item.failure }
 const conceptualPolicyId = 'reserva-pressao-pneus-terreno'
