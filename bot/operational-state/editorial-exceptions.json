@@ -1143,6 +1143,85 @@
         "title": "Scott Addict 50 e Addict RC 20: duas propostas de estrada confrontadas pelas fichas oficiais"
       },
       "reason": "[IMAGE_NOT_PUBLISHABLE] Rascunho bloqueado apÃ³s 2 reparos: Artigo inválido:\nimagePlan.1.allowedSource: Invalid option: expected one of \"manufacturer-authorized\"|\"own-photo\"|\"ai-generated\"|\"public-domain\""
+    },
+    {
+      "recordedAt": "2026-08-14T00:31:54.902Z",
+      "campaignId": "thebiker-rolling-2026-08-08",
+      "replacedItem": {
+        "day": 12,
+        "publishDate": "2026-08-19",
+        "id": "ciclocross-regulamento-preparacao",
+        "title": "Ciclocross: regulamento, pneus e preparação da bike para prova",
+        "summary": "Compare critérios técnicos que as competições de ciclocross aplicam à bike, e saiba como orientar a escolha de pneus e geometria para prova.",
+        "category": "competicoes",
+        "freshness": "evergreen",
+        "status": "blocked",
+        "productIds": [
+          "cambio-traseiro-shimano-grx-11v"
+        ],
+        "heroImage": {
+          "mode": "real-context",
+          "productId": "cambio-traseiro-shimano-grx-11v",
+          "relationship": "component-example",
+          "rationale": "O câmbio Shimano GRX real exemplifica a transmissão para terreno misto citada no artigo, preservando a marca promovida."
+        },
+        "imageStatus": "blocked",
+        "imageAssetIds": [],
+        "blockReason": "[RESEARCH_INSUFFICIENT] pesquisa sem contrato de evidência recuperada retrieved-excerpt-v1; pesquisa sem data de verificação ativa das fontes; fato 1 sem trecho literal verificável; fato 2 sem trecho literal verificável; fato 3 sem trecho literal verificável; fato 4 sem trecho literal verificável; fato 5 sem trecho literal verificável; fato 6 sem trecho literal verificável",
+        "failure": {
+          "code": "RESEARCH_INSUFFICIENT",
+          "retryable": true,
+          "stage": "source-verification-audit",
+          "message": "pesquisa sem contrato de evidência recuperada retrieved-excerpt-v1; pesquisa sem data de verificação ativa das fontes; fato 1 sem trecho literal verificável; fato 2 sem trecho literal verificável; fato 3 sem trecho literal verificável; fato 4 sem trecho literal verificável; fato 5 sem trecho literal verificável; fato 6 sem trecho literal verificável",
+          "recordedAt": "2026-08-13T18:15:00.000Z"
+        },
+        "attempts": 5,
+        "lastAttemptAt": "2026-08-13T18:15:00.000Z"
+      },
+      "replacement": {
+        "id": "reserva-scale-940-ficha",
+        "title": "Scott Scale 940: o que a ficha atual confirma sobre quadro, suspensão e transmissão"
+      },
+      "reason": "[RESEARCH_INSUFFICIENT] pesquisa sem contrato de evidência recuperada retrieved-excerpt-v1; pesquisa sem data de verificação ativa das fontes; fato 1 sem trecho literal verificável; fato 2 sem trecho literal verificável; fato 3 sem trecho literal verificável; fato 4 sem trecho literal verificável; fato 5 sem trecho literal verificável; fato 6 sem trecho literal verificável"
+    },
+    {
+      "recordedAt": "2026-08-14T00:31:54.902Z",
+      "campaignId": "thebiker-rolling-2026-08-08",
+      "replacedItem": {
+        "day": 11,
+        "publishDate": "2026-08-18",
+        "id": "youtube-bike-fit-e-posicao-criterios-tecnicos-para-ajuste-e-distribuicao",
+        "title": "Bike fit e posição: critérios técnicos para ajuste e distribuição de carga",
+        "summary": "Criar resposta técnica original para ciclista intermediário ou avançado, com método e limitações declarados. Sinal observado: 5.047 visualizações globais do vídeo; 2.517 por dia; encontrado em 1 busca(s) configurada(s) para o Brasil.",
+        "category": "manutencao-ajustes",
+        "freshness": "event-driven",
+        "status": "blocked",
+        "productIds": [
+          "selim-syncros-belcarra-v1-0-neo-carbon-cut-out-145mm"
+        ],
+        "heroImage": {
+          "mode": "real-context",
+          "productId": "selim-syncros-belcarra-v1-0-neo-carbon-cut-out-145mm",
+          "relationship": "component-example",
+          "rationale": "O selim Syncros real materializa um dos principais pontos de contato e ajuste tratados no conteúdo técnico de bike fit."
+        },
+        "imageAssetIds": [],
+        "blockReason": "[IMAGE_NOT_PUBLISHABLE] Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq 429; Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat)",
+        "failure": {
+          "code": "IMAGE_NOT_PUBLISHABLE",
+          "retryable": false,
+          "stage": "production",
+          "message": "Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq 429; Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat)",
+          "recordedAt": "2026-08-14T00:31:54.902Z"
+        },
+        "attempts": 2,
+        "lastAttemptAt": "2026-08-14T00:31:54.902Z"
+      },
+      "replacement": {
+        "id": "reserva-spark-rc-world-cup-ficha",
+        "title": "Scott Spark RC World Cup 2027: especificações confirmadas e limites da análise documental"
+      },
+      "reason": "[IMAGE_NOT_PUBLISHABLE] Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq 429; Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat)"
     }
   ]
 }

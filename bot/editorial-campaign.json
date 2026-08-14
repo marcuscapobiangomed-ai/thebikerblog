@@ -631,9 +631,12 @@
         "productId": "bicicleta-scott-addict-50-2026-pre-venda-1bxzy"
       },
       "postPath": "_posts/drafts/2026-08-17-reserva-addict-50-rc20-comparativo.md",
+      "imageManifestPath": "assets/img/posts/reserva-addict-50-rc20-comparativo/image-manifest.json",
+      "imageStatus": "approved",
       "imageAssetIds": [
         "thebiker-bicicleta-scott-addict-50-2026-pre-venda-1bxzy-31835875d4"
       ],
+      "imageValidatedAt": "2026-08-14T00:02:50.727Z",
       "attempts": 1,
       "lastAttemptAt": "2026-08-14T00:02:50.727Z",
       "aiReview": {
@@ -655,6 +658,18 @@
         "deterministicFullArticleFallbackUsed": true,
         "deterministicFullArticleFallbackTrigger": "repair-fallback"
       },
+      "editorialReceipt": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-editorial-2026-08-v2",
+        "origin": "pipeline",
+        "reviewedContentHash": "sha256:fe3f4e2a122f7a2cf1887cb53c84ecb3f8c6d7b41408e8b36d1490f1df8ef8ac",
+        "scheduledContentHash": "sha256:338c4517133a3456f7b92a507525f98561dd42dc116c2b38665a711416989220",
+        "researchHash": "sha256:da412fb7e39e6013eeec3ef7047e6052f65030b1ee5f4e6940ff7007b9b2ce42",
+        "sourceHash": "2b9a948c27b4b174e50aa1034bbc18ef6a9f5305abeb2629a12a7bf5c223bd6e",
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "issuedAt": "2026-08-14T00:02:50.727Z"
+      },
       "visualDecision": {
         "schemaVersion": 1,
         "policyVersion": "thebiker-visual-autonomy-v1",
@@ -673,75 +688,96 @@
         },
         "blockers": [],
         "issuedAt": "2026-08-14T00:02:50.727Z"
+      }
+    },
+    {
+      "day": 11,
+      "publishDate": "2026-08-18",
+      "id": "reserva-spark-rc-world-cup-ficha",
+      "title": "Scott Spark RC World Cup 2027: especificações confirmadas e limites da análise documental",
+      "summary": "Revisão documental que publica apenas características localizadas literalmente nas fontes oficiais recuperadas no dia.",
+      "category": "review",
+      "freshness": "revalidate-24h",
+      "status": "scheduled",
+      "productIds": [
+        "bicicleta-scott-spark-rc-world-cup-20271"
+      ],
+      "heroImage": {
+        "mode": "exact-product",
+        "productId": "bicicleta-scott-spark-rc-world-cup-20271"
+      },
+      "postPath": "_posts/drafts/2026-08-18-reserva-spark-rc-world-cup-ficha.md",
+      "imageAssetIds": [
+        "thebiker-bicicleta-scott-spark-rc-world-cup-20271-469b543bd6"
+      ],
+      "attempts": 2,
+      "lastAttemptAt": "2026-08-14T00:31:54.902Z",
+      "aiReview": {
+        "score": 92,
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "premiumEditUsed": false,
+        "providers": {
+          "deterministicFallback": "grounded-deterministic"
+        },
+        "generatedAt": "2026-08-14T00:31:54.902Z",
+        "contentHash": "sha256:f99766a8cd84d950bc5728490d6ebc9010c3a019f92c5372d6a1f28d5c73259a",
+        "deterministicFullArticleFallbackUsed": true,
+        "deterministicFullArticleFallbackTrigger": "pipeline-failure"
+      },
+      "visualDecision": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-visual-autonomy-v1",
+        "inputHash": "sha256:6fecba1191abed47a384163772f7153270974d2341a52172e71dc648c7231556",
+        "mode": "exact-product",
+        "productId": "bicicleta-scott-spark-rc-world-cup-20271",
+        "score": 100,
+        "hardGates": {
+          "semanticMatch": true,
+          "realAsset": true,
+          "explicitProduct": true,
+          "officialSource": true,
+          "approvedRights": true,
+          "publishableResolution": true,
+          "uniqueAsset": true
+        },
+        "blockers": [],
+        "issuedAt": "2026-08-14T00:31:54.902Z"
       },
       "editorialReceipt": {
         "schemaVersion": 1,
         "policyVersion": "thebiker-editorial-2026-08-v2",
         "origin": "pipeline",
-        "reviewedContentHash": "sha256:fe3f4e2a122f7a2cf1887cb53c84ecb3f8c6d7b41408e8b36d1490f1df8ef8ac",
-        "scheduledContentHash": "sha256:338c4517133a3456f7b92a507525f98561dd42dc116c2b38665a711416989220",
-        "researchHash": "sha256:da412fb7e39e6013eeec3ef7047e6052f65030b1ee5f4e6940ff7007b9b2ce42",
-        "sourceHash": "2b9a948c27b4b174e50aa1034bbc18ef6a9f5305abeb2629a12a7bf5c223bd6e",
+        "reviewedContentHash": "sha256:f99766a8cd84d950bc5728490d6ebc9010c3a019f92c5372d6a1f28d5c73259a",
+        "scheduledContentHash": "sha256:a3ad1cb958a78f4ef099d0dfd088bc08a8b84c8d557e96adf84ffcd8b79f7a75",
+        "researchHash": "sha256:3e741f12f0c7a8c67fcf095286da812c71cacfacb65c3d29ce4332281a0f9a73",
+        "sourceHash": null,
         "finalScore": 95,
         "finalBlockers": 0,
-        "issuedAt": "2026-08-14T00:02:50.727Z"
+        "issuedAt": "2026-08-14T00:31:54.902Z"
       },
-      "imageManifestPath": "assets/img/posts/reserva-addict-50-rc20-comparativo/image-manifest.json",
+      "imageManifestPath": "assets/img/posts/reserva-spark-rc-world-cup-ficha/image-manifest.json",
       "imageStatus": "approved",
-      "imageValidatedAt": "2026-08-14T00:02:50.727Z"
-    },
-    {
-      "day": 11,
-      "publishDate": "2026-08-18",
-      "id": "youtube-bike-fit-e-posicao-criterios-tecnicos-para-ajuste-e-distribuicao",
-      "title": "Bike fit e posição: critérios técnicos para ajuste e distribuição de carga",
-      "summary": "Criar resposta técnica original para ciclista intermediário ou avançado, com método e limitações declarados. Sinal observado: 5.047 visualizações globais do vídeo; 2.517 por dia; encontrado em 1 busca(s) configurada(s) para o Brasil.",
-      "category": "manutencao-ajustes",
-      "freshness": "event-driven",
-      "status": "planned",
-      "productIds": [
-        "selim-syncros-belcarra-v1-0-neo-carbon-cut-out-145mm"
-      ],
-      "heroImage": {
-        "mode": "real-context",
-        "productId": "selim-syncros-belcarra-v1-0-neo-carbon-cut-out-145mm",
-        "relationship": "component-example",
-        "rationale": "O selim Syncros real materializa um dos principais pontos de contato e ajuste tratados no conteúdo técnico de bike fit."
-      },
-      "imageAssetIds": [],
-      "attempts": 1,
-      "lastAttemptAt": "2026-08-13T18:15:00.000Z"
+      "imageValidatedAt": "2026-08-14T00:31:54.902Z"
     },
     {
       "day": 12,
       "publishDate": "2026-08-19",
-      "id": "ciclocross-regulamento-preparacao",
-      "title": "Ciclocross: regulamento, pneus e preparação da bike para prova",
-      "summary": "Compare critérios técnicos que as competições de ciclocross aplicam à bike, e saiba como orientar a escolha de pneus e geometria para prova.",
-      "category": "competicoes",
-      "freshness": "evergreen",
-      "status": "blocked",
+      "id": "reserva-scale-940-ficha",
+      "title": "Scott Scale 940: o que a ficha atual confirma sobre quadro, suspensão e transmissão",
+      "summary": "Leitura de produto sem extrapolações, baseada somente nos campos que continuam presentes nas páginas recuperadas.",
+      "category": "review",
+      "freshness": "revalidate-24h",
+      "status": "planned",
       "productIds": [
-        "cambio-traseiro-shimano-grx-11v"
+        "bicicleta-scott-scale-940-black"
       ],
       "heroImage": {
-        "mode": "real-context",
-        "productId": "cambio-traseiro-shimano-grx-11v",
-        "relationship": "component-example",
-        "rationale": "O câmbio Shimano GRX real exemplifica a transmissão para terreno misto citada no artigo, preservando a marca promovida."
+        "mode": "exact-product",
+        "productId": "bicicleta-scott-scale-940-black"
       },
-      "imageStatus": "blocked",
       "imageAssetIds": [],
-      "blockReason": "[RESEARCH_INSUFFICIENT] pesquisa sem contrato de evidência recuperada retrieved-excerpt-v1; pesquisa sem data de verificação ativa das fontes; fato 1 sem trecho literal verificável; fato 2 sem trecho literal verificável; fato 3 sem trecho literal verificável; fato 4 sem trecho literal verificável; fato 5 sem trecho literal verificável; fato 6 sem trecho literal verificável",
-      "failure": {
-        "code": "RESEARCH_INSUFFICIENT",
-        "retryable": true,
-        "stage": "source-verification-audit",
-        "message": "pesquisa sem contrato de evidência recuperada retrieved-excerpt-v1; pesquisa sem data de verificação ativa das fontes; fato 1 sem trecho literal verificável; fato 2 sem trecho literal verificável; fato 3 sem trecho literal verificável; fato 4 sem trecho literal verificável; fato 5 sem trecho literal verificável; fato 6 sem trecho literal verificável",
-        "recordedAt": "2026-08-13T18:15:00.000Z"
-      },
-      "attempts": 5,
-      "lastAttemptAt": "2026-08-13T18:15:00.000Z"
+      "attempts": 0
     },
     {
       "day": 13,
@@ -1125,32 +1161,6 @@
       "summary": "Protocolo técnico para isolar ruídos de transmissão, cockpit, rodas e quadro sem substituir componentes por tentativa e erro.",
       "category": "manutencao-ajustes",
       "productIds": []
-    },
-    {
-      "id": "reserva-scale-940-ficha",
-      "title": "Scott Scale 940: o que a ficha atual confirma sobre quadro, suspensão e transmissão",
-      "summary": "Leitura de produto sem extrapolações, baseada somente nos campos que continuam presentes nas páginas recuperadas.",
-      "category": "review",
-      "productIds": [
-        "bicicleta-scott-scale-940-black"
-      ],
-      "heroImage": {
-        "mode": "exact-product",
-        "productId": "bicicleta-scott-scale-940-black"
-      }
-    },
-    {
-      "id": "reserva-spark-rc-world-cup-ficha",
-      "title": "Scott Spark RC World Cup 2027: especificações confirmadas e limites da análise documental",
-      "summary": "Revisão documental que publica apenas características localizadas literalmente nas fontes oficiais recuperadas no dia.",
-      "category": "review",
-      "productIds": [
-        "bicicleta-scott-spark-rc-world-cup-20271"
-      ],
-      "heroImage": {
-        "mode": "exact-product",
-        "productId": "bicicleta-scott-spark-rc-world-cup-20271"
-      }
     }
   ]
 }

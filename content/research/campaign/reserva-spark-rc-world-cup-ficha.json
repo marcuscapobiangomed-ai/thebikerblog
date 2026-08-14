@@ -1,0 +1,137 @@
+{
+  "slug": "reserva-spark-rc-world-cup-ficha",
+  "title": "Scott Spark RC World Cup 2027: especificações confirmadas e limites da análise documental",
+  "content_type": "review",
+  "review_method": "desk-research",
+  "tested_by_thebikerblog": false,
+  "market": "Brasil",
+  "generated_at": "2026-08-14",
+  "status": "pesquisa_concluida",
+  "sources": [
+    {
+      "name": "TheBiker — Bicicleta Scott Spark RC World Cup 2027",
+      "url": "https://thebikershop.com.br/produtos/bicicleta-scott-spark-rc-world-cup-20271/",
+      "accessed": "2026-08-04",
+      "id": "cache-src-1",
+      "type": "store"
+    },
+    {
+      "name": "Scott — página oficial do modelo",
+      "url": "https://www.scott-sports.com/global/en/product/scott-spark-rc-world-cup-bike",
+      "accessed": "2026-08-04",
+      "id": "cache-src-2",
+      "type": "manufacturer"
+    }
+  ],
+  "editorialPriority": "P1",
+  "confirmed_facts": [
+    {
+      "fact": "identity.storeName: Bicicleta Scott Spark RC World Cup 2027",
+      "source_ids": [
+        "cache-src-1"
+      ],
+      "evidence_quote": "bicicleta scott spark rc world cup 2027 alta performance e suspensa import"
+    },
+    {
+      "fact": "commercial.storeUrl: https://thebikershop.com.br/produtos/bicicleta-scott-spark-rc-world-cup-20271/",
+      "source_ids": [
+        "cache-src-1"
+      ],
+      "evidence_quote": "spark rc world cup 2027 item https thebikershop com br produtos bicicleta scott spark rc world cup 20271 mainentity type product id https"
+    },
+    {
+      "fact": "identity.officialUrl: https://www.scott-sports.com/global/en/product/scott-spark-rc-world-cup-bike",
+      "source_ids": [
+        "cache-src-2"
+      ],
+      "evidence_quote": "type listitem position 4 item id https www scott sports com global en product scott spark rc world cup bike name scott spark rc world"
+    },
+    {
+      "fact": "identity.manufacturerModelCode: 290103",
+      "source_ids": [
+        "cache-src-2"
+      ],
+      "evidence_quote": "type nude suspension technology product id 290103 product price else if false"
+    },
+    {
+      "fact": "identity.sizes: S, M, L, XL",
+      "source_ids": [
+        "cache-src-2"
+      ],
+      "evidence_quote": "rekon race foldable tires 1 size s m l xl size chart times var defaulttheme"
+    },
+    {
+      "fact": "frame.material: Spark RC Carbon HMX",
+      "source_ids": [
+        "cache-src-2"
+      ],
+      "evidence_quote": "cup bike model 290103 key features spark rc carbon hmx frame rockshox sid select rl3"
+    },
+    {
+      "fact": "suspension.frontTravel: 120 mm",
+      "source_ids": [
+        "cache-src-1"
+      ],
+      "evidence_quote": "udh 12x148mm 55mm chainline curso front 120 mm rear 120 mm garfo rockshox"
+    },
+    {
+      "fact": "suspension.rearTravel: 120 mm",
+      "source_ids": [
+        "cache-src-1"
+      ],
+      "evidence_quote": "udh 12x148mm 55mm chainline curso front 120 mm rear 120 mm garfo rockshox"
+    },
+    {
+      "fact": "suspension.fork: RockShox SID Select+ RL3 Air",
+      "source_ids": [
+        "cache-src-2"
+      ],
+      "evidence_quote": "interface 12x148mm with 55mm chainline fork rockshox sid select rl3 air custom charger 3 mode damper"
+    },
+    {
+      "fact": "suspension.rearShock: RockShox NUDE 5 RL3 Trunnion",
+      "source_ids": [
+        "cache-src-2"
+      ],
+      "evidence_quote": "reb adj 120mm travel rear shock rockshox nude 5 rl3 trunnion scott custom w travel geo"
+    },
+    {
+      "fact": "drivetrain.rearDerailleur: SRAM X01 Eagle AXS",
+      "source_ids": [
+        "cache-src-2"
+      ],
+      "evidence_quote": "rs nude 5 rl3 120mm twinloc sram x01 eagle axs 12 speed sram level disc"
+    },
+    {
+      "fact": "drivetrain.shifting: wireless electronic",
+      "source_ids": [
+        "cache-src-2"
+      ],
+      "evidence_quote": "sram x01 eagle axs 12 speed wireless electronic shift system shifters sram gx"
+    },
+    {
+      "fact": "brakes.calipers: SRAM Level TLM Disc",
+      "source_ids": [
+        "cache-src-2"
+      ],
+      "evidence_quote": "x01 xg1295 10 52 t brakes sram level tlm disc tool free reach adj rotor"
+    }
+  ],
+  "limitations": [
+    "Pesquisa web indisponível nesta execução (Groq 429; Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat); conteúdo limitado à base interna com fontes oficiais.",
+    "10 fato(s) removido(s) por falta de trecho verificavel na fonte recuperada.",
+    "Pesquisa de rede indisponÃ­vel; esta execuÃ§Ã£o reutilizou somente a ficha editorial oficial previamente validada."
+  ],
+  "grounding": {
+    "queries": [],
+    "sourceCount": 2,
+    "fallback": "campaign-research-offline-cache-v1",
+    "claimContract": "explicit-units-v1",
+    "evidenceContract": "campaign-research-cache-v1",
+    "verifiedAt": "2026-08-14T00:33:20.182Z",
+    "verificationMode": "campaign-offline-cache"
+  },
+  "portfolio_evidence_url": "https://thebikershop.com.br/bikes/",
+  "portfolio_verified_at": "2026-08-14",
+  "portfolio_evidence_scope": "portfolio-category"
+}
