@@ -72,6 +72,8 @@ jobs:
         run: npm run media:discover && npm run media:audit
         working-directory: bot
       - name: Recuperar ou substituir a próxima pauta bloqueada
+        env:
+          CAMPAIGN_RESEARCH_MAX_ATTEMPTS: "2"
         run: npm run campaign:recover
         working-directory: bot
       - name: Auditar buffer legado ainda sem nota final
