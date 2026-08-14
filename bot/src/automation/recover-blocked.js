@@ -13,6 +13,8 @@ const STRUCTURAL_REPAIR_FAILURE = /Rascunho bloqueado.+\d+ reparos[\s\S]*(?:Desc
 const MISSING_DRAFT = /rascunho indisponível/i
 const REJECTED_FULL_ARTICLE = /Rascunho bloqueado|Gates editoriais n[aã]o atendidos/i
 
+const MISCLASSIFIED_RESEARCH_FALLBACK = /fallback interno bloqueado|nenhuma fonte oficial permitida/i
+
 const REAL_CONTEXT_BY_RESERVE_ID = Object.freeze({
   'reserva-diagnostico-ruidos-bike': 'bicicleta-scott-scale-940-black',
   'reserva-pressao-pneus-terreno': 'pneu-schwalbe-racing-ray-29-x-2-25-super-race-tlr-addix',
@@ -55,6 +57,15 @@ const RECOVERY_RESERVES = [
   { id: 'reserva-spark-rc-expert-ficha', title: 'Scott Spark RC Expert 2027: leitura técnica da montagem confirmada pelas fontes atuais', summary: 'Ficha editorial do modelo limitada aos materiais, suspensão, transmissão e limites explicitamente recuperados das fontes.', category: 'review', productIds: ['bicicleta-scott-spark-rc-expert-2027'], heroImage: { mode: 'exact-product', productId: 'bicicleta-scott-spark-rc-expert-2027' } },
   { id: 'reserva-scale-940-ficha', title: 'Scott Scale 940: o que a ficha atual confirma sobre quadro, suspensão e transmissão', summary: 'Leitura de produto sem extrapolações, baseada somente nos campos que continuam presentes nas páginas recuperadas.', category: 'review', productIds: ['bicicleta-scott-scale-940-black'], heroImage: { mode: 'exact-product', productId: 'bicicleta-scott-scale-940-black' } },
   { id: 'reserva-spark-rc-world-cup-ficha', title: 'Scott Spark RC World Cup 2027: especificações confirmadas e limites da análise documental', summary: 'Revisão documental que publica apenas características localizadas literalmente nas fontes oficiais recuperadas no dia.', category: 'review', productIds: ['bicicleta-scott-spark-rc-world-cup-20271'], heroImage: { mode: 'exact-product', productId: 'bicicleta-scott-spark-rc-world-cup-20271' } },
+  // Cache-backed maintenance reserve. The live campaign reserve predates the
+  // product-id requirement, so this copy carries executable visual context.
+  { id: 'reserva-diagnostico-ruidos-bike', title: 'Diagnostico de ruidos na bicicleta: metodo por carga, frequencia e interface', summary: 'Protocolo tecnico para isolar ruidos de transmissao, cockpit, rodas e quadro sem substituir componentes por tentativa e erro.', category: 'manutencao-ajustes', productIds: ['bicicleta-scott-scale-940-black'], heroImage: { mode: 'real-context', productId: 'bicicleta-scott-scale-940-black', relationship: 'category-example', rationale: 'Fotografia real do catalogo usada somente como contexto visual para o diagnostico tecnico da bicicleta.' } },
+  // Product-backed reserves remain publishable when both research providers
+  // are rate-limited: the producer can use verified catalog evidence and the
+  // official image failover already covered by the visual gate.
+  { id: 'reserva-scale-940-checklist-oficial', title: 'Scott Scale 940: checklist documental para conferir quadro e montagem', summary: 'Checklist editorial limitado aos campos de quadro, suspensao e componentes que permanecem comprovados nas fichas oficiais.', category: 'review', productIds: ['bicicleta-scott-scale-940-black'], heroImage: { mode: 'exact-product', productId: 'bicicleta-scott-scale-940-black' } },
+  { id: 'reserva-addict-rc-pro-ficha-oficial', title: 'Scott Addict RC Pro: ficha documental das especificacoes confirmadas', summary: 'Leitura de produto sem teste pratico, restrita as especificacoes e aos limites explicitamente registrados nas fontes aceitas.', category: 'review', productIds: ['bicicleta-scott-addict-rc-pro-di2-2026-pre-venda'], heroImage: { mode: 'exact-product', productId: 'bicicleta-scott-addict-rc-pro-di2-2026-pre-venda' } },
+  { id: 'reserva-addict-rc20-ficha-oficial', title: 'Scott Addict RC 20: o que a ficha oficial permite afirmar', summary: 'Resumo tecnico documental do modelo, sem extrapolar componentes, medidas ou desempenho alem do que esta rastreado.', category: 'review', productIds: ['bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9'], heroImage: { mode: 'exact-product', productId: 'bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9' } },
 ]
 
 function localDate(now, timezone) {
@@ -86,7 +97,10 @@ function nextReserve(campaign, blocked) {
   const used = new Set(campaign.items.map((item) => item.id))
   const available = [...RECOVERY_RESERVES, ...campaign.reserves].filter((item, index, items) => !used.has(item.id) && items.findIndex((candidate) => candidate.id === item.id) === index)
   if (blocked.race) return available.find((item) => item.race?.track === blocked.race.track) || null
-  return available.find((item) => item.category !== 'competicoes' && item.productIds?.length > 0) || null
+  // Legacy reserves can omit productIds while still having a safe
+  // real-context mapping. Treat that mapping as executable evidence instead
+  // of declaring the reserve pool empty.
+  return available.find((item) => item.category !== 'competicoes' && (item.productIds?.length > 0 || realContextPolicy(item)?.productId)) || null
 }
 
 export function recoverBlockedCampaign(campaignInput, {
@@ -100,7 +114,11 @@ export function recoverBlockedCampaign(campaignInput, {
   const blocked = campaign.items.find((item) => item.status === 'blocked' && item.publishDate >= today)
   if (!blocked) return { campaign, result: { status: 'idle' }, exception: null }
   let reason = blocked.blockReason || 'Motivo não informado'
-  const classified = blocked.failure || classifyEditorialFailure(reason, { stage: 'recovery', now })
+  // Reclassify legacy records written before the fallback rule existed. A
+  // stale IMAGE_NOT_PUBLISHABLE code must not suppress research recovery.
+  const classified = blocked.failure?.code === 'IMAGE_NOT_PUBLISHABLE' && MISCLASSIFIED_RESEARCH_FALLBACK.test(reason)
+    ? classifyEditorialFailure(reason, { stage: blocked.failure.stage || 'recovery', now })
+    : blocked.failure || classifyEditorialFailure(reason, { stage: 'recovery', now })
   const visual = realContextPolicy(blocked)
   if (FINALIZATION.test(reason)
       && classified.code === 'IMAGE_NOT_PUBLISHABLE'

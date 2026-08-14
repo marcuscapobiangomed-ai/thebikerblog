@@ -296,6 +296,42 @@ assert.notEqual(replaced.campaign.items[unsupported.day - 1].id, unsupported.id)
 assert.ok(replaced.exception)
 assert.ok(replaced.campaign.reserves.length >= 3)
 const executableReplacement = replaced.campaign.items[unsupported.day - 1]
+// A legacy reserve in the live calendar has no productIds but is mapped to a
+// real-context product. It must still be selected after a provider/evidence
+// failure, and the campaign must remain schema-valid with a replenished pool.
+const legacyReserveFallback = structuredClone(campaignFixture)
+for (const item of legacyReserveFallback.items.filter((candidate) => candidate.publishDate >= '2026-08-20')) {
+  item.status = 'planned'
+  delete item.blockReason
+  delete item.failure
+  delete item.postPath
+  delete item.aiReview
+  delete item.editorialReceipt
+  delete item.visualDecision
+  delete item.imageManifestPath
+  delete item.imageStatus
+  delete item.imageValidatedAt
+  item.imageAssetIds = []
+}
+const legacyBlocked = legacyReserveFallback.items.find((item) => item.day === 13)
+legacyBlocked.status = 'blocked'
+legacyBlocked.attempts = 2
+legacyBlocked.blockReason = '[IMAGE_NOT_PUBLISHABLE] Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq 429)'
+legacyBlocked.failure = {
+  code: 'IMAGE_NOT_PUBLISHABLE', retryable: false, stage: 'production',
+  message: 'Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq 429)',
+  recordedAt: '2026-08-13T16:00:00.000Z',
+}
+const legacyRecovered = recoverBlockedCampaign(legacyReserveFallback, {
+  now: new Date('2026-08-13T16:00:00Z'),
+  maximumResearchAttempts: 2,
+})
+assert.equal(legacyRecovered.result.status, 'replaced')
+assert.equal(legacyRecovered.result.replacementId, 'reserva-diagnostico-ruidos-bike')
+const legacyReplacement = legacyRecovered.campaign.items[legacyBlocked.day - 1]
+assert.ok(legacyReplacement.productIds.includes('bicicleta-scott-scale-940-black'))
+assert.equal(legacyReplacement.heroImage.mode, 'real-context')
+assert.ok(legacyRecovered.campaign.reserves.length >= 3)
 assert.ok(executableReplacement.productIds.length > 0, 'reserva comum precisa carregar evidência de produto recuperável')
 assert.ok(['exact-product', 'real-context'].includes(executableReplacement.heroImage.mode), 'reserva comum precisa carregar política visual publicável')
 assert.ok(replaced.campaign.reserves.some((reserve) => reserve.productIds.length > 0), 'reposição precisa manter ao menos uma reserva executável')
