@@ -855,16 +855,16 @@
         "rationale": "O kit real de reparo RockShox representa diretamente vedações e peças de desgaste envolvidas no serviço preventivo de suspensão."
       },
       "imageAssetIds": [],
-      "blockReason": "[IMAGE_NOT_PUBLISHABLE] Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq 429; Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat)",
+      "attempts": 4,
+      "lastAttemptAt": "2026-08-14T01:34:43.331Z",
       "failure": {
-        "code": "IMAGE_NOT_PUBLISHABLE",
+        "code": "RESEARCH_INSUFFICIENT",
         "retryable": false,
         "stage": "production",
         "message": "Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq 429; Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat)",
-        "recordedAt": "2026-08-14T00:45:57.301Z"
+        "recordedAt": "2026-08-14T01:34:43.331Z"
       },
-      "attempts": 2,
-      "lastAttemptAt": "2026-08-14T00:45:57.301Z"
+      "blockReason": "[RESEARCH_INSUFFICIENT] Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq 429; Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat)"
     },
     {
       "day": 14,
@@ -1098,8 +1098,7 @@
         "mode": "conceptual"
       },
       "imageAssetIds": [],
-      "attempts": 1,
-      "lastAttemptAt": "2026-08-14T01:19:32.098Z",
+      "blockReason": "[IMAGE_NOT_PUBLISHABLE] Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq 429; Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat)",
       "failure": {
         "code": "IMAGE_NOT_PUBLISHABLE",
         "retryable": false,
@@ -1107,7 +1106,8 @@
         "message": "Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq 429; Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat)",
         "recordedAt": "2026-08-14T01:19:32.098Z"
       },
-      "blockReason": "[IMAGE_NOT_PUBLISHABLE] Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq 429; Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat)"
+      "attempts": 1,
+      "lastAttemptAt": "2026-08-14T01:19:32.098Z"
     },
     {
       "day": 23,
