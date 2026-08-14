@@ -1023,8 +1023,7 @@
         "mode": "conceptual"
       },
       "imageAssetIds": [],
-      "attempts": 1,
-      "lastAttemptAt": "2026-08-14T01:14:49.377Z",
+      "blockReason": "[IMAGE_NOT_PUBLISHABLE] Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq 429; Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat)",
       "failure": {
         "code": "IMAGE_NOT_PUBLISHABLE",
         "retryable": false,
@@ -1032,7 +1031,8 @@
         "message": "Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq 429; Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat)",
         "recordedAt": "2026-08-14T01:14:49.377Z"
       },
-      "blockReason": "[IMAGE_NOT_PUBLISHABLE] Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq 429; Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat)"
+      "attempts": 1,
+      "lastAttemptAt": "2026-08-14T01:14:49.377Z"
     },
     {
       "day": 20,
@@ -1042,13 +1042,22 @@
       "summary": "Diferenças entre padrões roscados e press-fit, e como evitar danos ao quadro na instalação. Guia para o ciclista intermediário/avançado.",
       "category": "manutencao-ajustes",
       "freshness": "evergreen",
-      "status": "planned",
+      "status": "blocked",
       "productIds": [],
       "heroImage": {
         "mode": "conceptual"
       },
       "imageAssetIds": [],
-      "attempts": 0
+      "blockReason": "[IMAGE_NOT_PUBLISHABLE] Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq 429; Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat)",
+      "failure": {
+        "code": "IMAGE_NOT_PUBLISHABLE",
+        "retryable": false,
+        "stage": "production",
+        "message": "Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq 429; Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat)",
+        "recordedAt": "2026-08-14T01:19:32.098Z"
+      },
+      "attempts": 1,
+      "lastAttemptAt": "2026-08-14T01:19:32.098Z"
     },
     {
       "day": 21,
@@ -1058,13 +1067,22 @@
       "summary": "Como determinar a quantidade, validade e compatibilidade do selante para evitar vazamentos lentos em rodas sem câmara. Sem prometer soluções milagrosas.",
       "category": "manutencao-ajustes",
       "freshness": "evergreen",
-      "status": "planned",
+      "status": "blocked",
       "productIds": [],
       "heroImage": {
         "mode": "conceptual"
       },
       "imageAssetIds": [],
-      "attempts": 0
+      "blockReason": "[IMAGE_NOT_PUBLISHABLE] Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq 429; Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat)",
+      "failure": {
+        "code": "IMAGE_NOT_PUBLISHABLE",
+        "retryable": false,
+        "stage": "production",
+        "message": "Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq 429; Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat)",
+        "recordedAt": "2026-08-14T01:19:32.098Z"
+      },
+      "attempts": 1,
+      "lastAttemptAt": "2026-08-14T01:19:32.098Z"
     },
     {
       "day": 22,
@@ -1074,13 +1092,22 @@
       "summary": "Método de medição com régua e paquímetro para identificar quando a corrente deve ser substituída, evitando desgaste de cassete e coroa.",
       "category": "manutencao-ajustes",
       "freshness": "evergreen",
-      "status": "planned",
+      "status": "blocked",
       "productIds": [],
       "heroImage": {
         "mode": "conceptual"
       },
       "imageAssetIds": [],
-      "attempts": 0
+      "attempts": 1,
+      "lastAttemptAt": "2026-08-14T01:19:32.098Z",
+      "failure": {
+        "code": "IMAGE_NOT_PUBLISHABLE",
+        "retryable": false,
+        "stage": "production",
+        "message": "Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq 429; Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat)",
+        "recordedAt": "2026-08-14T01:19:32.098Z"
+      },
+      "blockReason": "[IMAGE_NOT_PUBLISHABLE] Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq 429; Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat)"
     },
     {
       "day": 23,
