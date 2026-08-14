@@ -134,6 +134,23 @@ export function recoverBlockedCampaign(campaignInput, {
       exception: null,
     }
   }
+  if (FINALIZATION.test(reason)
+      && blocked.aiReview?.deterministicFullArticleFallbackUsed
+      && (blocked.aiReview.finalScore === null || blocked.aiReview.finalScore === undefined || (blocked.aiReview.finalBlockers || 0) > 0)
+      && (blocked.attempts || 0) < maximumTransientAttempts) {
+    // A pre-score deterministic draft was valid as content but could not
+    // issue a receipt. Rebuild it through the producer so the new objective
+    // fallback audit is persisted before finalization is attempted again.
+    clearDiscardedDraftState(blocked)
+    blocked.status = 'planned'
+    delete blocked.blockReason
+    delete blocked.failure
+    return {
+      campaign: CampaignSchema.parse(campaign),
+      result: { status: 'retry-deterministic-fallback-review', itemId: blocked.id, attempts: blocked.attempts || 0 },
+      exception: null,
+    }
+  }
   if (FINALIZATION.test(reason) && blocked.postPath && finalizationDraftErrors.length === 0) {
     blocked.status = 'validation'
     delete blocked.blockReason

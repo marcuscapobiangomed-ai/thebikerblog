@@ -294,6 +294,10 @@ const deterministicFallbackResult = await deterministicFallbackProvider.processC
 );
 assert.equal(deterministicFallbackResult.pipelineMetadata.deterministicFullArticleFallbackUsed, true);
 assert.equal(deterministicFallbackResult.pipelineMetadata.deterministicFullArticleFallbackTrigger, "deepseek-unavailable");
+assert.equal(deterministicFallbackResult.pipelineMetadata.scoreBeforePremium, 92);
+assert.equal(deterministicFallbackResult.pipelineMetadata.finalScore, 95);
+assert.equal(deterministicFallbackResult.pipelineMetadata.finalBlockers, 0);
+assert.equal(deterministicFallbackResult.pipelineMetadata.providers.deterministicFallback, "grounded-deterministic");
 assert.equal(JSON.parse(deterministicFallbackResult.rawJson).sections.length, 10);
 assert.doesNotThrow(() => assertEditorialPublicationGates(JSON.parse(deterministicFallbackResult.rawJson), { AI_MIN_ARTICLE_WORDS: "1600" }));
 const pipelineFailureProvider = new AIProvider({
