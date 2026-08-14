@@ -4,6 +4,7 @@ import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { replenishCampaignBuffer } from "../bot/src/automation/replenish-buffer.js";
+import { retryCampaignFinalization } from "../bot/src/retry_campaign_finalization.js";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const sourceCampaign = JSON.parse(await fs.readFile(path.join(root, "bot/editorial-campaign.json"), "utf8"));
@@ -123,6 +124,40 @@ const partial = await replenishCampaignBuffer({
   recoverer: async () => ({ status: "idle" }),
 });
 assert.equal(partial.status, "partial", "a recomposição periódica pode registrar avanço parcial sem mascarar o estado");
+
+const retryFixture = structuredClone(sourceCampaign);
+for (const item of retryFixture.items.filter((candidate) => candidate.status === "blocked")) {
+  item.status = "planned";
+  delete item.blockReason;
+  delete item.failure;
+}
+const retryItem = retryFixture.items.find((item) => item.status === "scheduled");
+assert.ok(retryItem, "o teste de failover exige uma data futura inicialmente ocupada");
+retryItem.status = "blocked";
+retryItem.failure = {
+  code: "IMAGE_NOT_PUBLISHABLE",
+  retryable: false,
+  stage: "finalization",
+  message: "Galeria oficial sem imagem inédita válida",
+  recordedAt: now.toISOString(),
+};
+retryItem.blockReason = `Validação final: [IMAGE_NOT_PUBLISHABLE] ${retryItem.failure.message}`;
+await save(retryFixture);
+let retryOptions = null;
+const retryResult = await retryCampaignFinalization({
+  root: fixtureRoot,
+  now,
+  env: { CAMPAIGN_FINALIZATION_MAX_ATTEMPTS: "4" },
+  replenisher: async (options) => {
+    retryOptions = options;
+    return { status: "replenished", requiredReady: true };
+  },
+});
+const scheduledBeforeRetry = retryFixture.items.filter((item) => item.publishDate >= "2026-08-13" && item.status === "scheduled").length;
+assert.equal(retryResult.status, "scheduled");
+assert.equal(retryOptions.targetBuffer, scheduledBeforeRetry + 1, "failover precisa exigir um novo artigo além do buffer existente");
+assert.equal(retryOptions.requiredDate, retryItem.publishDate, "a data da pauta bloqueada precisa terminar pronta");
+assert.equal(retryOptions.maxAttempts, 4, "o número de tentativas precisa ser limitado e configurável");
 
 await fs.rm(fixtureRoot, { recursive: true, force: true });
 console.log("Recomposição do buffer e failover de finalização validados com sucesso.");

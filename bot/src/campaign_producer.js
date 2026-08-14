@@ -10,6 +10,7 @@ import { RaceProgramSchema, selectRaceEventsForEditorialItem, validateRaceEditor
 import { linkTheBikerProducts, loadTheBikerLinkData } from './editorial/product-linker.js'
 import { assertResearchGrounding } from './validation/research-grounding.js'
 import { assertArticleResearchGrounding } from './validation/article-research-grounding.js'
+import { assertCampaignVisualAvailable } from './images/official-campaign-image.js'
 
 const defaultRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..')
 
@@ -80,6 +81,9 @@ export async function runCampaignProducer({ root = defaultRoot, env = process.en
     item.lastAttemptAt = now.toISOString()
     item.status = 'researching'
     await persist(root, campaign)
+    if (['exact-product', 'real-context'].includes(item.heroImage?.mode)) {
+      await assertCampaignVisualAvailable({ root, item, approvedAt: today })
+    }
     const research = await researcher.research({ item, internalEvidence: knowledge.evidence, raceEvents, today })
     assertResearchGrounding(research, { requireFactReferences: true })
     if (item.race) {

@@ -11,11 +11,12 @@ import { prepareImageVariants } from "./src/images/prepare-variants.js";
 import fsPromises from "node:fs/promises";
 import os from "node:os";
 import sharp from "sharp";
-import { selectImageCandidate } from "./src/images/select-image.js";
+import { selectImageCandidate, selectImageCandidates } from "./src/images/select-image.js";
 import { imageArticleConsistencyErrors } from "./src/validation/image-article-consistency.js";
 import { issueVisualDecision, visualDecisionErrors } from "./src/validation/visual-decision.js";
 import { alignCampaignVisual, alignRealContextVisual } from "./src/images/align-campaign-visual.js";
-import { productImageCandidates } from "./src/images/official-campaign-image.js";
+import { assertCampaignVisualAvailable, productImageCandidates } from "./src/images/official-campaign-image.js";
+import { perceptualHash, sha256 } from "./src/images/dedupe.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const catalog = { products: [{
@@ -65,6 +66,116 @@ assert.deepEqual(configuredManufacturerCandidates[0], {
   sourceName: "Scott",
   sourcePageUrl: "https://www.scott-sports.com/global/en/product/scott-scale-940-bike",
 });
+
+const galleryCandidateUrl = "https://acdn-us.mitiendanube.com/stores/001/062/247/products/scale-gallery-1024-1024.webp";
+const manufacturerAndGallery = await productImageCandidates({
+  id: "bicicleta-scott-scale-940-black",
+  brand: "Scott",
+  productUrl: "https://thebikershop.com.br/produtos/bicicleta-scott-scale-940-black/",
+  images: [],
+}, {
+  allowedPageHosts: ["thebikershop.com.br"],
+  officialProductImages: {
+    "bicicleta-scott-scale-940-black": {
+      officialPageUrl: "https://www.scott-sports.com/global/en/product/scott-scale-940-bike",
+      images: ["https://static.scott-sports.com/image/upload/scale.png"],
+    },
+  },
+}, async () => ({
+  ok: true,
+  text: async () => `<a href="//acdn-us.mitiendanube.com/stores/001/062/247/products/scale-gallery-1024-1024.webp" data-fancybox="product-gallery">foto</a>`,
+}));
+assert.ok(manufacturerAndGallery.some((candidate) => candidate.url === galleryCandidateUrl),
+  "imagem oficial configurada não pode impedir a descoberta das alternativas da galeria");
+
+const ordered = selectImageCandidates({ id: "contexto", productIds: ["produto-usado", "produto-livre"] }, {
+  products: [
+    { id: "produto-usado", productUrl: "https://thebikershop.com.br/produtos/usado/" },
+    { id: "produto-livre", productUrl: "https://thebikershop.com.br/produtos/livre/" },
+  ],
+}, { assets: [{ sourcePageUrl: "https://thebikershop.com.br/produtos/usado/", uses: [{ postId: "outro", usedAt: "2026-08-14T12:00:00.000Z" }] }] });
+assert.equal(ordered[0]?.product.id, "produto-livre", "produto ainda não consumido precisa ser tentado primeiro");
+
+const visualProbeRoot = await fsPromises.mkdtemp(path.join(os.tmpdir(), "thebiker-visual-probe-"));
+try {
+  await Promise.all([
+    fsPromises.mkdir(path.join(visualProbeRoot, "bot/config"), { recursive: true }),
+    fsPromises.mkdir(path.join(visualProbeRoot, "content/product-discovery"), { recursive: true }),
+    fsPromises.mkdir(path.join(visualProbeRoot, "content/image-rights"), { recursive: true }),
+    fsPromises.mkdir(path.join(visualProbeRoot, "content/image-library"), { recursive: true }),
+  ]);
+  const duplicateBuffer = await sharp({ create: { width: 1200, height: 800, channels: 3, background: "#224466" } }).webp().toBuffer();
+  const lowResolutionBuffer = await sharp({ create: { width: 480, height: 480, channels: 3, background: "#6688aa" } }).webp().toBuffer();
+  const publishableBuffer = await sharp({ create: { width: 1200, height: 800, channels: 3, background: "#aa4422" } })
+    .composite([{ input: { create: { width: 600, height: 800, channels: 3, background: "#f5f5f5" } }, left: 0, top: 0 }])
+    .webp()
+    .toBuffer();
+  const firstProduct = "produto-imagem-esgotada";
+  const secondProduct = "produto-imagem-disponivel";
+  const assetHost = "acdn-us.mitiendanube.com";
+  const config = {
+    allowedPageHosts: ["thebikershop.com.br"],
+    allowedAssetHosts: [assetHost],
+    maximumDownloadBytes: 12_582_912,
+    minimumPublishableLongEdge: 1600,
+    minimumPublishableShortEdge: 800,
+    minimumStandardLongEdge: 800,
+    minimumStandardShortEdge: 600,
+    officialProductImages: {
+      [firstProduct]: {
+        officialPageUrl: "https://thebikershop.com.br/produtos/esgotada/",
+        images: [`https://${assetHost}/duplicate.webp`],
+      },
+    },
+  };
+  const products = [
+    { id: firstProduct, name: "Produto esgotado", brand: "Scott", productUrl: "https://thebikershop.com.br/produtos/esgotada/", images: [`https://${assetHost}/forbidden.webp`, `https://${assetHost}/low.webp`] },
+    { id: secondProduct, name: "Produto disponível", brand: "Scott", productUrl: "https://thebikershop.com.br/produtos/disponivel/", images: [`https://${assetHost}/publishable.webp`] },
+  ];
+  const rights = { id: "visual-rights", status: "approved", authorizationBasis: "catálogo oficial", license: "uso editorial" };
+  const library = {
+    schemaVersion: 1,
+    updatedAt: "2026-08-14T12:00:00.000Z",
+    assets: [{
+      assetId: "duplicate-existing",
+      sha256: sha256(duplicateBuffer),
+      perceptualHash: await perceptualHash(duplicateBuffer),
+      sourcePageUrl: "https://thebikershop.com.br/produtos/esgotada/",
+      uses: [{ postId: "artigo-anterior", position: "hero", usedAt: "2026-08-14T12:00:00.000Z" }],
+    }],
+  };
+  await Promise.all([
+    fsPromises.writeFile(path.join(visualProbeRoot, "bot/config/official-image-sources.json"), JSON.stringify(config)),
+    fsPromises.writeFile(path.join(visualProbeRoot, "content/product-discovery/thebiker-media-catalog.json"), JSON.stringify({ products })),
+    fsPromises.writeFile(path.join(visualProbeRoot, "content/image-rights/thebiker-official-editorial-v1.json"), JSON.stringify(rights)),
+    fsPromises.writeFile(path.join(visualProbeRoot, "content/image-rights/official-brand-editorial-v1.json"), JSON.stringify(rights)),
+    fsPromises.writeFile(path.join(visualProbeRoot, "content/image-library/index.json"), JSON.stringify(library)),
+  ]);
+  const fetchImpl = async (input) => {
+    const url = String(input);
+    if (url.includes("/produtos/")) return new Response("<html></html>", { status: 200, headers: { "content-type": "text/html" } });
+    if (url.endsWith("duplicate.webp")) return new Response(duplicateBuffer, { status: 200, headers: { "content-type": "image/webp" } });
+    if (url.endsWith("forbidden.webp")) return new Response("forbidden", { status: 403 });
+    if (url.endsWith("low.webp")) return new Response(lowResolutionBuffer, { status: 200, headers: { "content-type": "image/webp" } });
+    if (url.endsWith("publishable.webp")) return new Response(publishableBuffer, { status: 200, headers: { "content-type": "image/webp" } });
+    throw new Error(`URL inesperada: ${url}`);
+  };
+  await assert.rejects(() => assertCampaignVisualAvailable({
+    root: visualProbeRoot,
+    item: { id: "exact-esgotado", productIds: [firstProduct] },
+    approvedAt: "2026-08-14",
+    fetchImpl,
+  }), /Imagem duplicada[\s\S]*HTTP 403[\s\S]*resolução insuficiente/);
+  const available = await assertCampaignVisualAvailable({
+    root: visualProbeRoot,
+    item: { id: "contexto-com-failover", productIds: [firstProduct, secondProduct] },
+    approvedAt: "2026-08-14",
+    fetchImpl,
+  });
+  assert.equal(available.productId, secondProduct, "failover contextual precisa avançar até um produto realmente publicável");
+} finally {
+  await fsPromises.rm(visualProbeRoot, { recursive: true, force: true });
+}
 
 const shimanoArticle = {
   slug: "cambio-eletronico-ajuste-diagnostico",

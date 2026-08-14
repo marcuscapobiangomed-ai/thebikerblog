@@ -37,6 +37,7 @@ assert.match(editorial, /Substituir artigo reprovado e tentar pauta-reserva[^]*n
 assert.match(editorial, /Persistir candidato revisado para retomar finaliza\u00e7\u00e3o[^]*git add --[^\n]*_posts\/drafts[^\n]*content\/research\/campaign/);
 assert.match(editorial, /\(steps\.automation\.outcome == 'success' \|\| steps\.automation_retry\.outcome == 'success'\) && steps\.finalization\.outcome == 'failure'/);
 assert.match(editorial, /id: finalization_retry[\s\S]*campaign:retry-finalization/);
+assert.match(editorial, /id: finalization_retry[\s\S]*CAMPAIGN_FINALIZATION_MAX_ATTEMPTS: "3"[\s\S]*campaign:retry-finalization/);
 assert.match(editorial, /steps\.finalization\.outcome == 'success' \|\| steps\.finalization_retry\.outcome == 'success'/);
 assert.equal((editorial.match(/AI_DETERMINISTIC_CURATED_FALLBACK: "true"/g) || []).length, 3);
 
