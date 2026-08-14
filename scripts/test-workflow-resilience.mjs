@@ -15,6 +15,7 @@ const baselineIndex = publication.indexOf("npm run validate:ci");
 const mutationIndex = publication.indexOf("node src/publish_scheduled.js");
 assert.ok(baselineIndex >= 0 && baselineIndex < mutationIndex);
 assert.match(publication, /git add .*_data\/catalog-public\.json/);
+assert.match(publication, /git add .*_data\/products\/bikes/);
 assert.match(publication, /git add .*api\/products\.json/);
 assert.match(publication, /permissions:[\s\S]*actions: write/);
 assert.equal((publication.match(/gh workflow run deploy\.yml/g) || []).length, 1);
@@ -41,6 +42,9 @@ assert.match(replenisher, /CAMPAIGN_RESEARCH_MAX_ATTEMPTS: "2"/);
 assert.match(replenisher, /CAMPAIGN_CURATED_OFFLINE_FALLBACK: "true"/);
 assert.match(replenisher, /CAMPAIGN_CURATED_OFFLINE_FALLBACK: "true"[\s\S]*AI_DETERMINISTIC_CURATED_FALLBACK: "true"/);
 assert.match(replenisher, /group: thebiker-editorial-write/);
+assert.match(replenisher, /git add _data\/products\/bikes/);
+
+assert.match(editorial, /git add _data\/products\/bikes/);
 
 assert.match(read("deploy.yml"), /Run publication gates[\s\S]*npm run validate:ci/);
 assert.match(read("pr-validate.yml"), /Preparar artefatos derivados temporais[\s\S]*npm run prepare:derived/);
