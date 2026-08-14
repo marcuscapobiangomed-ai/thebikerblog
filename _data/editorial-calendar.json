@@ -97,7 +97,7 @@
       "title": "Scott Scale 940: o que a ficha atual confirma sobre quadro, suspensão e transmissão",
       "summary": "Leitura de produto sem extrapolações, baseada somente nos campos que continuam presentes nas páginas recuperadas.",
       "category": "review",
-      "status": "planned"
+      "status": "blocked"
     },
     {
       "day": 13,
@@ -137,7 +137,7 @@
       "title": "Guidão drop: flare, reach e controle em diferentes terrenos",
       "summary": "Aprenda a avaliar flare, reach e drop de um guidão drop para melhorar controle e conforto em terrenos mistos. Método técnico sem depender de tabelas de fábrica.",
       "category": "componentes",
-      "status": "planned"
+      "status": "blocked"
     },
     {
       "day": 18,

@@ -707,9 +707,12 @@
         "productId": "bicicleta-scott-spark-rc-world-cup-20271"
       },
       "postPath": "_posts/drafts/2026-08-18-reserva-spark-rc-world-cup-ficha.md",
+      "imageManifestPath": "assets/img/posts/reserva-spark-rc-world-cup-ficha/image-manifest.json",
+      "imageStatus": "approved",
       "imageAssetIds": [
         "thebiker-bicicleta-scott-spark-rc-world-cup-20271-469b543bd6"
       ],
+      "imageValidatedAt": "2026-08-14T00:31:54.902Z",
       "attempts": 2,
       "lastAttemptAt": "2026-08-14T00:31:54.902Z",
       "aiReview": {
@@ -724,6 +727,18 @@
         "contentHash": "sha256:f99766a8cd84d950bc5728490d6ebc9010c3a019f92c5372d6a1f28d5c73259a",
         "deterministicFullArticleFallbackUsed": true,
         "deterministicFullArticleFallbackTrigger": "pipeline-failure"
+      },
+      "editorialReceipt": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-editorial-2026-08-v2",
+        "origin": "pipeline",
+        "reviewedContentHash": "sha256:f99766a8cd84d950bc5728490d6ebc9010c3a019f92c5372d6a1f28d5c73259a",
+        "scheduledContentHash": "sha256:a3ad1cb958a78f4ef099d0dfd088bc08a8b84c8d557e96adf84ffcd8b79f7a75",
+        "researchHash": "sha256:3e741f12f0c7a8c67fcf095286da812c71cacfacb65c3d29ce4332281a0f9a73",
+        "sourceHash": null,
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "issuedAt": "2026-08-14T00:31:54.902Z"
       },
       "visualDecision": {
         "schemaVersion": 1,
@@ -743,22 +758,7 @@
         },
         "blockers": [],
         "issuedAt": "2026-08-14T00:31:54.902Z"
-      },
-      "editorialReceipt": {
-        "schemaVersion": 1,
-        "policyVersion": "thebiker-editorial-2026-08-v2",
-        "origin": "pipeline",
-        "reviewedContentHash": "sha256:f99766a8cd84d950bc5728490d6ebc9010c3a019f92c5372d6a1f28d5c73259a",
-        "scheduledContentHash": "sha256:a3ad1cb958a78f4ef099d0dfd088bc08a8b84c8d557e96adf84ffcd8b79f7a75",
-        "researchHash": "sha256:3e741f12f0c7a8c67fcf095286da812c71cacfacb65c3d29ce4332281a0f9a73",
-        "sourceHash": null,
-        "finalScore": 95,
-        "finalBlockers": 0,
-        "issuedAt": "2026-08-14T00:31:54.902Z"
-      },
-      "imageManifestPath": "assets/img/posts/reserva-spark-rc-world-cup-ficha/image-manifest.json",
-      "imageStatus": "approved",
-      "imageValidatedAt": "2026-08-14T00:31:54.902Z"
+      }
     },
     {
       "day": 12,
@@ -768,7 +768,7 @@
       "summary": "Leitura de produto sem extrapolações, baseada somente nos campos que continuam presentes nas páginas recuperadas.",
       "category": "review",
       "freshness": "revalidate-24h",
-      "status": "planned",
+      "status": "blocked",
       "productIds": [
         "bicicleta-scott-scale-940-black"
       ],
@@ -777,7 +777,16 @@
         "productId": "bicicleta-scott-scale-940-black"
       },
       "imageAssetIds": [],
-      "attempts": 0
+      "blockReason": "[VALIDATION_FAILED] Etapa final-audit falhou. deepseek: deepseek API: 402 - {\"error\":{\"message\":\"Insufficient Balance\",\"type\":\"unknown_error\",\"param\":null,\"code\":\"invalid_request_error\"}} | groq: groq API: 413 - {\"error\":{\"message\":\"Request too large for model `openai/gpt-oss-120b` in organization `org_01kj0m4aqqe21tf6c9pkbsvea0` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Requested 8890, please reduce your message size and try again. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}\n",
+      "failure": {
+        "code": "VALIDATION_FAILED",
+        "retryable": false,
+        "stage": "production",
+        "message": "Etapa final-audit falhou. deepseek: deepseek API: 402 - {\"error\":{\"message\":\"Insufficient Balance\",\"type\":\"unknown_error\",\"param\":null,\"code\":\"invalid_request_error\"}} | groq: groq API: 413 - {\"error\":{\"message\":\"Request too large for model `openai/gpt-oss-120b` in organization `org_01kj0m4aqqe21tf6c9pkbsvea0` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Requested 8890, please reduce your message size and try again. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}\n",
+        "recordedAt": "2026-08-14T00:45:57.301Z"
+      },
+      "attempts": 1,
+      "lastAttemptAt": "2026-08-14T00:45:57.301Z"
     },
     {
       "day": 13,
@@ -797,18 +806,17 @@
         "relationship": "maintenance-example",
         "rationale": "O kit real de reparo RockShox representa diretamente vedações e peças de desgaste envolvidas no serviço preventivo de suspensão."
       },
-      "imageStatus": "blocked",
       "imageAssetIds": [],
-      "blockReason": "[RESEARCH_INSUFFICIENT] pesquisa sem contrato de evidência recuperada retrieved-excerpt-v1; pesquisa sem data de verificação ativa das fontes; fato 1 sem trecho literal verificável; fato 2 sem trecho literal verificável; fato 3 sem trecho literal verificável; fato 4 sem trecho literal verificável; fato 5 sem trecho literal verificável; fato 6 sem trecho literal verificável; fato 7 sem trecho literal verificável; fato 8 sem trecho literal verificável",
+      "blockReason": "[IMAGE_NOT_PUBLISHABLE] Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq 429; Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat)",
       "failure": {
-        "code": "RESEARCH_INSUFFICIENT",
-        "retryable": true,
-        "stage": "source-verification-audit",
-        "message": "pesquisa sem contrato de evidência recuperada retrieved-excerpt-v1; pesquisa sem data de verificação ativa das fontes; fato 1 sem trecho literal verificável; fato 2 sem trecho literal verificável; fato 3 sem trecho literal verificável; fato 4 sem trecho literal verificável; fato 5 sem trecho literal verificável; fato 6 sem trecho literal verificável; fato 7 sem trecho literal verificável; fato 8 sem trecho literal verificável",
-        "recordedAt": "2026-08-13T18:15:00.000Z"
+        "code": "IMAGE_NOT_PUBLISHABLE",
+        "retryable": false,
+        "stage": "production",
+        "message": "Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq 429; Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat)",
+        "recordedAt": "2026-08-14T00:45:57.301Z"
       },
-      "attempts": 1,
-      "lastAttemptAt": "2026-08-13T18:15:00.000Z"
+      "attempts": 2,
+      "lastAttemptAt": "2026-08-14T00:45:57.301Z"
     },
     {
       "day": 14,
@@ -911,13 +919,22 @@
       "summary": "Aprenda a avaliar flare, reach e drop de um guidão drop para melhorar controle e conforto em terrenos mistos. Método técnico sem depender de tabelas de fábrica.",
       "category": "componentes",
       "freshness": "evergreen",
-      "status": "planned",
+      "status": "blocked",
       "productIds": [],
       "heroImage": {
         "mode": "conceptual"
       },
       "imageAssetIds": [],
-      "attempts": 0
+      "attempts": 1,
+      "lastAttemptAt": "2026-08-14T00:45:57.301Z",
+      "failure": {
+        "code": "RESEARCH_INSUFFICIENT",
+        "retryable": false,
+        "stage": "production",
+        "message": "Pesquisa bloqueada por integridade de fontes: pesquisa concluída sem fontes rastreáveis; pesquisa sem fatos explicitamente fundamentados",
+        "recordedAt": "2026-08-14T00:45:57.301Z"
+      },
+      "blockReason": "[RESEARCH_INSUFFICIENT] Pesquisa bloqueada por integridade de fontes: pesquisa concluída sem fontes rastreáveis; pesquisa sem fatos explicitamente fundamentados"
     },
     {
       "day": 18,
