@@ -16,6 +16,134 @@ function extractJson(text) {
   }
 }
 
+function truncateForAudit(value, maxLength) {
+  const text = String(value ?? "").trim();
+  if (text.length <= maxLength) return text;
+  const shortened = text.slice(0, maxLength + 1);
+  const boundary = shortened.lastIndexOf(" ");
+  return `${shortened.slice(0, boundary >= Math.floor(maxLength * 0.65) ? boundary : maxLength).trimEnd()} [conteúdo truncado para auditoria]`;
+}
+
+function compactSource(source, index) {
+  return {
+    id: String(source?.id || `source-${index + 1}`),
+    name: truncateForAudit(source?.name || `Fonte ${index + 1}`, 180),
+    type: truncateForAudit(source?.type || "", 80),
+    url: truncateForAudit(source?.url || "", 500),
+    accessed: String(source?.accessed || source?.accessed_at || ""),
+  };
+}
+
+function compactResearchForAudit(researchData) {
+  const facts = Array.isArray(researchData?.confirmed_facts) ? researchData.confirmed_facts : [];
+  const sources = Array.isArray(researchData?.sources) ? researchData.sources : [];
+  return {
+    title: truncateForAudit(researchData?.title, 180),
+    content_type: researchData?.content_type,
+    review_method: researchData?.review_method,
+    status: researchData?.status,
+    market: researchData?.market,
+    verifiedAt: researchData?.verifiedAt,
+    grounding: {
+      fallback: researchData?.grounding?.fallback,
+      evidenceContract: researchData?.grounding?.evidenceContract,
+      claimContract: researchData?.grounding?.claimContract,
+      verifiedAt: researchData?.grounding?.verifiedAt,
+      sourceCount: researchData?.grounding?.sourceCount,
+    },
+    sources: sources.slice(0, 12).map(compactSource),
+    confirmed_facts: facts.slice(0, 24).map((fact, index) => ({
+      fact: truncateForAudit(fact?.fact || fact?.statement, 360),
+      source_ids: Array.isArray(fact?.source_ids) ? fact.source_ids.slice(0, 8) : [],
+      evidence_quote: truncateForAudit(fact?.evidence_quote, 260),
+      index: index + 1,
+    })),
+    limitations: (Array.isArray(researchData?.limitations) ? researchData.limitations : [])
+      .slice(0, 12)
+      .map((value) => truncateForAudit(value, 260)),
+    portfolio_evidence_url: researchData?.portfolio_evidence_url,
+    portfolio_verified_at: researchData?.portfolio_verified_at,
+  };
+}
+
+function compactFactSheetForAudit(factSheet) {
+  const compactList = (values, maxLength) => (Array.isArray(values) ? values : [])
+    .slice(0, 24)
+    .map((value) => typeof value === "object" ? {
+      type: value.type,
+      field: truncateForAudit(value.field, 120),
+      issue: truncateForAudit(value.issue, maxLength),
+      statement: truncateForAudit(value.statement, maxLength),
+      detail: truncateForAudit(value.detail, maxLength),
+      source: truncateForAudit(value.source, 160),
+      confidence: truncateForAudit(value.confidence, 80),
+      sources: Array.isArray(value.sources) ? value.sources.slice(0, 8).map((item) => truncateForAudit(item, 120)) : undefined,
+      values: Array.isArray(value.values) ? value.values.slice(0, 8).map((item) => truncateForAudit(item, 160)) : undefined,
+    } : truncateForAudit(value, maxLength));
+  return {
+    facts: compactList(factSheet?.facts, 320),
+    gaps: compactList(factSheet?.gaps, 260),
+    conflicts: compactList(factSheet?.conflicts, 320),
+    forbiddenClaims: compactList(factSheet?.forbiddenClaims, 220),
+    technicalAngles: compactList(factSheet?.technicalAngles, 220),
+  };
+}
+
+function compactArticleForAudit(article) {
+  const sections = Array.isArray(article?.sections) ? article.sections : [];
+  const faq = Array.isArray(article?.faq) ? article.faq : [];
+  return {
+    editorial_format: article?.editorial_format,
+    title: truncateForAudit(article?.title, 180),
+    description: truncateForAudit(article?.description, 900),
+    direct_answer: truncateForAudit(article?.direct_answer, 700),
+    content_type: article?.content_type,
+    audience_segment: article?.audience_segment,
+    review_method: article?.review_method,
+    tested_by_thebikerblog: article?.tested_by_thebikerblog,
+    methodologyNotice: truncateForAudit(article?.methodologyNotice, 800),
+    sections: sections.map((section, index) => ({
+      index: index + 1,
+      heading: truncateForAudit(section?.heading, 180),
+      content: truncateForAudit(section?.content, 1400),
+    })),
+    faq: faq.slice(0, 5).map((item) => ({
+      question: truncateForAudit(item?.question, 220),
+      answer: truncateForAudit(item?.answer, 600),
+    })),
+    claimsRequiringReview: compactList(article?.claimsRequiringReview, 220),
+    imagePlan: Array.isArray(article?.imagePlan) ? article.imagePlan.slice(0, 8).map((plan) => ({
+      position: plan?.position,
+      purpose: truncateForAudit(plan?.purpose, 260),
+      assetType: plan?.assetType,
+      editorialUse: plan?.editorialUse,
+      factualSubject: plan?.factualSubject,
+      brief: truncateForAudit(plan?.brief, 360),
+      sourceRequired: plan?.sourceRequired,
+      allowedSource: plan?.allowedSource,
+      aiGeneratedAllowed: plan?.aiGeneratedAllowed,
+    })) : [],
+    sources: Array.isArray(article?.sources) ? article.sources.slice(0, 12).map(compactSource) : [],
+    editorial_scope: article?.editorial_scope,
+    promoted_brands: article?.promoted_brands,
+    context_only_brands: article?.context_only_brands,
+  };
+}
+
+function compactList(values, maxLength) {
+  return (Array.isArray(values) ? values : []).slice(0, 24).map((value) => truncateForAudit(value, maxLength));
+}
+
+export function buildAuditContext({ topic, researchData, factSheet, finalArticle, previousBlockers } = {}) {
+  return {
+    topic: truncateForAudit(topic, 180),
+    researchData: compactResearchForAudit(researchData),
+    factSheet: compactFactSheetForAudit(factSheet),
+    ...(previousBlockers ? { previousBlockers: compactList(previousBlockers, 320) } : {}),
+    finalArticle: compactArticleForAudit(finalArticle),
+  };
+}
+
 export function applyPortfolioEvidence(article, researchData) {
   if (!article || typeof article !== 'object') return article
   const evidenceUrl = String(researchData?.portfolio_evidence_url || '').trim()
@@ -321,7 +449,7 @@ export class ThreeProviderPipeline {
         options: {
           jsonMode: true,
           temperature: 0,
-          maxTokens: 2200,
+          maxTokens: Number(this.env.AI_FINAL_AUDIT_MAX_TOKENS || 1600),
           model: this.env.DEEPSEEK_FLASH_MODEL || "deepseek-v4-flash",
         },
         system: [
@@ -330,10 +458,12 @@ export class ThreeProviderPipeline {
           "Nota abaixo de 90 ou qualquer bloqueador impede agendamento.",
         ].join("\n"),
         user: JSON.stringify({
-          topic,
-          researchData,
-          factSheet,
-          finalArticle: extractJson(finalResult.content),
+          ...buildAuditContext({
+            topic,
+            researchData,
+            factSheet,
+            finalArticle: extractJson(finalResult.content),
+          }),
           checks: [
             "alegações sem fonte",
             "promoção de concorrentes",
@@ -399,7 +529,7 @@ export class ThreeProviderPipeline {
         options: {
           jsonMode: true,
           temperature: 0,
-          maxTokens: 2200,
+          maxTokens: Number(this.env.AI_FINAL_AUDIT_MAX_TOKENS || 1600),
           model: this.env.DEEPSEEK_FLASH_MODEL || "deepseek-v4-flash",
         },
         system: [
@@ -408,11 +538,13 @@ export class ThreeProviderPipeline {
           "Nota abaixo de 90 ou qualquer bloqueador impede agendamento.",
         ].join("\n"),
         user: JSON.stringify({
-          topic,
-          researchData,
-          factSheet,
-          previousBlockers: finalBlockers,
-          finalArticle: extractJson(remediationResult.content),
+          ...buildAuditContext({
+            topic,
+            researchData,
+            factSheet,
+            previousBlockers: finalBlockers,
+            finalArticle: extractJson(remediationResult.content),
+          }),
           checks: [
             "reaparecimento de qualquer alegação proibida",
             "alegações sem fonte",

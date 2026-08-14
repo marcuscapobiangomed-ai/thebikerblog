@@ -38,6 +38,29 @@ const CATEGORY_ALIASES = {
 
 const LENGTH_GATE = /Gates editoriais não atendidos:\s*extensão insuficiente:\s*(\d+) palavras; mínimo (\d+)\s*$/i;
 
+const DETERMINISTIC_CACHE_FALLBACKS = new Set([
+  "curated-official-offline-cache-v1",
+  "campaign-research-offline-cache-v1",
+]);
+
+function hasVerifiedInternalResearch(researchData) {
+  if (researchData?.grounding?.fallback !== "internal-product-knowledge") return false;
+  if (researchData?.grounding?.evidenceContract !== "retrieved-excerpt-v1") return false;
+  if (!researchData?.grounding?.verifiedAt) return false;
+  const sources = Array.isArray(researchData?.sources) ? researchData.sources : [];
+  const facts = Array.isArray(researchData?.confirmed_facts) ? researchData.confirmed_facts : [];
+  if (sources.length === 0 || facts.length === 0) return false;
+  const sourceIds = new Set(sources.map((source) => String(source?.id || "").trim()).filter(Boolean));
+  if (sourceIds.size !== sources.length) return false;
+  if (sources.some((source) => !/^https?:\/\//i.test(String(source?.url || "")))) return false;
+  return facts.every((fact) => {
+    const references = Array.isArray(fact?.source_ids) ? fact.source_ids : [];
+    return references.length > 0
+      && references.every((reference) => sourceIds.has(String(reference).trim()))
+      && String(fact?.evidence_quote || "").trim().length >= 12;
+  });
+}
+
 const CONTENT_TYPE_ALIASES = {
   review: "review",
   reviews: "review",
@@ -563,7 +586,8 @@ export class AIProvider {
       }
       return parsed;
     };
-    const deterministicFallbackEnabled = ["curated-official-offline-cache-v1", "campaign-research-offline-cache-v1"].includes(researchData?.grounding?.fallback)
+    const deterministicFallbackEnabled = (DETERMINISTIC_CACHE_FALLBACKS.has(researchData?.grounding?.fallback)
+      || hasVerifiedInternalResearch(researchData))
       && String(process.env.AI_DETERMINISTIC_CURATED_FALLBACK || "true").toLowerCase() !== "false";
     const buildDeterministicFallback = (metadata, trigger) => {
       if (!deterministicFallbackEnabled) return null;

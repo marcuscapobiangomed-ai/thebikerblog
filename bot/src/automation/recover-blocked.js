@@ -4,7 +4,7 @@ import { CampaignSchema, publicCampaignSummary } from './campaign.js'
 import { markdownPublicationErrors } from '../validation/markdown-publication-gates.js'
 import { classifyEditorialFailure } from '../validation/editorial-failures.js'
 
-const TRANSIENT = /timeout|timed out|aborted|429|rate limit|temporar|econnreset|fetch failed/i
+const TRANSIENT = /timeout|timed out|aborted|429|rate limit|temporar|econnreset|fetch failed|insufficient balance|tokens per minute|rate_limit_exceeded|quota(?: exceeded| limit)?|payment required/i
 const FINALIZATION = /^Valida(?:ção|cao) final:/i
 const NORMALIZABLE_PORTFOLIO_ALIAS = /promo(?:ção|cao) bloqueada[^\n]*TheBiker Shop/i
 const NEAR_MISS_LENGTH = /extens(?:ão|ao) insuficiente:\s*(\d+) palavras; m(?:í|i)nimo\s*(\d+)/i

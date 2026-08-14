@@ -20,7 +20,7 @@ const RULES = [
   [EditorialFailureCode.IMAGE_NOT_PUBLISHABLE, /imagem|image|variante public[aá]vel|fallback|pol[ií]tica visual|fotografia real/i, false],
   [EditorialFailureCode.AI_REVIEW_REJECTED, /nota editorial final insuficiente|revis[aã]o final reprovada|bloqueadores/i, false],
   [EditorialFailureCode.RESEARCH_INSUFFICIENT, /sem fontes editoriais|nenhuma fonte oficial|pesquisa bloqueada|integridade de fontes|integridade de claims/i, false],
-  [EditorialFailureCode.TRANSIENT_PROVIDER, /timeout|timed out|aborted|429|rate limit|temporar|econnreset|fetch failed/i, true],
+  [EditorialFailureCode.TRANSIENT_PROVIDER, /timeout|timed out|aborted|429|rate limit|temporar|econnreset|fetch failed|insufficient balance|tokens per minute|rate_limit_exceeded|quota(?: exceeded| limit)?|payment required/i, true],
 ];
 
 export function classifyEditorialFailure(error, { stage = "unknown", now = new Date() } = {}) {

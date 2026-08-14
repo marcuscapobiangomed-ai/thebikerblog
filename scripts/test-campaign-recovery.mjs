@@ -28,6 +28,17 @@ const retried = recoverBlockedCampaign(transient, { now: new Date('2026-08-07T12
 assert.equal(retried.result.status, 'retry')
 assert.equal(retried.campaign.items.find((item) => item.id === timeout.id).status, 'planned')
 
+const providerQuota = structuredClone(campaignFixture)
+for (const item of providerQuota.items) if (item.status === 'blocked') { item.status = 'planned'; delete item.blockReason; delete item.failure }
+const quotaItem = providerQuota.items.find((item) => item.status === 'planned')
+assert.ok(quotaItem, 'A campanha precisa de uma pauta para testar a recuperaÃ§Ã£o de cota do provedor')
+quotaItem.status = 'blocked'
+quotaItem.attempts = 1
+quotaItem.blockReason = '[VALIDATION_FAILED] Etapa final-audit falhou. deepseek: 402 Insufficient Balance | groq: 413 tokens per minute'
+const quotaRetry = recoverBlockedCampaign(providerQuota, { now: new Date('2026-08-13T12:01:00Z') })
+assert.equal(quotaRetry.result.status, 'retry')
+assert.equal(quotaRetry.campaign.items.find((item) => item.id === quotaItem.id).status, 'planned')
+
 const groundingFailure = structuredClone(campaignFixture)
 for (const item of groundingFailure.items) if (item.status === 'blocked') { item.status = 'planned'; delete item.blockReason; delete item.failure }
 // Keep the replacement assertion independent from the live calendar: the
