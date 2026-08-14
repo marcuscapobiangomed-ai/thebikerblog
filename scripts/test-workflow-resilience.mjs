@@ -43,6 +43,8 @@ assert.match(replenisher, /CAMPAIGN_CURATED_OFFLINE_FALLBACK: "true"/);
 assert.match(replenisher, /CAMPAIGN_CURATED_OFFLINE_FALLBACK: "true"[\s\S]*AI_DETERMINISTIC_CURATED_FALLBACK: "true"/);
 assert.match(replenisher, /group: thebiker-editorial-write/);
 assert.match(replenisher, /git add _data\/products\/bikes/);
+assert.match(replenisher, /persist_status=1[\s\S]*if git pull --rebase --autostash origin main && git push[\s\S]*Falha ao persistir/);
+assert.match(replenisher, /id: validation[\s\S]*Validação\/persistência: \$\{\{ steps\.validation\.outcome \}\}/i);
 
 assert.match(editorial, /git add _data\/products\/bikes/);
 

@@ -73,6 +73,7 @@ jobs:
         run: npm run campaign:replenish -- --target-buffer=${{ inputs.target_buffer || '7' }} --max-attempts=${{ inputs.max_attempts || '3' }} --allow-partial
         working-directory: bot
       - name: Validar e persistir cada avanço seguro
+        id: validation
         if: always()
         run: |
           validation_status=0
@@ -81,11 +82,19 @@ jobs:
           git config user.email "thebiker-editorial-bot@users.noreply.github.com"
           git add _data/products/bikes _posts/drafts content/research/campaign assets/img/posts content/image-library/index.json bot/editorial-campaign.json bot/operational-state _data/editorial-calendar.json _data/catalog-public.json api/products.json
           git diff --cached --quiet || git commit -m "state: recompor buffer editorial"
+          persist_status=1
           for attempt in 1 2 3; do
-            git pull --rebase --autostash origin main && git push && break
+            if git pull --rebase --autostash origin main && git push; then
+              persist_status=0
+              break
+            fi
             git rebase --abort 2>/dev/null || true
             sleep $((attempt * 5))
           done
+          if [ "$persist_status" -ne 0 ]; then
+            echo "Falha ao persistir o estado editorial após 3 tentativas." >&2
+            exit "$persist_status"
+          fi
           exit $validation_status
       - name: Propagar erro inesperado de recomposição
         if: steps.replenish.outcome == 'failure'
@@ -94,6 +103,7 @@ jobs:
         if: always()
         run: |
           echo "### Recomposição automática do buffer" >> "$GITHUB_STEP_SUMMARY"
-          echo "- Resultado: ${{ steps.replenish.outcome }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Recomposição: ${{ steps.replenish.outcome }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Validação/persistência: ${{ steps.validation.outcome }}" >> "$GITHUB_STEP_SUMMARY"
           echo "- A execução é parcial por desenho; o artigo só entra em scheduled após todos os gates." >> "$GITHUB_STEP_SUMMARY"
 
