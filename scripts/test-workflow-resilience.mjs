@@ -24,6 +24,7 @@ assert.match(publication, /Garantir artigo aprovado para hoje antes da promo\u00
 assert.match(publication, /CAMPAIGN_CURATED_OFFLINE_FALLBACK: "true"[\s\S]*AI_DETERMINISTIC_CURATED_FALLBACK: "true"/);
 
 const editorial = read("cron-post.yml");
+assert.match(editorial, /CAMPAIGN_RESEARCH_MAX_ATTEMPTS: "2"/);
 assert.equal((editorial.match(/npm run catalog:revalidate/g) || []).length, 2);
 assert.ok((editorial.match(/npm run validate:ci/g) || []).length >= 2);
 assert.ok(editorial.indexOf("npm run validate:ci", editorial.indexOf("generate-draft:")) < editorial.indexOf("npm run campaign:produce"));
