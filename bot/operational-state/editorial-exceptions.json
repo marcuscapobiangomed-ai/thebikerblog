@@ -1261,6 +1261,45 @@
         "title": "Diagnostico de ruidos na bicicleta: metodo por carga, frequencia e interface"
       },
       "reason": "[RESEARCH_INSUFFICIENT] Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq 429; Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat)"
+    },
+    {
+      "recordedAt": "2026-08-14T10:07:24.688Z",
+      "campaignId": "thebiker-rolling-2026-08-08",
+      "replacedItem": {
+        "day": 14,
+        "publishDate": "2026-08-21",
+        "id": "youtube-pneus-de-bicicleta-pressao-carcaca-aderencia-e-resistencia-ao-ro",
+        "title": "Pneus de bicicleta: pressão, carcaça, aderência e resistência ao rolamento",
+        "summary": "Criar resposta técnica original para ciclista intermediário ou avançado, com método e limitações declarados. Sinal observado: 32.958 visualizações globais do vídeo; 2.235 por dia; encontrado em 1 busca(s) configurada(s) para o Brasil.",
+        "category": "componentes",
+        "freshness": "event-driven",
+        "status": "blocked",
+        "productIds": [
+          "pneu-schwalbe-racing-ray-29-x-2-25-super-race-tlr-addix"
+        ],
+        "heroImage": {
+          "mode": "real-context",
+          "productId": "pneu-schwalbe-racing-ray-29-x-2-25-super-race-tlr-addix",
+          "relationship": "category-example",
+          "rationale": "O pneu Schwalbe real exemplifica carcaça, contato com o solo e resistência ao rolamento sem sugerir teste específico do modelo."
+        },
+        "imageAssetIds": [],
+        "blockReason": "[RESEARCH_INSUFFICIENT] Pesquisa bloqueada por integridade de fontes: pesquisa concluída sem fontes rastreáveis; pesquisa sem fatos explicitamente fundamentados",
+        "failure": {
+          "code": "RESEARCH_INSUFFICIENT",
+          "retryable": false,
+          "stage": "production",
+          "message": "Pesquisa bloqueada por integridade de fontes: pesquisa concluída sem fontes rastreáveis; pesquisa sem fatos explicitamente fundamentados",
+          "recordedAt": "2026-08-14T10:07:13.268Z"
+        },
+        "attempts": 2,
+        "lastAttemptAt": "2026-08-14T10:07:13.268Z"
+      },
+      "replacement": {
+        "id": "reserva-scale-940-checklist-oficial",
+        "title": "Scott Scale 940: checklist documental para conferir quadro e montagem"
+      },
+      "reason": "[RESEARCH_INSUFFICIENT] Pesquisa bloqueada por integridade de fontes: pesquisa concluída sem fontes rastreáveis; pesquisa sem fatos explicitamente fundamentados"
     }
   ]
 }
