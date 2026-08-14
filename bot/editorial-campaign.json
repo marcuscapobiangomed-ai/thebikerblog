@@ -768,7 +768,7 @@
       "summary": "Leitura de produto sem extrapolações, baseada somente nos campos que continuam presentes nas páginas recuperadas.",
       "category": "review",
       "freshness": "revalidate-24h",
-      "status": "blocked",
+      "status": "scheduled",
       "productIds": [
         "bicicleta-scott-scale-940-black"
       ],
@@ -777,7 +777,12 @@
         "productId": "bicicleta-scott-scale-940-black"
       },
       "postPath": "_posts/drafts/2026-08-19-reserva-scale-940-ficha.md",
-      "imageAssetIds": [],
+      "imageManifestPath": "assets/img/posts/reserva-scale-940-ficha/image-manifest.json",
+      "imageStatus": "approved",
+      "imageAssetIds": [
+        "manufacturer-bicicleta-scott-scale-940-black-5171146828"
+      ],
+      "imageValidatedAt": "2026-08-14T01:14:49.377Z",
       "attempts": 2,
       "lastAttemptAt": "2026-08-14T01:04:09.766Z",
       "aiReview": {
@@ -799,14 +804,37 @@
         "deterministicFullArticleFallbackUsed": true,
         "deterministicFullArticleFallbackTrigger": "repair-fallback"
       },
-      "failure": {
-        "code": "IMAGE_NOT_PUBLISHABLE",
-        "retryable": false,
-        "stage": "finalization",
-        "message": "Galeria oficial sem imagem inédita válida: Imagem duplicada: thebiker-bicicleta-scott-scale-940-black-bf34dbe9f9 | resolução insuficiente para o padrão editorial: 521x569 | resolução insuficiente para o padrão editorial: 506x565 | Download da imagem: HTTP 403",
-        "recordedAt": "2026-08-14T01:04:09.766Z"
+      "editorialReceipt": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-editorial-2026-08-v2",
+        "origin": "pipeline",
+        "reviewedContentHash": "sha256:a76b7f6d58383fd0e327a80d3bdaf7a486d7369d4c1771423da119440858b25a",
+        "scheduledContentHash": "sha256:1528d4bcd0def10c85f4bd0754e02a3fcd4530f2cb2fb5c16ce4a2066b5bddcf",
+        "researchHash": "sha256:9cb978ecbb89ff65c760e7cc960497a609a89ff460617906597b06d0868e7aac",
+        "sourceHash": "1420d0717fbe9e521e40d23e55dd397ab19931ed8058d5229f5f861f66d9c0cf",
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "issuedAt": "2026-08-14T01:14:49.377Z"
       },
-      "blockReason": "Validação final: [IMAGE_NOT_PUBLISHABLE] Galeria oficial sem imagem inédita válida: Imagem duplicada: thebiker-bicicleta-scott-scale-940-black-bf34dbe9f9 | resolução insuficiente para o padrão editorial: 521x569 | resolução insuficiente para o padrão editorial: 506x565 | Download da imagem: HTTP 403"
+      "visualDecision": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-visual-autonomy-v1",
+        "inputHash": "sha256:e10c0235f785768135c4dcba0983811cf4e7651c266f718d7182fc36234066bc",
+        "mode": "exact-product",
+        "productId": "bicicleta-scott-scale-940-black",
+        "score": 100,
+        "hardGates": {
+          "semanticMatch": true,
+          "realAsset": true,
+          "explicitProduct": true,
+          "officialSource": true,
+          "approvedRights": true,
+          "publishableResolution": true,
+          "uniqueAsset": true
+        },
+        "blockers": [],
+        "issuedAt": "2026-08-14T01:14:49.377Z"
+      }
     },
     {
       "day": 13,
@@ -964,13 +992,22 @@
       "summary": "Entenda como a disposição dos links muda a progressão da suspensão e a sensação de apoio em diferentes fases do curso. Sem valores genéricos.",
       "category": "engenharia",
       "freshness": "evergreen",
-      "status": "planned",
+      "status": "blocked",
       "productIds": [],
       "heroImage": {
         "mode": "conceptual"
       },
       "imageAssetIds": [],
-      "attempts": 0
+      "blockReason": "[IMAGE_NOT_PUBLISHABLE] Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq 429; Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat)",
+      "failure": {
+        "code": "IMAGE_NOT_PUBLISHABLE",
+        "retryable": false,
+        "stage": "production",
+        "message": "Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq 429; Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat)",
+        "recordedAt": "2026-08-14T01:14:49.377Z"
+      },
+      "attempts": 1,
+      "lastAttemptAt": "2026-08-14T01:14:49.377Z"
     },
     {
       "day": 19,
@@ -980,13 +1017,22 @@
       "summary": "Identifique larguras e diâmetros de eixo para evitar erros de compatibilidade entre quadro e roda. Foco em medição prática e não em especificações decorativas.",
       "category": "componentes",
       "freshness": "evergreen",
-      "status": "planned",
+      "status": "blocked",
       "productIds": [],
       "heroImage": {
         "mode": "conceptual"
       },
       "imageAssetIds": [],
-      "attempts": 0
+      "attempts": 1,
+      "lastAttemptAt": "2026-08-14T01:14:49.377Z",
+      "failure": {
+        "code": "IMAGE_NOT_PUBLISHABLE",
+        "retryable": false,
+        "stage": "production",
+        "message": "Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq 429; Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat)",
+        "recordedAt": "2026-08-14T01:14:49.377Z"
+      },
+      "blockReason": "[IMAGE_NOT_PUBLISHABLE] Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq 429; Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat)"
     },
     {
       "day": 20,

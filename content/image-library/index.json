@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-08-14T00:34:30.484Z",
+  "updatedAt": "2026-08-14T01:14:53.381Z",
   "assets": [
     {
       "assetId": "thebiker-scott-addict-rc-pro-hmx-frame-set-def10da96a",
@@ -303,6 +303,23 @@
       "uses": [
         {
           "postId": "reserva-spark-rc-world-cup-ficha",
+          "position": "hero",
+          "usedAt": "2026-08-14T12:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "assetId": "manufacturer-bicicleta-scott-scale-940-black-5171146828",
+      "sha256": "5171146828e2ac8182503a538cd3248abb84a325ecc4892f068fef537c53b5ee",
+      "perceptualHash": "1111111100111111111111111100111111000001110000001111111111111111",
+      "sourcePageUrl": "https://www.scott-sports.com/global/en/product/scott-scale-940-bike",
+      "sourceFileUrl": "https://static.scott-sports.com/image/upload/v1779976552/2217844.png",
+      "productId": "bicicleta-scott-scale-940-black",
+      "productName": "Bicicleta Scott Scale 940 - Black",
+      "rightsPolicyId": "official-brand-editorial-v1",
+      "uses": [
+        {
+          "postId": "reserva-scale-940-ficha",
           "position": "hero",
           "usedAt": "2026-08-14T12:00:00.000Z"
         }
