@@ -284,6 +284,7 @@ Este produto é imbatível.
 const permanent = structuredClone(campaignFixture)
 for (const item of permanent.items) if (item.status === 'blocked') { item.status = 'planned'; delete item.blockReason; delete item.failure }
 addIsolatedReserve(permanent, 'reserva-recovery-fixture-permanent')
+addIsolatedReserve(permanent, 'reserva-recovery-fixture-permanent-remaining')
 const unsupported = permanent.items.find((item) => item.status === 'planned')
 assert.ok(unsupported, 'A campanha precisa ter ao menos uma pauta planejada para o teste permanente')
 unsupported.status = 'blocked'
