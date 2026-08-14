@@ -317,6 +317,38 @@ assert.equal(deterministicFallbackResult.pipelineMetadata.finalBlockers, 0);
 assert.equal(deterministicFallbackResult.pipelineMetadata.providers.deterministicFallback, "grounded-deterministic");
 assert.equal(JSON.parse(deterministicFallbackResult.rawJson).sections.length, 10);
 assert.doesNotThrow(() => assertEditorialPublicationGates(JSON.parse(deterministicFallbackResult.rawJson), { AI_MIN_ARTICLE_WORDS: "1600" }));
+const previousCacheFirst = process.env.AI_DETERMINISTIC_CACHE_FIRST;
+process.env.AI_DETERMINISTIC_CACHE_FIRST = "true";
+let cacheFirstPipelineCalled = false;
+const cacheFirstProvider = new AIProvider({
+  pipeline: {
+    runtime,
+    clients: { isConfigured: () => true },
+    run: async () => { cacheFirstPipelineCalled = true; throw new Error("provider should not be called in cache-first mode"); },
+  },
+});
+const cacheFirstResult = await cacheFirstProvider.processCase("Limpeza da transmissao depois de chuva e lama", {
+  title: "Limpeza da transmissao depois de chuva e lama",
+  content_type: "guia-tecnico",
+  editorialPriority: "P1",
+  portfolio_evidence_url: "https://thebikershop.com.br/componentes/",
+  portfolio_verified_at: "2026-08-13",
+  confirmed_facts: [
+    { fact: "drivetrainCleaning: limpe a transmissao com produto nao acido e seque a corrente." },
+    { fact: "pressureWashing: evite jato de alta pressao em componentes e vedacoes." },
+    { fact: "brakeInspection: confira pastilhas, rotores e vazamentos antes de pedalar." },
+    { fact: "wetBraking: a distancia de frenagem aumenta em piso molhado." },
+    { fact: "escalation: procure uma oficina diante de dano ou funcionamento irregular." },
+  ],
+  sources: [
+    { name: "SRAM Support", type: "official-website", url: "https://www.sram.com/en/learn/axs-bike-care-and-maintenance", accessed: "2026-08-13" },
+  ],
+  grounding: { fallback: "campaign-research-offline-cache-v1" },
+});
+assert.equal(cacheFirstPipelineCalled, false);
+assert.equal(cacheFirstResult.pipelineMetadata.deterministicFullArticleFallbackTrigger, "cache-first");
+if (previousCacheFirst === undefined) delete process.env.AI_DETERMINISTIC_CACHE_FIRST;
+else process.env.AI_DETERMINISTIC_CACHE_FIRST = previousCacheFirst;
 const pipelineFailureProvider = new AIProvider({
   pipeline: {
     runtime,
@@ -367,6 +399,8 @@ assert.equal(internalFallbackResult.pipelineMetadata.deterministicFullArticleFal
 assert.equal(internalFallbackResult.pipelineMetadata.finalScore, 95);
 if (previousDeterministicFallback === undefined) delete process.env.AI_DETERMINISTIC_CURATED_FALLBACK;
 else process.env.AI_DETERMINISTIC_CURATED_FALLBACK = previousDeterministicFallback;
+if (previousCacheFirst === undefined) delete process.env.AI_DETERMINISTIC_CACHE_FIRST;
+else process.env.AI_DETERMINISTIC_CACHE_FIRST = previousCacheFirst;
 if (previousPipelineMode === undefined) delete process.env.AI_PIPELINE_MODE;
 else process.env.AI_PIPELINE_MODE = previousPipelineMode;
 
