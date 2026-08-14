@@ -136,6 +136,22 @@ const resumed = recoverBlockedCampaign(finalization, { now: new Date('2026-08-07
 assert.equal(resumed.result.status, 'retry-finalization')
 assert.equal(resumed.campaign.items.find((item) => item.id === finalizable.id).status, 'validation')
 
+const duplicateImageFinalization = structuredClone(finalization)
+const duplicateImageItem = duplicateImageFinalization.items.find((item) => item.id === finalizable.id)
+duplicateImageItem.status = 'blocked'
+duplicateImageItem.productIds = ['bicicleta-scott-scale-940-black']
+duplicateImageItem.heroImage = {
+  mode: 'real-context',
+  productId: 'bicicleta-scott-scale-940-black',
+  relationship: 'category-example',
+  rationale: 'Produto real usado apenas como exemplo visual.',
+}
+duplicateImageItem.blockReason = 'Validacao final: [IMAGE_NOT_PUBLISHABLE] Galeria oficial sem imagem inedita valida: Imagem duplicada: manufacturer-scale'
+const alternativeVisualRetry = recoverBlockedCampaign(duplicateImageFinalization, { now: new Date('2026-08-07T12:00:00Z') })
+assert.equal(alternativeVisualRetry.result.status, 'retry-finalization-alternative-visual')
+assert.equal(alternativeVisualRetry.campaign.items.find((item) => item.id === duplicateImageItem.id).status, 'validation')
+assert.ok(alternativeVisualRetry.campaign.items.find((item) => item.id === duplicateImageItem.id).productIds.length > 1)
+
 const deterministicReviewCampaign = structuredClone(campaignFixture)
 for (const item of deterministicReviewCampaign.items) if (item.status === 'blocked') { item.status = 'planned'; delete item.blockReason; delete item.failure }
 const deterministicReviewItem = deterministicReviewCampaign.items.find((item) => item.status === 'published' && item.publishDate >= '2026-08-13' && item.postPath && item.aiReview?.contentHash)
