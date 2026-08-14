@@ -81,7 +81,7 @@ jobs:
           npm run validate || validation_status=$?
           git config user.name "thebiker-editorial-bot"
           git config user.email "thebiker-editorial-bot@users.noreply.github.com"
-          git add _data/products/bikes _posts/drafts content/research/campaign assets/img/posts content/image-library/index.json bot/editorial-campaign.json bot/operational-state _data/editorial-calendar.json _data/catalog-public.json api/products.json
+          git add _data/products/bikes _posts/drafts content/product-discovery/thebiker-media-catalog.json content/research/campaign assets/img/posts content/image-library/index.json bot/editorial-campaign.json bot/operational-state _data/editorial-calendar.json _data/catalog-public.json api/products.json
           git diff --cached --quiet || git commit -m "state: recompor buffer editorial"
           persist_status=1
           for attempt in 1 2 3; do

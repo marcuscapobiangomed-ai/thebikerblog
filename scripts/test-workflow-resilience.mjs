@@ -17,6 +17,8 @@ assert.ok(baselineIndex >= 0 && baselineIndex < mutationIndex);
 assert.match(publication, /git add .*_data\/catalog-public\.json/);
 assert.match(publication, /git add .*_data\/products\/bikes/);
 assert.match(publication, /git add .*api\/products\.json/);
+assert.match(publication, /git add .*content\/product-discovery\/thebiker-media-catalog\.json/);
+assert.match(publication, /git pull --rebase --autostash origin main/);
 assert.match(publication, /permissions:[\s\S]*actions: write/);
 assert.equal((publication.match(/gh workflow run deploy\.yml/g) || []).length, 1);
 assert.match(publication, /if: \$\{\{ steps\.publication\.outputs\.status == 'published' \}\}[\s\S]*gh workflow run deploy\.yml/);
@@ -51,6 +53,7 @@ assert.match(replenisher, /persist_status=1[\s\S]*if git pull --rebase --autosta
 assert.match(replenisher, /id: validation[\s\S]*Validação\/persistência: \$\{\{ steps\.validation\.outcome \}\}/i);
 
 assert.match(editorial, /git add _data\/products\/bikes/);
+assert.match(editorial, /git add _data\/products\/bikes[^\n]*content\/product-discovery\/thebiker-media-catalog\.json/);
 
 assert.match(read("deploy.yml"), /Run publication gates[\s\S]*npm run validate:ci/);
 assert.match(read("pr-validate.yml"), /Preparar artefatos derivados temporais[\s\S]*npm run prepare:derived/);
