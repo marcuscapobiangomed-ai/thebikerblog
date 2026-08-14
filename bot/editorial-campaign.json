@@ -844,18 +844,27 @@
       "summary": "Protocolo tecnico para isolar ruidos de transmissao, cockpit, rodas e quadro sem substituir componentes por tentativa e erro.",
       "category": "manutencao-ajustes",
       "freshness": "evergreen",
-      "status": "blocked",
+      "status": "scheduled",
       "productIds": [
-        "bicicleta-scott-scale-940-black"
+        "bicicleta-scott-scale-940-black",
+        "corrente-sram-nx-eagle",
+        "bicicleta-scott-scale-980-black",
+        "bicicleta-scott-addict-50-2026-pre-venda-1bxzy",
+        "bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9",
+        "bicicleta-scott-spark-rc-expert-2027",
+        "bicicleta-scott-spark-rc-world-cup-20271",
+        "bicicleta-scott-addict-rc-pro-di2-2026-pre-venda"
       ],
       "heroImage": {
         "mode": "real-context",
-        "productId": "bicicleta-scott-scale-940-black",
+        "productId": "bicicleta-scott-scale-980-black",
         "relationship": "category-example",
         "rationale": "Fotografia real do catalogo usada somente como contexto visual para o diagnostico tecnico da bicicleta."
       },
       "postPath": "_posts/drafts/2026-08-20-reserva-diagnostico-ruidos-bike.md",
-      "imageAssetIds": [],
+      "imageAssetIds": [
+        "thebiker-bicicleta-scott-scale-980-black-b6deebe2a6"
+      ],
       "attempts": 1,
       "lastAttemptAt": "2026-08-14T02:05:14.901Z",
       "aiReview": {
@@ -871,14 +880,40 @@
         "deterministicFullArticleFallbackUsed": true,
         "deterministicFullArticleFallbackTrigger": "cache-first"
       },
-      "failure": {
-        "code": "IMAGE_NOT_PUBLISHABLE",
-        "retryable": false,
-        "stage": "finalization",
-        "message": "Galeria oficial sem imagem inédita válida: Imagem duplicada: manufacturer-bicicleta-scott-scale-940-black-5171146828 | Download da imagem: HTTP 403 | resolução insuficiente para o padrão editorial: 480x480",
-        "recordedAt": "2026-08-14T02:05:23.787Z"
+      "visualDecision": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-visual-autonomy-v1",
+        "inputHash": "sha256:282a1c4d09c11b1706c2a46e87cf9eed2934b2ba9c5670c92afb358c0744db95",
+        "mode": "real-context",
+        "productId": "bicicleta-scott-scale-980-black",
+        "score": 100,
+        "hardGates": {
+          "semanticMatch": true,
+          "realAsset": true,
+          "explicitProduct": true,
+          "officialSource": true,
+          "approvedRights": true,
+          "publishableResolution": true,
+          "uniqueAsset": true
+        },
+        "blockers": [],
+        "issuedAt": "2026-08-14T02:17:08.948Z"
       },
-      "blockReason": "Validação final: [IMAGE_NOT_PUBLISHABLE] Galeria oficial sem imagem inédita válida: Imagem duplicada: manufacturer-bicicleta-scott-scale-940-black-5171146828 | Download da imagem: HTTP 403 | resolução insuficiente para o padrão editorial: 480x480"
+      "editorialReceipt": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-editorial-2026-08-v2",
+        "origin": "pipeline",
+        "reviewedContentHash": "sha256:741f9a5d7189b1da60f778ec6145c9356bf2a6e02a659861f9a8688dbadcbf9c",
+        "scheduledContentHash": "sha256:9d56727d0de620cacd4976cec5dc90073b09e3aacc00d10571b17126824d91db",
+        "researchHash": "sha256:8ac300dd183f44fefcc70f1374d5767151cdbad5e76514429d7299f76a097030",
+        "sourceHash": null,
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "issuedAt": "2026-08-14T02:17:08.948Z"
+      },
+      "imageManifestPath": "assets/img/posts/reserva-diagnostico-ruidos-bike/image-manifest.json",
+      "imageStatus": "approved",
+      "imageValidatedAt": "2026-08-14T02:17:08.948Z"
     },
     {
       "day": 14,

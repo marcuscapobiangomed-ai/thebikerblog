@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-08-14T01:14:53.381Z",
+  "updatedAt": "2026-08-14T02:17:10.540Z",
   "assets": [
     {
       "assetId": "thebiker-scott-addict-rc-pro-hmx-frame-set-def10da96a",
@@ -320,6 +320,23 @@
       "uses": [
         {
           "postId": "reserva-scale-940-ficha",
+          "position": "hero",
+          "usedAt": "2026-08-14T12:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "assetId": "thebiker-bicicleta-scott-scale-980-black-b6deebe2a6",
+      "sha256": "b6deebe2a66085ff1e57b1c484e2b39d1ece4ee456fee4ff84d104aaac4509f5",
+      "perceptualHash": "1111111111111011111100111000000110000000100000001001100111111111",
+      "sourcePageUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-scale-980-black/",
+      "sourceFileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/captura-de-tela-2024-01-09-as-15-23-19-3304e88070bb3ef0a317048250578717-1024-1024.webp",
+      "productId": "bicicleta-scott-scale-980-black",
+      "productName": "Bicicleta Scott Scale 980 Black",
+      "rightsPolicyId": "thebiker-official-editorial-v1",
+      "uses": [
+        {
+          "postId": "reserva-diagnostico-ruidos-bike",
           "position": "hero",
           "usedAt": "2026-08-14T12:00:00.000Z"
         }

@@ -1,12 +1,13 @@
 ---
+image_subject_id: "bicicleta-scott-scale-980-black"
 layout: post
 published: false
 title: "Diagnostico de ruidos na bicicleta: metodo por carga, frequencia e interface"
 slug: "diagnostico-de-ruidos-na-bicicleta-metodo-por-carga-frequencia-e-interface"
-date: 2026-08-14
+date: 2026-08-20
 last_modified_at: 2026-08-14
 author: "Equipe TheBiker"
-reviewed_by: ""
+reviewed_by: "TheBiker AI Editorial Gate"
 content_type: "guia-tecnico"
 editorial_format: "full-article-v1"
 audience_segment: "core_technical_cyclists"
@@ -34,24 +35,24 @@ faq:
     answer: "Leia cada registro junto da fonte oficial, confirme a identificação do item e mantenha como lacuna tudo o que não estiver explicitamente documentado."
   - question: "A leitura documental substitui um teste presencial?"
     answer: "Não. O artigo organiza dados rastreáveis e limites de consulta; a decisão final deve considerar a documentação específica e a avaliação apropriada."
-image: "/assets/img/system/covers/guia/hero.webp"
-image_mobile: "/assets/img/system/covers/guia/hero.webp"
-thumbnail: "/assets/img/system/covers/guia/thumb-480.webp"
+image: "/assets/img/posts/reserva-diagnostico-ruidos-bike/hero-1600.webp"
+image_mobile: "/assets/img/posts/reserva-diagnostico-ruidos-bike/hero-800.webp"
+thumbnail: "/assets/img/posts/reserva-diagnostico-ruidos-bike/card-640.webp"
 image_manifest_version: 2
-image_asset_type: "system-fallback"
-image_status: "draft"
-image_alt: "Capa técnica sobre limpeza e inspeção da transmissão"
-image_caption: "Capa técnica produzida para o guia editorial."
-image_credit: "TheBiker com geração assistida por IA"
-image_license: "Uso editorial interno TheBiker"
+image_asset_type: "official-product-photo"
+image_status: "approved"
+image_alt: "Bicicleta Scott Scale 980 Black em fotografia oficial de TheBiker Shop"
+image_caption: "Bicicleta Scott Scale 980 Black, em fotografia oficial de TheBiker Shop."
+image_credit: "TheBiker Shop"
+image_license: "Uso editorial no blog oficial TheBiker"
 affiliate_links: false
 editorial_scope: "portfolio"
-promoted_brands: ["TheBiker"]
+promoted_brands: []
 context_only_brands: []
 portfolio_evidence_url: "https://thebikershop.com.br/componentes/"
 portfolio_verified_at: "2026-08-14"
-editorial_status: "draft"
-status: "draft"
+editorial_status: "reviewed"
+status: "scheduled"
 sources:
   - name: "Shimano Technical Service Manuals – Drivetrain"
     type: "manufacturer"
