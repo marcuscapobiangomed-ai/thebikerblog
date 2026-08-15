@@ -487,6 +487,7 @@
         "thebiker-bicicleta-scott-spark-rc-expert-2027-b1b10a0596"
       ],
       "imageValidatedAt": "2026-08-13T23:36:09.081Z",
+      "publishedAt": "2026-08-15T18:58:47.226Z",
       "attempts": 1,
       "lastAttemptAt": "2026-08-13T23:27:35.504Z",
       "aiReview": {
@@ -512,12 +513,12 @@
         "origin": "pipeline",
         "reviewedContentHash": "sha256:5a3059d86a24243dc9352b6b73453e083023baa623ae672585ed42ddbc381282",
         "scheduledContentHash": "sha256:1149e34ae580eb74dd332109e8501766c7ed8a988cb91ee406079ab89eae9cb7",
+        "publishedContentHash": "sha256:382cfe4f4ec88fd1ad4aacd79bed0d6d58f5b7ecaabcdd68ac2e9d0ccf0296ea",
         "researchHash": "sha256:1c2af4ac4210c9d015b002f13b6891bf50bfb0b2811e3fad0c686c1e60cfff29",
         "sourceHash": "f10a5adab76326ba1c73b14dce4fc85a95919c8bfe292393a56da272a2aadfc5",
         "finalScore": 95,
         "finalBlockers": 0,
-        "issuedAt": "2026-08-13T23:36:09.081Z",
-        "publishedContentHash": "sha256:382cfe4f4ec88fd1ad4aacd79bed0d6d58f5b7ecaabcdd68ac2e9d0ccf0296ea"
+        "issuedAt": "2026-08-13T23:36:09.081Z"
       },
       "visualDecision": {
         "schemaVersion": 1,
@@ -537,8 +538,7 @@
         },
         "blockers": [],
         "issuedAt": "2026-08-13T23:36:09.081Z"
-      },
-      "publishedAt": "2026-08-15T18:58:47.226Z"
+      }
     },
     {
       "day": 9,
@@ -1270,13 +1270,22 @@
       "summary": "Diferenças de modulação, ruído e durabilidade entre pastilhas orgânicas e sinterizadas em condições quentes e úmidas. Critérios de escolha.",
       "category": "componentes",
       "freshness": "evergreen",
-      "status": "planned",
+      "status": "blocked",
       "productIds": [],
       "heroImage": {
         "mode": "conceptual"
       },
       "imageAssetIds": [],
-      "attempts": 0
+      "blockReason": "[RESEARCH_INSUFFICIENT] Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq retornou JSON inválido; Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat)",
+      "failure": {
+        "code": "RESEARCH_INSUFFICIENT",
+        "retryable": false,
+        "stage": "production",
+        "message": "Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq retornou JSON inválido; Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat)",
+        "recordedAt": "2026-08-15T19:02:07.174Z"
+      },
+      "attempts": 1,
+      "lastAttemptAt": "2026-08-15T19:02:07.174Z"
     },
     {
       "day": 25,
@@ -1286,13 +1295,22 @@
       "summary": "Boas práticas de carregamento e armazenamento de baterias, com foco em calor e umidade. Como interpretar a autonomia informada pelo fabricante.",
       "category": "manutencao-ajustes",
       "freshness": "evergreen",
-      "status": "planned",
+      "status": "blocked",
       "productIds": [],
       "heroImage": {
         "mode": "conceptual"
       },
       "imageAssetIds": [],
-      "attempts": 0
+      "attempts": 1,
+      "lastAttemptAt": "2026-08-15T19:02:15.812Z",
+      "failure": {
+        "code": "RESEARCH_INSUFFICIENT",
+        "retryable": false,
+        "stage": "production",
+        "message": "Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq 429; Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat)",
+        "recordedAt": "2026-08-15T19:02:15.812Z"
+      },
+      "blockReason": "[RESEARCH_INSUFFICIENT] Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq 429; Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat)"
     },
     {
       "day": 26,

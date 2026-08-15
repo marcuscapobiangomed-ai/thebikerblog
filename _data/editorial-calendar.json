@@ -193,7 +193,7 @@
       "title": "Pastilhas de freio: orgânicas ou sinterizadas para o clima brasileiro",
       "summary": "Diferenças de modulação, ruído e durabilidade entre pastilhas orgânicas e sinterizadas em condições quentes e úmidas. Critérios de escolha.",
       "category": "componentes",
-      "status": "planned"
+      "status": "blocked"
     },
     {
       "day": 25,
@@ -201,7 +201,7 @@
       "title": "Bateria de bike elétrica: armazenamento e autonomia na prática",
       "summary": "Boas práticas de carregamento e armazenamento de baterias, com foco em calor e umidade. Como interpretar a autonomia informada pelo fabricante.",
       "category": "manutencao-ajustes",
-      "status": "planned"
+      "status": "blocked"
     },
     {
       "day": 26,
