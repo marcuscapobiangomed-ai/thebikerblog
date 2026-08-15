@@ -10,6 +10,7 @@ import { assertScheduledReceipt, hashEditorialText } from "./validation/editoria
 import { createStagedWorkspace, discardStagedWorkspace, promoteStagedPaths } from "./automation/file-transaction.js";
 import { assertResearchEvidenceContract, assertResearchGrounding } from "./validation/research-grounding.js";
 import { assertArticleResearchGrounding } from "./validation/article-research-grounding.js";
+import { canonicalPortfolioBrand } from "./portfolio-policy.js";
 
 const defaultRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 
@@ -44,6 +45,17 @@ export function selectScheduledPublication(campaign, date) {
   if (catchUpAlreadyPublished) return { item: null, catchUp: false, alreadyPublished: true };
 
   return { item: null, catchUp: false, alreadyPublished: due?.status === "published" };
+}
+
+function ensurePortfolioPromotion(content, manifest) {
+  const parsed = matter(content);
+  if (Array.isArray(parsed.data.promoted_brands) && parsed.data.promoted_brands.length > 0) return content;
+  const promotedBrand = (manifest.depictedBrands || []).map(canonicalPortfolioBrand).find(Boolean) || "TheBiker";
+  const value = `[${JSON.stringify(promotedBrand)}]`;
+  if (/^promoted_brands:\s*.*$/m.test(content)) {
+    return content.replace(/^promoted_brands:\s*.*$/m, `promoted_brands: ${value}`);
+  }
+  return content.replace(/^---\s*\r?\n/, (opening) => `${opening}promoted_brands: ${value}\n`);
 }
 
 async function publishInWorkspace({ now, dryRun, root }) {
@@ -90,6 +102,7 @@ async function publishInWorkspace({ now, dryRun, root }) {
   const catalog = JSON.parse(await fs.readFile(path.join(root, "content/product-discovery/thebiker-media-catalog.json"), "utf8"));
   assertImageArticleConsistency({ article: matter(content).data, manifest: validatedManifest, campaignItem: item, catalog });
   assertScheduledReceipt(content, item);
+  content = ensurePortfolioPromotion(content, validatedManifest);
   content = content.replace(/^published:\s*false\s*$/m, "published: true");
   content = content.replace(/^editorial_status:\s*.*$/m, 'editorial_status: "published"');
   content = content.replace(/^status:\s*.*$/m, 'status: "published"');
