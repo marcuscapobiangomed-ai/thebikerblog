@@ -26,9 +26,15 @@ const raceDefinitions = [
   { track: 'participant-calendar', format: 'event-guide', eventIds: [participantIds[3]] },
 ]
 const structuredCampaign = structuredClone(parsed)
-const plannedItems = structuredCampaign.items.filter((item) => item.status === 'planned').slice(0, raceDefinitions.length)
-assert.equal(plannedItems.length, raceDefinitions.length, 'fixture exige oito pautas planejadas')
+// O arquivo canônico é estado de produção e muda conforme pautas são
+// consumidas. Monte uma amostra isolada em vez de depender da contagem atual
+// de itens com status "planned".
+const plannedItems = structuredCampaign.items.filter((item) => item.status !== 'published').slice(0, raceDefinitions.length)
+assert.equal(plannedItems.length, raceDefinitions.length, 'fixture exige oito pautas ainda não publicadas')
 for (const [index, item] of plannedItems.entries()) {
+  item.status = 'planned'
+  delete item.blockReason
+  delete item.failure
   item.category = 'competicoes'
   item.freshness = 'event-driven'
   item.heroImage = { mode: 'race-context' }

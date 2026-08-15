@@ -27,6 +27,14 @@ export function selectScheduledPublication(campaign, date) {
   if (due && !["scheduled", "published"].includes(due.status)) {
     throw new Error(`Publicacao bloqueada: pauta ${due.id} de hoje esta em ${due.status}, nao scheduled`);
   }
+
+  // Quite primeiro o atraso mais antigo. As três execuções idempotentes do
+  // workflow podem então recuperar o backlog e ainda publicar a pauta de hoje,
+  // sem deixar uma lacuna antiga presa indefinidamente.
+  const overdue = campaign.items
+    .filter((candidate) => candidate.status === "scheduled" && candidate.publishDate < date)
+    .sort((left, right) => left.publishDate.localeCompare(right.publishDate))[0] || null;
+  if (overdue) return { item: overdue, catchUp: true };
   if (due?.status === "scheduled") return { item: due, catchUp: false };
 
   const catchUpAlreadyPublished = campaign.items.some((candidate) => {
@@ -35,10 +43,6 @@ export function selectScheduledPublication(campaign, date) {
   });
   if (catchUpAlreadyPublished) return { item: null, catchUp: false, alreadyPublished: true };
 
-  const overdue = campaign.items
-    .filter((candidate) => candidate.status === "scheduled" && candidate.publishDate < date)
-    .sort((left, right) => left.publishDate.localeCompare(right.publishDate))[0] || null;
-  if (overdue) return { item: overdue, catchUp: true };
   return { item: null, catchUp: false, alreadyPublished: due?.status === "published" };
 }
 
@@ -89,9 +93,12 @@ async function publishInWorkspace({ now, dryRun, root }) {
   content = content.replace(/^published:\s*false\s*$/m, "published: true");
   content = content.replace(/^editorial_status:\s*.*$/m, 'editorial_status: "published"');
   content = content.replace(/^status:\s*.*$/m, 'status: "published"');
+  // A publicação é uma modificação editorial, mesmo quando ocorre na data
+  // originalmente agendada. Manter a data de geração do rascunho faz o gate
+  // SEO rejeitar o artigo depois de movê-lo para _posts.
+  content = content.replace(/^last_modified_at:\s*.*$/m, `last_modified_at: ${date}`);
   if (selected.catchUp) {
     content = content.replace(/^date:\s*.*$/m, `date: ${date}`);
-    content = content.replace(/^last_modified_at:\s*.*$/m, `last_modified_at: ${date}`);
   }
   if (!/^published:\s*true\s*$/m.test(content)) throw new Error(`Post ${item.id} nao possui published: false valido`);
   assertMarkdownPublicationGates(content);

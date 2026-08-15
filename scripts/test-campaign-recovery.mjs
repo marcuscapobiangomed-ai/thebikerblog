@@ -4,6 +4,7 @@ import os from 'node:os'
 import path from 'node:path'
 import campaignFixture from '../bot/editorial-campaign.json' with { type: 'json' }
 import { recoverBlockedCampaign, recoverBlockedCampaignFiles } from '../bot/src/automation/recover-blocked.js'
+import { CampaignSchema } from '../bot/src/automation/campaign.js'
 
 const transient = structuredClone(campaignFixture)
 for (const item of transient.items) if (item.status === 'blocked') { item.status = 'planned'; delete item.blockReason; delete item.failure }
@@ -399,7 +400,8 @@ assert.equal(legacyRecovered.result.replacementId, 'reserva-diagnostico-ruidos-b
 const legacyReplacement = legacyRecovered.campaign.items[legacyBlocked.day - 1]
 assert.ok(legacyReplacement.productIds.includes('bicicleta-scott-scale-940-black'))
 assert.equal(legacyReplacement.heroImage.mode, 'real-context')
-assert.ok(legacyRecovered.campaign.reserves.length >= 3)
+assert.doesNotThrow(() => CampaignSchema.parse(legacyRecovered.campaign),
+  'consumir uma reserva legítima não pode tornar a campanha inválida')
 assert.ok(executableReplacement.productIds.length > 0, 'reserva comum precisa carregar evidência de produto recuperável')
 assert.ok(['exact-product', 'real-context'].includes(executableReplacement.heroImage.mode), 'reserva comum precisa carregar política visual publicável')
 assert.ok(replaced.campaign.reserves.some((reserve) => reserve.productIds.length > 0), 'reposição precisa manter ao menos uma reserva executável')
