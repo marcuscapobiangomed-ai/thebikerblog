@@ -1428,6 +1428,46 @@
         "title": "Scott Addict RC 20: o que a ficha oficial permite afirmar"
       },
       "reason": "[IMAGE_NOT_PUBLISHABLE] Galeria oficial sem imagem inédita válida: bicicleta-scott-scale-940-black: Imagem duplicada: manufacturer-bicicleta-scott-scale-940-black-5171146828 | bicicleta-scott-scale-940-black: Imagem duplicada: thebiker-bicicleta-scott-scale-940-black-bf34dbe9f9 | bicicleta-scott-scale-940-black: resolução insuficiente para o padrão editorial: 521x569 | bicicleta-scott-scale-940-black: resolução insuficiente para o padrão editorial: 506x565 | bicicleta-scott-scale-940-black: Download da imagem: HTTP 403 | bicicleta-scott-scale-940-black: resolução insuficiente para o padrão editorial: 480x480"
+    },
+    {
+      "recordedAt": "2026-08-15T17:24:09.460Z",
+      "campaignId": "thebiker-rolling-2026-08-08",
+      "replacedItem": {
+        "day": 16,
+        "publishDate": "2026-08-23",
+        "id": "reserva-cabos-mangueiras-roteamento",
+        "title": "Cabos e mangueiras: roteamento, atrito e sinais de montagem que pedem correção",
+        "summary": "Leitura técnica de curvas, fixações, contato com o quadro e interferências que alteram comando, ruído e durabilidade.",
+        "category": "componentes",
+        "freshness": "evergreen",
+        "status": "blocked",
+        "productIds": [
+          "bicicleta-scott-scale-940-black"
+        ],
+        "heroImage": {
+          "mode": "real-context",
+          "productId": "bicicleta-scott-scale-940-black",
+          "relationship": "category-example",
+          "rationale": "Fotografia real do catálogo TheBiker usada apenas como exemplo visual da categoria técnica abordada."
+        },
+        "imageStatus": "blocked",
+        "imageAssetIds": [],
+        "blockReason": "[RESEARCH_INSUFFICIENT] pesquisa verificada indisponível",
+        "failure": {
+          "code": "RESEARCH_INSUFFICIENT",
+          "retryable": true,
+          "stage": "source-verification-audit",
+          "message": "pesquisa verificada indisponível",
+          "recordedAt": "2026-08-13T18:15:00.000Z"
+        },
+        "attempts": 4,
+        "lastAttemptAt": "2026-08-13T18:15:00.000Z"
+      },
+      "replacement": {
+        "id": "reserva-scale-940-checklist-oficial",
+        "title": "Scott Scale 940: checklist documental para conferir quadro e montagem"
+      },
+      "reason": "[RESEARCH_INSUFFICIENT] pesquisa verificada indisponível"
     }
   ]
 }

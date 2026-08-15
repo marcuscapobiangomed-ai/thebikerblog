@@ -126,9 +126,9 @@
     {
       "day": 16,
       "publishDate": "2026-08-23",
-      "title": "Cabos e mangueiras: roteamento, atrito e sinais de montagem que pedem correção",
-      "summary": "Leitura técnica de curvas, fixações, contato com o quadro e interferências que alteram comando, ruído e durabilidade.",
-      "category": "componentes",
+      "title": "Scott Scale 940: checklist documental para conferir quadro e montagem",
+      "summary": "Checklist editorial limitado aos campos de quadro, suspensao e componentes que permanecem comprovados nas fichas oficiais.",
+      "category": "review",
       "status": "blocked"
     },
     {
@@ -185,7 +185,7 @@
       "title": "Garfo dianteiro: câmara de ar, progressão e ajuste da compressão",
       "summary": "Entenda como a pressão de ar e a compressão afetam o meio do curso do garfo e a estabilidade em aterrissagens. Sem números mágicos.",
       "category": "manutencao-ajustes",
-      "status": "planned"
+      "status": "blocked"
     },
     {
       "day": 24,

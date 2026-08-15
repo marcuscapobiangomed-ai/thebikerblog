@@ -1002,9 +1002,12 @@
         "productId": "bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9"
       },
       "postPath": "_posts/drafts/2026-08-22-reserva-addict-rc20-ficha-oficial.md",
+      "imageManifestPath": "assets/img/posts/reserva-addict-rc20-ficha-oficial/image-manifest.json",
+      "imageStatus": "approved",
       "imageAssetIds": [
         "manufacturer-bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9-2d8af118d6"
       ],
+      "imageValidatedAt": "2026-08-15T13:49:07.183Z",
       "attempts": 1,
       "lastAttemptAt": "2026-08-15T13:47:41.531Z",
       "aiReview": {
@@ -1019,6 +1022,18 @@
         "contentHash": "sha256:80a42ad9fde1386d6e32d5a66cc0ca5c0bd290bf3657f7edd508893a895e05f9",
         "deterministicFullArticleFallbackUsed": true,
         "deterministicFullArticleFallbackTrigger": "pipeline-failure"
+      },
+      "editorialReceipt": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-editorial-2026-08-v2",
+        "origin": "pipeline",
+        "reviewedContentHash": "sha256:80a42ad9fde1386d6e32d5a66cc0ca5c0bd290bf3657f7edd508893a895e05f9",
+        "scheduledContentHash": "sha256:b94aec27d423bfd432dddf4439e54fb3643afb426505d623619fd8bcf7de097c",
+        "researchHash": "sha256:80038624cadf55ff3c6279bdf53a9e857c1c3e1f67f21b502e5810456b90a069",
+        "sourceHash": null,
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "issuedAt": "2026-08-15T13:49:07.183Z"
       },
       "visualDecision": {
         "schemaVersion": 1,
@@ -1038,53 +1053,35 @@
         },
         "blockers": [],
         "issuedAt": "2026-08-15T13:49:07.183Z"
-      },
-      "editorialReceipt": {
-        "schemaVersion": 1,
-        "policyVersion": "thebiker-editorial-2026-08-v2",
-        "origin": "pipeline",
-        "reviewedContentHash": "sha256:80a42ad9fde1386d6e32d5a66cc0ca5c0bd290bf3657f7edd508893a895e05f9",
-        "scheduledContentHash": "sha256:b94aec27d423bfd432dddf4439e54fb3643afb426505d623619fd8bcf7de097c",
-        "researchHash": "sha256:80038624cadf55ff3c6279bdf53a9e857c1c3e1f67f21b502e5810456b90a069",
-        "sourceHash": null,
-        "finalScore": 95,
-        "finalBlockers": 0,
-        "issuedAt": "2026-08-15T13:49:07.183Z"
-      },
-      "imageManifestPath": "assets/img/posts/reserva-addict-rc20-ficha-oficial/image-manifest.json",
-      "imageStatus": "approved",
-      "imageValidatedAt": "2026-08-15T13:49:07.183Z"
+      }
     },
     {
       "day": 16,
       "publishDate": "2026-08-23",
-      "id": "reserva-cabos-mangueiras-roteamento",
-      "title": "Cabos e mangueiras: roteamento, atrito e sinais de montagem que pedem correção",
-      "summary": "Leitura técnica de curvas, fixações, contato com o quadro e interferências que alteram comando, ruído e durabilidade.",
-      "category": "componentes",
-      "freshness": "evergreen",
+      "id": "reserva-scale-940-checklist-oficial",
+      "title": "Scott Scale 940: checklist documental para conferir quadro e montagem",
+      "summary": "Checklist editorial limitado aos campos de quadro, suspensao e componentes que permanecem comprovados nas fichas oficiais.",
+      "category": "review",
+      "freshness": "revalidate-24h",
       "status": "blocked",
       "productIds": [
         "bicicleta-scott-scale-940-black"
       ],
       "heroImage": {
-        "mode": "real-context",
-        "productId": "bicicleta-scott-scale-940-black",
-        "relationship": "category-example",
-        "rationale": "Fotografia real do catálogo TheBiker usada apenas como exemplo visual da categoria técnica abordada."
+        "mode": "exact-product",
+        "productId": "bicicleta-scott-scale-940-black"
       },
-      "imageStatus": "blocked",
       "imageAssetIds": [],
-      "blockReason": "[RESEARCH_INSUFFICIENT] pesquisa verificada indisponível",
+      "blockReason": "[IMAGE_NOT_PUBLISHABLE] Galeria oficial sem imagem inédita válida: bicicleta-scott-scale-940-black: Imagem duplicada: manufacturer-bicicleta-scott-scale-940-black-5171146828 | bicicleta-scott-scale-940-black: Imagem duplicada: thebiker-bicicleta-scott-scale-940-black-bf34dbe9f9 | bicicleta-scott-scale-940-black: resolução insuficiente para o padrão editorial: 521x569 | bicicleta-scott-scale-940-black: resolução insuficiente para o padrão editorial: 506x565 | bicicleta-scott-scale-940-black: Download da imagem: HTTP 403 | bicicleta-scott-scale-940-black: resolução insuficiente para o padrão editorial: 480x480",
       "failure": {
-        "code": "RESEARCH_INSUFFICIENT",
-        "retryable": true,
-        "stage": "source-verification-audit",
-        "message": "pesquisa verificada indisponível",
-        "recordedAt": "2026-08-13T18:15:00.000Z"
+        "code": "IMAGE_NOT_PUBLISHABLE",
+        "retryable": false,
+        "stage": "production",
+        "message": "Galeria oficial sem imagem inédita válida: bicicleta-scott-scale-940-black: Imagem duplicada: manufacturer-bicicleta-scott-scale-940-black-5171146828 | bicicleta-scott-scale-940-black: Imagem duplicada: thebiker-bicicleta-scott-scale-940-black-bf34dbe9f9 | bicicleta-scott-scale-940-black: resolução insuficiente para o padrão editorial: 521x569 | bicicleta-scott-scale-940-black: resolução insuficiente para o padrão editorial: 506x565 | bicicleta-scott-scale-940-black: Download da imagem: HTTP 403 | bicicleta-scott-scale-940-black: resolução insuficiente para o padrão editorial: 480x480",
+        "recordedAt": "2026-08-15T17:24:10.126Z"
       },
-      "attempts": 4,
-      "lastAttemptAt": "2026-08-13T18:15:00.000Z"
+      "attempts": 1,
+      "lastAttemptAt": "2026-08-15T17:24:10.126Z"
     },
     {
       "day": 17,
@@ -1244,13 +1241,22 @@
       "summary": "Entenda como a pressão de ar e a compressão afetam o meio do curso do garfo e a estabilidade em aterrissagens. Sem números mágicos.",
       "category": "manutencao-ajustes",
       "freshness": "evergreen",
-      "status": "planned",
+      "status": "blocked",
       "productIds": [],
       "heroImage": {
         "mode": "conceptual"
       },
       "imageAssetIds": [],
-      "attempts": 0
+      "attempts": 1,
+      "lastAttemptAt": "2026-08-15T17:24:11.684Z",
+      "failure": {
+        "code": "RESEARCH_INSUFFICIENT",
+        "retryable": false,
+        "stage": "production",
+        "message": "Pesquisa bloqueada por integridade de fontes: pesquisa concluída sem fontes rastreáveis; pesquisa sem fatos explicitamente fundamentados",
+        "recordedAt": "2026-08-15T17:24:11.684Z"
+      },
+      "blockReason": "[RESEARCH_INSUFFICIENT] Pesquisa bloqueada por integridade de fontes: pesquisa concluída sem fontes rastreáveis; pesquisa sem fatos explicitamente fundamentados"
     },
     {
       "day": 24,
@@ -1391,19 +1397,6 @@
         "sourceStatus": "pending"
       },
       "productIds": []
-    },
-    {
-      "id": "reserva-scale-940-checklist-oficial",
-      "title": "Scott Scale 940: checklist documental para conferir quadro e montagem",
-      "summary": "Checklist editorial limitado aos campos de quadro, suspensao e componentes que permanecem comprovados nas fichas oficiais.",
-      "category": "review",
-      "productIds": [
-        "bicicleta-scott-scale-940-black"
-      ],
-      "heroImage": {
-        "mode": "exact-product",
-        "productId": "bicicleta-scott-scale-940-black"
-      }
     }
   ]
 }
