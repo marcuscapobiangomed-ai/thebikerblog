@@ -14,6 +14,7 @@ assert.ok(publication.indexOf("npm run catalog:revalidate") < publication.indexO
 const baselineIndex = publication.indexOf("npm run validate:ci");
 const mutationIndex = publication.indexOf("node src/publish_scheduled.js");
 assert.ok(baselineIndex >= 0 && baselineIndex < mutationIndex);
+assert.match(publication, /Validar conteúdo e calendário[\s\S]*npm run validate:artifacts/);
 assert.match(publication, /git add .*_data\/catalog-public\.json/);
 assert.match(publication, /git add .*_data\/products\/bikes/);
 assert.match(publication, /git add .*api\/products\.json/);
@@ -39,6 +40,7 @@ assert.match(editorial, /\(steps\.automation\.outcome == 'success' \|\| steps\.a
 assert.match(editorial, /id: finalization_retry[\s\S]*campaign:retry-finalization/);
 assert.match(editorial, /id: finalization_retry[\s\S]*CAMPAIGN_FINALIZATION_MAX_ATTEMPTS: "3"[\s\S]*campaign:retry-finalization/);
 assert.match(editorial, /steps\.finalization\.outcome == 'success' \|\| steps\.finalization_retry\.outcome == 'success'/);
+assert.match(editorial, /Validar artefatos produzidos[\s\S]*npm run validate:artifacts/);
 assert.equal((editorial.match(/AI_DETERMINISTIC_CURATED_FALLBACK: "true"/g) || []).length, 3);
 
 const replenisher = read("replenish-buffer.yml");
@@ -52,6 +54,7 @@ assert.match(replenisher, /group: thebiker-editorial-write/);
 assert.match(replenisher, /git add _data\/products\/bikes/);
 assert.match(replenisher, /persist_status=1[\s\S]*if git pull --rebase --autostash origin main && git push[\s\S]*Falha ao persistir/);
 assert.match(replenisher, /id: validation[\s\S]*Validação\/persistência: \$\{\{ steps\.validation\.outcome \}\}/i);
+assert.match(replenisher, /npm run validate:artifacts \|\| validation_status=\$\?/);
 
 assert.match(editorial, /git add _data\/products\/bikes/);
 assert.match(editorial, /git add _data\/products\/bikes[^\n]*content\/product-discovery\/thebiker-media-catalog\.json/);

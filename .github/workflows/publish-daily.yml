@@ -82,7 +82,7 @@ jobs:
           echo "status=$(echo "$result" | jq -r .status)" >> "$GITHUB_OUTPUT"
         working-directory: bot
       - name: Validar conteúdo e calendário
-        run: npm run validate
+        run: npm run validate:artifacts
       - name: Registrar publicação
         if: ${{ github.event_name == 'schedule' || !inputs.dry_run }}
         run: |
