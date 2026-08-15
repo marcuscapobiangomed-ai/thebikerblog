@@ -1,11 +1,11 @@
 ---
 image_subject_id: "bicicleta-scott-spark-rc-expert-2027"
 layout: post
-published: false
+published: true
 title: "Scott Spark RC Expert 2027: leitura técnica da montagem confirmada pelas fontes atuais"
 slug: "scott-spark-rc-expert-2027-leitura-tecnica-da-montagem-confirmada-pelas-fontes-atuais"
 date: 2026-08-15
-last_modified_at: 2026-08-13
+last_modified_at: 2026-08-15
 author: "Equipe TheBiker"
 reviewed_by: "TheBiker AI Editorial Gate"
 content_type: "review"
@@ -51,8 +51,8 @@ promoted_brands: ["TheBiker"]
 context_only_brands: []
 portfolio_evidence_url: "https://thebikershop.com.br/bikes/"
 portfolio_verified_at: "2026-08-13"
-editorial_status: "reviewed"
-status: "scheduled"
+editorial_status: "published"
+status: "published"
 sources:
   - name: "TheBiker — Bicicleta Scott Spark RC Expert 2027"
     type: "store"

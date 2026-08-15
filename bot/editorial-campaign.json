@@ -412,6 +412,7 @@
         "thebiker-corrente-sram-nx-eagle-ab2209342e"
       ],
       "imageValidatedAt": "2026-08-13T23:00:54.384Z",
+      "publishedAt": "2026-08-15T18:57:45.594Z",
       "attempts": 1,
       "lastAttemptAt": "2026-08-13T23:00:54.384Z",
       "aiReview": {
@@ -436,12 +437,12 @@
         "origin": "pipeline",
         "reviewedContentHash": "sha256:8d75bf1e41e13eb30e4b552d8964819d583a084f0d16254d08674343a3834408",
         "scheduledContentHash": "sha256:b64f3e8d4e80e2b5a2c995035fba8103f1e67a2ceb19b5585da9c2a589aea384",
+        "publishedContentHash": "sha256:d81624bf3d8363e3a6e4af24cca4d0fe0840e2efc254d9ab8fefe9d903081689",
         "researchHash": "sha256:019c51c576d59525cec42608bd24af25ee1db82f0580bac34a3d982bc552b8b4",
         "sourceHash": "b7cdc873206fe1cac1095928ae1e38c0ab17fc6d62151d2b58c92ddcea955566",
         "finalScore": 95,
         "finalBlockers": 0,
-        "issuedAt": "2026-08-13T23:00:54.384Z",
-        "publishedContentHash": "sha256:d81624bf3d8363e3a6e4af24cca4d0fe0840e2efc254d9ab8fefe9d903081689"
+        "issuedAt": "2026-08-13T23:00:54.384Z"
       },
       "visualDecision": {
         "schemaVersion": 1,
@@ -461,8 +462,7 @@
         },
         "blockers": [],
         "issuedAt": "2026-08-13T23:00:54.384Z"
-      },
-      "publishedAt": "2026-08-15T18:57:45.594Z"
+      }
     },
     {
       "day": 8,
@@ -472,7 +472,7 @@
       "summary": "Ficha editorial do modelo limitada aos materiais, suspensão, transmissão e limites explicitamente recuperados das fontes.",
       "category": "review",
       "freshness": "revalidate-24h",
-      "status": "scheduled",
+      "status": "published",
       "productIds": [
         "bicicleta-scott-spark-rc-expert-2027"
       ],
@@ -480,7 +480,7 @@
         "mode": "exact-product",
         "productId": "bicicleta-scott-spark-rc-expert-2027"
       },
-      "postPath": "_posts/drafts/2026-08-15-reserva-spark-rc-expert-ficha.md",
+      "postPath": "_posts/2026-08-15-reserva-spark-rc-expert-ficha.md",
       "imageManifestPath": "assets/img/posts/reserva-spark-rc-expert-ficha/image-manifest.json",
       "imageStatus": "approved",
       "imageAssetIds": [
@@ -516,7 +516,8 @@
         "sourceHash": "f10a5adab76326ba1c73b14dce4fc85a95919c8bfe292393a56da272a2aadfc5",
         "finalScore": 95,
         "finalBlockers": 0,
-        "issuedAt": "2026-08-13T23:36:09.081Z"
+        "issuedAt": "2026-08-13T23:36:09.081Z",
+        "publishedContentHash": "sha256:382cfe4f4ec88fd1ad4aacd79bed0d6d58f5b7ecaabcdd68ac2e9d0ccf0296ea"
       },
       "visualDecision": {
         "schemaVersion": 1,
@@ -536,7 +537,8 @@
         },
         "blockers": [],
         "issuedAt": "2026-08-13T23:36:09.081Z"
-      }
+      },
+      "publishedAt": "2026-08-15T18:58:47.226Z"
     },
     {
       "day": 9,
