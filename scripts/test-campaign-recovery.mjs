@@ -254,6 +254,10 @@ assert.equal(policyRetried.campaign.items.find((item) => item.id === aliasBlocke
 
 const nearMiss = structuredClone(campaignFixture)
 for (const item of nearMiss.items) if (item.status === 'blocked') { item.status = 'planned'; delete item.blockReason; delete item.failure }
+// The workflow runs this suite after producing content, so the live campaign
+// may already have consumed most of its reserve pool. Keep this recovery test
+// independent from that mutable production state.
+for (let index = 1; index <= 4; index += 1) addIsolatedReserve(nearMiss, `reserva-recovery-fixture-near-miss-${index}`)
 const shortItem = nearMiss.items.find((item) => item.id === conceptualPolicyId) || nearMiss.items.find((item) => item.status === 'planned')
 shortItem.status = 'blocked'
 shortItem.attempts = 2

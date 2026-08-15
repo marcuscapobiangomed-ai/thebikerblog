@@ -80,6 +80,12 @@ async function openAICompatibleRequest({
 
   const data = await response.json();
   const content = data.choices?.[0]?.message?.content;
+  const finishReason = data.choices?.[0]?.finish_reason || "";
+  if (["length", "max_tokens"].includes(String(finishReason).toLowerCase())) {
+    const error = new Error(`${provider}: resposta truncada ao atingir o limite de saída`);
+    error.code = "OUTPUT_TRUNCATED";
+    throw error;
+  }
   if (!content) throw new Error(`${provider}: resposta vazia`);
   return {
     provider,
@@ -87,7 +93,7 @@ async function openAICompatibleRequest({
     content,
     usage: usageFromOpenAI(data),
     durationMs: Date.now() - startedAt,
-    finishReason: data.choices?.[0]?.finish_reason || "",
+    finishReason,
   };
 }
 
@@ -127,7 +133,10 @@ export class ProviderClients {
         options: {
           ...options,
           thinking: "disabled",
-          maxTokens: numberFrom(this.env.DEEPSEEK_MAX_TOKENS, options.maxTokens || 8192),
+          // A step-specific limit must win over the global ceiling. Sending
+          // every small JSON/audit request with the global 14k allowance made
+          // latency and timeout behaviour unnecessarily unpredictable.
+          maxTokens: numberFrom(options.maxTokens, numberFrom(this.env.DEEPSEEK_MAX_TOKENS, 8192)),
         },
       });
     }
