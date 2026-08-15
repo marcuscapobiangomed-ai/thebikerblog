@@ -666,6 +666,8 @@ assert.ok(await fs.stat(publishedTarget));
 const publishedContent = await fs.readFile(publishedTarget, "utf8");
 assert.match(publishedContent, new RegExp(`^last_modified_at: ${finalizedCampaign.items[0].publishDate}$`, "m"),
   "a promoção deve registrar a data real da publicação para permanecer válida no gate SEO");
+assert.match(publishedContent, /^promoted_brands: \["Scott"\]$/m,
+  "rascunho legado deve herdar uma marca válida do manifesto visual aprovado");
 await assert.rejects(fs.stat(path.join(finalizeRoot, finalizedCampaign.items[0].postPath)), /ENOENT/);
 assert.equal((await publishScheduled({ root: finalizeRoot, now: publicationNow })).status, "already-published",
   "repetir a mesma publicação deve ser idempotente");
