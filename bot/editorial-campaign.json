@@ -395,7 +395,7 @@
       "summary": "Procedimento técnico baseado em orientações oficiais para remover contaminantes, verificar danos e devolver a corrente ao uso seguro.",
       "category": "manutencao-ajustes",
       "freshness": "evergreen",
-      "status": "scheduled",
+      "status": "published",
       "productIds": [
         "corrente-sram-nx-eagle"
       ],
@@ -405,7 +405,7 @@
         "relationship": "category-example",
         "rationale": "Fotografia real do catálogo TheBiker usada apenas como exemplo visual da categoria técnica abordada."
       },
-      "postPath": "_posts/drafts/2026-08-14-reserva-limpeza-transmissao-metodo.md",
+      "postPath": "_posts/2026-08-15-reserva-limpeza-transmissao-metodo.md",
       "imageManifestPath": "assets/img/posts/reserva-limpeza-transmissao-metodo/image-manifest.json",
       "imageStatus": "approved",
       "imageAssetIds": [
@@ -440,7 +440,8 @@
         "sourceHash": "b7cdc873206fe1cac1095928ae1e38c0ab17fc6d62151d2b58c92ddcea955566",
         "finalScore": 95,
         "finalBlockers": 0,
-        "issuedAt": "2026-08-13T23:00:54.384Z"
+        "issuedAt": "2026-08-13T23:00:54.384Z",
+        "publishedContentHash": "sha256:d81624bf3d8363e3a6e4af24cca4d0fe0840e2efc254d9ab8fefe9d903081689"
       },
       "visualDecision": {
         "schemaVersion": 1,
@@ -460,7 +461,8 @@
         },
         "blockers": [],
         "issuedAt": "2026-08-13T23:00:54.384Z"
-      }
+      },
+      "publishedAt": "2026-08-15T18:57:45.594Z"
     },
     {
       "day": 8,
@@ -1247,8 +1249,7 @@
         "mode": "conceptual"
       },
       "imageAssetIds": [],
-      "attempts": 1,
-      "lastAttemptAt": "2026-08-15T17:24:11.684Z",
+      "blockReason": "[RESEARCH_INSUFFICIENT] Pesquisa bloqueada por integridade de fontes: pesquisa concluída sem fontes rastreáveis; pesquisa sem fatos explicitamente fundamentados",
       "failure": {
         "code": "RESEARCH_INSUFFICIENT",
         "retryable": false,
@@ -1256,7 +1257,8 @@
         "message": "Pesquisa bloqueada por integridade de fontes: pesquisa concluída sem fontes rastreáveis; pesquisa sem fatos explicitamente fundamentados",
         "recordedAt": "2026-08-15T17:24:11.684Z"
       },
-      "blockReason": "[RESEARCH_INSUFFICIENT] Pesquisa bloqueada por integridade de fontes: pesquisa concluída sem fontes rastreáveis; pesquisa sem fatos explicitamente fundamentados"
+      "attempts": 1,
+      "lastAttemptAt": "2026-08-15T17:24:11.684Z"
     },
     {
       "day": 24,
