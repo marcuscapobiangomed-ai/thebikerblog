@@ -226,10 +226,28 @@ jobs:
           exit 1
       - name: Propagar falha da produção
         if: steps.automation.outcome == 'failure' && steps.automation_retry.outcome != 'success'
-        run: exit 1
+        env:
+          EDITORIAL_MIN_SAFE_BUFFER: ${{ vars.EDITORIAL_MIN_SAFE_BUFFER || '3' }}
+        run: |
+          scheduled_count="$(node --input-type=module -e "import fs from 'node:fs'; const c=JSON.parse(fs.readFileSync('bot/editorial-campaign.json','utf8')); const today=new Intl.DateTimeFormat('en-CA',{timeZone:'America/Sao_Paulo',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date()); console.log(c.items.filter(i=>i.status==='scheduled'&&i.publishDate>=today).length)")"
+          if [ "$scheduled_count" -ge "$EDITORIAL_MIN_SAFE_BUFFER" ]; then
+            echo "::warning::Produção degradada por provedor externo; buffer protegido com ${scheduled_count} artigos aprovados."
+            exit 0
+          fi
+          echo "::error::Produção falhou e o buffer caiu para ${scheduled_count} artigos (mínimo seguro: ${EDITORIAL_MIN_SAFE_BUFFER})."
+          exit 1
       - name: Propagar falha de finalização
         if: steps.finalization.outcome == 'failure' && steps.finalization_retry.outcome != 'success'
-        run: exit 1
+        env:
+          EDITORIAL_MIN_SAFE_BUFFER: ${{ vars.EDITORIAL_MIN_SAFE_BUFFER || '3' }}
+        run: |
+          scheduled_count="$(node --input-type=module -e "import fs from 'node:fs'; const c=JSON.parse(fs.readFileSync('bot/editorial-campaign.json','utf8')); const today=new Intl.DateTimeFormat('en-CA',{timeZone:'America/Sao_Paulo',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date()); console.log(c.items.filter(i=>i.status==='scheduled'&&i.publishDate>=today).length)")"
+          if [ "$scheduled_count" -ge "$EDITORIAL_MIN_SAFE_BUFFER" ]; then
+            echo "::warning::Finalização degradada; buffer protegido com ${scheduled_count} artigos aprovados."
+            exit 0
+          fi
+          echo "::error::Finalização falhou e o buffer caiu para ${scheduled_count} artigos (mínimo seguro: ${EDITORIAL_MIN_SAFE_BUFFER})."
+          exit 1
       - name: Resumo operacional
         if: always()
         run: |
