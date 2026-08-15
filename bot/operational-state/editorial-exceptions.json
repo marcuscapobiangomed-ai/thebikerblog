@@ -1351,6 +1351,83 @@
         "title": "Scott Addict RC Pro: ficha documental das especificacoes confirmadas"
       },
       "reason": "Validação final: [IMAGE_NOT_PUBLISHABLE] Galeria oficial sem imagem inédita válida: Imagem duplicada: manufacturer-bicicleta-scott-scale-940-black-5171146828 | Download da imagem: HTTP 403 | resolução insuficiente para o padrão editorial: 480x480"
+    },
+    {
+      "recordedAt": "2026-08-15T13:47:39.522Z",
+      "campaignId": "thebiker-rolling-2026-08-08",
+      "replacedItem": {
+        "day": 15,
+        "publishDate": "2026-08-22",
+        "id": "reserva-pressao-pneus-terreno",
+        "title": "Pressão de pneus por terreno: como testar sem transformar sensação em dado",
+        "summary": "Método de campo para ajustar pressão, registrar comportamento e separar aderência, suporte lateral, impacto e resistência ao rolamento.",
+        "category": "engenharia",
+        "freshness": "evergreen",
+        "status": "blocked",
+        "productIds": [
+          "pneu-schwalbe-racing-ray-29-x-2-25-super-race-tlr-addix"
+        ],
+        "heroImage": {
+          "mode": "real-context",
+          "productId": "pneu-schwalbe-racing-ray-29-x-2-25-super-race-tlr-addix",
+          "relationship": "category-example",
+          "rationale": "Fotografia real do catálogo TheBiker usada apenas como exemplo visual da categoria técnica abordada."
+        },
+        "imageStatus": "blocked",
+        "imageAssetIds": [],
+        "blockReason": "[RESEARCH_INSUFFICIENT] pesquisa sem contrato de evidência recuperada retrieved-excerpt-v1; pesquisa sem data de verificação ativa das fontes; fato 1 sem trecho literal verificável; fato 2 sem trecho literal verificável; fato 3 sem trecho literal verificável; fato 4 sem trecho literal verificável; fato 5 sem trecho literal verificável; fato 6 sem trecho literal verificável; fato 7 sem trecho literal verificável; fato 8 sem trecho literal verificável",
+        "failure": {
+          "code": "RESEARCH_INSUFFICIENT",
+          "retryable": true,
+          "stage": "source-verification-audit",
+          "message": "pesquisa sem contrato de evidência recuperada retrieved-excerpt-v1; pesquisa sem data de verificação ativa das fontes; fato 1 sem trecho literal verificável; fato 2 sem trecho literal verificável; fato 3 sem trecho literal verificável; fato 4 sem trecho literal verificável; fato 5 sem trecho literal verificável; fato 6 sem trecho literal verificável; fato 7 sem trecho literal verificável; fato 8 sem trecho literal verificável",
+          "recordedAt": "2026-08-13T18:15:00.000Z"
+        },
+        "attempts": 4,
+        "lastAttemptAt": "2026-08-13T18:15:00.000Z"
+      },
+      "replacement": {
+        "id": "reserva-scale-940-checklist-oficial",
+        "title": "Scott Scale 940: checklist documental para conferir quadro e montagem"
+      },
+      "reason": "[RESEARCH_INSUFFICIENT] pesquisa sem contrato de evidência recuperada retrieved-excerpt-v1; pesquisa sem data de verificação ativa das fontes; fato 1 sem trecho literal verificável; fato 2 sem trecho literal verificável; fato 3 sem trecho literal verificável; fato 4 sem trecho literal verificável; fato 5 sem trecho literal verificável; fato 6 sem trecho literal verificável; fato 7 sem trecho literal verificável; fato 8 sem trecho literal verificável"
+    },
+    {
+      "recordedAt": "2026-08-15T13:47:41.130Z",
+      "campaignId": "thebiker-rolling-2026-08-08",
+      "replacedItem": {
+        "day": 15,
+        "publishDate": "2026-08-22",
+        "id": "reserva-scale-940-checklist-oficial",
+        "title": "Scott Scale 940: checklist documental para conferir quadro e montagem",
+        "summary": "Checklist editorial limitado aos campos de quadro, suspensao e componentes que permanecem comprovados nas fichas oficiais.",
+        "category": "review",
+        "freshness": "revalidate-24h",
+        "status": "blocked",
+        "productIds": [
+          "bicicleta-scott-scale-940-black"
+        ],
+        "heroImage": {
+          "mode": "exact-product",
+          "productId": "bicicleta-scott-scale-940-black"
+        },
+        "imageAssetIds": [],
+        "blockReason": "[IMAGE_NOT_PUBLISHABLE] Galeria oficial sem imagem inédita válida: bicicleta-scott-scale-940-black: Imagem duplicada: manufacturer-bicicleta-scott-scale-940-black-5171146828 | bicicleta-scott-scale-940-black: Imagem duplicada: thebiker-bicicleta-scott-scale-940-black-bf34dbe9f9 | bicicleta-scott-scale-940-black: resolução insuficiente para o padrão editorial: 521x569 | bicicleta-scott-scale-940-black: resolução insuficiente para o padrão editorial: 506x565 | bicicleta-scott-scale-940-black: Download da imagem: HTTP 403 | bicicleta-scott-scale-940-black: resolução insuficiente para o padrão editorial: 480x480",
+        "failure": {
+          "code": "IMAGE_NOT_PUBLISHABLE",
+          "retryable": false,
+          "stage": "production",
+          "message": "Galeria oficial sem imagem inédita válida: bicicleta-scott-scale-940-black: Imagem duplicada: manufacturer-bicicleta-scott-scale-940-black-5171146828 | bicicleta-scott-scale-940-black: Imagem duplicada: thebiker-bicicleta-scott-scale-940-black-bf34dbe9f9 | bicicleta-scott-scale-940-black: resolução insuficiente para o padrão editorial: 521x569 | bicicleta-scott-scale-940-black: resolução insuficiente para o padrão editorial: 506x565 | bicicleta-scott-scale-940-black: Download da imagem: HTTP 403 | bicicleta-scott-scale-940-black: resolução insuficiente para o padrão editorial: 480x480",
+          "recordedAt": "2026-08-15T13:47:40.276Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-15T13:47:40.276Z"
+      },
+      "replacement": {
+        "id": "reserva-addict-rc20-ficha-oficial",
+        "title": "Scott Addict RC 20: o que a ficha oficial permite afirmar"
+      },
+      "reason": "[IMAGE_NOT_PUBLISHABLE] Galeria oficial sem imagem inédita válida: bicicleta-scott-scale-940-black: Imagem duplicada: manufacturer-bicicleta-scott-scale-940-black-5171146828 | bicicleta-scott-scale-940-black: Imagem duplicada: thebiker-bicicleta-scott-scale-940-black-bf34dbe9f9 | bicicleta-scott-scale-940-black: resolução insuficiente para o padrão editorial: 521x569 | bicicleta-scott-scale-940-black: resolução insuficiente para o padrão editorial: 506x565 | bicicleta-scott-scale-940-black: Download da imagem: HTTP 403 | bicicleta-scott-scale-940-black: resolução insuficiente para o padrão editorial: 480x480"
     }
   ]
 }

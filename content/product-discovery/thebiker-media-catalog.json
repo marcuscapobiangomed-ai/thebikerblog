@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "source": "https://thebikershop.com.br/",
-  "discoveredAt": "2026-08-14T10:43:56.722Z",
+  "discoveredAt": "2026-08-15T13:47:39.139Z",
   "rightsPolicyId": "thebiker-official-editorial-v1",
-  "total": 487,
+  "total": 486,
   "products": [
     {
       "id": "quadro-scott-scale-rc-team-hmf-2026",
@@ -83,17 +83,6 @@
       "productUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-spark-rc-world-cup-2027/",
       "images": [
         "https://acdn-us.mitiendanube.com/stores/001/062/247/products/4275488585-01767c407eabe639a917812049642571-480-0.webp"
-      ],
-      "sku": null
-    },
-    {
-      "id": "bicicleta-scott-addict-50-2026-pre-venda-cumulus-white",
-      "name": "Bicicleta Scott Addict 50 2026 - Pré Venda",
-      "brand": "Scott",
-      "category": "bikes",
-      "productUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-addict-50-2026-pre-venda-cumulus-white/",
-      "images": [
-        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/4253588087_2223062_4-c5743f8f2acaad1e3a17761939225164-480-0.webp"
       ],
       "sku": null
     },
@@ -315,17 +304,6 @@
       "sku": null
     },
     {
-      "id": "bicicleta-scott-addict-50-2025-pre-venda-cinza",
-      "name": "Bicicleta Scott Addict 50 2025",
-      "brand": "Scott",
-      "category": "bikes",
-      "productUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-addict-50-2025-pre-venda-cinza/",
-      "images": [
-        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/d4951b0a-ef99-11ef-b9cd-2a1467c58347-ef79fbff461701f2ef17406099561841-480-0.webp"
-      ],
-      "sku": null
-    },
-    {
       "id": "bicicleta-scott-addict-30-di2-2025-pre-venda",
       "name": "Bicicleta Scott Addict 30 Di2 2025 - Pré Venda",
       "brand": "Scott",
@@ -476,6 +454,17 @@
       "productUrl": "https://thebikershop.com.br/produtos/foil-rc-hmx-sl-bicicleta-aero-24v-sram-red-axs/",
       "images": [
         "https://acdn-us.mitiendanube.com/stores/001/062/247/products/55a0756a-eb06-11f0-9677-5e507c77730f-657ccfaf19d99bda8b17794468695494-480-0.webp"
+      ],
+      "sku": null
+    },
+    {
+      "id": "bicicleta-scott-addict-50-2026-pre-venda-cumulus-white",
+      "name": "Bicicleta Scott Addict 50 2026 - Pré Venda",
+      "brand": "Scott",
+      "category": "bikes",
+      "productUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-addict-50-2026-pre-venda-cumulus-white/",
+      "images": [
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/4253588087_2223062_4-c5743f8f2acaad1e3a17761939225164-480-0.webp"
       ],
       "sku": null
     },
@@ -874,17 +863,6 @@
         "https://acdn-us.mitiendanube.com/stores/001/062/247/products/scott-cable-kit-2944331-7f2cbcb3ddd2f7f5d916903198426262-480-0.webp"
       ],
       "sku": "294433"
-    },
-    {
-      "id": "kit-espacadores-syncros-xr-mtb",
-      "name": "Kit Espaçadores Syncros XR MTB",
-      "brand": "Syncros",
-      "category": "componentes",
-      "productUrl": "https://thebikershop.com.br/produtos/kit-espacadores-syncros-xr-mtb/",
-      "images": [
-        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/s-l4001-36ccb5e89cfea90ff016444315540281-480-0.webp"
-      ],
-      "sku": "262082222"
     },
     {
       "id": "corrente-sram-gx-eagle",
@@ -2192,6 +2170,17 @@
       "productUrl": "https://thebikershop.com.br/produtos/selim-fizik-vento-argo-r3-adaptive-150mm/",
       "images": [
         "https://acdn-us.mitiendanube.com/stores/001/062/247/products/5e93830c-18c7-11ed-8c10-869f627c1d921-f3df537a6ce3eb20b516680796104089-480-0.webp"
+      ],
+      "sku": null
+    },
+    {
+      "id": "capa-sti-shimano-sora",
+      "name": "Capa STI Shimano Sora R3000/R2000",
+      "brand": "Shimano",
+      "category": "componentes",
+      "productUrl": "https://thebikershop.com.br/produtos/capa-sti-shimano-sora/",
+      "images": [
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/captura-de-tela-2024-07-25-as-17-27-05-12c5e2509493de3c1817219392516981-480-0.webp"
       ],
       "sku": null
     },

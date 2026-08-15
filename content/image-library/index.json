@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-08-14T10:46:03.812Z",
+  "updatedAt": "2026-08-15T13:49:12.078Z",
   "assets": [
     {
       "assetId": "thebiker-scott-addict-rc-pro-hmx-frame-set-def10da96a",
@@ -356,6 +356,23 @@
           "postId": "reserva-addict-rc-pro-ficha-oficial",
           "position": "hero",
           "usedAt": "2026-08-14T12:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "assetId": "manufacturer-bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9-2d8af118d6",
+      "sha256": "2d8af118d617149c25a33450b973b6735a87c09f260a544e2e9f628ee558849d",
+      "perceptualHash": "0000000000000000000001001100111101111111011111110000000000000000",
+      "sourcePageUrl": "https://www.scott-sports.com/global/en/product/scott-addict-rc-20-bike",
+      "sourceFileUrl": "https://static.scott-sports.com/image/upload/v1779982198/2290581.png",
+      "productId": "bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9",
+      "productName": "Bicicleta Scott Addict RC 20 Di2 2026 - Pré Venda",
+      "rightsPolicyId": "official-brand-editorial-v1",
+      "uses": [
+        {
+          "postId": "reserva-addict-rc20-ficha-oficial",
+          "position": "hero",
+          "usedAt": "2026-08-15T12:00:00.000Z"
         }
       ]
     }

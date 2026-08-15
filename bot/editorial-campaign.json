@@ -932,9 +932,12 @@
         "productId": "bicicleta-scott-addict-rc-pro-di2-2026-pre-venda"
       },
       "postPath": "_posts/drafts/2026-08-21-reserva-addict-rc-pro-ficha-oficial.md",
+      "imageManifestPath": "assets/img/posts/reserva-addict-rc-pro-ficha-oficial/image-manifest.json",
+      "imageStatus": "approved",
       "imageAssetIds": [
         "thebiker-bicicleta-scott-addict-rc-pro-di2-2026-pre-venda-65cdfb6ed9"
       ],
+      "imageValidatedAt": "2026-08-14T10:46:02.129Z",
       "attempts": 1,
       "lastAttemptAt": "2026-08-14T10:43:57.742Z",
       "aiReview": {
@@ -949,6 +952,18 @@
         "contentHash": "sha256:9783ab5c6589a3c902fe3fde341e0c2d2de6ffa6bdd0c5ec9c8d6586dbc75bfe",
         "deterministicFullArticleFallbackUsed": true,
         "deterministicFullArticleFallbackTrigger": "pipeline-failure"
+      },
+      "editorialReceipt": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-editorial-2026-08-v2",
+        "origin": "pipeline",
+        "reviewedContentHash": "sha256:9783ab5c6589a3c902fe3fde341e0c2d2de6ffa6bdd0c5ec9c8d6586dbc75bfe",
+        "scheduledContentHash": "sha256:4d339c073ba37567dd41d3b442736c6f3e70aaa7f3c5de500dedb3475f7caef2",
+        "researchHash": "sha256:34db23417ea23027ca05aafc2899fe8feeed79419a1351bf202f5d9f1118d49f",
+        "sourceHash": null,
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "issuedAt": "2026-08-14T10:46:02.129Z"
       },
       "visualDecision": {
         "schemaVersion": 1,
@@ -968,53 +983,77 @@
         },
         "blockers": [],
         "issuedAt": "2026-08-14T10:46:02.129Z"
+      }
+    },
+    {
+      "day": 15,
+      "publishDate": "2026-08-22",
+      "id": "reserva-addict-rc20-ficha-oficial",
+      "title": "Scott Addict RC 20: o que a ficha oficial permite afirmar",
+      "summary": "Resumo tecnico documental do modelo, sem extrapolar componentes, medidas ou desempenho alem do que esta rastreado.",
+      "category": "review",
+      "freshness": "revalidate-24h",
+      "status": "scheduled",
+      "productIds": [
+        "bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9"
+      ],
+      "heroImage": {
+        "mode": "exact-product",
+        "productId": "bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9"
+      },
+      "postPath": "_posts/drafts/2026-08-22-reserva-addict-rc20-ficha-oficial.md",
+      "imageAssetIds": [
+        "manufacturer-bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9-2d8af118d6"
+      ],
+      "attempts": 1,
+      "lastAttemptAt": "2026-08-15T13:47:41.531Z",
+      "aiReview": {
+        "score": 92,
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "premiumEditUsed": false,
+        "providers": {
+          "deterministicFallback": "grounded-deterministic"
+        },
+        "generatedAt": "2026-08-15T13:47:41.531Z",
+        "contentHash": "sha256:80a42ad9fde1386d6e32d5a66cc0ca5c0bd290bf3657f7edd508893a895e05f9",
+        "deterministicFullArticleFallbackUsed": true,
+        "deterministicFullArticleFallbackTrigger": "pipeline-failure"
+      },
+      "visualDecision": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-visual-autonomy-v1",
+        "inputHash": "sha256:ef17a9715a6cd08606442c8465bceedbdf4cd97fee0803cb2adfa2da0566c824",
+        "mode": "exact-product",
+        "productId": "bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9",
+        "score": 100,
+        "hardGates": {
+          "semanticMatch": true,
+          "realAsset": true,
+          "explicitProduct": true,
+          "officialSource": true,
+          "approvedRights": true,
+          "publishableResolution": true,
+          "uniqueAsset": true
+        },
+        "blockers": [],
+        "issuedAt": "2026-08-15T13:49:07.183Z"
       },
       "editorialReceipt": {
         "schemaVersion": 1,
         "policyVersion": "thebiker-editorial-2026-08-v2",
         "origin": "pipeline",
-        "reviewedContentHash": "sha256:9783ab5c6589a3c902fe3fde341e0c2d2de6ffa6bdd0c5ec9c8d6586dbc75bfe",
-        "scheduledContentHash": "sha256:4d339c073ba37567dd41d3b442736c6f3e70aaa7f3c5de500dedb3475f7caef2",
-        "researchHash": "sha256:34db23417ea23027ca05aafc2899fe8feeed79419a1351bf202f5d9f1118d49f",
+        "reviewedContentHash": "sha256:80a42ad9fde1386d6e32d5a66cc0ca5c0bd290bf3657f7edd508893a895e05f9",
+        "scheduledContentHash": "sha256:b94aec27d423bfd432dddf4439e54fb3643afb426505d623619fd8bcf7de097c",
+        "researchHash": "sha256:80038624cadf55ff3c6279bdf53a9e857c1c3e1f67f21b502e5810456b90a069",
         "sourceHash": null,
         "finalScore": 95,
         "finalBlockers": 0,
-        "issuedAt": "2026-08-14T10:46:02.129Z"
+        "issuedAt": "2026-08-15T13:49:07.183Z"
       },
-      "imageManifestPath": "assets/img/posts/reserva-addict-rc-pro-ficha-oficial/image-manifest.json",
+      "imageManifestPath": "assets/img/posts/reserva-addict-rc20-ficha-oficial/image-manifest.json",
       "imageStatus": "approved",
-      "imageValidatedAt": "2026-08-14T10:46:02.129Z"
-    },
-    {
-      "day": 15,
-      "publishDate": "2026-08-22",
-      "id": "reserva-pressao-pneus-terreno",
-      "title": "Pressão de pneus por terreno: como testar sem transformar sensação em dado",
-      "summary": "Método de campo para ajustar pressão, registrar comportamento e separar aderência, suporte lateral, impacto e resistência ao rolamento.",
-      "category": "engenharia",
-      "freshness": "evergreen",
-      "status": "blocked",
-      "productIds": [
-        "pneu-schwalbe-racing-ray-29-x-2-25-super-race-tlr-addix"
-      ],
-      "heroImage": {
-        "mode": "real-context",
-        "productId": "pneu-schwalbe-racing-ray-29-x-2-25-super-race-tlr-addix",
-        "relationship": "category-example",
-        "rationale": "Fotografia real do catálogo TheBiker usada apenas como exemplo visual da categoria técnica abordada."
-      },
-      "imageStatus": "blocked",
-      "imageAssetIds": [],
-      "blockReason": "[RESEARCH_INSUFFICIENT] pesquisa sem contrato de evidência recuperada retrieved-excerpt-v1; pesquisa sem data de verificação ativa das fontes; fato 1 sem trecho literal verificável; fato 2 sem trecho literal verificável; fato 3 sem trecho literal verificável; fato 4 sem trecho literal verificável; fato 5 sem trecho literal verificável; fato 6 sem trecho literal verificável; fato 7 sem trecho literal verificável; fato 8 sem trecho literal verificável",
-      "failure": {
-        "code": "RESEARCH_INSUFFICIENT",
-        "retryable": true,
-        "stage": "source-verification-audit",
-        "message": "pesquisa sem contrato de evidência recuperada retrieved-excerpt-v1; pesquisa sem data de verificação ativa das fontes; fato 1 sem trecho literal verificável; fato 2 sem trecho literal verificável; fato 3 sem trecho literal verificável; fato 4 sem trecho literal verificável; fato 5 sem trecho literal verificável; fato 6 sem trecho literal verificável; fato 7 sem trecho literal verificável; fato 8 sem trecho literal verificável",
-        "recordedAt": "2026-08-13T18:15:00.000Z"
-      },
-      "attempts": 4,
-      "lastAttemptAt": "2026-08-13T18:15:00.000Z"
+      "imageValidatedAt": "2026-08-15T13:49:07.183Z"
     },
     {
       "day": 16,
@@ -1352,19 +1391,6 @@
         "sourceStatus": "pending"
       },
       "productIds": []
-    },
-    {
-      "id": "reserva-addict-rc20-ficha-oficial",
-      "title": "Scott Addict RC 20: o que a ficha oficial permite afirmar",
-      "summary": "Resumo tecnico documental do modelo, sem extrapolar componentes, medidas ou desempenho alem do que esta rastreado.",
-      "category": "review",
-      "productIds": [
-        "bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9"
-      ],
-      "heroImage": {
-        "mode": "exact-product",
-        "productId": "bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9"
-      }
     },
     {
       "id": "reserva-scale-940-checklist-oficial",
