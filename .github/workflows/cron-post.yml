@@ -181,7 +181,10 @@ jobs:
       - name: Validar artefatos produzidos
         id: validation
         if: always()
-        run: npm run validate
+        # The complete test suite already ran in preflight against immutable
+        # source state. After production, validate only generated artifacts;
+        # unit tests must never depend on the campaign mutated in this job.
+        run: npm run validate:artifacts
       - name: Persistir somente candidato integralmente validado
         if: (steps.automation.outcome == 'success' || steps.automation_retry.outcome == 'success') && (steps.finalization.outcome == 'success' || steps.finalization_retry.outcome == 'success') && steps.validation.outcome == 'success' && (github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.dry_run == false))
         run: |

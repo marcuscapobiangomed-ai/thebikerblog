@@ -126,7 +126,10 @@ export const CampaignSchema = z.object({
   startsOn: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
   minimumApprovedBuffer: z.number().int().min(3).max(14),
   items: z.array(CampaignItemSchema).length(30),
-  reserves: z.array(ReserveSchema).min(3),
+  // The reserve pool is consumed during normal recovery. Its desired size is
+  // an operational buffer target, not a structural requirement: rejecting a
+  // campaign after a successful replacement makes the recovery itself crash.
+  reserves: z.array(ReserveSchema).default([]),
 }).superRefine((campaign, context) => {
   const ids = new Set()
   for (const [index, item] of campaign.items.entries()) {

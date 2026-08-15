@@ -78,7 +78,7 @@ jobs:
         if: always()
         run: |
           validation_status=0
-          npm run validate || validation_status=$?
+          npm run validate:artifacts || validation_status=$?
           git config user.name "thebiker-editorial-bot"
           git config user.email "thebiker-editorial-bot@users.noreply.github.com"
           git add _data/products/bikes _posts/drafts content/product-discovery/thebiker-media-catalog.json content/research/campaign assets/img/posts content/image-library/index.json bot/editorial-campaign.json bot/operational-state _data/editorial-calendar.json _data/catalog-public.json api/products.json

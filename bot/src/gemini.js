@@ -176,7 +176,8 @@ export class AIProvider {
   async _tryDeepSeek(system, user, options = {}) {
     const baseUrl = process.env.DEEPSEEK_BASE_URL || "https://api.deepseek.com";
     const model = options.model || process.env.DEEPSEEK_MODEL || "deepseek-v4-pro";
-    const maxTokens = toNumber(process.env.DEEPSEEK_MAX_TOKENS || options.maxTokens, 8192);
+    const maxTokens = toNumber(options.maxTokens, toNumber(process.env.DEEPSEEK_MAX_TOKENS, 8192));
+    const timeoutMs = toNumber(options.timeoutMs, toNumber(process.env.AI_HTTP_TIMEOUT_MS, 90000));
 
     const payload = {
       model,
@@ -202,6 +203,7 @@ export class AIProvider {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(payload),
+      signal: AbortSignal.timeout(timeoutMs),
     });
 
     if (!res.ok) {
@@ -210,6 +212,10 @@ export class AIProvider {
     }
 
     const data = await res.json();
+    const finishReason = data.choices?.[0]?.finish_reason || "";
+    if (["length", "max_tokens"].includes(String(finishReason).toLowerCase())) {
+      throw new Error("DeepSeek API: resposta truncada ao atingir o limite de saída");
+    }
     const content = data.choices?.[0]?.message?.content || "";
     if (!content) throw new Error("DeepSeek API: resposta vazia");
     const usage = {
