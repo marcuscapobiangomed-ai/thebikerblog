@@ -11,7 +11,7 @@
   "storeProductUrl": "https://thebikershop.com.br/produtos/bicicleta-eletrica-tsw-e-quest-carbon/",
   "image": "/assets/img/products/comparator/tsw-e-quest-carbon.webp",
   "portfolioStatus": "verified",
-  "portfolioVerifiedAt": "2026-08-14",
+  "portfolioVerifiedAt": "2026-08-15",
   "theBikerPrice": 35999,
   "frame": {
     "material": "carbon"
@@ -34,7 +34,7 @@
   "tires": {},
   "testedByTheBikerBlog": false,
   "createdAt": "2026-08-05",
-  "updatedAt": "2026-08-14",
+  "updatedAt": "2026-08-15",
   "reviewStatus": "verified",
   "sourceId": "thebiker-tsw-e-quest-carbon"
 }
