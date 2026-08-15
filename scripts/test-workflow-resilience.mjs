@@ -41,6 +41,8 @@ assert.match(editorial, /id: finalization_retry[\s\S]*campaign:retry-finalizatio
 assert.match(editorial, /id: finalization_retry[\s\S]*CAMPAIGN_FINALIZATION_MAX_ATTEMPTS: "3"[\s\S]*campaign:retry-finalization/);
 assert.match(editorial, /steps\.finalization\.outcome == 'success' \|\| steps\.finalization_retry\.outcome == 'success'/);
 assert.match(editorial, /Validar artefatos produzidos[\s\S]*npm run validate:artifacts/);
+assert.match(editorial, /Propagar falha da produção[\s\S]*EDITORIAL_MIN_SAFE_BUFFER[\s\S]*buffer protegido/);
+assert.match(editorial, /Propagar falha de finalização[\s\S]*EDITORIAL_MIN_SAFE_BUFFER[\s\S]*buffer protegido/);
 assert.equal((editorial.match(/AI_DETERMINISTIC_CURATED_FALLBACK: "true"/g) || []).length, 3);
 
 const replenisher = read("replenish-buffer.yml");
