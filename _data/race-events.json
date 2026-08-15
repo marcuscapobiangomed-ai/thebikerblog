@@ -1,7 +1,7 @@
 {
   "version": 1,
   "timezone": "America/Sao_Paulo",
-  "updatedAt": "2026-08-14T09:30:00.064Z",
+  "updatedAt": "2026-08-15T08:47:37.130Z",
   "policy": {
     "officialSourcesOnly": true,
     "revalidateBeforePublicationHours": 24,
@@ -204,9 +204,9 @@
     }
   ],
   "publicCalendar": {
-    "generatedAt": "2026-08-14T09:30:00.064Z",
-    "asOfDate": "2026-08-14",
-    "asOfDateDisplay": "14/08/2026",
+    "generatedAt": "2026-08-15T08:47:37.130Z",
+    "asOfDate": "2026-08-15",
+    "asOfDateDisplay": "15/08/2026",
     "timezone": "America/Sao_Paulo",
     "sourceStatus": "verified",
     "selectionPolicy": "Agenda combinada: próximas provas mantêm maioria brasileira, validada por descoberta e confirmação do organizador; UCI completa a cobertura mundial. Recentes permanecem na fonte oficial UCI.",
@@ -234,7 +234,7 @@
           "officialUrl": "https://www.uci.org/competition-details/2026/ROA/78339",
           "validationMethod": "official-calendar",
           "organizerUrl": "https://www.arctic-race.com",
-          "checkedAt": "2026-08-14T09:30:00.064Z"
+          "checkedAt": "2026-08-15T08:47:37.130Z"
         }
       },
       {
@@ -260,7 +260,7 @@
           "officialUrl": "https://www.uci.org/competition-details/2026/ROA/78340",
           "validationMethod": "official-calendar",
           "organizerUrl": "https://www.czechtour.com",
-          "checkedAt": "2026-08-14T09:30:00.064Z"
+          "checkedAt": "2026-08-15T08:47:37.130Z"
         }
       },
       {
@@ -286,7 +286,7 @@
           "officialUrl": "https://www.uci.org/competition-details/2026/MTB/77092",
           "validationMethod": "official-calendar",
           "organizerUrl": "https://ucimtbworldseries.com/",
-          "checkedAt": "2026-08-14T09:30:00.064Z"
+          "checkedAt": "2026-08-15T08:47:37.130Z"
         }
       }
     ],
@@ -314,7 +314,7 @@
           "officialUrl": "https://www.uci.org/competition-details/2026/ROA/76938",
           "validationMethod": "official-calendar",
           "organizerUrl": "https://www.tourdepologne.pl",
-          "checkedAt": "2026-08-14T09:30:00.064Z"
+          "checkedAt": "2026-08-15T08:47:37.130Z"
         }
       },
       {
@@ -340,7 +340,7 @@
           "officialUrl": "https://www.uci.org/competition-details/2026/ROA/76937",
           "validationMethod": "official-calendar",
           "organizerUrl": "https://letourfemmes.fr",
-          "checkedAt": "2026-08-14T09:30:00.064Z"
+          "checkedAt": "2026-08-15T08:47:37.130Z"
         }
       },
       {
@@ -366,7 +366,7 @@
           "officialUrl": "https://www.uci.org/competition-details/2026/ROA/78326",
           "validationMethod": "official-calendar",
           "organizerUrl": "https://www.vueltaburgos.es",
-          "checkedAt": "2026-08-14T09:30:00.064Z"
+          "checkedAt": "2026-08-15T08:47:37.130Z"
         }
       }
     ],
@@ -394,7 +394,7 @@
           "officialUrl": "https://www.uci.org/competition-details/2026/ROA/76939",
           "validationMethod": "official-calendar",
           "organizerUrl": "https://www.cyclassics-hamburg.de",
-          "checkedAt": "2026-08-14T09:30:00.064Z"
+          "checkedAt": "2026-08-15T08:47:37.130Z"
         }
       },
       {
@@ -421,11 +421,11 @@
           "discoveryUrl": "https://www.calendariomtb.com.br/evento/Desafio-Rural-de-MTB-3-etapa-2026/10723/",
           "validationMethod": "verified-snapshot-plus-organizer",
           "discoveryCheckedAt": "2026-08-11T21:24:09.832Z",
-          "checkedAt": "2026-08-14T09:30:00.064Z"
+          "checkedAt": "2026-08-15T08:47:37.130Z"
         },
         "deepProfile": {
           "status": "verified",
-          "checkedAt": "2026-08-14T09:30:00.064Z",
+          "checkedAt": "2026-08-15T08:47:37.130Z",
           "source": {
             "publisher": "Desafio Rural MTB",
             "url": "https://www.desafiorural.com/infos-dr-3-etapa-2026",
@@ -520,7 +520,7 @@
           "officialUrl": "https://www.uci.org/competition-details/2026/ROA/78349",
           "validationMethod": "official-calendar",
           "organizerUrl": "https://www.deutschland-tour.com",
-          "checkedAt": "2026-08-14T09:30:00.064Z"
+          "checkedAt": "2026-08-15T08:47:37.130Z"
         }
       },
       {
@@ -546,7 +546,7 @@
           "officialUrl": "https://www.uci.org/competition-details/2026/ROA/76941",
           "validationMethod": "official-calendar",
           "organizerUrl": "https://britishcycling.org.uk/tourofbritain",
-          "checkedAt": "2026-08-14T09:30:00.064Z"
+          "checkedAt": "2026-08-15T08:47:37.130Z"
         }
       },
       {
@@ -572,7 +572,7 @@
           "officialUrl": "https://www.uci.org/competition-details/2026/ROA/76940",
           "validationMethod": "official-calendar",
           "organizerUrl": "https://www.renewitour.com",
-          "checkedAt": "2026-08-14T09:30:00.064Z"
+          "checkedAt": "2026-08-15T08:47:37.130Z"
         }
       },
       {
@@ -599,11 +599,11 @@
           "discoveryUrl": "https://www.calendariomtb.com.br/evento/Iron-Biker-Brasil-2026/10469/",
           "validationMethod": "verified-snapshot-plus-organizer",
           "discoveryCheckedAt": "2026-08-11T21:24:09.832Z",
-          "checkedAt": "2026-08-14T09:30:00.064Z"
+          "checkedAt": "2026-08-15T08:47:37.130Z"
         },
         "deepProfile": {
           "status": "verified",
-          "checkedAt": "2026-08-14T09:30:00.064Z",
+          "checkedAt": "2026-08-15T08:47:37.130Z",
           "source": {
             "publisher": "Iron Biker Brasil",
             "url": "https://www.ironbiker.com.br/regulamento",
@@ -705,11 +705,11 @@
           "discoveryUrl": "https://www.calendariomtb.com.br/evento/Challenge-MTB-4-etapa-2026/10818/",
           "validationMethod": "verified-snapshot-plus-organizer",
           "discoveryCheckedAt": "2026-08-11T21:24:09.832Z",
-          "checkedAt": "2026-08-14T09:30:00.064Z"
+          "checkedAt": "2026-08-15T08:47:37.130Z"
         },
         "deepProfile": {
           "status": "verified",
-          "checkedAt": "2026-08-14T09:30:00.064Z",
+          "checkedAt": "2026-08-15T08:47:37.130Z",
           "source": {
             "publisher": "Challenge Chaoyang de MTB / RaceTop",
             "url": "https://www.racetop.com.br/evento/5534/challenge-chaoyang-de-mtb-etapa-paulo-lopes",
@@ -800,11 +800,11 @@
           "discoveryUrl": "https://www.calendariomtb.com.br/evento/Desafio-Natureza-4-etapa-2026/10520/",
           "validationMethod": "verified-snapshot-plus-organizer",
           "discoveryCheckedAt": "2026-08-11T21:24:09.832Z",
-          "checkedAt": "2026-08-14T09:30:00.064Z"
+          "checkedAt": "2026-08-15T08:47:37.130Z"
         },
         "deepProfile": {
           "status": "verified",
-          "checkedAt": "2026-08-14T09:30:00.064Z",
+          "checkedAt": "2026-08-15T08:47:37.130Z",
           "source": {
             "publisher": "Desafio Natureza",
             "url": "https://inscricoes.desafionatureza.com.br/regulamento.php",
@@ -901,11 +901,11 @@
           "discoveryUrl": "https://www.calendariomtb.com.br/evento/CIMTB-Congonhas-2026/10409/",
           "validationMethod": "verified-snapshot-plus-organizer",
           "discoveryCheckedAt": "2026-08-11T21:24:09.832Z",
-          "checkedAt": "2026-08-14T09:30:00.064Z"
+          "checkedAt": "2026-08-15T08:47:37.130Z"
         },
         "deepProfile": {
           "status": "verified",
-          "checkedAt": "2026-08-14T09:30:00.064Z",
+          "checkedAt": "2026-08-15T08:47:37.130Z",
           "source": {
             "publisher": "Copa Internacional de Mountain Bike",
             "url": "https://cimtb.com.br/inscricoes-abertas-para-o-grande-encerramento-da-temporada-da-cimtb-em-congonhas/",
@@ -998,11 +998,11 @@
           "discoveryUrl": "https://www.calendariomtb.com.br/evento/Brasil-Ride-2026/10678/",
           "validationMethod": "verified-snapshot-plus-organizer",
           "discoveryCheckedAt": "2026-08-11T21:24:09.832Z",
-          "checkedAt": "2026-08-14T09:30:00.064Z"
+          "checkedAt": "2026-08-15T08:47:37.130Z"
         },
         "deepProfile": {
           "status": "verified",
-          "checkedAt": "2026-08-14T09:30:00.064Z",
+          "checkedAt": "2026-08-15T08:47:37.130Z",
           "source": {
             "publisher": "Brasil Ride",
             "url": "https://www.brasilride.com.br/provas/brasil-ride-paraiba-2026/",
