@@ -255,6 +255,13 @@ assert.deepEqual(selectScheduledPublication(catchUpCampaign, catchUpCampaign.ite
   item: catchUpCampaign.items[0],
   catchUp: true,
 });
+const backlogWithToday = structuredClone(catchUpCampaign);
+backlogWithToday.items[1].status = 'scheduled';
+delete backlogWithToday.items[1].publishedAt;
+assert.deepEqual(selectScheduledPublication(backlogWithToday, backlogWithToday.items[1].publishDate), {
+  item: backlogWithToday.items[0],
+  catchUp: true,
+}, 'o atraso mais antigo deve ser publicado antes da pauta do dia');
 const groundedPayload = {
   candidates: [{ content: { parts: [{ text: JSON.stringify({ confirmed_facts: [{ fact: 'Carbono HMF', evidence_quote: 'Quadro construído integralmente em carbono HMF para competição', source_ids: ['src-scott'] }], limitations: [], sources: [{ id: 'src-scott', name: 'Scott', type: 'manufacturer', url: 'https://www.scott-sports.com/global/en/product/test', accessed: '2026-08-04' }] }) }] }, groundingMetadata: { webSearchQueries: ['site:scott-sports.com teste'] } }]
 };
@@ -656,6 +663,9 @@ assert.equal(JSON.parse(await fs.readFile(path.join(finalizeRoot, "bot/editorial
 const published = await publishScheduled({ root: finalizeRoot, now: publicationNow });
 assert.equal(published.status, "published");
 assert.ok(await fs.stat(publishedTarget));
+const publishedContent = await fs.readFile(publishedTarget, "utf8");
+assert.match(publishedContent, new RegExp(`^last_modified_at: ${finalizedCampaign.items[0].publishDate}$`, "m"),
+  "a promoção deve registrar a data real da publicação para permanecer válida no gate SEO");
 await assert.rejects(fs.stat(path.join(finalizeRoot, finalizedCampaign.items[0].postPath)), /ENOENT/);
 assert.equal((await publishScheduled({ root: finalizeRoot, now: publicationNow })).status, "already-published",
   "repetir a mesma publicação deve ser idempotente");
