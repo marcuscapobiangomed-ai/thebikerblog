@@ -209,7 +209,7 @@
       "title": "Canote do selim: diâmetro, comprimento e fixação segura",
       "summary": "Verifique o diâmetro correto, o torque de aperto e os sinais de deslizamento do canote. Inclui cuidados com modelos retos e offset.",
       "category": "manutencao-ajustes",
-      "status": "planned"
+      "status": "blocked"
     },
     {
       "day": 27,
@@ -217,7 +217,7 @@
       "title": "Torque e pasta de montagem: como evitar trincas em componentes leves",
       "summary": "Pontos críticos que exigem torque-calibrado e como a pasta de montagem modifica o atrito. Sem valores absolutos, pois cada componente tem sua especificação.",
       "category": "manutencao-ajustes",
-      "status": "planned"
+      "status": "blocked"
     },
     {
       "day": 28,

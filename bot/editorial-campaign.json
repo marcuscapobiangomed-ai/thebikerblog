@@ -1301,8 +1301,7 @@
         "mode": "conceptual"
       },
       "imageAssetIds": [],
-      "attempts": 1,
-      "lastAttemptAt": "2026-08-15T19:02:15.812Z",
+      "blockReason": "[RESEARCH_INSUFFICIENT] Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq 429; Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat)",
       "failure": {
         "code": "RESEARCH_INSUFFICIENT",
         "retryable": false,
@@ -1310,7 +1309,8 @@
         "message": "Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq 429; Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat)",
         "recordedAt": "2026-08-15T19:02:15.812Z"
       },
-      "blockReason": "[RESEARCH_INSUFFICIENT] Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq 429; Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat)"
+      "attempts": 1,
+      "lastAttemptAt": "2026-08-15T19:02:15.812Z"
     },
     {
       "day": 26,
@@ -1320,13 +1320,22 @@
       "summary": "Verifique o diâmetro correto, o torque de aperto e os sinais de deslizamento do canote. Inclui cuidados com modelos retos e offset.",
       "category": "manutencao-ajustes",
       "freshness": "evergreen",
-      "status": "planned",
+      "status": "blocked",
       "productIds": [],
       "heroImage": {
         "mode": "conceptual"
       },
       "imageAssetIds": [],
-      "attempts": 0
+      "blockReason": "[RESEARCH_INSUFFICIENT] Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq sem evidência: Pesquisa bloqueada por integridade de fontes: pesquisa concluída sem fontes rastreáveis; pesquisa sem fatos explicitamente fundamentados; Gemini sem evidência: Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat)",
+      "failure": {
+        "code": "RESEARCH_INSUFFICIENT",
+        "retryable": false,
+        "stage": "production",
+        "message": "Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq sem evidência: Pesquisa bloqueada por integridade de fontes: pesquisa concluída sem fontes rastreáveis; pesquisa sem fatos explicitamente fundamentados; Gemini sem evidência: Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat)",
+        "recordedAt": "2026-08-15T19:06:05.310Z"
+      },
+      "attempts": 1,
+      "lastAttemptAt": "2026-08-15T19:06:05.310Z"
     },
     {
       "day": 27,
@@ -1336,13 +1345,22 @@
       "summary": "Pontos críticos que exigem torque-calibrado e como a pasta de montagem modifica o atrito. Sem valores absolutos, pois cada componente tem sua especificação.",
       "category": "manutencao-ajustes",
       "freshness": "evergreen",
-      "status": "planned",
+      "status": "blocked",
       "productIds": [],
       "heroImage": {
         "mode": "conceptual"
       },
       "imageAssetIds": [],
-      "attempts": 0
+      "attempts": 1,
+      "lastAttemptAt": "2026-08-15T19:06:15.396Z",
+      "failure": {
+        "code": "RESEARCH_INSUFFICIENT",
+        "retryable": false,
+        "stage": "production",
+        "message": "Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq sem evidência: Pesquisa bloqueada por integridade de fontes: pesquisa concluída sem fontes rastreáveis; pesquisa sem fatos explicitamente fundamentados; Gemini sem evidência: Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat)",
+        "recordedAt": "2026-08-15T19:06:15.396Z"
+      },
+      "blockReason": "[RESEARCH_INSUFFICIENT] Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq sem evidência: Pesquisa bloqueada por integridade de fontes: pesquisa concluída sem fontes rastreáveis; pesquisa sem fatos explicitamente fundamentados; Gemini sem evidência: Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat)"
     },
     {
       "day": 28,
