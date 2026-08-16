@@ -1401,8 +1401,7 @@
         "mode": "conceptual"
       },
       "imageAssetIds": [],
-      "attempts": 1,
-      "lastAttemptAt": "2026-08-16T09:31:30.453Z",
+      "blockReason": "[RESEARCH_INSUFFICIENT] Pesquisa bloqueada por integridade de fontes: pesquisa concluída sem fontes rastreáveis; pesquisa sem fatos explicitamente fundamentados",
       "failure": {
         "code": "RESEARCH_INSUFFICIENT",
         "retryable": false,
@@ -1410,7 +1409,8 @@
         "message": "Pesquisa bloqueada por integridade de fontes: pesquisa concluída sem fontes rastreáveis; pesquisa sem fatos explicitamente fundamentados",
         "recordedAt": "2026-08-16T09:31:30.453Z"
       },
-      "blockReason": "[RESEARCH_INSUFFICIENT] Pesquisa bloqueada por integridade de fontes: pesquisa concluída sem fontes rastreáveis; pesquisa sem fatos explicitamente fundamentados"
+      "attempts": 1,
+      "lastAttemptAt": "2026-08-16T09:31:30.453Z"
     },
     {
       "day": 30,
@@ -1420,13 +1420,22 @@
       "summary": "Roteiro para montar uma bicicleta do zero, cobrindo torque, lubrificação e sequência de instalação para evitar danos. Voltado ao ciclista avançado.",
       "category": "manutencao-ajustes",
       "freshness": "evergreen",
-      "status": "planned",
+      "status": "blocked",
       "productIds": [],
       "heroImage": {
         "mode": "conceptual"
       },
       "imageAssetIds": [],
-      "attempts": 0
+      "attempts": 1,
+      "lastAttemptAt": "2026-08-16T13:35:01.451Z",
+      "failure": {
+        "code": "RESEARCH_INSUFFICIENT",
+        "retryable": false,
+        "stage": "production",
+        "message": "Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq sem evidência: Pesquisa bloqueada por integridade de fontes: pesquisa concluída sem fontes rastreáveis; pesquisa sem fatos explicitamente fundamentados; Gemini sem evidência: Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat)",
+        "recordedAt": "2026-08-16T13:35:01.451Z"
+      },
+      "blockReason": "[RESEARCH_INSUFFICIENT] Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq sem evidência: Pesquisa bloqueada por integridade de fontes: pesquisa concluída sem fontes rastreáveis; pesquisa sem fatos explicitamente fundamentados; Gemini sem evidência: Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat)"
     }
   ],
   "reserves": [
