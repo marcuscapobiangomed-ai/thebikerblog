@@ -225,7 +225,7 @@
       "title": "Roteamento interno de cabos: atrito, ruídos e manutenção",
       "summary": "Como diagnosticar cabos e mangueiras com roteamento interno que geram ruído ou perda de resposta, sem necessariamente trocar as peças.",
       "category": "manutencao-ajustes",
-      "status": "planned"
+      "status": "blocked"
     },
     {
       "day": 29,
@@ -233,7 +233,7 @@
       "title": "Relação de marchas: coroa compacta ou supercompacta para subidas brasileiras",
       "summary": "Avalie o comportamento de diferentes combinações de coroa e cassete em aclives, considerando peso, cadência e terreno. Sem valores fixos de fábrica.",
       "category": "comparativo",
-      "status": "planned"
+      "status": "blocked"
     },
     {
       "day": 30,

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "source": "https://thebikershop.com.br/",
-  "discoveredAt": "2026-08-15T19:06:04.248Z",
+  "discoveredAt": "2026-08-16T09:31:20.089Z",
   "rightsPolicyId": "thebiker-official-editorial-v1",
   "total": 486,
   "products": [
@@ -3780,17 +3780,6 @@
       "sku": "VST-220-39"
     },
     {
-      "id": "sapatilha-shimano-xc300-black",
-      "name": "Sapatilha MTB Shimano XC300",
-      "brand": "Shimano",
-      "category": "vestuario",
-      "productUrl": "https://thebikershop.com.br/produtos/sapatilha-shimano-xc300-black/",
-      "images": [
-        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/sh-xc300_c6_1_750_7501-0956184b659ea4663c15985637143488-480-0.webp"
-      ],
-      "sku": null
-    },
-    {
       "id": "sapatilha-road-shimano-rc302",
       "name": "Sapatilha Road Shimano RC302",
       "brand": "Shimano",
@@ -3798,6 +3787,17 @@
       "productUrl": "https://thebikershop.com.br/produtos/sapatilha-road-shimano-rc302/",
       "images": [
         "https://acdn-us.mitiendanube.com/stores/001/062/247/products/sh-rc302-shic165-primary_1_750_750-72df2387c4e81c124417223639352655-480-0.webp"
+      ],
+      "sku": null
+    },
+    {
+      "id": "sapatilha-shimano-xc300-black",
+      "name": "Sapatilha MTB Shimano XC300",
+      "brand": "Shimano",
+      "category": "vestuario",
+      "productUrl": "https://thebikershop.com.br/produtos/sapatilha-shimano-xc300-black/",
+      "images": [
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/sh-xc300_c6_1_750_7501-0956184b659ea4663c15985637143488-480-0.webp"
       ],
       "sku": null
     },
