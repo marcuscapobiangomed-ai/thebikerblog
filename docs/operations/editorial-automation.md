@@ -17,7 +17,7 @@ O fluxo completo é:
 7. executar os gates estruturais antes de promover qualquer arquivo;
 8. agendar somente artigo com nota final mínima 90 e zero bloqueadores;
 9. publicar a pauta aprovada na data local;
-10. validar o artefato promovido e persistir o novo SHA; o `push` em `main` aciona um único deploy.
+10. validar o artefato promovido e persistir o novo SHA; a conclusão bem-sucedida do workflow aciona um único deploy do `main` atualizado.
 
 Falha de fonte, modelo, orçamento, schema, imagem, SEO ou build mantém a pauta bloqueada. Popularidade de vídeo é sinal editorial, nunca prova factual.
 
@@ -63,7 +63,7 @@ As chaves não entram em `_config.yml`, `_data`, JavaScript público, logs ou ar
 - Concorrentes podem ser contexto técnico, nunca promoção ou CTA.
 - Somente inventário TheBiker verificado recebe link comercial.
 - Os alertas cobrem inteligência, renovação, produção, recomposição do buffer, auditoria, reparo, publicação e deploy; falhas recorrentes são agrupadas pelo fingerprint da causa.
-- O deploy é acionado pelo `push` em `main`. Um dispatch manual só constrói com `force_deploy=true`, evitando execuções duplicadas.
+- Pull requests integrados acionam deploy pelo `push` em `main`. Como commits feitos pelo `GITHUB_TOKEN` não encadeiam workflows por `push`, publicação e atualização de corridas acionam o deploy pelo evento `workflow_run` após sucesso. Um dispatch manual só constrói com `force_deploy=true`.
 
 ## Recuperação controlada de publicações
 

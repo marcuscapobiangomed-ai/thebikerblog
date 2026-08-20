@@ -68,7 +68,11 @@ await import("./test-automation-observability.mjs");
 assert.match(editorial, /git add _data\/products\/bikes/);
 assert.match(editorial, /git add _data\/products\/bikes[^\n]*content\/product-discovery\/thebiker-media-catalog\.json/);
 
-assert.match(read("deploy.yml"), /Run publication gates[\s\S]*npm run validate:ci/);
+const deploy = read("deploy.yml");
+assert.match(deploy, /Run publication gates[\s\S]*npm run validate:ci/);
+assert.match(deploy, /workflow_run:[\s\S]*TheBiker — Publicação diária ao meio-dia[\s\S]*TheBiker — Atualização diária de corridas[\s\S]*types: \[completed\]/);
+assert.match(deploy, /github\.event_name == 'workflow_run' && github\.event\.workflow_run\.conclusion == 'success'/);
+assert.match(deploy, /actions\/checkout@v7[\s\S]*ref: main/);
 const prValidation = read("pr-validate.yml");
 assert.match(prValidation, /Preparar artefatos derivados temporais[\s\S]*npm run prepare:derived/);
 assert.match(

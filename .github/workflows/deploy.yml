@@ -3,6 +3,11 @@ name: Deploy Blog
 on:
   push:
     branches: [main]
+  workflow_run:
+    workflows:
+      - "TheBiker — Publicação diária ao meio-dia"
+      - "TheBiker — Atualização diária de corridas"
+    types: [completed]
   workflow_dispatch:
     inputs:
       force_deploy:
@@ -19,14 +24,16 @@ concurrency:
 
 jobs:
   build:
-    # Publicação e race sync já fazem push em main. Seus dispatches legados
-    # ficam como no-op; recuperação manual exige force_deploy=true.
-    if: ${{ github.event_name == 'push' || inputs.force_deploy == true }}
+    # Pushes feitos pelo GITHUB_TOKEN não encadeiam novos workflows. O evento
+    # workflow_run cobre publicação/race sync sem dar actions:write a eles.
+    if: ${{ github.event_name == 'push' || inputs.force_deploy == true || (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success') }}
     permissions:
       contents: read
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+        with:
+          ref: main
 
       - uses: actions/setup-node@v7
         with:
@@ -77,6 +84,8 @@ jobs:
       id-token: write
     steps:
       - uses: actions/checkout@v7
+        with:
+          ref: main
       - uses: actions/setup-node@v7
         with:
           node-version: 24
