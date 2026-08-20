@@ -65,6 +65,7 @@ export function selectScheduledPublication(campaign, date, { catchUpPolicy = Cat
     return localDate(new Date(candidate.publishedAt)) === date;
   });
   if (catchUpAlreadyPublished) return { item: null, catchUp: false, alreadyPublished: true };
+  if (date < campaign.startsOn) return { item: null, catchUp: false, cycleComplete: true };
 
   return { item: null, catchUp: false, alreadyPublished: due?.status === "published" };
 }
@@ -94,6 +95,7 @@ async function publishInWorkspace({ now, dryRun, root, catchUpPolicy, expectedIt
 
   if (!item) {
     if (selected.alreadyPublished) return { status: "already-published", date };
+    if (selected.cycleComplete) return { status: "cycle-complete", date, message: "Dia já encerrado antes do início da próxima janela" };
     const endDate = campaign.items.at(-1)?.publishDate;
     if (date >= campaign.startsOn && date <= endDate) {
       throw new Error(`Publicacao bloqueada: campanha possui lacuna em ${date}`);

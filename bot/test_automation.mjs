@@ -326,6 +326,11 @@ assert.throws(
   () => selectScheduledPublication(backlogWithToday, backlogWithToday.items[1].publishDate, { catchUpPolicy: 'all' }),
   /Politica de catch-up invalida/,
 );
+assert.deepEqual(selectScheduledPublication(campaign, '2026-01-01'), {
+  item: null,
+  catchUp: false,
+  cycleComplete: true,
+}, 'data anterior à próxima janela deve ser no-op idempotente');
 assert.equal(resolveLegacyTarget(backlogWithToday, backlogWithToday.items[0].id).id, backlogWithToday.items[0].id);
 assert.equal(resolveLegacyTarget(backlogWithToday, backlogWithToday.items[0].postPath).id, backlogWithToday.items[0].id);
 assert.throws(() => resolveLegacyTarget(backlogWithToday, "arquivo-fora-do-ledger.md"), /nao esta no ledger/);

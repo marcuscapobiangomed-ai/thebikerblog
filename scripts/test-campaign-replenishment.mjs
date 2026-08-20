@@ -8,17 +8,54 @@ import { retryCampaignFinalization } from "../bot/src/retry_campaign_finalizatio
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const sourceCampaign = JSON.parse(await fs.readFile(path.join(root, "bot/editorial-campaign.json"), "utf8"));
-const publishedTemplate = structuredClone(sourceCampaign.items.find((item) => item.status === "published" && item.aiReview?.contentHash));
+const publishedTemplate = {
+  aiReview: {
+    score: 95,
+    finalScore: 95,
+    finalBlockers: 0,
+    premiumEditUsed: false,
+    providers: { fixture: "fixture" },
+    generatedAt: "2026-08-20T12:00:00.000Z",
+    contentHash: `sha256:${"a".repeat(64)}`,
+  },
+  visualDecision: {
+    schemaVersion: 1,
+    policyVersion: "thebiker-visual-autonomy-v1",
+    inputHash: `sha256:${"b".repeat(64)}`,
+    mode: "real-context",
+    productId: null,
+    score: 100,
+    hardGates: { fixture: true },
+    blockers: [],
+    issuedAt: "2026-08-20T12:00:00.000Z",
+  },
+  editorialReceipt: {
+    schemaVersion: 1,
+    policyVersion: "fixture-v1",
+    origin: "pipeline",
+    reviewedContentHash: `sha256:${"c".repeat(64)}`,
+    scheduledContentHash: `sha256:${"d".repeat(64)}`,
+    researchHash: null,
+    sourceHash: null,
+    finalScore: 95,
+    finalBlockers: 0,
+    issuedAt: "2026-08-20T12:00:00.000Z",
+  },
+};
 const fixtureRoot = await fs.mkdtemp(path.join(os.tmpdir(), "thebiker-replenish-"));
 await fs.mkdir(path.join(fixtureRoot, "bot"), { recursive: true });
 
 const fixture = structuredClone(sourceCampaign);
-const next = fixture.items.find((item) => item.publishDate === "2026-08-14");
+const fixtureDate = fixture.startsOn;
 // This fixture exercises the retry path itself. It must not inherit a live
 // scheduled item from the production campaign, otherwise the buffer target is
 // already satisfied and the producer/finalizer are never called.
-for (const item of fixture.items.filter((candidate) => candidate.publishDate >= "2026-08-13" && candidate.status !== "published")) {
+for (const item of fixture.items) {
   item.status = "planned";
+  item.category = "engenharia";
+  delete item.race;
+  item.productIds = [];
+  item.heroImage = { mode: "conceptual" };
   item.postPath = undefined;
   item.aiReview = undefined;
   item.editorialReceipt = undefined;
@@ -42,12 +79,12 @@ async function save(campaign) {
 let recoveryCalls = 0;
 let productionCalls = 0;
 let finalizationCalls = 0;
-const now = new Date("2026-08-13T15:00:00-03:00");
+const now = new Date(`${fixtureDate}T15:00:00-03:00`);
 
 const fakeRecover = async () => {
   recoveryCalls += 1;
   const campaign = await load();
-  const blocked = campaign.items.find((item) => item.status === "blocked" && item.publishDate >= "2026-08-13");
+  const blocked = campaign.items.find((item) => item.status === "blocked" && item.publishDate >= fixtureDate);
   if (!blocked) return { status: "idle" };
   blocked.status = "planned";
   delete blocked.failure;
@@ -100,7 +137,7 @@ const result = await replenishCampaignBuffer({
   root: fixtureRoot,
   now,
   targetBuffer: 1,
-  requiredDate: "2026-08-13",
+  requiredDate: fixtureDate,
   maxAttempts: 3,
   producer: fakeProduce,
   finalizer: fakeFinalize,
@@ -131,8 +168,20 @@ for (const item of retryFixture.items.filter((candidate) => candidate.status ===
   delete item.blockReason;
   delete item.failure;
 }
-const retryItem = retryFixture.items.find((item) => item.status === "scheduled");
-assert.ok(retryItem, "o teste de failover exige uma data futura inicialmente ocupada");
+const retryItem = retryFixture.items[0];
+Object.assign(retryItem, {
+  category: "engenharia",
+  productIds: [],
+  heroImage: { mode: "conceptual" },
+  postPath: `_posts/drafts/${retryItem.publishDate}-${retryItem.id}.md`,
+  aiReview: structuredClone(publishedTemplate.aiReview),
+  imageStatus: "approved",
+  imageManifestPath: "assets/img/posts/test/image-manifest.json",
+  imageAssetIds: ["test-image"],
+  visualDecision: structuredClone(publishedTemplate.visualDecision),
+  editorialReceipt: structuredClone(publishedTemplate.editorialReceipt),
+});
+delete retryItem.race;
 retryItem.status = "blocked";
 retryItem.failure = {
   code: "IMAGE_NOT_PUBLISHABLE",
@@ -153,7 +202,7 @@ const retryResult = await retryCampaignFinalization({
     return { status: "replenished", requiredReady: true };
   },
 });
-const scheduledBeforeRetry = retryFixture.items.filter((item) => item.publishDate >= "2026-08-13" && item.status === "scheduled").length;
+const scheduledBeforeRetry = retryFixture.items.filter((item) => item.publishDate >= fixtureDate && item.status === "scheduled").length;
 assert.equal(retryResult.status, "scheduled");
 assert.equal(retryOptions.targetBuffer, scheduledBeforeRetry + 1, "failover precisa exigir um novo artigo além do buffer existente");
 assert.equal(retryOptions.requiredDate, retryItem.publishDate, "a data da pauta bloqueada precisa terminar pronta");
