@@ -7,6 +7,8 @@ import { assertMarkdownPublicationGates } from "./validation/markdown-publicatio
 import matter from "gray-matter";
 import { assertImageArticleConsistency } from "./validation/image-article-consistency.js";
 import { assertScheduledReceipt, hashEditorialText } from "./validation/editorial-receipt.js";
+import { writeEditorialTopicLedger } from "./automation/topic-ledger.js";
+import { revalidateRaceSource } from "./automation/race-program.js";
 import { createStagedWorkspace, discardStagedWorkspace, promoteStagedPaths } from "./automation/file-transaction.js";
 import { assertResearchEvidenceContract, assertResearchGrounding } from "./validation/research-grounding.js";
 import { assertArticleResearchGrounding } from "./validation/article-research-grounding.js";
@@ -101,6 +103,10 @@ async function publishInWorkspace({ now, dryRun, root, catchUpPolicy, expectedIt
       throw new Error(`Publicacao bloqueada: campanha possui lacuna em ${date}`);
     }
     return { status: "idle", date, message: "Data fora da campanha ativa" };
+  }
+  if (item.race) {
+    const raceProgram = JSON.parse(await fs.readFile(path.join(root, "_data/race-events.json"), "utf8"));
+    item.race = revalidateRaceSource(item, raceProgram, now).race;
   }
   if (!racePublicationSourceIsFresh(item, now)) {
     throw new Error(`Publicacao bloqueada: pauta de corrida ${item.id} sem fonte oficial verificada nas ultimas 24 horas`);
@@ -203,6 +209,7 @@ export async function publishScheduled({
   const transaction = await createStagedWorkspace(root, [
     "bot/editorial-campaign.json",
     "_data/editorial-calendar.json",
+    "_data/race-events.json",
     item.postPath,
     imageDirectory,
     `content/research/campaign/${item.id}.json`,
@@ -222,6 +229,7 @@ export async function publishScheduled({
       [targetRelative, "bot/editorial-campaign.json", "_data/editorial-calendar.json"],
       { beforePromote, deletions: [item.postPath] },
     );
+    await writeEditorialTopicLedger({ root, now });
     return { ...result, targetPath: path.join(root, targetRelative), transactionId: transaction.id };
   } finally {
     await discardStagedWorkspace(transaction);

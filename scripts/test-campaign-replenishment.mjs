@@ -3,7 +3,7 @@ import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { replenishCampaignBuffer } from "../bot/src/automation/replenish-buffer.js";
+import { bufferTargetReached, campaignBufferSnapshot, replenishCampaignBuffer } from "../bot/src/automation/replenish-buffer.js";
 import { retryCampaignFinalization } from "../bot/src/retry_campaign_finalization.js";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -146,6 +146,7 @@ const result = await replenishCampaignBuffer({
 
 assert.equal(result.status, "replenished", "o failover deve recompor o buffer após falha de finalização");
 assert.equal(result.futureScheduled, 1, "a pauta recuperada deve terminar em scheduled");
+assert.equal(result.consecutiveReadyDays, 1, "a pauta recuperada deve abrir a cobertura consecutiva");
 assert.equal(finalizationCalls, 2, "a finalização deve ser tentada novamente no mesmo ciclo de recuperação");
 assert.ok(recoveryCalls >= 2, "a recuperação deve ser executada antes da nova tentativa");
 assert.equal(productionCalls, 2, "a segunda tentativa deve reutilizar a pauta recuperada, sem publicar conteúdo parcial");
@@ -202,11 +203,27 @@ const retryResult = await retryCampaignFinalization({
     return { status: "replenished", requiredReady: true };
   },
 });
-const scheduledBeforeRetry = retryFixture.items.filter((item) => item.publishDate >= fixtureDate && item.status === "scheduled").length;
+const beforeRetry = campaignBufferSnapshot(retryFixture, { now, requiredDate: retryItem.publishDate });
 assert.equal(retryResult.status, "scheduled");
-assert.equal(retryOptions.targetBuffer, scheduledBeforeRetry + 1, "failover precisa exigir um novo artigo além do buffer existente");
+assert.equal(retryOptions.targetBuffer, beforeRetry.consecutiveReadyDays + 1, "failover precisa avançar um dia na cobertura consecutiva");
 assert.equal(retryOptions.requiredDate, retryItem.publishDate, "a data da pauta bloqueada precisa terminar pronta");
 assert.equal(retryOptions.maxAttempts, 4, "o número de tentativas precisa ser limitado e configurável");
+
+const scattered = structuredClone(sourceCampaign);
+for (const item of scattered.items) item.status = "planned";
+for (const item of [scattered.items[0], scattered.items[1], scattered.items[3], scattered.items[4]]) item.status = "scheduled";
+const scatteredSnapshot = campaignBufferSnapshot(scattered, { now });
+assert.equal(scatteredSnapshot.futureScheduled, 4);
+assert.equal(scatteredSnapshot.consecutiveReadyDays, 2, "pautas após uma lacuna não podem inflar a cobertura segura");
+assert.equal(scatteredSnapshot.firstGapDate, scattered.items[2].publishDate);
+assert.equal(bufferTargetReached(scatteredSnapshot, { targetBuffer: 3 }), false);
+
+scattered.items[0].status = "published";
+scattered.items[0].publishedAt = now.toISOString();
+scattered.items[0].postPath = `_posts/${scattered.items[0].publishDate}-${scattered.items[0].id}.md`;
+const afterPublication = campaignBufferSnapshot(scattered, { now });
+assert.equal(afterPublication.coverageStartsOn, scattered.items[1].publishDate, "dia já publicado não deve consumir o buffer futuro");
+assert.equal(afterPublication.consecutiveReadyDays, 1);
 
 await fs.rm(fixtureRoot, { recursive: true, force: true });
 console.log("Recomposição do buffer e failover de finalização validados com sucesso.");

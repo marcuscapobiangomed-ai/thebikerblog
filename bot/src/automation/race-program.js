@@ -443,3 +443,14 @@ export function raceSourceIsFresh(item, programInput, now = new Date()) {
   for (const event of publicEvents(program)) events.set(event.id, event)
   return item.race.eventIds.every((id) => events.has(id))
 }
+
+export function revalidateRaceSource(item, programInput, now = new Date()) {
+  if (item.category !== 'competicoes' || !item.race) return item
+  const refreshed = structuredClone(item)
+  refreshed.race.sourceStatus = 'verified'
+  refreshed.race.sourceVerifiedAt = now.toISOString()
+  if (!raceSourceIsFresh(refreshed, programInput, now)) {
+    throw new Error(`Pauta de corrida ${item.id} não pôde ser revalidada no calendário oficial atualizado`)
+  }
+  return refreshed
+}

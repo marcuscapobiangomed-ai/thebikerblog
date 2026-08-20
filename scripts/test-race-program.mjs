@@ -5,6 +5,7 @@ import { contentTypeForCampaignItem } from '../bot/src/automation/grounded-resea
 import {
   RaceProgramSchema,
   raceSourceIsFresh,
+  revalidateRaceSource,
   selectRaceEventsForEditorialItem,
   validatePublicRaceCalendarFreshness,
   validateRaceEditorialStructure,
@@ -104,6 +105,11 @@ readyRace.race.sourceStatus = 'verified'
 readyRace.race.sourceVerifiedAt = new Date(calendarNow.getTime() - 30 * 60_000).toISOString()
 assert.equal(raceSourceIsFresh(readyRace, program, calendarNow), true)
 assert.equal(raceSourceIsFresh(readyRace, program, new Date(calendarNow.getTime() + 25 * 3_600_000)), false, 'fonte deve expirar após a janela governada')
+const revalidatedRace = revalidateRaceSource(readyRace, program, calendarNow)
+assert.equal(revalidatedRace.race.sourceVerifiedAt, calendarNow.toISOString(), 'publicação deve renovar o carimbo somente após conferir o calendário oficial')
+const missingRace = structuredClone(readyRace)
+missingRace.race.eventIds = ['evento-inexistente']
+assert.throws(() => revalidateRaceSource(missingRace, program, calendarNow), /não pôde ser revalidada/, 'evento ausente não pode receber carimbo novo')
 
 const automaticPreview = structuredClone(structured.items.find((item) => item.race?.track === 'professional-coverage'))
 automaticPreview.race.format = 'preview'

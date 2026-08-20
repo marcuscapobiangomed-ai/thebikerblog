@@ -4,6 +4,7 @@ import { fileURLToPath } from "node:url";
 import { loadQueue } from "./queue.js";
 import fs from "node:fs/promises";
 import { CampaignSchema } from "./campaign.js";
+import { campaignCoverageSnapshot } from "./campaign-coverage.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "../../..");
@@ -40,12 +41,10 @@ if (process.env.AUTOMATION_ENABLED === "true") {
 
 if (queue && queue.items.length === 0) warnings.push("fila editorial vazia");
 if (campaign) {
-  const approvedBuffer = campaign.items.filter(
-    (item) => item.publishDate >= today && ["approved", "scheduled"].includes(item.status),
-  ).length;
+  const coverage = campaignCoverageSnapshot(campaign);
   const overdue = campaign.items.filter((item) => item.publishDate < today && item.status === "scheduled");
-  if (approvedBuffer < campaign.minimumApprovedBuffer) {
-    warnings.push(`estoque aprovado futuro abaixo do mínimo: ${approvedBuffer}/${campaign.minimumApprovedBuffer}`);
+  if (coverage.consecutiveReadyDays < campaign.minimumApprovedBuffer) {
+    warnings.push(`cobertura consecutiva abaixo do mínimo: ${coverage.consecutiveReadyDays}/${campaign.minimumApprovedBuffer}; primeira lacuna ${coverage.firstGapDate || "fora da campanha"}`);
   }
   if (overdue.length > 0) warnings.push(`pautas agendadas vencidas: ${overdue.map((item) => item.id).join(", ")}`);
 }

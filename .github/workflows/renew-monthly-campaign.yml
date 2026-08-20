@@ -108,7 +108,7 @@ jobs:
         run: |
           git config user.name "thebiker-editorial-bot"
           git config user.email "thebiker-editorial-bot@users.noreply.github.com"
-          git add bot/editorial-campaign.json bot/operational-state _data/editorial-calendar.json _data/editorial-refresh-queue.json
+          git add bot/editorial-campaign.json bot/operational-state _data/editorial-calendar.json _data/editorial-refresh-queue.json _data/editorial-topic-ledger.json
           git diff --cached --quiet || git commit -m "content: renovar campanha editorial de 30 dias"
           for attempt in 1 2 3; do
             git pull --rebase origin main && git push && exit 0

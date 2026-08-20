@@ -3,6 +3,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { CampaignSchema } from "./campaign.js";
 import { validateImageManifestV2 } from "../validation/image-manifest-v2.js";
+import { campaignCoverageSnapshot } from "./campaign-coverage.js";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../../..");
 
@@ -24,11 +25,12 @@ export async function simulateCampaign({ now = new Date() } = {}) {
   }).format(now);
   const futureScheduled = ready.filter((item) => item.status === "scheduled" && item.publishDate >= today);
   const overdueScheduled = ready.filter((item) => item.status === "scheduled" && item.publishDate < today);
+  const coverage = campaignCoverageSnapshot(campaign, { now });
 
-  if (futureScheduled.length === 0) {
+  if (coverage.consecutiveReadyDays === 0) {
     failures.push("nenhuma pauta futura publicavel");
-  } else if (futureScheduled.length < campaign.minimumApprovedBuffer) {
-    warnings.push(`buffer abaixo do alvo de ${campaign.minimumApprovedBuffer}; recomposicao automatica pendente`);
+  } else if (coverage.consecutiveReadyDays < campaign.minimumApprovedBuffer) {
+    warnings.push(`cobertura consecutiva abaixo do alvo de ${campaign.minimumApprovedBuffer}; primeira lacuna ${coverage.firstGapDate || "fora da campanha"}`);
   }
   if (overdueScheduled.length > 0) failures.push(`pauta vencida ainda scheduled: ${overdueScheduled.map((item) => item.id).join(", ")}`);
   for (const item of ready) {
@@ -61,6 +63,8 @@ export async function simulateCampaign({ now = new Date() } = {}) {
     published: campaign.items.filter((item) => item.status === "published").length,
     scheduled: campaign.items.filter((item) => item.status === "scheduled").length,
     planned: campaign.items.filter((item) => item.status === "planned").length,
+    consecutiveReadyDays: coverage.consecutiveReadyDays,
+    firstGapDate: coverage.firstGapDate,
     verifiedOfficialImages: ready.length,
     warnings,
     failures,

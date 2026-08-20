@@ -34,9 +34,11 @@ assert.ok(validationIndex >= 0 && validationIndex < persistenceIndex);
 assert.match(replenisher, /if: steps\.validation\.outcome == 'success' && steps\.changes\.outputs\.editorial == 'true'/);
 assert.match(replenisher, /steps\.replenish\.outputs\.exit_code != '0' \|\| steps\.validation\.outcome == 'failure' \|\| steps\.persistence\.outcome == 'failure'/);
 assert.match(replenisher, /EDITORIAL_CRITICAL_BUFFER: \$\{\{ vars\.EDITORIAL_CRITICAL_BUFFER \|\| '1' \}\}/);
-assert.match(replenisher, /Recomposição parcial\/sem progresso[\s\S]*exit 0/);
-assert.match(replenisher, /Recomposição sem progresso e buffer crítico[\s\S]*exit 1/);
+assert.match(replenisher, /campaignCoverageSnapshot[\s\S]*consecutiveReadyDays/);
+assert.match(replenisher, /Recomposição parcial, mas o estado validado preserva[\s\S]*exit 0/);
+assert.match(replenisher, /Recomposição sem cobertura mínima[\s\S]*exit 1/);
 assert.match(replenisher, /required_ready[\s\S]*A data obrigatória[\s\S]*exit 1/);
+assert.match(replenisher, /_data\/editorial-topic-ledger\.json/);
 assert.match(replenisher, /queue: max/);
 
 const alerts = read("automation-alerts.yml");

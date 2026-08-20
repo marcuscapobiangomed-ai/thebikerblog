@@ -5,42 +5,20 @@ import { CampaignSchema } from "./campaign.js";
 import { runCampaignProducer } from "../campaign_producer.js";
 import { finalizeCampaignItem } from "../campaign_finalize.js";
 import { recoverBlockedCampaignFiles } from "./recover-blocked.js";
+import { campaignCoverageSnapshot } from "./campaign-coverage.js";
 
 const defaultRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../../..");
-
-function localDate(now, timezone) {
-  return new Intl.DateTimeFormat("en-CA", {
-    timeZone: timezone,
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-  }).format(now);
-}
 
 async function readCampaign(root) {
   return CampaignSchema.parse(JSON.parse(await fs.readFile(path.join(root, "bot/editorial-campaign.json"), "utf8")));
 }
 
 export function campaignBufferSnapshot(campaign, { now = new Date(), requiredDate = null } = {}) {
-  const today = localDate(now, campaign.timezone);
-  const futureScheduled = campaign.items.filter(
-    (item) => item.publishDate >= today && item.status === "scheduled",
-  );
-  const required = requiredDate
-    ? campaign.items.find((item) => item.publishDate === requiredDate) || null
-    : null;
-  return {
-    today,
-    futureScheduled: futureScheduled.length,
-    scheduledIds: futureScheduled.map((item) => item.id),
-    requiredDate,
-    requiredStatus: required?.status || null,
-    requiredReady: !requiredDate || ["scheduled", "published"].includes(required?.status),
-  };
+  return campaignCoverageSnapshot(campaign, { now, requiredDate });
 }
 
 export function bufferTargetReached(snapshot, { targetBuffer, requiredDate = null } = {}) {
-  return snapshot.futureScheduled >= targetBuffer && (!requiredDate || snapshot.requiredReady);
+  return snapshot.consecutiveReadyDays >= targetBuffer && (!requiredDate || snapshot.requiredReady);
 }
 
 function errorMessage(error) {
@@ -126,7 +104,7 @@ export async function replenishCampaignBuffer({
   };
   console.log(JSON.stringify(result, null, 2));
   if (!reached && !allowPartial) {
-    throw new Error(`Buffer editorial não recomposto: ${snapshot.futureScheduled}/${target}${requiredDate ? `; ${requiredDate} em ${snapshot.requiredStatus || "ausente"}` : ""}${result.lastError ? `; último erro: ${result.lastError}` : ""}`);
+    throw new Error(`Buffer editorial consecutivo não recomposto: ${snapshot.consecutiveReadyDays}/${target}; primeira lacuna ${snapshot.firstGapDate || "fora da campanha"}${requiredDate ? `; ${requiredDate} em ${snapshot.requiredStatus || "ausente"}` : ""}${result.lastError ? `; último erro: ${result.lastError}` : ""}`);
   }
   return result;
 }

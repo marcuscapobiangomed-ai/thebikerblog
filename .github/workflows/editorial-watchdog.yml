@@ -51,8 +51,19 @@ jobs:
             -f issue_number=0 \
             -f contingency=true \
             -f dry_run=false
+      - name: Recompor primeira lacuna do buffer
+        if: steps.monthly_readiness.outputs.needs_renewal != 'true' && steps.monthly_readiness.outputs.needs_replenishment == 'true' && steps.monthly_readiness.outputs.first_gap_date != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow run replenish-buffer.yml --ref main \
+            -f target_buffer=7 \
+            -f max_attempts=3 \
+            -f required_date="${{ steps.monthly_readiness.outputs.first_gap_date }}"
       - name: Resumo da sentinela mensal
         if: always()
         run: |
           echo "### Sentinela mensal" >> "$GITHUB_STEP_SUMMARY"
           echo "- Renovação necessária: ${{ steps.monthly_readiness.outputs.needs_renewal || 'indisponível' }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Dias consecutivos prontos: ${{ steps.monthly_readiness.outputs.consecutive_ready_days || 'indisponível' }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Primeira lacuna: ${{ steps.monthly_readiness.outputs.first_gap_date || 'nenhuma' }}" >> "$GITHUB_STEP_SUMMARY"
