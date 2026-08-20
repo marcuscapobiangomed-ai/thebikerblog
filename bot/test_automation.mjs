@@ -174,8 +174,37 @@ const reviewWithoutProduct = structuredClone(campaign);
 reviewWithoutProduct.items[0] = { ...reviewWithoutProduct.items[0], category: 'review', status: 'validation', productIds: [] };
 assert.throws(() => CampaignSchema.parse(reviewWithoutProduct), /review validado exige ao menos um produto rastreável/);
 const scheduledWithoutReceipt = structuredClone(campaign);
-const scheduledFixture = scheduledWithoutReceipt.items.find((item) => item.status === "published");
-scheduledFixture.status = "scheduled";
+const scheduledFixture = scheduledWithoutReceipt.items[0];
+Object.assign(scheduledFixture, {
+  category: "engenharia",
+  status: "scheduled",
+  productIds: [],
+  heroImage: { mode: "conceptual" },
+  postPath: "_posts/drafts/fixture-recibo.md",
+  imageManifestPath: "assets/img/posts/fixture-recibo/image-manifest.json",
+  imageStatus: "approved",
+  imageAssetIds: ["fixture-image"],
+  aiReview: {
+    score: 95,
+    finalScore: 95,
+    finalBlockers: 0,
+    premiumEditUsed: false,
+    providers: { fixture: "fixture" },
+    generatedAt: "2026-08-20T12:00:00.000Z",
+    contentHash: `sha256:${"a".repeat(64)}`,
+  },
+  visualDecision: {
+    schemaVersion: 1,
+    policyVersion: "thebiker-visual-autonomy-v1",
+    inputHash: `sha256:${"b".repeat(64)}`,
+    mode: "real-context",
+    productId: null,
+    score: 100,
+    hardGates: { fixture: true },
+    blockers: [],
+    issuedAt: "2026-08-20T12:00:00.000Z",
+  },
+});
 delete scheduledFixture.publishedAt;
 delete scheduledFixture.editorialReceipt;
 assert.throws(() => CampaignSchema.parse(scheduledWithoutReceipt), /scheduled exige recibo editorial/);
@@ -333,7 +362,7 @@ const researcher = new GroundedResearcher({ GROQ_API_KEY: 'test' }, async (_url,
   groundedRequest = JSON.parse(init.body);
   return { ok: true, json: async () => groqPayload };
 }, verifiedSourceResponse);
-const grounded = await researcher.research({ item: { ...campaign.items[0], freshness: 'revalidate-24h' }, internalEvidence: [], today: '2026-08-04' });
+const grounded = await researcher.research({ item: { ...campaign.items[0], category: 'componentes', productIds: [], heroImage: { mode: 'conceptual' }, freshness: 'revalidate-24h' }, internalEvidence: [], today: '2026-08-04' });
 assert.equal(grounded.status, 'pesquisa_concluida');
 assert.equal(grounded.sources.length, 1);
 assert.equal(grounded.portfolio_evidence_url, 'https://thebikershop.com.br/componentes/');
