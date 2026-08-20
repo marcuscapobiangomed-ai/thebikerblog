@@ -28,6 +28,12 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  event-observed:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Classificar evento recebido
+        run: echo "Evento recebido; a renovação será executada somente para uma issue mensal autorizada."
+
   renew:
     if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'issues' && startsWith(github.event.issue.title, '[INTEL] monthly-') && github.event.issue.author_association == 'OWNER') || (github.event_name == 'issue_comment' && startsWith(github.event.issue.title, '[INTEL] monthly-') && github.event.issue.author_association == 'OWNER' && github.event.comment.author_association == 'OWNER') }}
     runs-on: ubuntu-latest
