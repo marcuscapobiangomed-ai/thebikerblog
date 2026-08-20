@@ -1,11 +1,11 @@
 ---
 image_subject_id: "bicicleta-scott-addict-50-2026-pre-venda-1bxzy"
 layout: post
-published: false
+published: true
 title: "Scott Addict 50 e Addict RC 20: duas propostas de estrada confrontadas pelas fichas oficiais"
 slug: "scott-addict-50-e-addict-rc-20-duas-propostas-de-estrada-confrontadas-pelas-fichas-oficiais"
-date: 2026-08-17
-last_modified_at: 2026-08-14
+date: 2026-08-20
+last_modified_at: 2026-08-20
 author: "Equipe TheBiker"
 reviewed_by: "TheBiker AI Editorial Gate"
 content_type: "comparativo"
@@ -51,8 +51,8 @@ promoted_brands: ["TheBiker"]
 context_only_brands: []
 portfolio_evidence_url: "https://thebikershop.com.br/bikes/"
 portfolio_verified_at: "2026-08-14"
-editorial_status: "reviewed"
-status: "scheduled"
+editorial_status: "published"
+status: "published"
 sources:
   - name: "TheBiker — Bicicleta Scott Addict 50 2026 - Pré Venda"
     type: "store"

@@ -564,6 +564,7 @@
         "thebiker-bicicleta-scott-scale-940-black-bf34dbe9f9"
       ],
       "imageValidatedAt": "2026-08-14T00:02:50.727Z",
+      "publishedAt": "2026-08-20T12:30:57.209Z",
       "attempts": 2,
       "lastAttemptAt": "2026-08-14T00:02:50.727Z",
       "aiReview": {
@@ -591,12 +592,12 @@
         "origin": "pipeline",
         "reviewedContentHash": "sha256:a4398a0dc8b6dced7fcb71b70b6147dd18c9478d8f46c50bc09c2181cbd3b669",
         "scheduledContentHash": "sha256:99fdde5769b79aaf6b35138a8a18660ebb8f19ce1b7c96be54a87e6e6db62ab8",
+        "publishedContentHash": "sha256:55838c590c6ddb1790db7c1da3c6db75bf74652458a5f0b5bb0a8ca08bb2fe8e",
         "researchHash": "sha256:e3771f98eaa500c4154e65463b9211e44c02e939e9725912539de98711d0a8b2",
         "sourceHash": "a04ca97266905c7dcf3010828dfd42af3db9264e51d5e915dd54534b7cca7bf0",
         "finalScore": 95,
         "finalBlockers": 0,
-        "issuedAt": "2026-08-14T00:02:50.727Z",
-        "publishedContentHash": "sha256:55838c590c6ddb1790db7c1da3c6db75bf74652458a5f0b5bb0a8ca08bb2fe8e"
+        "issuedAt": "2026-08-14T00:02:50.727Z"
       },
       "visualDecision": {
         "schemaVersion": 1,
@@ -616,8 +617,7 @@
         },
         "blockers": [],
         "issuedAt": "2026-08-14T00:02:50.727Z"
-      },
-      "publishedAt": "2026-08-20T12:30:57.209Z"
+      }
     },
     {
       "day": 10,
@@ -627,7 +627,7 @@
       "summary": "Análise comparativa restrita a geometria, materiais e montagens comprovados nas fontes atuais dos dois modelos.",
       "category": "comparativo",
       "freshness": "revalidate-24h",
-      "status": "scheduled",
+      "status": "published",
       "productIds": [
         "bicicleta-scott-addict-50-2026-pre-venda-1bxzy",
         "bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9"
@@ -636,7 +636,7 @@
         "mode": "exact-product",
         "productId": "bicicleta-scott-addict-50-2026-pre-venda-1bxzy"
       },
-      "postPath": "_posts/drafts/2026-08-17-reserva-addict-50-rc20-comparativo.md",
+      "postPath": "_posts/2026-08-20-reserva-addict-50-rc20-comparativo.md",
       "imageManifestPath": "assets/img/posts/reserva-addict-50-rc20-comparativo/image-manifest.json",
       "imageStatus": "approved",
       "imageAssetIds": [
@@ -674,7 +674,8 @@
         "sourceHash": "2b9a948c27b4b174e50aa1034bbc18ef6a9f5305abeb2629a12a7bf5c223bd6e",
         "finalScore": 95,
         "finalBlockers": 0,
-        "issuedAt": "2026-08-14T00:02:50.727Z"
+        "issuedAt": "2026-08-14T00:02:50.727Z",
+        "publishedContentHash": "sha256:2852691e5b46f91d9b1f52ecd29001cc601b8e180d117aa76f8c3f2b192ec435"
       },
       "visualDecision": {
         "schemaVersion": 1,
@@ -694,7 +695,8 @@
         },
         "blockers": [],
         "issuedAt": "2026-08-14T00:02:50.727Z"
-      }
+      },
+      "publishedAt": "2026-08-20T12:35:29.598Z"
     },
     {
       "day": 11,
