@@ -25,7 +25,6 @@ concurrency:
 
 jobs:
   alert:
-    if: ${{ contains(fromJSON('["failure","timed_out","action_required","cancelled"]'), github.event.workflow_run.conclusion) && !(github.event.workflow_run.conclusion == 'cancelled' && github.event.workflow_run.name == 'Deploy Blog') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/github-script@v9
