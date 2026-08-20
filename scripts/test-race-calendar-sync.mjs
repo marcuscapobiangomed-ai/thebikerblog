@@ -3,6 +3,7 @@ import fs from 'node:fs'
 import {
   brazilianEventFromJsonLd,
   brazilianEventsFromVerifiedSnapshot,
+  calendarCoverageState,
   calendarioMtbDetailLinks,
   calendarioMtbPageCount,
   dateInTimeZone,
@@ -19,6 +20,17 @@ import {
 
 assert.equal(dateInTimeZone(new Date('2026-08-12T01:30:00.000Z')), '2026-08-11', 'início da noite no Brasil não pode avançar o calendário para o dia UTC seguinte')
 assert.equal(dateInTimeZone(new Date('2026-08-12T03:30:00.000Z')), '2026-08-12', 'calendário deve avançar depois da meia-noite de São Paulo')
+assert.deepEqual(calendarCoverageState(6), { sourceStatus: 'verified' })
+assert.deepEqual(calendarCoverageState(5), {
+  sourceStatus: 'degraded',
+  degradation: {
+    code: 'brazilian-upcoming-shortfall',
+    expectedBrazilianUpcoming: 6,
+    availableBrazilianUpcoming: 5,
+    safeMinimumBrazilianUpcoming: 5,
+  },
+}, '5/6 deve produzir contingência tipada sem inventar a sexta prova')
+assert.throws(() => calendarCoverageState(4), /abaixo do mínimo seguro/, 'menos de cinco provas brasileiras deve bloquear o snapshot')
 
 const payload = {
   items: [{
@@ -141,6 +153,8 @@ const mixedUpcoming = mergeBrazilPriority(
 assert.deepEqual(mixedUpcoming.map((event) => event.name), [brazilian.name, 'World race'])
 
 const deepProfiles = JSON.parse(fs.readFileSync(new URL('../_data/race-deep-profiles.json', import.meta.url), 'utf8'))
+const updateWorkflow = fs.readFileSync(new URL('../.github/workflows/update-race-calendar.yml', import.meta.url), 'utf8')
+assert.doesNotMatch(updateWorkflow, /gh workflow run deploy\.yml/, 'push do snapshot em main já dispara deploy; dispatch manual duplicado deve permanecer ausente')
 const voltaProfile = deepProfiles.profiles.find((profile) => profile.eventId === 'uci-2026-roa-78327')
 const voltaEvent = {
   id: voltaProfile.eventId,

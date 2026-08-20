@@ -191,7 +191,13 @@ const PublicRaceCalendarSchema = z.object({
   asOfDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
   asOfDateDisplay: z.string().regex(/^\d{2}\/\d{2}\/\d{4}$/),
   timezone: z.literal('America/Sao_Paulo'),
-  sourceStatus: z.literal('verified'),
+  sourceStatus: z.enum(['verified', 'degraded']),
+  degradation: z.object({
+    code: z.literal('brazilian-upcoming-shortfall'),
+    expectedBrazilianUpcoming: z.literal(6),
+    availableBrazilianUpcoming: z.literal(5),
+    safeMinimumBrazilianUpcoming: z.literal(5),
+  }).optional(),
   selectionPolicy: z.string().min(30).max(300),
   today: z.array(PublicRaceEventSchema).max(3),
   recent: z.array(PublicRaceEventSchema).min(3).max(12),
@@ -235,8 +241,19 @@ const PublicRaceCalendarSchema = z.object({
     }
   }
   const brazilianUpcoming = calendar.upcoming.filter((event) => event.countryCode === 'BRA').length
-  if (brazilianUpcoming < 6) {
-    context.addIssue({ code: 'custom', path: ['upcoming'], message: `agenda deve manter maioria brasileira, com ao menos 6 provas; recebeu ${brazilianUpcoming}` })
+  if (calendar.sourceStatus === 'verified') {
+    if (calendar.degradation) context.addIssue({ code: 'custom', path: ['degradation'], message: 'snapshot verificado não pode declarar degradação' })
+    if (brazilianUpcoming < 6) {
+      context.addIssue({ code: 'custom', path: ['upcoming'], message: `agenda verificada exige ao menos 6 provas brasileiras; recebeu ${brazilianUpcoming}` })
+    }
+  } else {
+    if (!calendar.degradation) context.addIssue({ code: 'custom', path: ['degradation'], message: 'snapshot degradado exige estado operacional explícito' })
+    if (brazilianUpcoming !== 5) {
+      context.addIssue({ code: 'custom', path: ['upcoming'], message: `contingência degradada exige exatamente 5 provas brasileiras verificadas; recebeu ${brazilianUpcoming}` })
+    }
+    if (calendar.degradation && calendar.degradation.availableBrazilianUpcoming !== brazilianUpcoming) {
+      context.addIssue({ code: 'custom', path: ['degradation', 'availableBrazilianUpcoming'], message: 'contagem degradada diverge dos eventos factuais do snapshot' })
+    }
   }
 })
 
@@ -267,6 +284,8 @@ export function validatePublicRaceCalendarFreshness(programInput, now = new Date
     throw new Error(`Calendário público de corridas vencido: ${ageHours.toFixed(1)}h (máximo ${maximumAgeHours}h)`)
   }
   return {
+    sourceStatus: program.publicCalendar.sourceStatus,
+    degradation: program.publicCalendar.degradation,
     today: program.publicCalendar.today.length,
     recent: program.publicCalendar.recent.length,
     upcoming: program.publicCalendar.upcoming.length,
@@ -332,9 +351,10 @@ function publicEventAsEditorialEvidence(event) {
   }
 }
 
-export function selectRaceEventsForEditorialItem(item, programInput) {
+export function selectRaceEventsForEditorialItem(item, programInput, now = new Date()) {
   if (item.category !== 'competicoes' || !item.race) return []
   const program = RaceProgramSchema.parse(programInput)
+  validatePublicRaceCalendarFreshness(program, now)
   const canonical = new Map(program.events.map((event) => [event.id, event]))
   const synchronized = new Map(publicEvents(program).map((event) => [event.id, publicEventAsEditorialEvidence(event)]))
 
@@ -410,6 +430,11 @@ export function validateRaceEditorialStructure(campaignInput, programInput) {
 export function raceSourceIsFresh(item, programInput, now = new Date()) {
   if (item.category !== 'competicoes' || !item.race) return true
   const program = RaceProgramSchema.parse(programInput)
+  try {
+    validatePublicRaceCalendarFreshness(program, now)
+  } catch {
+    return false
+  }
   if (item.race?.sourceStatus !== 'verified' || !item.race.sourceVerifiedAt || item.race.eventIds.length === 0) return false
   const verifiedAt = new Date(item.race.sourceVerifiedAt)
   const ageHours = (now.getTime() - verifiedAt.getTime()) / 3_600_000

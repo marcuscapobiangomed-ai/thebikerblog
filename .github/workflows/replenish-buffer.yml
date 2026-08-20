@@ -2,9 +2,11 @@ name: TheBiker — Recomposição automática do buffer editorial
 
 on:
   schedule:
-    # Executa antes e entre as janelas de produção; o grupo único serializa
-    # qualquer disputa com produção/publicação diária.
-    - cron: "15 2,8,14,20 * * *"
+    # Evita as janelas de race sync (08:20 UTC) e publicação (14:55 UTC).
+    # O grupo único continua serializando qualquer atraso excepcional.
+    - cron: "15 2,20 * * *"
+    - cron: "35 7 * * *"
+    - cron: "45 13 * * *"
   workflow_dispatch:
     inputs:
       target_buffer:
@@ -71,14 +73,50 @@ jobs:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
-        run: npm run campaign:replenish -- --target-buffer=${{ inputs.target_buffer || '7' }} --max-attempts=${{ inputs.max_attempts || '3' }} --allow-partial
+          TARGET_BUFFER_INPUT: ${{ inputs.target_buffer || '7' }}
+          MAX_ATTEMPTS_INPUT: ${{ inputs.max_attempts || '3' }}
+        # Buffer parcial é uma falha operacional. O comando ainda registra o
+        # estado seguro no workspace para validação, mas retorna exit code 1.
+        run: |
+          if [[ ! "$TARGET_BUFFER_INPUT" =~ ^[0-9]+$ ]]; then
+            echo "::error::target_buffer precisa ser um inteiro entre 1 e 30."
+            exit 2
+          fi
+          if [[ ! "$MAX_ATTEMPTS_INPUT" =~ ^[0-9]+$ ]]; then
+            echo "::error::max_attempts precisa ser um inteiro entre 1 e 10."
+            exit 2
+          fi
+          target_buffer=$((10#$TARGET_BUFFER_INPUT))
+          max_attempts=$((10#$MAX_ATTEMPTS_INPUT))
+          if (( target_buffer < 1 || target_buffer > 30 )); then
+            echo "::error::target_buffer fora da faixa permitida (1..30)."
+            exit 2
+          fi
+          if (( max_attempts < 1 || max_attempts > 10 )); then
+            echo "::error::max_attempts fora da faixa permitida (1..10)."
+            exit 2
+          fi
+          npm run campaign:replenish -- --target-buffer="$target_buffer" --max-attempts="$max_attempts"
         working-directory: bot
-      - name: Validar e persistir cada avanço seguro
+      - name: Validar avanço antes de qualquer persistência
         id: validation
         if: always()
+        run: npm run validate:artifacts
+      - name: Detectar avanço editorial validado
+        id: changes
+        if: steps.validation.outcome == 'success'
         run: |
-          validation_status=0
-          npm run validate:artifacts || validation_status=$?
+          if git diff --quiet -- bot/editorial-campaign.json bot/operational-state _data/editorial-calendar.json _posts/drafts content/research/campaign assets/img/posts content/image-library/index.json; then
+            echo "editorial=false" >> "$GITHUB_OUTPUT"
+            echo "Nenhum avanço editorial para persistir."
+          else
+            echo "editorial=true" >> "$GITHUB_OUTPUT"
+            echo "Avanço editorial validado e pronto para persistência."
+          fi
+      - name: Persistir somente avanço validado
+        id: persistence
+        if: steps.validation.outcome == 'success' && steps.changes.outputs.editorial == 'true'
+        run: |
           git config user.name "thebiker-editorial-bot"
           git config user.email "thebiker-editorial-bot@users.noreply.github.com"
           git add _data/products/bikes _posts/drafts content/product-discovery/thebiker-media-catalog.json content/research/campaign assets/img/posts content/image-library/index.json bot/editorial-campaign.json bot/operational-state _data/editorial-calendar.json _data/catalog-public.json api/products.json
@@ -96,15 +134,18 @@ jobs:
             echo "Falha ao persistir o estado editorial após 3 tentativas." >&2
             exit "$persist_status"
           fi
-          exit $validation_status
-      - name: Propagar erro inesperado de recomposição
-        if: steps.replenish.outcome == 'failure'
-        run: exit 1
+      - name: Propagar falha operacional
+        if: always() && (steps.replenish.outcome == 'failure' || steps.validation.outcome == 'failure' || steps.persistence.outcome == 'failure')
+        run: |
+          echo "Recomposição=${{ steps.replenish.outcome }} validação=${{ steps.validation.outcome }} persistência=${{ steps.persistence.outcome }}" >&2
+          exit 1
       - name: Resumo do buffer
         if: always()
         run: |
           echo "### Recomposição automática do buffer" >> "$GITHUB_STEP_SUMMARY"
           echo "- Recomposição: ${{ steps.replenish.outcome }}" >> "$GITHUB_STEP_SUMMARY"
-          echo "- Validação/persistência: ${{ steps.validation.outcome }}" >> "$GITHUB_STEP_SUMMARY"
-          echo "- A execução é parcial por desenho; o artigo só entra em scheduled após todos os gates." >> "$GITHUB_STEP_SUMMARY"
+          echo "- Validação: ${{ steps.validation.outcome }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Avanço editorial: ${{ steps.changes.outputs.editorial || 'não validado' }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Persistência: ${{ steps.persistence.outcome }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Buffer insuficiente ou sem progresso encerra a execução com falha; nenhum estado reprovado é enviado ao repositório." >> "$GITHUB_STEP_SUMMARY"
 

@@ -169,6 +169,22 @@ const EXPECTED = {
   card: { width: 640, height: 360 },
 };
 
+export function assertSafeRasterBuffer(buffer, fileName, outputFormat) {
+  const extension = path.extname(fileName).toLowerCase();
+  const expectedExtension = outputFormat === "png" ? ".png" : ".webp";
+  if (extension !== expectedExtension) {
+    throw new Error(`extensão ${extension || "ausente"} incompatível com outputFormat ${outputFormat}`);
+  }
+  const isPng = buffer.length >= 8
+    && buffer.subarray(0, 8).equals(Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]));
+  const isWebp = buffer.length >= 12
+    && buffer.subarray(0, 4).toString("ascii") === "RIFF"
+    && buffer.subarray(8, 12).toString("ascii") === "WEBP";
+  if ((outputFormat === "png" && !isPng) || (outputFormat === "webp" && !isWebp)) {
+    throw new Error(`assinatura binária inválida para ${outputFormat}`);
+  }
+}
+
 export function validateImageManifestV2(manifest, directory, { requirePublishable = false } = {}) {
   const parsed = ImageManifestV2Schema.parse(manifest);
   const errors = [];
@@ -188,7 +204,17 @@ export function validateImageManifestV2(manifest, directory, { requirePublishabl
       errors.push(`${variant}: arquivo ausente (${declared.file})`);
       continue;
     }
-    const measured = imageSize(fs.readFileSync(filePath));
+    const buffer = fs.readFileSync(filePath);
+    try {
+      // image-size currently has no upstream fix for infinite-loop parsers in
+      // ICNS/JXL/HEIF. Restrict the parser to the two formats emitted by this
+      // pipeline and validate magic bytes before handing it untrusted input.
+      assertSafeRasterBuffer(buffer, declared.file, parsed.outputFormat);
+    } catch (error) {
+      errors.push(`${variant}: ${error.message}`);
+      continue;
+    }
+    const measured = imageSize(buffer);
     if (measured.width !== expected.width || measured.height !== expected.height) {
       errors.push(
         `${variant}: dimensão ${measured.width}x${measured.height}; esperado ${expected.width}x${expected.height}`,

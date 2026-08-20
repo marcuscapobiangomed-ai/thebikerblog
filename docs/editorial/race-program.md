@@ -46,8 +46,10 @@ A página `/corridas/` consome `publicCalendar` do mesmo registro canônico `_da
 - cada item é reconfirmado na ficha oficial da competição, que fornece país, classe e site do organizador;
 - o dia de referência é calculado em `America/Sao_Paulo`, inclusive em execuções manuais próximas da virada UTC;
 - o script limita a concorrência das consultas, usa retentativa com backoff, grava o snapshot de forma atômica e encerra com erro se o contrato da fonte mudar, houver divergência de classe ou não existirem 3 recentes e 10 próximas;
-- o workflow `update-race-calendar.yml` roda às 05:20 de Brasília, usa o mesmo bloqueio de escrita das demais automações e dispara o deploy normal somente depois de registrar um snapshot válido;
-- snapshots com mais de 48 horas são recusados por `npm run validate:races`, e falhas do workflow entram no alerta operacional do blog.
+- a cobertura brasileira tem alvo de 6 próximas provas. Se somente 5 continuarem verificáveis diretamente nos organizadores, o snapshot permanece factual com `sourceStatus: degraded`; abaixo de 5, a atualização é bloqueada;
+- a página `/corridas/` exibe explicitamente a contingência 5 de 6 e não apresenta uma sexta prova presumida;
+- o workflow `update-race-calendar.yml` roda às 05:20 de Brasília e usa o mesmo bloqueio de escrita das demais automações. Depois de registrar o snapshot válido em `main`, o próprio evento de `push` dispara o deploy normal;
+- `npm run validate:races` valida o contrato estrutural sem bloquear artigos comuns por idade global. A checagem operacional `npm run validate:races:freshness` recusa snapshots com mais de 48 horas no workflow de sincronização; falhas entram no alerta operacional do blog.
 
 Quando uma pauta profissional planejada ainda não possui `eventIds`, o produtor editorial usa o snapshot sincronizado como sinal de priorização: prévias recebem uma prova futura, resumos recebem uma prova recente e boletins semanais recebem até três eventos de maior classe e proximidade. A pesquisa oficial continua obrigatória e o vínculo automático não libera publicação por conta própria.
 

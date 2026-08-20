@@ -60,6 +60,9 @@ jobs:
       - name: Bloquear credenciais no repositorio
         run: npm run security:secrets
 
+      - name: Auditar recibos editoriais publicados
+        run: npm run receipts:check
+
       - name: Lint (JS)
         run: |
           node --check src/schemas/research.schema.js

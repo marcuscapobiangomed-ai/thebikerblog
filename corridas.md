@@ -14,7 +14,7 @@ model: ""
 {% assign race_program = site.data["race-events"] %}
 {% assign public_calendar = race_program.publicCalendar %}
 
-<div class="race-hub" data-race-calendar data-today-count="{{ public_calendar.today | size }}" data-recent-count="{{ public_calendar.recent | size }}" data-upcoming-count="{{ public_calendar.upcoming | size }}" data-calendar-as-of="{{ public_calendar.asOfDate }}">
+<div class="race-hub" data-race-calendar data-calendar-status="{{ public_calendar.sourceStatus }}" data-today-count="{{ public_calendar.today | size }}" data-recent-count="{{ public_calendar.recent | size }}" data-upcoming-count="{{ public_calendar.upcoming | size }}" data-calendar-as-of="{{ public_calendar.asOfDate }}">
   <section class="race-hub-hero" aria-labelledby="race-hub-title">
     <div class="container race-hub-hero-inner">
       <span class="race-hub-kicker">TheBiker Blog · Competições</span>
@@ -25,6 +25,9 @@ model: ""
         <span><strong>{{ public_calendar.recent | size }}</strong> encerradas recentemente</span>
         <span><strong>{{ public_calendar.upcoming | size }}</strong> próximas provas</span>
         <span>Verificado em <strong>{{ public_calendar.generatedAt | date: "%d/%m/%Y" }}</strong></span>
+        {% if public_calendar.sourceStatus == "degraded" %}
+          <span role="status"><strong>Contingência 5 de 6</strong> provas brasileiras verificadas</span>
+        {% endif %}
       </div>
     </div>
   </section>
@@ -113,10 +116,18 @@ model: ""
     <section id="proximas" class="race-content-section" aria-labelledby="upcoming-races-title">
       <div class="race-section-heading">
         <div>
-          <span>Agenda verificada</span>
+          {% if public_calendar.sourceStatus == "degraded" %}
+            <span>Agenda em contingência</span>
+          {% else %}
+            <span>Agenda verificada</span>
+          {% endif %}
           <h2 id="upcoming-races-title">As próximas 10 corridas</h2>
         </div>
-        <p>Seis vagas mantêm maioria brasileira validada; quatro preservam a cobertura mundial. Mudanças entram automaticamente na próxima sincronização.</p>
+        {% if public_calendar.sourceStatus == "degraded" %}
+          <p>Cinco das seis vagas brasileiras foram revalidadas nos organizadores. A sexta não é preenchida por estimativa; provas oficiais da UCI completam as 10 posições factuais até a recuperação da cobertura brasileira.</p>
+        {% else %}
+          <p>Seis vagas mantêm maioria brasileira validada; quatro preservam a cobertura mundial. Mudanças entram automaticamente na próxima sincronização.</p>
+        {% endif %}
       </div>
       <div class="race-calendar-tools" data-race-filters>
         <div>
