@@ -285,15 +285,15 @@
       "editorialReceipt": {
         "schemaVersion": 1,
         "policyVersion": "thebiker-editorial-2026-08-v2",
-        "origin": "legacy-backfill",
+        "origin": "deterministic-transform",
         "reviewedContentHash": "sha256:a07650a3446b56e577af89d5cfbb8021b43cf39988aa6df222f2f7bcf29a2880",
         "scheduledContentHash": "sha256:a07650a3446b56e577af89d5cfbb8021b43cf39988aa6df222f2f7bcf29a2880",
-        "publishedContentHash": "sha256:edf1b3e5434f3efb4ac3e751528ac2f0546d562be37dcbdd822a4db5ec7240ec",
+        "publishedContentHash": "sha256:917e8209b5d4088b697cb83b961a174984d5ead0663da1d77fa2804a2478d177",
         "researchHash": "sha256:27814354c29307616d2643d3e5af2685de2da32a787ba7114c3570a1fa7279f9",
         "sourceHash": null,
         "finalScore": 92,
         "finalBlockers": 0,
-        "issuedAt": "2026-08-11T17:13:56.190Z"
+        "issuedAt": "2026-08-20T12:10:02.971Z"
       },
       "visualDecision": {
         "schemaVersion": 1,

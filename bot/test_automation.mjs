@@ -10,7 +10,9 @@ import { cleanupFailedFinalization, finalizeCampaignItem, normalizeCategoryExamp
 import { produceCampaignCover } from "./src/images/campaign-cover.js";
 import { classifyOfficialImageQuality } from "./src/images/official-campaign-image.js";
 import { selectKnowledgeEvidence } from "./src/campaign_producer.js";
-import { publishScheduled, selectScheduledPublication } from "./src/publish_scheduled.js";
+import { CatchUpPolicy, publishScheduled, selectScheduledPublication } from "./src/publish_scheduled.js";
+import { resolveLegacyTarget } from "./src/publish_post.js";
+import { GitHubPublisher, LEGACY_GITHUB_PUBLISHER_FLAG } from "./src/publisher.js";
 import { buildRepairPrompt } from "./src/editorial-prompt.js";
 import { produceCampaignVisual } from "./src/campaign_finalize.js";
 import { markdownPublicationErrors, neutralizeMarkdownPolicyPhrases } from "./src/validation/markdown-publication-gates.js";
@@ -18,6 +20,7 @@ import { orphanedCampaignDraftErrors, scheduledDraftErrors } from "./src/validat
 import { assertScheduledReceipt, hashEditorialText } from "./src/validation/editorial-receipt.js";
 import { assertArticleResearchGrounding } from "./src/validation/article-research-grounding.js";
 import { assertResearchEvidenceContract } from "./src/validation/research-grounding.js";
+import { assertReceiptAuditPolicy, auditEditorialReceipts } from "../scripts/backfill-editorial-receipts.mjs";
 
 const minimalResearch = {
   confirmed_facts: [{ fact: "frame.material: Spark RC Carbon HMX" }, { fact: "suspension.frontTravel: 120 mm" }],
@@ -177,10 +180,11 @@ delete scheduledFixture.publishedAt;
 delete scheduledFixture.editorialReceipt;
 assert.throws(() => CampaignSchema.parse(scheduledWithoutReceipt), /scheduled exige recibo editorial/);
 const blockedWithoutReason = structuredClone(campaign);
-const plannedWithoutReason = blockedWithoutReason.items.find((item) => item.status === "planned");
-plannedWithoutReason.status = "blocked";
-delete plannedWithoutReason.blockReason;
-delete plannedWithoutReason.failure;
+const candidateWithoutReason = blockedWithoutReason.items.find((item) => item.status !== "blocked");
+assert.ok(candidateWithoutReason, "fixture precisa conter ao menos uma pauta não bloqueada");
+candidateWithoutReason.status = "blocked";
+delete candidateWithoutReason.blockReason;
+delete candidateWithoutReason.failure;
 assert.throws(() => CampaignSchema.parse(blockedWithoutReason), /blocked exige motivo ou falha tipada/);
 const inferred = selectKnowledgeEvidence([
   { id: 'addict-rc-20', model: 'Addict RC 20' },
@@ -251,17 +255,68 @@ for (const item of catchUpCampaign.items) item.status = 'planned';
 catchUpCampaign.items[0].status = 'scheduled';
 catchUpCampaign.items[1].status = 'published';
 catchUpCampaign.items[1].publishedAt = '2026-08-05T15:00:00.000Z';
-assert.deepEqual(selectScheduledPublication(catchUpCampaign, catchUpCampaign.items[1].publishDate), {
+assert.deepEqual(selectScheduledPublication(catchUpCampaign, catchUpCampaign.items[1].publishDate, {
+  catchUpPolicy: CatchUpPolicy.OLDEST_APPROVED,
+}), {
   item: catchUpCampaign.items[0],
   catchUp: true,
+  catchUpPolicy: CatchUpPolicy.OLDEST_APPROVED,
+  overdueCount: 1,
+  dueStatus: 'published',
 });
 const backlogWithToday = structuredClone(catchUpCampaign);
 backlogWithToday.items[1].status = 'scheduled';
 delete backlogWithToday.items[1].publishedAt;
-assert.deepEqual(selectScheduledPublication(backlogWithToday, backlogWithToday.items[1].publishDate), {
+assert.deepEqual(selectScheduledPublication(backlogWithToday, backlogWithToday.items[1].publishDate, {
+  catchUpPolicy: CatchUpPolicy.OLDEST_APPROVED,
+}), {
   item: backlogWithToday.items[0],
   catchUp: true,
+  catchUpPolicy: CatchUpPolicy.OLDEST_APPROVED,
+  overdueCount: 1,
+  dueStatus: 'scheduled',
 }, 'o atraso mais antigo deve ser publicado antes da pauta do dia');
+const blockedTodayWithBacklog = structuredClone(backlogWithToday);
+blockedTodayWithBacklog.items[1].status = 'blocked';
+blockedTodayWithBacklog.items[1].blockReason = 'Falha induzida na pauta do dia';
+assert.deepEqual(selectScheduledPublication(blockedTodayWithBacklog, blockedTodayWithBacklog.items[1].publishDate, {
+  catchUpPolicy: CatchUpPolicy.OLDEST_APPROVED,
+}), {
+  item: blockedTodayWithBacklog.items[0],
+  catchUp: true,
+  catchUpPolicy: CatchUpPolicy.OLDEST_APPROVED,
+  overdueCount: 1,
+  dueStatus: 'blocked',
+}, 'pauta bloqueada hoje não deve impedir overdue scheduled quando catch-up seguro está explícito');
+assert.throws(
+  () => selectScheduledPublication(blockedTodayWithBacklog, blockedTodayWithBacklog.items[1].publishDate),
+  /pauta .* de hoje esta em blocked/,
+  'sem política explícita, o publicador deve permanecer fail-closed',
+);
+assert.throws(
+  () => selectScheduledPublication(backlogWithToday, backlogWithToday.items[1].publishDate, { catchUpPolicy: 'all' }),
+  /Politica de catch-up invalida/,
+);
+assert.equal(resolveLegacyTarget(backlogWithToday, backlogWithToday.items[0].id).id, backlogWithToday.items[0].id);
+assert.equal(resolveLegacyTarget(backlogWithToday, backlogWithToday.items[0].postPath).id, backlogWithToday.items[0].id);
+assert.throws(() => resolveLegacyTarget(backlogWithToday, "arquivo-fora-do-ledger.md"), /nao esta no ledger/);
+const legacyPublisherEnv = { GITHUB_TOKEN: "test", GITHUB_USER: "test", GITHUB_REPO: "test" };
+const disabledLegacyPublisher = new GitHubPublisher({ env: legacyPublisherEnv, warn: () => {} });
+await assert.rejects(
+  disabledLegacyPublisher.publishPost({ postContent: "---\n---", slug: "teste" }),
+  new RegExp(LEGACY_GITHUB_PUBLISHER_FLAG),
+);
+const legacyWarnings = [];
+const enabledLegacyPublisher = new GitHubPublisher({
+  env: { ...legacyPublisherEnv, [LEGACY_GITHUB_PUBLISHER_FLAG]: "true" },
+  warn: (message) => legacyWarnings.push(message),
+});
+enabledLegacyPublisher.findOpenPullRequest = async () => ({ html_url: "https://example.invalid/pr/1" });
+assert.equal(
+  await enabledLegacyPublisher.publishPost({ postContent: "---\n---", slug: "teste" }),
+  "https://example.invalid/pr/1",
+);
+assert.equal(legacyWarnings.length, 1, "uso legado explícito deve deixar aviso auditável");
 const groundedPayload = {
   candidates: [{ content: { parts: [{ text: JSON.stringify({ confirmed_facts: [{ fact: 'Carbono HMF', evidence_quote: 'Quadro construído integralmente em carbono HMF para competição', source_ids: ['src-scott'] }], limitations: [], sources: [{ id: 'src-scott', name: 'Scott', type: 'manufacturer', url: 'https://www.scott-sports.com/global/en/product/test', accessed: '2026-08-04' }] }) }] }, groundingMetadata: { webSearchQueries: ['site:scott-sports.com teste'] } }]
 };
@@ -654,6 +709,11 @@ const publishedTarget = path.join(finalizeRoot, "_posts", `${finalizedCampaign.i
 await assert.rejects(publishScheduled({
   root: finalizeRoot,
   now: publicationNow,
+  expectedItemId: "outro-candidato",
+}), /alvo esperado outro-candidato/);
+await assert.rejects(publishScheduled({
+  root: finalizeRoot,
+  now: publicationNow,
   beforePromote: ({ index }) => { if (index === 1) throw new Error("falha induzida na promoção da publicação"); },
 }), /falha induzida/);
 assert.equal(await fs.readFile(path.join(finalizeRoot, finalizedCampaign.items[0].postPath), "utf8"), finalizedContent,
@@ -671,6 +731,44 @@ assert.match(publishedContent, /^promoted_brands: \["Scott"\]$/m,
 await assert.rejects(fs.stat(path.join(finalizeRoot, finalizedCampaign.items[0].postPath)), /ENOENT/);
 assert.equal((await publishScheduled({ root: finalizeRoot, now: publicationNow })).status, "already-published",
   "repetir a mesma publicação deve ser idempotente");
+const legacyReceiptCampaignPath = path.join(finalizeRoot, "bot/editorial-campaign.json");
+const legacyReceiptCampaign = JSON.parse(await fs.readFile(legacyReceiptCampaignPath, "utf8"));
+delete legacyReceiptCampaign.items[0].editorialReceipt;
+await fs.writeFile(legacyReceiptCampaignPath, `${JSON.stringify(legacyReceiptCampaign, null, 2)}\n`);
+const legacyReceiptAudit = await auditEditorialReceipts({
+  root: finalizeRoot,
+  itemIds: [legacyReceiptCampaign.items[0].id],
+});
+assert.deepEqual(legacyReceiptAudit.publishedMissing.map((entry) => entry.id), [legacyReceiptCampaign.items[0].id]);
+assert.equal(legacyReceiptAudit.changed, 0, "auditoria não deve fabricar recibo histórico sem reconhecimento explícito");
+assert.doesNotThrow(
+  () => assertReceiptAuditPolicy(legacyReceiptAudit),
+  "published sem baseline permanece uma migração explícita no check padrão",
+);
+assert.throws(
+  () => assertReceiptAuditPolicy(legacyReceiptAudit, { strictPublished: true }),
+  /published sem recibo auditável/,
+);
+const legacyReceiptBackfill = await auditEditorialReceipts({
+  root: finalizeRoot,
+  acknowledgePublishedBaseline: true,
+  itemIds: [legacyReceiptCampaign.items[0].id],
+});
+assert.equal(legacyReceiptBackfill.changed, 1);
+const backfilledCampaign = JSON.parse(await fs.readFile(legacyReceiptCampaignPath, "utf8"));
+assert.equal(backfilledCampaign.items[0].editorialReceipt.origin, "legacy-backfill");
+assert.equal(backfilledCampaign.items[0].editorialReceipt.publishedContentHash, hashEditorialText(publishedContent));
+await fs.appendFile(publishedTarget, "\nmutação posterior ao recibo\n");
+const divergentReceiptAudit = await auditEditorialReceipts({
+  root: finalizeRoot,
+  itemIds: [legacyReceiptCampaign.items[0].id],
+});
+assert.deepEqual(divergentReceiptAudit.publishedDivergent.map((entry) => entry.id), [legacyReceiptCampaign.items[0].id]);
+assert.throws(
+  () => assertReceiptAuditPolicy(divergentReceiptAudit),
+  /published com recibo divergente/,
+  "divergência publicada deve falhar inclusive no check padrão",
+);
 
 const cleanupRoot = path.join(root, "cleanup-finalization");
 const cleanupItem = {

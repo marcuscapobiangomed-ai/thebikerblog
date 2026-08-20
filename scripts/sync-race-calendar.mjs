@@ -11,6 +11,7 @@ const RECENT_MINIMUM = 3
 const UPCOMING_MINIMUM = 10
 const TODAY_MAXIMUM = 3
 const BRAZIL_UPCOMING_TARGET = 6
+const BRAZIL_UPCOMING_SAFE_MINIMUM = 5
 const CALENDAR_REQUEST_CONCURRENCY = 6
 const DETAIL_REQUEST_CONCURRENCY = 4
 const CALENDAR_TIMEZONE = 'America/Sao_Paulo'
@@ -386,8 +387,8 @@ function brazilianEventsFromVerifiedSnapshot(publicCalendar, asOfDate) {
 
 async function revalidateBrazilianSnapshot(publicCalendar, asOfDate) {
   const fallback = brazilianEventsFromVerifiedSnapshot(publicCalendar, asOfDate)
-  if (fallback.length < BRAZIL_UPCOMING_TARGET) {
-    throw new Error(`Snapshot brasileiro insuficiente para contingência: ${fallback.length}/${BRAZIL_UPCOMING_TARGET}`)
+  if (fallback.length < BRAZIL_UPCOMING_SAFE_MINIMUM) {
+    throw new Error(`Snapshot brasileiro abaixo do mínimo seguro para contingência: ${fallback.length}/${BRAZIL_UPCOMING_SAFE_MINIMUM}`)
   }
   const verified = []
   for (const event of fallback) {
@@ -397,10 +398,11 @@ async function revalidateBrazilianSnapshot(publicCalendar, asOfDate) {
       debugSync(`Contingência excluída ${event.name}: ${error.message}`)
     }
   }
-  if (verified.filter((event) => event.startsOn > asOfDate).length < BRAZIL_UPCOMING_TARGET) {
-    throw new Error('Contingência brasileira falhou na revalidação dos organizadores')
+  const verifiedUpcoming = verified.filter((event) => event.startsOn > asOfDate).length
+  if (verifiedUpcoming < BRAZIL_UPCOMING_SAFE_MINIMUM) {
+    throw new Error(`Contingência brasileira falhou no mínimo seguro após revalidar organizadores: ${verifiedUpcoming}/${BRAZIL_UPCOMING_SAFE_MINIMUM}`)
   }
-  debugSync(`Calendário MTB bloqueou o robô; ${verified.length} provas foram revalidadas diretamente nos organizadores`)
+  debugSync(`Calendário MTB bloqueou o robô; ${verifiedUpcoming}/${BRAZIL_UPCOMING_TARGET} próximas foram revalidadas diretamente nos organizadores`)
   return verified
 }
 
@@ -618,6 +620,22 @@ function mergeBrazilPriority(uciEvents, brazilEvents, limit) {
     .slice(0, limit)
 }
 
+function calendarCoverageState(brazilianUpcoming) {
+  if (brazilianUpcoming >= BRAZIL_UPCOMING_TARGET) return { sourceStatus: 'verified' }
+  if (brazilianUpcoming === BRAZIL_UPCOMING_SAFE_MINIMUM) {
+    return {
+      sourceStatus: 'degraded',
+      degradation: {
+        code: 'brazilian-upcoming-shortfall',
+        expectedBrazilianUpcoming: BRAZIL_UPCOMING_TARGET,
+        availableBrazilianUpcoming: brazilianUpcoming,
+        safeMinimumBrazilianUpcoming: BRAZIL_UPCOMING_SAFE_MINIMUM,
+      },
+    }
+  }
+  throw new Error(`Cobertura brasileira abaixo do mínimo seguro: ${brazilianUpcoming}/${BRAZIL_UPCOMING_SAFE_MINIMUM} próximas com organizador validado`)
+}
+
 function assertSorted(events, field, direction = 'asc') {
   for (let index = 1; index < events.length; index += 1) {
     const comparison = events[index - 1][field].localeCompare(events[index][field])
@@ -721,9 +739,7 @@ async function main() {
     .filter((event) => event.startsOn > asOfDate)
     .slice(0, BRAZIL_UPCOMING_TARGET)
     .map((event) => mapBrazilianPublicEvent(event, 'scheduled', checkedAt))
-  if (brazilUpcoming.length < BRAZIL_UPCOMING_TARGET) {
-    throw new Error(`Cobertura brasileira insuficiente: ${brazilUpcoming.length}/${BRAZIL_UPCOMING_TARGET} próximas com organizador validado`)
-  }
+  const coverageState = calendarCoverageState(brazilUpcoming.length)
   const uciToday = await enrichSelection(selection.today, 'today', checkedAt)
   const recent = await enrichSelection(selection.recent, 'past', checkedAt)
   const uciUpcoming = await enrichSelection(selection.upcoming, 'scheduled', checkedAt)
@@ -742,8 +758,10 @@ async function main() {
       asOfDate,
       asOfDateDisplay: formatBrDate(asOfDate, true),
       timezone: CALENDAR_TIMEZONE,
-      sourceStatus: 'verified',
-      selectionPolicy: 'Agenda combinada: próximas provas mantêm maioria brasileira, validada por descoberta e confirmação do organizador; UCI completa a cobertura mundial. Recentes permanecem na fonte oficial UCI.',
+      ...coverageState,
+      selectionPolicy: coverageState.sourceStatus === 'verified'
+        ? 'Agenda combinada: próximas provas mantêm maioria brasileira, validada por descoberta e confirmação do organizador; UCI completa a cobertura mundial. Recentes permanecem na fonte oficial UCI.'
+        : 'Contingência explícita: cinco provas brasileiras revalidadas por organizadores permanecem publicadas sem criar uma sexta; eventos oficiais UCI completam dez posições factuais até a recuperação da cobertura brasileira.',
       today,
       recent: recentWithProfiles,
       upcoming,
@@ -761,7 +779,7 @@ async function main() {
   } finally {
     await fs.rm(temporaryPath, { force: true })
   }
-  process.stdout.write(`Calendário sincronizado: ${today.length} em disputa hoje + ${recent.length} recentes + ${upcoming.length} próximas, com ${upcoming.filter((event) => event.countryCode === 'BRA').length} brasileiras (${asOfDate}).\n`)
+  process.stdout.write(`Calendário sincronizado em estado ${coverageState.sourceStatus}: ${today.length} em disputa hoje + ${recent.length} recentes + ${upcoming.length} próximas, com ${upcoming.filter((event) => event.countryCode === 'BRA').length}/${BRAZIL_UPCOMING_TARGET} brasileiras (${asOfDate}).\n`)
 }
 
 const invokedDirectly = process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)
@@ -774,6 +792,7 @@ export {
   CLASS_FILTERS,
   brazilianEventFromJsonLd,
   brazilianEventsFromVerifiedSnapshot,
+  calendarCoverageState,
   calendarioMtbDetailLinks,
   calendarioMtbPageCount,
   dateInTimeZone,

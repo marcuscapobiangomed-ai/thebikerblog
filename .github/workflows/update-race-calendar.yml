@@ -14,7 +14,6 @@ on:
 
 permissions:
   contents: write
-  actions: write
 
 concurrency:
   group: thebiker-editorial-write
@@ -49,6 +48,7 @@ jobs:
       - name: Validar dados, página e bloqueios fail-closed
         run: |
           npm run validate:races
+          npm run validate:races:freshness
           node scripts/test-race-calendar-sync.mjs
           node scripts/test-race-program.mjs
           node scripts/test-race-navigation.mjs
@@ -57,7 +57,7 @@ jobs:
       - name: Resumir saúde da agenda
         if: ${{ always() }}
         run: |
-          node -e "const c=require('./_data/race-events.json').publicCalendar; const br=c.upcoming.filter(e=>e.countryCode==='BRA'); const guides=br.filter(e=>e.deepProfile); console.log('## Saúde da agenda de corridas\n\n- Em disputa hoje: '+c.today.length+'\n- Recentes: '+c.recent.length+'\n- Próximas: '+c.upcoming.length+'\n- Brasileiras com guia: '+guides.length+'/'+br.length+'\n- Snapshot: '+c.generatedAt)" >> "$GITHUB_STEP_SUMMARY"
+          node -e "const c=require('./_data/race-events.json').publicCalendar; const br=c.upcoming.filter(e=>e.countryCode==='BRA'); const guides=br.filter(e=>e.deepProfile); const degraded=c.degradation ? ' ('+c.degradation.code+', '+c.degradation.availableBrazilianUpcoming+'/'+c.degradation.expectedBrazilianUpcoming+')' : ''; console.log('## Saúde da agenda de corridas\n\n- Estado: '+c.sourceStatus+degraded+'\n- Em disputa hoje: '+c.today.length+'\n- Recentes: '+c.recent.length+'\n- Próximas: '+c.upcoming.length+'\n- Brasileiras com guia: '+guides.length+'/'+br.length+'\n- Snapshot: '+c.generatedAt)" >> "$GITHUB_STEP_SUMMARY"
 
       - name: Registrar snapshot verificado
         if: ${{ github.event_name == 'schedule' || !inputs.dry_run }}
@@ -72,9 +72,3 @@ jobs:
             sleep $((attempt * 5))
           done
           exit 1
-
-      - name: Publicar snapshot atualizado
-        if: ${{ github.event_name == 'schedule' || !inputs.dry_run }}
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: gh workflow run deploy.yml --ref main

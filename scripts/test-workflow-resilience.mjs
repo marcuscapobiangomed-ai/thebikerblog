@@ -10,20 +10,38 @@ const packageJson = JSON.parse(fs.readFileSync(path.join(root, "package.json"), 
 assert.match(packageJson.scripts["prepare:derived"], /catalog:public.*build:machine-readable/);
 
 const publication = read("publish-daily.yml");
-assert.ok(publication.indexOf("npm run catalog:revalidate") < publication.indexOf("npm run validate:ci"));
-const baselineIndex = publication.indexOf("npm run validate:ci");
-const mutationIndex = publication.indexOf("node src/publish_scheduled.js");
+assert.ok(publication.indexOf("npm run catalog:revalidate") < publication.indexOf("npm run prepare:derived"));
+const baselineIndex = publication.indexOf("npm run prepare:derived");
+const mutationIndex = publication.indexOf("id: candidate_probe");
 assert.ok(baselineIndex >= 0 && baselineIndex < mutationIndex);
-assert.match(publication, /Validar conteúdo e calendário[\s\S]*npm run validate:artifacts/);
+assert.match(publication, /Preparar derivados e validar núcleo estrutural[\s\S]*npm run prepare:derived[\s\S]*npm run check:n8n/);
 assert.match(publication, /git add .*_data\/catalog-public\.json/);
 assert.match(publication, /git add .*_data\/products\/bikes/);
 assert.match(publication, /git add .*api\/products\.json/);
 assert.match(publication, /git add .*content\/product-discovery\/thebiker-media-catalog\.json/);
 assert.match(publication, /git pull --rebase --autostash origin main/);
-assert.match(publication, /permissions:[\s\S]*actions: write/);
-assert.equal((publication.match(/gh workflow run deploy\.yml/g) || []).length, 1);
-assert.match(publication, /if: \$\{\{ steps\.publication\.outputs\.status == 'published' \}\}[\s\S]*gh workflow run deploy\.yml/);
-assert.match(publication, /Garantir artigo aprovado para hoje antes da promo\u00e7\u00e3o[\s\S]*campaign:replenish[\s\S]*required-date/);
+assert.doesNotMatch(publication, /actions: write/);
+assert.equal((publication.match(/gh workflow run deploy\.yml/g) || []).length, 0);
+assert.match(publication, /catch_up:[\s\S]*type: boolean/);
+assert.match(publication, /id: candidate_probe[\s\S]*AUTOMATION_CATCH_UP_POLICY[\s\S]*echo "status=.*\.status.*GITHUB_OUTPUT/);
+assert.match(
+  publication,
+  /id: recovery[\s\S]*steps\.candidate_probe\.outcome == 'failure' \|\| \(steps\.candidate_probe\.outputs\.status == 'idle' && steps\.candidate_probe\.outputs\.item_id == ''\)[\s\S]*campaign:replenish[\s\S]*required-date/,
+);
+assert.doesNotMatch(
+  publication.match(/id: recovery[\s\S]*?working-directory: bot/)?.[0] || "",
+  /outputs\.status == 'already-published'/,
+  "already-published deve permanecer idempotente e não acionar recovery",
+);
+assert.match(publication, /id: candidate[\s\S]*remaining_overdue/);
+assert.match(
+  publication,
+  /Propagar recovery sem candidato em execução real[\s\S]*\(github\.event_name == 'schedule' \|\| inputs\.dry_run == false\) && steps\.recovery\.outcome != 'skipped' && steps\.candidate\.outputs\.item_id == ''[\s\S]*exit 1/,
+  "execução real não pode terminar verde depois de recovery sem candidato",
+);
+assert.match(publication, /AUTOMATION_EXPECTED_ITEM_ID: \$\{\{ steps\.candidate\.outputs\.item_id \}\}/);
+assert.match(publication, /Validar artefato publicado sem depender da freshness global[\s\S]*npm run validate:posts[\s\S]*npm run check:thebiker-links/);
+assert.match(publication, /Registrar publicação[\s\S]*steps\.publication\.outputs\.status == 'published'/);
 assert.match(publication, /CAMPAIGN_CURATED_OFFLINE_FALLBACK: "true"[\s\S]*AI_DETERMINISTIC_CURATED_FALLBACK: "true"/);
 assert.match(publication, /AI_DETERMINISTIC_CACHE_FIRST: "true"/);
 
@@ -45,23 +63,18 @@ assert.match(editorial, /Propagar falha da produção[\s\S]*EDITORIAL_MIN_SAFE_B
 assert.match(editorial, /Propagar falha de finalização[\s\S]*EDITORIAL_MIN_SAFE_BUFFER[\s\S]*buffer protegido/);
 assert.equal((editorial.match(/AI_DETERMINISTIC_CURATED_FALLBACK: "true"/g) || []).length, 3);
 
-const replenisher = read("replenish-buffer.yml");
-assert.match(replenisher, /cron: "15 2,8,14,20 \* \* \*"/);
-assert.match(replenisher, /campaign:replenish[\s\S]*target-buffer=.*max-attempts=.*allow-partial/);
-assert.match(replenisher, /CAMPAIGN_RESEARCH_MAX_ATTEMPTS: "2"/);
-assert.match(replenisher, /CAMPAIGN_CURATED_OFFLINE_FALLBACK: "true"/);
-assert.match(replenisher, /CAMPAIGN_CURATED_OFFLINE_FALLBACK: "true"[\s\S]*AI_DETERMINISTIC_CURATED_FALLBACK: "true"/);
-assert.match(replenisher, /AI_DETERMINISTIC_CACHE_FIRST: "true"/);
-assert.match(replenisher, /group: thebiker-editorial-write/);
-assert.match(replenisher, /git add _data\/products\/bikes/);
-assert.match(replenisher, /persist_status=1[\s\S]*if git pull --rebase --autostash origin main && git push[\s\S]*Falha ao persistir/);
-assert.match(replenisher, /id: validation[\s\S]*Validação\/persistência: \$\{\{ steps\.validation\.outcome \}\}/i);
-assert.match(replenisher, /npm run validate:artifacts \|\| validation_status=\$\?/);
+await import("./test-automation-observability.mjs");
 
 assert.match(editorial, /git add _data\/products\/bikes/);
 assert.match(editorial, /git add _data\/products\/bikes[^\n]*content\/product-discovery\/thebiker-media-catalog\.json/);
 
 assert.match(read("deploy.yml"), /Run publication gates[\s\S]*npm run validate:ci/);
-assert.match(read("pr-validate.yml"), /Preparar artefatos derivados temporais[\s\S]*npm run prepare:derived/);
+const prValidation = read("pr-validate.yml");
+assert.match(prValidation, /Preparar artefatos derivados temporais[\s\S]*npm run prepare:derived/);
+assert.match(
+  prValidation,
+  /npm run prepare:derived[\s\S]*npm run security:secrets[\s\S]*Auditar recibos editoriais publicados[\s\S]*npm run receipts:check[\s\S]*Lint \(JS\)/,
+  "PR deve bloquear recibo publicado divergente antes dos gates de conteúdo/deploy",
+);
 
 console.log("Resili\u00eancia dos workflows editoriais validada com sucesso.");
