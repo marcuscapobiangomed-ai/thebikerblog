@@ -227,7 +227,7 @@ jobs:
       - name: Propagar falha da produção
         if: steps.automation.outcome == 'failure' && steps.automation_retry.outcome != 'success'
         env:
-          EDITORIAL_MIN_SAFE_BUFFER: ${{ vars.EDITORIAL_MIN_SAFE_BUFFER || '3' }}
+          EDITORIAL_MIN_SAFE_BUFFER: ${{ vars.EDITORIAL_MIN_SAFE_BUFFER || '1' }}
         run: |
           scheduled_count="$(node --input-type=module -e "import fs from 'node:fs'; const c=JSON.parse(fs.readFileSync('bot/editorial-campaign.json','utf8')); const today=new Intl.DateTimeFormat('en-CA',{timeZone:'America/Sao_Paulo',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date()); console.log(c.items.filter(i=>i.status==='scheduled'&&i.publishDate>=today).length)")"
           if [ "$scheduled_count" -ge "$EDITORIAL_MIN_SAFE_BUFFER" ]; then
@@ -239,7 +239,7 @@ jobs:
       - name: Propagar falha de finalização
         if: steps.finalization.outcome == 'failure' && steps.finalization_retry.outcome != 'success'
         env:
-          EDITORIAL_MIN_SAFE_BUFFER: ${{ vars.EDITORIAL_MIN_SAFE_BUFFER || '3' }}
+          EDITORIAL_MIN_SAFE_BUFFER: ${{ vars.EDITORIAL_MIN_SAFE_BUFFER || '1' }}
         run: |
           scheduled_count="$(node --input-type=module -e "import fs from 'node:fs'; const c=JSON.parse(fs.readFileSync('bot/editorial-campaign.json','utf8')); const today=new Intl.DateTimeFormat('en-CA',{timeZone:'America/Sao_Paulo',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date()); console.log(c.items.filter(i=>i.status==='scheduled'&&i.publishDate>=today).length)")"
           if [ "$scheduled_count" -ge "$EDITORIAL_MIN_SAFE_BUFFER" ]; then

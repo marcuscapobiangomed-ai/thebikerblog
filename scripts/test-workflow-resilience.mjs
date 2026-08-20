@@ -62,6 +62,7 @@ assert.match(editorial, /steps\.finalization\.outcome == 'success' \|\| steps\.f
 assert.match(editorial, /Validar artefatos produzidos[\s\S]*npm run validate:artifacts/);
 assert.match(editorial, /Propagar falha da produção[\s\S]*EDITORIAL_MIN_SAFE_BUFFER[\s\S]*buffer protegido/);
 assert.match(editorial, /Propagar falha de finalização[\s\S]*EDITORIAL_MIN_SAFE_BUFFER[\s\S]*buffer protegido/);
+assert.equal((editorial.match(/EDITORIAL_MIN_SAFE_BUFFER: \$\{\{ vars\.EDITORIAL_MIN_SAFE_BUFFER \|\| '1' \}\}/g) || []).length, 2);
 assert.equal((editorial.match(/AI_DETERMINISTIC_CURATED_FALLBACK: "true"/g) || []).length, 3);
 
 await import("./test-automation-observability.mjs");
