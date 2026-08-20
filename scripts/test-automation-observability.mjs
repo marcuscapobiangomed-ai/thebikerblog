@@ -46,7 +46,9 @@ assert.doesNotMatch(alerts, /Causa observada/);
 
 const deploy = read("deploy.yml");
 assert.match(deploy, /force_deploy:/);
-assert.match(deploy, /if: \$\{\{ github\.event_name == 'push' \|\| inputs\.force_deploy == true \}\}/);
+assert.match(deploy, /workflow_run:[\s\S]*TheBiker — Publicação diária ao meio-dia[\s\S]*TheBiker — Atualização diária de corridas/);
+assert.match(deploy, /github\.event_name == 'push' \|\| inputs\.force_deploy == true \|\| \(github\.event_name == 'workflow_run' && github\.event\.workflow_run\.conclusion == 'success'\)/);
+assert.equal((deploy.match(/actions\/checkout@v7[\s\S]*?ref: main/g) || []).length, 2);
 
 for (const name of ["replenish-buffer.yml", "automation-alerts.yml", "deploy.yml"]) {
   yaml.load(read(name));
