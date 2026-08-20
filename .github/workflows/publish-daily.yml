@@ -149,6 +149,11 @@ jobs:
             sleep $((attempt * 5))
           done
           exit 1
+      - name: Solicitar deploy do SHA publicado
+        if: ${{ steps.publication.outputs.status == 'published' && (github.event_name == 'schedule' || !inputs.dry_run) }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST "repos/${{ github.repository }}/dispatches" -f event_type=editorial-deploy
       - name: Resumo da recuperação transacional
         if: always()
         run: |

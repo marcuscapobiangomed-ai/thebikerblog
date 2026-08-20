@@ -42,6 +42,7 @@ assert.match(
 assert.match(publication, /AUTOMATION_EXPECTED_ITEM_ID: \$\{\{ steps\.candidate\.outputs\.item_id \}\}/);
 assert.match(publication, /Validar artefato publicado sem depender da freshness global[\s\S]*npm run validate:posts[\s\S]*npm run check:thebiker-links/);
 assert.match(publication, /Registrar publicação[\s\S]*steps\.publication\.outputs\.status == 'published'/);
+assert.match(publication, /Solicitar deploy do SHA publicado[\s\S]*steps\.publication\.outputs\.status == 'published'[\s\S]*repos\/\$\{\{ github\.repository \}\}\/dispatches[\s\S]*event_type=editorial-deploy/);
 assert.match(publication, /CAMPAIGN_CURATED_OFFLINE_FALLBACK: "true"[\s\S]*AI_DETERMINISTIC_CURATED_FALLBACK: "true"/);
 assert.match(publication, /AI_DETERMINISTIC_CACHE_FIRST: "true"/);
 
@@ -70,8 +71,8 @@ assert.match(editorial, /git add _data\/products\/bikes[^\n]*content\/product-di
 
 const deploy = read("deploy.yml");
 assert.match(deploy, /Run publication gates[\s\S]*npm run validate:ci/);
-assert.match(deploy, /workflow_run:[\s\S]*TheBiker — Publicação diária ao meio-dia[\s\S]*TheBiker — Atualização diária de corridas[\s\S]*types: \[completed\]/);
-assert.match(deploy, /github\.event_name == 'workflow_run' && github\.event\.workflow_run\.conclusion == 'success'/);
+assert.match(deploy, /repository_dispatch:[\s\S]*types: \[editorial-deploy\]/);
+assert.match(deploy, /github\.event_name == 'repository_dispatch'/);
 assert.match(deploy, /actions\/checkout@v7[\s\S]*ref: main/);
 const prValidation = read("pr-validate.yml");
 assert.match(prValidation, /Preparar artefatos derivados temporais[\s\S]*npm run prepare:derived/);

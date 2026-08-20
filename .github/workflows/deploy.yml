@@ -3,11 +3,8 @@ name: Deploy Blog
 on:
   push:
     branches: [main]
-  workflow_run:
-    workflows:
-      - "TheBiker — Publicação diária ao meio-dia"
-      - "TheBiker — Atualização diária de corridas"
-    types: [completed]
+  repository_dispatch:
+    types: [editorial-deploy]
   workflow_dispatch:
     inputs:
       force_deploy:
@@ -24,9 +21,9 @@ concurrency:
 
 jobs:
   build:
-    # Pushes feitos pelo GITHUB_TOKEN não encadeiam novos workflows. O evento
-    # workflow_run cobre publicação/race sync sem dar actions:write a eles.
-    if: ${{ github.event_name == 'push' || inputs.force_deploy == true || (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success') }}
+    # Pushes feitos pelo GITHUB_TOKEN não encadeiam novos workflows. Os writers
+    # enviam repository_dispatch apenas depois de persistir um novo SHA.
+    if: ${{ github.event_name == 'push' || inputs.force_deploy == true || github.event_name == 'repository_dispatch' }}
     permissions:
       contents: read
     runs-on: ubuntu-latest
