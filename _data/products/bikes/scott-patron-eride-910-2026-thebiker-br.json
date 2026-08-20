@@ -11,7 +11,7 @@
   "storeProductUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-patron-eride-910-2026/",
   "image": "/assets/img/products/comparator/scott-patron-eride-910-2026.webp",
   "portfolioStatus": "verified",
-  "portfolioVerifiedAt": "2026-08-19",
+  "portfolioVerifiedAt": "2026-08-20",
   "theBikerPrice": 74999,
   "frame": {
     "material": "carbon"
@@ -34,7 +34,7 @@
   "tires": {},
   "testedByTheBikerBlog": false,
   "createdAt": "2026-08-05",
-  "updatedAt": "2026-08-19",
+  "updatedAt": "2026-08-20",
   "reviewStatus": "verified",
   "sourceId": "thebiker-scott-patron-eride-910-2026"
 }
