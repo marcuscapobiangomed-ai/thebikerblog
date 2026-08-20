@@ -72,3 +72,9 @@ jobs:
             sleep $((attempt * 5))
           done
           exit 1
+
+      - name: Solicitar deploy do snapshot persistido
+        if: ${{ github.event_name == 'schedule' || !inputs.dry_run }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST "repos/${{ github.repository }}/dispatches" -f event_type=editorial-deploy
