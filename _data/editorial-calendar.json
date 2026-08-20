@@ -25,7 +25,7 @@
       "title": "Scott Addict RC Pro: roteiro documental para conferir montagem, medidas e compatibilidade",
       "summary": "Guia baseado em documentação oficial e conhecimento interno rastreável para conferir a configuração sem presumir teste presencial.",
       "category": "review",
-      "status": "planned"
+      "status": "scheduled"
     },
     {
       "day": 4,
@@ -33,7 +33,7 @@
       "title": "Scott Addict RC 20: como ler a ficha oficial antes de comparar versões e componentes",
       "summary": "Leitura técnica da ficha cadastrada, com limites explícitos e verificação de cada componente na fonte correspondente.",
       "category": "review",
-      "status": "planned"
+      "status": "scheduled"
     },
     {
       "day": 5,
@@ -41,18 +41,18 @@
       "title": "Scott Addict 50: geometria, montagem e pontos que precisam ser confirmados na ficha atual",
       "summary": "Roteiro documental para organizar medidas, componentes e lacunas sem transformar catálogo ou descrição comercial em teste de campo.",
       "category": "review",
-      "status": "planned"
+      "status": "scheduled"
     },
     {
       "day": 6,
       "publishDate": "2026-08-26",
-      "title": "Prévia da principal corrida profissional da semana: percurso, favoritos e pontos técnicos",
-      "summary": "Cobertura profissional vinculada a um evento oficial, com percurso, largadas e transmissão confirmados novamente antes da publicação.",
+      "title": "Radar profissional: próxima prova com calendário e resultados oficialmente verificáveis",
+      "summary": "Reserva de cobertura profissional que só avança depois de ser vinculada a um evento e a fontes oficiais revalidadas.",
       "category": "competicoes",
-      "status": "planned",
+      "status": "blocked",
       "race": {
         "track": "professional-coverage",
-        "format": "preview"
+        "format": "weekly-roundup"
       }
     },
     {

@@ -1468,6 +1468,48 @@
         "title": "Scott Scale 940: checklist documental para conferir quadro e montagem"
       },
       "reason": "[RESEARCH_INSUFFICIENT] pesquisa verificada indisponível"
+    },
+    {
+      "recordedAt": "2026-08-20T15:57:05.302Z",
+      "campaignId": "thebiker-rolling-2026-08-21",
+      "replacedItem": {
+        "day": 6,
+        "publishDate": "2026-08-26",
+        "id": "corridas-pro-previa-principal",
+        "title": "Prévia da principal corrida profissional da semana: percurso, favoritos e pontos técnicos",
+        "summary": "Cobertura profissional vinculada a um evento oficial, com percurso, largadas e transmissão confirmados novamente antes da publicação.",
+        "category": "competicoes",
+        "race": {
+          "track": "professional-coverage",
+          "format": "preview",
+          "eventIds": [
+            "uci-2026-mtb-74366"
+          ],
+          "sourceStatus": "blocked"
+        },
+        "freshness": "event-driven",
+        "status": "blocked",
+        "productIds": [],
+        "heroImage": {
+          "mode": "conceptual"
+        },
+        "imageAssetIds": [],
+        "blockReason": "[TRANSIENT_PROVIDER] Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat",
+        "failure": {
+          "code": "TRANSIENT_PROVIDER",
+          "retryable": true,
+          "stage": "production",
+          "message": "Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat",
+          "recordedAt": "2026-08-20T15:57:05.302Z"
+        },
+        "attempts": 2,
+        "lastAttemptAt": "2026-08-20T15:57:05.302Z"
+      },
+      "replacement": {
+        "id": "reserva-radar-profissional-oficial",
+        "title": "Radar profissional: próxima prova com calendário e resultados oficialmente verificáveis"
+      },
+      "reason": "[TRANSIENT_PROVIDER] Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat"
     }
   ]
 }

@@ -1,0 +1,128 @@
+{
+  "slug": "contingencia-addict-rc-pro-documentacao",
+  "title": "Scott Addict RC Pro: roteiro documental para conferir montagem, medidas e compatibilidade",
+  "content_type": "review",
+  "review_method": "desk-research",
+  "tested_by_thebikerblog": false,
+  "market": "Brasil",
+  "generated_at": "2026-08-20",
+  "status": "pesquisa_concluida",
+  "sources": [
+    {
+      "name": "TheBiker — Bicicleta Scott Addict RC Pró Di2 2026 - Pré Venda",
+      "url": "https://thebikershop.com.br/produtos/bicicleta-scott-addict-rc-pro-di2-2026-pre-venda/",
+      "accessed": "2026-08-04",
+      "id": "internal-src-1",
+      "type": "store"
+    },
+    {
+      "name": "Scott — página oficial do modelo",
+      "url": "https://www.scott-sports.com/global/en/product/scott-addict-rc-pro-bike",
+      "accessed": "2026-08-04",
+      "id": "internal-src-2",
+      "type": "manufacturer"
+    }
+  ],
+  "editorialPriority": "P1",
+  "confirmed_facts": [
+    {
+      "fact": "identity.storeName: Bicicleta Scott Addict RC Pró Di2 2026 - Pré Venda",
+      "source_ids": [
+        "internal-src-1"
+      ],
+      "evidence_quote": "novidades type listitem position 3 name bicicleta scott addict rc pro di2 2026 pre venda item https thebikershop com br"
+    },
+    {
+      "fact": "commercial.storeUrl: https://thebikershop.com.br/produtos/bicicleta-scott-addict-rc-pro-di2-2026-pre-venda/",
+      "source_ids": [
+        "internal-src-1"
+      ],
+      "evidence_quote": "pro di2 2026 pre venda item https thebikershop com br produtos bicicleta scott addict rc pro di2 2026 pre venda mainentity type product id https"
+    },
+    {
+      "fact": "identity.officialUrl: https://www.scott-sports.com/global/en/product/scott-addict-rc-pro-bike",
+      "source_ids": [
+        "internal-src-2"
+      ],
+      "evidence_quote": "type listitem position 6 item id https www scott sports com global en product scott addict rc pro bike name scott addict rc pro"
+    },
+    {
+      "fact": "identity.manufacturerModelCode: 425683",
+      "source_ids": [
+        "internal-src-2"
+      ],
+      "evidence_quote": "pro bike product type product id 425683 product price else if false"
+    },
+    {
+      "fact": "identity.color: cumulus white/carbon black",
+      "source_ids": [
+        "internal-src-2"
+      ],
+      "evidence_quote": "lightweight road bikes addict rc color cumulus white carbon black description engineered to defy gravity"
+    },
+    {
+      "fact": "identity.sizes: XXS, XS, S, M, L, XL, XXL",
+      "source_ids": [
+        "internal-src-2"
+      ],
+      "evidence_quote": "cumulus white carbon black 2 size xxs xs s m l xl xxl size chart times var defaulttheme"
+    },
+    {
+      "fact": "frame.material: Addict RC HMX Carbon",
+      "source_ids": [
+        "internal-src-2"
+      ],
+      "evidence_quote": "pro bike model 425683 key features addict rc hmx carbon frame addict rc hmx carbon"
+    },
+    {
+      "fact": "fork.model: Addict RC HMX Flatmount Disc",
+      "source_ids": [
+        "internal-src-2"
+      ],
+      "evidence_quote": "derailleur hanger internal cable routing fork addict rc hmx flatmount disc 27 2mm eccentric carbon steerer"
+    },
+    {
+      "fact": "drivetrain.groupset: Shimano Dura-Ace Di2",
+      "source_ids": [
+        "internal-src-2"
+      ],
+      "evidence_quote": "frame addict rc hmx carbon fork shimano dura ace di2 disc 24 speed syncros capital"
+    },
+    {
+      "fact": "drivetrain.shifting: electronic",
+      "source_ids": [
+        "internal-src-2"
+      ],
+      "evidence_quote": "dura ace rd r9250 24 speed electronic shift system front derailleur shimano"
+    },
+    {
+      "fact": "drivetrain.rearDerailleur: Shimano Dura-Ace RD-R9250",
+      "source_ids": [
+        "internal-src-2"
+      ],
+      "evidence_quote": "2mm eccentric carbon steerer rear derailleur shimano dura ace rd r9250 24 speed electronic shift system"
+    },
+    {
+      "fact": "drivetrain.cassette: Shimano Dura-Ace CS-R9200-12, 11-34",
+      "source_ids": [
+        "internal-src-2"
+      ],
+      "evidence_quote": "dura ace cn m9100 12 cassette shimano dura ace cs r9200 12 11 34 brakes shimano br r9270 hyd"
+    }
+  ],
+  "limitations": [
+    "Pesquisa web indisponível nesta execução (Groq sem evidência: Pesquisa bloqueada por integridade de fontes: pesquisa concluída sem fontes rastreáveis; pesquisa sem fatos explicitamente fundamentados; Gemini sem evidência: Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat); conteúdo limitado à base interna com fontes oficiais.",
+    "9 fato(s) removido(s) por falta de trecho verificavel na fonte recuperada."
+  ],
+  "grounding": {
+    "queries": [],
+    "sourceCount": 2,
+    "fallback": "internal-product-knowledge",
+    "claimContract": "explicit-units-v1",
+    "evidenceContract": "retrieved-excerpt-v1",
+    "verifiedAt": "2026-08-20T15:57:13.238Z"
+  },
+  "portfolio_evidence_url": "https://thebikershop.com.br/bikes/",
+  "portfolio_verified_at": "2026-08-20",
+  "portfolio_evidence_scope": "portfolio-category"
+}

@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 2,
+  "status": "approved",
+  "editorialUse": "publishable",
+  "assetType": "official-product-photo",
+  "factualSubject": "exact-product",
+  "editorialScope": "portfolio",
+  "purpose": "Ilustrar Scott Addict RC 20: como ler a ficha oficial antes de comparar versões e componentes com produto real do catálogo TheBiker.",
+  "alt": "Bicicleta Scott Addict RC 20 Di2 2026 - Pré Venda em fotografia oficial de TheBiker Shop",
+  "caption": "Bicicleta Scott Addict RC 20 Di2 2026 - Pré Venda, em fotografia oficial de TheBiker Shop.",
+  "credit": "TheBiker Shop",
+  "containsText": false,
+  "aiGenerated": false,
+  "assetId": "thebiker-bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9-ca2844fc68",
+  "sha256": "ca2844fc68f129d9c05e7a60f31f212f0eed787a1b781e5794c19c54f7655473",
+  "perceptualHash": "0001011111100111111101101011000100000001101100011110111100011111",
+  "preserveFullProduct": true,
+  "outputFormat": "webp",
+  "qualityTier": "standard",
+  "matchedProduct": {
+    "id": "bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9",
+    "name": "Bicicleta Scott Addict RC 20 Di2 2026 - Pré Venda",
+    "sku": null,
+    "matchLevel": "exact-id"
+  },
+  "depictedBrands": [
+    "Scott"
+  ],
+  "depictedProducts": [
+    "Bicicleta Scott Addict RC 20 Di2 2026 - Pré Venda"
+  ],
+  "focalPoint": {
+    "x": 0.5,
+    "y": 0.5
+  },
+  "source": {
+    "type": "thebiker",
+    "name": "TheBiker Shop",
+    "url": "https://thebikershop.com.br/produtos/bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9/",
+    "fileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/9f14bd5e-7451-11f0-bced-76750ea50910-2f9062f16505f0bfff17751629729869-1024-1024.webp",
+    "localFile": "source.webp",
+    "obtainedAt": "2026-08-20",
+    "license": "Uso editorial no blog oficial TheBiker",
+    "licenseEvidence": "Diretriz editorial registrada pelo responsável do blog oficial TheBiker.",
+    "rightsPolicyId": "thebiker-official-editorial-v1"
+  },
+  "files": {
+    "hero": {
+      "file": "hero-1600.webp",
+      "width": 1600,
+      "height": 900,
+      "maxKB": 300
+    },
+    "mobile": {
+      "file": "hero-800.webp",
+      "width": 800,
+      "height": 450,
+      "maxKB": 160
+    },
+    "card": {
+      "file": "card-640.webp",
+      "width": 640,
+      "height": 360,
+      "maxKB": 100
+    }
+  },
+  "approval": {
+    "reviewedBy": "TheBiker deterministic image gate",
+    "approvedAt": "2026-08-20",
+    "method": "automated-editorial-gate",
+    "checks": [
+      "fonte-oficial",
+      "resolucao-padrao-declarada",
+      "webp-otimizado",
+      "direitos",
+      "produto-relacionado",
+      "sha256",
+      "hash-perceptual",
+      "sem-concorrente"
+    ]
+  },
+  "composition": {
+    "strategy": "trim-contain-safe-area",
+    "safeArea": 0.9,
+    "trimThreshold": 16,
+    "sourceWidth": 800,
+    "sourceHeight": 800,
+    "subjectWidth": 800,
+    "subjectHeight": 784
+  }
+}

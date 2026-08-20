@@ -154,15 +154,70 @@
       "summary": "Guia baseado em documentação oficial e conhecimento interno rastreável para conferir a configuração sem presumir teste presencial.",
       "category": "review",
       "freshness": "revalidate-24h",
-      "status": "planned",
+      "status": "scheduled",
       "productIds": [
+        "suporte-de-garmin-syncros-ic-aero-scott-foil-2023-e-addict-rc-2025",
         "bicicleta-scott-addict-rc-pro-di2-2026-pre-venda"
       ],
       "heroImage": {
-        "mode": "conceptual"
+        "mode": "real-context",
+        "productId": "bicicleta-scott-addict-rc-pro-di2-2026-pre-venda",
+        "relationship": "category-example",
+        "rationale": "Fotografia real do catálogo TheBiker selecionada deterministicamente como exemplo visual da categoria técnica abordada."
       },
-      "imageAssetIds": [],
-      "attempts": 0
+      "postPath": "_posts/drafts/2026-08-23-contingencia-addict-rc-pro-documentacao.md",
+      "imageManifestPath": "assets/img/posts/contingencia-addict-rc-pro-documentacao/image-manifest.json",
+      "imageStatus": "approved",
+      "imageAssetIds": [
+        "thebiker-bicicleta-scott-addict-rc-pro-di2-2026-pre-venda-5caaf12305"
+      ],
+      "imageValidatedAt": "2026-08-20T15:57:05.302Z",
+      "attempts": 1,
+      "lastAttemptAt": "2026-08-20T15:57:05.302Z",
+      "aiReview": {
+        "score": 92,
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "premiumEditUsed": false,
+        "providers": {
+          "deterministicFallback": "grounded-deterministic"
+        },
+        "generatedAt": "2026-08-20T15:57:05.302Z",
+        "contentHash": "sha256:a8ff175b2d60aff28a3e307deb703a0c37c3c06c99f94054025aa813328a0053",
+        "deterministicFullArticleFallbackUsed": true,
+        "deterministicFullArticleFallbackTrigger": "pipeline-failure"
+      },
+      "editorialReceipt": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-editorial-2026-08-v2",
+        "origin": "pipeline",
+        "reviewedContentHash": "sha256:a8ff175b2d60aff28a3e307deb703a0c37c3c06c99f94054025aa813328a0053",
+        "scheduledContentHash": "sha256:e88a771cc74a9162f4c66f1e0998fb90c5768981fdea8620dfce6d47220606cb",
+        "researchHash": "sha256:cf210477672036b68dcfb507ced70b7b00489239882bb5768381d8e46de5fbeb",
+        "sourceHash": null,
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "issuedAt": "2026-08-20T15:57:05.302Z"
+      },
+      "visualDecision": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-visual-autonomy-v1",
+        "inputHash": "sha256:4aec09ddcb3c4d93be2b98e6031238e924c382a283b5d78e3f9cccb304ddef33",
+        "mode": "real-context",
+        "productId": "bicicleta-scott-addict-rc-pro-di2-2026-pre-venda",
+        "score": 100,
+        "hardGates": {
+          "semanticMatch": true,
+          "realAsset": true,
+          "explicitProduct": true,
+          "officialSource": true,
+          "approvedRights": true,
+          "publishableResolution": true,
+          "uniqueAsset": true
+        },
+        "blockers": [],
+        "issuedAt": "2026-08-20T15:57:05.302Z"
+      }
     },
     {
       "day": 4,
@@ -172,15 +227,70 @@
       "summary": "Leitura técnica da ficha cadastrada, com limites explícitos e verificação de cada componente na fonte correspondente.",
       "category": "review",
       "freshness": "revalidate-24h",
-      "status": "planned",
+      "status": "scheduled",
       "productIds": [
+        "suporte-de-garmin-syncros-ic-aero-scott-foil-2023-e-addict-rc-2025",
         "bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9"
       ],
       "heroImage": {
-        "mode": "conceptual"
+        "mode": "real-context",
+        "productId": "bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9",
+        "relationship": "category-example",
+        "rationale": "Fotografia real do catálogo TheBiker selecionada deterministicamente como exemplo visual da categoria técnica abordada."
       },
-      "imageAssetIds": [],
-      "attempts": 0
+      "postPath": "_posts/drafts/2026-08-24-contingencia-addict-rc20-documentacao.md",
+      "imageManifestPath": "assets/img/posts/contingencia-addict-rc20-documentacao/image-manifest.json",
+      "imageStatus": "approved",
+      "imageAssetIds": [
+        "thebiker-bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9-ca2844fc68"
+      ],
+      "imageValidatedAt": "2026-08-20T15:57:05.302Z",
+      "attempts": 1,
+      "lastAttemptAt": "2026-08-20T15:57:05.302Z",
+      "aiReview": {
+        "score": 92,
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "premiumEditUsed": false,
+        "providers": {
+          "deterministicFallback": "grounded-deterministic"
+        },
+        "generatedAt": "2026-08-20T15:57:05.302Z",
+        "contentHash": "sha256:cb5feb593e16b81d70ba1ab8ea6b69bb9930f711468400d19698910c411bbbda",
+        "deterministicFullArticleFallbackUsed": true,
+        "deterministicFullArticleFallbackTrigger": "pipeline-failure"
+      },
+      "editorialReceipt": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-editorial-2026-08-v2",
+        "origin": "pipeline",
+        "reviewedContentHash": "sha256:cb5feb593e16b81d70ba1ab8ea6b69bb9930f711468400d19698910c411bbbda",
+        "scheduledContentHash": "sha256:509880ebd22076ffd21195fd92efbdc33f030b9cd56a1604f0c13290ba699b6d",
+        "researchHash": "sha256:9a94c4727d41dd5ec9ab4c564ff3aad0a8d085fa2573e64276efeb6d83ebe7e7",
+        "sourceHash": null,
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "issuedAt": "2026-08-20T15:57:05.302Z"
+      },
+      "visualDecision": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-visual-autonomy-v1",
+        "inputHash": "sha256:212ac29ed5f51bcdb7df3349c3136edf68dcedc79cfacb93089b084e89ec60fa",
+        "mode": "real-context",
+        "productId": "bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9",
+        "score": 100,
+        "hardGates": {
+          "semanticMatch": true,
+          "realAsset": true,
+          "explicitProduct": true,
+          "officialSource": true,
+          "approvedRights": true,
+          "publishableResolution": true,
+          "uniqueAsset": true
+        },
+        "blockers": [],
+        "issuedAt": "2026-08-20T15:57:05.302Z"
+      }
     },
     {
       "day": 5,
@@ -190,37 +300,111 @@
       "summary": "Roteiro documental para organizar medidas, componentes e lacunas sem transformar catálogo ou descrição comercial em teste de campo.",
       "category": "review",
       "freshness": "revalidate-24h",
-      "status": "planned",
+      "status": "scheduled",
       "productIds": [
+        "suporte-de-garmin-syncros-ic-aero-scott-foil-2023-e-addict-rc-2025",
         "bicicleta-scott-addict-50-2026-pre-venda-1bxzy"
       ],
       "heroImage": {
-        "mode": "conceptual"
+        "mode": "real-context",
+        "productId": "bicicleta-scott-addict-50-2026-pre-venda-1bxzy",
+        "relationship": "category-example",
+        "rationale": "Fotografia real do catálogo TheBiker selecionada deterministicamente como exemplo visual da categoria técnica abordada."
       },
-      "imageAssetIds": [],
-      "attempts": 0
+      "postPath": "_posts/drafts/2026-08-25-contingencia-addict-50-documentacao.md",
+      "imageManifestPath": "assets/img/posts/contingencia-addict-50-documentacao/image-manifest.json",
+      "imageStatus": "approved",
+      "imageAssetIds": [
+        "thebiker-bicicleta-scott-addict-50-2026-pre-venda-1bxzy-380ed941d1"
+      ],
+      "imageValidatedAt": "2026-08-20T15:57:05.302Z",
+      "attempts": 1,
+      "lastAttemptAt": "2026-08-20T15:57:05.302Z",
+      "aiReview": {
+        "score": 92,
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "premiumEditUsed": false,
+        "providers": {
+          "factSheet": "groq",
+          "draft": "gemini",
+          "critique": "gemini",
+          "final": "gemini",
+          "finalAudit": "groq",
+          "deterministicFallback": "grounded-deterministic"
+        },
+        "generatedAt": "2026-08-20T15:57:05.302Z",
+        "contentHash": "sha256:aaab0bc8b4f012240609eeb089456e513cb3854d1f88d741b3dce627de6116e4",
+        "sourceHash": "7a340544a6cede78a625218e568b31b42beea74a5d2a615dcdfd9dd1dfa31e77",
+        "deterministicFullArticleFallbackUsed": true,
+        "deterministicFullArticleFallbackTrigger": "repair-fallback"
+      },
+      "editorialReceipt": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-editorial-2026-08-v2",
+        "origin": "pipeline",
+        "reviewedContentHash": "sha256:aaab0bc8b4f012240609eeb089456e513cb3854d1f88d741b3dce627de6116e4",
+        "scheduledContentHash": "sha256:91079f5bb2c646d28c99a9896da7a4be8d998e58abb1f5d11843df6723dcaac2",
+        "researchHash": "sha256:e816b572a8391ca0236e7d852618fa2afe8062609e9c86840413313d718f93e2",
+        "sourceHash": "7a340544a6cede78a625218e568b31b42beea74a5d2a615dcdfd9dd1dfa31e77",
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "issuedAt": "2026-08-20T15:57:05.302Z"
+      },
+      "visualDecision": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-visual-autonomy-v1",
+        "inputHash": "sha256:a702df3c961e070d671cda2b97cdc5168d15e3569c2bfde1b84cba17f383ca20",
+        "mode": "real-context",
+        "productId": "bicicleta-scott-addict-50-2026-pre-venda-1bxzy",
+        "score": 100,
+        "hardGates": {
+          "semanticMatch": true,
+          "realAsset": true,
+          "explicitProduct": true,
+          "officialSource": true,
+          "approvedRights": true,
+          "publishableResolution": true,
+          "uniqueAsset": true
+        },
+        "blockers": [],
+        "issuedAt": "2026-08-20T15:57:05.302Z"
+      }
     },
     {
       "day": 6,
       "publishDate": "2026-08-26",
-      "id": "corridas-pro-previa-principal",
-      "title": "Prévia da principal corrida profissional da semana: percurso, favoritos e pontos técnicos",
-      "summary": "Cobertura profissional vinculada a um evento oficial, com percurso, largadas e transmissão confirmados novamente antes da publicação.",
+      "id": "reserva-radar-profissional-oficial",
+      "title": "Radar profissional: próxima prova com calendário e resultados oficialmente verificáveis",
+      "summary": "Reserva de cobertura profissional que só avança depois de ser vinculada a um evento e a fontes oficiais revalidadas.",
       "category": "competicoes",
       "race": {
         "track": "professional-coverage",
-        "format": "preview",
-        "eventIds": [],
-        "sourceStatus": "pending"
+        "format": "weekly-roundup",
+        "eventIds": [
+          "uci-2026-roa-76940",
+          "uci-2026-roa-76941",
+          "uci-2026-mtb-74366"
+        ],
+        "sourceStatus": "blocked"
       },
       "freshness": "event-driven",
-      "status": "planned",
+      "status": "blocked",
       "productIds": [],
       "heroImage": {
         "mode": "conceptual"
       },
       "imageAssetIds": [],
-      "attempts": 0
+      "attempts": 2,
+      "lastAttemptAt": "2026-08-20T15:57:05.302Z",
+      "failure": {
+        "code": "TRANSIENT_PROVIDER",
+        "retryable": true,
+        "stage": "production",
+        "message": "Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat",
+        "recordedAt": "2026-08-20T15:57:05.302Z"
+      },
+      "blockReason": "[TRANSIENT_PROVIDER] Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat"
     },
     {
       "day": 7,
@@ -742,6 +926,15 @@
       "summary": "Guia técnico para documentar ruído e restrição de movimento sem prescrever desmontagem incompatível com o quadro.",
       "category": "componentes",
       "productIds": []
+    },
+    {
+      "id": "reserva-limpeza-transmissao-metodo",
+      "title": "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação",
+      "summary": "Procedimento técnico baseado em orientações oficiais para remover contaminantes, verificar danos e devolver a corrente ao uso seguro.",
+      "category": "manutencao-ajustes",
+      "productIds": [
+        "corrente-sram-nx-eagle"
+      ]
     }
   ]
 }
