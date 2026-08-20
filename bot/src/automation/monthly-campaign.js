@@ -188,12 +188,19 @@ function distributeRaceSlots(candidates, raceSlots, primaryLength) {
   return [...result, ...reserveRegular]
 }
 
-function uniqueCandidates(candidates, occupied) {
-  const seen = new Set(occupied)
+function candidateTitleKey(value) {
+  const title = typeof value === 'string' ? value : value?.title
+  return normalize(title || '').split(' ').filter((token) => token.length >= 4).slice(0, 7).join(' ')
+}
+
+function uniqueCandidates(candidates, occupied = [], occupiedIds = []) {
+  const seen = new Set(occupied.map(candidateTitleKey).filter(Boolean))
+  const seenIds = new Set(occupiedIds)
   return candidates.filter((candidate) => {
-    const key = normalize(candidate.title).split(' ').filter((token) => token.length >= 4).slice(0, 7).join(' ')
-    if (!key || seen.has(key)) return false
+    const key = candidateTitleKey(candidate)
+    if (!key || seen.has(key) || seenIds.has(candidate.id)) return false
     seen.add(key)
+    seenIds.add(candidate.id)
     return true
   })
 }
@@ -301,6 +308,7 @@ export async function buildRollingCampaign({ existing, report, now = new Date(),
     retained.set(date, structuredClone(item))
   }
   const occupiedTitles = [...retained.values()].map((item) => normalize(item.title))
+  const occupiedIds = [...retained.values()].map((item) => item.id)
   const fresh = (report.briefs || []).filter((brief) => brief.action === 'new-content').map(candidateFromBrief)
   const raceSlots = raceSlotsFor(retained)
   const contingency = CONTINGENCY_TOPIC_TEMPLATES.map(candidateFromReserve)
@@ -308,12 +316,12 @@ export async function buildRollingCampaign({ existing, report, now = new Date(),
     ...contingency.slice(0, 7),
     ...fresh,
     ...contingency.slice(7),
-  ], occupiedTitles)
+  ], occupiedTitles, occupiedIds)
   const openDates = dates.filter((date) => !retained.has(date)).length
   const missingBeforeAi = openDates + 3 - candidates.length - raceSlots.length
   if (missingBeforeAi > 0) {
     const aiCandidates = await expandWithAi({ missing: missingBeforeAi, report, occupiedTitles: [...occupiedTitles, ...candidates.map((item) => item.title)], ai })
-    candidates = uniqueCandidates([...candidates, ...aiCandidates], occupiedTitles)
+    candidates = uniqueCandidates([...candidates, ...aiCandidates], occupiedTitles, occupiedIds)
   }
   candidates = distributeRaceSlots(candidates, raceSlots, openDates)
   const items = dates.map((publishDate, index) => {
@@ -331,7 +339,7 @@ export async function buildRollingCampaign({ existing, report, now = new Date(),
   const reservePool = uniqueCandidates([
     ...candidates,
     ...fresh,
-  ], items.map((item) => normalize(item.title))).filter((item) => !usedIds.has(item.id))
+  ], items.map((item) => normalize(item.title)), items.map((item) => item.id)).filter((item) => !usedIds.has(item.id))
   if (reservePool.length < 3) {
     const defaults = [
       { id: 'reserva-diagnostico-ruidos-bike', title: 'Diagnóstico de ruídos na bicicleta: método por carga, frequência e interface', summary: 'Protocolo técnico para isolar ruídos de transmissão, cockpit, rodas e quadro sem substituir componentes por tentativa e erro.', category: 'manutencao-ajustes' },
