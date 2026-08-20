@@ -61,7 +61,7 @@
       "title": "Scott Scale 980: método para distinguir variantes, cores e montagens sem misturar fichas",
       "summary": "Comparação documental entre registros internos rastreáveis, preservando diferenças de identificação e dados ainda não confirmados.",
       "category": "comparativo",
-      "status": "planned"
+      "status": "blocked"
     },
     {
       "day": 8,
@@ -69,7 +69,7 @@
       "title": "Scott Spark RC Expert: arquitetura de suspensão e componentes confirmados na documentação",
       "summary": "Análise documental da plataforma cadastrada com separação clara entre especificação, ajuste possível e desempenho não testado.",
       "category": "review",
-      "status": "planned"
+      "status": "scheduled"
     },
     {
       "day": 9,
@@ -77,7 +77,7 @@
       "title": "Resumo da principal corrida profissional da semana: resultado, tática e impacto na temporada",
       "summary": "Análise pós-prova baseada em resultado oficial, movimentos decisivos e contexto técnico, sem transformar rumor ou impressão em fato.",
       "category": "competicoes",
-      "status": "planned",
+      "status": "blocked",
       "race": {
         "track": "professional-coverage",
         "format": "recap"
@@ -89,7 +89,7 @@
       "title": "Scott Spark RC World Cup: checklist de especificações e limites da análise documental",
       "summary": "Checklist rastreável de quadro, suspensão e montagem, sem extrapolar comportamento dinâmico ou disponibilidade comercial.",
       "category": "review",
-      "status": "planned"
+      "status": "scheduled"
     },
     {
       "day": 11,

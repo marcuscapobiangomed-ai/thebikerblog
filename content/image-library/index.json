@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-08-20T16:02:49.089Z",
+  "updatedAt": "2026-08-20T16:21:08.339Z",
   "assets": [
     {
       "assetId": "thebiker-scott-addict-rc-pro-hmx-frame-set-def10da96a",
@@ -422,6 +422,40 @@
       "uses": [
         {
           "postId": "contingencia-addict-50-documentacao",
+          "position": "hero",
+          "usedAt": "2026-08-20T12:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "assetId": "thebiker-bicicleta-scott-spark-rc-expert-2027-3e931d818d",
+      "sha256": "3e931d818d25444b671f7570314e61a202135db8df348d117cf6310406c30c9b",
+      "perceptualHash": "0111110000110000011110000011111001011111010110101000111000001110",
+      "sourcePageUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-spark-rc-expert-2027/",
+      "sourceFileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/4275478350m-ed42d0a9f91fbe067e17812055738459-1024-1024.webp",
+      "productId": "bicicleta-scott-spark-rc-expert-2027",
+      "productName": "Bicicleta Scott Spark RC Expert 2027",
+      "rightsPolicyId": "thebiker-official-editorial-v1",
+      "uses": [
+        {
+          "postId": "contingencia-spark-rc-expert-documentacao",
+          "position": "hero",
+          "usedAt": "2026-08-20T12:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "assetId": "thebiker-quadro-suspensao-spark-rc-world-cup-hmx-2026-flight-attendant-879576c205",
+      "sha256": "879576c205fa0d3aa8ad91297ee20c1b940c99d4e3a0733c2d84b7d5d464b965",
+      "perceptualHash": "0000000000000000000011100011111001111011111100010000000000000000",
+      "sourcePageUrl": "https://thebikershop.com.br/produtos/quadro-suspensao-spark-rc-world-cup-hmx-2026-flight-attendant/",
+      "sourceFileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/4257103020a_2266586_1-040245d2cf96b2518417630384961352-1024-1024.webp",
+      "productId": "quadro-suspensao-spark-rc-world-cup-hmx-2026-flight-attendant",
+      "productName": "Quadro + Suspensão Spark RC World Cup HMX 2026 Flight Attendant",
+      "rightsPolicyId": "thebiker-official-editorial-v1",
+      "uses": [
+        {
+          "postId": "contingencia-spark-world-cup-documentacao",
           "position": "hero",
           "usedAt": "2026-08-20T12:00:00.000Z"
         }
