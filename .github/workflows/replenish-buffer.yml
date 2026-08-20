@@ -136,8 +136,19 @@ jobs:
           fi
       - name: Propagar falha operacional
         if: always() && (steps.replenish.outcome == 'failure' || steps.validation.outcome == 'failure' || steps.persistence.outcome == 'failure')
+        env:
+          EDITORIAL_CRITICAL_BUFFER: ${{ vars.EDITORIAL_CRITICAL_BUFFER || '1' }}
         run: |
-          echo "Recomposição=${{ steps.replenish.outcome }} validação=${{ steps.validation.outcome }} persistência=${{ steps.persistence.outcome }}" >&2
+          if [ "${{ steps.validation.outcome }}" = "failure" ] || [ "${{ steps.persistence.outcome }}" = "failure" ]; then
+            echo "::error::Recomposição=${{ steps.replenish.outcome }} validação=${{ steps.validation.outcome }} persistência=${{ steps.persistence.outcome }}"
+            exit 1
+          fi
+          scheduled_count="$(node --input-type=module -e "import fs from 'node:fs'; const c=JSON.parse(fs.readFileSync('bot/editorial-campaign.json','utf8')); const today=new Intl.DateTimeFormat('en-CA',{timeZone:'America/Sao_Paulo',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date()); console.log(c.items.filter(i=>i.status==='scheduled'&&i.publishDate>=today).length)")"
+          if [ "${{ steps.changes.outputs.editorial }}" = "true" ] || [ "$scheduled_count" -ge "$EDITORIAL_CRITICAL_BUFFER" ]; then
+            echo "::warning::Recomposição parcial/sem progresso, mas o estado validado preserva ${scheduled_count} pauta(s) futura(s). O próximo ciclo continuará até o alvo."
+            exit 0
+          fi
+          echo "::error::Recomposição sem progresso e buffer crítico: ${scheduled_count} pauta(s) futura(s)."
           exit 1
       - name: Resumo do buffer
         if: always()
@@ -147,5 +158,5 @@ jobs:
           echo "- Validação: ${{ steps.validation.outcome }}" >> "$GITHUB_STEP_SUMMARY"
           echo "- Avanço editorial: ${{ steps.changes.outputs.editorial || 'não validado' }}" >> "$GITHUB_STEP_SUMMARY"
           echo "- Persistência: ${{ steps.persistence.outcome }}" >> "$GITHUB_STEP_SUMMARY"
-          echo "- Buffer insuficiente ou sem progresso encerra a execução com falha; nenhum estado reprovado é enviado ao repositório." >> "$GITHUB_STEP_SUMMARY"
+          echo "- Progresso parcial validado é aviso e será retomado no próximo ciclo; ausência de buffer ou estado reprovado continua sendo falha." >> "$GITHUB_STEP_SUMMARY"
 
