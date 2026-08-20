@@ -51,7 +51,6 @@ jobs:
         run: npm run catalog:revalidate && npm run validate:ci
       - name: Recompor pautas futuras sem relaxar gates
         id: replenish
-        continue-on-error: true
         env:
           AUTOMATION_ENABLED: "true"
           AUTOMATION_DRY_RUN: "false"
@@ -96,7 +95,14 @@ jobs:
             echo "::error::max_attempts fora da faixa permitida (1..10)."
             exit 2
           fi
+          set +e
           npm run campaign:replenish -- --target-buffer="$target_buffer" --max-attempts="$max_attempts"
+          replenish_exit_code=$?
+          set -e
+          echo "exit_code=$replenish_exit_code" >> "$GITHUB_OUTPUT"
+          if [ "$replenish_exit_code" -ne 0 ]; then
+            echo "Recomposição não atingiu o alvo neste ciclo; a classificação ocorrerá após a validação do estado seguro."
+          fi
         working-directory: bot
       - name: Validar avanço antes de qualquer persistência
         id: validation
@@ -135,7 +141,7 @@ jobs:
             exit "$persist_status"
           fi
       - name: Propagar falha operacional
-        if: always() && (steps.replenish.outcome == 'failure' || steps.validation.outcome == 'failure' || steps.persistence.outcome == 'failure')
+        if: always() && (steps.replenish.outputs.exit_code != '0' || steps.validation.outcome == 'failure' || steps.persistence.outcome == 'failure')
         env:
           EDITORIAL_CRITICAL_BUFFER: ${{ vars.EDITORIAL_CRITICAL_BUFFER || '1' }}
         run: |
@@ -154,7 +160,7 @@ jobs:
         if: always()
         run: |
           echo "### Recomposição automática do buffer" >> "$GITHUB_STEP_SUMMARY"
-          echo "- Recomposição: ${{ steps.replenish.outcome }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Recomposição: exit ${{ steps.replenish.outputs.exit_code || '0' }}" >> "$GITHUB_STEP_SUMMARY"
           echo "- Validação: ${{ steps.validation.outcome }}" >> "$GITHUB_STEP_SUMMARY"
           echo "- Avanço editorial: ${{ steps.changes.outputs.editorial || 'não validado' }}" >> "$GITHUB_STEP_SUMMARY"
           echo "- Persistência: ${{ steps.persistence.outcome }}" >> "$GITHUB_STEP_SUMMARY"
