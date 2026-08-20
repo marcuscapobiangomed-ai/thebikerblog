@@ -1,11 +1,11 @@
 ---
 image_subject_id: "bicicleta-scott-scale-940-black"
 layout: post
-published: false
+published: true
 title: "Scott Scale 940 e 980: diferenças verificáveis de quadro, suspensão e componentes"
 slug: "scott-scale-940-e-980-diferencas-verificaveis-de-quadro-suspensao-e-componentes"
-date: 2026-08-16
-last_modified_at: 2026-08-14
+date: 2026-08-20
+last_modified_at: 2026-08-20
 author: "Equipe TheBiker"
 reviewed_by: "TheBiker AI Editorial Gate"
 content_type: "comparativo"
@@ -51,8 +51,8 @@ promoted_brands: ["TheBiker"]
 context_only_brands: []
 portfolio_evidence_url: "https://thebikershop.com.br/bikes/"
 portfolio_verified_at: "2026-08-14"
-editorial_status: "reviewed"
-status: "scheduled"
+editorial_status: "published"
+status: "published"
 sources:
   - name: "TheBiker — Bicicleta Scott Scale 940 - Black"
     type: "store"

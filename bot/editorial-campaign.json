@@ -548,7 +548,7 @@
       "summary": "Comparação limitada às especificações atualmente recuperáveis nas páginas oficiais e no catálogo TheBiker.",
       "category": "comparativo",
       "freshness": "revalidate-24h",
-      "status": "scheduled",
+      "status": "published",
       "productIds": [
         "bicicleta-scott-scale-940-black",
         "bicicleta-scott-scale-980-black"
@@ -557,7 +557,7 @@
         "mode": "exact-product",
         "productId": "bicicleta-scott-scale-940-black"
       },
-      "postPath": "_posts/drafts/2026-08-16-reserva-scale-940-980-comparativo.md",
+      "postPath": "_posts/2026-08-20-reserva-scale-940-980-comparativo.md",
       "imageManifestPath": "assets/img/posts/reserva-scale-940-980-comparativo/image-manifest.json",
       "imageStatus": "approved",
       "imageAssetIds": [
@@ -595,7 +595,8 @@
         "sourceHash": "a04ca97266905c7dcf3010828dfd42af3db9264e51d5e915dd54534b7cca7bf0",
         "finalScore": 95,
         "finalBlockers": 0,
-        "issuedAt": "2026-08-14T00:02:50.727Z"
+        "issuedAt": "2026-08-14T00:02:50.727Z",
+        "publishedContentHash": "sha256:55838c590c6ddb1790db7c1da3c6db75bf74652458a5f0b5bb0a8ca08bb2fe8e"
       },
       "visualDecision": {
         "schemaVersion": 1,
@@ -615,7 +616,8 @@
         },
         "blockers": [],
         "issuedAt": "2026-08-14T00:02:50.727Z"
-      }
+      },
+      "publishedAt": "2026-08-20T12:30:57.209Z"
     },
     {
       "day": 10,
@@ -1426,8 +1428,7 @@
         "mode": "conceptual"
       },
       "imageAssetIds": [],
-      "attempts": 1,
-      "lastAttemptAt": "2026-08-16T13:35:01.451Z",
+      "blockReason": "[RESEARCH_INSUFFICIENT] Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq sem evidência: Pesquisa bloqueada por integridade de fontes: pesquisa concluída sem fontes rastreáveis; pesquisa sem fatos explicitamente fundamentados; Gemini sem evidência: Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat)",
       "failure": {
         "code": "RESEARCH_INSUFFICIENT",
         "retryable": false,
@@ -1435,7 +1436,8 @@
         "message": "Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq sem evidência: Pesquisa bloqueada por integridade de fontes: pesquisa concluída sem fontes rastreáveis; pesquisa sem fatos explicitamente fundamentados; Gemini sem evidência: Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat)",
         "recordedAt": "2026-08-16T13:35:01.451Z"
       },
-      "blockReason": "[RESEARCH_INSUFFICIENT] Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq sem evidência: Pesquisa bloqueada por integridade de fontes: pesquisa concluída sem fontes rastreáveis; pesquisa sem fatos explicitamente fundamentados; Gemini sem evidência: Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat)"
+      "attempts": 1,
+      "lastAttemptAt": "2026-08-16T13:35:01.451Z"
     }
   ],
   "reserves": [
