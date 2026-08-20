@@ -1,114 +1,10 @@
 {
-  "campaignId": "thebiker-rolling-2026-08-08",
+  "campaignId": "thebiker-rolling-2026-08-21",
   "timezone": "America/Sao_Paulo",
   "publishLocalTime": "12:00",
   "items": [
     {
       "day": 1,
-      "publishDate": "2026-08-08",
-      "title": "Câmbio eletrônico sob carga: ajuste fino, diagnóstico e erros que comprometem a troca",
-      "summary": "Procedimento para avaliar alinhamento, indexação, bateria, corrente, cassete e comportamento das transmissões Di2 e AXS em uso real.",
-      "category": "manutencao-ajustes",
-      "status": "published"
-    },
-    {
-      "day": 2,
-      "publishDate": "2026-08-09",
-      "title": "Rolamentos sob carga: como localizar folga e contaminação",
-      "summary": "Diagnóstico técnico de direção, movimento central, cubos e pivôs antes da substituição.",
-      "category": "manutencao-ajustes",
-      "status": "published"
-    },
-    {
-      "day": 3,
-      "publishDate": "2026-08-10",
-      "title": "Pinça, rotor e contato de pastilha: como eliminar atrito sem perder potência de frenagem",
-      "summary": "Diagnóstico de alinhamento, empeno, recuo de pistões, contaminação e compatibilidade de rotores nas montagens de estrada e XC.",
-      "category": "manutencao-ajustes",
-      "status": "published"
-    },
-    {
-      "day": 4,
-      "publishDate": "2026-08-11",
-      "title": "Dentro da Spark RC: por que a suspensão integrada muda estrutura, serviço e distribuição de massa",
-      "summary": "Análise da arquitetura Spark RC, do posicionamento do amortecedor, do Flex Pivot e dos efeitos mecânicos da integração no quadro.",
-      "category": "engenharia",
-      "status": "published"
-    },
-    {
-      "day": 5,
-      "publishDate": "2026-08-12",
-      "title": "Addict RC 20: Ultegra Di2, rodas de 40 mm e o equilíbrio da montagem",
-      "summary": "Review técnico da Addict RC 20 com foco na transmissão, frenagem, rodas, pneus, massa declarada e limites de uso publicados pela Scott.",
-      "category": "review",
-      "status": "published"
-    },
-    {
-      "day": 6,
-      "publishDate": "2026-08-13",
-      "title": "Spark RC Team, Expert e World Cup: três montagens, três decisões técnicas",
-      "summary": "Comparação interna entre as três Spark RC vendidas pela TheBiker, cobrindo carbono, suspensões, transmissão, rodas, peso e limite do sistema.",
-      "category": "comparativo",
-      "status": "published"
-    },
-    {
-      "day": 7,
-      "publishDate": "2026-08-14",
-      "title": "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação",
-      "summary": "Procedimento técnico baseado em orientações oficiais para remover contaminantes, verificar danos e devolver a corrente ao uso seguro.",
-      "category": "manutencao-ajustes",
-      "status": "published"
-    },
-    {
-      "day": 8,
-      "publishDate": "2026-08-15",
-      "title": "Scott Spark RC Expert 2027: leitura técnica da montagem confirmada pelas fontes atuais",
-      "summary": "Ficha editorial do modelo limitada aos materiais, suspensão, transmissão e limites explicitamente recuperados das fontes.",
-      "category": "review",
-      "status": "published"
-    },
-    {
-      "day": 9,
-      "publishDate": "2026-08-16",
-      "title": "Scott Scale 940 e 980: diferenças verificáveis de quadro, suspensão e componentes",
-      "summary": "Comparação limitada às especificações atualmente recuperáveis nas páginas oficiais e no catálogo TheBiker.",
-      "category": "comparativo",
-      "status": "published"
-    },
-    {
-      "day": 10,
-      "publishDate": "2026-08-17",
-      "title": "Scott Addict 50 e Addict RC 20: duas propostas de estrada confrontadas pelas fichas oficiais",
-      "summary": "Análise comparativa restrita a geometria, materiais e montagens comprovados nas fontes atuais dos dois modelos.",
-      "category": "comparativo",
-      "status": "published"
-    },
-    {
-      "day": 11,
-      "publishDate": "2026-08-18",
-      "title": "Scott Spark RC World Cup 2027: especificações confirmadas e limites da análise documental",
-      "summary": "Revisão documental que publica apenas características localizadas literalmente nas fontes oficiais recuperadas no dia.",
-      "category": "review",
-      "status": "published"
-    },
-    {
-      "day": 12,
-      "publishDate": "2026-08-19",
-      "title": "Scott Scale 940: o que a ficha atual confirma sobre quadro, suspensão e transmissão",
-      "summary": "Leitura de produto sem extrapolações, baseada somente nos campos que continuam presentes nas páginas recuperadas.",
-      "category": "review",
-      "status": "published"
-    },
-    {
-      "day": 13,
-      "publishDate": "2026-08-20",
-      "title": "Diagnostico de ruidos na bicicleta: metodo por carga, frequencia e interface",
-      "summary": "Protocolo tecnico para isolar ruidos de transmissao, cockpit, rodas e quadro sem substituir componentes por tentativa e erro.",
-      "category": "manutencao-ajustes",
-      "status": "published"
-    },
-    {
-      "day": 14,
       "publishDate": "2026-08-21",
       "title": "Scott Addict RC Pro: ficha documental das especificacoes confirmadas",
       "summary": "Leitura de produto sem teste pratico, restrita as especificacoes e aos limites explicitamente registrados nas fontes aceitas.",
@@ -116,7 +12,7 @@
       "status": "scheduled"
     },
     {
-      "day": 15,
+      "day": 2,
       "publishDate": "2026-08-22",
       "title": "Scott Addict RC 20: o que a ficha oficial permite afirmar",
       "summary": "Resumo tecnico documental do modelo, sem extrapolar componentes, medidas ou desempenho alem do que esta rastreado.",
@@ -124,124 +20,260 @@
       "status": "scheduled"
     },
     {
-      "day": 16,
+      "day": 3,
       "publishDate": "2026-08-23",
-      "title": "Scott Scale 940: checklist documental para conferir quadro e montagem",
-      "summary": "Checklist editorial limitado aos campos de quadro, suspensao e componentes que permanecem comprovados nas fichas oficiais.",
+      "title": "Scott Addict RC Pro: roteiro documental para conferir montagem, medidas e compatibilidade",
+      "summary": "Guia baseado em documentação oficial e conhecimento interno rastreável para conferir a configuração sem presumir teste presencial.",
       "category": "review",
-      "status": "blocked"
+      "status": "planned"
+    },
+    {
+      "day": 4,
+      "publishDate": "2026-08-24",
+      "title": "Scott Addict RC 20: como ler a ficha oficial antes de comparar versões e componentes",
+      "summary": "Leitura técnica da ficha cadastrada, com limites explícitos e verificação de cada componente na fonte correspondente.",
+      "category": "review",
+      "status": "planned"
+    },
+    {
+      "day": 5,
+      "publishDate": "2026-08-25",
+      "title": "Scott Addict 50: geometria, montagem e pontos que precisam ser confirmados na ficha atual",
+      "summary": "Roteiro documental para organizar medidas, componentes e lacunas sem transformar catálogo ou descrição comercial em teste de campo.",
+      "category": "review",
+      "status": "planned"
+    },
+    {
+      "day": 6,
+      "publishDate": "2026-08-26",
+      "title": "Prévia da principal corrida profissional da semana: percurso, favoritos e pontos técnicos",
+      "summary": "Cobertura profissional vinculada a um evento oficial, com percurso, largadas e transmissão confirmados novamente antes da publicação.",
+      "category": "competicoes",
+      "status": "planned",
+      "race": {
+        "track": "professional-coverage",
+        "format": "preview"
+      }
+    },
+    {
+      "day": 7,
+      "publishDate": "2026-08-27",
+      "title": "Scott Scale 980: método para distinguir variantes, cores e montagens sem misturar fichas",
+      "summary": "Comparação documental entre registros internos rastreáveis, preservando diferenças de identificação e dados ainda não confirmados.",
+      "category": "comparativo",
+      "status": "planned"
+    },
+    {
+      "day": 8,
+      "publishDate": "2026-08-28",
+      "title": "Scott Spark RC Expert: arquitetura de suspensão e componentes confirmados na documentação",
+      "summary": "Análise documental da plataforma cadastrada com separação clara entre especificação, ajuste possível e desempenho não testado.",
+      "category": "review",
+      "status": "planned"
+    },
+    {
+      "day": 9,
+      "publishDate": "2026-08-29",
+      "title": "Resumo da principal corrida profissional da semana: resultado, tática e impacto na temporada",
+      "summary": "Análise pós-prova baseada em resultado oficial, movimentos decisivos e contexto técnico, sem transformar rumor ou impressão em fato.",
+      "category": "competicoes",
+      "status": "planned",
+      "race": {
+        "track": "professional-coverage",
+        "format": "recap"
+      }
+    },
+    {
+      "day": 10,
+      "publishDate": "2026-08-30",
+      "title": "Scott Spark RC World Cup: checklist de especificações e limites da análise documental",
+      "summary": "Checklist rastreável de quadro, suspensão e montagem, sem extrapolar comportamento dinâmico ou disponibilidade comercial.",
+      "category": "review",
+      "status": "planned"
+    },
+    {
+      "day": 11,
+      "publishDate": "2026-08-31",
+      "title": "Quadro Scott Scale RC Team HMF: interfaces, padrões e verificações antes da montagem",
+      "summary": "Guia técnico apoiado na ficha interna verificada para conferir interfaces e registrar como lacuna o que não estiver documentado.",
+      "category": "review",
+      "status": "planned"
+    },
+    {
+      "day": 12,
+      "publishDate": "2026-09-01",
+      "title": "Inspeção de fixadores da bicicleta: sequência, registro e sinais que exigem avaliação técnica",
+      "summary": "Método preventivo para organizar inspeção visual e documental sem recomendar torque genérico nem substituir o manual do fabricante.",
+      "category": "manutencao-ajustes",
+      "status": "planned"
+    },
+    {
+      "day": 13,
+      "publishDate": "2026-09-02",
+      "title": "Radar profissional de ciclismo: provas, classificações e histórias técnicas da semana",
+      "summary": "Boletim de competições profissionais com eventos e resultados rastreáveis em federações, organizadores e canais oficiais.",
+      "category": "competicoes",
+      "status": "planned",
+      "race": {
+        "track": "professional-coverage",
+        "format": "weekly-roundup"
+      }
+    },
+    {
+      "day": 14,
+      "publishDate": "2026-09-03",
+      "title": "Ruído e vibração nos freios: diagnóstico por carga, temperatura e condição do rotor",
+      "summary": "Roteiro de diagnóstico que separa sintomas observáveis, possíveis interfaces e verificações seguras antes de trocar componentes.",
+      "category": "manutencao-ajustes",
+      "status": "planned"
+    },
+    {
+      "day": 15,
+      "publishDate": "2026-09-04",
+      "title": "Desgaste da transmissão: como registrar corrente, cassete e coroas sem conclusões precipitadas",
+      "summary": "Método de inspeção e registro para acompanhar desgaste, evitar mistura de medições e consultar limites específicos do fabricante.",
+      "category": "manutencao-ajustes",
+      "status": "planned"
+    },
+    {
+      "day": 16,
+      "publishDate": "2026-09-05",
+      "title": "Segundo radar profissional do mês: calendário, resultados e decisões técnicas em destaque",
+      "summary": "Atualização profissional sem promoção de concorrentes, usando apenas calendário, resultados e documentos oficiais verificados.",
+      "category": "competicoes",
+      "status": "planned",
+      "race": {
+        "track": "professional-coverage",
+        "format": "weekly-roundup"
+      }
     },
     {
       "day": 17,
-      "publishDate": "2026-08-24",
-      "title": "Guidão drop: flare, reach e controle em diferentes terrenos",
-      "summary": "Aprenda a avaliar flare, reach e drop de um guidão drop para melhorar controle e conforto em terrenos mistos. Método técnico sem depender de tabelas de fábrica.",
-      "category": "componentes",
-      "status": "blocked"
+      "publishDate": "2026-09-06",
+      "title": "Pressão dos pneus: protocolo de testes com registro de terreno, carga e comportamento",
+      "summary": "Procedimento comparável para ajustar uma variável por vez e separar aderência, suporte, impacto e resistência percebida.",
+      "category": "engenharia",
+      "status": "planned"
     },
     {
       "day": 18,
-      "publishDate": "2026-08-25",
-      "title": "Suspensão traseira com link: como a alavancagem altera a curva de resposta",
-      "summary": "Entenda como a disposição dos links muda a progressão da suspensão e a sensação de apoio em diferentes fases do curso. Sem valores genéricos.",
-      "category": "engenharia",
-      "status": "blocked"
+      "publishDate": "2026-09-07",
+      "title": "Sistema tubeless: inspeção de fita, válvula, selante e assentamento do pneu",
+      "summary": "Checklist técnico para localizar perda de ar e contaminação mantendo compatibilidade e limites de pressão ligados à documentação.",
+      "category": "manutencao-ajustes",
+      "status": "planned"
     },
     {
       "day": 19,
-      "publishDate": "2026-08-26",
-      "title": "Padrões de cubo e eixo: Boost e compatibilidade entre gerações",
-      "summary": "Identifique larguras e diâmetros de eixo para evitar erros de compatibilidade entre quadro e roda. Foco em medição prática e não em especificações decorativas.",
-      "category": "componentes",
-      "status": "blocked"
+      "publishDate": "2026-09-08",
+      "title": "SAG da suspensão: como medir com repetibilidade e registrar as condições do ajuste",
+      "summary": "Método para reduzir variações de postura, equipamento e leitura sem apresentar um valor universal para bicicletas diferentes.",
+      "category": "engenharia",
+      "status": "planned"
     },
     {
       "day": 20,
-      "publishDate": "2026-08-27",
-      "title": "Movimento central: rosca, press-fit e instalação cuidadosa",
-      "summary": "Diferenças entre padrões roscados e press-fit, e como evitar danos ao quadro na instalação. Guia para o ciclista intermediário/avançado.",
-      "category": "manutencao-ajustes",
-      "status": "blocked"
+      "publishDate": "2026-09-09",
+      "title": "Calendário de provas para participar no Brasil: datas, modalidades e inscrições verificadas",
+      "summary": "Agenda para o ciclista encontrar provas, distinguindo evento confirmado, inscrição aberta, prazo encerrado e informação ainda desconhecida.",
+      "category": "competicoes",
+      "status": "planned",
+      "race": {
+        "track": "participant-calendar",
+        "format": "calendar-roundup"
+      }
     },
     {
       "day": 21,
-      "publishDate": "2026-08-28",
-      "title": "Rodas sem câmara: volume de selante e sinais de ressecamento",
-      "summary": "Como determinar a quantidade, validade e compatibilidade do selante para evitar vazamentos lentos em rodas sem câmara. Sem prometer soluções milagrosas.",
-      "category": "manutencao-ajustes",
-      "status": "blocked"
+      "publishDate": "2026-09-10",
+      "title": "Retorno da suspensão: protocolo para comparar ajustes sem confundir velocidade e controle",
+      "summary": "Sequência de testes controlados com registro de cliques e sintomas, preservando as recomendações específicas de cada fabricante.",
+      "category": "engenharia",
+      "status": "planned"
     },
     {
       "day": 22,
-      "publishDate": "2026-08-29",
-      "title": "Desgaste de corrente: como medir e decidir a troca",
-      "summary": "Método de medição com régua e paquímetro para identificar quando a corrente deve ser substituída, evitando desgaste de cassete e coroa.",
+      "publishDate": "2026-09-11",
+      "title": "Rolamentos da bicicleta: diagnóstico por interface antes de concluir que existe desgaste",
+      "summary": "Roteiro para separar folga, contaminação, fixação e carga sem desmontagem indiscriminada ou substituição por tentativa.",
       "category": "manutencao-ajustes",
-      "status": "blocked"
+      "status": "planned"
     },
     {
       "day": 23,
-      "publishDate": "2026-08-30",
-      "title": "Garfo dianteiro: câmara de ar, progressão e ajuste da compressão",
-      "summary": "Entenda como a pressão de ar e a compressão afetam o meio do curso do garfo e a estabilidade em aterrissagens. Sem números mágicos.",
-      "category": "manutencao-ajustes",
-      "status": "blocked"
+      "publishDate": "2026-09-12",
+      "title": "Atualização do calendário brasileiro de ciclismo: novas provas, mudanças e prazos oficiais",
+      "summary": "Segunda atualização mensal das provas participativas, com mudanças de data, cancelamentos e inscrições checados na fonte oficial.",
+      "category": "competicoes",
+      "status": "planned",
+      "race": {
+        "track": "participant-calendar",
+        "format": "calendar-roundup"
+      }
     },
     {
       "day": 24,
-      "publishDate": "2026-08-31",
-      "title": "Pastilhas de freio: orgânicas ou sinterizadas para o clima brasileiro",
-      "summary": "Diferenças de modulação, ruído e durabilidade entre pastilhas orgânicas e sinterizadas em condições quentes e úmidas. Critérios de escolha.",
-      "category": "componentes",
-      "status": "blocked"
+      "publishDate": "2026-09-13",
+      "title": "Caixa de direção: inspeção de folga, pré-carga e alinhamento em etapas verificáveis",
+      "summary": "Método de diagnóstico para registrar sintomas e conferir a montagem respeitando o desenho e os limites específicos do conjunto.",
+      "category": "manutencao-ajustes",
+      "status": "planned"
     },
     {
       "day": 25,
-      "publishDate": "2026-09-01",
-      "title": "Bateria de bike elétrica: armazenamento e autonomia na prática",
-      "summary": "Boas práticas de carregamento e armazenamento de baterias, com foco em calor e umidade. Como interpretar a autonomia informada pelo fabricante.",
+      "publishDate": "2026-09-14",
+      "title": "Movimento central: como distinguir ruído, folga e incompatibilidade de interface",
+      "summary": "Guia de investigação documental e mecânica para não atribuir todo estalo ao rolamento nem misturar padrões de quadro.",
       "category": "manutencao-ajustes",
-      "status": "blocked"
+      "status": "planned"
     },
     {
       "day": 26,
-      "publishDate": "2026-09-02",
-      "title": "Canote do selim: diâmetro, comprimento e fixação segura",
-      "summary": "Verifique o diâmetro correto, o torque de aperto e os sinais de deslizamento do canote. Inclui cuidados com modelos retos e offset.",
-      "category": "manutencao-ajustes",
-      "status": "blocked"
+      "publishDate": "2026-09-15",
+      "title": "Centragem de roda: o que observar antes de alterar a tensão dos raios",
+      "summary": "Checklist de alinhamento lateral, radial e tensão relativa que delimita quando a avaliação profissional é necessária.",
+      "category": "engenharia",
+      "status": "planned"
     },
     {
       "day": 27,
-      "publishDate": "2026-09-03",
-      "title": "Torque e pasta de montagem: como evitar trincas em componentes leves",
-      "summary": "Pontos críticos que exigem torque-calibrado e como a pasta de montagem modifica o atrito. Sem valores absolutos, pois cada componente tem sua especificação.",
-      "category": "manutencao-ajustes",
-      "status": "blocked"
+      "publishDate": "2026-09-16",
+      "title": "Guia da prova para o ciclista: percurso, categorias, inscrição e logística confirmada",
+      "summary": "Guia de um evento brasileiro escolhido após verificação oficial, com lacunas claramente marcadas quando a organização ainda não publicou dados.",
+      "category": "competicoes",
+      "status": "planned",
+      "race": {
+        "track": "participant-calendar",
+        "format": "event-guide"
+      }
     },
     {
       "day": 28,
-      "publishDate": "2026-09-04",
-      "title": "Roteamento interno de cabos: atrito, ruídos e manutenção",
-      "summary": "Como diagnosticar cabos e mangueiras com roteamento interno que geram ruído ou perda de resposta, sem necessariamente trocar as peças.",
-      "category": "manutencao-ajustes",
-      "status": "blocked"
+      "publishDate": "2026-09-17",
+      "title": "Tensão de raios: método de comparação sem publicar valores universais",
+      "summary": "Leitura técnica sobre equilíbrio, referência do aro e registro de medições, mantendo especificações ligadas ao fabricante.",
+      "category": "engenharia",
+      "status": "planned"
     },
     {
       "day": 29,
-      "publishDate": "2026-09-05",
-      "title": "Relação de marchas: coroa compacta ou supercompacta para subidas brasileiras",
-      "summary": "Avalie o comportamento de diferentes combinações de coroa e cassete em aclives, considerando peso, cadência e terreno. Sem valores fixos de fábrica.",
-      "category": "comparativo",
-      "status": "blocked"
+      "publishDate": "2026-09-18",
+      "title": "Cubo e eixo: diagnóstico de folga, assentamento e pré-carga sem misturar padrões",
+      "summary": "Sequência para separar fixação da roda, rolamentos e interfaces antes de concluir que um componente está danificado.",
+      "category": "manutencao-ajustes",
+      "status": "planned"
     },
     {
       "day": 30,
-      "publishDate": "2026-09-06",
-      "title": "Montagem de bike a partir do quadro: ordem e cuidados essenciais",
-      "summary": "Roteiro para montar uma bicicleta do zero, cobrindo torque, lubrificação e sequência de instalação para evitar danos. Voltado ao ciclista avançado.",
-      "category": "manutencao-ajustes",
-      "status": "blocked"
+      "publishDate": "2026-09-19",
+      "title": "Próxima prova no radar: o que confirmar antes de pagar a inscrição e organizar a viagem",
+      "summary": "Checklist aplicado a uma prova oficial, cobrindo regulamento, elegibilidade, inscrição, percurso, segurança e logística sem links presumidos.",
+      "category": "competicoes",
+      "status": "planned",
+      "race": {
+        "track": "participant-calendar",
+        "format": "event-guide"
+      }
     }
   ]
 }
