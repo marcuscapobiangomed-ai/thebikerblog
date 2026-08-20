@@ -35,10 +35,11 @@ assert.match(replenisher, /Recomposição sem progresso e buffer crítico[\s\S]*
 
 const alerts = read("automation-alerts.yml");
 assert.match(alerts, /TheBiker — Recomposição automática do buffer editorial/);
+assert.match(alerts, /jobs:\s+alert:\s+runs-on: ubuntu-latest/);
 assert.match(alerts, /retries: 3/);
 assert.match(alerts, /retry-exempt-status-codes: 400,401,403,404,422/);
-assert.match(alerts, /\["failure","timed_out","action_required","cancelled"\]/);
-assert.match(alerts, /workflow_run\.conclusion == 'cancelled' && github\.event\.workflow_run\.name == 'Deploy Blog'/);
+assert.match(alerts, /new Set\(\['failure', 'timed_out', 'action_required', 'cancelled'\]\)/);
+assert.match(alerts, /run\.conclusion === 'cancelled' && run\.name === 'Deploy Blog'/);
 assert.match(alerts, /createHash\('sha256'\)/);
 assert.match(alerts, /downloadJobLogsForWorkflowRun/);
 assert.match(alerts, /causeSummaries = Object\.freeze/);
@@ -51,6 +52,7 @@ assert.doesNotMatch(alerts, /Causa observada/);
 
 const deploy = read("deploy.yml");
 assert.match(deploy, /force_deploy:/);
+assert.match(deploy, /concurrency:\s+group: pages\s+cancel-in-progress: false/);
 assert.match(deploy, /repository_dispatch:[\s\S]*types: \[editorial-deploy\]/);
 assert.match(deploy, /github\.event_name == 'push' \|\| inputs\.force_deploy == true \|\| github\.event_name == 'repository_dispatch'/);
 assert.doesNotMatch(deploy, /workflow_run:/);
