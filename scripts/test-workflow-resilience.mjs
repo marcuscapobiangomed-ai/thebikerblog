@@ -33,6 +33,11 @@ assert.doesNotMatch(
   /outputs\.status == 'already-published'/,
   "already-published deve permanecer idempotente e não acionar recovery",
 );
+assert.doesNotMatch(
+  publication.match(/id: recovery[\s\S]*?working-directory: bot/)?.[0] || "",
+  /outputs\.status == 'cycle-complete'/,
+  "dia encerrado antes da nova janela deve permanecer no-op idempotente",
+);
 assert.match(publication, /id: candidate[\s\S]*remaining_overdue/);
 assert.match(
   publication,
