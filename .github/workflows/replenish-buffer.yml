@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
     inputs:
       target_buffer:
-        description: "Quantidade mínima de pautas futuras em scheduled"
+        description: "Quantidade mínima de dias consecutivos em scheduled"
         required: false
         default: "7"
         type: string
@@ -127,7 +127,7 @@ jobs:
         id: changes
         if: steps.validation.outcome == 'success'
         run: |
-          if git diff --quiet -- bot/editorial-campaign.json bot/operational-state _data/editorial-calendar.json _posts/drafts content/research/campaign assets/img/posts content/image-library/index.json; then
+          if git diff --quiet -- bot/editorial-campaign.json bot/operational-state _data/editorial-calendar.json _data/editorial-topic-ledger.json _posts/drafts content/research/campaign assets/img/posts content/image-library/index.json; then
             echo "editorial=false" >> "$GITHUB_OUTPUT"
             echo "Nenhum avanço editorial para persistir."
           else
@@ -140,7 +140,7 @@ jobs:
         run: |
           git config user.name "thebiker-editorial-bot"
           git config user.email "thebiker-editorial-bot@users.noreply.github.com"
-          git add _data/products/bikes _posts/drafts content/product-discovery/thebiker-media-catalog.json content/research/campaign assets/img/posts content/image-library/index.json bot/editorial-campaign.json bot/operational-state _data/editorial-calendar.json _data/catalog-public.json api/products.json
+          git add _data/products/bikes _posts/drafts content/product-discovery/thebiker-media-catalog.json content/research/campaign assets/img/posts content/image-library/index.json bot/editorial-campaign.json bot/operational-state _data/editorial-calendar.json _data/editorial-topic-ledger.json _data/catalog-public.json api/products.json
           git diff --cached --quiet || git commit -m "state: recompor buffer editorial"
           persist_status=1
           for attempt in 1 2 3; do
@@ -165,20 +165,19 @@ jobs:
             echo "::error::Recomposição=${{ steps.replenish.outcome }} validação=${{ steps.validation.outcome }} persistência=${{ steps.persistence.outcome }}"
             exit 1
           fi
-          scheduled_count="$(node --input-type=module -e "import fs from 'node:fs'; const c=JSON.parse(fs.readFileSync('bot/editorial-campaign.json','utf8')); const today=new Intl.DateTimeFormat('en-CA',{timeZone:'America/Sao_Paulo',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date()); console.log(c.items.filter(i=>i.status==='scheduled'&&i.publishDate>=today).length)")"
-          required_ready="true"
-          if [ -n "$REQUIRED_DATE_INPUT" ]; then
-            required_ready="$(node --input-type=module -e "import fs from 'node:fs'; const c=JSON.parse(fs.readFileSync('bot/editorial-campaign.json','utf8')); const item=c.items.find(i=>i.publishDate===process.env.REQUIRED_DATE_INPUT); console.log(Boolean(item&&['scheduled','published'].includes(item.status)))")"
-          fi
+          buffer_snapshot="$(node --input-type=module -e "import fs from 'node:fs'; import { campaignCoverageSnapshot } from './bot/src/automation/campaign-coverage.js'; const c=JSON.parse(fs.readFileSync('bot/editorial-campaign.json','utf8')); console.log(JSON.stringify(campaignCoverageSnapshot(c,{requiredDate:process.env.REQUIRED_DATE_INPUT||null})))")"
+          consecutive_count="$(echo "$buffer_snapshot" | jq -r '.consecutiveReadyDays')"
+          first_gap="$(echo "$buffer_snapshot" | jq -r '.firstGapDate // "fora-da-campanha"')"
+          required_ready="$(echo "$buffer_snapshot" | jq -r '.requiredReady')"
           if [ "$required_ready" != "true" ]; then
             echo "::error::A data obrigatória ${REQUIRED_DATE_INPUT} ainda não ficou publicável."
             exit 1
           fi
-          if [ "${{ steps.changes.outputs.editorial }}" = "true" ] || [ "$scheduled_count" -ge "$EDITORIAL_CRITICAL_BUFFER" ]; then
-            echo "::warning::Recomposição parcial/sem progresso, mas o estado validado preserva ${scheduled_count} pauta(s) futura(s). O próximo ciclo continuará até o alvo."
+          if [ "$consecutive_count" -ge "$EDITORIAL_CRITICAL_BUFFER" ]; then
+            echo "::warning::Recomposição parcial, mas o estado validado preserva ${consecutive_count} dia(s) consecutivo(s); primeira lacuna ${first_gap}. O próximo ciclo continuará até o alvo."
             exit 0
           fi
-          echo "::error::Recomposição sem progresso e buffer crítico: ${scheduled_count} pauta(s) futura(s)."
+          echo "::error::Recomposição sem cobertura mínima: ${consecutive_count} dia(s) consecutivo(s); primeira lacuna ${first_gap}."
           exit 1
       - name: Resumo do buffer
         if: always()

@@ -3,6 +3,7 @@ import path from 'node:path'
 import crypto from 'node:crypto'
 import { CampaignSchema, publicCampaignSummary } from './campaign.js'
 import { RACE_MONTHLY_TARGETS } from './race-program.js'
+import { buildEditorialTopicLedger, topicHistoryBlocksCandidate } from './topic-ledger.js'
 
 const READY_STATUSES = new Set(['researching', 'research-ready', 'drafting', 'validation', 'approved', 'scheduled'])
 const CATEGORY_VALUES = new Set(['manutencao-ajustes', 'engenharia', 'review', 'comparativo', 'componentes', 'lancamentos', 'competicoes'])
@@ -193,12 +194,12 @@ function candidateTitleKey(value) {
   return normalize(title || '').split(' ').filter((token) => token.length >= 4).slice(0, 7).join(' ')
 }
 
-function uniqueCandidates(candidates, occupied = [], occupiedIds = []) {
+function uniqueCandidates(candidates, occupied = [], occupiedIds = [], { historyItems = [], onDate = null } = {}) {
   const seen = new Set(occupied.map(candidateTitleKey).filter(Boolean))
   const seenIds = new Set(occupiedIds)
   return candidates.filter((candidate) => {
     const key = candidateTitleKey(candidate)
-    if (!key || seen.has(key) || seenIds.has(candidate.id)) return false
+    if (!key || seen.has(key) || seenIds.has(candidate.id) || topicHistoryBlocksCandidate(candidate, historyItems, { onDate })) return false
     seen.add(key)
     seenIds.add(candidate.id)
     return true
@@ -293,7 +294,7 @@ export function validateMonthlyCampaignPlan(value) {
   }
 }
 
-export async function buildRollingCampaign({ existing, report, now = new Date(), ai } = {}) {
+export async function buildRollingCampaign({ existing, report, now = new Date(), ai, topicHistory = [] } = {}) {
   const current = CampaignSchema.parse(existing)
   if (report.cadence !== 'monthly') throw new Error('Somente relatórios mensais podem renovar a campanha')
   let startsOn = localDate(now, current.timezone)
@@ -310,23 +311,28 @@ export async function buildRollingCampaign({ existing, report, now = new Date(),
   const occupiedTitles = [...retained.values()].map((item) => normalize(item.title))
   const occupiedIds = [...retained.values()].map((item) => item.id)
   const fresh = (report.briefs || []).filter((brief) => brief.action === 'new-content').map(candidateFromBrief)
-  const raceSlots = raceSlotsFor(retained)
+  const raceSlots = raceSlotsFor(retained).map((item) => ({ ...item, id: slug(`${item.id}-${startsOn}`) }))
   const contingency = CONTINGENCY_TOPIC_TEMPLATES.map(candidateFromReserve)
   let candidates = uniqueCandidates([
     ...contingency.slice(0, 7),
     ...fresh,
     ...contingency.slice(7),
-  ], occupiedTitles, occupiedIds)
+  ], occupiedTitles, occupiedIds, { historyItems: topicHistory, onDate: startsOn })
   const openDates = dates.filter((date) => !retained.has(date)).length
-  const missingBeforeAi = openDates + 3 - candidates.length - raceSlots.length
-  if (missingBeforeAi > 0) {
-    const aiCandidates = await expandWithAi({ missing: missingBeforeAi, report, occupiedTitles: [...occupiedTitles, ...candidates.map((item) => item.title)], ai })
-    candidates = uniqueCandidates([...candidates, ...aiCandidates], occupiedTitles, occupiedIds)
+  for (let attempt = 1; attempt <= 3; attempt += 1) {
+    const missing = openDates + 3 - candidates.length - raceSlots.length
+    if (missing <= 0) break
+    const aiCandidates = await expandWithAi({ missing, report, occupiedTitles: [...occupiedTitles, ...candidates.map((item) => item.title)], ai })
+    candidates = uniqueCandidates([...candidates, ...aiCandidates], occupiedTitles, occupiedIds, { historyItems: topicHistory, onDate: startsOn })
+  }
+  const remainingMissing = openDates + 3 - candidates.length - raceSlots.length
+  if (remainingMissing > 0) {
+    throw new Error(`Planejamento mensal permaneceu com déficit de ${remainingMissing} pauta(s) após deduplicação`)
   }
   candidates = distributeRaceSlots(candidates, raceSlots, openDates)
   const items = dates.map((publishDate, index) => {
     const item = retained.get(publishDate) || candidates.shift()
-    if (!item) throw new Error(`Não foi possível preencher a campanha: data sem pauta ${publishDate}`)
+    if (!item) throw new Error(`Não foi possível preencher a campanha: data sem pauta ${publishDate} (retidas=${retained.size}, abertas=${openDates}, candidatas_restantes=${candidates.length})`)
     return { ...item, day: index + 1, publishDate }
   })
   const usedIds = new Set(items.map((item) => item.id))
@@ -339,14 +345,16 @@ export async function buildRollingCampaign({ existing, report, now = new Date(),
   const reservePool = uniqueCandidates([
     ...candidates,
     ...fresh,
-  ], items.map((item) => normalize(item.title)), items.map((item) => item.id)).filter((item) => !usedIds.has(item.id))
+  ], items.map((item) => normalize(item.title)), items.map((item) => item.id), { historyItems: topicHistory, onDate: startsOn }).filter((item) => !usedIds.has(item.id))
   if (reservePool.length < 3) {
     const defaults = [
       { id: 'reserva-diagnostico-ruidos-bike', title: 'Diagnóstico de ruídos na bicicleta: método por carga, frequência e interface', summary: 'Protocolo técnico para isolar ruídos de transmissão, cockpit, rodas e quadro sem substituir componentes por tentativa e erro.', category: 'manutencao-ajustes' },
       { id: 'reserva-pressao-pneus-terreno', title: 'Pressão de pneus por terreno: como testar sem transformar sensação em dado', summary: 'Método de campo para ajustar pressão, registrar comportamento e separar aderência, suporte lateral, impacto e resistência ao rolamento.', category: 'engenharia' },
       { id: 'reserva-inspecao-pos-chuva', title: 'Inspeção pós-chuva: os pontos que concentram contaminação, corrosão e desgaste', summary: 'Rotina técnica depois de treinos molhados, priorizando rolamentos, transmissão, freios, suspensão e interfaces do quadro.', category: 'manutencao-ajustes' },
     ].map(candidateFromReserve)
-    reservePool.push(...defaults.filter((item) => !usedIds.has(item.id) && !reservePool.some((reserve) => reserve.id === item.id)))
+    reservePool.push(...defaults.filter((item) => !usedIds.has(item.id)
+      && !reservePool.some((reserve) => reserve.id === item.id)
+      && !topicHistoryBlocksCandidate(item, topicHistory, { onDate: startsOn })))
   }
   const campaign = CampaignSchema.parse({
     version: 1,
@@ -366,10 +374,11 @@ export async function renewCampaignFiles({ root, report, now = new Date(), ai, d
   const campaignPath = path.join(root, 'bot/editorial-campaign.json')
   const statePath = path.join(root, 'bot/operational-state/monthly-renewal.json')
   const existing = JSON.parse(await fs.readFile(campaignPath, 'utf8'))
+  const topicLedger = await buildEditorialTopicLedger({ root, now })
   const previousState = await fs.readFile(statePath, 'utf8').then(JSON.parse).catch((error) => error?.code === 'ENOENT' ? null : Promise.reject(error))
   const sourceDigest = intelligenceSourceDigest(report)
   if (previousState?.lastRunKey === report.runKey && previousState?.sourceDigest === sourceDigest) return { status: 'unchanged', runKey: report.runKey, campaignId: previousState.campaignId }
-  const campaign = await buildRollingCampaign({ existing, report, now, ai })
+  const campaign = await buildRollingCampaign({ existing, report, now, ai, topicHistory: topicLedger.items })
   if (dryRun) return { status: 'dry-run', runKey: report.runKey, campaign }
   const archiveDirectory = path.join(root, 'bot/operational-state/campaign-archive')
   await fs.mkdir(archiveDirectory, { recursive: true })
@@ -377,6 +386,7 @@ export async function renewCampaignFiles({ root, report, now = new Date(), ai, d
   await fs.writeFile(campaignPath, JSON.stringify(campaign, null, 2) + '\n')
   await fs.writeFile(path.join(root, '_data/editorial-calendar.json'), JSON.stringify(publicCampaignSummary(campaign), null, 2) + '\n')
   await fs.writeFile(path.join(root, '_data/editorial-refresh-queue.json'), JSON.stringify({ schemaVersion: 1, runKey: report.runKey, generatedAt: report.generatedAt, items: report.refreshQueue || [] }, null, 2) + '\n')
+  await fs.writeFile(path.join(root, '_data/editorial-topic-ledger.json'), JSON.stringify(topicLedger, null, 2) + '\n')
   await fs.mkdir(path.dirname(statePath), { recursive: true })
   await fs.writeFile(statePath, JSON.stringify({ schemaVersion: 2, lastRunKey: report.runKey, sourceDigest, campaignId: campaign.id, renewedAt: now.toISOString() }, null, 2) + '\n')
   return { status: 'renewed', runKey: report.runKey, campaignId: campaign.id, startsOn: campaign.startsOn, retained: campaign.items.filter((item) => READY_STATUSES.has(item.status)).length, planned: campaign.items.filter((item) => item.status === 'planned').length }

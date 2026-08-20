@@ -2,6 +2,7 @@ import fs from 'node:fs/promises'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { CampaignSchema } from '../bot/src/automation/campaign.js'
+import { campaignCoverageSnapshot } from '../bot/src/automation/campaign-coverage.js'
 
 const RECOVERABLE_STATUSES = new Set(['planned', 'researching', 'research-ready', 'drafting', 'validation', 'approved', 'scheduled'])
 
@@ -23,6 +24,7 @@ export function monthlyReadinessSnapshot(value, { now = new Date(), minimumRecov
   const today = localDate(now, campaign.timezone)
   const recoverable = campaign.items.filter((item) => item.publishDate >= today && RECOVERABLE_STATUSES.has(item.status))
   const futureScheduled = recoverable.filter((item) => item.status === 'scheduled').length
+  const coverage = campaignCoverageSnapshot(campaign, { now })
   const lastRecoverableDate = recoverable.map((item) => item.publishDate).sort().at(-1) || null
   const horizonDays = lastRecoverableDate ? dateDistance(today, lastRecoverableDate) + 1 : 0
   const reasons = []
@@ -34,6 +36,9 @@ export function monthlyReadinessSnapshot(value, { now = new Date(), minimumRecov
     today,
     recoverableCount: recoverable.length,
     futureScheduled,
+    consecutiveReadyDays: coverage.consecutiveReadyDays,
+    firstGapDate: coverage.firstGapDate,
+    firstGapStatus: coverage.firstGapStatus,
     reserves: campaign.reserves.length,
     lastRecoverableDate,
     horizonDays,
@@ -48,6 +53,9 @@ async function main() {
   const snapshot = monthlyReadinessSnapshot(campaign)
   if (process.env.GITHUB_OUTPUT) {
     await fs.appendFile(process.env.GITHUB_OUTPUT, `needs_renewal=${snapshot.needsRenewal}\n`)
+    await fs.appendFile(process.env.GITHUB_OUTPUT, `needs_replenishment=${snapshot.consecutiveReadyDays < 3}\n`)
+    await fs.appendFile(process.env.GITHUB_OUTPUT, `first_gap_date=${snapshot.firstGapDate || ''}\n`)
+    await fs.appendFile(process.env.GITHUB_OUTPUT, `consecutive_ready_days=${snapshot.consecutiveReadyDays}\n`)
   }
   console.log(JSON.stringify(snapshot, null, 2))
 }

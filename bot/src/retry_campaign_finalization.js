@@ -28,7 +28,7 @@ export async function retryCampaignFinalization({
     root,
     env,
     now,
-    targetBuffer: before.futureScheduled + 1,
+    targetBuffer: before.consecutiveReadyDays + 1,
     requiredDate: blocked.publishDate,
     maxAttempts: positiveInteger(env.CAMPAIGN_FINALIZATION_MAX_ATTEMPTS, 3),
   });

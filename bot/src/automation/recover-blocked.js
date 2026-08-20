@@ -4,6 +4,7 @@ import { CampaignSchema, publicCampaignSummary } from './campaign.js'
 import { markdownPublicationErrors } from '../validation/markdown-publication-gates.js'
 import { classifyEditorialFailure } from '../validation/editorial-failures.js'
 import { releaseAssetUse } from '../images/asset-library.js'
+import { buildEditorialTopicLedger, topicHistoryBlocksCandidate } from './topic-ledger.js'
 
 const TRANSIENT = /timeout|timed out|aborted|429|rate limit|temporar|econnreset|fetch failed|insufficient balance|tokens per minute|rate_limit_exceeded|quota(?: exceeded| limit)?|payment required/i
 const FINALIZATION = /^Valida(?:ção|cao) final:/i
@@ -83,7 +84,7 @@ function reserveToItem(reserve, blocked) {
   return {
     day: blocked.day,
     publishDate: blocked.publishDate,
-    id: reserve.id,
+    id: reserve.race ? `${reserve.id}-${blocked.publishDate}`.slice(0, 80) : reserve.id,
     title: reserve.title,
     summary: reserve.summary,
     category: reserve.category,
@@ -105,11 +106,12 @@ function reserveVisualProductIds(reserve) {
   return mapped?.productId ? [mapped.productId] : reserve.productIds || []
 }
 
-function nextReserve(campaign, blocked, { excludedVisualProductIds = [] } = {}) {
+function nextReserve(campaign, blocked, { excludedVisualProductIds = [], topicHistory = [] } = {}) {
   const used = new Set(campaign.items.map((item) => item.id))
   const excluded = new Set(excludedVisualProductIds)
   const available = [...RECOVERY_RESERVES, ...campaign.reserves].filter((item, index, items) => {
     if (used.has(item.id) || items.findIndex((candidate) => candidate.id === item.id) !== index) return false
+    if (topicHistoryBlocksCandidate(item, topicHistory, { onDate: blocked.publishDate })) return false
     const visualProductIds = reserveVisualProductIds(item)
     return excluded.size === 0 || visualProductIds.some((productId) => !excluded.has(productId))
   })
@@ -139,6 +141,7 @@ export function recoverBlockedCampaign(campaignInput, {
   maximumTransientAttempts = 2,
   maximumResearchAttempts = 8,
   finalizationDraftErrors = [],
+  topicHistory = [],
 } = {}) {
   const campaign = CampaignSchema.parse(structuredClone(campaignInput))
   const today = localDate(now, campaign.timezone)
@@ -269,7 +272,7 @@ export function recoverBlockedCampaign(campaignInput, {
       ? [blocked.heroImage.productId]
       : blocked.productIds || []
     : []
-  const reserve = nextReserve(campaign, blocked, { excludedVisualProductIds: exhaustedVisualProducts })
+  const reserve = nextReserve(campaign, blocked, { excludedVisualProductIds: exhaustedVisualProducts, topicHistory })
   if (!reserve) return { campaign, result: { status: 'blocked', itemId: blocked.id, reason: 'Nenhuma pauta-reserva disponível' }, exception: null }
   const exception = { recordedAt: now.toISOString(), campaignId: campaign.id, replacedItem: blocked, replacement: { id: reserve.id, title: reserve.title }, reason }
   campaign.items[blocked.day - 1] = reserveToItem(reserve, blocked)
@@ -284,6 +287,7 @@ export function recoverBlockedCampaign(campaignInput, {
 export async function recoverBlockedCampaignFiles({ root, now = new Date(), maximumResearchAttempts = 8 } = {}) {
   const campaignPath = path.join(root, 'bot/editorial-campaign.json')
   const campaign = JSON.parse(await fs.readFile(campaignPath, 'utf8'))
+  const topicLedger = await buildEditorialTopicLedger({ root, now })
   const parsedCampaign = CampaignSchema.parse(campaign)
   const today = localDate(now, parsedCampaign.timezone)
   const blocked = parsedCampaign.items.find((item) => item.status === 'blocked' && item.publishDate >= today)
@@ -303,7 +307,7 @@ export async function recoverBlockedCampaignFiles({ root, now = new Date(), maxi
       }
     }
   }
-  const recovered = recoverBlockedCampaign(parsedCampaign, { now, finalizationDraftErrors, maximumResearchAttempts })
+  const recovered = recoverBlockedCampaign(parsedCampaign, { now, finalizationDraftErrors, maximumResearchAttempts, topicHistory: topicLedger.items })
   if (recovered.result.status === 'idle' || recovered.result.status === 'blocked') return recovered.result
   await fs.writeFile(campaignPath, JSON.stringify(recovered.campaign, null, 2) + '\n')
   await fs.writeFile(path.join(root, '_data/editorial-calendar.json'), JSON.stringify(publicCampaignSummary(recovered.campaign), null, 2) + '\n')

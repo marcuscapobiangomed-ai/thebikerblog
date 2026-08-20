@@ -6,8 +6,13 @@ import { fileURLToPath } from "node:url";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const read = (name) => fs.readFileSync(path.join(root, ".github/workflows", name), "utf8");
 const packageJson = JSON.parse(fs.readFileSync(path.join(root, "package.json"), "utf8"));
+const scheduledPublisher = fs.readFileSync(path.join(root, "bot/src/publish_scheduled.js"), "utf8");
 
 assert.match(packageJson.scripts["prepare:derived"], /catalog:public.*build:machine-readable/);
+assert.match(packageJson.scripts["prepare:derived"], /build:topic-ledger/);
+assert.match(scheduledPublisher, /revalidateRaceSource\(item, raceProgram, now\)/, "corrida deve ser revalidada transacionalmente antes da publicação");
+assert.match(scheduledPublisher, /"_data\/race-events\.json"/, "transação deve carregar o calendário oficial usado na revalidação");
+assert.ok(scheduledPublisher.indexOf("await promoteStagedPaths") < scheduledPublisher.indexOf("await writeEditorialTopicLedger"), "ledger histórico deve refletir o post já promovido");
 
 const publication = read("publish-daily.yml");
 assert.ok(publication.indexOf("npm run catalog:revalidate") < publication.indexOf("npm run prepare:derived"));
@@ -19,6 +24,7 @@ assert.match(publication, /git add .*_data\/catalog-public\.json/);
 assert.match(publication, /git add .*_data\/products\/bikes/);
 assert.match(publication, /git add .*api\/products\.json/);
 assert.match(publication, /git add .*content\/product-discovery\/thebiker-media-catalog\.json/);
+assert.match(publication, /git add .*_data\/editorial-topic-ledger\.json/);
 assert.match(publication, /git pull --rebase --autostash origin main/);
 assert.doesNotMatch(publication, /actions: write/);
 assert.equal((publication.match(/gh workflow run deploy\.yml/g) || []).length, 0);

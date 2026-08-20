@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict'
 import { buildContingencyMonthlyReport, buildRollingCampaign, intelligenceSourceDigest, parseIntelligenceMarkdown, validateMonthlyCampaignPlan } from '../bot/src/automation/monthly-campaign.js'
 import { monthlyReadinessSnapshot } from './check-monthly-readiness.mjs'
+import { editorialTopicKey } from '../bot/src/automation/topic-ledger.js'
 import campaignFixture from '../bot/editorial-campaign.json' with { type: 'json' }
 
 const report = {
@@ -81,6 +82,22 @@ assert.equal(renewed.items.filter((item) => item.race?.track === 'participant-ca
 assert.ok(renewed.items.filter((item) => item.race).every((item) => item.race.sourceStatus === 'pending'), 'pauta mensal não pode presumir fonte já verificada')
 assert.deepEqual(validateMonthlyCampaignPlan(renewed).races, { total: 8, professional: 4, participant: 4 })
 
+const historicalRenewal = await buildRollingCampaign({
+  existing: activeToday,
+  report,
+  now: new Date(`${fixtureStart}T12:00:00-03:00`),
+  ai,
+  topicHistory: [{
+    id: 'seo-topic-1',
+    slug: 'seo-topic-1',
+    title: report.briefs[0].topic,
+    topicKey: editorialTopicKey(report.briefs[0].topic),
+    publishedAt: fixtureStart,
+    cooldownUntil: '2099-12-31',
+  }],
+})
+assert.equal(historicalRenewal.items.some((item) => item.id === 'seo-topic-1'), false, 'pauta publicada não pode reaparecer na renovação')
+
 const publishedToday = structuredClone(activeToday)
 const publishedFixture = publishedToday.items.find((item) => item.publishDate === fixtureStart)
 publishedFixture.status = 'published'
@@ -98,6 +115,8 @@ depleted.reserves = []
 const depletedSnapshot = monthlyReadinessSnapshot(depleted, { now: new Date(`${fixtureStart}T12:00:00-03:00`) })
 assert.equal(depletedSnapshot.needsRenewal, true)
 assert.equal(depletedSnapshot.recoverableCount, 0)
+assert.equal(depletedSnapshot.consecutiveReadyDays, 0)
+assert.equal(depletedSnapshot.firstGapDate, fixtureStart)
 const contingencyReport = buildContingencyMonthlyReport({ now: new Date(`${fixtureStart}T12:00:00-03:00`) })
 assert.equal(contingencyReport.sourceStatus, 'degraded')
 assert.match(contingencyReport.runKey, /^monthly-contingency-/)
