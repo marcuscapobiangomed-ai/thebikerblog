@@ -721,6 +721,7 @@
         "thebiker-bicicleta-scott-spark-rc-world-cup-20271-469b543bd6"
       ],
       "imageValidatedAt": "2026-08-14T00:31:54.902Z",
+      "publishedAt": "2026-08-20T12:37:24.863Z",
       "attempts": 2,
       "lastAttemptAt": "2026-08-14T00:31:54.902Z",
       "aiReview": {
@@ -742,12 +743,12 @@
         "origin": "pipeline",
         "reviewedContentHash": "sha256:f99766a8cd84d950bc5728490d6ebc9010c3a019f92c5372d6a1f28d5c73259a",
         "scheduledContentHash": "sha256:a3ad1cb958a78f4ef099d0dfd088bc08a8b84c8d557e96adf84ffcd8b79f7a75",
+        "publishedContentHash": "sha256:bc075dcfa08843272eb26fce140b7d6e91b9a414e5b446784acd6188afe22436",
         "researchHash": "sha256:3e741f12f0c7a8c67fcf095286da812c71cacfacb65c3d29ce4332281a0f9a73",
         "sourceHash": null,
         "finalScore": 95,
         "finalBlockers": 0,
-        "issuedAt": "2026-08-14T00:31:54.902Z",
-        "publishedContentHash": "sha256:bc075dcfa08843272eb26fce140b7d6e91b9a414e5b446784acd6188afe22436"
+        "issuedAt": "2026-08-14T00:31:54.902Z"
       },
       "visualDecision": {
         "schemaVersion": 1,
@@ -767,8 +768,7 @@
         },
         "blockers": [],
         "issuedAt": "2026-08-14T00:31:54.902Z"
-      },
-      "publishedAt": "2026-08-20T12:37:24.863Z"
+      }
     },
     {
       "day": 12,
@@ -778,7 +778,7 @@
       "summary": "Leitura de produto sem extrapolações, baseada somente nos campos que continuam presentes nas páginas recuperadas.",
       "category": "review",
       "freshness": "revalidate-24h",
-      "status": "scheduled",
+      "status": "published",
       "productIds": [
         "bicicleta-scott-scale-940-black"
       ],
@@ -786,7 +786,7 @@
         "mode": "exact-product",
         "productId": "bicicleta-scott-scale-940-black"
       },
-      "postPath": "_posts/drafts/2026-08-19-reserva-scale-940-ficha.md",
+      "postPath": "_posts/2026-08-20-reserva-scale-940-ficha.md",
       "imageManifestPath": "assets/img/posts/reserva-scale-940-ficha/image-manifest.json",
       "imageStatus": "approved",
       "imageAssetIds": [
@@ -824,7 +824,8 @@
         "sourceHash": "1420d0717fbe9e521e40d23e55dd397ab19931ed8058d5229f5f861f66d9c0cf",
         "finalScore": 95,
         "finalBlockers": 0,
-        "issuedAt": "2026-08-14T01:14:49.377Z"
+        "issuedAt": "2026-08-14T01:14:49.377Z",
+        "publishedContentHash": "sha256:e483f2febe6ebb770f2dc5ddbc6883ad0303e527486b78c7937b6447214de580"
       },
       "visualDecision": {
         "schemaVersion": 1,
@@ -844,7 +845,8 @@
         },
         "blockers": [],
         "issuedAt": "2026-08-14T01:14:49.377Z"
-      }
+      },
+      "publishedAt": "2026-08-20T12:39:41.399Z"
     },
     {
       "day": 13,
