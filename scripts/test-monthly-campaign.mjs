@@ -44,25 +44,32 @@ assert.equal(intelligenceSourceDigest(report), intelligenceSourceDigest(structur
 assert.notEqual(intelligenceSourceDigest(report), intelligenceSourceDigest({ ...report, generatedAt: '2026-08-07T10:11:00.000Z' }))
 
 const activeToday = structuredClone(campaignFixture)
-const scheduledIndex = activeToday.items.findLastIndex((item) => item.status === 'published')
-assert.ok(scheduledIndex >= 0 && scheduledIndex + 1 < activeToday.items.length, 'fixture precisa de um item publicado seguido por outro item')
-activeToday.items[scheduledIndex].status = 'scheduled'
-delete activeToday.items[scheduledIndex].publishedAt
-const fixtureStart = activeToday.items[scheduledIndex].publishDate
-const fixtureNextDay = activeToday.items[scheduledIndex + 1].publishDate
+const retainedIndex = 0
+activeToday.items[retainedIndex].status = 'researching'
+delete activeToday.items[retainedIndex].publishedAt
+delete activeToday.items[retainedIndex].blockReason
+delete activeToday.items[retainedIndex].failure
+const fixtureStart = activeToday.items[retainedIndex].publishDate
+const fixtureNextDay = activeToday.items[retainedIndex + 1].publishDate
 const blockedTomorrow = activeToday.items.find((item) => item.publishDate === fixtureNextDay)
 blockedTomorrow.status = 'blocked'
 blockedTomorrow.blockReason = 'Falha permanente usada pelo teste de renovação'
 const scheduledFixtureId = activeToday.items.find((item) => item.publishDate === fixtureStart).id
 const plannedFixtureId = activeToday.items.find((item) => item.publishDate === fixtureNextDay).id
-const staleReserveId = activeToday.reserves[0].id
+const staleReserveId = 'reserva-antiga-do-teste'
+activeToday.reserves.unshift({
+  id: staleReserveId,
+  title: 'Reserva antiga que não deve atravessar a renovação mensal',
+  summary: 'Pauta sintética do ciclo anterior usada apenas para validar a limpeza determinística das reservas.',
+  category: 'engenharia',
+})
 const renewed = await buildRollingCampaign({ existing: activeToday, report, now: new Date(`${fixtureStart}T12:00:00-03:00`), ai })
 assert.equal(renewed.items.length, 30)
 assert.equal(renewed.startsOn, fixtureStart)
 assert.deepEqual(renewed.items.map((item) => item.day), Array.from({ length: 30 }, (_, index) => index + 1))
 assert.equal(new Set(renewed.items.map((item) => item.publishDate)).size, 30)
 assert.equal(renewed.items.some((item) => item.status === 'blocked'), false)
-assert.ok(renewed.items.some((item) => item.id === scheduledFixtureId), 'conteúdo já agendado deve ser preservado')
+assert.ok(renewed.items.some((item) => item.id === scheduledFixtureId), 'conteúdo já em produção deve ser preservado')
 assert.equal(renewed.items.some((item) => item.id === plannedFixtureId), false, 'pauta ainda planejada deve ser substituída pela inteligência atual')
 assert.equal(renewed.items.some((item) => item.id === staleReserveId), false, 'reserva do ciclo anterior não deve contaminar o novo mês')
 assert.equal(renewed.reserves.some((item) => item.id === staleReserveId), false, 'buffer renovado deve vir apenas da inteligência atual')
@@ -74,9 +81,10 @@ assert.equal(renewed.items.filter((item) => item.race?.track === 'participant-ca
 assert.ok(renewed.items.filter((item) => item.race).every((item) => item.race.sourceStatus === 'pending'), 'pauta mensal não pode presumir fonte já verificada')
 assert.deepEqual(validateMonthlyCampaignPlan(renewed).races, { total: 8, professional: 4, participant: 4 })
 
-const publishedToday = structuredClone(campaignFixture)
+const publishedToday = structuredClone(activeToday)
 const publishedFixture = publishedToday.items.find((item) => item.publishDate === fixtureStart)
 publishedFixture.status = 'published'
+publishedFixture.postPath ||= `_posts/drafts/${fixtureStart}-fixture-publicada.md`
 publishedFixture.publishedAt = `${fixtureStart}T15:00:00.000Z`
 const shifted = await buildRollingCampaign({ existing: publishedToday, report, now: new Date(`${fixtureStart}T18:00:00-03:00`), ai })
 assert.equal(shifted.startsOn, fixtureNextDay)
