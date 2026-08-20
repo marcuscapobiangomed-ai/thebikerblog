@@ -20,7 +20,7 @@ permissions:
   actions: read
 
 concurrency:
-  group: thebiker-operational-alerts
+  group: thebiker-operational-alerts-${{ github.event.workflow_run.id }}
   cancel-in-progress: false
 
 jobs:

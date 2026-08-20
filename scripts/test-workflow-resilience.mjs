@@ -75,6 +75,9 @@ assert.match(deploy, /Run publication gates[\s\S]*npm run validate:ci/);
 assert.match(deploy, /repository_dispatch:[\s\S]*types: \[editorial-deploy\]/);
 assert.match(deploy, /github\.event_name == 'repository_dispatch'/);
 assert.match(deploy, /actions\/checkout@v7[\s\S]*ref: main/);
+const renewal = read("renew-monthly-campaign.yml");
+assert.match(renewal, /event-observed:\s+runs-on: ubuntu-latest[\s\S]*Classificar evento recebido/);
+assert.match(renewal, /renew:\s+if: \$\{\{ github\.event_name == 'workflow_dispatch'/);
 const prValidation = read("pr-validate.yml");
 assert.match(prValidation, /Preparar artefatos derivados temporais[\s\S]*npm run prepare:derived/);
 assert.match(

@@ -36,6 +36,7 @@ assert.match(replenisher, /Recomposição sem progresso e buffer crítico[\s\S]*
 const alerts = read("automation-alerts.yml");
 assert.match(alerts, /TheBiker — Recomposição automática do buffer editorial/);
 assert.match(alerts, /jobs:\s+alert:\s+runs-on: ubuntu-latest/);
+assert.match(alerts, /group: thebiker-operational-alerts-\$\{\{ github\.event\.workflow_run\.id \}\}/);
 assert.match(alerts, /retries: 3/);
 assert.match(alerts, /retry-exempt-status-codes: 400,401,403,404,422/);
 assert.match(alerts, /new Set\(\['failure', 'timed_out', 'action_required', 'cancelled'\]\)/);
