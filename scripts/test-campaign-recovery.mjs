@@ -20,6 +20,13 @@ function addIsolatedReserve(campaign, id) {
   })
   return campaign
 }
+function makeNonRaceFixture(item) {
+  item.category = 'manutencao-ajustes'
+  delete item.race
+  item.productIds = []
+  item.heroImage = { mode: 'conceptual' }
+  return item
+}
 function makeProducedFixture(campaign) {
   const item = campaign.items.find((candidate) => candidate.status === 'planned') || campaign.items[0]
   item.status = 'planned'
@@ -76,6 +83,7 @@ groundingFailure.reserves.unshift({
   productIds: ['corrente-sram-nx-eagle'],
 })
 const ungrounded = groundingFailure.items.find((item) => item.status === 'planned')
+makeNonRaceFixture(ungrounded)
 ungrounded.status = 'blocked'
 ungrounded.attempts = 1
 ungrounded.postPath = `_posts/drafts/${ungrounded.publishDate}-${ungrounded.id}.md`
@@ -127,6 +135,7 @@ const rejectedArticleCampaign = structuredClone(campaignFixture)
 for (const item of rejectedArticleCampaign.items) if (item.status === 'blocked') { item.status = 'planned'; delete item.blockReason; delete item.failure }
 addIsolatedReserve(rejectedArticleCampaign, 'reserva-recovery-fixture-rejected-article')
 const rejectedArticle = rejectedArticleCampaign.items.find((item) => item.status === 'planned')
+makeNonRaceFixture(rejectedArticle)
 rejectedArticle.status = 'blocked'
 rejectedArticle.attempts = 1
 rejectedArticle.failure = { code: 'RESEARCH_INSUFFICIENT', retryable: false, stage: 'production', message: 'Rascunho bloqueado após 2 reparos: Artigo bloqueado por integridade de claims', recordedAt: '2026-08-13T15:09:00.000Z' }
@@ -222,6 +231,7 @@ conceptualFinalization.reserves = conceptualFinalization.reserves.filter((item) 
 const conceptual = conceptualFinalization.items.find((item) => item.id === conceptualPolicyId)
   || conceptualFinalization.items.find((item) => item.id === finalizable.id)
 assert.ok(conceptual, 'A campanha precisa conter uma pauta produzida para testar o reparo visual')
+makeNonRaceFixture(conceptual)
 conceptual.id = conceptualPolicyId
 conceptual.postPath = finalizable.postPath
 conceptual.aiReview = structuredClone(finalizable.aiReview)
@@ -372,6 +382,7 @@ addIsolatedReserve(permanent, 'reserva-recovery-fixture-permanent')
 addIsolatedReserve(permanent, 'reserva-recovery-fixture-permanent-remaining')
 const unsupported = permanent.items.find((item) => item.status === 'planned')
 assert.ok(unsupported, 'A campanha precisa ter ao menos uma pauta planejada para o teste permanente')
+makeNonRaceFixture(unsupported)
 unsupported.status = 'blocked'
 unsupported.blockReason = 'Falha editorial permanente sem estratégia segura de recuperação'
 const replaced = recoverBlockedCampaign(permanent, { now: new Date('2026-08-07T12:00:00Z') })
