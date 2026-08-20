@@ -793,6 +793,7 @@
         "manufacturer-bicicleta-scott-scale-940-black-5171146828"
       ],
       "imageValidatedAt": "2026-08-14T01:14:49.377Z",
+      "publishedAt": "2026-08-20T12:39:41.399Z",
       "attempts": 2,
       "lastAttemptAt": "2026-08-14T01:04:09.766Z",
       "aiReview": {
@@ -820,12 +821,12 @@
         "origin": "pipeline",
         "reviewedContentHash": "sha256:a76b7f6d58383fd0e327a80d3bdaf7a486d7369d4c1771423da119440858b25a",
         "scheduledContentHash": "sha256:1528d4bcd0def10c85f4bd0754e02a3fcd4530f2cb2fb5c16ce4a2066b5bddcf",
+        "publishedContentHash": "sha256:e483f2febe6ebb770f2dc5ddbc6883ad0303e527486b78c7937b6447214de580",
         "researchHash": "sha256:9cb978ecbb89ff65c760e7cc960497a609a89ff460617906597b06d0868e7aac",
         "sourceHash": "1420d0717fbe9e521e40d23e55dd397ab19931ed8058d5229f5f861f66d9c0cf",
         "finalScore": 95,
         "finalBlockers": 0,
-        "issuedAt": "2026-08-14T01:14:49.377Z",
-        "publishedContentHash": "sha256:e483f2febe6ebb770f2dc5ddbc6883ad0303e527486b78c7937b6447214de580"
+        "issuedAt": "2026-08-14T01:14:49.377Z"
       },
       "visualDecision": {
         "schemaVersion": 1,
@@ -845,8 +846,7 @@
         },
         "blockers": [],
         "issuedAt": "2026-08-14T01:14:49.377Z"
-      },
-      "publishedAt": "2026-08-20T12:39:41.399Z"
+      }
     },
     {
       "day": 13,
@@ -856,7 +856,7 @@
       "summary": "Protocolo tecnico para isolar ruidos de transmissao, cockpit, rodas e quadro sem substituir componentes por tentativa e erro.",
       "category": "manutencao-ajustes",
       "freshness": "evergreen",
-      "status": "scheduled",
+      "status": "published",
       "productIds": [
         "bicicleta-scott-scale-940-black",
         "corrente-sram-nx-eagle",
@@ -873,7 +873,7 @@
         "relationship": "category-example",
         "rationale": "Fotografia real do catalogo usada somente como contexto visual para o diagnostico tecnico da bicicleta."
       },
-      "postPath": "_posts/drafts/2026-08-20-reserva-diagnostico-ruidos-bike.md",
+      "postPath": "_posts/2026-08-20-reserva-diagnostico-ruidos-bike.md",
       "imageManifestPath": "assets/img/posts/reserva-diagnostico-ruidos-bike/image-manifest.json",
       "imageStatus": "approved",
       "imageAssetIds": [
@@ -905,7 +905,8 @@
         "sourceHash": null,
         "finalScore": 95,
         "finalBlockers": 0,
-        "issuedAt": "2026-08-14T02:17:08.948Z"
+        "issuedAt": "2026-08-14T02:17:08.948Z",
+        "publishedContentHash": "sha256:7ce61b94bac8cefdf7e0f34bccc5c24965db300113b1b022b90b00ad151afff7"
       },
       "visualDecision": {
         "schemaVersion": 1,
@@ -925,7 +926,8 @@
         },
         "blockers": [],
         "issuedAt": "2026-08-14T02:17:08.948Z"
-      }
+      },
+      "publishedAt": "2026-08-20T12:42:37.477Z"
     },
     {
       "day": 14,

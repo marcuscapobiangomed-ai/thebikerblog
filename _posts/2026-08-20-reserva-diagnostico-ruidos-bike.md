@@ -1,11 +1,11 @@
 ---
 image_subject_id: "bicicleta-scott-scale-980-black"
 layout: post
-published: false
+published: true
 title: "Diagnostico de ruidos na bicicleta: metodo por carga, frequencia e interface"
 slug: "diagnostico-de-ruidos-na-bicicleta-metodo-por-carga-frequencia-e-interface"
 date: 2026-08-20
-last_modified_at: 2026-08-14
+last_modified_at: 2026-08-20
 author: "Equipe TheBiker"
 reviewed_by: "TheBiker AI Editorial Gate"
 content_type: "guia-tecnico"
@@ -47,12 +47,12 @@ image_credit: "TheBiker Shop"
 image_license: "Uso editorial no blog oficial TheBiker"
 affiliate_links: false
 editorial_scope: "portfolio"
-promoted_brands: []
+promoted_brands: ["Scott"]
 context_only_brands: []
 portfolio_evidence_url: "https://thebikershop.com.br/componentes/"
 portfolio_verified_at: "2026-08-14"
-editorial_status: "reviewed"
-status: "scheduled"
+editorial_status: "published"
+status: "published"
 sources:
   - name: "Shimano Technical Service Manuals – Drivetrain"
     type: "manufacturer"
