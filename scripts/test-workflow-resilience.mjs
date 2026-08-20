@@ -78,6 +78,22 @@ assert.match(deploy, /actions\/checkout@v7[\s\S]*ref: main/);
 const renewal = read("renew-monthly-campaign.yml");
 assert.match(renewal, /event-observed:\s+runs-on: ubuntu-latest[\s\S]*Classificar evento recebido/);
 assert.match(renewal, /renew:\s+if: \$\{\{ github\.event_name == 'workflow_dispatch'/);
+assert.match(renewal, /contingency:[\s\S]*type: boolean/);
+assert.match(renewal, /id: renewal[\s\S]*--contingency[\s\S]*--candidate-output=/);
+assert.match(renewal, /campaign:validate-monthly-plan/);
+assert.doesNotMatch(renewal, /campaign:simulate/);
+assert.match(renewal, /if: \$\{\{ steps\.renewal\.outputs\.status == 'renewed' \}\}[\s\S]*replenish-buffer\.yml[\s\S]*target_buffer=7[\s\S]*max_attempts=7[\s\S]*required_date=/);
+assert.doesNotMatch(renewal, /gh workflow run cron-post\.yml/);
+assert.match(renewal, /queue: max/);
+
+const watchdog = read("editorial-watchdog.yml");
+assert.match(watchdog, /actions: write/);
+assert.match(watchdog, /id: monthly_readiness[\s\S]*check-monthly-readiness\.mjs/);
+assert.match(watchdog, /outputs\.needs_renewal == 'true'[\s\S]*renew-monthly-campaign\.yml[\s\S]*contingency=true[\s\S]*dry_run=false/);
+
+for (const name of ["update-race-calendar.yml", "replenish-buffer.yml", "publish-daily.yml", "repair-buffer.yml", "cron-post.yml", "renew-monthly-campaign.yml", "audit-buffer.yml"]) {
+  assert.match(read(name), /group: thebiker-editorial-write\s+queue: max\s+cancel-in-progress: false/, `${name} deve enfileirar todos os escritores`);
+}
 const prValidation = read("pr-validate.yml");
 assert.match(prValidation, /Preparar artefatos derivados temporais[\s\S]*npm run prepare:derived/);
 assert.match(

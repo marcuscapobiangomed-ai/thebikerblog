@@ -8,6 +8,45 @@ const READY_STATUSES = new Set(['researching', 'research-ready', 'drafting', 'va
 const CATEGORY_VALUES = new Set(['manutencao-ajustes', 'engenharia', 'review', 'comparativo', 'componentes', 'lancamentos', 'competicoes'])
 const MONTHLY_PLANNER_REVISION = 3
 
+const CONTINGENCY_TOPIC_TEMPLATES = [
+  ['contingencia-addict-rc-pro-documentacao', 'Scott Addict RC Pro: roteiro documental para conferir montagem, medidas e compatibilidade', 'Guia baseado em documentação oficial e conhecimento interno rastreável para conferir a configuração sem presumir teste presencial.', 'review', ['bicicleta-scott-addict-rc-pro-di2-2026-pre-venda']],
+  ['contingencia-addict-rc20-documentacao', 'Scott Addict RC 20: como ler a ficha oficial antes de comparar versões e componentes', 'Leitura técnica da ficha cadastrada, com limites explícitos e verificação de cada componente na fonte correspondente.', 'review', ['bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9']],
+  ['contingencia-addict-50-documentacao', 'Scott Addict 50: geometria, montagem e pontos que precisam ser confirmados na ficha atual', 'Roteiro documental para organizar medidas, componentes e lacunas sem transformar catálogo ou descrição comercial em teste de campo.', 'review', ['bicicleta-scott-addict-50-2026-pre-venda-1bxzy']],
+  ['contingencia-scale-980-variantes', 'Scott Scale 980: método para distinguir variantes, cores e montagens sem misturar fichas', 'Comparação documental entre registros internos rastreáveis, preservando diferenças de identificação e dados ainda não confirmados.', 'comparativo', ['bicicleta-scott-scale-980-black', 'bicicleta-scott-scale-980-blue']],
+  ['contingencia-spark-rc-expert-documentacao', 'Scott Spark RC Expert: arquitetura de suspensão e componentes confirmados na documentação', 'Análise documental da plataforma cadastrada com separação clara entre especificação, ajuste possível e desempenho não testado.', 'review', ['bicicleta-scott-spark-rc-expert-2027']],
+  ['contingencia-spark-world-cup-documentacao', 'Scott Spark RC World Cup: checklist de especificações e limites da análise documental', 'Checklist rastreável de quadro, suspensão e montagem, sem extrapolar comportamento dinâmico ou disponibilidade comercial.', 'review', ['bicicleta-scott-spark-rc-world-cup-2027']],
+  ['contingencia-scale-rc-team-quadro', 'Quadro Scott Scale RC Team HMF: interfaces, padrões e verificações antes da montagem', 'Guia técnico apoiado na ficha interna verificada para conferir interfaces e registrar como lacuna o que não estiver documentado.', 'review', ['quadro-scott-scale-rc-team-hmf-2026']],
+  ['contingencia-inspecao-fixadores', 'Inspeção de fixadores da bicicleta: sequência, registro e sinais que exigem avaliação técnica', 'Método preventivo para organizar inspeção visual e documental sem recomendar torque genérico nem substituir o manual do fabricante.', 'manutencao-ajustes'],
+  ['contingencia-freio-ruido-vibracao', 'Ruído e vibração nos freios: diagnóstico por carga, temperatura e condição do rotor', 'Roteiro de diagnóstico que separa sintomas observáveis, possíveis interfaces e verificações seguras antes de trocar componentes.', 'manutencao-ajustes'],
+  ['contingencia-transmissao-desgaste', 'Desgaste da transmissão: como registrar corrente, cassete e coroas sem conclusões precipitadas', 'Método de inspeção e registro para acompanhar desgaste, evitar mistura de medições e consultar limites específicos do fabricante.', 'manutencao-ajustes'],
+  ['contingencia-pressao-pneus-registro', 'Pressão dos pneus: protocolo de testes com registro de terreno, carga e comportamento', 'Procedimento comparável para ajustar uma variável por vez e separar aderência, suporte, impacto e resistência percebida.', 'engenharia'],
+  ['contingencia-tubeless-selante', 'Sistema tubeless: inspeção de fita, válvula, selante e assentamento do pneu', 'Checklist técnico para localizar perda de ar e contaminação mantendo compatibilidade e limites de pressão ligados à documentação.', 'manutencao-ajustes'],
+  ['contingencia-sag-suspensao', 'SAG da suspensão: como medir com repetibilidade e registrar as condições do ajuste', 'Método para reduzir variações de postura, equipamento e leitura sem apresentar um valor universal para bicicletas diferentes.', 'engenharia'],
+  ['contingencia-retorno-suspensao', 'Retorno da suspensão: protocolo para comparar ajustes sem confundir velocidade e controle', 'Sequência de testes controlados com registro de cliques e sintomas, preservando as recomendações específicas de cada fabricante.', 'engenharia'],
+  ['contingencia-rolamentos-interfaces', 'Rolamentos da bicicleta: diagnóstico por interface antes de concluir que existe desgaste', 'Roteiro para separar folga, contaminação, fixação e carga sem desmontagem indiscriminada ou substituição por tentativa.', 'manutencao-ajustes'],
+  ['contingencia-caixa-direcao', 'Caixa de direção: inspeção de folga, pré-carga e alinhamento em etapas verificáveis', 'Método de diagnóstico para registrar sintomas e conferir a montagem respeitando o desenho e os limites específicos do conjunto.', 'manutencao-ajustes'],
+  ['contingencia-movimento-central', 'Movimento central: como distinguir ruído, folga e incompatibilidade de interface', 'Guia de investigação documental e mecânica para não atribuir todo estalo ao rolamento nem misturar padrões de quadro.', 'manutencao-ajustes'],
+  ['contingencia-centragem-roda', 'Centragem de roda: o que observar antes de alterar a tensão dos raios', 'Checklist de alinhamento lateral, radial e tensão relativa que delimita quando a avaliação profissional é necessária.', 'engenharia'],
+  ['contingencia-tensao-raios', 'Tensão de raios: método de comparação sem publicar valores universais', 'Leitura técnica sobre equilíbrio, referência do aro e registro de medições, mantendo especificações ligadas ao fabricante.', 'engenharia'],
+  ['contingencia-cubo-folga', 'Cubo e eixo: diagnóstico de folga, assentamento e pré-carga sem misturar padrões', 'Sequência para separar fixação da roda, rolamentos e interfaces antes de concluir que um componente está danificado.', 'manutencao-ajustes'],
+  ['contingencia-canote-selim', 'Canote e selim: interfaces, fixação e sinais que não devem ser ignorados', 'Inspeção organizada de diâmetro, inserção, trilhos e superfícies de contato baseada na documentação de cada componente.', 'manutencao-ajustes'],
+  ['contingencia-posicao-selim', 'Posição do selim: como registrar alterações sem transformar ajuste em prescrição médica', 'Método para documentar altura, recuo e inclinação com pequenas mudanças, sintomas observados e limites de orientação.', 'engenharia'],
+  ['contingencia-tacos-pedais', 'Tacos e pedais: inspeção de desgaste, fixação e repetibilidade do encaixe', 'Checklist técnico para observar interfaces e simetria sem extrapolar para diagnóstico clínico ou ajuste biomecânico individual.', 'manutencao-ajustes'],
+  ['contingencia-cockpit-alinhamento', 'Cockpit da bicicleta: método para conferir alinhamento, interfaces e fixação', 'Sequência de inspeção de guidão, mesa, espaçadores e comandos mantendo cada limite associado ao manual aplicável.', 'manutencao-ajustes'],
+  ['contingencia-torque-documentacao', 'Torque de montagem: como localizar a especificação correta e evitar valores genéricos', 'Guia documental para identificar interface, material, condição de rosca e fonte antes de aplicar qualquer valor de aperto.', 'engenharia'],
+  ['contingencia-carbono-inspecao', 'Componentes de carbono: inspeção visual, histórico de impacto e critérios de interrupção de uso', 'Roteiro conservador para registrar sinais e encaminhar avaliação adequada sem declarar integridade estrutural por fotografia.', 'manutencao-ajustes'],
+  ['contingencia-pos-chuva', 'Inspeção pós-chuva: pontos de contaminação, corrosão e desgaste que merecem registro', 'Rotina técnica após uso molhado priorizando transmissão, freios, rolamentos e interfaces sem lavagem agressiva.', 'manutencao-ajustes'],
+  ['contingencia-armazenamento-bike', 'Armazenamento da bicicleta: umidade, carga, bateria e inspeções periódicas', 'Checklist para reduzir degradação durante períodos sem uso respeitando orientações específicas de componentes e baterias.', 'manutencao-ajustes'],
+  ['contingencia-lavagem-bike', 'Lavagem da bicicleta: sequência para remover sujeira sem deslocar contaminação', 'Método de limpeza por zonas que protege freios e rolamentos e evita apresentar um produto químico como universal.', 'manutencao-ajustes'],
+  ['contingencia-lubrificacao-corrente', 'Lubrificação da corrente: preparação, aplicação e avaliação do excesso', 'Procedimento para controlar limpeza, quantidade e intervalo conforme uso, sem prometer durabilidade ou desempenho absoluto.', 'manutencao-ajustes'],
+  ['contingencia-cambio-eletronico', 'Câmbio eletrônico: diagnóstico por energia, comunicação, alinhamento e sincronização', 'Roteiro de verificação que separa bateria, conexão, configuração e interferência mecânica antes de substituir peças.', 'componentes'],
+  ['contingencia-cabos-mangueiras', 'Cabos e mangueiras internos: sinais de atrito, roteamento e pontos de inspeção', 'Guia técnico para documentar ruído e restrição de movimento sem prescrever desmontagem incompatível com o quadro.', 'componentes'],
+  ['contingencia-carcaca-pneu', 'Carcaça do pneu: como relacionar construção, pressão e uso sem generalizar desempenho', 'Leitura técnica das variáveis documentadas e de um protocolo de comparação que mantenha terreno e carga registrados.', 'engenharia'],
+  ['contingencia-largura-aro-pneu', 'Largura interna do aro e pneu: compatibilidade, forma e limites documentais', 'Guia para conferir tabelas e padrões aplicáveis sem inferir compatibilidade apenas pela medida nominal do pneu.', 'engenharia'],
+  ['contingencia-stack-reach', 'Stack e reach: como comparar posições sem reduzir geometria a dois números', 'Método de leitura que combina medidas do quadro, componentes e objetivo de uso sem transformar comparação em ajuste pessoal.', 'engenharia'],
+  ['contingencia-offset-garfo', 'Offset do garfo e direção: relações geométricas que exigem contexto', 'Explicação documental de medidas e relações, evitando promessas isoladas de estabilidade, agilidade ou desempenho.', 'engenharia'],
+].map(([id, title, summary, category, productIds = []]) => ({ id, title, summary, category, productIds }))
+
 const RACE_SLOT_TEMPLATES = [
   { id: 'corridas-pro-previa-principal', title: 'Prévia da principal corrida profissional da semana: percurso, favoritos e pontos técnicos', summary: 'Cobertura profissional vinculada a um evento oficial, com percurso, largadas e transmissão confirmados novamente antes da publicação.', category: 'competicoes', race: { track: 'professional-coverage', format: 'preview', eventIds: [], sourceStatus: 'pending' } },
   { id: 'corridas-pro-resumo-principal', title: 'Resumo da principal corrida profissional da semana: resultado, tática e impacto na temporada', summary: 'Análise pós-prova baseada em resultado oficial, movimentos decisivos e contexto técnico, sem transformar rumor ou impressão em fato.', category: 'competicoes', race: { track: 'professional-coverage', format: 'recap', eventIds: [], sourceStatus: 'pending' } },
@@ -208,6 +247,45 @@ export function intelligenceSourceDigest(report) {
   return crypto.createHash('sha256').update(JSON.stringify({ plannerRevision: MONTHLY_PLANNER_REVISION, report })).digest('hex')
 }
 
+export function buildContingencyMonthlyReport({ now = new Date() } = {}) {
+  const generatedAt = now.toISOString()
+  const date = generatedAt.slice(0, 10)
+  return {
+    schemaVersion: 1,
+    runKey: `monthly-contingency-${date}`,
+    cadence: 'monthly',
+    generatedAt,
+    briefs: [],
+    refreshQueue: [],
+    discoverySignals: [],
+    queryClusters: [],
+    brazilRankings: { youtubeDiscovery: [], seoMeasured: [] },
+    sourceStatus: 'degraded',
+  }
+}
+
+export function validateMonthlyCampaignPlan(value) {
+  const campaign = CampaignSchema.parse(value)
+  const unusable = campaign.items.filter((item) => ['blocked', 'replaced'].includes(item.status))
+  if (unusable.length > 0) throw new Error(`Plano mensal contém ${unusable.length} pauta(s) inutilizável(is)`)
+  if (campaign.reserves.length < 3) throw new Error(`Plano mensal exige pelo menos 3 reservas; recebido: ${campaign.reserves.length}`)
+  const races = campaign.items.filter((item) => item.race)
+  const professional = races.filter((item) => item.race.track === 'professional-coverage')
+  const participant = races.filter((item) => item.race.track === 'participant-calendar')
+  if (races.length < RACE_MONTHLY_TARGETS.total || professional.length < RACE_MONTHLY_TARGETS.professionalCoverage || participant.length < RACE_MONTHLY_TARGETS.participantCalendar) {
+    throw new Error(`Plano mensal sem mix mínimo de corridas: ${races.length}/${RACE_MONTHLY_TARGETS.total}`)
+  }
+  return {
+    campaignId: campaign.id,
+    startsOn: campaign.startsOn,
+    items: campaign.items.length,
+    planned: campaign.items.filter((item) => item.status === 'planned').length,
+    retainedReady: campaign.items.filter((item) => READY_STATUSES.has(item.status)).length,
+    reserves: campaign.reserves.length,
+    races: { total: races.length, professional: professional.length, participant: participant.length },
+  }
+}
+
 export async function buildRollingCampaign({ existing, report, now = new Date(), ai } = {}) {
   const current = CampaignSchema.parse(existing)
   if (report.cadence !== 'monthly') throw new Error('Somente relatórios mensais podem renovar a campanha')
@@ -225,7 +303,12 @@ export async function buildRollingCampaign({ existing, report, now = new Date(),
   const occupiedTitles = [...retained.values()].map((item) => normalize(item.title))
   const fresh = (report.briefs || []).filter((brief) => brief.action === 'new-content').map(candidateFromBrief)
   const raceSlots = raceSlotsFor(retained)
-  let candidates = uniqueCandidates(fresh, occupiedTitles)
+  const contingency = CONTINGENCY_TOPIC_TEMPLATES.map(candidateFromReserve)
+  let candidates = uniqueCandidates([
+    ...contingency.slice(0, 7),
+    ...fresh,
+    ...contingency.slice(7),
+  ], occupiedTitles)
   const openDates = dates.filter((date) => !retained.has(date)).length
   const missingBeforeAi = openDates + 3 - candidates.length - raceSlots.length
   if (missingBeforeAi > 0) {
@@ -267,6 +350,7 @@ export async function buildRollingCampaign({ existing, report, now = new Date(),
     items,
     reserves: reservePool.slice(0, Math.max(3, Math.min(12, reservePool.length))).map(({ id, title, summary, category, race }) => ({ id, title, summary, category, ...(race ? { race } : {}) })),
   })
+  validateMonthlyCampaignPlan(campaign)
   return campaign
 }
 

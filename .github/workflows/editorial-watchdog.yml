@@ -8,6 +8,7 @@ on:
 
 permissions:
   contents: read
+  actions: write
 
 concurrency:
   group: thebiker-editorial-watchdog
@@ -20,6 +21,8 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v7
+        with:
+          ref: main
       - uses: actions/setup-node@v7
         with:
           node-version: 24
@@ -33,4 +36,23 @@ jobs:
       - name: Inspect configuration and future buffer
         run: npm run automation:doctor
       - name: Require a publishable rolling buffer
+        continue-on-error: true
         run: npm run campaign:simulate
+      - name: Medir horizonte da campanha mensal
+        id: monthly_readiness
+        if: always()
+        run: node scripts/check-monthly-readiness.mjs
+      - name: Acionar renovação preventiva em contingência
+        if: steps.monthly_readiness.outputs.needs_renewal == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow run renew-monthly-campaign.yml --ref main \
+            -f issue_number=0 \
+            -f contingency=true \
+            -f dry_run=false
+      - name: Resumo da sentinela mensal
+        if: always()
+        run: |
+          echo "### Sentinela mensal" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Renovação necessária: ${{ steps.monthly_readiness.outputs.needs_renewal || 'indisponível' }}" >> "$GITHUB_STEP_SUMMARY"

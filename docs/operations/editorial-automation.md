@@ -4,7 +4,7 @@
 
 O GitHub Actions é o motor de produção permanente. O n8n local serve para visualização e homologação, mas a continuidade do blog não depende de computador ligado.
 
-O workflow `.github/workflows/cron-post.yml` possui três janelas diárias de execução. Cada execução produz no máximo uma pauta e compartilha o grupo de concorrência `thebiker-editorial-write` com auditoria, reparo, renovação e publicação. O workflow `.github/workflows/publish-daily.yml` verifica a publicação às 11h55, 12h00 e 12h10 em `America/Sao_Paulo`; a operação é idempotente.
+O workflow `.github/workflows/cron-post.yml` possui três janelas diárias de execução. Cada execução produz no máximo uma pauta e compartilha a fila `thebiker-editorial-write` com auditoria, reparo, renovação e publicação. A fila usa `queue: max`: sobreposição de horário espera a vez, sem cancelar um escritor pendente. O workflow `.github/workflows/publish-daily.yml` verifica a publicação às 11h55, 12h00 e 12h10 em `America/Sao_Paulo`; a operação é idempotente.
 
 O fluxo completo é:
 
@@ -64,6 +64,12 @@ As chaves não entram em `_config.yml`, `_data`, JavaScript público, logs ou ar
 - Somente inventário TheBiker verificado recebe link comercial.
 - Os alertas cobrem inteligência, renovação, produção, recomposição do buffer, auditoria, reparo, publicação e deploy; falhas recorrentes são agrupadas pelo fingerprint da causa.
 - Pull requests integrados acionam deploy pelo `push` em `main`. Como commits feitos pelo `GITHUB_TOKEN` não encadeiam workflows por `push`, publicação e atualização de corridas emitem `repository_dispatch` somente depois de persistirem um novo SHA. Dry-runs e no-ops não fazem deploy; um dispatch manual só constrói com `force_deploy=true`.
+
+## Renovação mensal preventiva
+
+O watchdog mede diariamente a quantidade de pautas futuras recuperáveis, o horizonte da última data utilizável e o número de reservas. A renovação é acionada antes de faltar conteúdo quando houver menos de 14 pautas recuperáveis, menos de 14 dias de horizonte ou menos de três reservas.
+
+O renovador sempre constrói e valida primeiro um plano de 30 dias, com ao menos três reservas e oito posições de corridas (quatro profissionais e quatro participativas). Se a issue mensal de inteligência estiver indisponível, a contingência local usa somente pautas técnicas rastreáveis e preserva os artigos já aprovados ou agendados; ela não inventa tendência, métrica ou resultado de produto. Depois do commit, `replenish-buffer.yml` tenta formar sete dias de buffer e recebe uma data obrigatória que precisa permanecer publicável. Repetir o mesmo relatório é um no-op verde e não inicia produção duplicada.
 
 ## Recuperação controlada de publicações
 

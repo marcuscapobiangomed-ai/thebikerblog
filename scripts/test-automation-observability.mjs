@@ -11,15 +11,19 @@ const read = (name) => fs.readFileSync(path.join(root, ".github/workflows", name
 const replenisher = read("replenish-buffer.yml");
 assert.match(replenisher, /cron: "35 7 \* \* \*"/);
 assert.match(replenisher, /cron: "45 13 \* \* \*"/);
-assert.match(replenisher, /campaign:replenish[\s\S]*target-buffer=.*max-attempts=/);
+assert.match(replenisher, /arguments=\(--target-buffer=.*--max-attempts=/);
+assert.match(replenisher, /npm run campaign:replenish -- "\$\{arguments\[@\]\}"/);
 assert.doesNotMatch(replenisher, /--allow-partial/);
 assert.match(replenisher, /TARGET_BUFFER_INPUT: \$\{\{ inputs\.target_buffer \|\| '7' \}\}/);
 assert.match(replenisher, /MAX_ATTEMPTS_INPUT: \$\{\{ inputs\.max_attempts \|\| '3' \}\}/);
+assert.match(replenisher, /required_date:[\s\S]*type: string/);
+assert.match(replenisher, /REQUIRED_DATE_INPUT: \$\{\{ inputs\.required_date \|\| '' \}\}/);
 assert.doesNotMatch(replenisher, /--target-buffer=\$\{\{/);
 assert.doesNotMatch(replenisher, /--max-attempts=\$\{\{/);
 assert.match(replenisher, /target_buffer < 1 \|\| target_buffer > 30/);
 assert.match(replenisher, /max_attempts < 1 \|\| max_attempts > 10/);
 assert.match(replenisher, /--target-buffer="\$target_buffer" --max-attempts="\$max_attempts"/);
+assert.match(replenisher, /arguments\+=\(--required-date="\$REQUIRED_DATE_INPUT"\)/);
 assert.doesNotMatch(replenisher.match(/id: replenish[\s\S]*?working-directory: bot/)?.[0] || "", /continue-on-error/);
 assert.match(replenisher, /replenish_exit_code=\$\?[\s\S]*echo "exit_code=\$replenish_exit_code" >> "\$GITHUB_OUTPUT"/);
 assert.match(replenisher, /id: validation[\s\S]*run: npm run validate:artifacts/);
@@ -32,6 +36,8 @@ assert.match(replenisher, /steps\.replenish\.outputs\.exit_code != '0' \|\| step
 assert.match(replenisher, /EDITORIAL_CRITICAL_BUFFER: \$\{\{ vars\.EDITORIAL_CRITICAL_BUFFER \|\| '1' \}\}/);
 assert.match(replenisher, /Recomposição parcial\/sem progresso[\s\S]*exit 0/);
 assert.match(replenisher, /Recomposição sem progresso e buffer crítico[\s\S]*exit 1/);
+assert.match(replenisher, /required_ready[\s\S]*A data obrigatória[\s\S]*exit 1/);
+assert.match(replenisher, /queue: max/);
 
 const alerts = read("automation-alerts.yml");
 assert.match(alerts, /TheBiker — Recomposição automática do buffer editorial/);
