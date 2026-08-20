@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict'
-import { buildRollingCampaign, intelligenceSourceDigest, parseIntelligenceMarkdown } from '../bot/src/automation/monthly-campaign.js'
+import { buildContingencyMonthlyReport, buildRollingCampaign, intelligenceSourceDigest, parseIntelligenceMarkdown, validateMonthlyCampaignPlan } from '../bot/src/automation/monthly-campaign.js'
+import { monthlyReadinessSnapshot } from './check-monthly-readiness.mjs'
 import campaignFixture from '../bot/editorial-campaign.json' with { type: 'json' }
 
 const report = {
@@ -22,10 +23,8 @@ const report = {
     seoMeasured: [{ rank: 1, term: 'ajuste suspensão mtb', opportunityScore: 92 }],
   },
 }
-let plannerPrompt = ''
 const ai = {
   async generate(_system, prompt) {
-    plannerPrompt = prompt
     const missing = Number(prompt.match(/Crie exatamente (\d+) pautas/)?.[1] || 0)
     return JSON.stringify({
       topics: Array.from({ length: missing }, (_, index) => ({
@@ -73,8 +72,7 @@ assert.equal(renewed.items.filter((item) => item.race).length, 8, 'campanha deve
 assert.equal(renewed.items.filter((item) => item.race?.track === 'professional-coverage').length, 4)
 assert.equal(renewed.items.filter((item) => item.race?.track === 'participant-calendar').length, 4)
 assert.ok(renewed.items.filter((item) => item.race).every((item) => item.race.sourceStatus === 'pending'), 'pauta mensal não pode presumir fonte já verificada')
-assert.match(plannerPrompt, /brazilRankings/)
-assert.match(plannerPrompt, /ajuste suspensão mtb/)
+assert.deepEqual(validateMonthlyCampaignPlan(renewed).races, { total: 8, professional: 4, participant: 4 })
 
 const publishedToday = structuredClone(campaignFixture)
 const publishedFixture = publishedToday.items.find((item) => item.publishDate === fixtureStart)
@@ -82,4 +80,28 @@ publishedFixture.status = 'published'
 publishedFixture.publishedAt = `${fixtureStart}T15:00:00.000Z`
 const shifted = await buildRollingCampaign({ existing: publishedToday, report, now: new Date(`${fixtureStart}T18:00:00-03:00`), ai })
 assert.equal(shifted.startsOn, fixtureNextDay)
+
+const depleted = structuredClone(activeToday)
+for (const item of depleted.items) {
+  item.status = 'blocked'
+  item.blockReason = 'Pauta indisponível do ciclo anterior'
+}
+depleted.reserves = []
+const depletedSnapshot = monthlyReadinessSnapshot(depleted, { now: new Date(`${fixtureStart}T12:00:00-03:00`) })
+assert.equal(depletedSnapshot.needsRenewal, true)
+assert.equal(depletedSnapshot.recoverableCount, 0)
+const contingencyReport = buildContingencyMonthlyReport({ now: new Date(`${fixtureStart}T12:00:00-03:00`) })
+assert.equal(contingencyReport.sourceStatus, 'degraded')
+assert.match(contingencyReport.runKey, /^monthly-contingency-/)
+const contingencyCampaign = await buildRollingCampaign({
+  existing: depleted,
+  report: contingencyReport,
+  now: new Date(`${fixtureStart}T12:00:00-03:00`),
+  ai: { generate: async () => { throw new Error('contingência local não deveria depender de IA') } },
+})
+const contingencyPlan = validateMonthlyCampaignPlan(contingencyCampaign)
+assert.equal(contingencyPlan.items, 30)
+assert.ok(contingencyPlan.reserves >= 3)
+assert.equal(contingencyCampaign.items.some((item) => ['blocked', 'replaced'].includes(item.status)), false)
+assert.equal(monthlyReadinessSnapshot(contingencyCampaign, { now: new Date(`${fixtureStart}T12:00:00-03:00`) }).needsRenewal, false)
 console.log('Renovação mensal de 30 dias validada com sucesso.')

@@ -9,22 +9,25 @@ on:
     inputs:
       issue_number:
         description: "Número da issue mensal [INTEL]"
-        required: true
+        required: false
+        default: 0
         type: number
+      contingency:
+        description: "Renovar com pauta técnica de contingência, sem depender da issue"
+        required: false
+        default: false
+        type: boolean
       dry_run:
         description: "Simular sem alterar a campanha"
         required: false
         default: true
         type: boolean
 
-permissions:
-  contents: write
-  issues: write
-  actions: write
-  models: read
+permissions: {}
 
 concurrency:
   group: thebiker-editorial-write
+  queue: max
   cancel-in-progress: false
 
 jobs:
@@ -35,10 +38,15 @@ jobs:
         run: echo "Evento recebido; a renovação será executada somente para uma issue mensal autorizada."
 
   renew:
-    if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'issues' && startsWith(github.event.issue.title, '[INTEL] monthly-') && github.event.issue.author_association == 'OWNER') || (github.event_name == 'issue_comment' && startsWith(github.event.issue.title, '[INTEL] monthly-') && github.event.issue.author_association == 'OWNER' && github.event.comment.author_association == 'OWNER') }}
+    if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'issues' && startsWith(github.event.issue.title, '[INTEL-BR] monthly-') && github.event.issue.author_association == 'OWNER') || (github.event_name == 'issue_comment' && startsWith(github.event.issue.title, '[INTEL-BR] monthly-') && github.event.issue.author_association == 'OWNER' && github.event.comment.author_association == 'OWNER') }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
     environment: editorial-automation
+    permissions:
+      contents: write
+      issues: read
+      actions: write
+      models: read
     steps:
       - uses: actions/checkout@v7
         with:
@@ -54,13 +62,18 @@ jobs:
       - run: npm ci
         working-directory: bot
       - name: Obter relatório mensal selecionado
-        if: ${{ github.event_name == 'workflow_dispatch' }}
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.contingency == false }}
         env:
           GH_TOKEN: ${{ github.token }}
           ISSUE_NUMBER: ${{ inputs.issue_number }}
         run: |
+          if [ "$ISSUE_NUMBER" -lt 1 ]; then
+            echo "::error::Informe issue_number ou habilite contingency."
+            exit 2
+          fi
           gh api "repos/${GITHUB_REPOSITORY}/issues/${ISSUE_NUMBER}" --jq .body > "${RUNNER_TEMP}/monthly-intelligence.md"
       - name: Renovar janela editorial de 30 dias
+        id: renewal
         env:
           AI_MONTHLY_BUDGET_USD: ${{ vars.AI_MONTHLY_BUDGET_USD || '5.00' }}
           DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
@@ -71,19 +84,27 @@ jobs:
           GITHUB_MODELS_MODEL: ${{ vars.GITHUB_MODELS_MODEL || 'gpt-4o-mini' }}
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            node src/renew_monthly_campaign.js --report "${RUNNER_TEMP}/monthly-intelligence.md" ${{ inputs.dry_run && '--dry-run' || '' }}
+            if [ "${{ inputs.contingency }}" = "true" ]; then
+              node src/renew_monthly_campaign.js --contingency --candidate-output="${RUNNER_TEMP}/monthly-candidate.json" ${{ inputs.dry_run && '--dry-run' || '' }}
+            else
+              node src/renew_monthly_campaign.js --report "${RUNNER_TEMP}/monthly-intelligence.md" --candidate-output="${RUNNER_TEMP}/monthly-candidate.json" ${{ inputs.dry_run && '--dry-run' || '' }}
+            fi
           else
             node src/renew_monthly_campaign.js
           fi
         working-directory: bot
-      - name: Validar campanha renovada
-        if: ${{ github.event_name != 'workflow_dispatch' || inputs.dry_run == false }}
+      - name: Validar plano mensal sem exigir conteúdo já produzido
         run: |
-          npm run automation:doctor
-          npm run campaign:simulate
-          npm run validate
+          if [ "${{ steps.renewal.outputs.status }}" = "dry-run" ]; then
+            npm --prefix bot run campaign:validate-monthly-plan -- --file="${RUNNER_TEMP}/monthly-candidate.json"
+          elif [ "${{ steps.renewal.outputs.status }}" = "renewed" ]; then
+            npm --prefix bot run campaign:validate-monthly-plan
+            npm run validate:artifacts
+          else
+            echo "Renovação idempotente: ${{ steps.renewal.outputs.status }}."
+          fi
       - name: Persistir campanha e fila de atualização
-        if: ${{ github.event_name != 'workflow_dispatch' || inputs.dry_run == false }}
+        if: ${{ steps.renewal.outputs.status == 'renewed' }}
         run: |
           git config user.name "thebiker-editorial-bot"
           git config user.email "thebiker-editorial-bot@users.noreply.github.com"
@@ -96,7 +117,19 @@ jobs:
           done
           exit 1
       - name: Iniciar produção do novo buffer
-        if: ${{ github.event_name != 'workflow_dispatch' || inputs.dry_run == false }}
+        if: ${{ steps.renewal.outputs.status == 'renewed' }}
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh workflow run cron-post.yml --ref main -f dry_run=false
+        run: |
+          gh workflow run replenish-buffer.yml --ref main \
+            -f target_buffer=7 \
+            -f max_attempts=7 \
+            -f required_date="${{ steps.renewal.outputs.starts_on }}"
+      - name: Resumo da renovação mensal
+        if: always()
+        run: |
+          echo "### Renovação mensal" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Estado: ${{ steps.renewal.outputs.status || 'não executada' }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Ciclo: ${{ steps.renewal.outputs.run_key || 'indisponível' }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Campanha: ${{ steps.renewal.outputs.campaign_id || 'inalterada' }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Início: ${{ steps.renewal.outputs.starts_on || 'inalterado' }}" >> "$GITHUB_STEP_SUMMARY"
