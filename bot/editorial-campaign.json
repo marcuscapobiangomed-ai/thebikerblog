@@ -580,9 +580,12 @@
         "rationale": "Fotografia real do catálogo TheBiker selecionada deterministicamente como exemplo visual da categoria técnica abordada."
       },
       "postPath": "_posts/drafts/2026-08-30-contingencia-spark-world-cup-documentacao.md",
+      "imageManifestPath": "assets/img/posts/contingencia-spark-world-cup-documentacao/image-manifest.json",
+      "imageStatus": "approved",
       "imageAssetIds": [
         "thebiker-quadro-suspensao-spark-rc-world-cup-hmx-2026-flight-attendant-879576c205"
       ],
+      "imageValidatedAt": "2026-08-20T16:13:24.231Z",
       "attempts": 1,
       "lastAttemptAt": "2026-08-20T16:13:24.231Z",
       "aiReview": {
@@ -604,6 +607,18 @@
         "deterministicFullArticleFallbackUsed": true,
         "deterministicFullArticleFallbackTrigger": "repair-fallback"
       },
+      "editorialReceipt": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-editorial-2026-08-v2",
+        "origin": "pipeline",
+        "reviewedContentHash": "sha256:ad39545e593baa7a5334e21b40701bf190a766e2989c798f8121ff087b034c31",
+        "scheduledContentHash": "sha256:34e9890499c6b1628e71c754a696164f531b59d9e58b5a6a0095e3b1c1263976",
+        "researchHash": "sha256:0d1fdccde3fffde0f1ccbd7d0470a9e82455f9f1462e1f3bf47d31976cc3d11c",
+        "sourceHash": "2c870e73b476c90cac086abe4a3e304c26d879e0ca4969ea3404e459e920fb43",
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "issuedAt": "2026-08-20T16:13:24.231Z"
+      },
       "visualDecision": {
         "schemaVersion": 1,
         "policyVersion": "thebiker-visual-autonomy-v1",
@@ -622,22 +637,7 @@
         },
         "blockers": [],
         "issuedAt": "2026-08-20T16:13:24.231Z"
-      },
-      "editorialReceipt": {
-        "schemaVersion": 1,
-        "policyVersion": "thebiker-editorial-2026-08-v2",
-        "origin": "pipeline",
-        "reviewedContentHash": "sha256:ad39545e593baa7a5334e21b40701bf190a766e2989c798f8121ff087b034c31",
-        "scheduledContentHash": "sha256:34e9890499c6b1628e71c754a696164f531b59d9e58b5a6a0095e3b1c1263976",
-        "researchHash": "sha256:0d1fdccde3fffde0f1ccbd7d0470a9e82455f9f1462e1f3bf47d31976cc3d11c",
-        "sourceHash": "2c870e73b476c90cac086abe4a3e304c26d879e0ca4969ea3404e459e920fb43",
-        "finalScore": 95,
-        "finalBlockers": 0,
-        "issuedAt": "2026-08-20T16:13:24.231Z"
-      },
-      "imageManifestPath": "assets/img/posts/contingencia-spark-world-cup-documentacao/image-manifest.json",
-      "imageStatus": "approved",
-      "imageValidatedAt": "2026-08-20T16:13:24.231Z"
+      }
     },
     {
       "day": 11,
@@ -647,15 +647,69 @@
       "summary": "Guia técnico apoiado na ficha interna verificada para conferir interfaces e registrar como lacuna o que não estiver documentado.",
       "category": "review",
       "freshness": "revalidate-24h",
-      "status": "planned",
+      "status": "scheduled",
       "productIds": [
         "quadro-scott-scale-rc-team-hmf-2026"
       ],
       "heroImage": {
-        "mode": "conceptual"
+        "mode": "real-context",
+        "productId": "quadro-scott-scale-rc-team-hmf-2026",
+        "relationship": "category-example",
+        "rationale": "Fotografia real do catálogo TheBiker selecionada deterministicamente como exemplo visual da categoria técnica abordada."
       },
-      "imageAssetIds": [],
-      "attempts": 0
+      "postPath": "_posts/drafts/2026-08-31-contingencia-scale-rc-team-quadro.md",
+      "imageAssetIds": [
+        "thebiker-quadro-scott-scale-rc-team-hmf-2026-f9aab2bc13"
+      ],
+      "attempts": 1,
+      "lastAttemptAt": "2026-08-20T17:33:41.925Z",
+      "aiReview": {
+        "score": 92,
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "premiumEditUsed": false,
+        "providers": {
+          "deterministicFallback": "grounded-deterministic"
+        },
+        "generatedAt": "2026-08-20T17:33:41.925Z",
+        "contentHash": "sha256:31ec2ba3b3c3fe984b82bed36874b21cf7d10865956ab4ccf693a250e6f4992a",
+        "deterministicFullArticleFallbackUsed": true,
+        "deterministicFullArticleFallbackTrigger": "pipeline-failure"
+      },
+      "visualDecision": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-visual-autonomy-v1",
+        "inputHash": "sha256:00e50aa87e17987a057e5786e31e04e4a61c79756f692d6604b3b6485b3a655a",
+        "mode": "real-context",
+        "productId": "quadro-scott-scale-rc-team-hmf-2026",
+        "score": 100,
+        "hardGates": {
+          "semanticMatch": true,
+          "realAsset": true,
+          "explicitProduct": true,
+          "officialSource": true,
+          "approvedRights": true,
+          "publishableResolution": true,
+          "uniqueAsset": true
+        },
+        "blockers": [],
+        "issuedAt": "2026-08-20T17:35:09.652Z"
+      },
+      "editorialReceipt": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-editorial-2026-08-v2",
+        "origin": "pipeline",
+        "reviewedContentHash": "sha256:31ec2ba3b3c3fe984b82bed36874b21cf7d10865956ab4ccf693a250e6f4992a",
+        "scheduledContentHash": "sha256:e4164e57f16431d257f13f429e16168c38f0edfeeacc01be6f8fb90a648e8033",
+        "researchHash": "sha256:e7d22134e4a9c3bab1fc486c7fc2d21afe321783c4b6766f1dbece3c1277bfcb",
+        "sourceHash": null,
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "issuedAt": "2026-08-20T17:35:09.652Z"
+      },
+      "imageManifestPath": "assets/img/posts/contingencia-scale-rc-team-quadro/image-manifest.json",
+      "imageStatus": "approved",
+      "imageValidatedAt": "2026-08-20T17:35:09.652Z"
     },
     {
       "day": 12,

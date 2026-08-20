@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "source": "https://thebikershop.com.br/",
-  "discoveredAt": "2026-08-20T13:51:26.149Z",
+  "discoveredAt": "2026-08-20T17:33:41.022Z",
   "rightsPolicyId": "thebiker-official-editorial-v1",
   "total": 485,
   "products": [
@@ -2933,6 +2933,17 @@
       "sku": null
     },
     {
+      "id": "end-cap-thule-proride-598",
+      "name": "End Cap Thule ProRide 598",
+      "brand": "Thule",
+      "category": "acessorios",
+      "productUrl": "https://thebikershop.com.br/produtos/end-cap-thule-proride-598/",
+      "images": [
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/thule-thule-1500052669-end-cap-for-5980011-60a3a7a5c8a9241da616795869469408-480-0.webp"
+      ],
+      "sku": "1500052669"
+    },
+    {
       "id": "apoio-roda-traseira-rack-thule-proride-598",
       "name": "Apoio Roda Traseira Rack Thule ProRide 598",
       "brand": "Thule",
@@ -3626,6 +3637,17 @@
       "sku": "21089"
     },
     {
+      "id": "tampa-de-acesso-em-borracha-seat-tube-spark-2022",
+      "name": "Tampa de Acesso em Borracha - Seat Tube Spark 2022",
+      "brand": "Scott",
+      "category": "acessorios",
+      "productUrl": "https://thebikershop.com.br/produtos/tampa-de-acesso-em-borracha-seat-tube-spark-2022/",
+      "images": [
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/tmp_b64_4acaada4-026c-4365-a1d6-6ca52327b642_1062247_1188274-260f83d77d7fd45fb017576264350446-480-0.webp"
+      ],
+      "sku": "290015"
+    },
+    {
       "id": "caramanhola-elite-fly-tex-550ml-transparente1",
       "name": "Caramanhola Elite FLY TEX 550ml Transparente",
       "brand": "Elite",
@@ -3679,28 +3701,6 @@
         "https://acdn-us.mitiendanube.com/stores/001/062/247/products/2929116512-png-aa73278afba9e1150417368881494484-480-0.webp"
       ],
       "sku": "292911651222"
-    },
-    {
-      "id": "mala-thule-roundtrip-black",
-      "name": "Mala Thule RoundTrip",
-      "brand": "Thule",
-      "category": "acessorios",
-      "productUrl": "https://thebikershop.com.br/produtos/mala-thule-roundtrip-black/",
-      "images": [
-        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/1478268-a2475ea0b5e281746717352518978857-480-0.webp"
-      ],
-      "sku": "3205172"
-    },
-    {
-      "id": "mochila-thule-landmark-40l-darkest-blue",
-      "name": "Mochila Thule Landmark 40L Darkest Blue",
-      "brand": "Thule",
-      "category": "acessorios",
-      "productUrl": "https://thebikershop.com.br/produtos/mochila-thule-landmark-40l-darkest-blue/",
-      "images": [
-        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/1511340-2af42eaa387416820317352212613104-480-0.webp"
-      ],
-      "sku": "3205309"
     },
     {
       "id": "camisa-casual-the-biker-world-cup-brasil-24",

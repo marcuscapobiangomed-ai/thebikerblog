@@ -1,0 +1,114 @@
+{
+  "slug": "contingencia-scale-rc-team-quadro",
+  "title": "Quadro Scott Scale RC Team HMF: interfaces, padrões e verificações antes da montagem",
+  "content_type": "review",
+  "review_method": "desk-research",
+  "tested_by_thebikerblog": false,
+  "market": "Brasil",
+  "generated_at": "2026-08-20",
+  "status": "pesquisa_concluida",
+  "sources": [
+    {
+      "name": "TheBiker — Quadro Scott Scale RC Team HMF 2026",
+      "url": "https://thebikershop.com.br/produtos/quadro-scott-scale-rc-team-hmf-2026/",
+      "accessed": "2026-08-04",
+      "id": "internal-src-1",
+      "type": "store"
+    },
+    {
+      "name": "Scott — página oficial do modelo",
+      "url": "https://www.scott-sports.com/global/en/product/scott-scale-rc-team-hmf-frame",
+      "accessed": "2026-08-04",
+      "id": "internal-src-2",
+      "type": "manufacturer"
+    }
+  ],
+  "editorialPriority": "P1",
+  "confirmed_facts": [
+    {
+      "fact": "identity.storeName: Quadro Scott Scale RC Team HMF 2026",
+      "source_ids": [
+        "internal-src-1"
+      ],
+      "evidence_quote": "quadro scott scale rc team hmf 2026 carbono leve e rigido import"
+    },
+    {
+      "fact": "commercial.storeUrl: https://thebikershop.com.br/produtos/quadro-scott-scale-rc-team-hmf-2026/",
+      "source_ids": [
+        "internal-src-1"
+      ],
+      "evidence_quote": "scale rc team hmf 2026 item https thebikershop com br produtos quadro scott scale rc team hmf 2026 mainentity type product id https"
+    },
+    {
+      "fact": "identity.officialUrl: https://www.scott-sports.com/global/en/product/scott-scale-rc-team-hmf-frame",
+      "source_ids": [
+        "internal-src-2"
+      ],
+      "evidence_quote": "type listitem position 1 item id https www scott sports com global en product scott scale rc team hmf frame name scott scale rc team"
+    },
+    {
+      "fact": "identity.manufacturerModelCode: 292046",
+      "source_ids": [
+        "internal-src-2"
+      ],
+      "evidence_quote": "hmf frame product type product id 292046 product price else if false"
+    },
+    {
+      "fact": "identity.sizes: S, M, L, XL",
+      "source_ids": [
+        "internal-src-2"
+      ],
+      "evidence_quote": "hmf frame model 292046 1 size s m l xl size chart times var defaulttheme"
+    },
+    {
+      "fact": "frame.material: Scale Carbon HMF",
+      "source_ids": [
+        "internal-src-2"
+      ],
+      "evidence_quote": "to change without prior notice frame scale carbon hmf adjustable head angle syncros cable"
+    },
+    {
+      "fact": "frame.headAngleAdjustment: true",
+      "source_ids": [
+        "internal-src-2"
+      ],
+      "evidence_quote": "universal variable page error status if true universal variable page product category"
+    },
+    {
+      "fact": "frame.cableIntegration: Syncros Cable Integration System",
+      "source_ids": [
+        "internal-src-2"
+      ],
+      "evidence_quote": "scale carbon hmf adjustable head angle syncros cable integration system advanced shock standing damping system"
+    },
+    {
+      "fact": "frame.bottomBracket: BB92",
+      "source_ids": [
+        "internal-src-2"
+      ],
+      "evidence_quote": "system advanced shock standing damping system bb92 udh interface 12x148mm with 55mm"
+    },
+    {
+      "fact": "included.headset: Syncros - Acros Pro Headset System",
+      "source_ids": [
+        "internal-src-2"
+      ],
+      "evidence_quote": "interface 12x148mm with 55mm chainline accessories syncros acros pro headset system udh hanger and small parts"
+    }
+  ],
+  "limitations": [
+    "Pesquisa web indisponível nesta execução (Groq sem evidência: Pesquisa bloqueada por integridade de fontes: pesquisa concluída sem fontes rastreáveis; pesquisa sem fatos explicitamente fundamentados; Gemini sem evidência: Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat); conteúdo limitado à base interna com fontes oficiais.",
+    "5 fato(s) removido(s) por falta de trecho verificavel na fonte recuperada."
+  ],
+  "grounding": {
+    "queries": [],
+    "sourceCount": 2,
+    "fallback": "internal-product-knowledge",
+    "claimContract": "explicit-units-v1",
+    "evidenceContract": "retrieved-excerpt-v1",
+    "verifiedAt": "2026-08-20T17:33:51.864Z"
+  },
+  "portfolio_evidence_url": "https://thebikershop.com.br/bikes/",
+  "portfolio_verified_at": "2026-08-20",
+  "portfolio_evidence_scope": "portfolio-category"
+}

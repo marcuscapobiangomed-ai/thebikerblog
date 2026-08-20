@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-08-20T16:21:08.339Z",
+  "updatedAt": "2026-08-20T17:35:10.968Z",
   "assets": [
     {
       "assetId": "thebiker-scott-addict-rc-pro-hmx-frame-set-def10da96a",
@@ -456,6 +456,23 @@
       "uses": [
         {
           "postId": "contingencia-spark-world-cup-documentacao",
+          "position": "hero",
+          "usedAt": "2026-08-20T12:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "assetId": "thebiker-quadro-scott-scale-rc-team-hmf-2026-f9aab2bc13",
+      "sha256": "f9aab2bc133eb6504e7c1fbafc89cc653750c5de12e5d5e2dfa828542576bab0",
+      "perceptualHash": "1111111011111000111000011110100111001011101000110000011111000111",
+      "sourcePageUrl": "https://thebikershop.com.br/produtos/quadro-scott-scale-rc-team-hmf-2026/",
+      "sourceFileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/b6f1f242-1efc-11f1-bc89-762fe4583a60-97055a591ca044916d17751346940337-1024-1024.webp",
+      "productId": "quadro-scott-scale-rc-team-hmf-2026",
+      "productName": "Quadro Scott Scale RC Team HMF 2026",
+      "rightsPolicyId": "thebiker-official-editorial-v1",
+      "uses": [
+        {
+          "postId": "contingencia-scale-rc-team-quadro",
           "position": "hero",
           "usedAt": "2026-08-20T12:00:00.000Z"
         }
