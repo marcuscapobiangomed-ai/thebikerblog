@@ -643,6 +643,7 @@
         "thebiker-bicicleta-scott-addict-50-2026-pre-venda-1bxzy-31835875d4"
       ],
       "imageValidatedAt": "2026-08-14T00:02:50.727Z",
+      "publishedAt": "2026-08-20T12:35:29.598Z",
       "attempts": 1,
       "lastAttemptAt": "2026-08-14T00:02:50.727Z",
       "aiReview": {
@@ -670,12 +671,12 @@
         "origin": "pipeline",
         "reviewedContentHash": "sha256:fe3f4e2a122f7a2cf1887cb53c84ecb3f8c6d7b41408e8b36d1490f1df8ef8ac",
         "scheduledContentHash": "sha256:338c4517133a3456f7b92a507525f98561dd42dc116c2b38665a711416989220",
+        "publishedContentHash": "sha256:2852691e5b46f91d9b1f52ecd29001cc601b8e180d117aa76f8c3f2b192ec435",
         "researchHash": "sha256:da412fb7e39e6013eeec3ef7047e6052f65030b1ee5f4e6940ff7007b9b2ce42",
         "sourceHash": "2b9a948c27b4b174e50aa1034bbc18ef6a9f5305abeb2629a12a7bf5c223bd6e",
         "finalScore": 95,
         "finalBlockers": 0,
-        "issuedAt": "2026-08-14T00:02:50.727Z",
-        "publishedContentHash": "sha256:2852691e5b46f91d9b1f52ecd29001cc601b8e180d117aa76f8c3f2b192ec435"
+        "issuedAt": "2026-08-14T00:02:50.727Z"
       },
       "visualDecision": {
         "schemaVersion": 1,
@@ -695,8 +696,7 @@
         },
         "blockers": [],
         "issuedAt": "2026-08-14T00:02:50.727Z"
-      },
-      "publishedAt": "2026-08-20T12:35:29.598Z"
+      }
     },
     {
       "day": 11,
@@ -706,7 +706,7 @@
       "summary": "Revisão documental que publica apenas características localizadas literalmente nas fontes oficiais recuperadas no dia.",
       "category": "review",
       "freshness": "revalidate-24h",
-      "status": "scheduled",
+      "status": "published",
       "productIds": [
         "bicicleta-scott-spark-rc-world-cup-20271"
       ],
@@ -714,7 +714,7 @@
         "mode": "exact-product",
         "productId": "bicicleta-scott-spark-rc-world-cup-20271"
       },
-      "postPath": "_posts/drafts/2026-08-18-reserva-spark-rc-world-cup-ficha.md",
+      "postPath": "_posts/2026-08-20-reserva-spark-rc-world-cup-ficha.md",
       "imageManifestPath": "assets/img/posts/reserva-spark-rc-world-cup-ficha/image-manifest.json",
       "imageStatus": "approved",
       "imageAssetIds": [
@@ -746,7 +746,8 @@
         "sourceHash": null,
         "finalScore": 95,
         "finalBlockers": 0,
-        "issuedAt": "2026-08-14T00:31:54.902Z"
+        "issuedAt": "2026-08-14T00:31:54.902Z",
+        "publishedContentHash": "sha256:bc075dcfa08843272eb26fce140b7d6e91b9a414e5b446784acd6188afe22436"
       },
       "visualDecision": {
         "schemaVersion": 1,
@@ -766,7 +767,8 @@
         },
         "blockers": [],
         "issuedAt": "2026-08-14T00:31:54.902Z"
-      }
+      },
+      "publishedAt": "2026-08-20T12:37:24.863Z"
     },
     {
       "day": 12,

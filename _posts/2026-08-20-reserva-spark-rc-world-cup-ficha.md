@@ -1,11 +1,11 @@
 ---
 image_subject_id: "bicicleta-scott-spark-rc-world-cup-20271"
 layout: post
-published: false
+published: true
 title: "Scott Spark RC World Cup 2027: especificações confirmadas e limites da análise documental"
 slug: "scott-spark-rc-world-cup-2027-especificacoes-confirmadas-e-limites-da-analise-documental"
-date: 2026-08-18
-last_modified_at: 2026-08-14
+date: 2026-08-20
+last_modified_at: 2026-08-20
 author: "Equipe TheBiker"
 reviewed_by: "TheBiker AI Editorial Gate"
 content_type: "review"
@@ -51,8 +51,8 @@ promoted_brands: ["TheBiker"]
 context_only_brands: []
 portfolio_evidence_url: "https://thebikershop.com.br/bikes/"
 portfolio_verified_at: "2026-08-14"
-editorial_status: "reviewed"
-status: "scheduled"
+editorial_status: "published"
+status: "published"
 sources:
   - name: "TheBiker — Bicicleta Scott Spark RC World Cup 2027"
     type: "store"
