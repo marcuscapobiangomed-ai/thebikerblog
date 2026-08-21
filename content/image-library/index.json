@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-08-20T17:35:10.968Z",
+  "updatedAt": "2026-08-21T09:41:24.749Z",
   "assets": [
     {
       "assetId": "thebiker-scott-addict-rc-pro-hmx-frame-set-def10da96a",
@@ -475,6 +475,23 @@
           "postId": "contingencia-scale-rc-team-quadro",
           "position": "hero",
           "usedAt": "2026-08-20T12:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "assetId": "thebiker-manopla-thule-com-limitador-de-torque-acutight-7ad54f757c",
+      "sha256": "7ad54f757c120244010b261d4ea9b3cf24e8906f4deb357af1111984d37fa91f",
+      "perceptualHash": "1111111111111111111001111110001111000011110001111110111111111111",
+      "sourcePageUrl": "https://thebikershop.com.br/produtos/manopla-thule-com-limitador-de-torque-acutight/",
+      "sourceFileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/5554161-128186553d5324bf5116750900865761-1024-1024.webp",
+      "productId": "manopla-thule-com-limitador-de-torque-acutight",
+      "productName": "Manopla Thule com limitador de torque Acutight",
+      "rightsPolicyId": "thebiker-official-editorial-v1",
+      "uses": [
+        {
+          "postId": "contingencia-inspecao-fixadores",
+          "position": "hero",
+          "usedAt": "2026-08-21T12:00:00.000Z"
         }
       ]
     }

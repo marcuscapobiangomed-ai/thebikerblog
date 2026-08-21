@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "source": "https://thebikershop.com.br/",
-  "discoveredAt": "2026-08-20T17:33:41.022Z",
+  "discoveredAt": "2026-08-21T09:41:14.761Z",
   "rightsPolicyId": "thebiker-official-editorial-v1",
   "total": 485,
   "products": [
@@ -315,6 +315,17 @@
       "sku": null
     },
     {
+      "id": "bicicleta-scott-spark-900-rc-comp-2025",
+      "name": "Bicicleta Scott Spark 900 RC Comp 2025",
+      "brand": "Scott",
+      "category": "bikes",
+      "productUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-spark-900-rc-comp-2025/",
+      "images": [
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/0d668542-de36-11ef-b886-ba9b74a5f4eb-ce95f3e40ddab3ddd417382425419075-480-0.webp"
+      ],
+      "sku": null
+    },
+    {
       "id": "bicicleta-scott-addict-rc-30-di2-2026",
       "name": "Bicicleta Scott Addict RC 30 Di2 2026",
       "brand": "Scott",
@@ -579,17 +590,6 @@
       "sku": null
     },
     {
-      "id": "bicicleta-scott-spark-900-rc-comp-2025",
-      "name": "Bicicleta Scott Spark 900 RC Comp 2025",
-      "brand": "Scott",
-      "category": "bikes",
-      "productUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-spark-900-rc-comp-2025/",
-      "images": [
-        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/0d668542-de36-11ef-b886-ba9b74a5f4eb-ce95f3e40ddab3ddd417382425419075-480-0.webp"
-      ],
-      "sku": null
-    },
-    {
       "id": "raio-mavic-crossmax",
       "name": "Raio Mavic Crossmax",
       "brand": null,
@@ -841,6 +841,17 @@
         "https://acdn-us.mitiendanube.com/stores/001/062/247/products/2881230001_1799165_png_zoom_1-6a9287a6b1f4a27f6c17074861515455-480-0.webp"
       ],
       "sku": null
+    },
+    {
+      "id": "pneu-pirelli-scorpion-xc-rc-2-4-team-edition",
+      "name": "Pneu Pirelli Scorpion Race XC RC 2.4 - Team Edition ProWall",
+      "brand": "Pirelli",
+      "category": "componentes",
+      "productUrl": "https://thebikershop.com.br/produtos/pneu-pirelli-scorpion-xc-rc-2-4-team-edition/",
+      "images": [
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/scorpion_xc_rc_race_compound_prowall_team_edition_1-2dbb97589b3cf4c42c17706752153829-480-0.webp"
+      ],
+      "sku": "59343"
     },
     {
       "id": "kit-espacadores-syncros-xr-mtb",
@@ -2163,17 +2174,6 @@
       "sku": null
     },
     {
-      "id": "selim-fizik-vento-argo-r3-adaptive-150mm",
-      "name": "Selim Fizik Vento Argo R3 Adaptive - 150mm",
-      "brand": "Fizik",
-      "category": "componentes",
-      "productUrl": "https://thebikershop.com.br/produtos/selim-fizik-vento-argo-r3-adaptive-150mm/",
-      "images": [
-        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/5e93830c-18c7-11ed-8c10-869f627c1d921-f3df537a6ce3eb20b516680796104089-480-0.webp"
-      ],
-      "sku": null
-    },
-    {
       "id": "2-caramanholas-elite-fly-tex-550ml-preto",
       "name": "Combo Caramanholas Elite FLY TEX 550ml Preto - 2 unidades",
       "brand": "Elite",
@@ -2348,6 +2348,17 @@
         "https://acdn-us.mitiendanube.com/stores/001/062/247/products/2505610001_157756_png_zoom_231-a76a4df28ff740cb6b16848752926344-480-0.webp"
       ],
       "sku": "250561"
+    },
+    {
+      "id": "kit-adaptador-para-rolo-elite-suito-direto",
+      "name": "Kit Adaptador para Rolo Elite Suito / Direto XR",
+      "brand": "Elite",
+      "category": "acessorios",
+      "productUrl": "https://thebikershop.com.br/produtos/kit-adaptador-para-rolo-elite-suito-direto/",
+      "images": [
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/captura-de-tela-2026-06-16-as-09-11-08-ca1bd47e0040a7262317816120751264-480-0.webp"
+      ],
+      "sku": "1014300"
     },
     {
       "id": "tira-de-plastico-fixacao-roda-thule-freeride-530",
@@ -3692,17 +3703,6 @@
       "sku": null
     },
     {
-      "id": "suporte-de-garrafa-syncros-tailor-1-0-carbon",
-      "name": "Suporte de Garrafa Syncros Tailor 1.0 Carbon",
-      "brand": "Syncros",
-      "category": "acessorios",
-      "productUrl": "https://thebikershop.com.br/produtos/suporte-de-garrafa-syncros-tailor-1-0-carbon/",
-      "images": [
-        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/2929116512-png-aa73278afba9e1150417368881494484-480-0.webp"
-      ],
-      "sku": "292911651222"
-    },
-    {
       "id": "camisa-casual-the-biker-world-cup-brasil-24",
       "name": "Camisa Casual The Biker World Cup Brasil 2024",
       "brand": "The Biker",
@@ -4682,6 +4682,17 @@
       "sku": null
     },
     {
+      "id": "bretelle-castelli-entrata",
+      "name": "Bretelle Castelli Entrata 2",
+      "brand": "Castelli",
+      "category": "vestuario",
+      "productUrl": "https://thebikershop.com.br/produtos/bretelle-castelli-entrata/",
+      "images": [
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/1922458c-d2a6-11eb-81cc-0242ac1200091-df8ea376b707630cb316327496970577-480-0.webp"
+      ],
+      "sku": null
+    },
+    {
       "id": "luva-scott-rc-team-short-azul",
       "name": "Luva Scott RC Team Short",
       "brand": "Scott",
@@ -4812,17 +4823,6 @@
         "https://acdn-us.mitiendanube.com/stores/001/062/247/products/espuma-scott-supra-tbkr1-0aeecce90d1725c55e16446676221630-480-0.webp"
       ],
       "sku": "2528010001222"
-    },
-    {
-      "id": "bretelle-castelli-entrata",
-      "name": "Bretelle Castelli Entrata 2",
-      "brand": "Castelli",
-      "category": "vestuario",
-      "productUrl": "https://thebikershop.com.br/produtos/bretelle-castelli-entrata/",
-      "images": [
-        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/1922458c-d2a6-11eb-81cc-0242ac1200091-df8ea376b707630cb316327496970577-480-0.webp"
-      ],
-      "sku": null
     },
     {
       "id": "camisa-de-ciclismo-scott-pro-2026-laranja",

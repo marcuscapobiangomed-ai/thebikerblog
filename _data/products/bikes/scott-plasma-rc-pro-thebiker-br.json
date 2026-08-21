@@ -11,7 +11,7 @@
   "storeProductUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-plasma-rc-pro/",
   "image": "/assets/img/products/comparator/scott-plasma-rc-pro.webp",
   "portfolioStatus": "verified",
-  "portfolioVerifiedAt": "2026-08-20",
+  "portfolioVerifiedAt": "2026-08-21",
   "theBikerPrice": 99999,
   "frame": {
     "material": "não informado"
@@ -34,7 +34,7 @@
   "tires": {},
   "testedByTheBikerBlog": false,
   "createdAt": "2026-08-05",
-  "updatedAt": "2026-08-20",
+  "updatedAt": "2026-08-21",
   "reviewStatus": "verified",
   "sourceId": "thebiker-scott-plasma-rc-pro"
 }

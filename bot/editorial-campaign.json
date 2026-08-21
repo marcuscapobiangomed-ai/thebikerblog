@@ -658,9 +658,12 @@
         "rationale": "Fotografia real do catálogo TheBiker selecionada deterministicamente como exemplo visual da categoria técnica abordada."
       },
       "postPath": "_posts/drafts/2026-08-31-contingencia-scale-rc-team-quadro.md",
+      "imageManifestPath": "assets/img/posts/contingencia-scale-rc-team-quadro/image-manifest.json",
+      "imageStatus": "approved",
       "imageAssetIds": [
         "thebiker-quadro-scott-scale-rc-team-hmf-2026-f9aab2bc13"
       ],
+      "imageValidatedAt": "2026-08-20T17:35:09.652Z",
       "attempts": 1,
       "lastAttemptAt": "2026-08-20T17:33:41.925Z",
       "aiReview": {
@@ -675,6 +678,18 @@
         "contentHash": "sha256:31ec2ba3b3c3fe984b82bed36874b21cf7d10865956ab4ccf693a250e6f4992a",
         "deterministicFullArticleFallbackUsed": true,
         "deterministicFullArticleFallbackTrigger": "pipeline-failure"
+      },
+      "editorialReceipt": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-editorial-2026-08-v2",
+        "origin": "pipeline",
+        "reviewedContentHash": "sha256:31ec2ba3b3c3fe984b82bed36874b21cf7d10865956ab4ccf693a250e6f4992a",
+        "scheduledContentHash": "sha256:e4164e57f16431d257f13f429e16168c38f0edfeeacc01be6f8fb90a648e8033",
+        "researchHash": "sha256:e7d22134e4a9c3bab1fc486c7fc2d21afe321783c4b6766f1dbece3c1277bfcb",
+        "sourceHash": null,
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "issuedAt": "2026-08-20T17:35:09.652Z"
       },
       "visualDecision": {
         "schemaVersion": 1,
@@ -694,22 +709,7 @@
         },
         "blockers": [],
         "issuedAt": "2026-08-20T17:35:09.652Z"
-      },
-      "editorialReceipt": {
-        "schemaVersion": 1,
-        "policyVersion": "thebiker-editorial-2026-08-v2",
-        "origin": "pipeline",
-        "reviewedContentHash": "sha256:31ec2ba3b3c3fe984b82bed36874b21cf7d10865956ab4ccf693a250e6f4992a",
-        "scheduledContentHash": "sha256:e4164e57f16431d257f13f429e16168c38f0edfeeacc01be6f8fb90a648e8033",
-        "researchHash": "sha256:e7d22134e4a9c3bab1fc486c7fc2d21afe321783c4b6766f1dbece3c1277bfcb",
-        "sourceHash": null,
-        "finalScore": 95,
-        "finalBlockers": 0,
-        "issuedAt": "2026-08-20T17:35:09.652Z"
-      },
-      "imageManifestPath": "assets/img/posts/contingencia-scale-rc-team-quadro/image-manifest.json",
-      "imageStatus": "approved",
-      "imageValidatedAt": "2026-08-20T17:35:09.652Z"
+      }
     },
     {
       "day": 12,
@@ -719,13 +719,69 @@
       "summary": "Método preventivo para organizar inspeção visual e documental sem recomendar torque genérico nem substituir o manual do fabricante.",
       "category": "manutencao-ajustes",
       "freshness": "evergreen",
-      "status": "planned",
-      "productIds": [],
+      "status": "scheduled",
+      "productIds": [
+        "manopla-thule-com-limitador-de-torque-acutight"
+      ],
       "heroImage": {
-        "mode": "conceptual"
+        "mode": "real-context",
+        "productId": "manopla-thule-com-limitador-de-torque-acutight",
+        "relationship": "category-example",
+        "rationale": "Fotografia real do catálogo TheBiker selecionada deterministicamente como exemplo visual da categoria técnica abordada."
       },
-      "imageAssetIds": [],
-      "attempts": 0
+      "postPath": "_posts/drafts/2026-09-01-contingencia-inspecao-fixadores.md",
+      "imageAssetIds": [
+        "thebiker-manopla-thule-com-limitador-de-torque-acutight-7ad54f757c"
+      ],
+      "attempts": 1,
+      "lastAttemptAt": "2026-08-21T09:41:15.793Z",
+      "aiReview": {
+        "score": 92,
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "premiumEditUsed": false,
+        "providers": {
+          "deterministicFallback": "grounded-deterministic"
+        },
+        "generatedAt": "2026-08-21T09:41:15.793Z",
+        "contentHash": "sha256:7ce58656bde1b1a494fcc6f012f5bf60658eb89e77cdbf09f98d2d58c0c0b3f9",
+        "deterministicFullArticleFallbackUsed": true,
+        "deterministicFullArticleFallbackTrigger": "cache-first"
+      },
+      "visualDecision": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-visual-autonomy-v1",
+        "inputHash": "sha256:d58066fb90de17f00c71600507479c4a8b7796121c1e91d82a3d92c0beba15c3",
+        "mode": "real-context",
+        "productId": "manopla-thule-com-limitador-de-torque-acutight",
+        "score": 100,
+        "hardGates": {
+          "semanticMatch": true,
+          "realAsset": true,
+          "explicitProduct": true,
+          "officialSource": true,
+          "approvedRights": true,
+          "publishableResolution": true,
+          "uniqueAsset": true
+        },
+        "blockers": [],
+        "issuedAt": "2026-08-21T09:41:23.395Z"
+      },
+      "editorialReceipt": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-editorial-2026-08-v2",
+        "origin": "pipeline",
+        "reviewedContentHash": "sha256:7ce58656bde1b1a494fcc6f012f5bf60658eb89e77cdbf09f98d2d58c0c0b3f9",
+        "scheduledContentHash": "sha256:cdc866d5b93f0d155c3445465ea4711622974211390543f7a5d80dd10e39eee2",
+        "researchHash": "sha256:10c6a6b96aa9eaf629abdbf1e02e8e3b0cdac32359466019ac35fe120893780b",
+        "sourceHash": null,
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "issuedAt": "2026-08-21T09:41:23.395Z"
+      },
+      "imageManifestPath": "assets/img/posts/contingencia-inspecao-fixadores/image-manifest.json",
+      "imageStatus": "approved",
+      "imageValidatedAt": "2026-08-21T09:41:23.395Z"
     },
     {
       "day": 13,
