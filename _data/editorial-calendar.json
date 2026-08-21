@@ -133,7 +133,7 @@
       "title": "Desgaste da transmissão: como registrar corrente, cassete e coroas sem conclusões precipitadas",
       "summary": "Método de inspeção e registro para acompanhar desgaste, evitar mistura de medições e consultar limites específicos do fabricante.",
       "category": "manutencao-ajustes",
-      "status": "planned"
+      "status": "blocked"
     },
     {
       "day": 16,
@@ -141,7 +141,7 @@
       "title": "Segundo radar profissional do mês: calendário, resultados e decisões técnicas em destaque",
       "summary": "Atualização profissional sem promoção de concorrentes, usando apenas calendário, resultados e documentos oficiais verificados.",
       "category": "competicoes",
-      "status": "planned",
+      "status": "blocked",
       "race": {
         "track": "professional-coverage",
         "format": "weekly-roundup"
@@ -153,7 +153,7 @@
       "title": "Pressão dos pneus: protocolo de testes com registro de terreno, carga e comportamento",
       "summary": "Procedimento comparável para ajustar uma variável por vez e separar aderência, suporte, impacto e resistência percebida.",
       "category": "engenharia",
-      "status": "planned"
+      "status": "blocked"
     },
     {
       "day": 18,
@@ -161,7 +161,7 @@
       "title": "Sistema tubeless: inspeção de fita, válvula, selante e assentamento do pneu",
       "summary": "Checklist técnico para localizar perda de ar e contaminação mantendo compatibilidade e limites de pressão ligados à documentação.",
       "category": "manutencao-ajustes",
-      "status": "planned"
+      "status": "scheduled"
     },
     {
       "day": 19,

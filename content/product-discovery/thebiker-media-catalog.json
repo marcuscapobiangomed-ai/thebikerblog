@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "source": "https://thebikershop.com.br/",
-  "discoveredAt": "2026-08-21T13:50:02.368Z",
+  "discoveredAt": "2026-08-21T17:32:55.647Z",
   "rightsPolicyId": "thebiker-official-editorial-v1",
   "total": 485,
   "products": [
@@ -1987,6 +1987,17 @@
       "sku": "2900569999222"
     },
     {
+      "id": "selim-fizik-vento-argo-r3-adaptive-150mm",
+      "name": "Selim Fizik Vento Argo R3 Adaptive - 150mm",
+      "brand": "Fizik",
+      "category": "componentes",
+      "productUrl": "https://thebikershop.com.br/produtos/selim-fizik-vento-argo-r3-adaptive-150mm/",
+      "images": [
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/5e93830c-18c7-11ed-8c10-869f627c1d921-f3df537a6ce3eb20b516680796104089-480-0.webp"
+      ],
+      "sku": null
+    },
+    {
       "id": "alavanca-de-canote-retratil-fox-universal",
       "name": "Alavanca de Canote Retrátil FOX Universal",
       "brand": "Fox",
@@ -2062,6 +2073,17 @@
         "https://acdn-us.mitiendanube.com/stores/001/062/247/products/cblacksides11-b8e710cde7179d6f8e15985291640297-480-0.webp"
       ],
       "sku": null
+    },
+    {
+      "id": "kit-de-reparo-cambio-traseiro-sram-gx-t-type1",
+      "name": "Kit de Reparo Câmbio Traseiro Sram GX T-Type",
+      "brand": "Sram",
+      "category": "componentes",
+      "productUrl": "https://thebikershop.com.br/produtos/kit-de-reparo-cambio-traseiro-sram-gx-t-type1/",
+      "images": [
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/sram-full-mount-bolt-kit-for-gx-eagle-rear-derailleur-axs-t-type-b1-1692768-5283a5b267d53be57217562460254383-480-0.webp"
+      ],
+      "sku": "11.7518.104.025"
     },
     {
       "id": "abracadeira-rockshox-sid-para-mangueira-de-suspensao",
@@ -2150,28 +2172,6 @@
         "https://acdn-us.mitiendanube.com/stores/001/062/247/products/raio-rsys-a598f67d1d2c5878d217144236965829-480-0.png"
       ],
       "sku": "12029301"
-    },
-    {
-      "id": "kit-de-reparo-para-caliper-sram-level-ultimate-tlm",
-      "name": "Kit de Reparo para Caliper Sram Level Ultimate/TLM",
-      "brand": "Sram",
-      "category": "componentes",
-      "productUrl": "https://thebikershop.com.br/produtos/kit-de-reparo-para-caliper-sram-level-ultimate-tlm/",
-      "images": [
-        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/600x600-194219_15827245404378-22a17ea46e279cfc23169749290118971-535803ebb9d047d32316974930366697-480-0.webp"
-      ],
-      "sku": "11.5018.058.000"
-    },
-    {
-      "id": "2-unidades-baterias-sram-axs",
-      "name": "Combo Baterias Sram AXS - 2 unidades",
-      "brand": "Sram",
-      "category": "componentes",
-      "productUrl": "https://thebikershop.com.br/produtos/2-unidades-baterias-sram-axs/",
-      "images": [
-        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/baterias-axs1-9c9f4a09f5219f764416704413983061-480-0.webp"
-      ],
-      "sku": null
     },
     {
       "id": "2-caramanholas-elite-fly-tex-550ml-preto",
@@ -4297,6 +4297,17 @@
       "sku": "VST-197-39"
     },
     {
+      "id": "camisa-de-ciclismo-scott-pro-2026-branca",
+      "name": "Camisa de Ciclismo Scott Pró 2026 Branca",
+      "brand": "Scott",
+      "category": "vestuario",
+      "productUrl": "https://thebikershop.com.br/produtos/camisa-de-ciclismo-scott-pro-2026-branca/",
+      "images": [
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/whatsapp-image-2026-03-31-at-17-17-57-c54f338c21eedc3a9717749913694561-480-0.webp"
+      ],
+      "sku": null
+    },
+    {
       "id": "camisa-de-ciclismo-scott-vultro-team-branca",
       "name": "Camisa de Ciclismo Scott Vultro Team",
       "brand": "Free Force",
@@ -4436,17 +4447,6 @@
       "productUrl": "https://thebikershop.com.br/produtos/sapatilha-shimano-xc1001/",
       "images": [
         "https://acdn-us.mitiendanube.com/stores/001/062/247/products/sh-xc100_c125_1_750_7501-c258df5d76c6a44db415985632298676-480-0.webp"
-      ],
-      "sku": null
-    },
-    {
-      "id": "camisa-de-ciclismo-scott-pro-2026-branca",
-      "name": "Camisa de Ciclismo Scott Pró 2026 Branca",
-      "brand": "Scott",
-      "category": "vestuario",
-      "productUrl": "https://thebikershop.com.br/produtos/camisa-de-ciclismo-scott-pro-2026-branca/",
-      "images": [
-        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/whatsapp-image-2026-03-31-at-17-17-57-c54f338c21eedc3a9717749913694561-480-0.webp"
       ],
       "sku": null
     },
