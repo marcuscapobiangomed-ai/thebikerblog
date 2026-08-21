@@ -37,7 +37,7 @@ faq:
     answer: "Não. O artigo organiza dados rastreáveis e limites de consulta; a decisão final deve considerar a documentação específica e a avaliação apropriada."
 image: "/assets/img/posts/reserva-scale-940-ficha/hero-1600.png"
 image_mobile: "/assets/img/posts/reserva-scale-940-ficha/hero-800.png"
-thumbnail: "/assets/img/posts/reserva-scale-940-ficha/card-640.png"
+thumbnail: "/assets/img/posts/reserva-scale-940-980-comparativo/card-640.webp"
 image_manifest_version: 2
 image_asset_type: "official-product-photo"
 image_status: "approved"

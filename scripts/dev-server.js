@@ -30,6 +30,9 @@ const posts = fs.readdirSync(path.join(projectRoot, "_posts"), { withFileTypes: 
   .sort((a, b) => b.date - a.date);
 
 const findPost = (fragment) => posts.find((post) => String(post.title || "").includes(fragment));
+const guidePosts = posts
+  .filter((post) => ["guia-de-compra", "guias-de-compra", "guia-tecnico"].includes(post.category))
+  .slice(0, 4);
 const config = yaml.load(read("_config.yml"));
 const data = {
   "race-events": JSON.parse(read(path.join("_data", "race-events.json"))),
@@ -41,6 +44,7 @@ const context = {
   site,
   page,
   recent_posts: posts.slice(0, 4),
+  guide_posts: guidePosts,
   hero_post: findPost("Tendências em Bikes"),
   carbon_post: findPost("Carbono vs Alumínio"),
   wheels_post: findPost("Rodas de Carbono Custo-Benefício"),

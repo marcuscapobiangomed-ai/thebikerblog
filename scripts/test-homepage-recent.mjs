@@ -26,5 +26,15 @@ assert.match(
   /post\.thumbnail \| default: post\.image/,
   "Posts recentes devem usar thumbnail com fallback para a imagem principal."
 );
+assert.match(
+  homepage,
+  /assign guide_posts = published_posts \| where_exp:[^\n]+guia-tecnico[^\n]+\| slice: 0, 4/,
+  "A home deve preencher a seção de guias a partir de posts publicados, sem depender de títulos exatos."
+);
+assert.match(
+  homepage,
+  /for post in guide_posts/,
+  "A seção de guias deve renderizar a coleção dinâmica selecionada."
+);
 
 console.log("✓ Homepage inclui automaticamente os quatro posts publicados mais recentes");

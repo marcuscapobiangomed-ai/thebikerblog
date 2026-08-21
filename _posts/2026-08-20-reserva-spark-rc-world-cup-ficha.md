@@ -37,7 +37,7 @@ faq:
     answer: "Não. O artigo organiza dados rastreáveis e limites de consulta; a decisão final deve considerar a documentação específica e a avaliação apropriada."
 image: "/assets/img/posts/reserva-spark-rc-world-cup-ficha/hero-1600.webp"
 image_mobile: "/assets/img/posts/reserva-spark-rc-world-cup-ficha/hero-800.webp"
-thumbnail: "/assets/img/posts/reserva-spark-rc-world-cup-ficha/card-640.webp"
+thumbnail: "/assets/img/posts/spark-rc-team-expert-world-cup/card-640.webp"
 image_manifest_version: 2
 image_asset_type: "official-product-photo"
 image_status: "approved"
