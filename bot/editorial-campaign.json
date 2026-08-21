@@ -14,7 +14,7 @@
       "summary": "Leitura de produto sem teste pratico, restrita as especificacoes e aos limites explicitamente registrados nas fontes aceitas.",
       "category": "review",
       "freshness": "revalidate-24h",
-      "status": "scheduled",
+      "status": "published",
       "productIds": [
         "bicicleta-scott-addict-rc-pro-di2-2026-pre-venda"
       ],
@@ -22,7 +22,7 @@
         "mode": "exact-product",
         "productId": "bicicleta-scott-addict-rc-pro-di2-2026-pre-venda"
       },
-      "postPath": "_posts/drafts/2026-08-21-reserva-addict-rc-pro-ficha-oficial.md",
+      "postPath": "_posts/2026-08-21-reserva-addict-rc-pro-ficha-oficial.md",
       "imageManifestPath": "assets/img/posts/reserva-addict-rc-pro-ficha-oficial/image-manifest.json",
       "imageStatus": "approved",
       "imageAssetIds": [
@@ -54,7 +54,8 @@
         "sourceHash": null,
         "finalScore": 95,
         "finalBlockers": 0,
-        "issuedAt": "2026-08-14T10:46:02.129Z"
+        "issuedAt": "2026-08-14T10:46:02.129Z",
+        "publishedContentHash": "sha256:f17f1a0ee428b876dab1875a40159ec5c05bc717b9c140bdd01c77c3c4318521"
       },
       "visualDecision": {
         "schemaVersion": 1,
@@ -74,7 +75,8 @@
         },
         "blockers": [],
         "issuedAt": "2026-08-14T10:46:02.129Z"
-      }
+      },
+      "publishedAt": "2026-08-21T15:18:44.417Z"
     },
     {
       "day": 2,
@@ -832,8 +834,7 @@
         "mode": "conceptual"
       },
       "imageAssetIds": [],
-      "attempts": 1,
-      "lastAttemptAt": "2026-08-21T13:50:13.814Z",
+      "blockReason": "[RESEARCH_INSUFFICIENT] Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq 429; Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat)",
       "failure": {
         "code": "RESEARCH_INSUFFICIENT",
         "retryable": false,
@@ -841,7 +842,8 @@
         "message": "Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq 429; Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat)",
         "recordedAt": "2026-08-21T13:50:13.814Z"
       },
-      "blockReason": "[RESEARCH_INSUFFICIENT] Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq 429; Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat)"
+      "attempts": 1,
+      "lastAttemptAt": "2026-08-21T13:50:13.814Z"
     },
     {
       "day": 15,

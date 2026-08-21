@@ -1,11 +1,11 @@
 ---
 image_subject_id: "bicicleta-scott-addict-rc-pro-di2-2026-pre-venda"
 layout: post
-published: false
+published: true
 title: "Scott Addict RC Pro: ficha documental das especificacoes confirmadas"
 slug: "scott-addict-rc-pro-ficha-documental-das-especificacoes-confirmadas"
 date: 2026-08-21
-last_modified_at: 2026-08-14
+last_modified_at: 2026-08-21
 author: "Equipe TheBiker"
 reviewed_by: "TheBiker AI Editorial Gate"
 content_type: "review"
@@ -51,8 +51,8 @@ promoted_brands: ["TheBiker"]
 context_only_brands: []
 portfolio_evidence_url: "https://thebikershop.com.br/bikes/"
 portfolio_verified_at: "2026-08-14"
-editorial_status: "reviewed"
-status: "scheduled"
+editorial_status: "published"
+status: "published"
 sources:
   - name: "TheBiker — Bicicleta Scott Addict RC Pró Di2 2026 - Pré Venda"
     type: "store"
