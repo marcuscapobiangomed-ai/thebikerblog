@@ -28,7 +28,7 @@ assert.match(
 );
 assert.match(
   homepage,
-  /assign guide_posts = published_posts \| where_exp:[^\n]+guia-tecnico[^\n]+\| slice: 0, 4/,
+  /assign guide_posts = purchase_guides \| concat: purchase_guides_plural \| concat: technical_guides \| sort: "date" \| reverse \| slice: 0, 4/,
   "A home deve preencher a seção de guias a partir de posts publicados, sem depender de títulos exatos."
 );
 assert.match(

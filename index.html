@@ -8,7 +8,10 @@ image_alt: "Dois ciclistas de estrada descendo uma serra com vista para o litora
 
 {% assign published_posts = site.posts | where_exp: "p", "p.status != 'draft'" %}
 {% assign recent_posts = published_posts | slice: 0, 4 %}
-{% assign guide_posts = published_posts | where_exp: "p", "p.category == 'guia-de-compra' or p.category == 'guias-de-compra' or p.category == 'guia-tecnico'" | slice: 0, 4 %}
+{% assign purchase_guides = published_posts | where: "category", "guia-de-compra" %}
+{% assign purchase_guides_plural = published_posts | where: "category", "guias-de-compra" %}
+{% assign technical_guides = published_posts | where: "category", "guia-tecnico" %}
+{% assign guide_posts = purchase_guides | concat: purchase_guides_plural | concat: technical_guides | sort: "date" | reverse | slice: 0, 4 %}
 {% assign hero_post = published_posts | where_exp: "p", "p.title contains 'conhecimento técnico'" | first %}
 {% assign carbon_post = published_posts | where_exp: "p", "p.title contains 'Carbono vs Alumínio'" | first %}
 {% assign wheels_post = published_posts | where_exp: "p", "p.title contains 'Rodas de Carbono Custo-Benefício'" | first %}
