@@ -113,7 +113,7 @@
       "title": "Radar profissional de ciclismo: provas, classificações e histórias técnicas da semana",
       "summary": "Boletim de competições profissionais com eventos e resultados rastreáveis em federações, organizadores e canais oficiais.",
       "category": "competicoes",
-      "status": "planned",
+      "status": "blocked",
       "race": {
         "track": "professional-coverage",
         "format": "weekly-roundup"
@@ -125,7 +125,7 @@
       "title": "Ruído e vibração nos freios: diagnóstico por carga, temperatura e condição do rotor",
       "summary": "Roteiro de diagnóstico que separa sintomas observáveis, possíveis interfaces e verificações seguras antes de trocar componentes.",
       "category": "manutencao-ajustes",
-      "status": "planned"
+      "status": "blocked"
     },
     {
       "day": 15,

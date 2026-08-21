@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "source": "https://thebikershop.com.br/",
-  "discoveredAt": "2026-08-21T09:41:14.761Z",
+  "discoveredAt": "2026-08-21T13:50:02.368Z",
   "rightsPolicyId": "thebiker-official-editorial-v1",
   "total": 485,
   "products": [
@@ -4550,6 +4550,17 @@
       "sku": null
     },
     {
+      "id": "bretelle-castelli-entrata",
+      "name": "Bretelle Castelli Entrata 2",
+      "brand": "Castelli",
+      "category": "vestuario",
+      "productUrl": "https://thebikershop.com.br/produtos/bretelle-castelli-entrata/",
+      "images": [
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/1922458c-d2a6-11eb-81cc-0242ac1200091-df8ea376b707630cb316327496970577-480-0.webp"
+      ],
+      "sku": null
+    },
+    {
       "id": "luva-scott-rc-endurance-short-cinza",
       "name": "Luva Scott RC Endurance Short",
       "brand": "Scott",
@@ -4678,17 +4689,6 @@
       "productUrl": "https://thebikershop.com.br/produtos/lente-extra-oculos-hb-presto-blue/",
       "images": [
         "https://acdn-us.mitiendanube.com/stores/001/062/247/products/p_20100370680_21-3536ffef57090376ef16509101031490-480-0.webp"
-      ],
-      "sku": null
-    },
-    {
-      "id": "bretelle-castelli-entrata",
-      "name": "Bretelle Castelli Entrata 2",
-      "brand": "Castelli",
-      "category": "vestuario",
-      "productUrl": "https://thebikershop.com.br/produtos/bretelle-castelli-entrata/",
-      "images": [
-        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/1922458c-d2a6-11eb-81cc-0242ac1200091-df8ea376b707630cb316327496970577-480-0.webp"
       ],
       "sku": null
     },

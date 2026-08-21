@@ -730,9 +730,12 @@
         "rationale": "Fotografia real do catálogo TheBiker selecionada deterministicamente como exemplo visual da categoria técnica abordada."
       },
       "postPath": "_posts/drafts/2026-09-01-contingencia-inspecao-fixadores.md",
+      "imageManifestPath": "assets/img/posts/contingencia-inspecao-fixadores/image-manifest.json",
+      "imageStatus": "approved",
       "imageAssetIds": [
         "thebiker-manopla-thule-com-limitador-de-torque-acutight-7ad54f757c"
       ],
+      "imageValidatedAt": "2026-08-21T09:41:23.395Z",
       "attempts": 1,
       "lastAttemptAt": "2026-08-21T09:41:15.793Z",
       "aiReview": {
@@ -747,6 +750,18 @@
         "contentHash": "sha256:7ce58656bde1b1a494fcc6f012f5bf60658eb89e77cdbf09f98d2d58c0c0b3f9",
         "deterministicFullArticleFallbackUsed": true,
         "deterministicFullArticleFallbackTrigger": "cache-first"
+      },
+      "editorialReceipt": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-editorial-2026-08-v2",
+        "origin": "pipeline",
+        "reviewedContentHash": "sha256:7ce58656bde1b1a494fcc6f012f5bf60658eb89e77cdbf09f98d2d58c0c0b3f9",
+        "scheduledContentHash": "sha256:cdc866d5b93f0d155c3445465ea4711622974211390543f7a5d80dd10e39eee2",
+        "researchHash": "sha256:10c6a6b96aa9eaf629abdbf1e02e8e3b0cdac32359466019ac35fe120893780b",
+        "sourceHash": null,
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "issuedAt": "2026-08-21T09:41:23.395Z"
       },
       "visualDecision": {
         "schemaVersion": 1,
@@ -766,22 +781,7 @@
         },
         "blockers": [],
         "issuedAt": "2026-08-21T09:41:23.395Z"
-      },
-      "editorialReceipt": {
-        "schemaVersion": 1,
-        "policyVersion": "thebiker-editorial-2026-08-v2",
-        "origin": "pipeline",
-        "reviewedContentHash": "sha256:7ce58656bde1b1a494fcc6f012f5bf60658eb89e77cdbf09f98d2d58c0c0b3f9",
-        "scheduledContentHash": "sha256:cdc866d5b93f0d155c3445465ea4711622974211390543f7a5d80dd10e39eee2",
-        "researchHash": "sha256:10c6a6b96aa9eaf629abdbf1e02e8e3b0cdac32359466019ac35fe120893780b",
-        "sourceHash": null,
-        "finalScore": 95,
-        "finalBlockers": 0,
-        "issuedAt": "2026-08-21T09:41:23.395Z"
-      },
-      "imageManifestPath": "assets/img/posts/contingencia-inspecao-fixadores/image-manifest.json",
-      "imageStatus": "approved",
-      "imageValidatedAt": "2026-08-21T09:41:23.395Z"
+      }
     },
     {
       "day": 13,
@@ -793,17 +793,30 @@
       "race": {
         "track": "professional-coverage",
         "format": "weekly-roundup",
-        "eventIds": [],
-        "sourceStatus": "pending"
+        "eventIds": [
+          "uci-2026-mtb-74366",
+          "uci-2026-roa-76944",
+          "uci-2026-roa-76943"
+        ],
+        "sourceStatus": "blocked"
       },
       "freshness": "event-driven",
-      "status": "planned",
+      "status": "blocked",
       "productIds": [],
       "heroImage": {
         "mode": "conceptual"
       },
       "imageAssetIds": [],
-      "attempts": 0
+      "blockReason": "[RESEARCH_INSUFFICIENT] Pesquisa bloqueada após verificação em Groq e Gemini: Groq: Pesquisa bloqueada por integridade de fontes: pesquisa concluída sem fontes rastreáveis; pesquisa sem fatos explicitamente fundamentados; Gemini: Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat",
+      "failure": {
+        "code": "RESEARCH_INSUFFICIENT",
+        "retryable": false,
+        "stage": "production",
+        "message": "Pesquisa bloqueada após verificação em Groq e Gemini: Groq: Pesquisa bloqueada por integridade de fontes: pesquisa concluída sem fontes rastreáveis; pesquisa sem fatos explicitamente fundamentados; Gemini: Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat",
+        "recordedAt": "2026-08-21T13:50:03.409Z"
+      },
+      "attempts": 1,
+      "lastAttemptAt": "2026-08-21T13:50:03.409Z"
     },
     {
       "day": 14,
@@ -813,13 +826,22 @@
       "summary": "Roteiro de diagnóstico que separa sintomas observáveis, possíveis interfaces e verificações seguras antes de trocar componentes.",
       "category": "manutencao-ajustes",
       "freshness": "evergreen",
-      "status": "planned",
+      "status": "blocked",
       "productIds": [],
       "heroImage": {
         "mode": "conceptual"
       },
       "imageAssetIds": [],
-      "attempts": 0
+      "attempts": 1,
+      "lastAttemptAt": "2026-08-21T13:50:13.814Z",
+      "failure": {
+        "code": "RESEARCH_INSUFFICIENT",
+        "retryable": false,
+        "stage": "production",
+        "message": "Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq 429; Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat)",
+        "recordedAt": "2026-08-21T13:50:13.814Z"
+      },
+      "blockReason": "[RESEARCH_INSUFFICIENT] Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq 429; Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat)"
     },
     {
       "day": 15,
