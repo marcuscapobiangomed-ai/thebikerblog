@@ -3,6 +3,7 @@ import path from "node:path";
 import crypto from "node:crypto";
 import { fileURLToPath } from "node:url";
 import { CampaignSchema, publicCampaignSummary } from "../bot/src/automation/campaign.js";
+import { markdownPublicationErrors } from "../bot/src/validation/markdown-publication-gates.js";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const write = process.argv.includes("--write");
@@ -12,6 +13,12 @@ const now = nowArgument ? new Date(nowArgument.slice("--now=".length)) : new Dat
 const fingerprint = /o segundo modelo listado na pesquisa|Use esta ficha como roteiro documental|Este ficha editorial/iu;
 const quarantineRoot = path.join(root, "content/quarantine/editorial-fallback");
 const ledgerPath = path.join(quarantineRoot, "ledger.json");
+
+function editorialFallbackFingerprint(content) {
+  if (fingerprint.test(String(content || ""))) return true;
+  return markdownPublicationErrors(String(content || "")).some((error) =>
+    /placeholder ou erro gramatical|texto dominado por bastidores|instrução interna exposta|intertítulo de processo editorial|resposta direta descreve o processo editorial/iu.test(error));
+}
 
 async function markdownFiles(directory) {
   const result = [];
@@ -53,7 +60,7 @@ for (const file of candidateFiles) {
   if (!exists) continue;
   const content = await fs.readFile(file, "utf8");
   const relative = path.relative(root, file).replace(/\\/g, "/");
-  if (!fingerprint.test(content) && !fallbackArtifactPaths.has(relative)) continue;
+  if (!editorialFallbackFingerprint(content) && !fallbackArtifactPaths.has(relative)) continue;
   const frontmatter = content.match(/^---\r?\n([\s\S]*?)\r?\n---/u)?.[1] || "";
   if (/^published:\s*true\s*$/mu.test(frontmatter)
       || /^status:\s*["']?(?:scheduled|published)["']?\s*$/mu.test(frontmatter)
@@ -134,7 +141,7 @@ if (check) {
     const originalContent = await fs.readFile(original).catch(() => null);
     if (originalContent) {
       const restoredText = originalContent.toString("utf8");
-      if (fingerprint.test(restoredText) || fallbackArtifactPaths.has(entry.originalPath)) {
+      if (editorialFallbackFingerprint(restoredText) || fallbackArtifactPaths.has(entry.originalPath)) {
         quarantineIntegrityErrors.push(`${entry.originalPath}: conteúdo de fallback reapareceu no caminho original`);
       }
     }

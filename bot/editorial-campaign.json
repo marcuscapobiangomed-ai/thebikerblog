@@ -29,6 +29,7 @@
         "thebiker-bicicleta-scott-addict-rc-pro-di2-2026-pre-venda-65cdfb6ed9"
       ],
       "imageValidatedAt": "2026-08-22T01:50:59.258Z",
+      "publishedAt": "2026-08-22T01:56:26.349Z",
       "attempts": 2,
       "lastAttemptAt": "2026-08-22T01:40:05.316Z",
       "aiReview": {
@@ -50,12 +51,12 @@
         "origin": "pipeline",
         "reviewedContentHash": "sha256:7d6ba828ccf59f0c8ecca668b0e49d71785ed738bee05bb4042cfab231ba5daa",
         "scheduledContentHash": "sha256:98ce16d75185db5d6c8175f319ec45368bdc04417af950194297ac851fcc2618",
+        "publishedContentHash": "sha256:9e2bfd3198fca10e42bd978cf6138b81c598e13546bcc272bfebd3c6ebe0742a",
         "researchHash": "sha256:4d3047eb5f60044677740a8d4890400f8ff26b22bc5f74314f08c416ff91eea8",
         "sourceHash": null,
         "finalScore": 95,
         "finalBlockers": 0,
-        "issuedAt": "2026-08-22T01:50:59.258Z",
-        "publishedContentHash": "sha256:9e2bfd3198fca10e42bd978cf6138b81c598e13546bcc272bfebd3c6ebe0742a"
+        "issuedAt": "2026-08-22T01:50:59.258Z"
       },
       "visualDecision": {
         "schemaVersion": 1,
@@ -75,8 +76,7 @@
         },
         "blockers": [],
         "issuedAt": "2026-08-22T01:50:59.258Z"
-      },
-      "publishedAt": "2026-08-22T01:56:26.349Z"
+      }
     },
     {
       "day": 2,
@@ -101,7 +101,7 @@
         "retryable": false,
         "stage": "editorial-quarantine",
         "message": "Artigo integral de fallback determinístico reprovado pelo gate de qualidade editorial",
-        "recordedAt": "2026-08-21T15:00:00.000Z"
+        "recordedAt": "2026-08-22T04:47:18.904Z"
       },
       "attempts": 1,
       "lastAttemptAt": "2026-08-15T13:47:41.531Z",
@@ -145,7 +145,7 @@
         "retryable": false,
         "stage": "editorial-quarantine",
         "message": "Artigo integral de fallback determinístico reprovado pelo gate de qualidade editorial",
-        "recordedAt": "2026-08-21T15:00:00.000Z"
+        "recordedAt": "2026-08-22T04:47:18.904Z"
       },
       "attempts": 1,
       "lastAttemptAt": "2026-08-20T15:57:05.302Z",
@@ -189,7 +189,7 @@
         "retryable": false,
         "stage": "editorial-quarantine",
         "message": "Artigo integral de fallback determinístico reprovado pelo gate de qualidade editorial",
-        "recordedAt": "2026-08-21T15:00:00.000Z"
+        "recordedAt": "2026-08-22T04:47:18.904Z"
       },
       "attempts": 1,
       "lastAttemptAt": "2026-08-20T15:57:05.302Z",
@@ -233,7 +233,7 @@
         "retryable": false,
         "stage": "editorial-quarantine",
         "message": "Artigo integral de fallback determinístico reprovado pelo gate de qualidade editorial",
-        "recordedAt": "2026-08-21T15:00:00.000Z"
+        "recordedAt": "2026-08-22T04:47:18.904Z"
       },
       "attempts": 1,
       "lastAttemptAt": "2026-08-20T15:57:05.302Z",
@@ -315,7 +315,7 @@
         "retryable": false,
         "stage": "editorial-quarantine",
         "message": "Artigo integral de fallback determinístico reprovado pelo gate de qualidade editorial",
-        "recordedAt": "2026-08-21T15:00:00.000Z"
+        "recordedAt": "2026-08-22T04:47:18.904Z"
       },
       "attempts": 1,
       "lastAttemptAt": "2026-08-20T16:13:24.231Z",
@@ -365,7 +365,7 @@
         "retryable": false,
         "stage": "editorial-quarantine",
         "message": "Artigo integral de fallback determinístico reprovado pelo gate de qualidade editorial",
-        "recordedAt": "2026-08-21T15:00:00.000Z"
+        "recordedAt": "2026-08-22T04:47:18.904Z"
       },
       "attempts": 1,
       "lastAttemptAt": "2026-08-20T16:13:24.231Z",
@@ -442,7 +442,7 @@
         "retryable": false,
         "stage": "editorial-quarantine",
         "message": "Artigo integral de fallback determinístico reprovado pelo gate de qualidade editorial",
-        "recordedAt": "2026-08-21T15:00:00.000Z"
+        "recordedAt": "2026-08-22T04:47:18.904Z"
       },
       "attempts": 1,
       "lastAttemptAt": "2026-08-20T16:13:24.231Z",
@@ -491,7 +491,7 @@
         "retryable": false,
         "stage": "editorial-quarantine",
         "message": "Artigo integral de fallback determinístico reprovado pelo gate de qualidade editorial",
-        "recordedAt": "2026-08-21T15:00:00.000Z"
+        "recordedAt": "2026-08-22T04:47:18.904Z"
       },
       "attempts": 1,
       "lastAttemptAt": "2026-08-20T17:33:41.925Z",
@@ -534,7 +534,7 @@
         "retryable": false,
         "stage": "editorial-quarantine",
         "message": "Artigo integral de fallback determinístico reprovado pelo gate de qualidade editorial",
-        "recordedAt": "2026-08-21T15:00:00.000Z"
+        "recordedAt": "2026-08-22T04:47:18.904Z"
       },
       "attempts": 1,
       "lastAttemptAt": "2026-08-21T09:41:15.793Z",

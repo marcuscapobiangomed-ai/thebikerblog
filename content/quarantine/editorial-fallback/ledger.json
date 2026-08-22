@@ -112,6 +112,48 @@
       "sha256": "ba68b56391224a59cac31d858f150a1ad07e818fe80c52486f52e4fa18353f91",
       "reason": "Artigo integral de fallback determinístico sem revisão editorial independente",
       "quarantinedAt": "2026-08-21T15:00:00.000Z"
+    },
+    {
+      "originalPath": "_posts/2026-07-19-peso-medio-bikes-carbono-vs-aluminio-brasil-2026.md",
+      "quarantinePath": "content/quarantine/editorial-fallback/_posts/2026-07-19-peso-medio-bikes-carbono-vs-aluminio-brasil-2026.md",
+      "sha256": "4eab0ff3e0ffe0de7ef00bfebe1ecd03640138fa226917fe9f8032ecfa1543f8",
+      "reason": "Artigo integral de fallback determinístico sem revisão editorial independente",
+      "quarantinedAt": "2026-08-22T03:30:00.000Z"
+    },
+    {
+      "originalPath": "_posts/2026-08-04-scott-addict-2026-guia-completo.md",
+      "quarantinePath": "content/quarantine/editorial-fallback/_posts/2026-08-04-scott-addict-2026-guia-completo.md",
+      "sha256": "997925086c589f37e14e29a4bf7940f656c369bb67f7bba298fd55f2268a219a",
+      "reason": "Artigo integral de fallback determinístico sem revisão editorial independente",
+      "quarantinedAt": "2026-08-22T03:30:00.000Z"
+    },
+    {
+      "originalPath": "_posts/2026-08-15-reserva-limpeza-transmissao-metodo.md",
+      "quarantinePath": "content/quarantine/editorial-fallback/_posts/2026-08-15-reserva-limpeza-transmissao-metodo.md",
+      "sha256": "ff40ed5c9262a4f66637a28ead5759e321be532e3ef6708ae1f15640c0a03ef5",
+      "reason": "Artigo integral de fallback determinístico sem revisão editorial independente",
+      "quarantinedAt": "2026-08-22T03:30:00.000Z"
+    },
+    {
+      "originalPath": "_posts/archived/2026-06-29-11-scott-addict-2026-ficha-técnica-completa-preço-no-brasil-e-para-quem-é-indicada.md",
+      "quarantinePath": "content/quarantine/editorial-fallback/_posts/archived/2026-06-29-11-scott-addict-2026-ficha-técnica-completa-preço-no-brasil-e-para-quem-é-indicada.md",
+      "sha256": "e70a0d851f160612494480cfe89c2d8886b82a642096c75362745e4615f8b039",
+      "reason": "Artigo integral de fallback determinístico sem revisão editorial independente",
+      "quarantinedAt": "2026-08-22T03:30:00.000Z"
+    },
+    {
+      "originalPath": "_posts/drafts/2026-09-04-contingencia-transmissao-desgaste.md",
+      "quarantinePath": "content/quarantine/editorial-fallback/_posts/drafts/2026-09-04-contingencia-transmissao-desgaste.md",
+      "sha256": "85e5201874868cad48d323f1cc0d4f2edb2c6ca132b590c59acf440e161e1537",
+      "reason": "Artigo integral de fallback determinístico sem revisão editorial independente",
+      "quarantinedAt": "2026-08-22T03:30:00.000Z"
+    },
+    {
+      "originalPath": "_posts/drafts/2026-09-07-contingencia-tubeless-selante.md",
+      "quarantinePath": "content/quarantine/editorial-fallback/_posts/drafts/2026-09-07-contingencia-tubeless-selante.md",
+      "sha256": "f054f5fe920fe0644abf8e430bb6565664d580c74af19f44ec9ac2f7955a5a26",
+      "reason": "Artigo integral de fallback determinístico sem revisão editorial independente",
+      "quarantinedAt": "2026-08-22T03:30:00.000Z"
     }
   ]
 }

@@ -14,32 +14,32 @@
     {
       "day": 2,
       "publishDate": "2026-08-22",
-      "title": "Scott Addict RC 20: o que a ficha oficial permite afirmar",
-      "summary": "Resumo tecnico documental do modelo, sem extrapolar componentes, medidas ou desempenho alem do que esta rastreado.",
+      "title": "Scott Addict RC 20: quadro HMX, 105 Di2 e configuração de estrada",
+      "summary": "Análise da transmissão, das rodas, dos pneus, dos freios, do peso declarado e dos tamanhos disponíveis.",
       "category": "review",
       "status": "blocked"
     },
     {
       "day": 3,
       "publishDate": "2026-08-23",
-      "title": "Scott Addict RC Pro: roteiro documental para conferir montagem, medidas e compatibilidade",
-      "summary": "Guia baseado em documentação oficial e conhecimento interno rastreável para conferir a configuração sem presumir teste presencial.",
+      "title": "Scott Addict RC Pro: quadro HMX, Dura-Ace Di2 e rodas Capital 1.0S",
+      "summary": "Análise da montagem 2026, das relações 52x36 e 11-34, dos rotores, do cockpit integrado, do peso e do preço no Brasil.",
       "category": "review",
       "status": "blocked"
     },
     {
       "day": 4,
       "publishDate": "2026-08-24",
-      "title": "Scott Addict RC 20: como ler a ficha oficial antes de comparar versões e componentes",
-      "summary": "Leitura técnica da ficha cadastrada, com limites explícitos e verificação de cada componente na fonte correspondente.",
+      "title": "Scott Addict RC 20: quadro HMX, 105 Di2 e configuração de estrada",
+      "summary": "Análise da geometria, transmissão, rodas, pneus, peso declarado e pontos de compatibilidade relevantes para a compra.",
       "category": "review",
       "status": "blocked"
     },
     {
       "day": 5,
       "publishDate": "2026-08-25",
-      "title": "Scott Addict 50: geometria, montagem e pontos que precisam ser confirmados na ficha atual",
-      "summary": "Roteiro documental para organizar medidas, componentes e lacunas sem transformar catálogo ou descrição comercial em teste de campo.",
+      "title": "Scott Addict 50: geometria endurance, montagem e perfil de uso",
+      "summary": "Análise do quadro, da transmissão, das rodas, dos pneus, do peso e dos ajustes que influenciam a escolha do tamanho.",
       "category": "review",
       "status": "blocked"
     },
@@ -58,16 +58,16 @@
     {
       "day": 7,
       "publishDate": "2026-08-27",
-      "title": "Scott Scale 980: método para distinguir variantes, cores e montagens sem misturar fichas",
-      "summary": "Comparação documental entre registros internos rastreáveis, preservando diferenças de identificação e dados ainda não confirmados.",
+      "title": "Scott Scale 980 Black e Blue: o que muda entre as duas versões",
+      "summary": "Comparação de quadro, suspensão, transmissão, freios, rodas, pneus, tamanhos e cores das duas configurações.",
       "category": "comparativo",
       "status": "blocked"
     },
     {
       "day": 8,
       "publishDate": "2026-08-28",
-      "title": "Scott Spark RC Expert: arquitetura de suspensão e componentes confirmados na documentação",
-      "summary": "Análise documental da plataforma cadastrada com separação clara entre especificação, ajuste possível e desempenho não testado.",
+      "title": "Scott Spark RC Expert: suspensão integrada, transmissão e montagem 2027",
+      "summary": "Análise do quadro, dos 120 mm de curso, do sistema de suspensão, da transmissão, dos freios, das rodas e do peso.",
       "category": "review",
       "status": "blocked"
     },
@@ -86,8 +86,8 @@
     {
       "day": 10,
       "publishDate": "2026-08-30",
-      "title": "Scott Spark RC World Cup: checklist de especificações e limites da análise documental",
-      "summary": "Checklist rastreável de quadro, suspensão e montagem, sem extrapolar comportamento dinâmico ou disponibilidade comercial.",
+      "title": "Scott Spark RC World Cup: quadro, suspensão e montagem 2027",
+      "summary": "Análise da plataforma de cross-country, dos componentes, dos ajustes, do peso e do perfil de ciclista atendido pela configuração.",
       "category": "review",
       "status": "blocked"
     },
@@ -95,7 +95,7 @@
       "day": 11,
       "publishDate": "2026-08-31",
       "title": "Quadro Scott Scale RC Team HMF: interfaces, padrões e verificações antes da montagem",
-      "summary": "Guia técnico apoiado na ficha interna verificada para conferir interfaces e registrar como lacuna o que não estiver documentado.",
+      "summary": "Análise das medidas, dos padrões de montagem, das interfaces e dos componentes compatíveis com o quadro.",
       "category": "review",
       "status": "blocked"
     },

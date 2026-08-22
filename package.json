@@ -20,7 +20,7 @@
     "sync:races": "node scripts/sync-race-calendar.mjs",
     "check:claims": "npm --prefix bot run check:claims",
     "audit:editorial": "npm --prefix bot run audit:editorial",
-    "quarantine:editorial-fallbacks": "node scripts/quarantine-editorial-fallbacks.mjs",
+    "quarantine:editorial-fallbacks": "node scripts/quarantine-editorial-fallbacks.mjs --write",
     "check:editorial-fallbacks": "node scripts/quarantine-editorial-fallbacks.mjs --check",
     "hold:published-quality": "node scripts/enforce-published-editorial-quality.mjs --write",
     "check:published-quality": "node scripts/enforce-published-editorial-quality.mjs",
