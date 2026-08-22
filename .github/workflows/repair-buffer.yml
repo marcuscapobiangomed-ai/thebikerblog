@@ -42,10 +42,13 @@ jobs:
           DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
         run: npm run campaign:repair-buffer
         working-directory: bot
-      - name: Validar e persistir resultado
-        if: always()
+      - name: Validar integralmente o reparo
+        id: validation
+        if: steps.repair.outcome == 'success'
+        run: npm run validate
+      - name: Persistir somente reparo aprovado
+        if: steps.repair.outcome == 'success' && steps.validation.outcome == 'success'
         run: |
-          npm run validate
           git config user.name "thebiker-editorial-bot"
           git config user.email "thebiker-editorial-bot@users.noreply.github.com"
           git add _posts bot/editorial-campaign.json bot/operational-state _data/editorial-calendar.json

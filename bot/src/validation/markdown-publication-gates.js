@@ -103,6 +103,14 @@ export function markdownPublicationErrors(content) {
     if (deskTest) errors.push(`alegação de teste prático proibida: ${body.match(deskTest)?.[0]}`);
   }
   const contentType = frontmatterValue(content, "content_type").replace(/^['"]|['"]$/g, "");
+  if (["review", "lancamento"].includes(contentType)) {
+    for (const field of ["brand", "product_name", "model_year"]) {
+      const value = frontmatterValue(content, field).replace(/^['"]|['"]$/g, "");
+      if (!value || /^(?:n[aã]o informado|desconhecido|n\/a)$/iu.test(value)) {
+        errors.push(`identidade do produto incompleta: ${field}`);
+      }
+    }
+  }
   if (["review", "comparativo", "lancamento"].includes(contentType)
       && !frontmatterSourceTypes(content).includes("manufacturer")) {
     errors.push("conteúdo de produto sem fonte técnica do fabricante");

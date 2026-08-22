@@ -199,19 +199,6 @@ jobs:
             sleep $((attempt * 5))
           done
           exit 1
-      - name: Persistir candidato revisado para retomar finalização
-        if: always() && steps.validation.outcome == 'success' && (steps.automation.outcome == 'success' || steps.automation_retry.outcome == 'success') && steps.finalization.outcome == 'failure' && steps.finalization_retry.outcome != 'success' && (github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.dry_run == false))
-        run: |
-          git config user.name "thebiker-editorial-bot"
-          git config user.email "thebiker-editorial-bot@users.noreply.github.com"
-          git add -- bot/editorial-campaign.json _data/editorial-calendar.json _posts/drafts content/product-discovery/thebiker-media-catalog.json content/research/campaign
-          git diff --cached --quiet || git commit -m "state: preservar candidato revisado para retomada"
-          for attempt in 1 2 3; do
-            git pull --rebase --autostash origin main && git push && exit 0
-            git rebase --abort 2>/dev/null || true
-            sleep $((attempt * 5))
-          done
-          exit 1
       - name: Persistir somente diagnóstico seguro da falha
         if: always() && ((steps.automation.outcome == 'failure' && steps.automation_retry.outcome != 'success') || (steps.finalization.outcome == 'failure' && steps.finalization_retry.outcome != 'success')) && (github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.dry_run == false))
         run: |

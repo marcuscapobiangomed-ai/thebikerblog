@@ -21,6 +21,15 @@ const PROCESS_HEADINGS = /^(?:identidade e escopo da ficha|como (?:conferir|vali
 
 const METHOD_ONLY_DIRECT_ANSWER = /^(?:Use esta ficha como roteiro documental|Leia cada registro junto da fonte oficial|Confronte cada dado com a fonte oficial)/iu;
 
+const PUBLIC_BACKSTAGE_DISCLOSURE = [
+  /\bcomo este artigo foi produzido\b/iu,
+  /\b(?:conte[uú]do|artigo|texto) (?:elaborado|produzido|gerado|escrito) com (?:o )?aux[ií]lio (?:de|da) (?:ia|intelig[eê]ncia artificial)\b/iu,
+  /\b(?:a equipe|n[oó]s) n[aã]o (?:realizou|realizamos) (?:um )?teste presencial\b/iu,
+  /\b(?:o produto|a bicicleta|a bike|este modelo) n[aã]o foi testad[oa](?: presencialmente)? (?:pela|por nossa) equipe\b/iu,
+  /\b(?:esta|este artigo) (?:é|e) (?:uma )?an[aá]lise documental\b/iu,
+  /\bleitura documental de fontes\b/iu,
+];
+
 const PUBLIC_SOURCE_CONFLICT = [
   /\b(?:diverg[eê]ncias?|inconsist[eê]ncias?)\b/iu,
   /\b(?:diverg[eê]ncias?|inconsist[eê]ncias?|conflitos?) (?:entre|nas?|de) (?:as? )?(?:fontes|fichas|p[aá]ginas|cadastros?|especifica[cç][oõ]es)\b/iu,
@@ -28,6 +37,14 @@ const PUBLIC_SOURCE_CONFLICT = [
   /\b(?:adotamos|esta an[aá]lise adota) (?:a ficha|o valor|a especifica[cç][aã]o) do fabricante\b/iu,
   /\b(?:as? informa[cç][oõ]es|os valores|as especifica[cç][oõ]es) (?:n[aã]o coincidem|divergem|s[aã]o diferentes)\b/iu,
   /\buma (?:fonte|ficha|p[aá]gina)\b[^.!?]{0,180}\b(?:outra|enquanto)\b[^.!?]{0,180}\b(?:fonte|ficha|p[aá]gina)\b/iu,
+  /\b(?:segundo|conforme) (?:a )?(?:loja|revendedor|marketplace)\b[^.!?]{0,180}\b(?:segundo|conforme) (?:o )?fabricante\b/iu,
+  /\b(?:a |o )?(?:loja|revendedor|marketplace)\b[^.!?]{0,180}\b(?:corrig(?:e|iu|ido)|desment(?:e|iu)|contradiz)\b/iu,
+];
+
+const UNSUPPORTED_CERTAINTY = [
+  /\b(?:garante|comprova|assegura)\b[^.!?]{0,100}\b(?:desempenho|durabilidade|seguran[cç]a|conforto|efici[eê]ncia|resist[eê]ncia)\b/iu,
+  /\b(?:nunca|sempre)\b[^.!?]{0,100}\b(?:falha|quebra|desgasta|escorrega|perde|mant[eé]m)\b/iu,
+  /\b(?:sem risco|risco zero|100% seguro|totalmente seguro)\b/iu,
 ];
 
 const PROCESS_VOCABULARY = /\b(?:documental|documenta[cç][aã]o|documentos?|fontes?|registros?|pesquisa|fichas?|consulta(?:da|do|das|dos|r)?|lacunas?|rastre[aá]ve(?:l|is)|trilha documental|data de acesso|revalid(?:ar|a[cç][aã]o|ado|ada))\b/giu;
@@ -82,6 +99,11 @@ export function editorialTextQualityErrors({ body, contentType = "", directAnswe
   const metadata = readableText(`${title}\n${description}\n${directAnswer}`);
   const publicText = `${metadata}\n${text}`;
 
+  const backstageDisclosure = PUBLIC_BACKSTAGE_DISCLOSURE.find((pattern) => pattern.test(publicText));
+  if (backstageDisclosure) {
+    errors.push(`disclosure de bastidor editorial exposto ao leitor: ${publicText.match(backstageDisclosure)?.[0]}`);
+  }
+
   const placeholder = PLACEHOLDER_PATTERNS.find((pattern) => pattern.test(publicText));
   if (placeholder) errors.push(`placeholder ou erro gramatical publicado: ${publicText.match(placeholder)?.[0]}`);
 
@@ -110,9 +132,12 @@ export function editorialTextQualityErrors({ body, contentType = "", directAnswe
     errors.push("resposta direta descreve o processo editorial, não o produto ou a decisão do leitor");
   }
 
-  if (["review", "comparativo", "guia-de-compra"].includes(String(contentType))) {
+  if (["review", "comparativo", "guia-de-compra", "lancamento"].includes(String(contentType))) {
     const sourceConflict = PUBLIC_SOURCE_CONFLICT.find((pattern) => pattern.test(publicText));
     if (sourceConflict) errors.push("conflito entre fontes exposto no conteúdo público; aplique internamente a precedência do fabricante");
+
+    const certainty = UNSUPPORTED_CERTAINTY.find((pattern) => pattern.test(publicText));
+    if (certainty) errors.push(`alegação absoluta de desempenho ou segurança: ${publicText.match(certainty)?.[0]}`);
   }
 
   return errors;

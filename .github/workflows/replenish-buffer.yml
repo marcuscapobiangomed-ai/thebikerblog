@@ -81,8 +81,8 @@ jobs:
           TARGET_BUFFER_INPUT: ${{ inputs.target_buffer || '7' }}
           MAX_ATTEMPTS_INPUT: ${{ inputs.max_attempts || '3' }}
           REQUIRED_DATE_INPUT: ${{ inputs.required_date || '' }}
-        # Buffer parcial é uma falha operacional. O comando ainda registra o
-        # estado seguro no workspace para validação, mas retorna exit code 1.
+        # Qualquer resultado parcial é uma falha transacional. O workspace pode
+        # ser validado para diagnóstico, mas nunca será persistido nesse caso.
         run: |
           if [[ ! "$TARGET_BUFFER_INPUT" =~ ^[0-9]+$ ]]; then
             echo "::error::target_buffer precisa ser um inteiro entre 1 e 30."
@@ -125,7 +125,7 @@ jobs:
         run: npm run validate:artifacts
       - name: Detectar avanço editorial validado
         id: changes
-        if: steps.validation.outcome == 'success'
+        if: steps.replenish.outputs.exit_code == '0' && steps.validation.outcome == 'success'
         run: |
           if git diff --quiet -- bot/editorial-campaign.json bot/operational-state _data/editorial-calendar.json _posts/drafts content/research/campaign assets/img/posts content/image-library/index.json; then
             echo "editorial=false" >> "$GITHUB_OUTPUT"
@@ -136,7 +136,7 @@ jobs:
           fi
       - name: Persistir somente avanço validado
         id: persistence
-        if: steps.validation.outcome == 'success' && steps.changes.outputs.editorial == 'true'
+        if: steps.replenish.outputs.exit_code == '0' && steps.validation.outcome == 'success' && steps.changes.outputs.editorial == 'true'
         run: |
           git config user.name "thebiker-editorial-bot"
           git config user.email "thebiker-editorial-bot@users.noreply.github.com"
@@ -161,7 +161,7 @@ jobs:
           EDITORIAL_CRITICAL_BUFFER: ${{ vars.EDITORIAL_CRITICAL_BUFFER || '1' }}
           REQUIRED_DATE_INPUT: ${{ inputs.required_date || '' }}
         run: |
-          if [ "${{ steps.validation.outcome }}" = "failure" ] || [ "${{ steps.persistence.outcome }}" = "failure" ]; then
+          if [ "${{ steps.replenish.outputs.exit_code }}" != "0" ] || [ "${{ steps.validation.outcome }}" = "failure" ] || [ "${{ steps.persistence.outcome }}" = "failure" ]; then
             echo "::error::Recomposição=${{ steps.replenish.outcome }} validação=${{ steps.validation.outcome }} persistência=${{ steps.persistence.outcome }}"
             exit 1
           fi
@@ -174,8 +174,8 @@ jobs:
             echo "::error::A data obrigatória ${REQUIRED_DATE_INPUT} ainda não ficou publicável."
             exit 1
           fi
-          if [ "${{ steps.changes.outputs.editorial }}" = "true" ] || [ "$scheduled_count" -ge "$EDITORIAL_CRITICAL_BUFFER" ]; then
-            echo "::warning::Recomposição parcial/sem progresso, mas o estado validado preserva ${scheduled_count} pauta(s) futura(s). O próximo ciclo continuará até o alvo."
+          if [ "$scheduled_count" -ge "$EDITORIAL_CRITICAL_BUFFER" ]; then
+            echo "::warning::Recomposição sem mudanças, com ${scheduled_count} pauta(s) futura(s) já preservadas."
             exit 0
           fi
           echo "::error::Recomposição sem progresso e buffer crítico: ${scheduled_count} pauta(s) futura(s)."
@@ -189,5 +189,5 @@ jobs:
           echo "- Avanço editorial: ${{ steps.changes.outputs.editorial || 'não validado' }}" >> "$GITHUB_STEP_SUMMARY"
           echo "- Persistência: ${{ steps.persistence.outcome }}" >> "$GITHUB_STEP_SUMMARY"
           echo "- Data obrigatória: ${{ inputs.required_date || 'não definida' }}" >> "$GITHUB_STEP_SUMMARY"
-          echo "- Progresso parcial validado é aviso e será retomado no próximo ciclo; ausência de buffer ou estado reprovado continua sendo falha." >> "$GITHUB_STEP_SUMMARY"
+          echo "- Resultado parcial ou reprovado nunca é persistido; somente uma recomposição concluída e validada pode alterar o repositório." >> "$GITHUB_STEP_SUMMARY"
 

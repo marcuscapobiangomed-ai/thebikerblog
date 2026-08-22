@@ -11,6 +11,7 @@ import { visualDecisionErrors } from "./visual-decision.js";
 import { researchEvidenceContractErrors, researchGroundingErrors } from "./research-grounding.js";
 import { articleResearchGroundingErrors } from "./article-research-grounding.js";
 import { researchForPublication } from "./publication-research.js";
+import { productIdentityConsistencyErrors } from "./product-identity-consistency.js";
 
 const defaultRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../../..");
 
@@ -69,6 +70,9 @@ export async function validateScheduledPublications({ root = defaultRoot } = {})
       const research = JSON.parse(await fs.readFile(path.join(root, "content/research/campaign", `${item.id}.json`), "utf8"));
       for (const error of researchGroundingErrors(research)) errors.push(`${item.id}: ${error}`);
       for (const error of researchEvidenceContractErrors(research)) errors.push(`${item.id}: ${error}`);
+      for (const error of productIdentityConsistencyErrors({ article: matter(content).data, campaignItem: item, catalog, research })) {
+        errors.push(`${item.id}: ${error}`);
+      }
       if (research.grounding?.claimContract === "explicit-units-v1") {
         for (const error of articleResearchGroundingErrors({ content, research: researchForPublication(research) })) errors.push(`${item.id}: ${error}`);
       }

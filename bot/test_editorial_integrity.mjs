@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { markdownPublicationErrors } from "./src/validation/markdown-publication-gates.js";
 import { researchEvidenceContractErrors } from "./src/validation/research-grounding.js";
 import { getTemplate } from "./src/templates.js";
+import { productIdentityConsistencyErrors } from "./src/validation/product-identity-consistency.js";
 
 function reviewMarkdown({ title = "Scott Addict RC Pro 2026: montagem confirmada", body }) {
   return `---
@@ -10,6 +11,9 @@ description: "Quadro, transmissão, rodas, peso e preço reunidos para orientar 
 content_type: "review"
 review_method: "desk-research"
 tested_by_thebikerblog: false
+brand: "Scott"
+product_name: "Addict RC Pro"
+model_year: 2026
 direct_answer: "A Scott Addict RC Pro usa quadro HMX, transmissão Dura-Ace Di2 e rodas Syncros Capital 1.0S de 40 mm."
 tags: ["scott", "road-bike"]
 sources:
@@ -45,6 +49,15 @@ O peso aproximado declarado pela Scott é de 6,7 kg.
 assert.deepEqual(markdownPublicationErrors(cleanReview), []);
 
 const adversarialBodies = [
+  `## Bastidores
+
+Como este artigo foi produzido: leitura documental de fontes oficiais e registros rastreáveis. A equipe não realizou teste presencial.`,
+  `## Transparência
+
+Conteúdo elaborado com auxílio de inteligência artificial e revisão editorial da equipe TheBiker.`,
+  `## Metodologia
+
+Esta é uma análise documental. O produto não foi testado presencialmente pela equipe.`,
   `## Controle do material consultado
 
 A documentação reúne a ficha, o registro, a pesquisa e as fontes recuperadas para consulta.
@@ -61,6 +74,12 @@ Os valores não coincidem nas especificações publicadas pelas páginas consult
   `## Identificação
 
 Uma ficha registra 120 kg, enquanto outra ficha apresenta 128 kg para o mesmo limite.`,
+  `## Confirmação
+
+Segundo a loja, o limite é 120 kg; segundo o fabricante, o limite é 128 kg.`,
+  `## Segurança
+
+Esta montagem garante desempenho e segurança em qualquer percurso.`,
 ];
 
 for (const body of adversarialBodies) {
@@ -93,6 +112,25 @@ sources:
 
 Texto técnico.
 `).join(" | "), /sem fonte técnica do fabricante/);
+
+assert.match(markdownPublicationErrors(`---
+title: "Lançamento de bicicleta 2026"
+description: "Descrição técnica suficientemente clara para apresentar o lançamento ao público brasileiro com informações verificáveis."
+content_type: "lancamento"
+review_method: "desk-research"
+tested_by_thebikerblog: false
+direct_answer: "O lançamento reúne uma montagem atualizada para o mercado brasileiro, conforme a página oficial do fabricante."
+tags: ["ciclismo"]
+sources:
+  - name: "Fabricante"
+    type: "manufacturer"
+    url: "https://manufacturer.example/product"
+---
+
+## Produto
+
+Texto técnico.
+`).join(" | "), /identidade do produto incompleta: brand.*product_name.*model_year/);
 
 function productResearch(overrides = {}) {
   const manufacturerFacts = Array.from({ length: 10 }, (_, index) => ({
@@ -136,5 +174,29 @@ for (const type of ["review", "comparativo", "guia-de-compra"]) {
   const structure = getTemplate(type).structure.join(" | ");
   assert.doesNotMatch(structure, /metodologia|como este artigo foi produzido|processo editorial/i);
 }
+
+const identityFixture = {
+  article: { brand: "Scott", product_name: "Addict RC 20", model_year: 2026 },
+  campaignItem: { category: "review", productIds: ["bicicleta-scott-addict-rc-20-di2-2026"] },
+  catalog: { products: [{
+    id: "bicicleta-scott-addict-rc-20-di2-2026",
+    name: "Bicicleta Scott Addict RC 20 Di2 2026",
+    brand: "Scott",
+    officialPageUrl: "https://www.scott-sports.com/global/en/product/scott-addict-rc-20-bike",
+  }] },
+  research: { sources: [{
+    type: "manufacturer",
+    url: "https://www.scott-sports.com/global/en/product/scott-addict-rc-20-bike/",
+  }] },
+};
+assert.deepEqual(productIdentityConsistencyErrors(identityFixture), []);
+assert.match(productIdentityConsistencyErrors({
+  ...identityFixture,
+  article: { ...identityFixture.article, product_name: "Addict RC Pro" },
+}).join(" | "), /não corresponde ao produto selecionado/);
+assert.match(productIdentityConsistencyErrors({
+  ...identityFixture,
+  research: { sources: [{ type: "manufacturer", url: "https://www.scott-sports.com/global/en/product/scott-addict-rc-pro-bike" }] },
+}).join(" | "), /página oficial exata/);
 
 console.log("Editorial integrity adversarial tests passed.");

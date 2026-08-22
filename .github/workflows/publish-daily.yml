@@ -128,19 +128,13 @@ jobs:
           echo "$result"
           echo "status=$(echo "$result" | jq -r .status)" >> "$GITHUB_OUTPUT"
         working-directory: bot
-      - name: Validar artefato publicado sem depender da freshness global
+      - name: Validar integralmente o artefato publicado
+        id: publication_validation
         if: ${{ steps.publication.outputs.status == 'published' }}
-        run: |
-          npm run check:editorial-fallbacks
-          npm run check:published-quality
-          npm run validate:posts
-          npm run audit:editorial
-          npm run audit:seo
-          npm run check:audience
-          npm run check:claims
-          npm run check:thebiker-links
+        run: npm run validate:artifacts
       - name: Registrar publicação
-        if: ${{ steps.publication.outputs.status == 'published' && (github.event_name == 'schedule' || !inputs.dry_run) }}
+        id: persistence
+        if: ${{ steps.publication.outputs.status == 'published' && steps.publication_validation.outcome == 'success' && (github.event_name == 'schedule' || !inputs.dry_run) }}
         run: |
           git config user.name "thebiker-editorial-bot"
           git config user.email "thebiker-editorial-bot@users.noreply.github.com"
@@ -153,7 +147,7 @@ jobs:
           done
           exit 1
       - name: Solicitar deploy do SHA publicado
-        if: ${{ steps.publication.outputs.status == 'published' && (github.event_name == 'schedule' || !inputs.dry_run) }}
+        if: ${{ steps.publication.outputs.status == 'published' && steps.publication_validation.outcome == 'success' && steps.persistence.outcome == 'success' && (github.event_name == 'schedule' || !inputs.dry_run) }}
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh api --method POST "repos/${{ github.repository }}/dispatches" -f event_type=editorial-deploy

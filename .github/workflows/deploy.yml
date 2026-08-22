@@ -66,6 +66,9 @@ jobs:
       - name: Validate AI discovery artifact
         run: npm run validate:ai-build
 
+      - name: Validate public publication boundaries
+        run: npm run validate:public-artifact
+
       - name: Security gate for public artifact
         run: npm run security:public
 

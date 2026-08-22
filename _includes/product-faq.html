@@ -2,10 +2,10 @@
 {% if faq_product %}
 <section class="product-section post-faq" aria-labelledby="product-faq-title">
   <h3 id="product-faq-title">Perguntas frequentes</h3>
-  <details>
+  {% if faq_product.declaredWeight and faq_product.declaredWeight.valueKg %}<details>
     <summary>Qual é o peso da {{ faq_product.brand }} {{ faq_product.model }}?</summary>
-    <p>{% if faq_product.declaredWeight %}O peso declarado é {{ faq_product.declaredWeight.valueKg }} kg no tamanho {{ faq_product.declaredWeight.size }}.{% else %}O peso não está publicado na ficha documental disponível. Confirme com o fabricante ou a loja antes da compra.{% endif %}</p>
-  </details>
+    <p>O peso declarado é {{ faq_product.declaredWeight.valueKg }} kg{% if faq_product.declaredWeight.size and faq_product.declaredWeight.size != 'não informado' %} no tamanho {{ faq_product.declaredWeight.size }}{% endif %}.</p>
+  </details>{% endif %}
   <details>
     <summary>Qual grupo equipa a {{ faq_product.brand }} {{ faq_product.model }}?</summary>
     <p>A montagem cadastrada usa {{ faq_product.drivetrain.brand }} {{ faq_product.drivetrain.groupset }}, com {{ faq_product.drivetrain.speeds }} velocidades.</p>

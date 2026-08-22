@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import * as yaml from "js-yaml";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const read = (name) => fs.readFileSync(path.join(root, ".github/workflows", name), "utf8");
@@ -45,9 +46,9 @@ assert.match(
   "execução real não pode terminar verde depois de recovery sem candidato",
 );
 assert.match(publication, /AUTOMATION_EXPECTED_ITEM_ID: \$\{\{ steps\.candidate\.outputs\.item_id \}\}/);
-assert.match(publication, /Validar artefato publicado sem depender da freshness global[\s\S]*npm run validate:posts[\s\S]*npm run check:thebiker-links/);
-assert.match(publication, /Registrar publicação[\s\S]*steps\.publication\.outputs\.status == 'published'/);
-assert.match(publication, /Solicitar deploy do SHA publicado[\s\S]*steps\.publication\.outputs\.status == 'published'[\s\S]*repos\/\$\{\{ github\.repository \}\}\/dispatches[\s\S]*event_type=editorial-deploy/);
+assert.match(publication, /Validar integralmente o artefato publicado[\s\S]*id: publication_validation[\s\S]*npm run validate:artifacts/);
+assert.match(publication, /Registrar publicação[\s\S]*id: persistence[\s\S]*steps\.publication_validation\.outcome == 'success'/);
+assert.match(publication, /Solicitar deploy do SHA publicado[\s\S]*steps\.publication_validation\.outcome == 'success'[\s\S]*steps\.persistence\.outcome == 'success'[\s\S]*repos\/\$\{\{ github\.repository \}\}\/dispatches[\s\S]*event_type=editorial-deploy/);
 assert.match(publication, /CAMPAIGN_CURATED_OFFLINE_FALLBACK: "true"[\s\S]*AI_DETERMINISTIC_CURATED_FALLBACK: "false"/);
 assert.match(publication, /AI_DETERMINISTIC_CACHE_FIRST: "false"/);
 
@@ -59,11 +60,10 @@ assert.ok((editorial.match(/npm run validate:ci/g) || []).length >= 2);
 assert.ok(editorial.indexOf("npm run validate:ci", editorial.indexOf("generate-draft:")) < editorial.indexOf("npm run campaign:produce"));
 assert.match(editorial, /Verificar links TheBiker[^]*if: steps\.automation\.outcome == 'success' \|\| steps\.automation_retry\.outcome == 'success'/);
 assert.match(editorial, /Substituir artigo reprovado e tentar pauta-reserva[^]*npm run campaign:recover && npm run campaign:produce/);
-assert.match(editorial, /Persistir candidato revisado para retomar finaliza\u00e7\u00e3o[^]*git add --[^\n]*_posts\/drafts[^\n]*content\/research\/campaign/);
-assert.match(editorial, /Persistir candidato revisado para retomar finaliza\u00e7\u00e3o[^]*if:[^\n]*steps\.validation\.outcome == 'success'/);
+assert.doesNotMatch(editorial, /Persistir candidato revisado para retomar finaliza\u00e7\u00e3o/);
+assert.doesNotMatch(editorial, /steps\.finalization\.outcome == 'failure'[^\n]*(?:git add|_posts\/drafts|editorial-campaign)/);
 assert.match(editorial, /Persistir somente diagn\u00f3stico seguro da falha[^]*git add -- bot\/operational-state\/editorial-exceptions\.json/);
 assert.doesNotMatch(editorial, /Persistir somente diagn\u00f3stico seguro da falha[^]*git add --[^\n]*(?:bot\/editorial-campaign\.json|_data\/editorial-calendar\.json)/);
-assert.match(editorial, /\(steps\.automation\.outcome == 'success' \|\| steps\.automation_retry\.outcome == 'success'\) && steps\.finalization\.outcome == 'failure'/);
 assert.match(editorial, /id: finalization_retry[\s\S]*campaign:retry-finalization/);
 assert.match(editorial, /id: finalization_retry[\s\S]*CAMPAIGN_FINALIZATION_MAX_ATTEMPTS: "3"[\s\S]*campaign:retry-finalization/);
 assert.match(editorial, /steps\.finalization\.outcome == 'success' \|\| steps\.finalization_retry\.outcome == 'success'/);
@@ -90,9 +90,52 @@ assert.match(renewal, /contingency:[\s\S]*type: boolean/);
 assert.match(renewal, /id: renewal[\s\S]*--contingency[\s\S]*--candidate-output=/);
 assert.match(renewal, /campaign:validate-monthly-plan/);
 assert.doesNotMatch(renewal, /campaign:simulate/);
-assert.match(renewal, /if: \$\{\{ steps\.renewal\.outputs\.status == 'renewed' \}\}[\s\S]*replenish-buffer\.yml[\s\S]*target_buffer=7[\s\S]*max_attempts=7[\s\S]*required_date=/);
+assert.match(renewal, /Validar plano mensal[^]*id: validation/);
+assert.match(renewal, /Persistir campanha e fila de atualiza\u00e7\u00e3o[^]*steps\.validation\.outcome == 'success'/);
+assert.match(renewal, /Iniciar produ\u00e7\u00e3o do novo buffer[^]*steps\.persistence\.outcome == 'success'[^]*replenish-buffer\.yml[^]*target_buffer=7[^]*max_attempts=7[^]*required_date=/);
 assert.doesNotMatch(renewal, /gh workflow run cron-post\.yml/);
 assert.match(renewal, /queue: max/);
+
+const auditBuffer = read("audit-buffer.yml");
+assert.match(auditBuffer, /Validar integralmente notas e bloqueios[^]*if: steps\.audit\.outcome == 'success'[^]*npm run validate/);
+assert.match(auditBuffer, /Persistir somente auditoria aprovada[^]*steps\.audit\.outcome == 'success' && steps\.validation\.outcome == 'success'/);
+assert.doesNotMatch(auditBuffer, /Persistir[^\n]*\n\s*if: always\(\)/);
+
+const repairBuffer = read("repair-buffer.yml");
+assert.match(repairBuffer, /Validar integralmente o reparo[^]*if: steps\.repair\.outcome == 'success'[^]*npm run validate/);
+assert.match(repairBuffer, /Persistir somente reparo aprovado[^]*steps\.repair\.outcome == 'success' && steps\.validation\.outcome == 'success'/);
+assert.doesNotMatch(repairBuffer, /Persistir[^\n]*\n\s*if: always\(\)/);
+
+const replenish = read("replenish-buffer.yml");
+assert.match(replenish, /Detectar avan\u00e7o editorial validado[^]*steps\.replenish\.outputs\.exit_code == '0' && steps\.validation\.outcome == 'success'/);
+assert.match(replenish, /Persistir somente avan\u00e7o validado[^]*steps\.replenish\.outputs\.exit_code == '0' && steps\.validation\.outcome == 'success'/);
+assert.match(replenish, /if \[ "\$\{\{ steps\.replenish\.outputs\.exit_code \}\}" != "0" \][^]*exit 1/);
+
+const raceCalendar = read("update-race-calendar.yml");
+assert.match(raceCalendar, /Registrar snapshot verificado[^]*steps\.validation\.outcome == 'success'/);
+assert.match(raceCalendar, /Solicitar deploy do snapshot persistido[^]*steps\.persistence\.outcome == 'success'/);
+
+const workflowDirectory = path.join(root, ".github/workflows");
+const protectedGitAdd = /git add[^\n]*(?:_posts|assets\/img\/posts|bot\/editorial-campaign\.json|_data\/editorial-calendar\.json|_data\/editorial-refresh-queue\.json|_data\/race-events\.json|_data\/catalog-public\.json|api\/products\.json)/;
+for (const workflowName of fs.readdirSync(workflowDirectory).filter((name) => /\.ya?ml$/i.test(name))) {
+  const workflow = yaml.load(fs.readFileSync(path.join(workflowDirectory, workflowName), "utf8"));
+  for (const [jobName, job] of Object.entries(workflow?.jobs || {})) {
+    for (const step of job?.steps || []) {
+      if (!protectedGitAdd.test(String(step?.run || ""))) continue;
+      const condition = String(step?.if || "");
+      assert.match(
+        condition,
+        /steps\.[a-z_]*validation\.outcome == 'success'/,
+        `${workflowName}:${jobName}:${step.name || "etapa sem nome"} precisa exigir validação aprovada antes de git add`,
+      );
+      assert.doesNotMatch(
+        condition,
+        /always\(\)|\.outcome == 'failure'/,
+        `${workflowName}:${jobName}:${step.name || "etapa sem nome"} não pode persistir conteúdo após falha`,
+      );
+    }
+  }
+}
 
 const watchdog = read("editorial-watchdog.yml");
 assert.match(watchdog, /actions: write/);

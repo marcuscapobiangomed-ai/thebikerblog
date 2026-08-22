@@ -40,10 +40,24 @@ assert.match(contaminatedErrors, /português sem acentuação/);
 assert.match(contaminatedErrors, /instrução interna exposta/);
 assert.match(contaminatedErrors, /intertítulo de processo editorial/);
 assert.match(contaminatedErrors, /resposta direta descreve o processo editorial/);
+assert.match(markdownPublicationErrors(`---
+content_type: "guia-tecnico"
+review_method: "desk-research"
+tested_by_thebikerblog: false
+direct_answer: "A sequência organiza a manutenção preventiva com critérios técnicos claros para inspeção, limpeza e encaminhamento à oficina."
+tags: ["manutencao"]
+---
+## Bastidores
+
+Como este artigo foi produzido: conteúdo elaborado com auxílio de IA. O produto não foi testado presencialmente pela equipe.
+`).join(" | "), /disclosure de bastidor editorial exposto/);
 assert.deepEqual(markdownPublicationErrors(`---
 content_type: "review"
 review_method: "desk-research"
 tested_by_thebikerblog: false
+brand: "Scott"
+product_name: "Addict RC Pro"
+model_year: 2026
 direct_answer: "A Scott Addict RC Pro reúne quadro HMX, transmissão Shimano Dura-Ace Di2 e rodas Syncros, conforme a ficha oficial consultada."
 tags: ["ciclismo"]
 sources:
@@ -53,7 +67,7 @@ sources:
 ---
 ## Quadro HMX e montagem Dura-Ace Di2
 
-A ficha oficial identifica o quadro Addict RC HMX Carbon e o grupo Shimano Dura-Ace Di2. O produto não foi testado pela equipe.
+A ficha oficial identifica o quadro Addict RC HMX Carbon e o grupo Shimano Dura-Ace Di2.
 `), []);
 assert.match(markdownPublicationErrors(`---
 content_type: "review"

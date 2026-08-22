@@ -31,10 +31,11 @@ assert.doesNotMatch(replenisher, /validation_status|npm run validate:artifacts \
 const validationIndex = replenisher.indexOf("id: validation");
 const persistenceIndex = replenisher.indexOf("id: persistence");
 assert.ok(validationIndex >= 0 && validationIndex < persistenceIndex);
-assert.match(replenisher, /if: steps\.validation\.outcome == 'success' && steps\.changes\.outputs\.editorial == 'true'/);
+assert.match(replenisher, /if: steps\.replenish\.outputs\.exit_code == '0' && steps\.validation\.outcome == 'success' && steps\.changes\.outputs\.editorial == 'true'/);
 assert.match(replenisher, /steps\.replenish\.outputs\.exit_code != '0' \|\| steps\.validation\.outcome == 'failure' \|\| steps\.persistence\.outcome == 'failure'/);
 assert.match(replenisher, /EDITORIAL_CRITICAL_BUFFER: \$\{\{ vars\.EDITORIAL_CRITICAL_BUFFER \|\| '1' \}\}/);
-assert.match(replenisher, /Recomposição parcial\/sem progresso[\s\S]*exit 0/);
+assert.match(replenisher, /steps\.replenish\.outputs\.exit_code \}\}" != "0"[\s\S]*exit 1/);
+assert.doesNotMatch(replenisher, /Recomposição parcial\/sem progresso/);
 assert.match(replenisher, /Recomposição sem progresso e buffer crítico[\s\S]*exit 1/);
 assert.match(replenisher, /required_ready[\s\S]*A data obrigatória[\s\S]*exit 1/);
 assert.match(replenisher, /queue: max/);

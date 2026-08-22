@@ -37,9 +37,9 @@ layout: default
         {% include affiliate-links.html product_id=product_id %}
         {% include product-prices.html product_id=product_id %}
 
+        {% if geometry and geometry.sizes.size > 0 %}
         <div class="product-section">
           <h3>Geometria</h3>
-          {% if geometry and geometry.sizes.size > 0 %}
           <div class="table-scroll" role="region" aria-label="Tabela de geometria" tabindex="0">
             <table class="specs-table">
               <thead><tr><th>Tamanho</th><th>Stack</th><th>Reach</th><th>Top Tube</th><th>Seat Tube</th><th>Head Tube</th><th>Head Angle</th><th>Seat Angle</th><th>Chainstay</th><th>Wheelbase</th></tr></thead>
@@ -50,10 +50,8 @@ layout: default
               </tbody>
             </table>
           </div>
-          {% else %}
-          <p style="color:var(--text-muted);font-style:italic;">Geometria não disponível.</p>
-          {% endif %}
         </div>
+        {% endif %}
 
         {% if page.content and page.content != '' %}
         <div class="product-section">

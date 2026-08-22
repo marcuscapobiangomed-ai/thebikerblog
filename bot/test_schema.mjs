@@ -156,6 +156,16 @@ assert.throws(
   }),
   /site oficial da TheBiker/i,
 );
+assert.throws(
+  () => validateArticle({
+    ...validArticle,
+    content_type: "review",
+    brand: "",
+    product_name: "",
+    model_year: undefined,
+  }),
+  /Identidade exata do produto é obrigatória/i,
+);
 assert.doesNotThrow(() => validateResearch(validResearch));
 const groundedEditorialResearch = {
   slug: "grounded-test",

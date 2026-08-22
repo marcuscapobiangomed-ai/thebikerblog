@@ -1,18 +1,11 @@
 {
-  "schemaVersion": "1.1",
+  "schemaVersion": "2.0",
   "updatedAt": "2026-08-07",
   "publisher": "TheBiker Blog",
   "language": "pt-BR",
-  "audience": "Canal editorial oficial da TheBiker para decisões técnicas, esportivas e de compra de ciclistas exigentes.",
-  "audiencePolicy": "https://blog.thebiker.com.br/api/audience.json",
-  "sourcePriority": [
-    "Fabricante oficial",
-    "TheBiker Shop"
-  ],
-  "rules": [
-    "Não inferir especificações ausentes",
-    "Distinguir confirmado, aproximado, pendente e bloqueado",
-    "Revalidar preço e disponibilidade",
-    "Não publicar marcas concorrentes"
+  "commitment": [
+    "Conteúdo técnico claro e preciso",
+    "Especificações baseadas em referências oficiais",
+    "Informações comerciais acompanhadas de data de consulta"
   ]
 }

@@ -94,6 +94,7 @@ jobs:
           fi
         working-directory: bot
       - name: Validar plano mensal sem exigir conteúdo já produzido
+        id: validation
         run: |
           if [ "${{ steps.renewal.outputs.status }}" = "dry-run" ]; then
             npm --prefix bot run campaign:validate-monthly-plan -- --file="${RUNNER_TEMP}/monthly-candidate.json"
@@ -104,7 +105,8 @@ jobs:
             echo "Renovação idempotente: ${{ steps.renewal.outputs.status }}."
           fi
       - name: Persistir campanha e fila de atualização
-        if: ${{ steps.renewal.outputs.status == 'renewed' }}
+        id: persistence
+        if: ${{ steps.renewal.outputs.status == 'renewed' && steps.validation.outcome == 'success' }}
         run: |
           git config user.name "thebiker-editorial-bot"
           git config user.email "thebiker-editorial-bot@users.noreply.github.com"
@@ -117,7 +119,7 @@ jobs:
           done
           exit 1
       - name: Iniciar produção do novo buffer
-        if: ${{ steps.renewal.outputs.status == 'renewed' }}
+        if: ${{ steps.renewal.outputs.status == 'renewed' && steps.validation.outcome == 'success' && steps.persistence.outcome == 'success' }}
         env:
           GH_TOKEN: ${{ github.token }}
         run: |

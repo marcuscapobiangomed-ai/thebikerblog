@@ -2,6 +2,11 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
+throw new Error(
+  'Importador legado bloqueado: não grave produtos verificados diretamente a partir de HTML. '
+    + 'Use discover:thebiker-catalog, catalog:revalidate e os gates de catálogo.',
+)
+
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const productsDir = path.join(root, '_data', 'products', 'bikes')
 const imagesDir = path.join(root, 'assets', 'img', 'products', 'comparator')
