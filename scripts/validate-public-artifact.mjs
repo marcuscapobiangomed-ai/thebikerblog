@@ -74,6 +74,15 @@ for (const required of ["content", "_posts/drafts", "_posts/archived"]) {
   if (!exclusions.has(required)) errors.push(`_config.yml não exclui estruturalmente ${required}`);
 }
 
+for (const file of walk(root).filter((candidate) => /\.(?:md|markdown|html)$/iu.test(candidate))) {
+  const relative = normalized(path.relative(root, file));
+  if ([...exclusions].some((excluded) => relative === excluded || relative.startsWith(`${excluded}/`))) continue;
+  const source = fs.readFileSync(file, "utf8");
+  if (/\r?\n---\r?\n(?:layout|title|description|permalink):/iu.test(source)) {
+    errors.push(`segundo bloco de frontmatter exposto no corpo: ${relative}`);
+  }
+}
+
 if (!sourceOnly) {
   if (!fs.existsSync(siteDir)) {
     errors.push("_site não existe; execute o teste após o build do Jekyll");
