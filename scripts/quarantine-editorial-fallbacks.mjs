@@ -14,6 +14,11 @@ const fingerprint = /o segundo modelo listado na pesquisa|Use esta ficha como ro
 const quarantineRoot = path.join(root, "content/quarantine/editorial-fallback");
 const ledgerPath = path.join(quarantineRoot, "ledger.json");
 
+function contentDigest(content) {
+  const canonical = Buffer.isBuffer(content) ? content.toString("utf8") : String(content);
+  return crypto.createHash("sha256").update(canonical.replace(/\r\n/g, "\n")).digest("hex");
+}
+
 function editorialFallbackFingerprint(content) {
   if (fingerprint.test(String(content || ""))) return true;
   return markdownPublicationErrors(String(content || "")).some((error) =>
@@ -75,9 +80,11 @@ for (const file of candidateFiles) {
 const quarantinedItems = [];
 for (const item of campaign.items) {
   if (!item.aiReview?.deterministicFullArticleFallbackUsed) continue;
-  if (["validation", "approved", "scheduled"].includes(item.status)) quarantinedItems.push(item.id);
-  if (!write) continue;
-  if (["validation", "approved", "scheduled"].includes(item.status)) item.status = "blocked";
+  const activeFallback = ["validation", "approved", "scheduled"].includes(item.status);
+  if (activeFallback) quarantinedItems.push(item.id);
+  const needsQuarantineMetadata = activeFallback || item.failure?.stage !== "editorial-quarantine";
+  if (!write || !needsQuarantineMetadata) continue;
+  if (activeFallback) item.status = "blocked";
   item.blockReason = "[VALIDATION_FAILED] Quarentena: artigo integral de fallback determinístico exige nova redação e revisão independente";
   item.failure = {
     code: "VALIDATION_FAILED",
@@ -112,11 +119,16 @@ if (write) {
       ledger.entries.push({
         originalPath: move.relative,
         quarantinePath: path.relative(root, target).replace(/\\/g, "/"),
-        sha256: crypto.createHash("sha256").update(move.content).digest("hex"),
+        sha256: contentDigest(move.content),
         reason: "Artigo integral de fallback determinístico sem revisão editorial independente",
         quarantinedAt: now.toISOString(),
       });
     }
+  }
+  for (const entry of ledger.entries) {
+    const quarantined = path.resolve(root, entry.quarantinePath);
+    const content = await fs.readFile(quarantined);
+    entry.sha256 = contentDigest(content);
   }
   await fs.mkdir(quarantineRoot, { recursive: true });
   await fs.writeFile(ledgerPath, `${JSON.stringify(ledger, null, 2)}\n`);
@@ -150,7 +162,7 @@ if (check) {
       return null;
     });
     if (!content) continue;
-    const digest = crypto.createHash("sha256").update(content).digest("hex");
+    const digest = contentDigest(content);
     if (digest !== entry.sha256) quarantineIntegrityErrors.push(`${entry.quarantinePath}: hash divergente`);
     const frontmatter = content.toString("utf8").match(/^---\r?\n([\s\S]*?)\r?\n---/u)?.[1] || "";
     if (/^published:\s*true\s*$/mu.test(frontmatter)

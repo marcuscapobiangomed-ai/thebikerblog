@@ -13,7 +13,7 @@ const repositoryRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url))
 const workflow = await fs.readFile(path.join(repositoryRoot, ".github/workflows/cron-post.yml"), "utf8");
 assert.match(workflow, /id: validation/);
 assert.match(workflow, /steps\.validation\.outcome == 'success'/);
-assert.match(workflow, /Persistir somente estado seguro da falha/);
+assert.match(workflow, /Persistir somente diagnóstico seguro da falha/);
 assert.match(workflow, /run: npm run validate:ci/);
 assert.doesNotMatch(workflow, /run: npm run links:thebiker/);
 assert.match(buildSystemPrompt(), /imbatível/);
