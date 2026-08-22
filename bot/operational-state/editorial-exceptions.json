@@ -1649,6 +1649,56 @@
         "title": "Scott Scale 940 e 980: diferenças verificáveis de quadro, suspensão e componentes"
       },
       "reason": "[AI_REVIEW_REJECTED] STATUS: REVISÃO FINAL REPROVADA\nNota 78; bloqueadores: FAQ answers sobre alta pressão e frenagem em piso molhado não têm fontes explícitas no artigo."
+    },
+    {
+      "recordedAt": "2026-08-22T17:24:49.849Z",
+      "campaignId": "thebiker-rolling-2026-08-21",
+      "replacedItem": {
+        "day": 2,
+        "publishDate": "2026-08-22",
+        "id": "reserva-addict-rc20-ficha-oficial",
+        "title": "Scott Addict RC 20: quadro HMX, 105 Di2 e configuração de estrada",
+        "summary": "Análise da transmissão, das rodas, dos pneus, dos freios, do peso declarado e dos tamanhos disponíveis.",
+        "category": "review",
+        "freshness": "revalidate-24h",
+        "status": "blocked",
+        "productIds": [
+          "bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9"
+        ],
+        "heroImage": {
+          "mode": "exact-product",
+          "productId": "bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9"
+        },
+        "imageAssetIds": [],
+        "blockReason": "[VALIDATION_FAILED] Quarentena: artigo integral de fallback determinístico exige nova redação e revisão independente",
+        "failure": {
+          "code": "VALIDATION_FAILED",
+          "retryable": false,
+          "stage": "editorial-quarantine",
+          "message": "Artigo integral de fallback determinístico reprovado pelo gate de qualidade editorial",
+          "recordedAt": "2026-08-22T04:47:18.904Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-15T13:47:41.531Z",
+        "aiReview": {
+          "score": null,
+          "finalScore": null,
+          "finalBlockers": 1,
+          "premiumEditUsed": false,
+          "providers": {
+            "deterministicFallback": "grounded-deterministic"
+          },
+          "generatedAt": "2026-08-15T13:47:41.531Z",
+          "contentHash": "sha256:80a42ad9fde1386d6e32d5a66cc0ca5c0bd290bf3657f7edd508893a895e05f9",
+          "deterministicFullArticleFallbackUsed": true,
+          "deterministicFullArticleFallbackTrigger": "pipeline-failure"
+        }
+      },
+      "replacement": {
+        "id": "reserva-limpeza-transmissao-metodo",
+        "title": "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação"
+      },
+      "reason": "[VALIDATION_FAILED] Quarentena: artigo integral de fallback determinístico exige nova redação e revisão independente"
     }
   ]
 }
