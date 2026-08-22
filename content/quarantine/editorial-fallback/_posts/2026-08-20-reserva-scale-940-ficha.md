@@ -1,14 +1,14 @@
 ---
 image_subject_id: "bicicleta-scott-scale-940-black"
 layout: post
-published: true
-title: "Scott Scale 940 e 980: diferenças verificáveis de quadro, suspensão e componentes"
-slug: "scott-scale-940-e-980-diferencas-verificaveis-de-quadro-suspensao-e-componentes"
+published: false
+title: "Scott Scale 940: o que a ficha atual confirma sobre quadro, suspensão e transmissão"
+slug: "scott-scale-940-o-que-a-ficha-atual-confirma-sobre-quadro-suspensao-e-transmissao"
 date: 2026-08-20
 last_modified_at: 2026-08-20
 author: "Equipe TheBiker"
-reviewed_by: "TheBiker AI Editorial Gate"
-content_type: "comparativo"
+reviewed_by: ""
+content_type: "review"
 editorial_format: "full-article-v1"
 audience_segment: "core_technical_cyclists"
 audience_intent: "solve_problem"
@@ -26,24 +26,24 @@ price_min: 0
 price_max: 0
 price_currency: "BRL"
 price_checked_at: "2026-08-14"
-category: "comparativos"
+category: "reviews"
 tags: ["ciclismo", "dados", "ficha-tecnica"]
-description: "Leitura documental de Scott Scale 940 e 980: diferenças verificáveis de quadro, suspensão e componentes, organizada por registros oficiais, limites e lacunas que precisam permanecer visiveis."
+description: "Leitura documental de Scott Scale 940: o que a ficha atual confirma sobre quadro, suspensão e transmissão, organizada por registros oficiais, limites e lacunas que precisam permanecer visiveis."
 direct_answer: "Use esta ficha como roteiro documental: confronte cada dado com a fonte oficial, registre lacunas e nao trate a leitura como teste presencial ou promessa de desempenho."
 faq:
   - question: "Como usar esta ficha técnica sem extrapolar os dados?"
     answer: "Leia cada registro junto da fonte oficial, confirme a identificação do item e mantenha como lacuna tudo o que não estiver explicitamente documentado."
   - question: "A leitura documental substitui um teste presencial?"
     answer: "Não. O artigo organiza dados rastreáveis e limites de consulta; a decisão final deve considerar a documentação específica e a avaliação apropriada."
-image: "/assets/img/posts/reserva-scale-940-980-comparativo/hero-1600.webp"
-image_mobile: "/assets/img/posts/reserva-scale-940-980-comparativo/hero-800.webp"
+image: "/assets/img/posts/reserva-scale-940-ficha/hero-1600.png"
+image_mobile: "/assets/img/posts/reserva-scale-940-ficha/hero-800.png"
 thumbnail: "/assets/img/posts/reserva-scale-940-980-comparativo/card-640.webp"
 image_manifest_version: 2
 image_asset_type: "official-product-photo"
 image_status: "approved"
-image_alt: "Bicicleta Scott Scale 940 - Black em fotografia oficial de TheBiker Shop"
-image_caption: "Bicicleta Scott Scale 940 - Black, em fotografia oficial de TheBiker Shop."
-image_credit: "TheBiker Shop"
+image_alt: "Bicicleta Scott Scale 940 - Black em fotografia oficial de Scott"
+image_caption: "Bicicleta Scott Scale 940 - Black, em fotografia oficial de Scott."
+image_credit: "Scott"
 image_license: "Uso editorial no blog oficial TheBiker"
 affiliate_links: false
 editorial_scope: "portfolio"
@@ -51,8 +51,8 @@ promoted_brands: ["TheBiker"]
 context_only_brands: []
 portfolio_evidence_url: "https://thebikershop.com.br/bikes/"
 portfolio_verified_at: "2026-08-14"
-editorial_status: "published"
-status: "published"
+editorial_status: "draft"
+status: "draft"
 sources:
   - name: "TheBiker — Bicicleta Scott Scale 940 - Black"
     type: "store"
@@ -62,16 +62,12 @@ sources:
     type: "manufacturer"
     url: "https://www.scott-sports.com/global/en/product/scott-scale-940-bike"
     accessed_at: "2026-08-04"
-  - name: "TheBiker — Bicicleta Scott Scale 980 Black"
-    type: "store"
-    url: "https://thebikershop.com.br/produtos/bicicleta-scott-scale-980-black/"
-    accessed_at: "2026-08-04"
 ---
 Como este artigo foi produzido: leitura documental de fontes oficiais e registros rastreáveis. A equipe não realizou teste presencial.
 
-## Escopo e identificacao dos modelos
+## Identidade e escopo da ficha
 
-Este comparativo parte de duas identificacoes documentais: <a href="https://thebikershop.com.br/produtos/bicicleta-scott-scale-940-black/" class="thebiker-product-link" target="_blank" rel="noopener">Bicicleta Scott Scale 940 - Black</a> e <a href="https://thebikershop.com.br/produtos/bicicleta-scott-scale-980-black/" class="thebiker-product-link" target="_blank" rel="noopener">Bicicleta Scott Scale 980 Black</a>. A pesquisa nao trata a leitura como teste de campo; cada afirmacao permanece ligada ao registro recuperado e ao limite declarado pela fonte.
+Este ficha editorial parte de duas identificacoes documentais: <a href="https://thebikershop.com.br/produtos/bicicleta-scott-scale-940-black/" class="thebiker-product-link" target="_blank" rel="noopener">Bicicleta Scott Scale 940 - Black</a> e o segundo modelo listado na pesquisa. A pesquisa nao trata a leitura como teste de campo; cada afirmacao permanece ligada ao registro recuperado e ao limite declarado pela fonte.
 
 Comece pela pagina oficial de cada modelo e registre o nome exatamente como aparece. Em seguida, anote qual fonte corresponde a cada conjunto, para que uma especificacao nao seja transferida de um item para outro.
 
@@ -85,9 +81,9 @@ Esse registro inicial tambem define o que o artigo nao pretende responder.
 
 A regra vale tambem para uma nova versao.
 
-## Como separar as fichas consultadas
+## Como conferir o modelo consultado
 
-A primeira ficha nomeia Bicicleta Scott Scale 940 - Black; a segunda registra Bicicleta Scott Scale 980 Black. Essa separacao e importante porque nomes comerciais parecidos podem reunir montagens diferentes, e o artigo so usa a descricao associada a cada fonte.
+A primeira ficha nomeia Bicicleta Scott Scale 940 - Black; a segunda registra o segundo modelo listado na pesquisa. Essa separacao e importante porque nomes comerciais parecidos podem reunir montagens diferentes, e o artigo so usa a descricao associada a cada fonte.
 
 Abra o registro de identidade, confira modelo, cor e codigo quando houver, e copie a grafia para a planilha de consulta. Marque como pendente qualquer campo que apareca somente em uma das paginas.
 
@@ -101,7 +97,7 @@ A ordem das fontes fica preservada para facilitar uma revisao futura.
 
 O registro fica pronto para a proxima checagem.
 
-## Quadro e geometria registrados
+## Quadro e materiais localizados
 
 No quadro e na geometria, a evidencia localizada registra: Scale Alloy 6061 Custom Butted Tubing. O comparativo apresenta esse campo como dado de especificacao, sem converter material ou nome de tubo em promessa de resposta observada.
 
@@ -117,7 +113,7 @@ O leitor encontra o dado antes da explicacao e pode conferir a origem.
 
 A frase completa conserva o contexto original.
 
-## Suspensao e campos de ajuste
+## Suspensao e componentes descritos
 
 A parte de suspensao aparece na fonte como RockShox Judy Silver TK Coil. A frase e mantida em seu contexto para diferenciar modelo, curso, sistema e componente, sem inferir sensacoes ou desempenho a partir de uma unica linha.
 
@@ -133,7 +129,7 @@ Essa separacao afasta trocas acidentais entre componentes de nomes proximos.
 
 O manual continua sendo a referencia do conjunto.
 
-## Transmissao descrita nas fontes
+## Transmissao e montagem registrada
 
 Na transmissao, a base recuperada e: Shimano Deore RD-M6100 SGS. O dado entra na comparacao como identificacao de montagem e nao como classificacao automatica de troca, durabilidade ou faixa de uso.
 
@@ -149,7 +145,7 @@ A descricao comercial e mantida como referencia, sem receber conclusoes extras.
 
 A fonte comercial nao substitui a fonte tecnica.
 
-## Freios, rodas e pneus
+## Freios, rodas e pneus informados
 
 Freios, rodas e <a href="https://thebikershop.com.br/componentes/pneus-para-ciclismo/" class="thebiker-product-link" target="_blank" rel="noopener">pneus</a> aparecem nos registros como Shimano MT200 Disc Brake. O texto organiza esses dados para leitura lado a lado, sem usar o nome do componente como atalho para potencia, aderencia ou seguranca.
 
@@ -165,7 +161,7 @@ A tabela final deve conservar unidades, sufixos e observacoes de cada pagina.
 
 A unidade acompanha o valor em qualquer revisao.
 
-## Campos comuns e campos exclusivos
+## Tamanhos, cores e campos comuns
 
 Alguns campos se repetem entre os produtos; outros aparecem somente uma vez. O registro de referencia para esta leitura e Bicicleta Scott Scale 940 - Black, e ele serve para demonstrar como o artigo distingue dado comum de campo exclusivo.
 
@@ -181,7 +177,7 @@ O resultado e uma leitura comparavel, nao uma classificacao de desempenho.
 
 A leitura final deve manter essa separacao.
 
-## Diferencas que podem ser auditadas
+## O que a documentacao nao responde
 
 As diferencas confirmadas sao apresentadas por campo, nao por adjetivo. Neste conjunto, a pesquisa tambem registra https://thebikershop.com.br/produtos/bicicleta-scott-scale-940-black/, enquanto os demais pontos dependem das linhas tecnicas ja descritas nas secoes anteriores.
 
@@ -197,7 +193,7 @@ Uma pergunta sem resposta continua registrada como pergunta aberta.
 
 A lacuna retorna para a lista de perguntas.
 
-## Lacunas que permanecem abertas
+## Limites de uma leitura sem teste
 
 As lacunas fazem parte do resultado. Quando um campo nao esta entre os fatos confirmados, o texto o deixa visivel e informa que a fonte precisa ser consultada novamente antes de qualquer decisao ou compra.
 
@@ -213,7 +209,7 @@ A data de acesso acompanha o texto para que a rechecagem tenha um ponto de parti
 
 A proxima consulta parte desta data registrada.
 
-## Checklist para revalidar a comparacao
+## Revalidacao antes de qualquer decisao
 
 Para encerrar a leitura, repita o caminho das fontes: identidade, componentes, campos comuns, diferencas e lacunas. A conclusao correta e documental: os fatos acima podem ser auditados, mas nao substituem uma avaliacao presencial ou uma cotacao atual.
 
@@ -233,5 +229,4 @@ O historico ajuda a explicar futuras alteracoes.
 
 - **TheBiker — Bicicleta Scott Scale 940 - Black** (store) — https://thebikershop.com.br/produtos/bicicleta-scott-scale-940-black/ — acessado em 2026-08-04
 - **Scott — página oficial do modelo** (manufacturer) — https://www.scott-sports.com/global/en/product/scott-scale-940-bike — acessado em 2026-08-04
-- **TheBiker — Bicicleta Scott Scale 980 Black** (store) — https://thebikershop.com.br/produtos/bicicleta-scott-scale-980-black/ — acessado em 2026-08-04
 

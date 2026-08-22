@@ -1,14 +1,14 @@
 ---
-image_subject_id: "bicicleta-scott-addict-50-2026-pre-venda-1bxzy"
+image_subject_id: "bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9"
 layout: post
-published: true
-title: "Scott Addict 50 e Addict RC 20: duas propostas de estrada confrontadas pelas fichas oficiais"
-slug: "scott-addict-50-e-addict-rc-20-duas-propostas-de-estrada-confrontadas-pelas-fichas-oficiais"
-date: 2026-08-20
+published: false
+title: "Scott Addict RC 20: como ler a ficha oficial antes de comparar versões e componentes"
+slug: "scott-addict-rc-20-como-ler-a-ficha-oficial-antes-de-comparar-versoes-e-componentes"
+date: 2026-08-24
 last_modified_at: 2026-08-20
 author: "Equipe TheBiker"
-reviewed_by: "TheBiker AI Editorial Gate"
-content_type: "comparativo"
+reviewed_by: ""
+content_type: "review"
 editorial_format: "full-article-v1"
 audience_segment: "core_technical_cyclists"
 audience_intent: "solve_problem"
@@ -25,24 +25,24 @@ weight_source: "Não informado"
 price_min: 0
 price_max: 0
 price_currency: "BRL"
-price_checked_at: "2026-08-14"
-category: "comparativos"
+price_checked_at: "2026-08-20"
+category: "reviews"
 tags: ["ciclismo", "dados", "ficha-tecnica"]
-description: "Leitura documental de Scott Addict 50 e Addict RC 20: duas propostas de estrada confrontadas pelas fichas oficiais, organizada por registros oficiais, limites e lacunas que precisam permanecer"
+description: "Leitura documental de Scott Addict RC 20: como ler a ficha oficial antes de comparar versões e componentes, organizada por registros oficiais, limites e lacunas que precisam permanecer visiveis."
 direct_answer: "Use esta ficha como roteiro documental: confronte cada dado com a fonte oficial, registre lacunas e nao trate a leitura como teste presencial ou promessa de desempenho."
 faq:
   - question: "Como usar esta ficha técnica sem extrapolar os dados?"
     answer: "Leia cada registro junto da fonte oficial, confirme a identificação do item e mantenha como lacuna tudo o que não estiver explicitamente documentado."
   - question: "A leitura documental substitui um teste presencial?"
     answer: "Não. O artigo organiza dados rastreáveis e limites de consulta; a decisão final deve considerar a documentação específica e a avaliação apropriada."
-image: "/assets/img/posts/reserva-addict-50-rc20-comparativo/hero-1600.webp"
-image_mobile: "/assets/img/posts/reserva-addict-50-rc20-comparativo/hero-800.webp"
-thumbnail: "/assets/img/posts/reserva-addict-50-rc20-comparativo/card-640.webp"
+image: "/assets/img/posts/contingencia-addict-rc20-documentacao/hero-1600.webp"
+image_mobile: "/assets/img/posts/contingencia-addict-rc20-documentacao/hero-800.webp"
+thumbnail: "/assets/img/posts/contingencia-addict-rc20-documentacao/card-640.webp"
 image_manifest_version: 2
 image_asset_type: "official-product-photo"
 image_status: "approved"
-image_alt: "Bicicleta Scott Addict 50 2026 - Pré Venda em fotografia oficial de TheBiker Shop"
-image_caption: "Bicicleta Scott Addict 50 2026 - Pré Venda, em fotografia oficial de TheBiker Shop."
+image_alt: "Bicicleta Scott Addict RC 20 Di2 2026 - Pré Venda em fotografia oficial de TheBiker Shop"
+image_caption: "Bicicleta Scott Addict RC 20 Di2 2026 - Pré Venda, em fotografia oficial de TheBiker Shop."
 image_credit: "TheBiker Shop"
 image_license: "Uso editorial no blog oficial TheBiker"
 affiliate_links: false
@@ -50,18 +50,10 @@ editorial_scope: "portfolio"
 promoted_brands: ["TheBiker"]
 context_only_brands: []
 portfolio_evidence_url: "https://thebikershop.com.br/bikes/"
-portfolio_verified_at: "2026-08-14"
-editorial_status: "published"
-status: "published"
+portfolio_verified_at: "2026-08-20"
+editorial_status: "draft"
+status: "draft"
 sources:
-  - name: "TheBiker — Bicicleta Scott Addict 50 2026 - Pré Venda"
-    type: "store"
-    url: "https://thebikershop.com.br/produtos/bicicleta-scott-addict-50-2026-pre-venda-1bxzy/"
-    accessed_at: "2026-08-04"
-  - name: "Scott — página oficial do modelo"
-    type: "manufacturer"
-    url: "https://www.scott-sports.com/global/en/product/scott-addict-50-bike"
-    accessed_at: "2026-08-04"
   - name: "TheBiker — Bicicleta Scott Addict RC 20 Di2 2026 - Pré Venda"
     type: "store"
     url: "https://thebikershop.com.br/produtos/bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9/"
@@ -73,9 +65,9 @@ sources:
 ---
 Como este artigo foi produzido: leitura documental de fontes oficiais e registros rastreáveis. A equipe não realizou teste presencial.
 
-## Escopo e identificacao dos modelos
+## Identidade e escopo da ficha
 
-Este comparativo parte de duas identificacoes documentais: <a href="https://thebikershop.com.br/produtos/bicicleta-scott-addict-50-2026-pre-venda-flame-orange/" class="thebiker-product-link" target="_blank" rel="noopener">Bicicleta Scott Addict 50 2026 - Pré Venda</a> e <a href="https://thebikershop.com.br/produtos/bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9/" class="thebiker-product-link" target="_blank" rel="noopener">Bicicleta Scott Addict RC 20 Di2 2026 - Pré Venda</a>. A pesquisa nao trata a leitura como teste de campo; cada afirmacao permanece ligada ao registro recuperado e ao limite declarado pela fonte.
+Este ficha editorial parte de duas identificacoes documentais: <a href="https://thebikershop.com.br/produtos/bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9/" class="thebiker-product-link" target="_blank" rel="noopener">Bicicleta Scott Addict RC 20 Di2 2026 - Pré Venda</a> e o segundo modelo listado na pesquisa. A pesquisa nao trata a leitura como teste de campo; cada afirmacao permanece ligada ao registro recuperado e ao limite declarado pela fonte.
 
 Comece pela pagina oficial de cada modelo e registre o nome exatamente como aparece. Em seguida, anote qual fonte corresponde a cada conjunto, para que uma especificacao nao seja transferida de um item para outro.
 
@@ -89,9 +81,9 @@ Esse registro inicial tambem define o que o artigo nao pretende responder.
 
 A regra vale tambem para uma nova versao.
 
-## Como separar as fichas consultadas
+## Como conferir o modelo consultado
 
-A primeira ficha nomeia <a href="https://thebikershop.com.br/produtos/bicicleta-scott-addict-50-2026-pre-venda-1bxzy/" class="thebiker-product-link" target="_blank" rel="noopener">Bicicleta Scott Addict 50 2026 - Pré Venda</a>; a segunda registra Bicicleta Scott Addict RC 20 Di2 2026 - Pré Venda. Essa separacao e importante porque nomes comerciais parecidos podem reunir montagens diferentes, e o artigo so usa a descricao associada a cada fonte.
+A primeira ficha nomeia Bicicleta Scott Addict RC 20 Di2 2026 - Pré Venda; a segunda registra o segundo modelo listado na pesquisa. Essa separacao e importante porque nomes comerciais parecidos podem reunir montagens diferentes, e o artigo so usa a descricao associada a cada fonte.
 
 Abra o registro de identidade, confira modelo, cor e codigo quando houver, e copie a grafia para a planilha de consulta. Marque como pendente qualquer campo que apareca somente em uma das paginas.
 
@@ -105,9 +97,9 @@ A ordem das fontes fica preservada para facilitar uma revisao futura.
 
 O registro fica pronto para a proxima checagem.
 
-## Quadro e geometria registrados
+## Quadro e materiais localizados
 
-No quadro e na geometria, a evidencia localizada registra: Addict HMF Carbon. O comparativo apresenta esse campo como dado de especificacao, sem converter material ou nome de tubo em promessa de resposta observada.
+No quadro e na geometria, a evidencia localizada registra: Addict RC HMX Carbon. O comparativo apresenta esse campo como dado de especificacao, sem converter material ou nome de tubo em promessa de resposta observada.
 
 Leia a linha completa da ficha, incluindo qualificadores como material, serie, tecnologia ou padrao de montagem. Registre a frase inteira antes de resumir, pois o qualificativo pode ser parte da identificacao do quadro.
 
@@ -121,9 +113,9 @@ O leitor encontra o dado antes da explicacao e pode conferir a origem.
 
 A frase completa conserva o contexto original.
 
-## Suspensao e campos de ajuste
+## Suspensao e componentes descritos
 
-A parte de suspensao aparece na fonte como Addict HMF Flatmount Disc. A frase e mantida em seu contexto para diferenciar modelo, curso, sistema e componente, sem inferir sensacoes ou desempenho a partir de uma unica linha.
+A parte de suspensao aparece na fonte como Addict RC HMX Flatmount Disc. A frase e mantida em seu contexto para diferenciar modelo, curso, sistema e componente, sem inferir sensacoes ou desempenho a partir de uma unica linha.
 
 Separe garfo, amortecedor, curso, trava e ajuste em linhas distintas quando esses campos existirem. Depois, associe cada linha ao modelo correto e preserve a unidade exatamente como foi publicada.
 
@@ -137,9 +129,9 @@ Essa separacao afasta trocas acidentais entre componentes de nomes proximos.
 
 O manual continua sendo a referencia do conjunto.
 
-## Transmissao descrita nas fontes
+## Transmissao e montagem registrada
 
-Na transmissao, a base recuperada e: Shimano 105. O dado entra na comparacao como identificacao de montagem e nao como classificacao automatica de troca, durabilidade ou faixa de uso.
+Na transmissao, a base recuperada e: Shimano Ultegra Di2. O dado entra na comparacao como identificacao de montagem e nao como classificacao automatica de troca, durabilidade ou faixa de uso.
 
 Confira cambio, <a href="https://thebikershop.com.br/componentes/cassetes/" class="thebiker-product-link" target="_blank" rel="noopener">cassete</a>, <a href="https://thebikershop.com.br/componentes/pedivela/" class="thebiker-product-link" target="_blank" rel="noopener">pedivela</a>, <a href="https://thebikershop.com.br/componentes/corrente/" class="thebiker-product-link" target="_blank" rel="noopener">corrente</a> e quantidade de velocidades em campos separados. Para cada componente, mantenha a fonte e a data de acesso ao lado do valor, mesmo quando a pagina de loja resuma a montagem.
 
@@ -153,9 +145,9 @@ A descricao comercial e mantida como referencia, sem receber conclusoes extras.
 
 A fonte comercial nao substitui a fonte tecnica.
 
-## Freios, rodas e pneus
+## Freios, rodas e pneus informados
 
-Freios, rodas e <a href="https://thebikershop.com.br/componentes/pneus-para-ciclismo/" class="thebiker-product-link" target="_blank" rel="noopener">pneus</a> aparecem nos registros como Shimano BR-R7170. O texto organiza esses dados para leitura lado a lado, sem usar o nome do componente como atalho para potencia, aderencia ou seguranca.
+Freios, rodas e <a href="https://thebikershop.com.br/componentes/pneus-para-ciclismo/" class="thebiker-product-link" target="_blank" rel="noopener">pneus</a> aparecem nos registros como Syncros Capital 1.0 40 Disc. O texto organiza esses dados para leitura lado a lado, sem usar o nome do componente como atalho para potencia, aderencia ou seguranca.
 
 Anote tipo de freio, rotor, aro, medida e carcaca apenas quando cada item estiver explicito. A unidade e o sufixo fazem parte do dado e nao devem ser removidos durante a transcricao.
 
@@ -169,9 +161,9 @@ A tabela final deve conservar unidades, sufixos e observacoes de cada pagina.
 
 A unidade acompanha o valor em qualquer revisao.
 
-## Campos comuns e campos exclusivos
+## Tamanhos, cores e campos comuns
 
-Alguns campos se repetem entre os produtos; outros aparecem somente uma vez. O registro de referencia para esta leitura e <a href="https://thebikershop.com.br/produtos/bicicleta-scott-addict-50-2026-pre-venda-cumulus-white/" class="thebiker-product-link" target="_blank" rel="noopener">Bicicleta Scott Addict 50 2026 - Pré Venda</a>, e ele serve para demonstrar como o artigo distingue dado comum de campo exclusivo.
+Alguns campos se repetem entre os produtos; outros aparecem somente uma vez. O registro de referencia para esta leitura e Bicicleta Scott Addict RC 20 Di2 2026 - Pré Venda, e ele serve para demonstrar como o artigo distingue dado comum de campo exclusivo.
 
 Crie duas listas: caracteristicas presentes nos dois registros e caracteristicas localizadas em apenas um. Inclua tamanho, cor, padrao e codigo quando estiverem escritos na fonte, sem harmonizar grafias diferentes.
 
@@ -185,9 +177,9 @@ O resultado e uma leitura comparavel, nao uma classificacao de desempenho.
 
 A leitura final deve manter essa separacao.
 
-## Diferencas que podem ser auditadas
+## O que a documentacao nao responde
 
-As diferencas confirmadas sao apresentadas por campo, nao por adjetivo. Neste conjunto, a pesquisa tambem registra https://thebikershop.com.br/produtos/bicicleta-scott-addict-50-2026-pre-venda-1bxzy/, enquanto os demais pontos dependem das linhas tecnicas ja descritas nas secoes anteriores.
+As diferencas confirmadas sao apresentadas por campo, nao por adjetivo. Neste conjunto, a pesquisa tambem registra https://thebikershop.com.br/produtos/bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9/, enquanto os demais pontos dependem das linhas tecnicas ja descritas nas secoes anteriores.
 
 Ao redigir a tabela final, use uma coluna para cada modelo e uma coluna de fonte. Escreva "nao localizado" quando o dado nao aparecer; essa expressao e mais fiel do que estimar ou importar uma especificacao vizinha.
 
@@ -201,7 +193,7 @@ Uma pergunta sem resposta continua registrada como pergunta aberta.
 
 A lacuna retorna para a lista de perguntas.
 
-## Lacunas que permanecem abertas
+## Limites de uma leitura sem teste
 
 As lacunas fazem parte do resultado. Quando um campo nao esta entre os fatos confirmados, o texto o deixa visivel e informa que a fonte precisa ser consultada novamente antes de qualquer decisao ou compra.
 
@@ -217,7 +209,7 @@ A data de acesso acompanha o texto para que a rechecagem tenha um ponto de parti
 
 A proxima consulta parte desta data registrada.
 
-## Checklist para revalidar a comparacao
+## Revalidacao antes de qualquer decisao
 
 Para encerrar a leitura, repita o caminho das fontes: identidade, componentes, campos comuns, diferencas e lacunas. A conclusao correta e documental: os fatos acima podem ser auditados, mas nao substituem uma avaliacao presencial ou uma cotacao atual.
 
@@ -235,8 +227,6 @@ O historico ajuda a explicar futuras alteracoes.
 
 ## De onde vêm os dados desta análise
 
-- **TheBiker — Bicicleta Scott Addict 50 2026 - Pré Venda** (store) — https://thebikershop.com.br/produtos/bicicleta-scott-addict-50-2026-pre-venda-1bxzy/ — acessado em 2026-08-04
-- **Scott — página oficial do modelo** (manufacturer) — https://www.scott-sports.com/global/en/product/scott-addict-50-bike — acessado em 2026-08-04
 - **TheBiker — Bicicleta Scott Addict RC 20 Di2 2026 - Pré Venda** (store) — https://thebikershop.com.br/produtos/bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9/ — acessado em 2026-08-04
 - **Scott — página oficial do modelo** (manufacturer) — https://www.scott-sports.com/global/en/product/scott-addict-rc-20-bike — acessado em 2026-08-04
 

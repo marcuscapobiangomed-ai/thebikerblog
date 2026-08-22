@@ -48,18 +48,21 @@ assert.match(publication, /AUTOMATION_EXPECTED_ITEM_ID: \$\{\{ steps\.candidate\
 assert.match(publication, /Validar artefato publicado sem depender da freshness global[\s\S]*npm run validate:posts[\s\S]*npm run check:thebiker-links/);
 assert.match(publication, /Registrar publicação[\s\S]*steps\.publication\.outputs\.status == 'published'/);
 assert.match(publication, /Solicitar deploy do SHA publicado[\s\S]*steps\.publication\.outputs\.status == 'published'[\s\S]*repos\/\$\{\{ github\.repository \}\}\/dispatches[\s\S]*event_type=editorial-deploy/);
-assert.match(publication, /CAMPAIGN_CURATED_OFFLINE_FALLBACK: "true"[\s\S]*AI_DETERMINISTIC_CURATED_FALLBACK: "true"/);
-assert.match(publication, /AI_DETERMINISTIC_CACHE_FIRST: "true"/);
+assert.match(publication, /CAMPAIGN_CURATED_OFFLINE_FALLBACK: "true"[\s\S]*AI_DETERMINISTIC_CURATED_FALLBACK: "false"/);
+assert.match(publication, /AI_DETERMINISTIC_CACHE_FIRST: "false"/);
 
 const editorial = read("cron-post.yml");
 assert.match(editorial, /CAMPAIGN_RESEARCH_MAX_ATTEMPTS: "2"/);
-assert.match(editorial, /AI_DETERMINISTIC_CACHE_FIRST: "true"/);
+assert.match(editorial, /AI_DETERMINISTIC_CACHE_FIRST: "false"/);
 assert.equal((editorial.match(/npm run catalog:revalidate/g) || []).length, 2);
 assert.ok((editorial.match(/npm run validate:ci/g) || []).length >= 2);
 assert.ok(editorial.indexOf("npm run validate:ci", editorial.indexOf("generate-draft:")) < editorial.indexOf("npm run campaign:produce"));
 assert.match(editorial, /Verificar links TheBiker[^]*if: steps\.automation\.outcome == 'success' \|\| steps\.automation_retry\.outcome == 'success'/);
 assert.match(editorial, /Substituir artigo reprovado e tentar pauta-reserva[^]*npm run campaign:recover && npm run campaign:produce/);
 assert.match(editorial, /Persistir candidato revisado para retomar finaliza\u00e7\u00e3o[^]*git add --[^\n]*_posts\/drafts[^\n]*content\/research\/campaign/);
+assert.match(editorial, /Persistir candidato revisado para retomar finaliza\u00e7\u00e3o[^]*if:[^\n]*steps\.validation\.outcome == 'success'/);
+assert.match(editorial, /Persistir somente diagn\u00f3stico seguro da falha[^]*git add -- bot\/operational-state\/editorial-exceptions\.json/);
+assert.doesNotMatch(editorial, /Persistir somente diagn\u00f3stico seguro da falha[^]*git add --[^\n]*(?:bot\/editorial-campaign\.json|_data\/editorial-calendar\.json)/);
 assert.match(editorial, /\(steps\.automation\.outcome == 'success' \|\| steps\.automation_retry\.outcome == 'success'\) && steps\.finalization\.outcome == 'failure'/);
 assert.match(editorial, /id: finalization_retry[\s\S]*campaign:retry-finalization/);
 assert.match(editorial, /id: finalization_retry[\s\S]*CAMPAIGN_FINALIZATION_MAX_ATTEMPTS: "3"[\s\S]*campaign:retry-finalization/);
@@ -68,7 +71,7 @@ assert.match(editorial, /Validar artefatos produzidos[\s\S]*npm run validate:art
 assert.match(editorial, /Propagar falha da produção[\s\S]*EDITORIAL_MIN_SAFE_BUFFER[\s\S]*buffer protegido/);
 assert.match(editorial, /Propagar falha de finalização[\s\S]*EDITORIAL_MIN_SAFE_BUFFER[\s\S]*buffer protegido/);
 assert.equal((editorial.match(/EDITORIAL_MIN_SAFE_BUFFER: \$\{\{ vars\.EDITORIAL_MIN_SAFE_BUFFER \|\| '1' \}\}/g) || []).length, 2);
-assert.equal((editorial.match(/AI_DETERMINISTIC_CURATED_FALLBACK: "true"/g) || []).length, 3);
+assert.equal((editorial.match(/AI_DETERMINISTIC_CURATED_FALLBACK: "false"/g) || []).length, 3);
 
 await import("./test-automation-observability.mjs");
 

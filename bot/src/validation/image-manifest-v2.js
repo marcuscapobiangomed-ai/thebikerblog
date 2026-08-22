@@ -1,6 +1,5 @@
 import fs from "node:fs";
 import path from "node:path";
-import { imageSize } from "image-size";
 import { z } from "zod";
 import { isPortfolioBrand } from "../portfolio-policy.js";
 
@@ -185,6 +184,36 @@ export function assertSafeRasterBuffer(buffer, fileName, outputFormat) {
   }
 }
 
+export function safeRasterDimensions(buffer, outputFormat) {
+  if (outputFormat === "png") {
+    if (buffer.length < 24 || buffer.subarray(12, 16).toString("ascii") !== "IHDR") {
+      throw new Error("PNG sem cabeçalho IHDR válido");
+    }
+    return { width: buffer.readUInt32BE(16), height: buffer.readUInt32BE(20) };
+  }
+
+  if (buffer.length < 30) throw new Error("WebP truncado antes do cabeçalho de dimensões");
+  const chunk = buffer.subarray(12, 16).toString("ascii");
+  if (chunk === "VP8X") {
+    const width = 1 + buffer.readUIntLE(24, 3);
+    const height = 1 + buffer.readUIntLE(27, 3);
+    return { width, height };
+  }
+  if (chunk === "VP8L") {
+    if (buffer[20] !== 0x2f) throw new Error("WebP lossless sem assinatura VP8L válida");
+    const width = 1 + (((buffer[22] & 0x3f) << 8) | buffer[21]);
+    const height = 1 + (((buffer[24] & 0x0f) << 10) | (buffer[23] << 2) | ((buffer[22] & 0xc0) >> 6));
+    return { width, height };
+  }
+  if (chunk === "VP8 ") {
+    if (buffer[23] !== 0x9d || buffer[24] !== 0x01 || buffer[25] !== 0x2a) {
+      throw new Error("WebP lossy sem assinatura VP8 válida");
+    }
+    return { width: buffer.readUInt16LE(26) & 0x3fff, height: buffer.readUInt16LE(28) & 0x3fff };
+  }
+  throw new Error(`subformato WebP não suportado: ${chunk || "ausente"}`);
+}
+
 export function validateImageManifestV2(manifest, directory, { requirePublishable = false } = {}) {
   const parsed = ImageManifestV2Schema.parse(manifest);
   const errors = [];
@@ -206,15 +235,18 @@ export function validateImageManifestV2(manifest, directory, { requirePublishabl
     }
     const buffer = fs.readFileSync(filePath);
     try {
-      // image-size currently has no upstream fix for infinite-loop parsers in
-      // ICNS/JXL/HEIF. Restrict the parser to the two formats emitted by this
-      // pipeline and validate magic bytes before handing it untrusted input.
       assertSafeRasterBuffer(buffer, declared.file, parsed.outputFormat);
     } catch (error) {
       errors.push(`${variant}: ${error.message}`);
       continue;
     }
-    const measured = imageSize(buffer);
+    let measured;
+    try {
+      measured = safeRasterDimensions(buffer, parsed.outputFormat);
+    } catch (error) {
+      errors.push(`${variant}: ${error.message}`);
+      continue;
+    }
     if (measured.width !== expected.width || measured.height !== expected.height) {
       errors.push(
         `${variant}: dimensão ${measured.width}x${measured.height}; esperado ${expected.width}x${expected.height}`,

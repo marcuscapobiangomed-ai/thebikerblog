@@ -64,6 +64,20 @@ try {
   item.postPath = `_posts/drafts/${item.publishDate}-${item.id}.md`;
   item.aiReview = structuredClone(aiReview);
   item.editorialReceipt = structuredClone(receipt);
+  item.imageManifestPath = `assets/img/posts/${item.id}/image-manifest.json`;
+  item.imageStatus = "approved";
+  item.imageAssetIds = ["fixture-image"];
+  item.visualDecision = {
+    schemaVersion: 1,
+    policyVersion: "thebiker-visual-autonomy-v1",
+    inputHash: `sha256:${"a".repeat(64)}`,
+    mode: "exact-product",
+    productId: item.productIds[0] || null,
+    score: 100,
+    hardGates: { fixture: true },
+    blockers: [],
+    issuedAt: "2026-08-11T12:00:00.000Z",
+  };
   await fs.mkdir(path.join(root, "bot"), { recursive: true });
   await fs.mkdir(path.dirname(path.join(root, item.postPath)), { recursive: true });
   await fs.writeFile(path.join(root, "bot/editorial-campaign.json"), `${JSON.stringify(campaign, null, 2)}\n`);

@@ -7,7 +7,7 @@ slug: "inspecao-de-fixadores-da-bicicleta-sequencia-registro-e-sinais-que-exigem
 date: 2026-09-01
 last_modified_at: 2026-08-21
 author: "Equipe TheBiker"
-reviewed_by: "TheBiker AI Editorial Gate"
+reviewed_by: ""
 content_type: "guia-tecnico"
 editorial_format: "full-article-v1"
 audience_segment: "core_technical_cyclists"
@@ -51,8 +51,8 @@ promoted_brands: ["TheBiker"]
 context_only_brands: []
 portfolio_evidence_url: "https://thebikershop.com.br/componentes/"
 portfolio_verified_at: "2026-08-21"
-editorial_status: "reviewed"
-status: "scheduled"
+editorial_status: "draft"
+status: "draft"
 sources:
   - name: "SRAM — AXS Bike Care and Maintenance"
     type: "manufacturer"

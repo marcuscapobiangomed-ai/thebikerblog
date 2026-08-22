@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "heldAt": "2026-08-22T01:55:00.000Z",
+  "items": [
+    {
+      "path": "_posts/2026-07-16-bem-vindo.md",
+      "reasons": [
+        "apenas 1 fonte(s) visível(is); mínimo 2"
+      ]
+    },
+    {
+      "path": "_posts/2026-07-17-25-melhores-apps-de-treino-para-ciclismo-2026-comparativo-entre-zwift-trainerroad-trainingpeaks-e-mywhoosh.md",
+      "reasons": [
+        "apenas 0 fonte(s) visível(is); mínimo 2",
+        "895 palavras; mínimo editorial 1000"
+      ]
+    },
+    {
+      "path": "_posts/2026-07-21-29-melhores-estradas-e-rotas-para-ciclismo-de-estrada-no-brasil-guia-por-região.md",
+      "reasons": [
+        "apenas 0 fonte(s) visível(is); mínimo 2",
+        "650 palavras; mínimo editorial 700"
+      ]
+    },
+    {
+      "path": "_posts/2026-08-05-sag-spark-rc-ajuste-preciso.md",
+      "reasons": [
+        "apenas 0 fonte(s) visível(is); mínimo 2",
+        "2264 palavras; máximo editorial 1700"
+      ]
+    },
+    {
+      "path": "_posts/2026-08-07-hmp-hmx-carbono-scott.md",
+      "reasons": [
+        "apenas 0 fonte(s) visível(is); mínimo 2",
+        "3392 palavras; máximo editorial 1700"
+      ]
+    },
+    {
+      "path": "_posts/2026-08-07-review-spark-rc-team-2027.md",
+      "reasons": [
+        "apenas 0 fonte(s) visível(is); mínimo 2",
+        "4598 palavras; máximo editorial 1600"
+      ]
+    },
+    {
+      "path": "_posts/2026-08-08-cambio-eletronico-ajuste-diagnostico.md",
+      "reasons": [
+        "apenas 0 fonte(s) visível(is); mínimo 2",
+        "3649 palavras; máximo editorial 1700"
+      ]
+    },
+    {
+      "path": "_posts/2026-08-09-reserva-rolamentos-diagnostico.md",
+      "reasons": [
+        "apenas 0 fonte(s) visível(is); mínimo 2"
+      ]
+    },
+    {
+      "path": "_posts/2026-08-10-alinhamento-pinca-rotores.md",
+      "reasons": [
+        "apenas 0 fonte(s) visível(is); mínimo 2"
+      ]
+    },
+    {
+      "path": "_posts/2026-08-11-engenharia-suspensao-integrada-spark.md",
+      "reasons": [
+        "apenas 0 fonte(s) visível(is); mínimo 2",
+        "2299 palavras; máximo editorial 1700"
+      ]
+    },
+    {
+      "path": "_posts/2026-08-12-review-addict-rc-20.md",
+      "reasons": [
+        "apenas 0 fonte(s) visível(is); mínimo 2",
+        "3555 palavras; máximo editorial 1600"
+      ]
+    },
+    {
+      "path": "_posts/2026-08-15-reserva-limpeza-transmissao-metodo.md",
+      "reasons": [
+        "2701 palavras; máximo editorial 1700"
+      ]
+    }
+  ]
+}

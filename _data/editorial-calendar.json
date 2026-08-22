@@ -6,10 +6,10 @@
     {
       "day": 1,
       "publishDate": "2026-08-21",
-      "title": "Scott Addict RC Pro: ficha documental das especificacoes confirmadas",
-      "summary": "Leitura de produto sem teste pratico, restrita as especificacoes e aos limites explicitamente registrados nas fontes aceitas.",
+      "title": "Scott Addict RC Pro 2026: ficha técnica, montagem e preço no Brasil",
+      "summary": "Ficha completa do modelo 425683 com quadro HMX, Dura-Ace Di2, rodas Capital 1.0S e preço verificado no Brasil.",
       "category": "review",
-      "status": "scheduled"
+      "status": "published"
     },
     {
       "day": 2,
@@ -17,7 +17,7 @@
       "title": "Scott Addict RC 20: o que a ficha oficial permite afirmar",
       "summary": "Resumo tecnico documental do modelo, sem extrapolar componentes, medidas ou desempenho alem do que esta rastreado.",
       "category": "review",
-      "status": "scheduled"
+      "status": "blocked"
     },
     {
       "day": 3,
@@ -25,7 +25,7 @@
       "title": "Scott Addict RC Pro: roteiro documental para conferir montagem, medidas e compatibilidade",
       "summary": "Guia baseado em documentação oficial e conhecimento interno rastreável para conferir a configuração sem presumir teste presencial.",
       "category": "review",
-      "status": "scheduled"
+      "status": "blocked"
     },
     {
       "day": 4,
@@ -33,7 +33,7 @@
       "title": "Scott Addict RC 20: como ler a ficha oficial antes de comparar versões e componentes",
       "summary": "Leitura técnica da ficha cadastrada, com limites explícitos e verificação de cada componente na fonte correspondente.",
       "category": "review",
-      "status": "scheduled"
+      "status": "blocked"
     },
     {
       "day": 5,
@@ -41,7 +41,7 @@
       "title": "Scott Addict 50: geometria, montagem e pontos que precisam ser confirmados na ficha atual",
       "summary": "Roteiro documental para organizar medidas, componentes e lacunas sem transformar catálogo ou descrição comercial em teste de campo.",
       "category": "review",
-      "status": "scheduled"
+      "status": "blocked"
     },
     {
       "day": 6,
@@ -69,7 +69,7 @@
       "title": "Scott Spark RC Expert: arquitetura de suspensão e componentes confirmados na documentação",
       "summary": "Análise documental da plataforma cadastrada com separação clara entre especificação, ajuste possível e desempenho não testado.",
       "category": "review",
-      "status": "scheduled"
+      "status": "blocked"
     },
     {
       "day": 9,
@@ -89,7 +89,7 @@
       "title": "Scott Spark RC World Cup: checklist de especificações e limites da análise documental",
       "summary": "Checklist rastreável de quadro, suspensão e montagem, sem extrapolar comportamento dinâmico ou disponibilidade comercial.",
       "category": "review",
-      "status": "scheduled"
+      "status": "blocked"
     },
     {
       "day": 11,
@@ -97,7 +97,7 @@
       "title": "Quadro Scott Scale RC Team HMF: interfaces, padrões e verificações antes da montagem",
       "summary": "Guia técnico apoiado na ficha interna verificada para conferir interfaces e registrar como lacuna o que não estiver documentado.",
       "category": "review",
-      "status": "scheduled"
+      "status": "blocked"
     },
     {
       "day": 12,
@@ -105,7 +105,7 @@
       "title": "Inspeção de fixadores da bicicleta: sequência, registro e sinais que exigem avaliação técnica",
       "summary": "Método preventivo para organizar inspeção visual e documental sem recomendar torque genérico nem substituir o manual do fabricante.",
       "category": "manutencao-ajustes",
-      "status": "scheduled"
+      "status": "blocked"
     },
     {
       "day": 13,

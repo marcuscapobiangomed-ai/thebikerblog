@@ -4,7 +4,7 @@ import os from "node:os";
 import path from "node:path";
 import matter from "gray-matter";
 import { loadQueue, selectReadyItem } from "./src/automation/queue.js";
-import { CampaignSchema, selectProductionCandidate, selectPublicationCandidate, publicCampaignSummary } from "./src/automation/campaign.js";
+import { CampaignSchema, publicationResearchIsFresh, selectProductionCandidate, selectPublicationCandidate, publicCampaignSummary } from "./src/automation/campaign.js";
 import { GroundedResearcher } from "./src/automation/grounded-research.js";
 import { cleanupFailedFinalization, finalizeCampaignItem, normalizeCategoryExamplePromotion } from "./src/campaign_finalize.js";
 import { produceCampaignCover } from "./src/images/campaign-cover.js";
@@ -20,12 +20,93 @@ import { orphanedCampaignDraftErrors, scheduledDraftErrors } from "./src/validat
 import { assertScheduledReceipt, hashEditorialText } from "./src/validation/editorial-receipt.js";
 import { assertArticleResearchGrounding } from "./src/validation/article-research-grounding.js";
 import { assertResearchEvidenceContract } from "./src/validation/research-grounding.js";
+import { researchForPublication } from "./src/validation/publication-research.js";
 import { assertReceiptAuditPolicy, auditEditorialReceipts } from "../scripts/backfill-editorial-receipts.mjs";
+
+const contaminatedEditorialMarkdown = `---
+content_type: "review"
+review_method: "desk-research"
+tested_by_thebikerblog: false
+direct_answer: "Use esta ficha como roteiro documental: confronte cada dado com a fonte oficial e registre lacunas antes de decidir."
+tags: ["ciclismo"]
+---
+## Identidade e escopo da ficha
+
+Este ficha editorial parte de um produto e o segundo modelo listado na pesquisa. Comece pela pagina oficial, confira titulo, preco e versao, e Abra o registro de identidade.
+`;
+const contaminatedErrors = markdownPublicationErrors(contaminatedEditorialMarkdown).join(" | ");
+assert.match(contaminatedErrors, /placeholder ou erro gramatical/);
+assert.match(contaminatedErrors, /português sem acentuação/);
+assert.match(contaminatedErrors, /instrução interna exposta/);
+assert.match(contaminatedErrors, /intertítulo de processo editorial/);
+assert.match(contaminatedErrors, /resposta direta descreve o processo editorial/);
+assert.deepEqual(markdownPublicationErrors(`---
+content_type: "review"
+review_method: "desk-research"
+tested_by_thebikerblog: false
+direct_answer: "A Scott Addict RC Pro reúne quadro HMX, transmissão Shimano Dura-Ace Di2 e rodas Syncros, conforme a ficha oficial consultada."
+tags: ["ciclismo"]
+sources:
+  - name: "Scott"
+    type: "manufacturer"
+    url: "https://www.scott-sports.com/"
+---
+## Quadro HMX e montagem Dura-Ace Di2
+
+A ficha oficial identifica o quadro Addict RC HMX Carbon e o grupo Shimano Dura-Ace Di2. O produto não foi testado pela equipe.
+`), []);
+assert.match(markdownPublicationErrors(`---
+content_type: "review"
+review_method: "desk-research"
+tested_by_thebikerblog: false
+direct_answer: "O modelo usa quadro HMX, transmissão eletrônica e rodas de carbono segundo a especificação técnica do fabricante."
+tags: ["ciclismo"]
+---
+## Peso máximo do sistema
+
+Há uma divergência entre as fontes: a loja apresenta um valor, mas o fabricante informa outro.
+`).join(" | "), /conflito entre fontes exposto/);
+
+const publicationResearch = researchForPublication({
+  title: "Scott Addict RC Pro: preço e divergências entre fontes",
+  notes: "Não deve chegar ao redator público.",
+  sources: [
+    { id: "manufacturer", type: "manufacturer" },
+    { id: "store", type: "store" },
+  ],
+  confirmed_facts: [
+    { fact: "weight.maxSystem: 120 kg", source_ids: ["manufacturer"] },
+    { fact: "weight.maxSystem: 128 kg", source_ids: ["store"] },
+    { fact: "commercial.price: R$ 94.990,00", source_ids: ["store"] },
+    { fact: "sourceConflict.weight: 120 kg vs 128 kg", source_ids: ["manufacturer", "store"] },
+  ],
+  limitations: ["Divergência entre fontes registrada internamente.", "Preço deve ser reconfirmado."],
+  grounding: {},
+});
+assert.deepEqual(publicationResearch.confirmed_facts.map((fact) => fact.fact), [
+  "weight.maxSystem: 120 kg",
+  "commercial.price: R$ 94.990,00",
+]);
+assert.deepEqual(publicationResearch.limitations, ["Preço deve ser reconfirmado."]);
+assert.equal(publicationResearch.grounding.publicationPolicy, "manufacturer-precedence-v1");
+assert.equal(publicationResearch.title, "Scott Addict RC Pro: preço");
+assert.equal("notes" in publicationResearch, false);
 
 const minimalResearch = {
   confirmed_facts: [{ fact: "frame.material: Spark RC Carbon HMX" }, { fact: "suspension.frontTravel: 120 mm" }],
   sources: [],
 };
+assert.equal(publicationResearchIsFresh(
+  { freshness: "revalidate-24h" },
+  { grounding: { verifiedAt: "2026-08-20T10:00:00.000Z" } },
+  new Date("2026-08-21T09:59:00.000Z"),
+), true);
+assert.equal(publicationResearchIsFresh(
+  { freshness: "revalidate-24h" },
+  { grounding: { verifiedAt: "2026-08-19T10:00:00.000Z" } },
+  new Date("2026-08-21T10:00:00.000Z"),
+), false);
+assert.equal(publicationResearchIsFresh({ freshness: "evergreen" }, {}, new Date()), true);
 const cacheResearcher = new GroundedResearcher({
   RESEARCH_PROVIDER: "groq",
   CAMPAIGN_CURATED_OFFLINE_FALLBACK: "true",
@@ -165,13 +246,14 @@ conceptualComparison.items[0] = {
   ...conceptualComparison.items[0],
   category: 'comparativo',
   status: 'validation',
+  postPath: '_posts/drafts/fixture-comparativo.md',
   productIds: [],
   heroImage: { mode: 'conceptual' },
   aiReview: { ...conceptualComparison.items[0].aiReview, contentHash: `sha256:${'a'.repeat(64)}` },
 };
 assert.doesNotThrow(() => CampaignSchema.parse(conceptualComparison));
 const reviewWithoutProduct = structuredClone(campaign);
-reviewWithoutProduct.items[0] = { ...reviewWithoutProduct.items[0], category: 'review', status: 'validation', productIds: [] };
+reviewWithoutProduct.items[0] = { ...reviewWithoutProduct.items[0], category: 'review', status: 'validation', postPath: '_posts/drafts/fixture-review.md', productIds: [] };
 assert.throws(() => CampaignSchema.parse(reviewWithoutProduct), /review validado exige ao menos um produto rastreável/);
 const scheduledWithoutReceipt = structuredClone(campaign);
 const scheduledFixture = scheduledWithoutReceipt.items[0];
@@ -240,7 +322,7 @@ assert.match(buildRepairPrompt({
   contentType: 'guia-tecnico',
   template: { label: 'Guia técnico' },
   today: '2026-08-08',
-}), /ao menos 1840 palavras reais/);
+}), /entre 900 e 1700 palavras úteis/);
 await assert.rejects(() => produceCampaignVisual({
   root: path.join(root, "conceptual-visual"),
   item: {
@@ -282,6 +364,7 @@ assert.throws(
 const catchUpCampaign = structuredClone(campaign);
 for (const item of catchUpCampaign.items) item.status = 'planned';
 catchUpCampaign.items[0].status = 'scheduled';
+catchUpCampaign.items[0].postPath = `_posts/drafts/${catchUpCampaign.items[0].publishDate}-catch-up.md`;
 catchUpCampaign.items[1].status = 'published';
 catchUpCampaign.items[1].publishedAt = '2026-08-05T15:00:00.000Z';
 assert.deepEqual(selectScheduledPublication(catchUpCampaign, catchUpCampaign.items[1].publishDate, {
@@ -668,6 +751,8 @@ finalizeCampaign.items[0].productIds = [testProduct.id];
 finalizeCampaign.items[0].heroImage = { mode: "real-context", productId: testProduct.id, relationship: "platform-example", rationale: "Produto real usado como plataforma visual do teste deterministico de finalizacao." };
 finalizeCampaign.items[0].aiReview.finalScore = 95;
 finalizeCampaign.items[0].aiReview.finalBlockers = 0;
+delete finalizeCampaign.items[0].aiReview.deterministicFullArticleFallbackUsed;
+delete finalizeCampaign.items[0].aiReview.deterministicFullArticleFallbackTrigger;
 finalizeCampaign.items[0].postPath = `_posts/drafts/${finalizeCampaign.items[0].publishDate}-${finalizeCampaign.items[0].id}.md`;
 await fs.writeFile(path.join(finalizeRoot, "bot/editorial-campaign.json"), JSON.stringify(finalizeCampaign));
 await fs.writeFile(path.join(finalizeRoot, "content/research/campaign", `${finalizeCampaign.items[0].id}.json`), JSON.stringify({
@@ -682,7 +767,7 @@ await fs.writeFile(path.join(finalizeRoot, "content/research/campaign", `${final
   confirmed_facts: [{ fact: "Conteúdo técnico sustentado por fonte oficial.", evidence_quote: "Conteúdo técnico sustentado por fonte oficial", source_ids: ["src-scott"] }],
   limitations: [],
   sources: [{ id: "src-scott", name: "Scott", type: "manufacturer", url: "https://www.scott-sports.com/", accessed: "2026-08-05" }],
-  grounding: { sourceCount: 1, claimContract: "explicit-units-v1", evidenceContract: "retrieved-excerpt-v1", verifiedAt: "2026-08-05T08:00:00.000Z" },
+  grounding: { sourceCount: 1, claimContract: "explicit-units-v1", evidenceContract: "retrieved-excerpt-v1", verifiedAt: `${finalizeCampaign.items[0].publishDate}T08:00:00.000Z` },
 }));
 const sections = Array.from({ length: 5 }, (_, index) => `## Seção técnica ${index + 1}\n\nConteúdo técnico sustentado pelas fontes editoriais.`).join("\n\n");
 await fs.writeFile(path.join(finalizeRoot, finalizeCampaign.items[0].postPath), `---\nlayout: post\npublished: false\ndate: 2026-08-04\nlast_modified_at: 2026-08-04\ndirect_answer: "Este guia apresenta um diagnóstico técnico verificável, baseado nas fontes declaradas, para orientar ajustes sem transformar hipótese em constatação."\nimage: "/assets/img/system/covers/guia-tecnico-v2/hero-1600.webp"\nimage_mobile: "/assets/img/system/covers/guia-tecnico-v2/hero-800.webp"\nthumbnail: "/assets/img/system/covers/guia-tecnico-v2/card-640.webp"\nimage_asset_type: "system-fallback"\nimage_status: "draft"\nimage_alt: "Capa"\nimage_caption: "Capa"\nimage_credit: "TheBiker"\nimage_license: "Interno"\nreviewed_by: ""\neditorial_status: "draft"\nstatus: "draft"\nsources:\n  - name: "Scott"\n    url: "https://www.scott-sports.com/"\n---\n\n${sections}\n`);

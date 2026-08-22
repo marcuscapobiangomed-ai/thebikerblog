@@ -1,13 +1,14 @@
 ---
+editorial_hold_reason: "Revisão de fontes, precisão e concisão pendente"
 image_subject_id: "corrente-sram-nx-eagle"
 layout: post
-published: true
+published: false
 title: "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação"
 slug: "limpeza-da-transmissao-depois-de-chuva-e-lama-metodo-inspecao-e-lubrificacao"
 date: 2026-08-15
 last_modified_at: 2026-08-15
 author: "Equipe TheBiker"
-reviewed_by: "TheBiker AI Editorial Gate"
+reviewed_by: ""
 content_type: "guia-tecnico"
 editorial_format: "full-article-v1"
 audience_segment: "core_technical_cyclists"
@@ -51,8 +52,8 @@ promoted_brands: ["SRAM"]
 context_only_brands: []
 portfolio_evidence_url: "https://thebikershop.com.br/componentes/"
 portfolio_verified_at: "2026-08-13"
-editorial_status: "published"
-status: "published"
+editorial_status: "draft"
+status: "draft"
 sources:
   - name: "SRAM — AXS Bike Care and Maintenance"
     type: "manufacturer"

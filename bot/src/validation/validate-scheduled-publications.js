@@ -10,6 +10,7 @@ import { assertScheduledReceipt } from "./editorial-receipt.js";
 import { visualDecisionErrors } from "./visual-decision.js";
 import { researchEvidenceContractErrors, researchGroundingErrors } from "./research-grounding.js";
 import { articleResearchGroundingErrors } from "./article-research-grounding.js";
+import { researchForPublication } from "./publication-research.js";
 
 const defaultRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../../..");
 
@@ -69,7 +70,7 @@ export async function validateScheduledPublications({ root = defaultRoot } = {})
       for (const error of researchGroundingErrors(research)) errors.push(`${item.id}: ${error}`);
       for (const error of researchEvidenceContractErrors(research)) errors.push(`${item.id}: ${error}`);
       if (research.grounding?.claimContract === "explicit-units-v1") {
-        for (const error of articleResearchGroundingErrors({ content, research })) errors.push(`${item.id}: ${error}`);
+        for (const error of articleResearchGroundingErrors({ content, research: researchForPublication(research) })) errors.push(`${item.id}: ${error}`);
       }
     } catch (error) {
       errors.push(`${item.id}: pesquisa indisponível ou inválida (${error.code || error.message})`);

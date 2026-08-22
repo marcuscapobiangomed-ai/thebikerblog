@@ -1,13 +1,14 @@
 ---
+editorial_hold_reason: "Revisão de fontes, precisão e concisão pendente"
 image_subject_id: "disco-de-freio-shimano-xtr-cl900-center-lock"
 layout: post
-published: true
+published: false
 title: "Alinhamento de pinça e rotor: elimine atrito sem perder potência"
 slug: "alinhamento-pinca-rotores"
 date: 2026-08-10
 last_modified_at: 2026-08-13
 author: "Equipe TheBiker"
-reviewed_by: "TheBiker AI Editorial Gate"
+reviewed_by: ""
 content_type: "guia-tecnico"
 audience_segment: "core_technical_cyclists"
 audience_intent: "solve_problem"
@@ -45,8 +46,8 @@ promoted_brands: ["Scott", "Shimano"]
 context_only_brands: []
 portfolio_evidence_url: "https://thebikershop.com.br/produtos/disco-de-freio-shimano-xtr-cl900-center-lock/"
 portfolio_verified_at: "2026-08-11"
-editorial_status: "published"
-status: "published"
+editorial_status: "draft"
+status: "draft"
 sources:
   - name: "TheBiker — Disco de Freio Shimano XTR CL900 Center Lock"
     type: "store"

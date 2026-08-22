@@ -1,3 +1,5 @@
+import { editorialTextQualityErrors } from "./editorial-text-quality.js";
+
 const CANONICAL_TAG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
 export const MARKDOWN_POLICY_GUIDANCE = [
@@ -74,6 +76,12 @@ function inlineTags(content) {
     .filter(Boolean);
 }
 
+function frontmatterSourceTypes(content) {
+  const frontmatter = String(content).match(/^---\r?\n([\s\S]*?)\r?\n---/u)?.[1] || "";
+  return [...frontmatter.matchAll(/^\s{2,}type:\s*["']?([^"'\r\n]+)["']?\s*$/gmu)]
+    .map((match) => match[1].trim().toLowerCase());
+}
+
 export function markdownPublicationErrors(content) {
   const errors = [];
   const editorialFormat = frontmatterValue(content, "editorial_format").replace(/^['"]|['"]$/g, "");
@@ -94,6 +102,19 @@ export function markdownPublicationErrors(content) {
     const deskTest = FORBIDDEN_DESK_TESTS.find((pattern) => pattern.test(body));
     if (deskTest) errors.push(`alegação de teste prático proibida: ${body.match(deskTest)?.[0]}`);
   }
+  const contentType = frontmatterValue(content, "content_type").replace(/^['"]|['"]$/g, "");
+  if (["review", "comparativo", "lancamento"].includes(contentType)
+      && !frontmatterSourceTypes(content).includes("manufacturer")) {
+    errors.push("conteúdo de produto sem fonte técnica do fabricante");
+  }
+  errors.push(...editorialTextQualityErrors({
+    body,
+    contentType,
+    directAnswer: frontmatterValue(content, "direct_answer"),
+    title: frontmatterValue(content, "title"),
+    description: frontmatterValue(content, "description"),
+    headings: [...body.matchAll(/^##\s+(.+)$/gmu)].map((match) => match[1]),
+  }));
   return errors;
 }
 

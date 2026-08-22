@@ -1,4 +1,5 @@
 import { MARKDOWN_POLICY_GUIDANCE } from "./validation/markdown-publication-gates.js";
+import { editorialWordRange } from "./editorial-length-policy.js";
 
 const CONTENT_TYPE_RULES = [
   {
@@ -110,19 +111,7 @@ export function buildUserPrompt({ topic, researchData, contentType, template, to
       : prettyJson(researchData);
 
   const requiredStructure = template.structure.map((step, index) => `${index + 1}. ${step}`).join("\n");
-  const minimumWords = {
-    review: 1800,
-    comparativo: 2000,
-    "guia-de-compra": 1800,
-    "guia-tecnico": 1600,
-    noticia: 900,
-    lancamento: 1200,
-    "previa-corrida": 1400,
-    "resumo-corrida": 1500,
-    "calendario-provas": 1200,
-    "guia-prova": 1400,
-  }[contentType] || 900;
-  const minimumWordsPerSection = Math.ceil(minimumWords / Math.max(template.structure.length, 1));
+  const { min: minimumWords, max: maximumWords, target: targetWords } = editorialWordRange(contentType);
 
   return [
     "## FICHA DE PESQUISA",
@@ -140,10 +129,12 @@ export function buildUserPrompt({ topic, researchData, contentType, template, to
     "Crie para cada etapa um intertítulo editorial original e específico ao tema.",
     "",
     "### Saída esperada",
-    `O corpo do artigo deve ter no mínimo ${minimumWords} palavras, distribuídas em seções substanciais.`,
-    `Crie uma seção para cada um dos ${template.structure.length} eixos obrigatórios e escreva no mínimo ${minimumWordsPerSection} palavras no campo content de cada seção.`,
-    "Aprofunde relações entre especificações, compatibilidade, manutenção e decisão de uso sem inventar sensações de rodagem ou repetir ideias para atingir a extensão.",
+    `O corpo deve ficar entre ${minimumWords} e ${maximumWords} palavras úteis; mire aproximadamente ${targetWords} e pare quando os fatos estiverem explicados.`,
+    `Cubra os ${template.structure.length} eixos obrigatórios com proporção editorial natural, sem mínimo artificial por seção.`,
+    "Aprofunde somente relações sustentadas pela pesquisa. Nunca repita, alongue frases ou exponha o processo editorial para atingir extensão.",
     "Use somente números com unidade que apareçam literalmente em confirmed_facts; se um número não estiver confirmado, omita-o.",
+    "Em especificações técnicas, a fonte do fabricante prevalece sobre loja, marketplace ou revendedor.",
+    "Conflitos entre fontes ficam restritos à auditoria interna: não narre divergências, inconsistências, correções de cadastro ou bastidores no artigo.",
     "Alegações legais brasileiras só podem usar fatos ligados por source_ids a uma fonte primária gov.br; caso contrário, omita a alegação.",
     "Se a pesquisa e a confirmação de portfólio forem suficientes, retorne um único objeto JSON com estes campos:",
     "{",
@@ -160,7 +151,7 @@ export function buildUserPrompt({ topic, researchData, contentType, template, to
     '  "experience_level_target": "intermediate | advanced | professional | intermediate_advanced | mixed_progression",',
     '  "review_method": "desk-research | hands-on-test",',
     '  "tested_by_thebikerblog": false,',
-    '  "methodologyNotice": "Aviso metodológico curto em português",',
+    '  "methodologyNotice": "Somente em hands-on-test: condições concretas do teste; em desk-research, use string vazia",',
     '  "brand": "Marca promovida e confirmada no portfólio",',
     '  "product_name": "Nome do produto ou tema principal",',
     '  "model_year": 2026,',
@@ -215,19 +206,7 @@ export function buildUserPrompt({ topic, researchData, contentType, template, to
 }
 
 export function buildRepairPrompt({ topic, rawText, validationError, contentType, template, today, researchData = null }) {
-  const minimumWords = {
-    review: 1800,
-    comparativo: 2000,
-    "guia-de-compra": 1800,
-    "guia-tecnico": 1600,
-    noticia: 900,
-    lancamento: 1200,
-    "previa-corrida": 1400,
-    "resumo-corrida": 1500,
-    "calendario-provas": 1200,
-    "guia-prova": 1400,
-  }[contentType] || 900;
-  const repairTargetWords = Math.ceil(minimumWords * 1.15);
+  const { min: minimumWords, max: maximumWords, target: repairTargetWords } = editorialWordRange(contentType);
   return [
     "Você vai corrigir a resposta JSON de um artigo do blog oficial da TheBiker.",
     "A resposta anterior está inválida. Corrija e devolva apenas JSON válido.",
@@ -247,9 +226,10 @@ export function buildRepairPrompt({ topic, rawText, validationError, contentType
     researchData ? prettyJson(researchData) : "Não fornecida.",
     "",
     "Regras:",
-    `- entregue ao menos ${repairTargetWords} palavras reais no corpo para superar com margem o gate de ${minimumWords};`,
-    "- para ampliar, aprofunde método, critérios de decisão e limitações já sustentados; não repita parágrafos nem crie fatos;",
+    `- mantenha o corpo entre ${minimumWords} e ${maximumWords} palavras úteis, mirando aproximadamente ${repairTargetWords};`,
+    "- amplie apenas fatos e critérios de decisão sustentados; não descreva o método editorial, não repita e não crie fatos;",
     "- mantenha apenas informações verificáveis;",
+    "- em especificações técnicas, preserve o valor do fabricante e não exponha conflitos entre fontes no texto público;",
     "- não acrescente números com unidade ausentes dos fatos confirmados da resposta original;",
     "- preserve a fonte governamental de qualquer alegação legal brasileira e remova a alegação se essa fonte não existir;",
     "- corrija integralmente cada claim enumerado no erro de integridade; remova a frase quando não houver fato confirmado equivalente;",
@@ -265,7 +245,7 @@ export function buildRepairPrompt({ topic, rawText, validationError, contentType
 
 export function buildLengthExpansionPrompt({ topic, rawText, currentWords, minimumWords, today }) {
   const missingWords = Math.max(minimumWords - currentWords, 0);
-  const requestedWords = missingWords + Math.max(Math.ceil(minimumWords * 0.15), 200);
+  const requestedWords = missingWords + Math.min(Math.max(Math.ceil(minimumWords * 0.08), 60), 120);
   return [
     "Amplie um artigo da TheBiker sem reescrever nem remover o texto existente.",
     "Devolva somente um objeto JSON com o campo section_expansions.",
@@ -276,7 +256,7 @@ export function buildLengthExpansionPrompt({ topic, rawText, currentWords, minim
     `Data de produção: ${today}`,
     `Contagem atual: ${currentWords} palavras`,
     `Gate obrigatório: ${minimumWords} palavras`,
-    `Produza ao menos ${requestedWords} palavras adicionais reais no total para criar margem segura.`,
+    `Produza aproximadamente ${requestedWords} palavras adicionais úteis e pare assim que o mínimo for alcançado.`,
     "",
     "Regras:",
     "- use somente fatos, fontes, método, critérios e limitações já presentes no JSON;",

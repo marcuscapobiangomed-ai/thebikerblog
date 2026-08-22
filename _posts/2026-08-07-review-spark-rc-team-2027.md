@@ -1,13 +1,14 @@
 ---
+editorial_hold_reason: "Revisão de fontes, precisão e concisão pendente"
 image_subject_id: "bicicleta-scott-spark-rc-world-cup-2027"
 layout: post
-published: true
+published: false
 title: "Spark RC Team 2027: plataforma de 120 mm e transmissão AXS"
 slug: "review-spark-rc-team-2027"
 date: 2026-08-07
 last_modified_at: 2026-08-07
 author: "Equipe TheBiker"
-reviewed_by: "TheBiker AI Editorial Gate"
+reviewed_by: ""
 content_type: "review"
 audience_segment: "core_technical_cyclists"
 audience_intent: "purchase_consideration"
@@ -45,8 +46,8 @@ promoted_brands: ["Scott"]
 context_only_brands: []
 portfolio_evidence_url: "https://thebikershop.com.br/produtos/bicicleta-scott-spark-rc-world-cup-2027/"
 portfolio_verified_at: "2026-08-04"
-editorial_status: "published"
-status: "published"
+editorial_status: "draft"
+status: "draft"
 sources:
   - name: "TheBiker — Bicicleta Scott Spark RC Team 2027"
     type: "store"

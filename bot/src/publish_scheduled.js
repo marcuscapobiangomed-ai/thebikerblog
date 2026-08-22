@@ -1,7 +1,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { CampaignSchema, publicCampaignSummary, racePublicationSourceIsFresh } from "./automation/campaign.js";
+import { CampaignSchema, publicCampaignSummary, publicationResearchIsFresh } from "./automation/campaign.js";
 import { validateImageManifestV2 } from "./validation/image-manifest-v2.js";
 import { assertMarkdownPublicationGates } from "./validation/markdown-publication-gates.js";
 import matter from "gray-matter";
@@ -11,6 +11,7 @@ import { createStagedWorkspace, discardStagedWorkspace, promoteStagedPaths } fro
 import { assertResearchEvidenceContract, assertResearchGrounding } from "./validation/research-grounding.js";
 import { assertArticleResearchGrounding } from "./validation/article-research-grounding.js";
 import { canonicalPortfolioBrand } from "./portfolio-policy.js";
+import { researchForPublication } from "./validation/publication-research.js";
 
 const defaultRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 
@@ -102,12 +103,12 @@ async function publishInWorkspace({ now, dryRun, root, catchUpPolicy, expectedIt
     }
     return { status: "idle", date, message: "Data fora da campanha ativa" };
   }
-  if (!racePublicationSourceIsFresh(item, now)) {
-    throw new Error(`Publicacao bloqueada: pauta de corrida ${item.id} sem fonte oficial verificada nas ultimas 24 horas`);
-  }
   if (!item.postPath) throw new Error(`Pauta ${item.id} esta agendada sem postPath`);
   if (item.imageStatus !== "approved" || !item.imageManifestPath) {
     throw new Error(`Pauta ${item.id} sem imagem oficial aprovada`);
+  }
+  if (item.aiReview?.deterministicFullArticleFallbackUsed) {
+    throw new Error(`Publicacao bloqueada: pauta ${item.id} usa fallback deterministico sem revisao independente`);
   }
   if ((item.aiReview?.finalScore ?? 0) < 90 || (item.aiReview?.finalBlockers ?? 0) > 0) {
     throw new Error(`Pauta ${item.id} sem aprovacao editorial final >= 90 e zero bloqueadores`);
@@ -124,9 +125,12 @@ async function publishInWorkspace({ now, dryRun, root, catchUpPolicy, expectedIt
   if (!sourcePath.startsWith(draftsRoot)) throw new Error(`postPath inseguro: ${item.postPath}`);
   let content = await fs.readFile(sourcePath, "utf8");
   const research = JSON.parse(await fs.readFile(path.join(root, "content/research/campaign", `${item.id}.json`), "utf8"));
+  if (!publicationResearchIsFresh(item, research, now)) {
+    throw new Error(`Publicacao bloqueada: pauta ${item.id} exige pesquisa revalidada nas ultimas 24 horas`);
+  }
   assertResearchGrounding(research, { requireFactReferences: true });
   assertResearchEvidenceContract(research);
-  assertArticleResearchGrounding({ content, research });
+  assertArticleResearchGrounding({ content, research: researchForPublication(research) });
   const catalog = JSON.parse(await fs.readFile(path.join(root, "content/product-discovery/thebiker-media-catalog.json"), "utf8"));
   assertImageArticleConsistency({ article: matter(content).data, manifest: validatedManifest, campaignItem: item, catalog });
   assertScheduledReceipt(content, item);
