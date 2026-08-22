@@ -187,7 +187,7 @@ model: ""
       {% unless professional_found %}
         <div class="race-empty-state">
           <strong>Nenhuma análise publicada neste momento</strong>
-          <p>O calendário oficial acima já está ativo. Novas análises entram aqui somente depois de passarem pela verificação editorial.</p>
+          <p>O calendário oficial acima está ativo. As análises disponíveis aparecem nesta seção.</p>
         </div>
       {% endunless %}
     </section>

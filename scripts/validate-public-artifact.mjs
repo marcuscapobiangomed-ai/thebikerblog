@@ -17,6 +17,7 @@ const forbiddenEditorialBackstage = [
   /(?:a equipe|n[oó]s) n[aã]o (?:realizou|realizamos) (?:um )?teste presencial/iu,
   /(?:este|esta) artigo (?:é|e) (?:uma )?an[aá]lise documental/iu,
   /ofertas em revis[aã]o/iu,
+  /(?:revis[aã]o|verifica[cç][aã]o) editorial/iu,
   /(?:pre[cç]os e disponibilidade|variantes e URLs) (?:est[aã]o|passam por) (?:em )?verifica[cç][aã]o editorial/iu,
   /geometria n[aã]o dispon[ií]vel/iu,
   /configura[cç][aã]o pendente de confirma[cç][aã]o/iu,
