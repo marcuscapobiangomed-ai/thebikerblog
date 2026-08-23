@@ -1699,6 +1699,59 @@
         "title": "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação"
       },
       "reason": "[VALIDATION_FAILED] Quarentena: artigo integral de fallback determinístico exige nova redação e revisão independente"
+    },
+    {
+      "recordedAt": "2026-08-23T09:31:44.221Z",
+      "campaignId": "thebiker-rolling-2026-08-21",
+      "replacedItem": {
+        "day": 3,
+        "publishDate": "2026-08-23",
+        "id": "contingencia-addict-rc-pro-documentacao",
+        "title": "Scott Addict RC Pro: quadro HMX, Dura-Ace Di2 e rodas Capital 1.0S",
+        "summary": "Análise da montagem 2026, das relações 52x36 e 11-34, dos rotores, do cockpit integrado, do peso e do preço no Brasil.",
+        "category": "review",
+        "freshness": "revalidate-24h",
+        "status": "blocked",
+        "productIds": [
+          "suporte-de-garmin-syncros-ic-aero-scott-foil-2023-e-addict-rc-2025",
+          "bicicleta-scott-addict-rc-pro-di2-2026-pre-venda"
+        ],
+        "heroImage": {
+          "mode": "real-context",
+          "productId": "bicicleta-scott-addict-rc-pro-di2-2026-pre-venda",
+          "relationship": "category-example",
+          "rationale": "Fotografia real do catálogo TheBiker selecionada deterministicamente como exemplo visual da categoria técnica abordada."
+        },
+        "imageAssetIds": [],
+        "blockReason": "[VALIDATION_FAILED] Quarentena: artigo integral de fallback determinístico exige nova redação e revisão independente",
+        "failure": {
+          "code": "VALIDATION_FAILED",
+          "retryable": false,
+          "stage": "editorial-quarantine",
+          "message": "Artigo integral de fallback determinístico reprovado pelo gate de qualidade editorial",
+          "recordedAt": "2026-08-22T04:47:18.904Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-20T15:57:05.302Z",
+        "aiReview": {
+          "score": null,
+          "finalScore": null,
+          "finalBlockers": 1,
+          "premiumEditUsed": false,
+          "providers": {
+            "deterministicFallback": "grounded-deterministic"
+          },
+          "generatedAt": "2026-08-20T15:57:05.302Z",
+          "contentHash": "sha256:a8ff175b2d60aff28a3e307deb703a0c37c3c06c99f94054025aa813328a0053",
+          "deterministicFullArticleFallbackUsed": true,
+          "deterministicFullArticleFallbackTrigger": "pipeline-failure"
+        }
+      },
+      "replacement": {
+        "id": "reserva-limpeza-transmissao-metodo",
+        "title": "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação"
+      },
+      "reason": "[VALIDATION_FAILED] Quarentena: artigo integral de fallback determinístico exige nova redação e revisão independente"
     }
   ]
 }
