@@ -1752,6 +1752,98 @@
         "title": "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação"
       },
       "reason": "[VALIDATION_FAILED] Quarentena: artigo integral de fallback determinístico exige nova redação e revisão independente"
+    },
+    {
+      "recordedAt": "2026-08-23T13:35:54.173Z",
+      "campaignId": "thebiker-rolling-2026-08-21",
+      "replacedItem": {
+        "day": 3,
+        "publishDate": "2026-08-23",
+        "id": "contingencia-addict-rc-pro-documentacao",
+        "title": "Scott Addict RC Pro: quadro HMX, Dura-Ace Di2 e rodas Capital 1.0S",
+        "summary": "Análise da montagem 2026, das relações 52x36 e 11-34, dos rotores, do cockpit integrado, do peso e do preço no Brasil.",
+        "category": "review",
+        "freshness": "revalidate-24h",
+        "status": "blocked",
+        "productIds": [
+          "suporte-de-garmin-syncros-ic-aero-scott-foil-2023-e-addict-rc-2025",
+          "bicicleta-scott-addict-rc-pro-di2-2026-pre-venda"
+        ],
+        "heroImage": {
+          "mode": "real-context",
+          "productId": "bicicleta-scott-addict-rc-pro-di2-2026-pre-venda",
+          "relationship": "category-example",
+          "rationale": "Fotografia real do catálogo TheBiker selecionada deterministicamente como exemplo visual da categoria técnica abordada."
+        },
+        "imageAssetIds": [],
+        "blockReason": "[VALIDATION_FAILED] Quarentena: artigo integral de fallback determinístico exige nova redação e revisão independente",
+        "failure": {
+          "code": "VALIDATION_FAILED",
+          "retryable": false,
+          "stage": "editorial-quarantine",
+          "message": "Artigo integral de fallback determinístico reprovado pelo gate de qualidade editorial",
+          "recordedAt": "2026-08-22T04:47:18.904Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-20T15:57:05.302Z",
+        "aiReview": {
+          "score": null,
+          "finalScore": null,
+          "finalBlockers": 1,
+          "premiumEditUsed": false,
+          "providers": {
+            "deterministicFallback": "grounded-deterministic"
+          },
+          "generatedAt": "2026-08-20T15:57:05.302Z",
+          "contentHash": "sha256:a8ff175b2d60aff28a3e307deb703a0c37c3c06c99f94054025aa813328a0053",
+          "deterministicFullArticleFallbackUsed": true,
+          "deterministicFullArticleFallbackTrigger": "pipeline-failure"
+        }
+      },
+      "replacement": {
+        "id": "reserva-limpeza-transmissao-metodo",
+        "title": "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação"
+      },
+      "reason": "[VALIDATION_FAILED] Quarentena: artigo integral de fallback determinístico exige nova redação e revisão independente"
+    },
+    {
+      "recordedAt": "2026-08-23T13:37:01.161Z",
+      "campaignId": "thebiker-rolling-2026-08-21",
+      "replacedItem": {
+        "day": 3,
+        "publishDate": "2026-08-23",
+        "id": "reserva-limpeza-transmissao-metodo",
+        "title": "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação",
+        "summary": "Procedimento técnico baseado em orientações oficiais para remover contaminantes, verificar danos e devolver a corrente ao uso seguro.",
+        "category": "manutencao-ajustes",
+        "freshness": "evergreen",
+        "status": "blocked",
+        "productIds": [
+          "corrente-sram-nx-eagle"
+        ],
+        "heroImage": {
+          "mode": "real-context",
+          "productId": "corrente-sram-nx-eagle",
+          "relationship": "category-example",
+          "rationale": "Fotografia real do catálogo TheBiker usada apenas como exemplo visual da categoria técnica abordada."
+        },
+        "imageAssetIds": [],
+        "blockReason": "[RESEARCH_INSUFFICIENT] Rascunho bloqueado após 2 reparos: Artigo bloqueado por integridade de claims: inferencias tecnicas ausentes dos fatos confirmados: a negligencia na limpeza pos-pedal resulta em perda de eficiencia na transferencia de potencia e reducao da vida util dos componentes de alta performance. | sob carga, essas particulas agem como uma ferramenta de corte, aumentando o 'pitch' da corrente — o alongamento mecanico que, por sua vez, causa o desgaste prematuro dos dentes do cassete. | ao remover o excesso com um pano seco, voce garante que apenas a parte movel interna esteja protegida, mantendo a superficie externa da corrente o mais seca possivel para",
+        "failure": {
+          "code": "RESEARCH_INSUFFICIENT",
+          "retryable": false,
+          "stage": "production",
+          "message": "Rascunho bloqueado após 2 reparos: Artigo bloqueado por integridade de claims: inferencias tecnicas ausentes dos fatos confirmados: a negligencia na limpeza pos-pedal resulta em perda de eficiencia na transferencia de potencia e reducao da vida util dos componentes de alta performance. | sob carga, essas particulas agem como uma ferramenta de corte, aumentando o 'pitch' da corrente — o alongamento mecanico que, por sua vez, causa o desgaste prematuro dos dentes do cassete. | ao remover o excesso com um pano seco, voce garante que apenas a parte movel interna esteja protegida, mantendo a superficie externa da corrente o mais seca possivel para",
+          "recordedAt": "2026-08-23T13:35:54.839Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-23T13:35:54.839Z"
+      },
+      "replacement": {
+        "id": "reserva-scale-940-980-comparativo",
+        "title": "Scott Scale 940 e 980: diferenças verificáveis de quadro, suspensão e componentes"
+      },
+      "reason": "[RESEARCH_INSUFFICIENT] Rascunho bloqueado após 2 reparos: Artigo bloqueado por integridade de claims: inferencias tecnicas ausentes dos fatos confirmados: a negligencia na limpeza pos-pedal resulta em perda de eficiencia na transferencia de potencia e reducao da vida util dos componentes de alta performance. | sob carga, essas particulas agem como uma ferramenta de corte, aumentando o 'pitch' da corrente — o alongamento mecanico que, por sua vez, causa o desgaste prematuro dos dentes do cassete. | ao remover o excesso com um pano seco, voce garante que apenas a parte movel interna esteja protegida, mantendo a superficie externa da corrente o mais seca possivel para"
     }
   ]
 }
