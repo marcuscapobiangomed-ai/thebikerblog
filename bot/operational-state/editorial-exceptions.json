@@ -2028,6 +2028,98 @@
         "title": "Scott Scale 940 e 980: diferenças verificáveis de quadro, suspensão e componentes"
       },
       "reason": "[IMAGE_NOT_PUBLISHABLE] Rascunho bloqueado após 2 reparos: Artigo inválido:\nimagePlan: Pelo menos uma imagem obrigatória"
+    },
+    {
+      "recordedAt": "2026-08-24T13:55:12.478Z",
+      "campaignId": "thebiker-rolling-2026-08-21",
+      "replacedItem": {
+        "day": 4,
+        "publishDate": "2026-08-24",
+        "id": "contingencia-addict-rc20-documentacao",
+        "title": "Scott Addict RC 20: quadro HMX, 105 Di2 e configuração de estrada",
+        "summary": "Análise da geometria, transmissão, rodas, pneus, peso declarado e pontos de compatibilidade relevantes para a compra.",
+        "category": "review",
+        "freshness": "revalidate-24h",
+        "status": "blocked",
+        "productIds": [
+          "suporte-de-garmin-syncros-ic-aero-scott-foil-2023-e-addict-rc-2025",
+          "bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9"
+        ],
+        "heroImage": {
+          "mode": "real-context",
+          "productId": "bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9",
+          "relationship": "category-example",
+          "rationale": "Fotografia real do catálogo TheBiker selecionada deterministicamente como exemplo visual da categoria técnica abordada."
+        },
+        "imageAssetIds": [],
+        "blockReason": "[VALIDATION_FAILED] Quarentena: artigo integral de fallback determinístico exige nova redação e revisão independente",
+        "failure": {
+          "code": "VALIDATION_FAILED",
+          "retryable": false,
+          "stage": "editorial-quarantine",
+          "message": "Artigo integral de fallback determinístico reprovado pelo gate de qualidade editorial",
+          "recordedAt": "2026-08-22T04:47:18.904Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-20T15:57:05.302Z",
+        "aiReview": {
+          "score": null,
+          "finalScore": null,
+          "finalBlockers": 1,
+          "premiumEditUsed": false,
+          "providers": {
+            "deterministicFallback": "grounded-deterministic"
+          },
+          "generatedAt": "2026-08-20T15:57:05.302Z",
+          "contentHash": "sha256:cb5feb593e16b81d70ba1ab8ea6b69bb9930f711468400d19698910c411bbbda",
+          "deterministicFullArticleFallbackUsed": true,
+          "deterministicFullArticleFallbackTrigger": "pipeline-failure"
+        }
+      },
+      "replacement": {
+        "id": "reserva-limpeza-transmissao-metodo",
+        "title": "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação"
+      },
+      "reason": "[VALIDATION_FAILED] Quarentena: artigo integral de fallback determinístico exige nova redação e revisão independente"
+    },
+    {
+      "recordedAt": "2026-08-24T13:57:21.470Z",
+      "campaignId": "thebiker-rolling-2026-08-21",
+      "replacedItem": {
+        "day": 4,
+        "publishDate": "2026-08-24",
+        "id": "reserva-limpeza-transmissao-metodo",
+        "title": "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação",
+        "summary": "Procedimento técnico baseado em orientações oficiais para remover contaminantes, verificar danos e devolver a corrente ao uso seguro.",
+        "category": "manutencao-ajustes",
+        "freshness": "evergreen",
+        "status": "blocked",
+        "productIds": [
+          "corrente-sram-nx-eagle"
+        ],
+        "heroImage": {
+          "mode": "real-context",
+          "productId": "corrente-sram-nx-eagle",
+          "relationship": "category-example",
+          "rationale": "Fotografia real do catálogo TheBiker usada apenas como exemplo visual da categoria técnica abordada."
+        },
+        "imageAssetIds": [],
+        "blockReason": "[VALIDATION_FAILED] Rascunho bloqueado após 2 reparos: Gates editoriais não atendidos: extensão insuficiente: 558 palavras; mínimo 900",
+        "failure": {
+          "code": "VALIDATION_FAILED",
+          "retryable": false,
+          "stage": "production",
+          "message": "Rascunho bloqueado após 2 reparos: Gates editoriais não atendidos: extensão insuficiente: 558 palavras; mínimo 900",
+          "recordedAt": "2026-08-24T13:55:13.139Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-24T13:55:13.139Z"
+      },
+      "replacement": {
+        "id": "reserva-scale-940-980-comparativo",
+        "title": "Scott Scale 940 e 980: diferenças verificáveis de quadro, suspensão e componentes"
+      },
+      "reason": "[VALIDATION_FAILED] Rascunho bloqueado após 2 reparos: Gates editoriais não atendidos: extensão insuficiente: 558 palavras; mínimo 900"
     }
   ]
 }
