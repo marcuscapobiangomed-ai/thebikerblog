@@ -2408,6 +2408,104 @@
         "title": "Scott Scale 940 e 980: diferenças verificáveis de quadro, suspensão e componentes"
       },
       "reason": "[VALIDATION_FAILED] Rascunho bloqueado após 2 reparos: Gates editoriais não atendidos: extensão insuficiente: 371 palavras; mínimo 900"
+    },
+    {
+      "recordedAt": "2026-08-25T17:36:05.145Z",
+      "campaignId": "thebiker-rolling-2026-08-21",
+      "replacedItem": {
+        "day": 5,
+        "publishDate": "2026-08-25",
+        "id": "contingencia-addict-50-documentacao",
+        "title": "Scott Addict 50: geometria endurance, montagem e perfil de uso",
+        "summary": "Análise do quadro, da transmissão, das rodas, dos pneus, do peso e dos ajustes que influenciam a escolha do tamanho.",
+        "category": "review",
+        "freshness": "revalidate-24h",
+        "status": "blocked",
+        "productIds": [
+          "suporte-de-garmin-syncros-ic-aero-scott-foil-2023-e-addict-rc-2025",
+          "bicicleta-scott-addict-50-2026-pre-venda-1bxzy"
+        ],
+        "heroImage": {
+          "mode": "real-context",
+          "productId": "bicicleta-scott-addict-50-2026-pre-venda-1bxzy",
+          "relationship": "category-example",
+          "rationale": "Fotografia real do catálogo TheBiker selecionada deterministicamente como exemplo visual da categoria técnica abordada."
+        },
+        "imageAssetIds": [],
+        "blockReason": "[VALIDATION_FAILED] Quarentena: artigo integral de fallback determinístico exige nova redação e revisão independente",
+        "failure": {
+          "code": "VALIDATION_FAILED",
+          "retryable": false,
+          "stage": "editorial-quarantine",
+          "message": "Artigo integral de fallback determinístico reprovado pelo gate de qualidade editorial",
+          "recordedAt": "2026-08-22T04:47:18.904Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-20T15:57:05.302Z",
+        "aiReview": {
+          "score": null,
+          "finalScore": null,
+          "finalBlockers": 1,
+          "premiumEditUsed": false,
+          "providers": {
+            "factSheet": "groq",
+            "draft": "gemini",
+            "critique": "gemini",
+            "final": "gemini",
+            "finalAudit": "groq",
+            "deterministicFallback": "grounded-deterministic"
+          },
+          "generatedAt": "2026-08-20T15:57:05.302Z",
+          "contentHash": "sha256:aaab0bc8b4f012240609eeb089456e513cb3854d1f88d741b3dce627de6116e4",
+          "sourceHash": "7a340544a6cede78a625218e568b31b42beea74a5d2a615dcdfd9dd1dfa31e77",
+          "deterministicFullArticleFallbackUsed": true,
+          "deterministicFullArticleFallbackTrigger": "repair-fallback"
+        }
+      },
+      "replacement": {
+        "id": "reserva-limpeza-transmissao-metodo",
+        "title": "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação"
+      },
+      "reason": "[VALIDATION_FAILED] Quarentena: artigo integral de fallback determinístico exige nova redação e revisão independente"
+    },
+    {
+      "recordedAt": "2026-08-25T17:37:07.983Z",
+      "campaignId": "thebiker-rolling-2026-08-21",
+      "replacedItem": {
+        "day": 5,
+        "publishDate": "2026-08-25",
+        "id": "reserva-limpeza-transmissao-metodo",
+        "title": "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação",
+        "summary": "Procedimento técnico baseado em orientações oficiais para remover contaminantes, verificar danos e devolver a corrente ao uso seguro.",
+        "category": "manutencao-ajustes",
+        "freshness": "evergreen",
+        "status": "blocked",
+        "productIds": [
+          "corrente-sram-nx-eagle"
+        ],
+        "heroImage": {
+          "mode": "real-context",
+          "productId": "corrente-sram-nx-eagle",
+          "relationship": "category-example",
+          "rationale": "Fotografia real do catálogo TheBiker usada apenas como exemplo visual da categoria técnica abordada."
+        },
+        "imageAssetIds": [],
+        "blockReason": "[RESEARCH_INSUFFICIENT] Rascunho bloqueado após 2 reparos: Artigo bloqueado por integridade de claims: inferencias tecnicas ausentes dos fatos confirmados: a contaminacao por lama nao apenas compromete a eficiencia da troca de marchas, mas tambem acelera a corrosao de componentes metalicos e a degradacao de vedacoes. | alem disso, a umidade residual em areas de dificil acesso, como o movimento central e os cubos, pode comprometer a graxa interna, reduzindo a eficiencia de rolagem e aumentando a resistencia mecanica do sistema. | a pressao excessiva forca a entrada de agua e contaminantes para o interior das vedacoes e rolamentos, causando danos internos irreversivei",
+        "failure": {
+          "code": "RESEARCH_INSUFFICIENT",
+          "retryable": false,
+          "stage": "production",
+          "message": "Rascunho bloqueado após 2 reparos: Artigo bloqueado por integridade de claims: inferencias tecnicas ausentes dos fatos confirmados: a contaminacao por lama nao apenas compromete a eficiencia da troca de marchas, mas tambem acelera a corrosao de componentes metalicos e a degradacao de vedacoes. | alem disso, a umidade residual em areas de dificil acesso, como o movimento central e os cubos, pode comprometer a graxa interna, reduzindo a eficiencia de rolagem e aumentando a resistencia mecanica do sistema. | a pressao excessiva forca a entrada de agua e contaminantes para o interior das vedacoes e rolamentos, causando danos internos irreversivei",
+          "recordedAt": "2026-08-25T17:36:05.825Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-25T17:36:05.825Z"
+      },
+      "replacement": {
+        "id": "reserva-scale-940-980-comparativo",
+        "title": "Scott Scale 940 e 980: diferenças verificáveis de quadro, suspensão e componentes"
+      },
+      "reason": "[RESEARCH_INSUFFICIENT] Rascunho bloqueado após 2 reparos: Artigo bloqueado por integridade de claims: inferencias tecnicas ausentes dos fatos confirmados: a contaminacao por lama nao apenas compromete a eficiencia da troca de marchas, mas tambem acelera a corrosao de componentes metalicos e a degradacao de vedacoes. | alem disso, a umidade residual em areas de dificil acesso, como o movimento central e os cubos, pode comprometer a graxa interna, reduzindo a eficiencia de rolagem e aumentando a resistencia mecanica do sistema. | a pressao excessiva forca a entrada de agua e contaminantes para o interior das vedacoes e rolamentos, causando danos internos irreversivei"
     }
   ]
 }
