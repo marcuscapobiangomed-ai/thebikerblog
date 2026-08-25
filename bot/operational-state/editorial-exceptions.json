@@ -2212,6 +2212,104 @@
         "title": "Scott Scale 940 e 980: diferenças verificáveis de quadro, suspensão e componentes"
       },
       "reason": "[RESEARCH_INSUFFICIENT] Rascunho bloqueado após 2 reparos: Artigo bloqueado por integridade de claims: inferencias tecnicas ausentes dos fatos confirmados: este cenario acelera o desgaste prematuro dos componentes, reduzindo a precisao das trocas e aumentando o atrito interno do sistema. | a manutencao pos-pedal nao e apenas uma questao estetica, mas um protocolo tecnico de preservacao da integridade mecanica, essencial para manter a eficiencia energetica do conjunto de transmissao. | a negligencia na remocao desses detritos apos a chuva transforma a transmissao em um sistema de moagem, onde a propria sujeira retida atua como uma lixa constante, comprometendo a vida"
+    },
+    {
+      "recordedAt": "2026-08-25T09:39:29.603Z",
+      "campaignId": "thebiker-rolling-2026-08-21",
+      "replacedItem": {
+        "day": 5,
+        "publishDate": "2026-08-25",
+        "id": "contingencia-addict-50-documentacao",
+        "title": "Scott Addict 50: geometria endurance, montagem e perfil de uso",
+        "summary": "Análise do quadro, da transmissão, das rodas, dos pneus, do peso e dos ajustes que influenciam a escolha do tamanho.",
+        "category": "review",
+        "freshness": "revalidate-24h",
+        "status": "blocked",
+        "productIds": [
+          "suporte-de-garmin-syncros-ic-aero-scott-foil-2023-e-addict-rc-2025",
+          "bicicleta-scott-addict-50-2026-pre-venda-1bxzy"
+        ],
+        "heroImage": {
+          "mode": "real-context",
+          "productId": "bicicleta-scott-addict-50-2026-pre-venda-1bxzy",
+          "relationship": "category-example",
+          "rationale": "Fotografia real do catálogo TheBiker selecionada deterministicamente como exemplo visual da categoria técnica abordada."
+        },
+        "imageAssetIds": [],
+        "blockReason": "[VALIDATION_FAILED] Quarentena: artigo integral de fallback determinístico exige nova redação e revisão independente",
+        "failure": {
+          "code": "VALIDATION_FAILED",
+          "retryable": false,
+          "stage": "editorial-quarantine",
+          "message": "Artigo integral de fallback determinístico reprovado pelo gate de qualidade editorial",
+          "recordedAt": "2026-08-22T04:47:18.904Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-20T15:57:05.302Z",
+        "aiReview": {
+          "score": null,
+          "finalScore": null,
+          "finalBlockers": 1,
+          "premiumEditUsed": false,
+          "providers": {
+            "factSheet": "groq",
+            "draft": "gemini",
+            "critique": "gemini",
+            "final": "gemini",
+            "finalAudit": "groq",
+            "deterministicFallback": "grounded-deterministic"
+          },
+          "generatedAt": "2026-08-20T15:57:05.302Z",
+          "contentHash": "sha256:aaab0bc8b4f012240609eeb089456e513cb3854d1f88d741b3dce627de6116e4",
+          "sourceHash": "7a340544a6cede78a625218e568b31b42beea74a5d2a615dcdfd9dd1dfa31e77",
+          "deterministicFullArticleFallbackUsed": true,
+          "deterministicFullArticleFallbackTrigger": "repair-fallback"
+        }
+      },
+      "replacement": {
+        "id": "reserva-limpeza-transmissao-metodo",
+        "title": "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação"
+      },
+      "reason": "[VALIDATION_FAILED] Quarentena: artigo integral de fallback determinístico exige nova redação e revisão independente"
+    },
+    {
+      "recordedAt": "2026-08-25T09:40:22.666Z",
+      "campaignId": "thebiker-rolling-2026-08-21",
+      "replacedItem": {
+        "day": 5,
+        "publishDate": "2026-08-25",
+        "id": "reserva-limpeza-transmissao-metodo",
+        "title": "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação",
+        "summary": "Procedimento técnico baseado em orientações oficiais para remover contaminantes, verificar danos e devolver a corrente ao uso seguro.",
+        "category": "manutencao-ajustes",
+        "freshness": "evergreen",
+        "status": "blocked",
+        "productIds": [
+          "corrente-sram-nx-eagle"
+        ],
+        "heroImage": {
+          "mode": "real-context",
+          "productId": "corrente-sram-nx-eagle",
+          "relationship": "category-example",
+          "rationale": "Fotografia real do catálogo TheBiker usada apenas como exemplo visual da categoria técnica abordada."
+        },
+        "imageAssetIds": [],
+        "blockReason": "[RESEARCH_INSUFFICIENT] Rascunho bloqueado após 2 reparos: Artigo bloqueado por integridade de claims: inferencias tecnicas ausentes dos fatos confirmados: o acumulo de detritos na transmissao e no sistema de frenagem nao apenas compromete a eficiencia da troca de marchas, mas tambem eleva o risco de falhas operacionais em condicoes de uso intenso. | quando essa mistura seca sobre a corrente e os dentes do cassete, ela cria uma pasta que acelera o desgaste por friccao, reduzindo a vida util dos elos e das engrenagens. | a integridade das vedacoes, especialmente nos cubos e no movimento central, e colocada a prova pela pressao da agua da chuva e pela penetracao de pa",
+        "failure": {
+          "code": "RESEARCH_INSUFFICIENT",
+          "retryable": false,
+          "stage": "production",
+          "message": "Rascunho bloqueado após 2 reparos: Artigo bloqueado por integridade de claims: inferencias tecnicas ausentes dos fatos confirmados: o acumulo de detritos na transmissao e no sistema de frenagem nao apenas compromete a eficiencia da troca de marchas, mas tambem eleva o risco de falhas operacionais em condicoes de uso intenso. | quando essa mistura seca sobre a corrente e os dentes do cassete, ela cria uma pasta que acelera o desgaste por friccao, reduzindo a vida util dos elos e das engrenagens. | a integridade das vedacoes, especialmente nos cubos e no movimento central, e colocada a prova pela pressao da agua da chuva e pela penetracao de pa",
+          "recordedAt": "2026-08-25T09:39:30.092Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-25T09:39:30.092Z"
+      },
+      "replacement": {
+        "id": "reserva-scale-940-980-comparativo",
+        "title": "Scott Scale 940 e 980: diferenças verificáveis de quadro, suspensão e componentes"
+      },
+      "reason": "[RESEARCH_INSUFFICIENT] Rascunho bloqueado após 2 reparos: Artigo bloqueado por integridade de claims: inferencias tecnicas ausentes dos fatos confirmados: o acumulo de detritos na transmissao e no sistema de frenagem nao apenas compromete a eficiencia da troca de marchas, mas tambem eleva o risco de falhas operacionais em condicoes de uso intenso. | quando essa mistura seca sobre a corrente e os dentes do cassete, ela cria uma pasta que acelera o desgaste por friccao, reduzindo a vida util dos elos e das engrenagens. | a integridade das vedacoes, especialmente nos cubos e no movimento central, e colocada a prova pela pressao da agua da chuva e pela penetracao de pa"
     }
   ]
 }
