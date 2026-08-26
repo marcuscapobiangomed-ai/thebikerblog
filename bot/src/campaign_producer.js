@@ -69,11 +69,19 @@ export async function runCampaignProducer({ root = defaultRoot, env = process.en
   try {
     let raceEvents = []
     if (item.race) {
-      const raceProgram = RaceProgramSchema.parse(JSON.parse(await fs.readFile(path.join(root, '_data/race-events.json'), 'utf8')))
-      raceEvents = selectRaceEventsForEditorialItem(item, raceProgram)
-      if (item.race.eventIds.length === 0 && raceEvents.length > 0) item.race.eventIds = raceEvents.map((event) => event.id)
-      validateRaceEditorialStructure(campaign, raceProgram)
-      if (raceEvents.length !== item.race.eventIds.length || raceEvents.length === 0) throw new Error('Pauta de corrida sem evento oficial completo no registro editorial')
+      try {
+        const raceProgram = RaceProgramSchema.parse(JSON.parse(await fs.readFile(path.join(root, '_data/race-events.json'), 'utf8')))
+        raceEvents = selectRaceEventsForEditorialItem(item, raceProgram)
+        if (item.race.eventIds.length === 0 && raceEvents.length > 0) item.race.eventIds = raceEvents.map((event) => event.id)
+        validateRaceEditorialStructure(campaign, raceProgram)
+        if (raceEvents.length !== item.race.eventIds.length || raceEvents.length === 0) {
+          console.warn('Pauta de corrida parcialmente validada; continuando com produto')
+          item.race = undefined
+        }
+      } catch (raceError) {
+        console.warn(`Calendário de corridas indisponível: ${raceError.message}; continuando com pauta de produto`)
+        item.race = undefined
+      }
     }
     const knowledge = await knowledgeEvidence(root, item)
     if (item.productIds.length === 0 && knowledge.inferredProductIds.length > 0) item.productIds = knowledge.inferredProductIds
@@ -87,9 +95,13 @@ export async function runCampaignProducer({ root = defaultRoot, env = process.en
     const research = await researcher.research({ item, internalEvidence: knowledge.evidence, raceEvents, today })
     assertResearchGrounding(research, { requireFactReferences: true })
     if (item.race) {
-      if (!Array.isArray(research.sources) || research.sources.length === 0) throw new Error('Pesquisa de corrida sem fontes oficiais rastreáveis')
-      item.race.sourceStatus = 'verified'
-      item.race.sourceVerifiedAt = now.toISOString()
+      if (!Array.isArray(research.sources) || research.sources.length === 0) {
+        console.warn('Pesquisa de corrida sem fontes; limpando dados de corrida')
+        item.race = undefined
+      } else {
+        item.race.sourceStatus = 'verified'
+        item.race.sourceVerifiedAt = now.toISOString()
+      }
     }
     const researchDir = path.join(root, 'content/research/campaign')
     await fs.mkdir(researchDir, { recursive: true })
