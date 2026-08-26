@@ -2,10 +2,9 @@ import fs from 'node:fs/promises'
 import path from 'node:path'
 import crypto from 'node:crypto'
 import { CampaignSchema, publicCampaignSummary } from './campaign.js'
-import { RACE_MONTHLY_TARGETS } from './race-program.js'
 
 const READY_STATUSES = new Set(['researching', 'research-ready', 'drafting', 'validation', 'approved', 'scheduled'])
-const CATEGORY_VALUES = new Set(['manutencao-ajustes', 'engenharia', 'review', 'comparativo', 'componentes', 'lancamentos', 'competicoes'])
+const CATEGORY_VALUES = new Set(['manutencao-ajustes', 'engenharia', 'review', 'comparativo', 'componentes', 'lancamentos'])
 const MONTHLY_PLANNER_REVISION = 3
 
 const CONTINGENCY_TOPIC_TEMPLATES = [
@@ -46,17 +45,6 @@ const CONTINGENCY_TOPIC_TEMPLATES = [
   ['contingencia-stack-reach', 'Stack e reach: como comparar posições sem reduzir geometria a dois números', 'Método de leitura que combina medidas do quadro, componentes e objetivo de uso sem transformar comparação em ajuste pessoal.', 'engenharia'],
   ['contingencia-offset-garfo', 'Offset do garfo e direção: relações geométricas que exigem contexto', 'Explicação documental de medidas e relações, evitando promessas isoladas de estabilidade, agilidade ou desempenho.', 'engenharia'],
 ].map(([id, title, summary, category, productIds = []]) => ({ id, title, summary, category, productIds }))
-
-const RACE_SLOT_TEMPLATES = [
-  { id: 'corridas-pro-previa-principal', title: 'Prévia da principal corrida profissional da semana: percurso, favoritos e pontos técnicos', summary: 'Cobertura profissional vinculada a um evento oficial, com percurso, largadas e transmissão confirmados novamente antes da publicação.', category: 'competicoes', race: { track: 'professional-coverage', format: 'preview', eventIds: [], sourceStatus: 'pending' } },
-  { id: 'corridas-pro-resumo-principal', title: 'Resumo da principal corrida profissional da semana: resultado, tática e impacto na temporada', summary: 'Análise pós-prova baseada em resultado oficial, movimentos decisivos e contexto técnico, sem transformar rumor ou impressão em fato.', category: 'competicoes', race: { track: 'professional-coverage', format: 'recap', eventIds: [], sourceStatus: 'pending' } },
-  { id: 'corridas-pro-radar-semana-1', title: 'Radar profissional de ciclismo: provas, classificações e histórias técnicas da semana', summary: 'Boletim de competições profissionais com eventos e resultados rastreáveis em federações, organizadores e canais oficiais.', category: 'competicoes', race: { track: 'professional-coverage', format: 'weekly-roundup', eventIds: [], sourceStatus: 'pending' } },
-  { id: 'corridas-pro-radar-semana-2', title: 'Segundo radar profissional do mês: calendário, resultados e decisões técnicas em destaque', summary: 'Atualização profissional sem promoção de concorrentes, usando apenas calendário, resultados e documentos oficiais verificados.', category: 'competicoes', race: { track: 'professional-coverage', format: 'weekly-roundup', eventIds: [], sourceStatus: 'pending' } },
-  { id: 'corridas-participar-calendario-1', title: 'Calendário de provas para participar no Brasil: datas, modalidades e inscrições verificadas', summary: 'Agenda para o ciclista encontrar provas, distinguindo evento confirmado, inscrição aberta, prazo encerrado e informação ainda desconhecida.', category: 'competicoes', race: { track: 'participant-calendar', format: 'calendar-roundup', eventIds: [], sourceStatus: 'pending' } },
-  { id: 'corridas-participar-calendario-2', title: 'Atualização do calendário brasileiro de ciclismo: novas provas, mudanças e prazos oficiais', summary: 'Segunda atualização mensal das provas participativas, com mudanças de data, cancelamentos e inscrições checados na fonte oficial.', category: 'competicoes', race: { track: 'participant-calendar', format: 'calendar-roundup', eventIds: [], sourceStatus: 'pending' } },
-  { id: 'corridas-participar-guia-1', title: 'Guia da prova para o ciclista: percurso, categorias, inscrição e logística confirmada', summary: 'Guia de um evento brasileiro escolhido após verificação oficial, com lacunas claramente marcadas quando a organização ainda não publicou dados.', category: 'competicoes', race: { track: 'participant-calendar', format: 'event-guide', eventIds: [], sourceStatus: 'pending' } },
-  { id: 'corridas-participar-guia-2', title: 'Próxima prova no radar: o que confirmar antes de pagar a inscrição e organizar a viagem', summary: 'Checklist aplicado a uma prova oficial, cobrindo regulamento, elegibilidade, inscrição, percurso, segurança e logística sem links presumidos.', category: 'competicoes', race: { track: 'participant-calendar', format: 'event-guide', eventIds: [], sourceStatus: 'pending' } },
-]
 
 function normalize(value) {
   return String(value || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim()

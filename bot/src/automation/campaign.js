@@ -10,17 +10,8 @@ const HeroImageSchema = z.discriminatedUnion('mode', [
     rationale: z.string().min(30).max(300),
   }),
   z.object({ mode: z.literal('conceptual') }),
-  z.object({ mode: z.literal('race-context') }),
 ])
 const HashSchema = z.string().regex(/^sha256:[a-f0-9]{64}$/)
-
-export const RaceEditorialSchema = z.object({
-  track: z.enum(['professional-coverage', 'participant-calendar']),
-  format: z.enum(['preview', 'recap', 'weekly-roundup', 'calendar-roundup', 'event-guide', 'registration-alert']),
-  eventIds: z.array(z.string().regex(/^[a-z0-9][a-z0-9-]{2,99}$/)).default([]),
-  sourceStatus: z.enum(['pending', 'verified', 'stale', 'blocked']).default('pending'),
-  sourceVerifiedAt: z.string().datetime().optional(),
-})
 
 const CampaignItemSchema = z.object({
   day: z.number().int().min(1).max(30),
@@ -28,8 +19,7 @@ const CampaignItemSchema = z.object({
   id: z.string().regex(/^[a-z0-9][a-z0-9-]{2,79}$/),
   title: z.string().min(20).max(140),
   summary: z.string().min(40).max(260),
-  category: z.enum(['manutencao-ajustes', 'engenharia', 'review', 'comparativo', 'componentes', 'lancamentos', 'competicoes']),
-  race: RaceEditorialSchema.optional(),
+  category: z.enum(['manutencao-ajustes', 'engenharia', 'review', 'comparativo', 'componentes', 'lancamentos']),
   freshness: z.enum(['evergreen', 'revalidate-24h', 'event-driven']),
   status: z.enum(['planned', 'researching', 'research-ready', 'drafting', 'validation', 'approved', 'scheduled', 'published', 'blocked', 'replaced']),
   productIds: z.array(z.string()).default([]),
@@ -156,23 +146,6 @@ export const CampaignSchema = z.object({
     if (['exact-product', 'real-context'].includes(item.heroImage.mode) && !item.productIds.includes(item.heroImage.productId)) {
       context.addIssue({ code: 'custom', path: ['items', index, 'heroImage', 'productId'], message: 'produto da capa precisa estar declarado em productIds' })
     }
-    if (item.heroImage.mode === 'race-context' && item.category !== 'competicoes') {
-      context.addIssue({ code: 'custom', path: ['items', index, 'heroImage', 'mode'], message: 'race-context é exclusivo de conteúdo de competições' })
-    }
-    if (item.category !== 'competicoes' && item.race) {
-      context.addIssue({ code: 'custom', path: ['items', index, 'race'], message: 'metadados de corrida só podem existir na categoria competições' })
-    }
-    if (item.race?.track === 'professional-coverage' && !['preview', 'recap', 'weekly-roundup'].includes(item.race.format)) {
-      context.addIssue({ code: 'custom', path: ['items', index, 'race', 'format'], message: 'formato incompatível com cobertura profissional' })
-    }
-    if (item.race?.track === 'participant-calendar' && !['calendar-roundup', 'event-guide', 'registration-alert'].includes(item.race.format)) {
-      context.addIssue({ code: 'custom', path: ['items', index, 'race', 'format'], message: 'formato incompatível com calendário participativo' })
-    }
-    if (item.race && ['research-ready', 'drafting', 'validation', 'approved', 'scheduled', 'published'].includes(item.status)) {
-      if (item.race.sourceStatus !== 'verified') context.addIssue({ code: 'custom', path: ['items', index, 'race', 'sourceStatus'], message: 'pauta de corrida pronta para produção exige fontes verificadas' })
-      if (item.race.eventIds.length === 0) context.addIssue({ code: 'custom', path: ['items', index, 'race', 'eventIds'], message: 'pauta de corrida pronta para produção exige ao menos um evento oficial' })
-      if (!item.race.sourceVerifiedAt) context.addIssue({ code: 'custom', path: ['items', index, 'race', 'sourceVerifiedAt'], message: 'pauta de corrida pronta para produção exige data de verificação' })
-    }
   }
   for (const [index, reserve] of campaign.reserves.entries()) {
     for (const message of editorialBriefQualityErrors(reserve)) {
@@ -185,16 +158,7 @@ export function selectProductionCandidate(campaign) {
   return campaign.items.find((item) => item.status === 'planned') || null
 }
 
-export function racePublicationSourceIsFresh(item, now = new Date(), maximumAgeHours = 24) {
-  if (!item.race) return true
-  if (item.race?.sourceStatus !== 'verified' || !item.race.sourceVerifiedAt || item.race.eventIds.length === 0) return false
-  const verifiedAt = new Date(item.race.sourceVerifiedAt)
-  const ageHours = (now.getTime() - verifiedAt.getTime()) / 3_600_000
-  return Number.isFinite(ageHours) && ageHours >= 0 && ageHours <= maximumAgeHours
-}
-
 export function publicationResearchIsFresh(item, research, now = new Date(), maximumAgeHours = 24) {
-  if (item.race) return racePublicationSourceIsFresh(item, now, maximumAgeHours)
   if (item.freshness === 'evergreen') return true
   const verifiedValue = research?.grounding?.verifiedAt || research?.verified_at || research?.generated_at
   if (!verifiedValue) return false
@@ -203,9 +167,8 @@ export function publicationResearchIsFresh(item, research, now = new Date(), max
   return Number.isFinite(ageHours) && ageHours >= 0 && ageHours <= maximumAgeHours
 }
 
-export function selectPublicationCandidate(campaign, localDate, now = new Date(), raceMaxAgeHours = 24) {
-  const item = campaign.items.find((candidate) => candidate.publishDate === localDate && candidate.status === 'scheduled') || null
-  return item && racePublicationSourceIsFresh(item, now, raceMaxAgeHours) ? item : null
+export function selectPublicationCandidate(campaign, localDate) {
+  return campaign.items.find((candidate) => candidate.publishDate === localDate && candidate.status === 'scheduled') || null
 }
 
 export function publicCampaignSummary(campaign) {
@@ -213,6 +176,6 @@ export function publicCampaignSummary(campaign) {
     campaignId: campaign.id,
     timezone: campaign.timezone,
     publishLocalTime: campaign.publishLocalTime,
-    items: campaign.items.map(({ day, publishDate, title, summary, category, status, race }) => ({ day, publishDate, title, summary, category, status, ...(race ? { race: { track: race.track, format: race.format } } : {}) })),
+    items: campaign.items.map(({ day, publishDate, title, summary, category, status }) => ({ day, publishDate, title, summary, category, status })),
   }
 }
