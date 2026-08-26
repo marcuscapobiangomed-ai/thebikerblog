@@ -202,7 +202,7 @@ const RETRYABLE_STATUS = new Set([408, 409, 425, 429, 500, 502, 503, 504])
 const wait = (milliseconds) => new Promise((resolve) => setTimeout(resolve, milliseconds))
 
 async function fetchGrounded(fetchImpl, url, init, env) {
-  const attempts = Math.max(1, Number(env.AI_HTTP_RETRY_ATTEMPTS || 2))
+  const attempts = Math.max(1, Number(env.AI_HTTP_RETRY_ATTEMPTS || 3))
   const timeoutMs = Math.max(1000, Number(env.AI_HTTP_TIMEOUT_MS || 120000))
   let lastError
   for (let attempt = 1; attempt <= attempts; attempt += 1) {
@@ -215,8 +215,8 @@ async function fetchGrounded(fetchImpl, url, init, env) {
       const retryDelay = Number.isFinite(retryAfter)
         ? Math.min(retryAfter * 1000, 30000)
         : response.status === 429
-          ? Math.max(0, Number(env.GROQ_RETRY_AFTER_DEFAULT_MS || 5000))
-          : 750 * (2 ** (attempt - 1))
+          ? Math.max(0, Number(env.GROQ_RETRY_AFTER_DEFAULT_MS || 15000))
+          : 1000 * (2 ** (attempt - 1))
       await wait(retryDelay)
     } catch (error) {
       lastError = error
@@ -423,20 +423,7 @@ export class GroundedResearcher {
       const outputParseFailed = response.status === 400 && /output_parse_failed|parsing failed/i.test(detail)
       const contextLengthExceeded = response.status === 400 && /context_length_exceeded|reduce the length of the messages or completion/i.test(detail)
       const retryableResearchFailure = outputParseFailed || contextLengthExceeded || [403, 404, 408, 409, 425, 429, 500, 502, 503, 504].includes(response.status)
-      if (retryableResearchFailure && this.env.GEMINI_API_KEY) {
-        try {
-          const gemini = await fetchGeminiGrounded(this.fetch, prompt, this.env)
-          research = gemini.research
-          groundingProvider = 'gemini-google-search'
-          groundingModel = gemini.model
-          groundingQueries = gemini.queries
-        } catch (geminiError) {
-          if (!raceCoverage) {
-            return fallbackResearch(`Groq ${response.status}; ${geminiError.message}`)
-          }
-          throw geminiError
-        }
-      } else if (!raceCoverage && retryableResearchFailure) {
+      if (!raceCoverage && retryableResearchFailure) {
         const reason = outputParseFailed
           ? 'Groq 400 output_parse_failed'
           : contextLengthExceeded
@@ -490,12 +477,6 @@ export class GroundedResearcher {
     try {
       return await verifyCandidate(research, { providerName: groundingProvider, modelName: groundingModel, queries: groundingQueries })
     } catch (primaryError) {
-      if (!raceCoverage) {
-        try {
-          if (!raceCoverage) return fallbackResearch(`Groq sem evidência: ${primaryError.message}; Gemini sem evidência: ${fallbackError.message}`)
-          throw new Error(`Pesquisa bloqueada após verificação em Groq e Gemini: Groq: ${primaryError.message}; Gemini: ${fallbackError.message}`)
-        }
-      }
       if (!raceCoverage) return fallbackResearch(primaryError.message)
       throw new Error(`Pesquisa bloqueada após verificação documental: ${primaryError.message}`)
     }

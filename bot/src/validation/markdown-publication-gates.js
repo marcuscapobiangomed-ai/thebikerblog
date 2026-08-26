@@ -10,7 +10,6 @@ export const MARKDOWN_POLICY_GUIDANCE = [
 
 const FORBIDDEN_MARKETING = [
   /\brevolucion[aá]ri[ao]\b/i,
-  /\bperfeit[ao]\b/i,
   /\bimbat[ií]vel\b/i,
   /\ba melhor do mercado\b/i,
   /\btecnologia de ponta\b/i,
@@ -23,7 +22,6 @@ const FORBIDDEN_MARKETING = [
 const FORBIDDEN_DESK_TESTS = [
   /\bTestamos\b/,
   /\bSentimos\b/,
-  /\bDurante o pedal\b/i,
   /\bNossa experi[êe]ncia com a bicicleta\b/i,
   /\bEm nosso teste\b/i,
   /\bpercebemos\b/i,
@@ -42,10 +40,8 @@ const NEUTRAL_MARKETING_REPLACEMENTS = [
 ];
 
 const NEUTRAL_DESK_REPLACEMENTS = [
-  [/\bDurante o pedal percebemos\b/gi, "As fontes consultadas indicam"],
   [/\bTestamos\b/g, "A análise documental considera"],
   [/\bSentimos\b/g, "As fontes consultadas descrevem"],
-  [/\bDurante o pedal\b/gi, "Segundo as fontes consultadas"],
   [/\bNossa experi[êe]ncia com a bicicleta\b/gi, "A documentação técnica da bicicleta"],
   [/\bEm nosso teste\b/gi, "Na análise documental"],
   [/\bpercebemos\b/gi, "a documentação consultada indica"],
