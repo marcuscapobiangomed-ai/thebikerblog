@@ -2506,6 +2506,101 @@
         "title": "Scott Scale 940 e 980: diferenças verificáveis de quadro, suspensão e componentes"
       },
       "reason": "[RESEARCH_INSUFFICIENT] Rascunho bloqueado após 2 reparos: Artigo bloqueado por integridade de claims: inferencias tecnicas ausentes dos fatos confirmados: a contaminacao por lama nao apenas compromete a eficiencia da troca de marchas, mas tambem acelera a corrosao de componentes metalicos e a degradacao de vedacoes. | alem disso, a umidade residual em areas de dificil acesso, como o movimento central e os cubos, pode comprometer a graxa interna, reduzindo a eficiencia de rolagem e aumentando a resistencia mecanica do sistema. | a pressao excessiva forca a entrada de agua e contaminantes para o interior das vedacoes e rolamentos, causando danos internos irreversivei"
+    },
+    {
+      "recordedAt": "2026-08-27T19:41:54.806Z",
+      "campaignId": "thebiker-rolling-2026-08-21",
+      "replacedItem": {
+        "day": 7,
+        "publishDate": "2026-08-27",
+        "id": "contingencia-scale-980-variantes",
+        "title": "Scott Scale 980 Black e Blue: o que muda entre as duas versões",
+        "summary": "Comparação de quadro, suspensão, transmissão, freios, rodas, pneus, tamanhos e cores das duas configurações.",
+        "category": "comparativo",
+        "freshness": "revalidate-24h",
+        "status": "blocked",
+        "productIds": [
+          "bicicleta-scott-scale-980-black",
+          "bicicleta-scott-scale-980-blue"
+        ],
+        "heroImage": {
+          "mode": "conceptual"
+        },
+        "imageAssetIds": [],
+        "blockReason": "[VALIDATION_FAILED] Quarentena: artigo integral de fallback determinístico exige nova redação e revisão independente",
+        "failure": {
+          "code": "VALIDATION_FAILED",
+          "retryable": false,
+          "stage": "editorial-quarantine",
+          "message": "Artigo integral de fallback determinístico reprovado pelo gate de qualidade editorial",
+          "recordedAt": "2026-08-22T04:47:18.904Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-20T16:13:24.231Z",
+        "aiReview": {
+          "score": null,
+          "finalScore": null,
+          "finalBlockers": 1,
+          "premiumEditUsed": false,
+          "providers": {
+            "factSheet": "groq",
+            "draft": "gemini",
+            "critique": "gemini",
+            "final": "gemini",
+            "finalAudit": "groq",
+            "deterministicFallback": "grounded-deterministic"
+          },
+          "generatedAt": "2026-08-20T16:13:24.231Z",
+          "contentHash": "sha256:b672458f4333737a32bfd184c9e7d805abd474fa447a5793047c198477d06f68",
+          "sourceHash": "d0fcda8896900e9fdf9c1b004d3d0155e24096e0a11ad5e55deb057ca6e5eb79",
+          "deterministicFullArticleFallbackUsed": true,
+          "deterministicFullArticleFallbackTrigger": "repair-fallback"
+        }
+      },
+      "replacement": {
+        "id": "reserva-limpeza-transmissao-metodo",
+        "title": "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação"
+      },
+      "reason": "[VALIDATION_FAILED] Quarentena: artigo integral de fallback determinístico exige nova redação e revisão independente"
+    },
+    {
+      "recordedAt": "2026-08-27T19:42:54.785Z",
+      "campaignId": "thebiker-rolling-2026-08-21",
+      "replacedItem": {
+        "day": 7,
+        "publishDate": "2026-08-27",
+        "id": "reserva-limpeza-transmissao-metodo",
+        "title": "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação",
+        "summary": "Procedimento técnico baseado em orientações oficiais para remover contaminantes, verificar danos e devolver a corrente ao uso seguro.",
+        "category": "manutencao-ajustes",
+        "freshness": "evergreen",
+        "status": "blocked",
+        "productIds": [
+          "corrente-sram-nx-eagle"
+        ],
+        "heroImage": {
+          "mode": "real-context",
+          "productId": "corrente-sram-nx-eagle",
+          "relationship": "category-example",
+          "rationale": "Fotografia real do catálogo TheBiker usada apenas como exemplo visual da categoria técnica abordada."
+        },
+        "imageAssetIds": [],
+        "blockReason": "[VALIDATION_FAILED] Rascunho bloqueado após 2 reparos: Artigo inválido:\ncontext_only_brands: Marcas concorrentes só podem ser mencionadas como contexto factual em cobertura de corridas.",
+        "failure": {
+          "code": "VALIDATION_FAILED",
+          "retryable": false,
+          "stage": "production",
+          "message": "Rascunho bloqueado após 2 reparos: Artigo inválido:\ncontext_only_brands: Marcas concorrentes só podem ser mencionadas como contexto factual em cobertura de corridas.",
+          "recordedAt": "2026-08-27T19:41:55.475Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-27T19:41:55.475Z"
+      },
+      "replacement": {
+        "id": "reserva-scale-940-980-comparativo",
+        "title": "Scott Scale 940 e 980: diferenças verificáveis de quadro, suspensão e componentes"
+      },
+      "reason": "[VALIDATION_FAILED] Rascunho bloqueado após 2 reparos: Artigo inválido:\ncontext_only_brands: Marcas concorrentes só podem ser mencionadas como contexto factual em cobertura de corridas."
     }
   ]
 }
