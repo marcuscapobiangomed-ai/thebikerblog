@@ -7,7 +7,8 @@ slug: "scott-addict-50-e-addict-rc-20-duas-propostas-de-estrada-confrontadas-pel
 date: 2026-08-17
 last_modified_at: 2026-08-14
 author: "Equipe TheBiker"
-reviewed_by: "TheBiker AI Editorial Gate"
+reviewed_by: ""
+ai_reviewed_by: "TheBiker AI Editorial Gate"
 content_type: "comparativo"
 editorial_format: "full-article-v1"
 audience_segment: "core_technical_cyclists"

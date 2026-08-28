@@ -427,15 +427,15 @@
           "finalAudit": "deepseek"
         },
         "generatedAt": "2026-08-13T23:00:54.384Z",
-        "contentHash": "sha256:8d75bf1e41e13eb30e4b552d8964819d583a084f0d16254d08674343a3834408",
+        "contentHash": "sha256:e42f31dda6f52b2c726b5317d48ae10013cf3656580a0a782c083505daa7c03c",
         "sourceHash": "b7cdc873206fe1cac1095928ae1e38c0ab17fc6d62151d2b58c92ddcea955566"
       },
       "editorialReceipt": {
         "schemaVersion": 1,
         "policyVersion": "thebiker-editorial-2026-08-v2",
         "origin": "pipeline",
-        "reviewedContentHash": "sha256:8d75bf1e41e13eb30e4b552d8964819d583a084f0d16254d08674343a3834408",
-        "scheduledContentHash": "sha256:b64f3e8d4e80e2b5a2c995035fba8103f1e67a2ceb19b5585da9c2a589aea384",
+        "reviewedContentHash": "sha256:e42f31dda6f52b2c726b5317d48ae10013cf3656580a0a782c083505daa7c03c",
+        "scheduledContentHash": "sha256:e42f31dda6f52b2c726b5317d48ae10013cf3656580a0a782c083505daa7c03c",
         "researchHash": "sha256:019c51c576d59525cec42608bd24af25ee1db82f0580bac34a3d982bc552b8b4",
         "sourceHash": "b7cdc873206fe1cac1095928ae1e38c0ab17fc6d62151d2b58c92ddcea955566",
         "finalScore": 95,
@@ -500,7 +500,7 @@
           "finalAudit": "deepseek"
         },
         "generatedAt": "2026-08-13T23:27:35.504Z",
-        "contentHash": "sha256:5a3059d86a24243dc9352b6b73453e083023baa623ae672585ed42ddbc381282",
+        "contentHash": "sha256:95ded2712b5fad5a8c8a1c34e90d478c8bccd285b25a9b1241096cd4ac358e7d",
         "sourceHash": "f10a5adab76326ba1c73b14dce4fc85a95919c8bfe292393a56da272a2aadfc5",
         "deterministicFullArticleFallbackUsed": true
       },
@@ -508,8 +508,8 @@
         "schemaVersion": 1,
         "policyVersion": "thebiker-editorial-2026-08-v2",
         "origin": "pipeline",
-        "reviewedContentHash": "sha256:5a3059d86a24243dc9352b6b73453e083023baa623ae672585ed42ddbc381282",
-        "scheduledContentHash": "sha256:1149e34ae580eb74dd332109e8501766c7ed8a988cb91ee406079ab89eae9cb7",
+        "reviewedContentHash": "sha256:95ded2712b5fad5a8c8a1c34e90d478c8bccd285b25a9b1241096cd4ac358e7d",
+        "scheduledContentHash": "sha256:95ded2712b5fad5a8c8a1c34e90d478c8bccd285b25a9b1241096cd4ac358e7d",
         "researchHash": "sha256:1c2af4ac4210c9d015b002f13b6891bf50bfb0b2811e3fad0c686c1e60cfff29",
         "sourceHash": "f10a5adab76326ba1c73b14dce4fc85a95919c8bfe292393a56da272a2aadfc5",
         "finalScore": 95,
@@ -576,7 +576,7 @@
           "deterministicFallback": "grounded-deterministic"
         },
         "generatedAt": "2026-08-14T00:02:50.727Z",
-        "contentHash": "sha256:a4398a0dc8b6dced7fcb71b70b6147dd18c9478d8f46c50bc09c2181cbd3b669",
+        "contentHash": "sha256:36c235f320887b4ef2ab1f2efe84b6c1a4d94d86706a85c379dd037eacd43678",
         "sourceHash": "a04ca97266905c7dcf3010828dfd42af3db9264e51d5e915dd54534b7cca7bf0",
         "deterministicFullArticleFallbackUsed": true,
         "deterministicFullArticleFallbackTrigger": "repair-fallback"
@@ -585,8 +585,8 @@
         "schemaVersion": 1,
         "policyVersion": "thebiker-editorial-2026-08-v2",
         "origin": "pipeline",
-        "reviewedContentHash": "sha256:a4398a0dc8b6dced7fcb71b70b6147dd18c9478d8f46c50bc09c2181cbd3b669",
-        "scheduledContentHash": "sha256:99fdde5769b79aaf6b35138a8a18660ebb8f19ce1b7c96be54a87e6e6db62ab8",
+        "reviewedContentHash": "sha256:36c235f320887b4ef2ab1f2efe84b6c1a4d94d86706a85c379dd037eacd43678",
+        "scheduledContentHash": "sha256:36c235f320887b4ef2ab1f2efe84b6c1a4d94d86706a85c379dd037eacd43678",
         "researchHash": "sha256:e3771f98eaa500c4154e65463b9211e44c02e939e9725912539de98711d0a8b2",
         "sourceHash": "a04ca97266905c7dcf3010828dfd42af3db9264e51d5e915dd54534b7cca7bf0",
         "finalScore": 95,
@@ -653,7 +653,7 @@
           "deterministicFallback": "grounded-deterministic"
         },
         "generatedAt": "2026-08-14T00:02:50.727Z",
-        "contentHash": "sha256:fe3f4e2a122f7a2cf1887cb53c84ecb3f8c6d7b41408e8b36d1490f1df8ef8ac",
+        "contentHash": "sha256:3ac42a8f197b663658cdd2178f714f41b60cdac1f0a6a0ac7cfdf1d64652251b",
         "sourceHash": "2b9a948c27b4b174e50aa1034bbc18ef6a9f5305abeb2629a12a7bf5c223bd6e",
         "deterministicFullArticleFallbackUsed": true,
         "deterministicFullArticleFallbackTrigger": "repair-fallback"
@@ -662,8 +662,8 @@
         "schemaVersion": 1,
         "policyVersion": "thebiker-editorial-2026-08-v2",
         "origin": "pipeline",
-        "reviewedContentHash": "sha256:fe3f4e2a122f7a2cf1887cb53c84ecb3f8c6d7b41408e8b36d1490f1df8ef8ac",
-        "scheduledContentHash": "sha256:338c4517133a3456f7b92a507525f98561dd42dc116c2b38665a711416989220",
+        "reviewedContentHash": "sha256:3ac42a8f197b663658cdd2178f714f41b60cdac1f0a6a0ac7cfdf1d64652251b",
+        "scheduledContentHash": "sha256:3ac42a8f197b663658cdd2178f714f41b60cdac1f0a6a0ac7cfdf1d64652251b",
         "researchHash": "sha256:da412fb7e39e6013eeec3ef7047e6052f65030b1ee5f4e6940ff7007b9b2ce42",
         "sourceHash": "2b9a948c27b4b174e50aa1034bbc18ef6a9f5305abeb2629a12a7bf5c223bd6e",
         "finalScore": 95,
@@ -724,7 +724,7 @@
           "deterministicFallback": "grounded-deterministic"
         },
         "generatedAt": "2026-08-14T00:31:54.902Z",
-        "contentHash": "sha256:f99766a8cd84d950bc5728490d6ebc9010c3a019f92c5372d6a1f28d5c73259a",
+        "contentHash": "sha256:819634cb1253ba8901034e72e93f41a56971ccf737bc3d04d6dbc338b56ca175",
         "deterministicFullArticleFallbackUsed": true,
         "deterministicFullArticleFallbackTrigger": "pipeline-failure"
       },
@@ -732,8 +732,8 @@
         "schemaVersion": 1,
         "policyVersion": "thebiker-editorial-2026-08-v2",
         "origin": "pipeline",
-        "reviewedContentHash": "sha256:f99766a8cd84d950bc5728490d6ebc9010c3a019f92c5372d6a1f28d5c73259a",
-        "scheduledContentHash": "sha256:a3ad1cb958a78f4ef099d0dfd088bc08a8b84c8d557e96adf84ffcd8b79f7a75",
+        "reviewedContentHash": "sha256:819634cb1253ba8901034e72e93f41a56971ccf737bc3d04d6dbc338b56ca175",
+        "scheduledContentHash": "sha256:819634cb1253ba8901034e72e93f41a56971ccf737bc3d04d6dbc338b56ca175",
         "researchHash": "sha256:3e741f12f0c7a8c67fcf095286da812c71cacfacb65c3d29ce4332281a0f9a73",
         "sourceHash": null,
         "finalScore": 95,
@@ -799,7 +799,7 @@
           "deterministicFallback": "grounded-deterministic"
         },
         "generatedAt": "2026-08-14T01:04:09.766Z",
-        "contentHash": "sha256:a76b7f6d58383fd0e327a80d3bdaf7a486d7369d4c1771423da119440858b25a",
+        "contentHash": "sha256:0e6910785a8fad07b6fc89333818298f520c7ace5b03e9757bf1c48f48e924ab",
         "sourceHash": "1420d0717fbe9e521e40d23e55dd397ab19931ed8058d5229f5f861f66d9c0cf",
         "deterministicFullArticleFallbackUsed": true,
         "deterministicFullArticleFallbackTrigger": "repair-fallback"
@@ -808,8 +808,8 @@
         "schemaVersion": 1,
         "policyVersion": "thebiker-editorial-2026-08-v2",
         "origin": "pipeline",
-        "reviewedContentHash": "sha256:a76b7f6d58383fd0e327a80d3bdaf7a486d7369d4c1771423da119440858b25a",
-        "scheduledContentHash": "sha256:1528d4bcd0def10c85f4bd0754e02a3fcd4530f2cb2fb5c16ce4a2066b5bddcf",
+        "reviewedContentHash": "sha256:0e6910785a8fad07b6fc89333818298f520c7ace5b03e9757bf1c48f48e924ab",
+        "scheduledContentHash": "sha256:0e6910785a8fad07b6fc89333818298f520c7ace5b03e9757bf1c48f48e924ab",
         "researchHash": "sha256:9cb978ecbb89ff65c760e7cc960497a609a89ff460617906597b06d0868e7aac",
         "sourceHash": "1420d0717fbe9e521e40d23e55dd397ab19931ed8058d5229f5f861f66d9c0cf",
         "finalScore": 95,
@@ -879,7 +879,7 @@
           "deterministicFallback": "grounded-deterministic"
         },
         "generatedAt": "2026-08-14T02:05:14.901Z",
-        "contentHash": "sha256:741f9a5d7189b1da60f778ec6145c9356bf2a6e02a659861f9a8688dbadcbf9c",
+        "contentHash": "sha256:3e5341aafc5631b30ab8b9118e8a98a734488582381e86b037e295449f2be4c1",
         "deterministicFullArticleFallbackUsed": true,
         "deterministicFullArticleFallbackTrigger": "cache-first"
       },
@@ -887,8 +887,8 @@
         "schemaVersion": 1,
         "policyVersion": "thebiker-editorial-2026-08-v2",
         "origin": "pipeline",
-        "reviewedContentHash": "sha256:741f9a5d7189b1da60f778ec6145c9356bf2a6e02a659861f9a8688dbadcbf9c",
-        "scheduledContentHash": "sha256:9d56727d0de620cacd4976cec5dc90073b09e3aacc00d10571b17126824d91db",
+        "reviewedContentHash": "sha256:3e5341aafc5631b30ab8b9118e8a98a734488582381e86b037e295449f2be4c1",
+        "scheduledContentHash": "sha256:3e5341aafc5631b30ab8b9118e8a98a734488582381e86b037e295449f2be4c1",
         "researchHash": "sha256:8ac300dd183f44fefcc70f1374d5767151cdbad5e76514429d7299f76a097030",
         "sourceHash": null,
         "finalScore": 95,

@@ -114,7 +114,7 @@ O workflow de produção utiliza apenas o `GITHUB_TOKEN` efêmero com leitura de
 9. A issue semanal permanece como relatório. A issue mensal é reconhecida por `[INTEL] monthly-` e renova automaticamente a campanha rolante.
 10. O renovador preserva itens futuros já em produção ou agendados, remove dias publicados, substitui bloqueios e completa exatamente 30 datas consecutivas.
 11. Briefings `refresh` não viram artigos duplicados: são gravados em `_data/editorial-refresh-queue.json` para o fluxo de atualização do acervo.
-12. A geração final continua no pipeline GitHub/IA protegido; revisão humana passa a ser exigida somente para exceções bloqueadas.
+12. A geração final continua no pipeline GitHub/IA protegido; exceções bloqueadas retornam automaticamente para correção, nova pesquisa ou substituição da pauta.
 
 ## Revisão mensal obrigatória
 

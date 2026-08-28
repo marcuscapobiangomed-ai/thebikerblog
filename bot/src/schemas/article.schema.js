@@ -88,14 +88,31 @@ const ImagePlanSchema = z.object({
   aiGeneratedAllowed: z.boolean().default(false),
 });
 
+const SectionClaimSchema = z.object({
+  statement: z.string().min(10, "Claim must be explicit"),
+  source_ids: z.array(z.string().min(1)).min(1, "Claim needs at least one source"),
+  evidence_quote: z.string().min(12, "Evidence quote is too short"),
+  confidence: z.enum(["high", "medium", "limited"]).default("high"),
+});
+
+const InternalLinkSchema = z.object({
+  url: z.string().min(1, "Internal URL is required"),
+  anchor: z.string().min(3, "Anchor text is too short"),
+  reason: z.string().min(10, "Explain why the link helps the reader"),
+});
+
 const SectionSchema = z.object({
   heading: z.string().min(1),
   content: z.string().min(1),
+  target_question: z.string().min(10).optional(),
+  claims: z.array(SectionClaimSchema).default([]),
+  internal_links: z.array(InternalLinkSchema).max(3).default([]),
 });
 
 const GENERIC_SECTION_HEADING = /^(?:\d+[.)-]?\s*)?(?:introdu[cç][aã]o|desenvolvimento|conclus[aã]o|considera[cç][oõ]es finais|resumo(?: inicial)?|contexto|an[aá]lise|aviso de metodologia|fontes|refer[eê]ncias|fontes e (?:metodologia|refer[eê]ncias))\s*[.!?:-]*$/iu;
 
 const SourceSchema = z.object({
+  id: z.string().min(1).optional(),
   name: z.string().min(1, "source.name é obrigatório"),
   type: z.string().min(1, "source.type é obrigatório"),
   url: z.string().url().optional().or(z.literal("")),
@@ -108,7 +125,7 @@ const FaqItemSchema = z.object({
 });
 
 export const ArticleSchema = z.object({
-  editorial_format: z.literal("full-article-v1").default("full-article-v1"),
+  editorial_format: z.enum(["full-article-v1", "full-article-v2"]).default("full-article-v1"),
   title: z.string().min(10, "Título precisa ter ao menos 10 caracteres").max(120, "Título muito longo"),
   description: z.string().min(100, "Description precisa ter ao menos 100 caracteres").max(200, "Description muito longa"),
   direct_answer: z.string().min(80, "Resposta direta precisa ter ao menos 80 caracteres").max(420, "Resposta direta muito longa"),
@@ -192,7 +209,52 @@ export const ArticleSchema = z.object({
         message: "Use um intertítulo específico e atraente; rótulos genéricos como Introdução, Conclusão, Resumo e Análise não são aceitos.",
       });
     }
+
+    if (article.editorial_format === "full-article-v2") {
+      if (!section.target_question || section.target_question.trim().length < 10) {
+        ctx.addIssue({
+          code: "custom",
+          path: ["sections", index, "target_question"],
+          message: "Every v2 section must declare the question or decision it answers.",
+        });
+      }
+
+      const isMethodology = /fontes|referências|metodologia|limitações/i.test(section.heading);
+      if (!isMethodology && section.claims.length === 0) {
+        ctx.addIssue({
+          code: "custom",
+          path: ["sections", index, "claims"],
+          message: "Factual v2 sections must preserve at least one evidenced claim.",
+        });
+      }
+    }
   });
+
+  if (article.editorial_format === "full-article-v2") {
+    const sourceIds = new Set(article.sources.map((source) => source.id).filter(Boolean));
+    article.sources.forEach((source, index) => {
+      if (!source.id) {
+        ctx.addIssue({
+          code: "custom",
+          path: ["sources", index, "id"],
+          message: "Every v2 source must have a stable id.",
+        });
+      }
+    });
+    article.sections.forEach((section, sectionIndex) => {
+      section.claims.forEach((claim, claimIndex) => {
+        claim.source_ids.forEach((sourceId, sourceIndex) => {
+          if (!sourceIds.has(sourceId)) {
+            ctx.addIssue({
+              code: "custom",
+              path: ["sections", sectionIndex, "claims", claimIndex, "source_ids", sourceIndex],
+              message: `Unknown article source id: ${sourceId}`,
+            });
+          }
+        });
+      });
+    });
+  }
 
   article.imagePlan.forEach((image, index) => {
     if (

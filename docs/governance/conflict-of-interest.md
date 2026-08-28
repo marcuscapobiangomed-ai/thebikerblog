@@ -12,7 +12,7 @@ O blog é propriedade e canal oficial da TheBiker. A pauta prioriza as marcas, c
 - Não incluir links, preços ou CTA de concorrentes.
 - Limitar concorrentes a menções factuais indispensáveis em cobertura esportiva.
 - Não inventar testes, dados, disponibilidade ou superioridade técnica.
-- Manter revisão humana e fontes rastreáveis.
+- Manter gate automatizado, recibo de publicação e fontes rastreáveis.
 
 ## Princípio de persuasão
 

@@ -16,20 +16,18 @@
 ✅ Validação automática (research, claims, images, frontmatter)
 ✅ Contrato AEO/GEO com resposta direta, fontes, FAQ visível e JSON-LD estático
         ↓
-🔀 Pull Request (branch content/<slug>)
+🤖 Gate editorial automatizado (score, bloqueadores, recibo e citabilidade)
         ↓
-👀 Revisão humana (checklist no PR)
-        ↓
-🚀 Merge → publicação
+🚀 Agendamento → publicação automática
 ```
 
 ### Transparência
 
-- Os artigos são produzidos **com auxílio de inteligência artificial** e revisados editorialmente
-- **Nenhum conteúdo é publicado sem revisão humana**
+- Os artigos são produzidos e validados **por um fluxo de inteligência artificial com gates determinísticos**
+- **Nenhum conteúdo é publicado sem passar pelo gate editorial automatizado**
 - **Análises documentais** são explicitamente identificadas como tal — não são testes pessoais
 - **Especificações técnicas exigem fonte** (fabricante, distribuidor, loja)
-- Todo artigo possui `status: draft` até ser aprovado e alterado para `status: published`
+- Todo artigo possui `status: draft` até o gate emitir recibo e o publicador alterar para `status: published`
 
 ### Estrutura do conteúdo
 
@@ -44,7 +42,7 @@ content/
 └── research/                # Fichas de pesquisa (JSON validado)
 
 _posts/
-└── drafts/                  # Rascunhos aguardando revisão
+└── drafts/                  # Rascunhos aguardando validação automática
 
 assets/img/posts/<slug>/
 ├── image-manifest.json      # Metadados das imagens
@@ -62,7 +60,7 @@ Comandos históricos do adaptador:
 |---|---|
 | `/novo <tema>` | Registrar novo tema e iniciar pipeline |
 | `/status <slug>` | Verificar progresso |
-| `/aprovar <slug>` | Aprovar para publicação |
+| `/aprovar <slug>` | Consulta informativa; não libera publicação manual |
 | `/cancelar <slug>` | Cancelar tema |
 | `/ajuda` | Mostrar ajuda |
 

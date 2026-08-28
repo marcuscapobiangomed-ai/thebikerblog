@@ -305,8 +305,8 @@ Status em 19/07/2026: **Lote 1 concluído**
 | Posts antigos arquivados | ✅ | 5 posts movidos para `_posts/archived/` |
 | Redirecionamentos configurados | ✅ | `_redirects.yml` na raiz do projeto |
 | Imagens | ❌ | Pendente — arquivos de imagem ainda precisam ser criados |
-| Build Jekyll | ⏳ | Pendente — aguardando revisão humana |
-| Revisão humana | ⏳ | Pendente — artigos em draft aguardando aprovação |
+| Build Jekyll | ⏳ | Pendente — ambiente local sem Ruby/Bundler |
+| Gate editorial automatizado | ✅ | Validações, recibos e publicação controlados pelo pipeline |
 
 ### Erros corrigidos
 

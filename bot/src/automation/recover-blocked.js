@@ -72,6 +72,27 @@ const RECOVERY_RESERVES = [
   { id: 'reserva-addict-rc20-ficha-oficial', title: 'Scott Addict RC 20: o que a ficha oficial permite afirmar', summary: 'Resumo tecnico documental do modelo, sem extrapolar componentes, medidas ou desempenho alem do que esta rastreado.', category: 'review', productIds: ['bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9'], heroImage: { mode: 'exact-product', productId: 'bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9' } },
 ]
 
+const AUTONOMOUS_RESERVE_TEMPLATES = [
+  { id: 'reserva-autonoma-inspecao-transmissao', title: 'Inspecao documental da transmissao: sinais, limites e sequencia segura', summary: 'Roteiro tecnico de inspecao baseado em fontes rastreaveis, com limites explicitos para evitar diagnostico por tentativa e erro.', category: 'manutencao-ajustes', productIds: ['corrente-sram-nx-eagle'], heroImage: { mode: 'exact-product', productId: 'corrente-sram-nx-eagle' } },
+  { id: 'reserva-autonoma-ficha-componentes', title: 'Ficha documental de componentes: como conferir dados antes da manutencao', summary: 'Guia de conferencia de componentes e fontes oficiais antes de afirmar compatibilidade, medida ou procedimento.', category: 'componentes', productIds: ['corrente-sram-nx-eagle'], heroImage: { mode: 'exact-product', productId: 'corrente-sram-nx-eagle' } },
+  { id: 'reserva-autonoma-cuidados-pos-uso', title: 'Cuidados documentais depois do uso: limpeza, secagem e inspecao', summary: 'Procedimento de manutencao baseado em orientacao rastreavel, com separacao clara entre fato confirmado e limite de analise.', category: 'manutencao-ajustes', productIds: ['corrente-sram-nx-eagle'], heroImage: { mode: 'exact-product', productId: 'corrente-sram-nx-eagle' } },
+]
+
+function ensureReserveFloor(input, minimum = 3) {
+  const campaign = structuredClone(input)
+  campaign.reserves = Array.isArray(campaign.reserves) ? campaign.reserves : []
+  const usedIds = new Set(campaign.items.map((item) => item.id))
+  const knownIds = new Set(campaign.reserves.map((reserve) => reserve.id))
+  const candidates = [...RECOVERY_RESERVES, ...AUTONOMOUS_RESERVE_TEMPLATES]
+  for (const candidate of candidates) {
+    if (campaign.reserves.length >= minimum) break
+    if (usedIds.has(candidate.id) || knownIds.has(candidate.id)) continue
+    campaign.reserves.push(structuredClone(candidate))
+    knownIds.add(candidate.id)
+  }
+  return campaign
+}
+
 function localDate(now, timezone) {
   return new Intl.DateTimeFormat('en-CA', { timeZone: timezone, year: 'numeric', month: '2-digit', day: '2-digit' }).format(now)
 }
@@ -79,7 +100,9 @@ function localDate(now, timezone) {
 function reserveToItem(reserve, blocked) {
   const visual = realContextPolicy(reserve)
   const productIds = [...new Set(reserve.productIds?.length ? reserve.productIds : visual ? [visual.productId] : [])]
-  const heroImage = reserve.heroImage || visual?.heroImage || { mode: 'conceptual' }
+  const heroImage = reserve.heroImage || visual?.heroImage || (productIds[0]
+    ? { mode: 'exact-product', productId: productIds[0] }
+    : { mode: 'conceptual' })
   return {
     day: blocked.day,
     publishDate: blocked.publishDate,
@@ -140,7 +163,7 @@ export function recoverBlockedCampaign(campaignInput, {
   maximumResearchAttempts = 8,
   finalizationDraftErrors = [],
 } = {}) {
-  const campaign = CampaignSchema.parse(structuredClone(campaignInput))
+  const campaign = CampaignSchema.parse(ensureReserveFloor(campaignInput))
   const today = localDate(now, campaign.timezone)
   const blocked = campaign.items.find((item) => item.status === 'blocked' && item.publishDate >= today)
   if (!blocked) return { campaign, result: { status: 'idle' }, exception: null }
@@ -274,17 +297,17 @@ export function recoverBlockedCampaign(campaignInput, {
   const exception = { recordedAt: now.toISOString(), campaignId: campaign.id, replacedItem: blocked, replacement: { id: reserve.id, title: reserve.title }, reason }
   campaign.items[blocked.day - 1] = reserveToItem(reserve, blocked)
   campaign.reserves = campaign.reserves.filter((item) => item.id !== reserve.id)
-  for (const fallback of RECOVERY_RESERVES) {
-    if (!campaign.items.some((item) => item.id === fallback.id) && !campaign.reserves.some((item) => item.id === fallback.id)) campaign.reserves.push(fallback)
-    if (campaign.reserves.length >= 5) break
-  }
+  const replenished = ensureReserveFloor(campaign, 5)
+  campaign.reserves = replenished.reserves
   return { campaign: CampaignSchema.parse(campaign), result: { status: 'replaced', itemId: blocked.id, replacementId: reserve.id, publishDate: blocked.publishDate }, exception }
 }
 
 export async function recoverBlockedCampaignFiles({ root, now = new Date(), maximumResearchAttempts = 8 } = {}) {
   const campaignPath = path.join(root, 'bot/editorial-campaign.json')
   const campaign = JSON.parse(await fs.readFile(campaignPath, 'utf8'))
-  const parsedCampaign = CampaignSchema.parse(campaign)
+  const normalizedCampaign = ensureReserveFloor(campaign)
+  const reserveFloorChanged = normalizedCampaign.reserves.length !== (campaign.reserves || []).length
+  const parsedCampaign = CampaignSchema.parse(normalizedCampaign)
   const today = localDate(now, parsedCampaign.timezone)
   const blocked = parsedCampaign.items.find((item) => item.status === 'blocked' && item.publishDate >= today)
   let finalizationDraftErrors = []
@@ -304,7 +327,13 @@ export async function recoverBlockedCampaignFiles({ root, now = new Date(), maxi
     }
   }
   const recovered = recoverBlockedCampaign(parsedCampaign, { now, finalizationDraftErrors, maximumResearchAttempts })
-  if (recovered.result.status === 'idle' || recovered.result.status === 'blocked') return recovered.result
+  if (recovered.result.status === 'idle' || recovered.result.status === 'blocked') {
+    if (reserveFloorChanged) {
+      await fs.writeFile(campaignPath, JSON.stringify(recovered.campaign, null, 2) + '\n')
+      await fs.writeFile(path.join(root, '_data/editorial-calendar.json'), JSON.stringify(publicCampaignSummary(recovered.campaign), null, 2) + '\n')
+    }
+    return recovered.result
+  }
   await fs.writeFile(campaignPath, JSON.stringify(recovered.campaign, null, 2) + '\n')
   await fs.writeFile(path.join(root, '_data/editorial-calendar.json'), JSON.stringify(publicCampaignSummary(recovered.campaign), null, 2) + '\n')
   if (recovered.exception) {

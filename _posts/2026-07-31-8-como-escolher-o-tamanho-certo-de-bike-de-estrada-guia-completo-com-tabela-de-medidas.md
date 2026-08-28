@@ -6,7 +6,7 @@ description: "Guia definitivo para escolher o tamanho certo de bike de estrada. 
 date: 2026-07-31
 last_modified_at: 2026-07-19
 author: "Equipe The Biker Blog"
-reviewed_by: "Equipe The Biker Blog"
+reviewed_by: ""
 content_type: "guia-tecnico"
 audience_segment: "core_technical_cyclists"
 audience_intent: "solve_problem"

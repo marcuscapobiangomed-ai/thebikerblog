@@ -6,7 +6,7 @@ function text(value, fallback = "") {
 
 /**
  * Produz apenas um plano de produção. O manifesto publicável é criado depois
- * que os arquivos, a origem, a licença e a aprovação humana existem.
+ * que os arquivos, a origem, a licença e a aprovação automatizada existem.
  */
 export function buildImageProductionPlan(article) {
   const requested = Array.isArray(article?.imagePlan) ? article.imagePlan : [];

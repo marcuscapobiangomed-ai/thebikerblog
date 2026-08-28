@@ -50,7 +50,7 @@
 - [ ] Imagens: artigos novos têm paths de frontmatter mas arquivos reais não foram criados
 - [ ] Preços Brasil: Scott Addict e Cervélo Caledonia ainda sem preços oficiais no Brasil — revisar em 3 meses
 - [ ] Redirecionamentos: adicionar rotas em `_redirects.yml` para os 5 posts antigos
-- [ ] Revisão editorial: artigos estão em `editorial_status: draft` — aguardando revisão final antes da publicação
+- [ ] Gate editorial automatizado: artigos permanecem em `editorial_status: draft` até recibo, score e bloqueadores serem validados
 
 ## Verificação
 

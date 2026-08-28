@@ -6,7 +6,7 @@ description: "Comparativo completo entre quadros de carbono e alumínio em 2026:
 date: 2026-07-28
 last_modified_at: 2026-07-19
 author: "Equipe The Biker Blog"
-reviewed_by: "Equipe The Biker Blog"
+reviewed_by: ""
 content_type: "comparativo"
 audience_segment: "core_technical_cyclists"
 audience_intent: "compare_products"

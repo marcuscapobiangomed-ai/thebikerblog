@@ -7,7 +7,8 @@ slug: "scott-scale-940-e-980-diferencas-verificaveis-de-quadro-suspensao-e-compo
 date: 2026-08-16
 last_modified_at: 2026-08-14
 author: "Equipe TheBiker"
-reviewed_by: "TheBiker AI Editorial Gate"
+reviewed_by: ""
+ai_reviewed_by: "TheBiker AI Editorial Gate"
 content_type: "comparativo"
 editorial_format: "full-article-v1"
 audience_segment: "core_technical_cyclists"

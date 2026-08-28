@@ -7,7 +7,8 @@ slug: "limpeza-da-transmissao-depois-de-chuva-e-lama-metodo-inspecao-e-lubrifica
 date: 2026-08-14
 last_modified_at: 2026-08-13
 author: "Equipe TheBiker"
-reviewed_by: "TheBiker AI Editorial Gate"
+reviewed_by: ""
+ai_reviewed_by: "TheBiker AI Editorial Gate"
 content_type: "guia-tecnico"
 editorial_format: "full-article-v1"
 audience_segment: "core_technical_cyclists"
@@ -47,7 +48,7 @@ image_credit: "TheBiker Shop"
 image_license: "Uso editorial no blog oficial TheBiker"
 affiliate_links: false
 editorial_scope: "portfolio"
-promoted_brands: []
+promoted_brands: ["TheBiker"]
 context_only_brands: []
 portfolio_evidence_url: "https://thebikershop.com.br/componentes/"
 portfolio_verified_at: "2026-08-13"

@@ -7,7 +7,7 @@ description: "História, modelos 2026 e guia completo da Cervélo: Caledonia, So
 date: 2026-07-02
 last_modified_at: 2026-07-19
 author: "Equipe The Biker Blog"
-reviewed_by: "Equipe The Biker Blog"
+reviewed_by: ""
 content_type: "review"
 audience_segment: "core_technical_cyclists"
 audience_intent: "purchase_consideration"

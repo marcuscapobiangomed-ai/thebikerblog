@@ -44,7 +44,10 @@ export function normalizeCategoryExamplePromotion(content, item) {
   const parsed = matter(content);
   if (parsed.data.editorial_scope !== "portfolio") return content;
   let normalized = setField(content, "brand", '""');
-  normalized = setField(normalized, "promoted_brands", "[]");
+  // The product in a category-example image is contextual, not a promoted
+  // brand. Keep the mandatory portfolio signal on TheBiker itself so the
+  // article remains valid after it leaves _posts/drafts.
+  normalized = setField(normalized, "promoted_brands", '["TheBiker"]');
   return normalized;
 }
 
@@ -147,8 +150,8 @@ async function finalizeInWorkspace({ root, now, imageProducer }) {
       "image_subject_id",
       cover.manifest.factualSubject === "exact-product" ? `"${cover.manifest.matchedProduct.id}"` : null,
     );
-    content = setField(content, "reviewed_by", '"TheBiker AI Editorial Gate"');
-    content = setField(content, "editorial_status", '"reviewed"');
+    content = setOptionalField(content, "ai_reviewed_by", '"TheBiker AI Editorial Gate"');
+    content = setField(content, "editorial_status", '"draft"');
     content = setField(content, "status", '"scheduled"');
     const article = matter(content).data;
     assertImageArticleConsistency({ article, manifest: cover.manifest, campaignItem: item, catalog });

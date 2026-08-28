@@ -77,7 +77,7 @@ function inlineTags(content) {
 export function markdownPublicationErrors(content) {
   const errors = [];
   const editorialFormat = frontmatterValue(content, "editorial_format").replace(/^['"]|['"]$/g, "");
-  if (editorialFormat && editorialFormat !== "full-article-v1") {
+  if (editorialFormat && !["full-article-v1", "full-article-v2"].includes(editorialFormat)) {
     errors.push(`formato editorial não publicável: ${editorialFormat}`);
   }
   const tags = inlineTags(content);

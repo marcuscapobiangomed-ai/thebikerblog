@@ -7,7 +7,8 @@ slug: "rolamentos-sob-carga-diagnostico"
 date: 2026-08-09
 last_modified_at: 2026-08-13
 author: "Equipe TheBiker"
-reviewed_by: "TheBiker AI Editorial Gate"
+reviewed_by: ""
+ai_reviewed_by: "TheBiker AI Editorial Gate"
 content_type: "guia-tecnico"
 audience_segment: "core_technical_cyclists"
 audience_intent: "solve_problem"
@@ -109,6 +110,8 @@ Para cubos de roda, remova a roda da bicicleta e segure o eixo firmemente com um
 Para o movimento central, o teste mais revelador é pedalar em pé com força, alternando a carga entre os pedais. Um rangido ou estalo rítmico, especialmente ao aplicar torque máximo, sugere folga ou contaminação nos rolamentos. Outro método é, com a bicicleta parada, segurar o pedaleiro e tentar movê-lo lateralmente; qualquer folga além da flexão normal do quadro é suspeita.
 
 Na caixa de direção, acione o freio dianteiro e balance a bicicleta para frente e para trás; uma folga será sentida como um pequeno estalo ou movimento no avanço. Para isolar o problema, repita o teste com a roda dianteira travada e girando o guidão; se o estalo persistir, a folga está na caixa de direção, não nos cubos. Em todos os casos, a chave é replicar as forças reais de pilotagem, pois rolamentos desgastados frequentemente se comportam de maneira diferente sob carga estática e dinâmica.
+
+Leia também: [Câmbio eletrônico sob carga: ajuste e diagnóstico do Shimano Di2](/2026/08/cambio-eletronico-ajuste-diagnostico/) trata sintomas de transmissão; [alinhamento de pinça e rotor](/2026/08/alinhamento-pinca-rotores/) completa o núcleo de diagnósticos mecânicos.
 
 ## Contaminação: O Inimigo Silencioso que Antecipa o Desgaste
 

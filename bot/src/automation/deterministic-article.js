@@ -18,6 +18,7 @@ function factFor(facts, key) {
 
 function sourceRows(research, today) {
   return (Array.isArray(research?.sources) ? research.sources : []).map((source, index) => ({
+    id: String(source.id || `source-${index + 1}`),
     name: String(source.name || `Fonte oficial ${index + 1}`),
     type: String(source.type || 'official-website'),
     url: String(source.url || ''),
@@ -276,6 +277,25 @@ export function buildDeterministicGroundedArticle({ topic, researchData, content
     heading: headings[index],
     content: maintenance ? sectionContentLegacy(block) : sectionContent(block, index),
   }));
+  const sourceIds = new Set(sources.map((source) => source.id));
+  const evidenceContractReady = facts.length > 0
+    && facts.every((fact) => String(fact?.evidence_quote || '').trim().length >= 12
+      && Array.isArray(fact?.source_ids)
+      && fact.source_ids.some((sourceId) => sourceIds.has(String(sourceId))));
+  if (evidenceContractReady) {
+    sections.forEach((section, index) => {
+      const fact = facts[index % facts.length];
+      const sourceId = fact.source_ids.find((candidate) => sourceIds.has(String(candidate)));
+      section.target_question = `O que esta seção confirma sobre ${title}?`;
+      section.claims = [{
+        statement: factText(fact),
+        source_ids: [String(sourceId)],
+        evidence_quote: String(fact.evidence_quote).trim(),
+        confidence: 'high',
+      }];
+      section.internal_links = [];
+    });
+  }
   const description = 'Método documental para limpar a transmissão após chuva e lama, inspecionar freios e reconhecer limites antes de voltar a pedalar.';
   const directAnswer = 'Use apenas o limpador documentado, enxágue e seque a transmissão, evite jato direto, confira pastilhas e rotores e interrompa o uso se houver dano, vazamento ou funcionamento irregular.';
   const articleDescription = maintenance
@@ -297,7 +317,7 @@ export function buildDeterministicGroundedArticle({ topic, researchData, content
     ? 'Como este artigo foi produzido: análise documental baseada em orientações oficiais e trechos rastreáveis. A equipe não realizou teste presencial.'
     : 'Como este artigo foi produzido: leitura documental de fontes oficiais e registros rastreáveis. A equipe não realizou teste presencial.';
   return {
-    editorial_format: 'full-article-v1',
+    editorial_format: evidenceContractReady ? 'full-article-v2' : 'full-article-v1',
     title: title.slice(0, 120),
     description: articleDescription,
     direct_answer: articleDirectAnswer,

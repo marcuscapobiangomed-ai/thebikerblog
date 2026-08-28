@@ -106,7 +106,7 @@ Post 21 listava modelos que não correspondiam a produtos reais disponíveis no 
 - [x] Reescrever guia até R$ 10.000
 - [ ] Criar imagens com licença (pendente)
 - [x] Configurar redirecionamentos
-- [ ] Submeter PR de auditoria (após revisão humana)
+- [ ] Submeter relatório de auditoria após o gate editorial automatizado
 
 ### Lote 2 — ✅ Concluído em 19/07/2026
 - [x] Pesquisar specs oficiais Scott Addict 2026 (endurance + RC)

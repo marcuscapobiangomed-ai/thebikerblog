@@ -59,7 +59,7 @@
   },
 
   "reviewStatus": {
-    "pending": { "label": "Pendente", "description": "Aguardando revisão" },
+    "pending": { "label": "Pendente", "description": "Aguardando validação automática" },
     "verified": { "label": "Verificado", "description": "Dados conferidos contra fontes oficiais" },
     "needs-review": { "label": "Necessita revisão", "description": "Divergência encontrada, precisa verificação" }
   },

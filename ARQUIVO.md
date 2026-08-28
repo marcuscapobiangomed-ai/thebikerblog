@@ -127,7 +127,7 @@ node scripts/generate-pages.js
 
 ## Regras de segurança
 
-1. **Nada publicado sem PR** — push direto na main bloqueado
+1. **Nada publicado sem gates editoriais** — publicação direta sem recibo bloqueada
 2. **Nada sem validação** — CI falha se schemas ou frontmatter estiverem inválidos
 3. **Nenhum token em URL** — todos via header Authorization
 4. **Nenhuma execução automática** — cron desativado

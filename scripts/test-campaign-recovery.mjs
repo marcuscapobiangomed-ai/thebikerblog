@@ -170,6 +170,19 @@ assert.notEqual(exactReplacementItem.id, exhaustedExactItem.id)
 assert.notEqual(exactReplacementItem.heroImage.productId, exhaustedExactItem.heroImage.productId,
   'a reserva não pode reutilizar o produto cujo inventário visual foi esgotado')
 
+const depletedReservePool = structuredClone(finalization)
+depletedReservePool.reserves = depletedReservePool.reserves.slice(0, 1)
+const depletedReserveItem = depletedReservePool.items.find((item) => item.status === 'published' && item.postPath && item.aiReview?.contentHash)
+depletedReserveItem.status = 'blocked'
+delete depletedReserveItem.publishedAt
+depletedReserveItem.blockReason = 'ValidaÃ§Ã£o final: imagem documental indisponÃ­vel'
+const repairedReservePool = recoverBlockedCampaign(depletedReservePool, { now: new Date('2026-08-07T12:00:00Z') })
+assert.ok(repairedReservePool.campaign.reserves.length >= 3, 'a recuperaÃ§Ã£o deve reconstruir o piso mÃ­nimo de reservas')
+const repairedReserveItem = repairedReservePool.campaign.items[depletedReserveItem.day - 1]
+if (repairedReserveItem.productIds.length > 0) {
+  assert.notEqual(repairedReserveItem.heroImage.mode, 'conceptual', 'reserva com produto deve receber polÃ­tica visual executÃ¡vel')
+}
+
 const deterministicReviewCampaign = structuredClone(campaignFixture)
 for (const item of deterministicReviewCampaign.items) if (item.status === 'blocked') { item.status = 'planned'; delete item.blockReason; delete item.failure }
 const deterministicReviewItem = deterministicReviewCampaign.items.find((item) => item.status === 'published' && item.publishDate >= '2026-08-13' && item.postPath && item.aiReview?.contentHash)
@@ -311,6 +324,20 @@ Este produto é imbatível.
   assert.equal(fileRecovery.status, 'replaced')
   const persistedCampaign = JSON.parse(await fs.readFile(path.join(recoveryRoot, 'bot/editorial-campaign.json'), 'utf8'))
   assert.notEqual(persistedCampaign.items[invalidDraft.day - 1].id, invalidDraft.id)
+
+  const depletedState = structuredClone(campaignFixture)
+  for (const item of depletedState.items) {
+    if (item.status !== 'blocked') continue
+    item.status = 'planned'
+    delete item.blockReason
+    delete item.failure
+  }
+  depletedState.reserves = depletedState.reserves.slice(0, 1)
+  await fs.writeFile(path.join(recoveryRoot, 'bot/editorial-campaign.json'), `${JSON.stringify(depletedState, null, 2)}\n`)
+  const normalizedState = await recoverBlockedCampaignFiles({ root: recoveryRoot, now: new Date('2026-08-07T12:00:00Z') })
+  assert.equal(normalizedState.status, 'idle')
+  const repairedPersistedCampaign = JSON.parse(await fs.readFile(path.join(recoveryRoot, 'bot/editorial-campaign.json'), 'utf8'))
+  assert.ok(repairedPersistedCampaign.reserves.length >= 3, 'a rotina de arquivos deve persistir o piso de reservas antes da validaÃ§Ã£o')
 } finally {
   await fs.rm(recoveryRoot, { recursive: true, force: true })
 }

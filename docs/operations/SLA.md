@@ -12,7 +12,7 @@
 | Responder parceiro comercial | Até 1 dia útil |
 | Responder usuário | Até 2 dias úteis |
 | Cadastrar novo produto | Até 5 dias úteis |
-| Aprovar imagem | Até 48 horas úteis |
+| Validar imagem no gate | Na mesma execução |
 | Onboarding de parceiro | Até 10 dias úteis |
 | Correção P2 | Até 5 dias úteis |
 | Correção P3 | Próxima sprint |

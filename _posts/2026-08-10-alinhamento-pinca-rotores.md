@@ -7,7 +7,8 @@ slug: "alinhamento-pinca-rotores"
 date: 2026-08-10
 last_modified_at: 2026-08-13
 author: "Equipe TheBiker"
-reviewed_by: "TheBiker AI Editorial Gate"
+reviewed_by: ""
+ai_reviewed_by: "TheBiker AI Editorial Gate"
 content_type: "guia-tecnico"
 audience_segment: "core_technical_cyclists"
 audience_intent: "solve_problem"
@@ -121,6 +122,8 @@ Um rotor empenado produz um contato intermitente, um “toc-toc” cíclico que 
 A ferramenta para a tarefa é um garfo de alinhamento de rotor. Identifique o ponto exato do empeno e, com o garfo, faça uma leve pressão no sentido contrário à deformação. A chave é a sutileza: pequenas correções, verificando o progresso a cada tentativa. Tentar desempenar um rotor com uma chave ajustável ou alicate é um erro que pode criar uma dobra irreversível, inutilizando o disco. Em rotores de construção mais robusta, como os Shimano RT-CL900 de 160 mm da Scott Addict RC Pró Di2, o aço tratado exige um toque firme, mas controlado.
 
 Se o empeno for severo ou o rotor já apresentar desgaste significativo na pista de frenagem, a substituição é o caminho mais seguro. Um rotor excessivamente desgastado, com espessura abaixo do mínimo especificado (geralmente 1,5 mm), é um risco à segurança, pois pode falhar sob altas temperaturas. Ao instalar um rotor novo, limpe sua superfície com álcool isopropílico para remover qualquer óleo protetor de fábrica e realize o procedimento de assentamento das pastilhas.
+
+Leia também: [Rolamentos sob carga: diagnóstico de folga e contaminação](/2026/08/reserva-rolamentos-diagnostico/) ajuda a diferenciar ruído, resistência e folga antes de desmontar o conjunto.
 
 ## Contaminação: O Inimigo Silencioso da Potência
 

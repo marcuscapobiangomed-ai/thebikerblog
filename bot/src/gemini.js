@@ -345,6 +345,7 @@ export class AIProvider {
     const neutralize = (value) => neutralizeMarkdownPolicyPhrases(value, { deskResearch: !requestedHandsOn });
 
     next.title = neutralize(this._sanitizeHtml(next.title));
+    next.editorial_format = next.editorial_format === "full-article-v2" ? "full-article-v2" : "full-article-v1";
     next.description = truncateAtWordBoundary(neutralize(this._sanitizeHtml(next.description)), 200);
     next.direct_answer = truncateAtWordBoundary(neutralize(this._sanitizeHtml(next.direct_answer)), 420);
     next.slug = this._sanitizeHtml(next.slug);
@@ -390,6 +391,7 @@ export class AIProvider {
     if (!next.tags.includes("ciclismo")) next.tags.unshift("ciclismo");
 
     next.sources = normalizeList(next.sources).map((source) => ({
+      ...(String(source.id || "").trim() ? { id: this._sanitizeHtml(source.id) } : {}),
       name: this._sanitizeHtml(source.name || ""),
       type: this._sanitizeHtml(source.type || "manufacturer"),
       url: this._sanitizeHtml(source.url || ""),
@@ -415,7 +417,26 @@ export class AIProvider {
       if (!heading) {
         heading = truncateAtWordBoundary(`Critério técnico ${index + 1} — ${next.title}`, 100);
       }
-      return { heading, content };
+      const claims = normalizeList(section.claims).map((claim) => ({
+        statement: neutralize(this._sanitizeHtml(claim.statement || "")).trim(),
+        source_ids: normalizeList(claim.source_ids).map((id) => this._sanitizeHtml(id).trim()).filter(Boolean),
+        evidence_quote: this._sanitizeHtml(claim.evidence_quote || "").trim(),
+        confidence: ["high", "medium", "limited"].includes(claim.confidence) ? claim.confidence : "high",
+      })).filter((claim) => claim.statement && claim.source_ids.length > 0 && claim.evidence_quote);
+      const internal_links = normalizeList(section.internal_links).map((link) => ({
+        url: this._sanitizeHtml(link.url || "").trim(),
+        anchor: neutralize(this._sanitizeHtml(link.anchor || "")).trim(),
+        reason: neutralize(this._sanitizeHtml(link.reason || "")).trim(),
+      })).filter((link) => /^\/(?!\/)/.test(link.url) && link.anchor && link.reason).slice(0, 3);
+      return {
+        heading,
+        content,
+        ...(String(section.target_question || "").trim()
+          ? { target_question: truncateAtWordBoundary(neutralize(this._sanitizeHtml(section.target_question)), 180) }
+          : {}),
+        claims,
+        internal_links,
+      };
     });
 
     next.imagePlan = normalizeList(next.imagePlan).map((item) => ({

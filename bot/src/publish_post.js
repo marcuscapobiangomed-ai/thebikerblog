@@ -15,6 +15,7 @@ import matter from "gray-matter";
 import { validateImageManifestV2 } from "./validation/image-manifest-v2.js";
 import { assertImageArticleConsistency } from "./validation/image-article-consistency.js";
 import { linkTheBikerProducts, loadTheBikerLinkData } from "./editorial/product-linker.js";
+import { assertAutomatedReviewer } from "./validation/editorial-receipt.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -53,8 +54,10 @@ function main() {
       console.error("❌ Publicação bloqueada: editorial_status precisa ser approved.");
       process.exit(1);
     }
-    if (!String(parsed.data.reviewed_by || "").trim()) {
-      console.error("❌ Publicação bloqueada: reviewed_by precisa identificar o revisor humano.");
+    try {
+      assertAutomatedReviewer(parsed.data);
+    } catch (error) {
+      console.error(`❌ Publicação bloqueada: ${error.message}`);
       process.exit(1);
     }
     if (parsed.data.image_manifest_version !== 2) {

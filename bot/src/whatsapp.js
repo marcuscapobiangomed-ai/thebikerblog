@@ -97,7 +97,7 @@ export class WhatsAppBot {
       pendingTopics.set(number, {
         topic,
         status: "research-pending",
-        steps: { research: false, draft: false, images: false, review: false, published: false },
+        steps: { research: false, draft: false, images: false, automatedGate: false, published: false },
       });
       await reply(
         `📝 *Tema registrado:* ${topic}\n\n` +
@@ -106,7 +106,7 @@ export class WhatsAppBot {
         `🟡 Pesquisa pendente\n` +
         `⚪ Rascunho\n` +
         `⚪ Imagens\n` +
-        `⚪ Revisão\n` +
+        `⚪ Gate automático\n` +
         `⚪ Publicação\n\n` +
         `Use /status ${topic.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "")} para acompanhar.`
       );
@@ -124,7 +124,7 @@ export class WhatsAppBot {
 
     if (body.startsWith("/aprovar ")) {
       const slug = body.slice(9).trim();
-      await reply(`✅ *Aprovado!* Faça o merge do PR de \`${slug}\` no GitHub para publicar.`);
+      await reply(`ℹ️ A aprovação manual foi desativada. *${slug || "O artigo"}* só será publicado quando o gate editorial automatizado emitir recibo, score suficiente e zero bloqueadores.`);
       return;
     }
 
@@ -141,14 +141,14 @@ export class WhatsAppBot {
         "🤖 *Comandos do The Biker Blog Bot:*\n\n" +
         `/novo <tema> — Registrar novo tema\n` +
         `/status <slug> — Ver status do artigo\n` +
-        `/aprovar <slug> — Aprovar para publicação\n` +
+        `/aprovar <slug> — Consultar a política; não libera publicação manual\n` +
         `/cancelar <slug> — Cancelar tema\n` +
         `/ajuda — Mostrar esta mensagem`
       );
       return;
     }
 
-    // Mensagem não reconhecida — ignorar (não publica mais automaticamente)
+    // Mensagem não reconhecida — não aciona publicação nem altera o gate
     console.log(`ℹ️  Mensagem ignorada (sem comando): "${body.substring(0, 60)}..."`);
   }
 

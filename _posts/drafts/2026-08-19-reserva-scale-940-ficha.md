@@ -7,7 +7,8 @@ slug: "scott-scale-940-o-que-a-ficha-atual-confirma-sobre-quadro-suspensao-e-tra
 date: 2026-08-19
 last_modified_at: 2026-08-14
 author: "Equipe TheBiker"
-reviewed_by: "TheBiker AI Editorial Gate"
+reviewed_by: ""
+ai_reviewed_by: "TheBiker AI Editorial Gate"
 content_type: "review"
 editorial_format: "full-article-v1"
 audience_segment: "core_technical_cyclists"

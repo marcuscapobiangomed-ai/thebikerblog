@@ -106,6 +106,18 @@ function compactArticleForAudit(article) {
       index: index + 1,
       heading: truncateForAudit(section?.heading, 180),
       content: truncateForAudit(section?.content, 1400),
+      target_question: truncateForAudit(section?.target_question, 220),
+      claims: (Array.isArray(section?.claims) ? section.claims : []).slice(0, 8).map((claim) => ({
+        statement: truncateForAudit(claim?.statement, 360),
+        source_ids: Array.isArray(claim?.source_ids) ? claim.source_ids.slice(0, 8) : [],
+        evidence_quote: truncateForAudit(claim?.evidence_quote, 260),
+        confidence: claim?.confidence,
+      })),
+      internal_links: (Array.isArray(section?.internal_links) ? section.internal_links : []).slice(0, 3).map((link) => ({
+        url: truncateForAudit(link?.url, 300),
+        anchor: truncateForAudit(link?.anchor, 120),
+        reason: truncateForAudit(link?.reason, 220),
+      })),
     })),
     faq: faq.slice(0, 5).map((item) => ({
       question: truncateForAudit(item?.question, 220),

@@ -7,7 +7,8 @@ slug: "review-addict-rc-20"
 date: 2026-08-12
 last_modified_at: 2026-08-13
 author: "Equipe TheBiker"
-reviewed_by: "TheBiker AI Editorial Gate"
+reviewed_by: ""
+ai_reviewed_by: "TheBiker AI Editorial Gate"
 content_type: "review"
 audience_segment: "core_technical_cyclists"
 audience_intent: "purchase_consideration"
@@ -110,6 +111,8 @@ As rodas Syncros Capital 1.0 40 Disc têm perfil de 40 mm, um meio-termo entre a
 **Preço no Brasil:** R$ 67.999,00 (pré-venda na TheBiker, verificado em 04/08/2026).
 
 Fontes: página oficial Scott e loja TheBiker. A ficha confirma que a RC 20 utiliza o mesmo quadro da RC Pró, mas com componentes de segunda linha. O peso declarado de 7,3 kg é competitivo para uma bike com Ultegra Di2 e rodas de 40 mm, embora não tenhamos o peso real verificado. A especificação dos pneus Grand Prix TR sugere que as rodas são compatíveis com tubeless, já que o modelo TR é específico para uso sem câmara.
+
+Leia também: [HMF ou HMX na engenharia dos quadros Scott](/2026/08/hmp-hmx-carbono-scott/) ajuda a separar o que é material declarado do que exigiria medição própria.
 
 ## Addict RC vs. Addict endurance: duas famílias, dois propósitos
 

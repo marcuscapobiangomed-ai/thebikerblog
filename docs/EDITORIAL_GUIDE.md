@@ -138,5 +138,5 @@ O blog deve declarar que é o canal editorial oficial da TheBiker e que selecion
 - [ ] Não há experiência prática inventada.
 - [ ] O texto tem profundidade adequada ao público avançado.
 - [ ] A conclusão explica para quem o produto faz sentido.
-- [ ] A revisão humana foi concluída.
+- [ ] O gate automatizado concluiu sem bloqueadores e o recibo editorial foi emitido.
 - [ ] Em corrida, o evento existe no registro, a fonte oficial foi revista nas últimas 24 horas e a trilha/formato estão corretos.

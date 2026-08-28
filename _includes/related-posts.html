@@ -1,5 +1,21 @@
-{% if page.tags %}
-  {% assign related = site.posts | where_exp: "post", "post.status != 'draft'" | where_exp: "post", "post.url != page.url" | where_exp: "post", "post.tags contains page.tags.first" | limit: 2 %}
+{% if page.tags or page.category or page.brand %}
+  {% assign candidates = site.posts | where_exp: "post", "post.status != 'draft'" | where_exp: "post", "post.url != page.url" %}
+  {% assign topical_tag = "" %}
+  {% for tag in page.tags %}
+    {% unless tag == "ciclismo" or tag == "blog" %}
+      {% if topical_tag == "" %}{% assign topical_tag = tag %}{% endif %}
+    {% endunless %}
+  {% endfor %}
+  {% assign related = candidates | where_exp: "post", "post.brand == page.brand" %}
+  {% if page.brand == nil or page.brand == "" or related.size < 2 %}
+    {% assign category_related = candidates | where_exp: "post", "post.category == page.category" %}
+    {% assign related = related | concat: category_related %}
+  {% endif %}
+  {% if related.size < 2 and topical_tag != "" %}
+    {% assign topical_related = candidates | where_exp: "post", "post.tags contains topical_tag" %}
+    {% assign related = related | concat: topical_related %}
+  {% endif %}
+  {% assign related = related | uniq | limit: 2 %}
   {% if related.size > 0 %}
   <section class="related-posts">
     <h3 class="related-title">Veja Também</h3>

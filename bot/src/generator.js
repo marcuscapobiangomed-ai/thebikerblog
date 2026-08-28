@@ -6,6 +6,12 @@ import { validateArticle } from "./schemas/article.schema.js";
 import { getCoverPreset } from "./image-presets.js";
 
 const escapeYaml = (s) => (s || "").replace(/"/g, '\\"');
+const escapeHtml = (s) => String(s ?? "")
+  .replace(/&/g, "&amp;")
+  .replace(/</g, "&lt;")
+  .replace(/>/g, "&gt;")
+  .replace(/"/g, "&quot;")
+  .replace(/'/g, "&#39;");
 
 function yamlValue(value) {
   if (value === null || value === undefined || value === "") return '""';
@@ -19,6 +25,33 @@ function yamlList(items) {
 
 function normalizeSources(sources = []) {
   return Array.isArray(sources) ? sources : [];
+}
+
+function renderSectionEvidence(section, sources) {
+  const claims = Array.isArray(section.claims) ? section.claims : [];
+  const internalLinks = (Array.isArray(section.internal_links) ? section.internal_links : [])
+    .filter((link) => /^\/(?!\/)/.test(String(link.url || "")));
+  if (claims.length === 0 && internalLinks.length === 0) return "";
+
+  const sourceById = new Map(sources.filter((source) => source.id).map((source) => [source.id, source]));
+  const evidenceItems = claims.map((claim) => {
+    const source = sourceById.get(claim.source_ids?.[0]);
+    if (!source) return "";
+    const sourceLabel = source.url
+      ? `<a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(source.name)}</a>`
+      : escapeHtml(source.name);
+    return `<li><span>${sourceLabel}</span> — <q>${escapeHtml(claim.evidence_quote)}</q></li>`;
+  }).filter(Boolean);
+  const linkItems = internalLinks.map((link) => (
+    `<li><a href="${escapeHtml(link.url)}">${escapeHtml(link.anchor)}</a> — ${escapeHtml(link.reason)}</li>`
+  ));
+
+  return [
+    '<aside class="section-evidence" aria-label="Base documental da seção">',
+    evidenceItems.length > 0 ? '<p><strong>Base documental:</strong></p><ul>' + evidenceItems.join("") + "</ul>" : "",
+    linkItems.length > 0 ? '<p><strong>Próximo passo:</strong></p><ul>' + linkItems.join("") + "</ul>" : "",
+    "</aside>",
+  ].filter(Boolean).join("\n");
 }
 
 export function generateMarkdown(article) {
@@ -106,7 +139,8 @@ export function generateMarkdown(article) {
     `status: "draft"`,
     "sources:",
     ...sources.map((source) => [
-      `  - name: "${escapeYaml(source.name)}"`,
+      `  -${source.id ? ` id: "${escapeYaml(source.id)}"` : ""}`,
+      `    name: "${escapeYaml(source.name)}"`,
       `    type: "${escapeYaml(source.type)}"`,
       `    url: "${escapeYaml(source.url || "")}"`,
       `    accessed_at: "${escapeYaml(source.accessed_at)}"`,
@@ -118,7 +152,7 @@ export function generateMarkdown(article) {
   let body = `${methodologyNotice}\n\n`;
 
   for (const section of data.sections) {
-    body += `## ${section.heading}\n\n${section.content}\n\n`;
+    body += `## ${section.heading}\n\n${section.content}\n\n${renderSectionEvidence(section, sources)}\n\n`;
   }
 
   if (!body.match(/##\s*(Fontes|Fontes e metodologia|Referências|De onde vêm os dados)/i)) {
@@ -130,7 +164,7 @@ export function generateMarkdown(article) {
   }
 
   if (data.claimsRequiringReview.length > 0) {
-    body += "<!-- Pontos que precisam de revisão humana:\n";
+    body += "<!-- Pontos que precisam de correção antes da publicação:\n";
     for (const claim of data.claimsRequiringReview) {
       body += `  - ${claim}\n`;
     }

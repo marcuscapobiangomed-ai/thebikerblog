@@ -41,6 +41,9 @@ jobs:
       - run: npm ci
       - run: npm ci
         working-directory: bot
+      - name: Reconciliar estado editorial antes dos gates
+        run: npm run campaign:recover
+        working-directory: bot
       - name: Revalidar disponibilidade do catálogo TheBiker
         run: npm run catalog:revalidate
       - name: Preparar derivados e validar baseline antes de publicar

@@ -990,6 +990,21 @@ body.menu-open { overflow: hidden; }
 }
 
 /* ── Card Autor ───────────────────────────────────────────── */
+.section-evidence {
+  margin: 18px 0 28px;
+  padding: 12px 16px;
+  border-left: 3px solid var(--accent);
+  background: var(--bg-card);
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+.section-evidence p { margin: 0 0 6px; }
+.section-evidence ul { margin: 0 0 8px 18px; }
+.section-evidence li { margin: 4px 0; }
+.section-evidence q { color: var(--text); }
+.section-evidence a { color: var(--text); text-decoration: underline; }
+
 .author-card {
   display: flex;
   align-items: center;

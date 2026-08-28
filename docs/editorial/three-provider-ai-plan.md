@@ -4,13 +4,13 @@ Data de referência: 4 de agosto de 2026.
 
 ## Objetivo
 
-Usar as cotas gratuitas de Gemini e Groq para volume, preparação e controle; reservar o saldo pago do DeepSeek para síntese e edição final de alto valor. Nenhum provedor publica diretamente. Todo resultado passa por validações determinísticas e permanece como rascunho até aprovação.
+Usar as cotas gratuitas de Gemini e Groq para volume, preparação e controle; reservar o saldo pago do DeepSeek para síntese e edição final de alto valor. Nenhum provedor publica diretamente. Todo resultado passa por validações determinísticas e pelo gate editorial automatizado antes do agendamento.
 
 ## Papel de cada provedor
 
 | Provedor | Papel principal | Quando não usar |
 |---|---|---|
-| Groq | Extração rápida de fatos, normalização em JSON, criação de pauta, crítica objetiva e reparo de formato | Como autoridade factual ou redator final sem revisão |
+| Groq | Extração rápida de fatos, normalização em JSON, criação de pauta, crítica objetiva e reparo de formato | Como autoridade factual ou redator final sem validação documental |
 | Gemini | Primeiro rascunho longo, organização do material, alternativas de intertítulos e revisão de cobertura | Para inventar pesquisa ausente ou publicar diretamente |
 | DeepSeek | Edição final dos artigos prioritários, resolução de conflitos técnicos e reescrita orientada pelas críticas | Em tarefas mecânicas, tentativas ilimitadas ou como fallback automático de qualquer erro |
 
@@ -93,7 +93,7 @@ Antes de salvar:
 7. extensão e cobertura compatíveis com o formato;
 8. status final ainda definido como rascunho.
 9. plano visual compatível com o tipo editorial;
-10. imagem publicável com manifesto v2 e aprovação humana.
+10. imagem publicável com manifesto v2 e aprovação pelo gate automatizado.
 
 ## Política de custo
 
@@ -161,7 +161,7 @@ Falha factual, promoção de concorrente ou ausência de evidência de portfóli
 - Telemetria JSONL sem chaves: implementada.
 - Gates de extensão, fontes, seções e intertítulos: implementados.
 - Rascunhos com `published: false`: implementado.
-- Promoção condicionada a `editorial_status: approved` e `reviewed_by`: implementada.
+- Promoção condicionada a `editorial_status: approved` e `ai_reviewed_by`: implementada.
 - Batch legado sem fichas: bloqueado no modo de três provedores.
 
 Diagnóstico sem chamadas:

@@ -6,7 +6,7 @@ import { validateImageManifestV2 } from "./validation/image-manifest-v2.js";
 import { assertMarkdownPublicationGates } from "./validation/markdown-publication-gates.js";
 import matter from "gray-matter";
 import { assertImageArticleConsistency } from "./validation/image-article-consistency.js";
-import { assertScheduledReceipt, hashEditorialText } from "./validation/editorial-receipt.js";
+import { assertAutomatedReviewer, assertScheduledReceipt, hashEditorialText } from "./validation/editorial-receipt.js";
 import { createStagedWorkspace, discardStagedWorkspace, promoteStagedPaths } from "./automation/file-transaction.js";
 import { assertResearchEvidenceContract, assertResearchGrounding } from "./validation/research-grounding.js";
 import { assertArticleResearchGrounding } from "./validation/article-research-grounding.js";
@@ -80,6 +80,7 @@ async function publishInWorkspace({ now, dryRun, root }) {
   if (!sourcePath.startsWith(draftsRoot)) throw new Error(`postPath inseguro: ${item.postPath}`);
   let content = await fs.readFile(sourcePath, "utf8");
   const research = JSON.parse(await fs.readFile(path.join(root, "content/research/campaign", `${item.id}.json`), "utf8"));
+  assertAutomatedReviewer(matter(content).data);
   assertResearchGrounding(research, { requireFactReferences: true });
   assertResearchEvidenceContract(research);
   assertArticleResearchGrounding({ content, research });
