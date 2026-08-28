@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 2,
+  "status": "approved",
+  "editorialUse": "publishable",
+  "assetType": "official-product-photo",
+  "factualSubject": "exact-product",
+  "editorialScope": "portfolio",
+  "purpose": "Ilustrar Checklist de montagem do cockpit: fita, comandos e torque com produto real do catálogo TheBiker.",
+  "alt": "Fita de Guidão Supacaz Super Sticky - Preta em fotografia oficial de TheBiker Shop",
+  "caption": "Fita de Guidão Supacaz Super Sticky - Preta, em fotografia oficial de TheBiker Shop.",
+  "credit": "TheBiker Shop",
+  "containsText": false,
+  "aiGenerated": false,
+  "assetId": "thebiker-fita-de-guidao-supacaz-super-sticky-preta-980e62f540",
+  "sha256": "980e62f5409d4fd5da3d348cf7124be713b136e460b803fafcad375e883d1328",
+  "perceptualHash": "1111111111111111100100010000000101100101000001010001111100111111",
+  "preserveFullProduct": true,
+  "outputFormat": "webp",
+  "qualityTier": "standard",
+  "matchedProduct": {
+    "id": "fita-de-guidao-supacaz-super-sticky-preta",
+    "name": "Fita de Guidão Supacaz Super Sticky - Preta",
+    "sku": "BT-01",
+    "matchLevel": "exact-id"
+  },
+  "depictedBrands": [
+    "Supacaz"
+  ],
+  "depictedProducts": [
+    "Fita de Guidão Supacaz Super Sticky - Preta"
+  ],
+  "focalPoint": {
+    "x": 0.5,
+    "y": 0.5
+  },
+  "source": {
+    "type": "thebiker",
+    "name": "TheBiker Shop",
+    "url": "https://thebikershop.com.br/produtos/fita-de-guidao-supacaz-super-sticky-preta/",
+    "fileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/e777e55c-2c06-11ee-8a9e-2a9ed02269b6-167065f63039231bda17340106504947-1024-1024.webp",
+    "localFile": "source.webp",
+    "obtainedAt": "2026-08-17",
+    "license": "Uso editorial no blog oficial TheBiker",
+    "licenseEvidence": "Diretriz editorial registrada pelo responsável do blog oficial TheBiker.",
+    "rightsPolicyId": "thebiker-official-editorial-v1"
+  },
+  "files": {
+    "hero": {
+      "file": "hero-1600.webp",
+      "width": 1600,
+      "height": 900,
+      "maxKB": 300
+    },
+    "mobile": {
+      "file": "hero-800.webp",
+      "width": 800,
+      "height": 450,
+      "maxKB": 160
+    },
+    "card": {
+      "file": "card-640.webp",
+      "width": 640,
+      "height": 360,
+      "maxKB": 100
+    }
+  },
+  "approval": {
+    "reviewedBy": "TheBiker deterministic image gate",
+    "approvedAt": "2026-08-17",
+    "method": "automated-editorial-gate",
+    "checks": [
+      "fonte-oficial",
+      "resolucao-padrao-declarada",
+      "webp-otimizado",
+      "direitos",
+      "produto-relacionado",
+      "sha256",
+      "hash-perceptual",
+      "sem-concorrente"
+    ]
+  },
+  "composition": {
+    "strategy": "trim-contain-safe-area",
+    "safeArea": 0.9,
+    "trimThreshold": 16,
+    "sourceWidth": 718,
+    "sourceHeight": 800,
+    "subjectWidth": 663,
+    "subjectHeight": 620
+  }
+}

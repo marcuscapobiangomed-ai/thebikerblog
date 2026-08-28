@@ -335,6 +335,57 @@
         { "label": "Incluído", "detail": "Barraca, bagagem, refeições indicadas, hidratação, atendimento médico, transporte de bagagem, bike wash e bike park." },
         { "label": "Atenção", "detail": "A Maratona da Paraíba de um dia é outro produto do festival; este card trata da ultramaratona de sete dias." }
       ]
+    },
+    {
+      "eventId": "br-mtb-11062",
+      "eventName": "RMG Rocky Mountain Games Pico do Jaraguá 2026",
+      "validFrom": "2026-09-19",
+      "validThrough": "2026-09-19",
+      "source": {
+        "publisher": "Rocky Mountain Games",
+        "url": "https://rockymountaingames.com.br/",
+        "verificationTokens": [
+          "Pico do Jaraguá",
+          "19 de setembro",
+          "MTB 25 km",
+          "MTB 50 km",
+          "1.615m D+"
+        ]
+      },
+      "participation": {
+        "status": "open",
+        "label": "Inscrições abertas",
+        "description": "Inscrição individual pela página oficial do evento, com modalidades de mountain bike, e-bike, gravel e outras atividades do festival.",
+        "url": "https://www.sympla.com.br/evento/rocky-mountain-games-pico-do-jaragua/3363751"
+      },
+      "route": {
+        "format": "Etapa de um dia com mountain bike, e-bike e gravel",
+        "difficulty": {
+          "label": "Moderada a alta conforme a modalidade",
+          "basis": "Síntese editorial baseada nas distâncias e altimetrias oficiais publicadas para os percursos do Pico do Jaraguá.",
+          "assessmentType": "editorial-from-official-route"
+        },
+        "highlights": [
+          "A etapa ocorre no Pico do Jaraguá, em São Paulo, em 19 de setembro de 2026.",
+          "Os percursos de MTB têm 25 km e 50 km, com altimetrias oficiais distintas.",
+          "A modalidade de 50 km registra 1.615 m de ganho acumulado, segundo a página do evento."
+        ],
+        "courseOptions": [
+          { "label": "MTB 25 km", "distanceKm": 25, "elevationGainM": 936, "difficulty": "Moderada", "terrain": "Percurso de mountain bike no Pico do Jaraguá", "note": "Altimetria oficial publicada: 936 m de ganho acumulado." },
+          { "label": "MTB 50 km", "distanceKm": 50, "elevationGainM": 1615, "difficulty": "Alta", "terrain": "Percurso de mountain bike no Pico do Jaraguá", "note": "Altimetria oficial publicada: 1.615 m de ganho acumulado." },
+          { "label": "E-MTB 50 km", "distanceKm": 50, "elevationGainM": 1615, "difficulty": "Alta em volume", "terrain": "Percurso de e-mountain bike no Pico do Jaraguá", "note": "A página oficial publica a mesma distância e altimetria do MTB 50 km." },
+          { "label": "Gravel 50 km", "distanceKm": 50, "elevationGainM": 1615, "difficulty": "Alta em volume", "terrain": "Percurso de gravel no Pico do Jaraguá", "note": "A página oficial publica a mesma distância e altimetria do MTB 50 km." }
+        ]
+      },
+      "categories": [
+        "Mountain bike, e-bike e gravel têm largadas previstas às 7h30, divididas em ondas.",
+        "O festival também oferece trail run, trekking e outras atividades, que não fazem parte deste perfil de ciclismo."
+      ],
+      "logistics": [
+        { "label": "Local", "detail": "Pico do Jaraguá, São Paulo/SP." },
+        { "label": "Largada", "detail": "Mountain bike, e-bike e gravel às 7h30, conforme a página oficial consultada." },
+        { "label": "Regulamento", "detail": "O regulamento oficial vigente deve ser consultado novamente antes da prova, pois a organização informa que pode atualizá-lo." }
+      ]
     }
   ]
 }

@@ -1,0 +1,65 @@
+{
+  "slug": "garfo-dianteiro-camara-ar-progressao",
+  "title": "Garfo dianteiro: câmara de ar, progressão e ajuste da compressão",
+  "content_type": "guia-tecnico",
+  "review_method": "desk-research",
+  "tested_by_thebikerblog": false,
+  "market": "Brasil",
+  "generated_at": "2026-08-17",
+  "status": "pesquisa_concluida",
+  "sources": [
+    {
+      "name": "RockShox — Suspension Fine Tuning",
+      "url": "https://www.sram.com/en/rockshox/learn/suspension-fine-tuning",
+      "accessed": "2026-08-17",
+      "id": "cache-src-1",
+      "type": "manufacturer"
+    },
+    {
+      "name": "RockShox — Air Pressure FAQ",
+      "url": "https://support.rockshox.com/hc/en-us/articles/4412294430107-How-much-air-should-I-put-in-my-RockShox-fork-for-my-rider-weight",
+      "accessed": "2026-08-17",
+      "id": "cache-src-2",
+      "type": "manufacturer"
+    }
+  ],
+  "confirmed_facts": [
+    {
+      "fact": "A RockShox descreve a mola de ar como responsável por controlar quanto a suspensão comprime sob determinada força.",
+      "source_ids": [
+        "cache-src-1"
+      ],
+      "evidence_quote": "Spring Rate controls how far the suspension compresses under a given amount of force"
+    },
+    {
+      "fact": "A RockShox descreve o amortecimento como responsável pela velocidade de compressão e retorno.",
+      "source_ids": [
+        "cache-src-1"
+      ],
+      "evidence_quote": "Damping controls how quickly the suspension compresses and rebounds"
+    },
+    {
+      "fact": "As recomendações de pressão de ar são pontos de partida e aparecem no garfo ou no TrailHead para o modelo correspondente.",
+      "source_ids": [
+        "cache-src-2"
+      ],
+      "evidence_quote": "Front suspension air pressure recommendations listed on the back of your fork and at RockShox TrailHead are suggestions for initial spring setup."
+    }
+  ],
+  "limitations": [
+    "O cache não define pressão, tokens ou cliques universais; o ajuste precisa começar na documentação do modelo e ser avaliado no conjunto correto.",
+    "Pesquisa de rede indisponÃ­vel; esta execuÃ§Ã£o reutilizou somente a ficha editorial oficial previamente validada."
+  ],
+  "grounding": {
+    "queries": [],
+    "sourceCount": 2,
+    "fallback": "campaign-research-offline-cache-v1",
+    "evidenceContract": "campaign-research-cache-v1",
+    "verifiedAt": "2026-08-17T16:56:18.097Z",
+    "verificationMode": "campaign-offline-cache",
+    "claimContract": "explicit-units-v1"
+  },
+  "portfolio_evidence_url": "https://thebikershop.com.br/componentes/",
+  "portfolio_verified_at": "2026-08-17",
+  "portfolio_evidence_scope": "portfolio-category"
+}

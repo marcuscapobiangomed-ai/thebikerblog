@@ -16,8 +16,9 @@ import { produceCampaignVisual } from "./src/campaign_finalize.js";
 import { markdownPublicationErrors, neutralizeMarkdownPolicyPhrases } from "./src/validation/markdown-publication-gates.js";
 import { orphanedCampaignDraftErrors, scheduledDraftErrors } from "./src/validation/validate-scheduled-publications.js";
 import { assertScheduledReceipt, hashEditorialText } from "./src/validation/editorial-receipt.js";
-import { assertArticleResearchGrounding } from "./src/validation/article-research-grounding.js";
+import { assertArticleResearchGrounding, articleResearchGroundingErrors } from "./src/validation/article-research-grounding.js";
 import { assertResearchEvidenceContract } from "./src/validation/research-grounding.js";
+import { classifyEditorialFailure } from "./src/validation/editorial-failures.js";
 
 const minimalResearch = {
   confirmed_facts: [{ fact: "frame.material: Spark RC Carbon HMX" }, { fact: "suspension.frontTravel: 120 mm" }],
@@ -41,6 +42,12 @@ assert.equal(cachedCampaignResearch.grounding.fallback, "campaign-research-offli
 assert.ok(cachedCampaignResearch.confirmed_facts.length >= 5);
 assert.ok(cachedCampaignResearch.sources.every((source) => source.id && source.url));
 assert.doesNotThrow(() => assertResearchEvidenceContract(cachedCampaignResearch));
+assert.equal(classifyEditorialFailure("Fallback interno bloqueado (Groq 429; Gemini quota)", { stage: "research" }).code, "TRANSIENT_PROVIDER");
+assert.equal(classifyEditorialFailure("Fallback interno bloqueado: nenhuma fonte oficial permitida", { stage: "research" }).code, "RESEARCH_INSUFFICIENT");
+assert.deepEqual(articleResearchGroundingErrors({
+  content: "---\nimage_alt: Pedivela 175mm\n---\nFonte: https://docs.sram.com/en-US/publications/6sfLCOGTn6FE98W8vXLqm0/UM%20-%20Chains",
+  research: { confirmed_facts: [], sources: [] },
+}), []);
 assert.throws(() => assertArticleResearchGrounding({
   content: "O carbono HMX possui rigidez torsional superior e converte cada watt com menos perdas.",
   research: minimalResearch,

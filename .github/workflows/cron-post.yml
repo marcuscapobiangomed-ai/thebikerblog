@@ -43,6 +43,9 @@ jobs:
         run: npm run catalog:revalidate
       - name: Preparar derivados e validar baseline antes de consumir IA
         run: npm run validate:ci
+      - name: Verificar prontidão das próximas pautas
+        run: npm run campaign:preflight -- --lead-days=7
+        working-directory: bot
 
   generate-draft:
     needs: preflight

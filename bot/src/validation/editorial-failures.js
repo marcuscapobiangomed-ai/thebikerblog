@@ -17,6 +17,9 @@ const RULES = [
   [EditorialFailureCode.POLICY_NON_CANONICAL_TAG, /tags? n[aã]o can[oô]nic/i, false],
   [EditorialFailureCode.POLICY_UNSUPPORTED_TEST, /teste pr[aá]tico proibid|testamos|durante o pedal/i, false],
   [EditorialFailureCode.UNSAFE_PATH, /postpath inseguro|precisa apontar para _posts\/drafts/i, false],
+  // Provider exhaustion must remain retryable. A fallback message may also
+  // mention images, but the root cause is the unavailable research provider.
+  [EditorialFailureCode.TRANSIENT_PROVIDER, /(?:groq|gemini|deepseek|provedor|provider)[^\n]{0,220}(?:timeout|timed out|429|rate limit|temporar|econnreset|fetch failed|quota|payment required)|(?:429|rate limit|quota(?: exceeded| limit)?|payment required)/i, true],
   // Provider outages that prevent the internal evidence fallback are research
   // failures. Classifying them before the visual rule lets recovery retry the
   // research path or consume a verified reserve instead of repairing images.

@@ -15,7 +15,15 @@ function normalize(value) {
 }
 
 function signatures(value) {
-  return [...new Set((normalize(value).match(NUMERIC_CLAIM) || []).map((claim) => claim
+  const prose = String(value || "")
+    // Frontmatter contains dates, product IDs and image captions. Those are
+    // artifact metadata and must not be treated as claims in the article.
+    .replace(/^---[\s\S]*?---/u, " ")
+    // URLs are metadata, not article claims. Percent-encoded path segments
+    // such as `UM%20-%20Chains` must not become the false claim "um%".
+    .replace(/https?:\/\/\S+/giu, " ")
+    .replace(/%[0-9a-f]{2}/giu, " ");
+  return [...new Set((normalize(prose).match(NUMERIC_CLAIM) || []).map((claim) => claim
     .replace(/\s+/g, "")
     .replace(/^(\d+)[.,](\d{3})(?=[a-z%/])/, "$1$2")))];
 }

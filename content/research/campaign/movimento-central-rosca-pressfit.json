@@ -1,0 +1,65 @@
+{
+  "slug": "movimento-central-rosca-pressfit",
+  "title": "Movimento central: rosca, press-fit e instalação cuidadosa",
+  "content_type": "guia-tecnico",
+  "review_method": "desk-research",
+  "tested_by_thebikerblog": false,
+  "market": "Brasil",
+  "generated_at": "2026-08-17",
+  "status": "pesquisa_concluida",
+  "sources": [
+    {
+      "name": "SRAM — Road AXS and XPLR AXS User Manual",
+      "url": "https://docs.sram.com/s/RoadAXSandXPLRAXSUserManual.html",
+      "accessed": "2026-08-17",
+      "id": "cache-src-1",
+      "type": "manufacturer"
+    },
+    {
+      "name": "SRAM — DUB PressFit Bottom Bracket",
+      "url": "https://www.sram.com/en/service/models/bb-dub-pf-a1",
+      "accessed": "2026-08-17",
+      "id": "cache-src-2",
+      "type": "manufacturer"
+    }
+  ],
+  "confirmed_facts": [
+    {
+      "fact": "No procedimento SRAM para BSA, a cúpula do lado direito usa rosca reversa.",
+      "source_ids": [
+        "cache-src-1"
+      ],
+      "evidence_quote": "The right side cup for BSA threads is reverse threaded."
+    },
+    {
+      "fact": "Na instalação PressFit, a SRAM orienta usar uma prensa de rolamentos ou de direção e manter o tubo central paralelo.",
+      "source_ids": [
+        "cache-src-1"
+      ],
+      "evidence_quote": "Use a bottom bracket bearing press tool or a headset press to install the left side cup"
+    },
+    {
+      "fact": "A página do DUB PressFit lista diferentes tipos de caixa, incluindo PF 86.5, PF 89.5 e PF 92.",
+      "source_ids": [
+        "cache-src-2"
+      ],
+      "evidence_quote": "Frame Shell Type PF 104.5, PF 107, PF 121, PF 86.5, PF 89.5, PF 92"
+    }
+  ],
+  "limitations": [
+    "O padrão da caixa e a configuração de espaçadores dependem do quadro e do pedivela; o artigo não fixa uma montagem sem a medição correspondente.",
+    "Pesquisa de rede indisponÃ­vel; esta execuÃ§Ã£o reutilizou somente a ficha editorial oficial previamente validada."
+  ],
+  "grounding": {
+    "queries": [],
+    "sourceCount": 2,
+    "fallback": "campaign-research-offline-cache-v1",
+    "evidenceContract": "campaign-research-cache-v1",
+    "verifiedAt": "2026-08-17T16:54:45.261Z",
+    "verificationMode": "campaign-offline-cache",
+    "claimContract": "explicit-units-v1"
+  },
+  "portfolio_evidence_url": "https://thebikershop.com.br/componentes/",
+  "portfolio_verified_at": "2026-08-17",
+  "portfolio_evidence_scope": "portfolio-category"
+}

@@ -47,6 +47,9 @@ jobs:
         working-directory: bot
       - name: Revalidar catálogo e baseline antes de consumir IA
         run: npm run catalog:revalidate && npm run validate:ci
+      - name: Verificar prontidão das próximas pautas
+        run: npm run campaign:preflight -- --lead-days=7
+        working-directory: bot
       - name: Recompor pautas futuras sem relaxar gates
         id: replenish
         continue-on-error: true

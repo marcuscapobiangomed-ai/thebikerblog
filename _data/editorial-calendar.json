@@ -46,7 +46,7 @@
     {
       "day": 6,
       "publishDate": "2026-08-13",
-      "title": "Spark RC Team, Expert e World Cup: três montagens, três decisões técnicas",
+      "title": "Spark RC Expert, Team e World Cup: decisões",
       "summary": "Comparação interna entre as três Spark RC vendidas pela TheBiker, cobrindo carbono, suspensões, transmissão, rodas, peso e limite do sistema.",
       "category": "comparativo",
       "status": "published"
@@ -54,7 +54,7 @@
     {
       "day": 7,
       "publishDate": "2026-08-14",
-      "title": "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação",
+      "title": "Limpeza da transmissão após chuva e lama: método",
       "summary": "Procedimento técnico baseado em orientações oficiais para remover contaminantes, verificar danos e devolver a corrente ao uso seguro.",
       "category": "manutencao-ajustes",
       "status": "published"
@@ -62,7 +62,7 @@
     {
       "day": 8,
       "publishDate": "2026-08-15",
-      "title": "Scott Spark RC Expert 2027: leitura técnica da montagem confirmada pelas fontes atuais",
+      "title": "Scott Spark RC Expert 2027: ficha verificada",
       "summary": "Ficha editorial do modelo limitada aos materiais, suspensão, transmissão e limites explicitamente recuperados das fontes.",
       "category": "review",
       "status": "published"
@@ -70,7 +70,7 @@
     {
       "day": 9,
       "publishDate": "2026-08-16",
-      "title": "Scott Scale 940 e 980: diferenças verificáveis de quadro, suspensão e componentes",
+      "title": "Scott Scale 940 vs 980: diferenças verificáveis",
       "summary": "Comparação limitada às especificações atualmente recuperáveis nas páginas oficiais e no catálogo TheBiker.",
       "category": "comparativo",
       "status": "scheduled"
@@ -78,7 +78,7 @@
     {
       "day": 10,
       "publishDate": "2026-08-17",
-      "title": "Scott Addict 50 e Addict RC 20: duas propostas de estrada confrontadas pelas fichas oficiais",
+      "title": "Scott Addict 50 vs Addict RC 20: diferenças",
       "summary": "Análise comparativa restrita a geometria, materiais e montagens comprovados nas fontes atuais dos dois modelos.",
       "category": "comparativo",
       "status": "scheduled"
@@ -126,10 +126,10 @@
     {
       "day": 16,
       "publishDate": "2026-08-23",
-      "title": "Scott Scale 940: checklist documental para conferir quadro e montagem",
-      "summary": "Checklist editorial limitado aos campos de quadro, suspensao e componentes que permanecem comprovados nas fichas oficiais.",
-      "category": "review",
-      "status": "blocked"
+      "title": "Checklist de montagem do cockpit: fita, comandos e torque",
+      "summary": "Checklist documental para conferir fita, alinhamento dos comandos e torque do cockpit antes do primeiro pedal, sem inventar medidas ausentes.",
+      "category": "manutencao-ajustes",
+      "status": "scheduled"
     },
     {
       "day": 17,
@@ -137,7 +137,7 @@
       "title": "Guidão drop: flare, reach e controle em diferentes terrenos",
       "summary": "Aprenda a avaliar flare, reach e drop de um guidão drop para melhorar controle e conforto em terrenos mistos. Método técnico sem depender de tabelas de fábrica.",
       "category": "componentes",
-      "status": "blocked"
+      "status": "scheduled"
     },
     {
       "day": 18,
@@ -145,7 +145,7 @@
       "title": "Suspensão traseira com link: como a alavancagem altera a curva de resposta",
       "summary": "Entenda como a disposição dos links muda a progressão da suspensão e a sensação de apoio em diferentes fases do curso. Sem valores genéricos.",
       "category": "engenharia",
-      "status": "blocked"
+      "status": "scheduled"
     },
     {
       "day": 19,
@@ -153,7 +153,7 @@
       "title": "Padrões de cubo e eixo: Boost e compatibilidade entre gerações",
       "summary": "Identifique larguras e diâmetros de eixo para evitar erros de compatibilidade entre quadro e roda. Foco em medição prática e não em especificações decorativas.",
       "category": "componentes",
-      "status": "blocked"
+      "status": "scheduled"
     },
     {
       "day": 20,
@@ -161,7 +161,7 @@
       "title": "Movimento central: rosca, press-fit e instalação cuidadosa",
       "summary": "Diferenças entre padrões roscados e press-fit, e como evitar danos ao quadro na instalação. Guia para o ciclista intermediário/avançado.",
       "category": "manutencao-ajustes",
-      "status": "blocked"
+      "status": "scheduled"
     },
     {
       "day": 21,
@@ -169,7 +169,7 @@
       "title": "Rodas sem câmara: volume de selante e sinais de ressecamento",
       "summary": "Como determinar a quantidade, validade e compatibilidade do selante para evitar vazamentos lentos em rodas sem câmara. Sem prometer soluções milagrosas.",
       "category": "manutencao-ajustes",
-      "status": "blocked"
+      "status": "scheduled"
     },
     {
       "day": 22,
@@ -177,7 +177,7 @@
       "title": "Desgaste de corrente: como medir e decidir a troca",
       "summary": "Método de medição com régua e paquímetro para identificar quando a corrente deve ser substituída, evitando desgaste de cassete e coroa.",
       "category": "manutencao-ajustes",
-      "status": "blocked"
+      "status": "scheduled"
     },
     {
       "day": 23,
@@ -185,7 +185,7 @@
       "title": "Garfo dianteiro: câmara de ar, progressão e ajuste da compressão",
       "summary": "Entenda como a pressão de ar e a compressão afetam o meio do curso do garfo e a estabilidade em aterrissagens. Sem números mágicos.",
       "category": "manutencao-ajustes",
-      "status": "blocked"
+      "status": "scheduled"
     },
     {
       "day": 24,

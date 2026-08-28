@@ -37,7 +37,8 @@
     "campaign:replenish": "node src/automation/replenish-buffer.js",
     "campaign:repair-buffer": "node src/repair_campaign_buffer.js",
     "campaign:renew": "node src/renew_monthly_campaign.js",
-    "campaign:recover": "node src/recover_blocked_campaign.js"
+    "campaign:recover": "node src/recover_blocked_campaign.js",
+    "campaign:preflight": "node src/automation/campaign-preflight.js"
   },
   "dependencies": {
     "@google/generative-ai": "^0.21.0",

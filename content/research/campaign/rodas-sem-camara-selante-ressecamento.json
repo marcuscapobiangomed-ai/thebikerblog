@@ -1,0 +1,65 @@
+{
+  "slug": "rodas-sem-camara-selante-ressecamento",
+  "title": "Rodas sem câmara: volume de selante e sinais de ressecamento",
+  "content_type": "guia-tecnico",
+  "review_method": "desk-research",
+  "tested_by_thebikerblog": false,
+  "market": "Brasil",
+  "generated_at": "2026-08-17",
+  "status": "pesquisa_concluida",
+  "sources": [
+    {
+      "name": "Zipp — Ride Essentials",
+      "url": "https://www.sram.com/en/zipp/learn/zipp-wheels-welcome-guide/ride-essentials",
+      "accessed": "2026-08-17",
+      "id": "cache-src-1",
+      "type": "manufacturer"
+    },
+    {
+      "name": "Zipp — Wheel Care and Maintenance",
+      "url": "https://www.sram.com/en/zipp/learn/wheel-care-and-maintenance",
+      "accessed": "2026-08-17",
+      "id": "cache-src-2",
+      "type": "manufacturer"
+    }
+  ],
+  "confirmed_facts": [
+    {
+      "fact": "O selante ajuda a manter a vedação entre pneu, aro e válvula e a selar pequenos furos.",
+      "source_ids": [
+        "cache-src-1"
+      ],
+      "evidence_quote": "Tubeless sealant serves a couple crucial purposes: It helps maintain the airtight seal between the tire, rim, and valve while also sealing any small punctures"
+    },
+    {
+      "fact": "A quantidade deve seguir a recomendação do fabricante do selante para o tamanho do pneu.",
+      "source_ids": [
+        "cache-src-1"
+      ],
+      "evidence_quote": "You’ll want to use the sealant manufacturer’s recommend amount for your tire size."
+    },
+    {
+      "fact": "O nível de selante diminui com o tempo, pode secar e deve ser reabastecido conforme a condição do sistema e a orientação do fabricante.",
+      "source_ids": [
+        "cache-src-2"
+      ],
+      "evidence_quote": "Over time, it’s normal for your sealant levels to deplete, as it plugs up small holes and eventually dries out or breaks down."
+    }
+  ],
+  "limitations": [
+    "O cache não define um volume universal nem um intervalo único de troca; selante, pneu, aro e clima alteram a manutenção.",
+    "Pesquisa de rede indisponÃ­vel; esta execuÃ§Ã£o reutilizou somente a ficha editorial oficial previamente validada."
+  ],
+  "grounding": {
+    "queries": [],
+    "sourceCount": 2,
+    "fallback": "campaign-research-offline-cache-v1",
+    "evidenceContract": "campaign-research-cache-v1",
+    "verifiedAt": "2026-08-17T16:54:55.565Z",
+    "verificationMode": "campaign-offline-cache",
+    "claimContract": "explicit-units-v1"
+  },
+  "portfolio_evidence_url": "https://thebikershop.com.br/componentes/",
+  "portfolio_verified_at": "2026-08-17",
+  "portfolio_evidence_scope": "portfolio-category"
+}

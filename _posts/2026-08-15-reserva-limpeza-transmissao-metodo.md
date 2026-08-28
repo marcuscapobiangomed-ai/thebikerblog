@@ -2,7 +2,7 @@
 image_subject_id: "corrente-sram-nx-eagle"
 layout: post
 published: true
-title: "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação"
+title: "Limpeza da transmissão após chuva e lama: método"
 slug: "limpeza-da-transmissao-depois-de-chuva-e-lama-metodo-inspecao-e-lubrificacao"
 date: 2026-08-15
 last_modified_at: 2026-08-15

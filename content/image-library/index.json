@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-08-15T13:49:12.078Z",
+  "updatedAt": "2026-08-17T16:56:23.187Z",
   "assets": [
     {
       "assetId": "thebiker-scott-addict-rc-pro-hmx-frame-set-def10da96a",
@@ -373,6 +373,142 @@
           "postId": "reserva-addict-rc20-ficha-oficial",
           "position": "hero",
           "usedAt": "2026-08-15T12:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "assetId": "thebiker-fita-de-guidao-supacaz-super-sticky-preta-980e62f540",
+      "sha256": "980e62f5409d4fd5da3d348cf7124be713b136e460b803fafcad375e883d1328",
+      "perceptualHash": "1111111111111111100100010000000101100101000001010001111100111111",
+      "sourcePageUrl": "https://thebikershop.com.br/produtos/fita-de-guidao-supacaz-super-sticky-preta/",
+      "sourceFileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/e777e55c-2c06-11ee-8a9e-2a9ed02269b6-167065f63039231bda17340106504947-1024-1024.webp",
+      "productId": "fita-de-guidao-supacaz-super-sticky-preta",
+      "productName": "Fita de Guidão Supacaz Super Sticky - Preta",
+      "rightsPolicyId": "thebiker-official-editorial-v1",
+      "uses": [
+        {
+          "postId": "reserva-checklist-montagem-cockpit",
+          "position": "hero",
+          "usedAt": "2026-08-17T12:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "assetId": "thebiker-guidao-syncros-fraser-sl-xc-740x70-10-1e97c1ebde",
+      "sha256": "1e97c1ebde13647d73489c994b75d1c5de255f8e723010ea31e32f51ba29dcfa",
+      "perceptualHash": "1111111111111111111111111111010000000001011111111111111111111111",
+      "sourcePageUrl": "https://thebikershop.com.br/produtos/guidao-syncros-fraser-sl-xc-740x70-10/",
+      "sourceFileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/2879900135_1799140_png_zoom_121-137c62af62184745d516557357192432-1024-1024.webp",
+      "productId": "guidao-syncros-fraser-sl-xc-740x70-10",
+      "productName": "Guidão Syncros Fraser SL XC 740x70 -10",
+      "rightsPolicyId": "thebiker-official-editorial-v1",
+      "uses": [
+        {
+          "postId": "guidao-drop-flare-reach-controle-conforto",
+          "position": "hero",
+          "usedAt": "2026-08-17T12:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "assetId": "thebiker-kit-reparo-suspensao-rock-shox-sid-flight-attendant-af0e2fa90b",
+      "sha256": "af0e2fa90b5f814226b360969b90b274f4677dd5b1cd76ffb59f4b4a2af82396",
+      "perceptualHash": "1111111111111111000011111000111100001011000000011111111111111111",
+      "sourcePageUrl": "https://thebikershop.com.br/produtos/kit-reparo-suspensao-rock-shox-sid-flight-attendant/",
+      "sourceFileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/fork-servicekit-1912847-8173335d4ce719cf4d17803506184697-1024-1024.webp",
+      "productId": "kit-reparo-suspensao-rock-shox-sid-flight-attendant",
+      "productName": "Kit Reparo Suspensão RockShox SID SL 32 Flight Attendant 2026+",
+      "rightsPolicyId": "thebiker-official-editorial-v1",
+      "uses": [
+        {
+          "postId": "suspensao-traseira-link-progressao",
+          "position": "hero",
+          "usedAt": "2026-08-17T12:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "assetId": "thebiker-freehub-xd-xdr-para-rolo-de-treino-elite-c14a42d16b",
+      "sha256": "c14a42d16b10112ade633a1b2d808cd701cb4d3e7844ed89c4070940c799ef5f",
+      "perceptualHash": "1111111111011111100000010000001110000000100000011101111111111111",
+      "sourcePageUrl": "https://thebikershop.com.br/produtos/freehub-xd-xdr-para-rolo-de-treino-elite/",
+      "sourceFileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/freehub-para-rolo-de-treino-compativel-c-xd-xdr1-5b9c896a433e1c664316956654789113-1024-1024.webp",
+      "productId": "freehub-xd-xdr-para-rolo-de-treino-elite",
+      "productName": "Freehub XD/XDR para Rolo de Treino Elite",
+      "rightsPolicyId": "thebiker-official-editorial-v1",
+      "uses": [
+        {
+          "postId": "padroes-cubo-eixo-boost",
+          "position": "hero",
+          "usedAt": "2026-08-17T12:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "assetId": "thebiker-pedivela-sram-gx-eagle-carbon-dub-175mm-1ca4a5cbe6",
+      "sha256": "1ca4a5cbe6a85e239a8abdf25d31f0708bf07c5341abb2f4f6c4a505672e9068",
+      "perceptualHash": "1111111111011111100011110000000000000000000011111101111111111111",
+      "sourcePageUrl": "https://thebikershop.com.br/produtos/pedivela-sram-gx-eagle-carbon-dub-175mm/",
+      "sourceFileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/3404271-6e530f376e3c48a65716478753362125-1024-1024.webp",
+      "productId": "pedivela-sram-gx-eagle-carbon-dub-175mm",
+      "productName": "Pedivela Sram GX Eagle Carbon Dub 175mm",
+      "rightsPolicyId": "thebiker-official-editorial-v1",
+      "uses": [
+        {
+          "postId": "movimento-central-rosca-pressfit",
+          "position": "hero",
+          "usedAt": "2026-08-17T12:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "assetId": "thebiker-selante-muc-off-mtb-puncture-hassle-500ml-1d158b1e88",
+      "sha256": "1d158b1e887889a969e6c1033670965e43e1f43e3b54c3f7b37f648d5be5bd6d",
+      "perceptualHash": "1111111111100111111001111110011111100111111001111110011111100111",
+      "sourcePageUrl": "https://thebikershop.com.br/produtos/selante-muc-off-mtb-puncture-hassle-500ml/",
+      "sourceFileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/500ml_mtb_sealant_850x850_crop_center-jpg-f7240aeb4baceced8b17430215238434-1024-1024.webp",
+      "productId": "selante-muc-off-mtb-puncture-hassle-500ml",
+      "productName": "Selante Muc Off MTB Puncture Hassle 500ml",
+      "rightsPolicyId": "thebiker-official-editorial-v1",
+      "uses": [
+        {
+          "postId": "rodas-sem-camara-selante-ressecamento",
+          "position": "hero",
+          "usedAt": "2026-08-17T12:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "assetId": "thebiker-power-link-sram-eagle-t-type-12v-53f1dbe9c3",
+      "sha256": "53f1dbe9c362d54ae4de61eca358b4484d7f9a01e39d2f182b0e67c8256edad5",
+      "perceptualHash": "1111111111111111110000111000001110000001110001111111111111111111",
+      "sourcePageUrl": "https://thebikershop.com.br/produtos/power-link-sram-eagle-t-type-12v/",
+      "sourceFileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/chpc8059008_59865_1024x10241-b5aa2c273ef22049f916917761236868-1024-1024.webp",
+      "productId": "power-link-sram-eagle-t-type-12v",
+      "productName": "Power Link Sram Eagle T-Type 12v",
+      "rightsPolicyId": "thebiker-official-editorial-v1",
+      "uses": [
+        {
+          "postId": "desgaste-corrente-medicao",
+          "position": "hero",
+          "usedAt": "2026-08-17T12:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "assetId": "thebiker-quadro-suspensao-spark-rc-world-cup-hmx-2026-flight-attendant-879576c205",
+      "sha256": "879576c205fa0d3aa8ad91297ee20c1b940c99d4e3a0733c2d84b7d5d464b965",
+      "perceptualHash": "0000000000000000000011100011111001111011111100010000000000000000",
+      "sourcePageUrl": "https://thebikershop.com.br/produtos/quadro-suspensao-spark-rc-world-cup-hmx-2026-flight-attendant/",
+      "sourceFileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/4257103020a_2266586_1-040245d2cf96b2518417630384961352-1024-1024.webp",
+      "productId": "quadro-suspensao-spark-rc-world-cup-hmx-2026-flight-attendant",
+      "productName": "Quadro + Suspensão Spark RC World Cup HMX 2026 Flight Attendant",
+      "rightsPolicyId": "thebiker-official-editorial-v1",
+      "uses": [
+        {
+          "postId": "garfo-dianteiro-camara-ar-progressao",
+          "position": "hero",
+          "usedAt": "2026-08-17T12:00:00.000Z"
         }
       ]
     }

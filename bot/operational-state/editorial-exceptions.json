@@ -1468,6 +1468,43 @@
         "title": "Scott Scale 940: checklist documental para conferir quadro e montagem"
       },
       "reason": "[RESEARCH_INSUFFICIENT] pesquisa verificada indisponível"
+    },
+    {
+      "recordedAt": "2026-08-17T16:52:26.377Z",
+      "campaignId": "thebiker-rolling-2026-08-08",
+      "replacedItem": {
+        "day": 16,
+        "publishDate": "2026-08-23",
+        "id": "reserva-scale-940-checklist-oficial",
+        "title": "Scott Scale 940: checklist documental para conferir quadro e montagem",
+        "summary": "Checklist editorial limitado aos campos de quadro, suspensao e componentes que permanecem comprovados nas fichas oficiais.",
+        "category": "review",
+        "freshness": "revalidate-24h",
+        "status": "blocked",
+        "productIds": [
+          "bicicleta-scott-scale-940-black"
+        ],
+        "heroImage": {
+          "mode": "exact-product",
+          "productId": "bicicleta-scott-scale-940-black"
+        },
+        "imageAssetIds": [],
+        "blockReason": "[IMAGE_NOT_PUBLISHABLE] Galeria oficial sem imagem inédita válida: bicicleta-scott-scale-940-black: Imagem duplicada: manufacturer-bicicleta-scott-scale-940-black-5171146828 | bicicleta-scott-scale-940-black: Imagem duplicada: thebiker-bicicleta-scott-scale-940-black-bf34dbe9f9 | bicicleta-scott-scale-940-black: resolução insuficiente para o padrão editorial: 521x569 | bicicleta-scott-scale-940-black: resolução insuficiente para o padrão editorial: 506x565 | bicicleta-scott-scale-940-black: Download da imagem: HTTP 403 | bicicleta-scott-scale-940-black: resolução insuficiente para o padrão editorial: 480x480",
+        "failure": {
+          "code": "IMAGE_NOT_PUBLISHABLE",
+          "retryable": false,
+          "stage": "production",
+          "message": "Galeria oficial sem imagem inédita válida: bicicleta-scott-scale-940-black: Imagem duplicada: manufacturer-bicicleta-scott-scale-940-black-5171146828 | bicicleta-scott-scale-940-black: Imagem duplicada: thebiker-bicicleta-scott-scale-940-black-bf34dbe9f9 | bicicleta-scott-scale-940-black: resolução insuficiente para o padrão editorial: 521x569 | bicicleta-scott-scale-940-black: resolução insuficiente para o padrão editorial: 506x565 | bicicleta-scott-scale-940-black: Download da imagem: HTTP 403 | bicicleta-scott-scale-940-black: resolução insuficiente para o padrão editorial: 480x480",
+          "recordedAt": "2026-08-15T17:24:10.126Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-15T17:24:10.126Z"
+      },
+      "replacement": {
+        "id": "reserva-checklist-montagem-cockpit",
+        "title": "Checklist de montagem do cockpit: fita, comandos e torque"
+      },
+      "reason": "[IMAGE_NOT_PUBLISHABLE] Galeria oficial sem imagem inédita válida: bicicleta-scott-scale-940-black: Imagem duplicada: manufacturer-bicicleta-scott-scale-940-black-5171146828 | bicicleta-scott-scale-940-black: Imagem duplicada: thebiker-bicicleta-scott-scale-940-black-bf34dbe9f9 | bicicleta-scott-scale-940-black: resolução insuficiente para o padrão editorial: 521x569 | bicicleta-scott-scale-940-black: resolução insuficiente para o padrão editorial: 506x565 | bicicleta-scott-scale-940-black: Download da imagem: HTTP 403 | bicicleta-scott-scale-940-black: resolução insuficiente para o padrão editorial: 480x480"
     }
   ]
 }

@@ -319,7 +319,7 @@
       "day": 6,
       "publishDate": "2026-08-13",
       "id": "spark-rc-team-expert-world-cup",
-      "title": "Spark RC Team, Expert e World Cup: três montagens, três decisões técnicas",
+      "title": "Spark RC Expert, Team e World Cup: decisões",
       "summary": "Comparação interna entre as três Spark RC vendidas pela TheBiker, cobrindo carbono, suspensões, transmissão, rodas, peso e limite do sistema.",
       "category": "comparativo",
       "freshness": "revalidate-24h",
@@ -360,7 +360,7 @@
         "origin": "deterministic-transform",
         "reviewedContentHash": "sha256:670b3b46d273658830c8fdf6f8ae2b75324bc22a42923491457f3d0eba6c0269",
         "scheduledContentHash": "sha256:670b3b46d273658830c8fdf6f8ae2b75324bc22a42923491457f3d0eba6c0269",
-        "publishedContentHash": "sha256:670b3b46d273658830c8fdf6f8ae2b75324bc22a42923491457f3d0eba6c0269",
+        "publishedContentHash": "sha256:2e81166c939d9c5a943eac99542bbb1ad08fe552dfcb89c5cf118d7de9e0a1a2",
         "researchHash": "sha256:36bee914d64c0899977567c896a14fa9eaedaa7940570315c6d327b60f773c2e",
         "sourceHash": null,
         "finalScore": 100,
@@ -391,7 +391,7 @@
       "day": 7,
       "publishDate": "2026-08-14",
       "id": "reserva-limpeza-transmissao-metodo",
-      "title": "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação",
+      "title": "Limpeza da transmissão após chuva e lama: método",
       "summary": "Procedimento técnico baseado em orientações oficiais para remover contaminantes, verificar danos e devolver a corrente ao uso seguro.",
       "category": "manutencao-ajustes",
       "freshness": "evergreen",
@@ -434,10 +434,10 @@
       "editorialReceipt": {
         "schemaVersion": 1,
         "policyVersion": "thebiker-editorial-2026-08-v2",
-        "origin": "pipeline",
+        "origin": "deterministic-transform",
         "reviewedContentHash": "sha256:8d75bf1e41e13eb30e4b552d8964819d583a084f0d16254d08674343a3834408",
         "scheduledContentHash": "sha256:b64f3e8d4e80e2b5a2c995035fba8103f1e67a2ceb19b5585da9c2a589aea384",
-        "publishedContentHash": "sha256:d81624bf3d8363e3a6e4af24cca4d0fe0840e2efc254d9ab8fefe9d903081689",
+        "publishedContentHash": "sha256:eebef686e542ec3412db7848790ea0ddffe637b5a08a7c1235bd534ac1a488bc",
         "researchHash": "sha256:019c51c576d59525cec42608bd24af25ee1db82f0580bac34a3d982bc552b8b4",
         "sourceHash": "b7cdc873206fe1cac1095928ae1e38c0ab17fc6d62151d2b58c92ddcea955566",
         "finalScore": 95,
@@ -468,7 +468,7 @@
       "day": 8,
       "publishDate": "2026-08-15",
       "id": "reserva-spark-rc-expert-ficha",
-      "title": "Scott Spark RC Expert 2027: leitura técnica da montagem confirmada pelas fontes atuais",
+      "title": "Scott Spark RC Expert 2027: ficha verificada",
       "summary": "Ficha editorial do modelo limitada aos materiais, suspensão, transmissão e limites explicitamente recuperados das fontes.",
       "category": "review",
       "freshness": "revalidate-24h",
@@ -487,6 +487,7 @@
         "thebiker-bicicleta-scott-spark-rc-expert-2027-b1b10a0596"
       ],
       "imageValidatedAt": "2026-08-13T23:36:09.081Z",
+      "publishedAt": "2026-08-15T18:58:47.226Z",
       "attempts": 1,
       "lastAttemptAt": "2026-08-13T23:27:35.504Z",
       "aiReview": {
@@ -509,15 +510,15 @@
       "editorialReceipt": {
         "schemaVersion": 1,
         "policyVersion": "thebiker-editorial-2026-08-v2",
-        "origin": "pipeline",
+        "origin": "deterministic-transform",
         "reviewedContentHash": "sha256:5a3059d86a24243dc9352b6b73453e083023baa623ae672585ed42ddbc381282",
         "scheduledContentHash": "sha256:1149e34ae580eb74dd332109e8501766c7ed8a988cb91ee406079ab89eae9cb7",
+        "publishedContentHash": "sha256:38cef59c3a67b5e4ae63ed8146332cccdd23812e3a721c474dbaa5ddd8622d7b",
         "researchHash": "sha256:1c2af4ac4210c9d015b002f13b6891bf50bfb0b2811e3fad0c686c1e60cfff29",
         "sourceHash": "f10a5adab76326ba1c73b14dce4fc85a95919c8bfe292393a56da272a2aadfc5",
         "finalScore": 95,
         "finalBlockers": 0,
-        "issuedAt": "2026-08-13T23:36:09.081Z",
-        "publishedContentHash": "sha256:382cfe4f4ec88fd1ad4aacd79bed0d6d58f5b7ecaabcdd68ac2e9d0ccf0296ea"
+        "issuedAt": "2026-08-13T23:36:09.081Z"
       },
       "visualDecision": {
         "schemaVersion": 1,
@@ -537,14 +538,13 @@
         },
         "blockers": [],
         "issuedAt": "2026-08-13T23:36:09.081Z"
-      },
-      "publishedAt": "2026-08-15T18:58:47.226Z"
+      }
     },
     {
       "day": 9,
       "publishDate": "2026-08-16",
       "id": "reserva-scale-940-980-comparativo",
-      "title": "Scott Scale 940 e 980: diferenças verificáveis de quadro, suspensão e componentes",
+      "title": "Scott Scale 940 vs 980: diferenças verificáveis",
       "summary": "Comparação limitada às especificações atualmente recuperáveis nas páginas oficiais e no catálogo TheBiker.",
       "category": "comparativo",
       "freshness": "revalidate-24h",
@@ -588,10 +588,10 @@
       "editorialReceipt": {
         "schemaVersion": 1,
         "policyVersion": "thebiker-editorial-2026-08-v2",
-        "origin": "pipeline",
+        "origin": "deterministic-transform",
         "reviewedContentHash": "sha256:a4398a0dc8b6dced7fcb71b70b6147dd18c9478d8f46c50bc09c2181cbd3b669",
-        "scheduledContentHash": "sha256:99fdde5769b79aaf6b35138a8a18660ebb8f19ce1b7c96be54a87e6e6db62ab8",
-        "researchHash": "sha256:e3771f98eaa500c4154e65463b9211e44c02e939e9725912539de98711d0a8b2",
+        "scheduledContentHash": "sha256:03e26a7b23c711608afe5496e8e3a2befb6df4647476b1950bbeae391427a19d",
+        "researchHash": "sha256:d7070597d70176300e796ef08abe487373e3848a88e13fcf86379bd8e088ed88",
         "sourceHash": "a04ca97266905c7dcf3010828dfd42af3db9264e51d5e915dd54534b7cca7bf0",
         "finalScore": 95,
         "finalBlockers": 0,
@@ -621,7 +621,7 @@
       "day": 10,
       "publishDate": "2026-08-17",
       "id": "reserva-addict-50-rc20-comparativo",
-      "title": "Scott Addict 50 e Addict RC 20: duas propostas de estrada confrontadas pelas fichas oficiais",
+      "title": "Scott Addict 50 vs Addict RC 20: diferenças",
       "summary": "Análise comparativa restrita a geometria, materiais e montagens comprovados nas fontes atuais dos dois modelos.",
       "category": "comparativo",
       "freshness": "revalidate-24h",
@@ -665,10 +665,10 @@
       "editorialReceipt": {
         "schemaVersion": 1,
         "policyVersion": "thebiker-editorial-2026-08-v2",
-        "origin": "pipeline",
+        "origin": "deterministic-transform",
         "reviewedContentHash": "sha256:fe3f4e2a122f7a2cf1887cb53c84ecb3f8c6d7b41408e8b36d1490f1df8ef8ac",
-        "scheduledContentHash": "sha256:338c4517133a3456f7b92a507525f98561dd42dc116c2b38665a711416989220",
-        "researchHash": "sha256:da412fb7e39e6013eeec3ef7047e6052f65030b1ee5f4e6940ff7007b9b2ce42",
+        "scheduledContentHash": "sha256:d5d631de9e4af6fc344985bd0f5739525540f311b036d8377e4c2719da3591b0",
+        "researchHash": "sha256:a6e0a2a1f08c30ea7c9c86612b38bdd64890e39e6402f2749066f231ce1f7ff5",
         "sourceHash": "2b9a948c27b4b174e50aa1034bbc18ef6a9f5305abeb2629a12a7bf5c223bd6e",
         "finalScore": 95,
         "finalBlockers": 0,
@@ -1062,30 +1062,74 @@
     {
       "day": 16,
       "publishDate": "2026-08-23",
-      "id": "reserva-scale-940-checklist-oficial",
-      "title": "Scott Scale 940: checklist documental para conferir quadro e montagem",
-      "summary": "Checklist editorial limitado aos campos de quadro, suspensao e componentes que permanecem comprovados nas fichas oficiais.",
-      "category": "review",
-      "freshness": "revalidate-24h",
-      "status": "blocked",
+      "id": "reserva-checklist-montagem-cockpit",
+      "title": "Checklist de montagem do cockpit: fita, comandos e torque",
+      "summary": "Checklist documental para conferir fita, alinhamento dos comandos e torque do cockpit antes do primeiro pedal, sem inventar medidas ausentes.",
+      "category": "manutencao-ajustes",
+      "freshness": "evergreen",
+      "status": "scheduled",
       "productIds": [
-        "bicicleta-scott-scale-940-black"
+        "fita-de-guidao-supacaz-super-sticky-preta"
       ],
       "heroImage": {
-        "mode": "exact-product",
-        "productId": "bicicleta-scott-scale-940-black"
+        "mode": "real-context",
+        "productId": "fita-de-guidao-supacaz-super-sticky-preta",
+        "relationship": "category-example",
+        "rationale": "Fotografia real de uma fita de guidão usada apenas como exemplo visual de uma montagem de cockpit."
       },
-      "imageAssetIds": [],
-      "blockReason": "[IMAGE_NOT_PUBLISHABLE] Galeria oficial sem imagem inédita válida: bicicleta-scott-scale-940-black: Imagem duplicada: manufacturer-bicicleta-scott-scale-940-black-5171146828 | bicicleta-scott-scale-940-black: Imagem duplicada: thebiker-bicicleta-scott-scale-940-black-bf34dbe9f9 | bicicleta-scott-scale-940-black: resolução insuficiente para o padrão editorial: 521x569 | bicicleta-scott-scale-940-black: resolução insuficiente para o padrão editorial: 506x565 | bicicleta-scott-scale-940-black: Download da imagem: HTTP 403 | bicicleta-scott-scale-940-black: resolução insuficiente para o padrão editorial: 480x480",
-      "failure": {
-        "code": "IMAGE_NOT_PUBLISHABLE",
-        "retryable": false,
-        "stage": "production",
-        "message": "Galeria oficial sem imagem inédita válida: bicicleta-scott-scale-940-black: Imagem duplicada: manufacturer-bicicleta-scott-scale-940-black-5171146828 | bicicleta-scott-scale-940-black: Imagem duplicada: thebiker-bicicleta-scott-scale-940-black-bf34dbe9f9 | bicicleta-scott-scale-940-black: resolução insuficiente para o padrão editorial: 521x569 | bicicleta-scott-scale-940-black: resolução insuficiente para o padrão editorial: 506x565 | bicicleta-scott-scale-940-black: Download da imagem: HTTP 403 | bicicleta-scott-scale-940-black: resolução insuficiente para o padrão editorial: 480x480",
-        "recordedAt": "2026-08-15T17:24:10.126Z"
-      },
+      "postPath": "_posts/drafts/2026-08-23-reserva-checklist-montagem-cockpit.md",
+      "imageManifestPath": "assets/img/posts/reserva-checklist-montagem-cockpit/image-manifest.json",
+      "imageStatus": "approved",
+      "imageAssetIds": [
+        "thebiker-fita-de-guidao-supacaz-super-sticky-preta-980e62f540"
+      ],
+      "imageValidatedAt": "2026-08-17T16:53:49.899Z",
       "attempts": 1,
-      "lastAttemptAt": "2026-08-15T17:24:10.126Z"
+      "lastAttemptAt": "2026-08-17T16:53:22.378Z",
+      "aiReview": {
+        "score": 92,
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "premiumEditUsed": false,
+        "providers": {
+          "deterministicFallback": "grounded-deterministic"
+        },
+        "generatedAt": "2026-08-17T16:53:22.378Z",
+        "contentHash": "sha256:1cd93c23a7e8c5ec8585c2212fcaa41dc2eb8a0d60b563ccd98ce5f208b74dae",
+        "deterministicFullArticleFallbackUsed": true,
+        "deterministicFullArticleFallbackTrigger": "cache-first"
+      },
+      "editorialReceipt": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-editorial-2026-08-v2",
+        "origin": "pipeline",
+        "reviewedContentHash": "sha256:1cd93c23a7e8c5ec8585c2212fcaa41dc2eb8a0d60b563ccd98ce5f208b74dae",
+        "scheduledContentHash": "sha256:d5537d00497570dd573611dc5a34effbd254433837f99c18cdfc7cdc8e8c1135",
+        "researchHash": "sha256:5747c48acb24bc79bee4fc7805b7b4764fdba645ab155dea7c5afb6ffd5b48f4",
+        "sourceHash": null,
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "issuedAt": "2026-08-17T16:53:49.899Z"
+      },
+      "visualDecision": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-visual-autonomy-v1",
+        "inputHash": "sha256:d07e3a677403e89acd59a01eff4886e283b0af6bb126575cd82001c7f1819540",
+        "mode": "real-context",
+        "productId": "fita-de-guidao-supacaz-super-sticky-preta",
+        "score": 100,
+        "hardGates": {
+          "semanticMatch": true,
+          "realAsset": true,
+          "explicitProduct": true,
+          "officialSource": true,
+          "approvedRights": true,
+          "publishableResolution": true,
+          "uniqueAsset": true
+        },
+        "blockers": [],
+        "issuedAt": "2026-08-17T16:53:49.899Z"
+      }
     },
     {
       "day": 17,
@@ -1095,22 +1139,69 @@
       "summary": "Aprenda a avaliar flare, reach e drop de um guidão drop para melhorar controle e conforto em terrenos mistos. Método técnico sem depender de tabelas de fábrica.",
       "category": "componentes",
       "freshness": "evergreen",
-      "status": "blocked",
-      "productIds": [],
+      "status": "scheduled",
+      "productIds": [
+        "guidao-syncros-fraser-sl-xc-740x70-10"
+      ],
       "heroImage": {
-        "mode": "conceptual"
+        "mode": "real-context",
+        "productId": "guidao-syncros-fraser-sl-xc-740x70-10",
+        "relationship": "category-example",
+        "rationale": "Fotografia real de guidão usada apenas como exemplo visual da categoria técnica abordada."
       },
-      "imageAssetIds": [],
-      "blockReason": "[RESEARCH_INSUFFICIENT] Pesquisa bloqueada por integridade de fontes: pesquisa concluída sem fontes rastreáveis; pesquisa sem fatos explicitamente fundamentados",
-      "failure": {
-        "code": "RESEARCH_INSUFFICIENT",
-        "retryable": false,
-        "stage": "production",
-        "message": "Pesquisa bloqueada por integridade de fontes: pesquisa concluída sem fontes rastreáveis; pesquisa sem fatos explicitamente fundamentados",
-        "recordedAt": "2026-08-14T00:45:57.301Z"
+      "postPath": "_posts/drafts/2026-08-24-guidao-drop-flare-reach-controle-conforto.md",
+      "imageManifestPath": "assets/img/posts/guidao-drop-flare-reach-controle-conforto/image-manifest.json",
+      "imageStatus": "approved",
+      "imageAssetIds": [
+        "thebiker-guidao-syncros-fraser-sl-xc-740x70-10-1e97c1ebde"
+      ],
+      "imageValidatedAt": "2026-08-17T16:54:18.895Z",
+      "attempts": 2,
+      "lastAttemptAt": "2026-08-17T16:54:14.714Z",
+      "aiReview": {
+        "score": 92,
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "premiumEditUsed": false,
+        "providers": {
+          "deterministicFallback": "grounded-deterministic"
+        },
+        "generatedAt": "2026-08-17T16:54:14.714Z",
+        "contentHash": "sha256:9dfd9f5028631c5b628a54ef300c1486893392d170b61bb952a03781f2a73ff7",
+        "deterministicFullArticleFallbackUsed": true,
+        "deterministicFullArticleFallbackTrigger": "cache-first"
       },
-      "attempts": 1,
-      "lastAttemptAt": "2026-08-14T00:45:57.301Z"
+      "editorialReceipt": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-editorial-2026-08-v2",
+        "origin": "pipeline",
+        "reviewedContentHash": "sha256:9dfd9f5028631c5b628a54ef300c1486893392d170b61bb952a03781f2a73ff7",
+        "scheduledContentHash": "sha256:b54131a35d172049d971d9d715f282f60f568e6a36e3bf870bdca2ac9fcae9d2",
+        "researchHash": "sha256:d979fd47bd6515c4a32a89ba88685573322b261fd6fdcade9057d6aa263a7318",
+        "sourceHash": null,
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "issuedAt": "2026-08-17T16:54:18.895Z"
+      },
+      "visualDecision": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-visual-autonomy-v1",
+        "inputHash": "sha256:469eae7c4f573a817ac1f93f96d40e6119020c9fe3e2d270990540b6daceae72",
+        "mode": "real-context",
+        "productId": "guidao-syncros-fraser-sl-xc-740x70-10",
+        "score": 100,
+        "hardGates": {
+          "semanticMatch": true,
+          "realAsset": true,
+          "explicitProduct": true,
+          "officialSource": true,
+          "approvedRights": true,
+          "publishableResolution": true,
+          "uniqueAsset": true
+        },
+        "blockers": [],
+        "issuedAt": "2026-08-17T16:54:18.895Z"
+      }
     },
     {
       "day": 18,
@@ -1120,22 +1211,69 @@
       "summary": "Entenda como a disposição dos links muda a progressão da suspensão e a sensação de apoio em diferentes fases do curso. Sem valores genéricos.",
       "category": "engenharia",
       "freshness": "evergreen",
-      "status": "blocked",
-      "productIds": [],
+      "status": "scheduled",
+      "productIds": [
+        "kit-reparo-suspensao-rock-shox-sid-flight-attendant"
+      ],
       "heroImage": {
-        "mode": "conceptual"
+        "mode": "real-context",
+        "productId": "kit-reparo-suspensao-rock-shox-sid-flight-attendant",
+        "relationship": "category-example",
+        "rationale": "Fotografia real de componente de suspensão usada apenas como exemplo visual da categoria técnica abordada."
       },
-      "imageAssetIds": [],
-      "blockReason": "[IMAGE_NOT_PUBLISHABLE] Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq 429; Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat)",
-      "failure": {
-        "code": "IMAGE_NOT_PUBLISHABLE",
-        "retryable": false,
-        "stage": "production",
-        "message": "Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq 429; Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat)",
-        "recordedAt": "2026-08-14T01:14:49.377Z"
+      "postPath": "_posts/drafts/2026-08-25-suspensao-traseira-link-progressao.md",
+      "imageManifestPath": "assets/img/posts/suspensao-traseira-link-progressao/image-manifest.json",
+      "imageStatus": "approved",
+      "imageAssetIds": [
+        "thebiker-kit-reparo-suspensao-rock-shox-sid-flight-attendant-af0e2fa90b"
+      ],
+      "imageValidatedAt": "2026-08-17T16:54:29.458Z",
+      "attempts": 2,
+      "lastAttemptAt": "2026-08-17T16:54:25.046Z",
+      "aiReview": {
+        "score": 92,
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "premiumEditUsed": false,
+        "providers": {
+          "deterministicFallback": "grounded-deterministic"
+        },
+        "generatedAt": "2026-08-17T16:54:25.046Z",
+        "contentHash": "sha256:e3198dcb90258d708c00e1729d7b9b6cdac6f75b3c8dc467ed58ea25fe9d8403",
+        "deterministicFullArticleFallbackUsed": true,
+        "deterministicFullArticleFallbackTrigger": "cache-first"
       },
-      "attempts": 1,
-      "lastAttemptAt": "2026-08-14T01:14:49.377Z"
+      "editorialReceipt": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-editorial-2026-08-v2",
+        "origin": "pipeline",
+        "reviewedContentHash": "sha256:e3198dcb90258d708c00e1729d7b9b6cdac6f75b3c8dc467ed58ea25fe9d8403",
+        "scheduledContentHash": "sha256:8115316621afaf0a90ce9863c7a1c1107fe9a0d04f9ae9784dace83c6987c0ae",
+        "researchHash": "sha256:6accc1230219c1fd406ffc2d0bdec84cd9c7a5a39ece2fcc1141527ca34f144c",
+        "sourceHash": null,
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "issuedAt": "2026-08-17T16:54:29.458Z"
+      },
+      "visualDecision": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-visual-autonomy-v1",
+        "inputHash": "sha256:5d48af8d93f5cc66f7f4a9c5bc99d2ceea2928d4245c0678da07d02d2e5b408b",
+        "mode": "real-context",
+        "productId": "kit-reparo-suspensao-rock-shox-sid-flight-attendant",
+        "score": 100,
+        "hardGates": {
+          "semanticMatch": true,
+          "realAsset": true,
+          "explicitProduct": true,
+          "officialSource": true,
+          "approvedRights": true,
+          "publishableResolution": true,
+          "uniqueAsset": true
+        },
+        "blockers": [],
+        "issuedAt": "2026-08-17T16:54:29.458Z"
+      }
     },
     {
       "day": 19,
@@ -1145,22 +1283,69 @@
       "summary": "Identifique larguras e diâmetros de eixo para evitar erros de compatibilidade entre quadro e roda. Foco em medição prática e não em especificações decorativas.",
       "category": "componentes",
       "freshness": "evergreen",
-      "status": "blocked",
-      "productIds": [],
+      "status": "scheduled",
+      "productIds": [
+        "freehub-xd-xdr-para-rolo-de-treino-elite"
+      ],
       "heroImage": {
-        "mode": "conceptual"
+        "mode": "real-context",
+        "productId": "freehub-xd-xdr-para-rolo-de-treino-elite",
+        "relationship": "category-example",
+        "rationale": "Fotografia real de freehub usada apenas como exemplo visual de padrões de cubo e eixo."
       },
-      "imageAssetIds": [],
-      "blockReason": "[IMAGE_NOT_PUBLISHABLE] Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq 429; Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat)",
-      "failure": {
-        "code": "IMAGE_NOT_PUBLISHABLE",
-        "retryable": false,
-        "stage": "production",
-        "message": "Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq 429; Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat)",
-        "recordedAt": "2026-08-14T01:14:49.377Z"
+      "postPath": "_posts/drafts/2026-08-26-padroes-cubo-eixo-boost.md",
+      "imageManifestPath": "assets/img/posts/padroes-cubo-eixo-boost/image-manifest.json",
+      "imageStatus": "approved",
+      "imageAssetIds": [
+        "thebiker-freehub-xd-xdr-para-rolo-de-treino-elite-c14a42d16b"
+      ],
+      "imageValidatedAt": "2026-08-17T16:54:38.492Z",
+      "attempts": 2,
+      "lastAttemptAt": "2026-08-17T16:54:34.592Z",
+      "aiReview": {
+        "score": 92,
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "premiumEditUsed": false,
+        "providers": {
+          "deterministicFallback": "grounded-deterministic"
+        },
+        "generatedAt": "2026-08-17T16:54:34.592Z",
+        "contentHash": "sha256:4efd6f363ea8cc39e07fdffa9d828af47c2445a7766b644121de25fc30b73e55",
+        "deterministicFullArticleFallbackUsed": true,
+        "deterministicFullArticleFallbackTrigger": "cache-first"
       },
-      "attempts": 1,
-      "lastAttemptAt": "2026-08-14T01:14:49.377Z"
+      "editorialReceipt": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-editorial-2026-08-v2",
+        "origin": "pipeline",
+        "reviewedContentHash": "sha256:4efd6f363ea8cc39e07fdffa9d828af47c2445a7766b644121de25fc30b73e55",
+        "scheduledContentHash": "sha256:4e559ab3b31c09180eea4ccabe9ea5712845711533357e7e73b6143f65357ec4",
+        "researchHash": "sha256:1de6070f0b5bc8029bb8eca97de45d3962f123431df9c7f143e5323b34ccb0f8",
+        "sourceHash": null,
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "issuedAt": "2026-08-17T16:54:38.492Z"
+      },
+      "visualDecision": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-visual-autonomy-v1",
+        "inputHash": "sha256:816a44443af24efbe978ca3dc79727d4bf4797dcaf811ba4860e60d7b365cd4a",
+        "mode": "real-context",
+        "productId": "freehub-xd-xdr-para-rolo-de-treino-elite",
+        "score": 100,
+        "hardGates": {
+          "semanticMatch": true,
+          "realAsset": true,
+          "explicitProduct": true,
+          "officialSource": true,
+          "approvedRights": true,
+          "publishableResolution": true,
+          "uniqueAsset": true
+        },
+        "blockers": [],
+        "issuedAt": "2026-08-17T16:54:38.492Z"
+      }
     },
     {
       "day": 20,
@@ -1170,22 +1355,69 @@
       "summary": "Diferenças entre padrões roscados e press-fit, e como evitar danos ao quadro na instalação. Guia para o ciclista intermediário/avançado.",
       "category": "manutencao-ajustes",
       "freshness": "evergreen",
-      "status": "blocked",
-      "productIds": [],
+      "status": "scheduled",
+      "productIds": [
+        "pedivela-sram-gx-eagle-carbon-dub-175mm"
+      ],
       "heroImage": {
-        "mode": "conceptual"
+        "mode": "real-context",
+        "productId": "pedivela-sram-gx-eagle-carbon-dub-175mm",
+        "relationship": "category-example",
+        "rationale": "Fotografia real de pedivela usada apenas como exemplo visual da interface de movimento central."
       },
-      "imageAssetIds": [],
-      "blockReason": "[IMAGE_NOT_PUBLISHABLE] Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq 429; Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat)",
-      "failure": {
-        "code": "IMAGE_NOT_PUBLISHABLE",
-        "retryable": false,
-        "stage": "production",
-        "message": "Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq 429; Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat)",
-        "recordedAt": "2026-08-14T01:19:32.098Z"
+      "postPath": "_posts/drafts/2026-08-27-movimento-central-rosca-pressfit.md",
+      "imageManifestPath": "assets/img/posts/movimento-central-rosca-pressfit/image-manifest.json",
+      "imageStatus": "approved",
+      "imageAssetIds": [
+        "thebiker-pedivela-sram-gx-eagle-carbon-dub-175mm-1ca4a5cbe6"
+      ],
+      "imageValidatedAt": "2026-08-17T16:54:48.445Z",
+      "attempts": 2,
+      "lastAttemptAt": "2026-08-17T16:54:44.822Z",
+      "aiReview": {
+        "score": 92,
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "premiumEditUsed": false,
+        "providers": {
+          "deterministicFallback": "grounded-deterministic"
+        },
+        "generatedAt": "2026-08-17T16:54:44.822Z",
+        "contentHash": "sha256:c61716f5c8c0c1b7d5eb39da2c581c2c5af777c9674f967dfc5db7716668eff9",
+        "deterministicFullArticleFallbackUsed": true,
+        "deterministicFullArticleFallbackTrigger": "cache-first"
       },
-      "attempts": 1,
-      "lastAttemptAt": "2026-08-14T01:19:32.098Z"
+      "editorialReceipt": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-editorial-2026-08-v2",
+        "origin": "pipeline",
+        "reviewedContentHash": "sha256:c61716f5c8c0c1b7d5eb39da2c581c2c5af777c9674f967dfc5db7716668eff9",
+        "scheduledContentHash": "sha256:c2a82766c77e6acefd07a0bef1a683c7ade92144a1b7440edd4d82b20620fc1f",
+        "researchHash": "sha256:0089e08f4c3d2cea79a74655b0cdb97bae2e616f944dd9d006f5ebd68c8a6507",
+        "sourceHash": null,
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "issuedAt": "2026-08-17T16:54:48.445Z"
+      },
+      "visualDecision": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-visual-autonomy-v1",
+        "inputHash": "sha256:bee7dbce0e4a91acd4dc044a944178cfa50e3d83587b115d7cae1f870b562d47",
+        "mode": "real-context",
+        "productId": "pedivela-sram-gx-eagle-carbon-dub-175mm",
+        "score": 100,
+        "hardGates": {
+          "semanticMatch": true,
+          "realAsset": true,
+          "explicitProduct": true,
+          "officialSource": true,
+          "approvedRights": true,
+          "publishableResolution": true,
+          "uniqueAsset": true
+        },
+        "blockers": [],
+        "issuedAt": "2026-08-17T16:54:48.445Z"
+      }
     },
     {
       "day": 21,
@@ -1195,22 +1427,69 @@
       "summary": "Como determinar a quantidade, validade e compatibilidade do selante para evitar vazamentos lentos em rodas sem câmara. Sem prometer soluções milagrosas.",
       "category": "manutencao-ajustes",
       "freshness": "evergreen",
-      "status": "blocked",
-      "productIds": [],
+      "status": "scheduled",
+      "productIds": [
+        "selante-muc-off-mtb-puncture-hassle-500ml"
+      ],
       "heroImage": {
-        "mode": "conceptual"
+        "mode": "real-context",
+        "productId": "selante-muc-off-mtb-puncture-hassle-500ml",
+        "relationship": "category-example",
+        "rationale": "Fotografia real de selante usada apenas como exemplo visual da manutenção tubeless."
       },
-      "imageAssetIds": [],
-      "blockReason": "[IMAGE_NOT_PUBLISHABLE] Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq 429; Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat)",
-      "failure": {
-        "code": "IMAGE_NOT_PUBLISHABLE",
-        "retryable": false,
-        "stage": "production",
-        "message": "Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq 429; Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat)",
-        "recordedAt": "2026-08-14T01:19:32.098Z"
+      "postPath": "_posts/drafts/2026-08-28-rodas-sem-camara-selante-ressecamento.md",
+      "imageManifestPath": "assets/img/posts/rodas-sem-camara-selante-ressecamento/image-manifest.json",
+      "imageStatus": "approved",
+      "imageAssetIds": [
+        "thebiker-selante-muc-off-mtb-puncture-hassle-500ml-1d158b1e88"
+      ],
+      "imageValidatedAt": "2026-08-17T16:54:59.266Z",
+      "attempts": 2,
+      "lastAttemptAt": "2026-08-17T16:54:55.181Z",
+      "aiReview": {
+        "score": 92,
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "premiumEditUsed": false,
+        "providers": {
+          "deterministicFallback": "grounded-deterministic"
+        },
+        "generatedAt": "2026-08-17T16:54:55.181Z",
+        "contentHash": "sha256:0c68d905c658b260fb63ea11dd387affabd31871a3da7077b484caafa8607558",
+        "deterministicFullArticleFallbackUsed": true,
+        "deterministicFullArticleFallbackTrigger": "cache-first"
       },
-      "attempts": 1,
-      "lastAttemptAt": "2026-08-14T01:19:32.098Z"
+      "editorialReceipt": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-editorial-2026-08-v2",
+        "origin": "pipeline",
+        "reviewedContentHash": "sha256:0c68d905c658b260fb63ea11dd387affabd31871a3da7077b484caafa8607558",
+        "scheduledContentHash": "sha256:7d6376adb54d3fee4e48051dadb2c59fbc0d672b91e30aad6957c58394a9bbca",
+        "researchHash": "sha256:613c6e9367dd0d1e3ca7bf7035743493e50d0afa3019b172a55dec54e56e0204",
+        "sourceHash": null,
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "issuedAt": "2026-08-17T16:54:59.266Z"
+      },
+      "visualDecision": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-visual-autonomy-v1",
+        "inputHash": "sha256:806d9cc665b3e42a711d2631c4e962eeecdb394d63d0a2df156b5f249519f954",
+        "mode": "real-context",
+        "productId": "selante-muc-off-mtb-puncture-hassle-500ml",
+        "score": 100,
+        "hardGates": {
+          "semanticMatch": true,
+          "realAsset": true,
+          "explicitProduct": true,
+          "officialSource": true,
+          "approvedRights": true,
+          "publishableResolution": true,
+          "uniqueAsset": true
+        },
+        "blockers": [],
+        "issuedAt": "2026-08-17T16:54:59.266Z"
+      }
     },
     {
       "day": 22,
@@ -1220,22 +1499,69 @@
       "summary": "Método de medição com régua e paquímetro para identificar quando a corrente deve ser substituída, evitando desgaste de cassete e coroa.",
       "category": "manutencao-ajustes",
       "freshness": "evergreen",
-      "status": "blocked",
-      "productIds": [],
+      "status": "scheduled",
+      "productIds": [
+        "power-link-sram-eagle-t-type-12v"
+      ],
       "heroImage": {
-        "mode": "conceptual"
+        "mode": "real-context",
+        "productId": "power-link-sram-eagle-t-type-12v",
+        "relationship": "category-example",
+        "rationale": "Fotografia real de elo de corrente usada apenas como exemplo visual do conjunto de transmissão."
       },
-      "imageAssetIds": [],
-      "blockReason": "[IMAGE_NOT_PUBLISHABLE] Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq 429; Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat)",
-      "failure": {
-        "code": "IMAGE_NOT_PUBLISHABLE",
-        "retryable": false,
-        "stage": "production",
-        "message": "Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq 429; Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat)",
-        "recordedAt": "2026-08-14T01:19:32.098Z"
+      "postPath": "_posts/drafts/2026-08-29-desgaste-corrente-medicao.md",
+      "imageManifestPath": "assets/img/posts/desgaste-corrente-medicao/image-manifest.json",
+      "imageStatus": "approved",
+      "imageAssetIds": [
+        "thebiker-power-link-sram-eagle-t-type-12v-53f1dbe9c3"
+      ],
+      "imageValidatedAt": "2026-08-17T16:56:04.851Z",
+      "attempts": 3,
+      "lastAttemptAt": "2026-08-17T16:56:00.964Z",
+      "aiReview": {
+        "score": 92,
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "premiumEditUsed": false,
+        "providers": {
+          "deterministicFallback": "grounded-deterministic"
+        },
+        "generatedAt": "2026-08-17T16:56:00.964Z",
+        "contentHash": "sha256:04d349b7afa6358526ef2cd6b179540eb1763bab4d554c920496b1aabe6fead6",
+        "deterministicFullArticleFallbackUsed": true,
+        "deterministicFullArticleFallbackTrigger": "cache-first"
       },
-      "attempts": 1,
-      "lastAttemptAt": "2026-08-14T01:19:32.098Z"
+      "editorialReceipt": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-editorial-2026-08-v2",
+        "origin": "pipeline",
+        "reviewedContentHash": "sha256:04d349b7afa6358526ef2cd6b179540eb1763bab4d554c920496b1aabe6fead6",
+        "scheduledContentHash": "sha256:b8450e88df8484128cfcfd70aeb089473ebe01cb2dea8bf95c03bd5c90d286e1",
+        "researchHash": "sha256:4ccfc068a24ea8a5b98ad8f9dc924f4511db5d085fbf0694f32141987d0b07c4",
+        "sourceHash": null,
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "issuedAt": "2026-08-17T16:56:04.851Z"
+      },
+      "visualDecision": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-visual-autonomy-v1",
+        "inputHash": "sha256:c5db9b133d0eed5f754a7d98b19ae1694a617b54c6b63fd1895626c89a9baa79",
+        "mode": "real-context",
+        "productId": "power-link-sram-eagle-t-type-12v",
+        "score": 100,
+        "hardGates": {
+          "semanticMatch": true,
+          "realAsset": true,
+          "explicitProduct": true,
+          "officialSource": true,
+          "approvedRights": true,
+          "publishableResolution": true,
+          "uniqueAsset": true
+        },
+        "blockers": [],
+        "issuedAt": "2026-08-17T16:56:04.851Z"
+      }
     },
     {
       "day": 23,
@@ -1245,22 +1571,69 @@
       "summary": "Entenda como a pressão de ar e a compressão afetam o meio do curso do garfo e a estabilidade em aterrissagens. Sem números mágicos.",
       "category": "manutencao-ajustes",
       "freshness": "evergreen",
-      "status": "blocked",
-      "productIds": [],
+      "status": "scheduled",
+      "productIds": [
+        "quadro-suspensao-spark-rc-world-cup-hmx-2026-flight-attendant"
+      ],
       "heroImage": {
-        "mode": "conceptual"
+        "mode": "real-context",
+        "productId": "quadro-suspensao-spark-rc-world-cup-hmx-2026-flight-attendant",
+        "relationship": "category-example",
+        "rationale": "Fotografia real de conjunto de suspensão usada apenas como exemplo visual do ajuste dianteiro."
       },
-      "imageAssetIds": [],
-      "blockReason": "[RESEARCH_INSUFFICIENT] Pesquisa bloqueada por integridade de fontes: pesquisa concluída sem fontes rastreáveis; pesquisa sem fatos explicitamente fundamentados",
-      "failure": {
-        "code": "RESEARCH_INSUFFICIENT",
-        "retryable": false,
-        "stage": "production",
-        "message": "Pesquisa bloqueada por integridade de fontes: pesquisa concluída sem fontes rastreáveis; pesquisa sem fatos explicitamente fundamentados",
-        "recordedAt": "2026-08-15T17:24:11.684Z"
+      "postPath": "_posts/drafts/2026-08-30-garfo-dianteiro-camara-ar-progressao.md",
+      "imageAssetIds": [
+        "thebiker-quadro-suspensao-spark-rc-world-cup-hmx-2026-flight-attendant-879576c205"
+      ],
+      "attempts": 2,
+      "lastAttemptAt": "2026-08-17T16:56:17.538Z",
+      "aiReview": {
+        "score": 92,
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "premiumEditUsed": false,
+        "providers": {
+          "deterministicFallback": "grounded-deterministic"
+        },
+        "generatedAt": "2026-08-17T16:56:17.538Z",
+        "contentHash": "sha256:5bbe396933559543b8b5ef1b0b2e6a1b8929c7d12a92cc1639227caabdd7f269",
+        "deterministicFullArticleFallbackUsed": true,
+        "deterministicFullArticleFallbackTrigger": "cache-first"
       },
-      "attempts": 1,
-      "lastAttemptAt": "2026-08-15T17:24:11.684Z"
+      "visualDecision": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-visual-autonomy-v1",
+        "inputHash": "sha256:b532520142c5f00fe3001a2d2d8ca418da37f0d6c7e9e13fba5440cad9ea5cf0",
+        "mode": "real-context",
+        "productId": "quadro-suspensao-spark-rc-world-cup-hmx-2026-flight-attendant",
+        "score": 100,
+        "hardGates": {
+          "semanticMatch": true,
+          "realAsset": true,
+          "explicitProduct": true,
+          "officialSource": true,
+          "approvedRights": true,
+          "publishableResolution": true,
+          "uniqueAsset": true
+        },
+        "blockers": [],
+        "issuedAt": "2026-08-17T16:56:21.644Z"
+      },
+      "editorialReceipt": {
+        "schemaVersion": 1,
+        "policyVersion": "thebiker-editorial-2026-08-v2",
+        "origin": "pipeline",
+        "reviewedContentHash": "sha256:5bbe396933559543b8b5ef1b0b2e6a1b8929c7d12a92cc1639227caabdd7f269",
+        "scheduledContentHash": "sha256:804b9cd46a717df763008ff47617b5c4f1516f58b64d46a5e4f73b887851e6d9",
+        "researchHash": "sha256:7388229bcbfb37bc29200924292a93de64cef05a760bf0fe898862d5243c3afc",
+        "sourceHash": null,
+        "finalScore": 95,
+        "finalBlockers": 0,
+        "issuedAt": "2026-08-17T16:56:21.644Z"
+      },
+      "imageManifestPath": "assets/img/posts/garfo-dianteiro-camara-ar-progressao/image-manifest.json",
+      "imageStatus": "approved",
+      "imageValidatedAt": "2026-08-17T16:56:21.644Z"
     },
     {
       "day": 24,
@@ -1401,6 +1774,19 @@
         "sourceStatus": "pending"
       },
       "productIds": []
+    },
+    {
+      "id": "reserva-scale-940-checklist-oficial",
+      "title": "Scott Scale 940: checklist documental para conferir quadro e montagem",
+      "summary": "Checklist editorial limitado aos campos de quadro, suspensao e componentes que permanecem comprovados nas fichas oficiais.",
+      "category": "review",
+      "productIds": [
+        "bicicleta-scott-scale-940-black"
+      ],
+      "heroImage": {
+        "mode": "exact-product",
+        "productId": "bicicleta-scott-scale-940-black"
+      }
     }
   ]
 }

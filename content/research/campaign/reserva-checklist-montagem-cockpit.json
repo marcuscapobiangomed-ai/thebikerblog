@@ -1,0 +1,65 @@
+{
+  "slug": "reserva-checklist-montagem-cockpit",
+  "title": "Checklist de montagem do cockpit: fita, comandos e torque",
+  "content_type": "guia-tecnico",
+  "review_method": "desk-research",
+  "tested_by_thebikerblog": false,
+  "market": "Brasil",
+  "generated_at": "2026-08-17",
+  "status": "pesquisa_concluida",
+  "sources": [
+    {
+      "name": "Zipp — Stems and Drop Handlebars User Manual",
+      "url": "https://www.sram.com/globalassets/document-hierarchy/user-manuals/zipp/stems-and-bars/zipp-stems-and-drop-handlebars-user-manual.pdf",
+      "accessed": "2026-08-17",
+      "id": "cache-src-1",
+      "type": "manufacturer"
+    },
+    {
+      "name": "Zipp — Service Course SL-70",
+      "url": "https://www.sram.com/es/zipp/models/hb-dbsc-sl70-b2",
+      "accessed": "2026-08-17",
+      "id": "cache-src-2",
+      "type": "manufacturer"
+    }
+  ],
+  "confirmed_facts": [
+    {
+      "fact": "O manual Zipp orienta usar as marcas-guia do guidão para alinhar os comandos.",
+      "source_ids": [
+        "cache-src-1"
+      ],
+      "evidence_quote": "Use the guide marks on the handlebar for alignment."
+    },
+    {
+      "fact": "O manual Zipp limita o aperto dos comandos a 9 N·m quando a instrução do fabricante não indicar outro procedimento.",
+      "source_ids": [
+        "cache-src-1"
+      ],
+      "evidence_quote": "tighten to the torque specified by the manufacturer’s instructions, not exceeding 9 N·m"
+    },
+    {
+      "fact": "A página do Service Course SL-70 informa reach de 70 mm para esse modelo.",
+      "source_ids": [
+        "cache-src-2"
+      ],
+      "evidence_quote": "El alcance de 70 mm es el más corto de todos los manillares Service Course de Zipp."
+    }
+  ],
+  "limitations": [
+    "As fontes não permitem transformar reach ou flare em promessa universal de conforto; a escolha deve respeitar a ficha do componente e a posição do ciclista.",
+    "Pesquisa de rede indisponÃ­vel; esta execuÃ§Ã£o reutilizou somente a ficha editorial oficial previamente validada."
+  ],
+  "grounding": {
+    "queries": [],
+    "sourceCount": 2,
+    "fallback": "campaign-research-offline-cache-v1",
+    "evidenceContract": "campaign-research-cache-v1",
+    "verifiedAt": "2026-08-17T16:53:22.931Z",
+    "verificationMode": "campaign-offline-cache",
+    "claimContract": "explicit-units-v1"
+  },
+  "portfolio_evidence_url": "https://thebikershop.com.br/componentes/",
+  "portfolio_verified_at": "2026-08-17",
+  "portfolio_evidence_scope": "portfolio-category"
+}

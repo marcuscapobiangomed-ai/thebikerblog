@@ -1,0 +1,65 @@
+{
+  "slug": "suspensao-traseira-link-progressao",
+  "title": "Suspensão traseira com link: como a alavancagem altera a curva de resposta",
+  "content_type": "guia-tecnico",
+  "review_method": "desk-research",
+  "tested_by_thebikerblog": false,
+  "market": "Brasil",
+  "generated_at": "2026-08-17",
+  "status": "pesquisa_concluida",
+  "sources": [
+    {
+      "name": "RockShox — Rear Shock DebonAir+",
+      "url": "https://www.sram.com/en/rockshox/learn/shock-deep-dives/rear-shock-debonair",
+      "accessed": "2026-08-17",
+      "id": "cache-src-1",
+      "type": "manufacturer"
+    },
+    {
+      "name": "RockShox — Suspension Welcome Guide",
+      "url": "https://www.sram.com/en/rockshox/learn/suspension-welcome-guide",
+      "accessed": "2026-08-17",
+      "id": "cache-src-2",
+      "type": "manufacturer"
+    }
+  ],
+  "confirmed_facts": [
+    {
+      "fact": "A RockShox recomenda combinar uma lata Linear com um quadro de taxa de alavancagem progressiva para permitir o uso do curso completo.",
+      "source_ids": [
+        "cache-src-1"
+      ],
+      "evidence_quote": "We suggest pairing the Linear can with a progressive leverage rate frame to provide enough consistency through the stroke to allow the rear shock to use full travel."
+    },
+    {
+      "fact": "A lata Progressive torna a progressão final mais forte e dificulta o bottom-out, segundo a explicação técnica da RockShox.",
+      "source_ids": [
+        "cache-src-1"
+      ],
+      "evidence_quote": "The increased negative volume makes it easier to get into the travel right off the bat. The increased negative volume also makes the end of the spring curve ramp up quickly, so it's harder to bottom out."
+    },
+    {
+      "fact": "A configuração da suspensão depende do ciclista, do estilo e do terreno onde ele pedala.",
+      "source_ids": [
+        "cache-src-2"
+      ],
+      "evidence_quote": "Suspension setup is specific to each rider, their style, where they ride, and can change based on each of those variables."
+    }
+  ],
+  "limitations": [
+    "As fontes explicam princípios de curva e ajuste, mas não autorizam atribuir uma cinemática específica a um quadro sem documentação do fabricante.",
+    "Pesquisa de rede indisponÃ­vel; esta execuÃ§Ã£o reutilizou somente a ficha editorial oficial previamente validada."
+  ],
+  "grounding": {
+    "queries": [],
+    "sourceCount": 2,
+    "fallback": "campaign-research-offline-cache-v1",
+    "evidenceContract": "campaign-research-cache-v1",
+    "verifiedAt": "2026-08-17T16:54:25.542Z",
+    "verificationMode": "campaign-offline-cache",
+    "claimContract": "explicit-units-v1"
+  },
+  "portfolio_evidence_url": "https://thebikershop.com.br/bikes/",
+  "portfolio_verified_at": "2026-08-17",
+  "portfolio_evidence_scope": "portfolio-category"
+}

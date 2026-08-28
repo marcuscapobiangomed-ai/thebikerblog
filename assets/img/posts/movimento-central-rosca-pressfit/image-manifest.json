@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 2,
+  "status": "approved",
+  "editorialUse": "publishable",
+  "assetType": "official-product-photo",
+  "factualSubject": "exact-product",
+  "editorialScope": "portfolio",
+  "purpose": "Ilustrar Movimento central: rosca, press-fit e instalação cuidadosa com produto real do catálogo TheBiker.",
+  "alt": "Pedivela Sram GX Eagle Carbon Dub 175mm em fotografia oficial de TheBiker Shop",
+  "caption": "Pedivela Sram GX Eagle Carbon Dub 175mm, em fotografia oficial de TheBiker Shop.",
+  "credit": "TheBiker Shop",
+  "containsText": false,
+  "aiGenerated": false,
+  "assetId": "thebiker-pedivela-sram-gx-eagle-carbon-dub-175mm-1ca4a5cbe6",
+  "sha256": "1ca4a5cbe6a85e239a8abdf25d31f0708bf07c5341abb2f4f6c4a505672e9068",
+  "perceptualHash": "1111111111011111100011110000000000000000000011111101111111111111",
+  "preserveFullProduct": true,
+  "outputFormat": "webp",
+  "qualityTier": "standard",
+  "matchedProduct": {
+    "id": "pedivela-sram-gx-eagle-carbon-dub-175mm",
+    "name": "Pedivela Sram GX Eagle Carbon Dub 175mm",
+    "sku": "00.6118.607.000",
+    "matchLevel": "exact-id"
+  },
+  "depictedBrands": [
+    "SRAM"
+  ],
+  "depictedProducts": [
+    "Pedivela Sram GX Eagle Carbon Dub 175mm"
+  ],
+  "focalPoint": {
+    "x": 0.5,
+    "y": 0.5
+  },
+  "source": {
+    "type": "thebiker",
+    "name": "TheBiker Shop",
+    "url": "https://thebikershop.com.br/produtos/pedivela-sram-gx-eagle-carbon-dub-175mm/",
+    "fileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/3404271-6e530f376e3c48a65716478753362125-1024-1024.webp",
+    "localFile": "source.webp",
+    "obtainedAt": "2026-08-17",
+    "license": "Uso editorial no blog oficial TheBiker",
+    "licenseEvidence": "Diretriz editorial registrada pelo responsável do blog oficial TheBiker.",
+    "rightsPolicyId": "thebiker-official-editorial-v1"
+  },
+  "files": {
+    "hero": {
+      "file": "hero-1600.webp",
+      "width": 1600,
+      "height": 900,
+      "maxKB": 300
+    },
+    "mobile": {
+      "file": "hero-800.webp",
+      "width": 800,
+      "height": 450,
+      "maxKB": 160
+    },
+    "card": {
+      "file": "card-640.webp",
+      "width": 640,
+      "height": 360,
+      "maxKB": 100
+    }
+  },
+  "approval": {
+    "reviewedBy": "TheBiker deterministic image gate",
+    "approvedAt": "2026-08-17",
+    "method": "automated-editorial-gate",
+    "checks": [
+      "fonte-oficial",
+      "resolucao-padrao-declarada",
+      "webp-otimizado",
+      "direitos",
+      "produto-relacionado",
+      "sha256",
+      "hash-perceptual",
+      "sem-concorrente"
+    ]
+  },
+  "composition": {
+    "strategy": "trim-contain-safe-area",
+    "safeArea": 0.9,
+    "trimThreshold": 16,
+    "sourceWidth": 1024,
+    "sourceHeight": 768,
+    "subjectWidth": 1016,
+    "subjectHeight": 523
+  }
+}
