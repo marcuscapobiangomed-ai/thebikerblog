@@ -2601,6 +2601,98 @@
         "title": "Scott Scale 940 e 980: diferenças verificáveis de quadro, suspensão e componentes"
       },
       "reason": "[VALIDATION_FAILED] Rascunho bloqueado após 2 reparos: Artigo inválido:\ncontext_only_brands: Marcas concorrentes só podem ser mencionadas como contexto factual em cobertura de corridas."
+    },
+    {
+      "recordedAt": "2026-08-28T20:47:13.231Z",
+      "campaignId": "thebiker-rolling-2026-08-21",
+      "replacedItem": {
+        "day": 8,
+        "publishDate": "2026-08-28",
+        "id": "contingencia-spark-rc-expert-documentacao",
+        "title": "Scott Spark RC Expert: suspensão integrada, transmissão e montagem 2027",
+        "summary": "Análise do quadro, dos 120 mm de curso, do sistema de suspensão, da transmissão, dos freios, das rodas e do peso.",
+        "category": "review",
+        "freshness": "revalidate-24h",
+        "status": "blocked",
+        "productIds": [
+          "botao-de-ajuste-suspensao-fox",
+          "bicicleta-scott-spark-rc-expert-2027"
+        ],
+        "heroImage": {
+          "mode": "real-context",
+          "productId": "bicicleta-scott-spark-rc-expert-2027",
+          "relationship": "category-example",
+          "rationale": "Fotografia real do catálogo TheBiker selecionada deterministicamente como exemplo visual da categoria técnica abordada."
+        },
+        "imageAssetIds": [],
+        "blockReason": "[VALIDATION_FAILED] Quarentena: artigo integral de fallback determinístico exige nova redação e revisão independente",
+        "failure": {
+          "code": "VALIDATION_FAILED",
+          "retryable": false,
+          "stage": "editorial-quarantine",
+          "message": "Artigo integral de fallback determinístico reprovado pelo gate de qualidade editorial",
+          "recordedAt": "2026-08-22T04:47:18.904Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-20T16:13:24.231Z",
+        "aiReview": {
+          "score": null,
+          "finalScore": null,
+          "finalBlockers": 1,
+          "premiumEditUsed": false,
+          "providers": {
+            "deterministicFallback": "grounded-deterministic"
+          },
+          "generatedAt": "2026-08-20T16:13:24.231Z",
+          "contentHash": "sha256:9ef3628cff376ac8497bc4cd5002d7d238dbc59a93cbb169cd8132df010cf7a7",
+          "deterministicFullArticleFallbackUsed": true,
+          "deterministicFullArticleFallbackTrigger": "pipeline-failure"
+        }
+      },
+      "replacement": {
+        "id": "reserva-limpeza-transmissao-metodo",
+        "title": "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação"
+      },
+      "reason": "[VALIDATION_FAILED] Quarentena: artigo integral de fallback determinístico exige nova redação e revisão independente"
+    },
+    {
+      "recordedAt": "2026-08-28T20:48:10.376Z",
+      "campaignId": "thebiker-rolling-2026-08-21",
+      "replacedItem": {
+        "day": 8,
+        "publishDate": "2026-08-28",
+        "id": "reserva-limpeza-transmissao-metodo",
+        "title": "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação",
+        "summary": "Procedimento técnico baseado em orientações oficiais para remover contaminantes, verificar danos e devolver a corrente ao uso seguro.",
+        "category": "manutencao-ajustes",
+        "freshness": "evergreen",
+        "status": "blocked",
+        "productIds": [
+          "corrente-sram-nx-eagle"
+        ],
+        "heroImage": {
+          "mode": "real-context",
+          "productId": "corrente-sram-nx-eagle",
+          "relationship": "category-example",
+          "rationale": "Fotografia real do catálogo TheBiker usada apenas como exemplo visual da categoria técnica abordada."
+        },
+        "imageAssetIds": [],
+        "blockReason": "[RESEARCH_INSUFFICIENT] Rascunho bloqueado após 2 reparos: Artigo bloqueado por integridade de claims: inferencias tecnicas ausentes dos fatos confirmados: a negligencia na remocao desses residuos compromete a eficiencia da transmissao e reduz a vida util dos componentes. | estabelecer um protocolo de limpeza e inspecao e a medida tecnica fundamental para manter a precisao das trocas e a integridade estrutural do sistema. | a negligencia prolongada pode resultar em corrosao galvanica em pontos de contato entre metais distintos, tornando a remocao de componentes para manutencao futura uma tarefa complexa e potencialmente destrutiva.",
+        "failure": {
+          "code": "RESEARCH_INSUFFICIENT",
+          "retryable": false,
+          "stage": "production",
+          "message": "Rascunho bloqueado após 2 reparos: Artigo bloqueado por integridade de claims: inferencias tecnicas ausentes dos fatos confirmados: a negligencia na remocao desses residuos compromete a eficiencia da transmissao e reduz a vida util dos componentes. | estabelecer um protocolo de limpeza e inspecao e a medida tecnica fundamental para manter a precisao das trocas e a integridade estrutural do sistema. | a negligencia prolongada pode resultar em corrosao galvanica em pontos de contato entre metais distintos, tornando a remocao de componentes para manutencao futura uma tarefa complexa e potencialmente destrutiva.",
+          "recordedAt": "2026-08-28T20:47:13.897Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-28T20:47:13.897Z"
+      },
+      "replacement": {
+        "id": "reserva-scale-940-980-comparativo",
+        "title": "Scott Scale 940 e 980: diferenças verificáveis de quadro, suspensão e componentes"
+      },
+      "reason": "[RESEARCH_INSUFFICIENT] Rascunho bloqueado após 2 reparos: Artigo bloqueado por integridade de claims: inferencias tecnicas ausentes dos fatos confirmados: a negligencia na remocao desses residuos compromete a eficiencia da transmissao e reduz a vida util dos componentes. | estabelecer um protocolo de limpeza e inspecao e a medida tecnica fundamental para manter a precisao das trocas e a integridade estrutural do sistema. | a negligencia prolongada pode resultar em corrosao galvanica em pontos de contato entre metais distintos, tornando a remocao de componentes para manutencao futura uma tarefa complexa e potencialmente destrutiva."
     }
   ]
 }
