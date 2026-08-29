@@ -2,7 +2,7 @@
 image_subject_id: "quadro-suspensao-spark-rc-world-cup-hmx-2026-flight-attendant"
 layout: post
 published: true
-title: "Dentro da Spark RC: por que a suspensão integrada muda estrutura, serviço e distribuição de massa"
+title: "Spark RC: como a suspensão integrada muda estrutura e serviço"
 slug: "engenharia-suspensao-integrada-spark"
 date: 2026-08-11
 last_modified_at: 2026-08-05
@@ -27,8 +27,8 @@ price_currency: "BRL"
 price_checked_at: "2026-08-05"
 category: "guia-tecnico"
 tags: ["ciclismo", "mtb", "suspensao-integrada", "scott-spark-rc", "flex-pivot", "flight-attendant"]
-description: "Entenda como a suspensão integrada com Flex Pivot da Scott Spark RC redefine rigidez, manutenção e centralização de massa, com análise do sistema Flight Attendant e curso de 120 mm."
-direct_answer: "Entenda como a suspensão integrada com Flex Pivot da Scott Spark RC redefine rigidez, manutenção e centralização de massa, com análise do sistema Flight Attendant e curso de 120 mm."
+description: "Entenda como a suspensão integrada e o Flex Pivot da Scott Spark RC afetam estrutura, manutenção e distribuição de massa em uma plataforma XC de 120 mm."
+direct_answer: "Na Scott Spark RC, o amortecedor integrado protege o conjunto e concentra massa, mas muda o acesso para inspeção e serviço. O Flex Pivot completa os 120 mm de curso por deformação controlada dos seatstays."
 image: "/assets/img/posts/engenharia-suspensao-integrada-spark/hero-1600.webp"
 image_mobile: "/assets/img/posts/engenharia-suspensao-integrada-spark/hero-800.webp"
 thumbnail: "/assets/img/posts/engenharia-suspensao-integrada-spark/card-640.webp"

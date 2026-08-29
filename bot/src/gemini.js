@@ -320,8 +320,8 @@ export class AIProvider {
     const neutralize = (value) => neutralizeMarkdownPolicyPhrases(value, { deskResearch: !requestedHandsOn });
 
     next.title = neutralize(this._sanitizeHtml(next.title));
-    next.description = truncateAtWordBoundary(neutralize(this._sanitizeHtml(next.description)), 200);
-    next.direct_answer = truncateAtWordBoundary(neutralize(this._sanitizeHtml(next.direct_answer)), 420);
+    next.description = neutralize(this._sanitizeHtml(next.description));
+    next.direct_answer = neutralize(this._sanitizeHtml(next.direct_answer));
     next.slug = this._sanitizeHtml(next.slug);
     next.category = this._normalizeCategory(next.category);
     next.content_type = this._normalizeContentType(next.content_type);

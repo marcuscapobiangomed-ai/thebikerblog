@@ -9,6 +9,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { TEMPLATES } from "./templates.js";
 import { isPortfolioBrand, THEBIKER_PORTFOLIO } from "./portfolio-policy.js";
+import { seoMetadataIssues } from "./seo-metadata.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -95,6 +96,13 @@ function validateFrontmatter(content, fileName) {
   for (const field of REQUIRED_FM) {
     if (!fm[field] || fm[field] === "") {
       errors.push(`Campo obrigatório '${field}' ausente`);
+    }
+  }
+
+  const requiresPublicationMetadata = fm.published === "true" || fm.status === "published" || fm.editorial_status === "published";
+  if (requiresPublicationMetadata) {
+    for (const issue of seoMetadataIssues({ title: fm.title, description: fm.description, directAnswer: fm.direct_answer })) {
+      errors.push(`SEO metadata: ${issue}`);
     }
   }
 

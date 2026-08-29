@@ -2,7 +2,7 @@
 image_subject_id: "bicicleta-scott-addict-50-2026-pre-venda-cumulus-white"
 layout: post
 title: "Melhores Estradas e Rotas de Ciclismo no Brasil"
-description: "Descubra as melhores estradas e rotas para ciclismo de estrada no Brasil, organizadas por região."
+description: "Conheça rotas de ciclismo de estrada em todas as regiões do Brasil, com informações sobre altimetria, pavimento, tráfego, clima e nível de experiência."
 direct_answer: "Não existe uma única melhor rota no Brasil: a escolha deve combinar região, altimetria, pavimento, tráfego, clima, apoio e experiência do ciclista. O guia organiza alternativas por região e exige reconfirmação local das condições antes da saída."
 date: 2026-07-21
 last_modified_at: 2026-07-19

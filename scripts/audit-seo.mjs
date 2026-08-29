@@ -3,6 +3,8 @@ import path from 'node:path'
 import process from 'node:process'
 import { fileURLToPath } from 'node:url'
 import { load as loadYaml } from 'js-yaml'
+import { jaccardSimilarity, pageFingerprint, validateSeoPageMetadata } from './lib/seo-page-gate.mjs'
+import { seoMetadataIssues } from '../bot/src/seo-metadata.js'
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const failures = []
@@ -28,6 +30,8 @@ function requireFields(file, data, fields) {
 }
 
 const config = loadYaml(read('_config.yml'))
+const publicCatalog = JSON.parse(read('_data/catalog-public.json'))
+const verifiedProductIds = new Set((publicCatalog.bikes || []).map((product) => product.id))
 const excluded = new Set(config.exclude || [])
 for (const entry of ['admin', 'audit', 'content', 'data-room', 'docs', 'output', 'project', 'screenshots', 'sql']) {
   if (!excluded.has(entry)) failures.push(`_config.yml: superfície operacional não excluída (${entry})`)
@@ -54,9 +58,10 @@ if (!/for post in public_posts limit:20/.test(llms)) failures.push('llms.txt: li
 
 const postFiles = fs.readdirSync(path.join(ROOT, '_posts')).filter((name) => /\.(md|html)$/.test(name))
 let publishedPosts = 0
+const programmaticSeoPages = []
 for (const name of postFiles) {
   const file = `_posts/${name}`
-  const { data } = frontmatter(file)
+  const { data, body } = frontmatter(file)
   if (data.published === false || data.status === 'draft' || data.editorial_status === 'draft') continue
   publishedPosts++
   requireFields(file, data, ['title', 'description', 'direct_answer', 'date', 'last_modified_at', 'author', 'content_type', 'review_method', 'image', 'image_alt'])
@@ -68,10 +73,24 @@ for (const name of postFiles) {
       if (!item?.question || !item?.answer) failures.push(`${file}: FAQ ${index + 1} sem pergunta ou resposta`)
     }
   }
-  if (String(data.title || '').length > 70) warnings.push(`${file}: título longo (${String(data.title).length} caracteres)`)
-  const descriptionLength = String(data.description || '').length
-  if (descriptionLength < 90 || descriptionLength > 170) warnings.push(`${file}: descrição com ${descriptionLength} caracteres`)
+  for (const issue of seoMetadataIssues({ title: data.title, description: data.description, directAnswer: data.direct_answer })) {
+    failures.push(`${file}: ${issue}`)
+  }
   if (!Array.isArray(data.sources) || data.sources.length === 0) failures.push(`${file}: nenhuma fonte estruturada`)
+  for (const error of validateSeoPageMetadata(data, body)) failures.push(`${file}: ${error}`)
+  for (const productId of (data.seo_page?.verified_product_ids || [])) {
+    if (!verifiedProductIds.has(productId)) failures.push(`${file}: produto SEO nao verificado no catalogo publico (${productId})`)
+  }
+  if (data.seo_page) programmaticSeoPages.push({ file, fingerprint: pageFingerprint(body) })
+}
+
+for (let left = 0; left < programmaticSeoPages.length; left += 1) {
+  for (let right = left + 1; right < programmaticSeoPages.length; right += 1) {
+    const similarity = jaccardSimilarity(programmaticSeoPages[left].fingerprint, programmaticSeoPages[right].fingerprint)
+    if (similarity >= 0.78) {
+      failures.push(`${programmaticSeoPages[left].file} e ${programmaticSeoPages[right].file}: similaridade programatica excessiva (${(similarity * 100).toFixed(0)}%)`)
+    }
+  }
 }
 
 const productFiles = []

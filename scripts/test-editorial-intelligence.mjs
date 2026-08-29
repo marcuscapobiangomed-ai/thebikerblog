@@ -2,7 +2,8 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
-import { buildEditorialIntelligence, intelligenceMarkdown, queryCluster, searchIntent } from './lib/editorial-intelligence.mjs';
+import { audienceIntentForSearchIntent, buildEditorialIntelligence, intelligenceMarkdown, queryCluster, searchIntent, seoPageEligibility } from './lib/editorial-intelligence.mjs';
+import { jaccardSimilarity, pageFingerprint, validateSeoPageMetadata } from './lib/seo-page-gate.mjs';
 import { cachedYoutubePayload, normalizeGoogleAdsKeywordIdeas, parseGoogleTrendsRss, periodsFor } from './run-editorial-intelligence.mjs';
 
 const youtubeCache = await fs.mkdtemp(path.join(os.tmpdir(), 'thebiker-youtube-cache-'));
@@ -145,7 +146,7 @@ const report = buildEditorialIntelligence({
   articles: [{ title: 'Ajuste de suspensão MTB', tags: ['suspensão'], url: 'https://example.com/ajuste/', dateModified: '2026-01-01T00:00:00Z' }],
 });
 
-assert.equal(report.schemaVersion, 6);
+assert.equal(report.schemaVersion, 7);
 assert.equal(report.scope.label.includes('Brasil'), true);
 assert.equal(report.brazilRankings.youtubeDiscovery.length, 20);
 assert.ok(report.brazilRankings.seoMeasured.length > 1000);
@@ -178,6 +179,28 @@ assert.equal(report.governance.googleTrendsDoesNotFillMeasuredSeo, true);
 assert.ok(report.queryClusters.some((cluster) => cluster.cluster === 'suspensao'));
 assert.equal(queryCluster('qual pressão do pneu tubeless'), 'pneus-tubeless');
 assert.equal(searchIntent('onde comprar bicicleta gravel'), 'commercial');
+assert.equal(searchIntent('alternativa a Scott Spark RC'), 'alternative');
+assert.equal(searchIntent('mountain bike ate R$ 15 mil'), 'constraint');
+assert.equal(searchIntent('bike para primeira prova de XC'), 'use-case');
+assert.equal(searchIntent('bike com Shimano Di2'), 'feature');
+assert.equal(searchIntent('freio raspando e perdendo potencia'), 'problem');
+assert.equal(audienceIntentForSearchIntent('comparison'), 'compare_products');
+assert.equal(audienceIntentForSearchIntent('constraint'), 'purchase_consideration');
+assert.equal(audienceIntentForSearchIntent('problem'), 'solve_problem');
+assert.equal(seoPageEligibility({ source: 'search-console', topic: 'bike ate 15 mil', impressions: 30 }).eligible, true);
+assert.equal(seoPageEligibility({ source: 'youtube', topic: 'bike ate 15 mil' }).eligible, false);
+assert.equal(seoPageEligibility({ source: 'search-console', topic: 'bike ate 15 mil', impressions: 30 }, { url: '/existente/' }).action, 'refresh');
+assert.ok(report.briefs.every((brief) => brief.seoPage && brief.searchIntent));
+
+const seoPageBody = Array.from({ length: 710 }, (_, index) => `criterio${index}`).join(' ');
+assert.deepEqual(validateSeoPageMetadata({ seo_page: {
+  type: 'comparison', primary_query: 'spark team vs expert',
+  demand: { source: 'search-console', measured_at: '2026-08-13', value: 42 },
+  differentiation: ['geometria', 'suspensao', 'preco'], unique_evidence: ['tabela propria', 'estoque verificado'],
+  verified_product_ids: ['spark-team', 'spark-expert'],
+} }, seoPageBody), []);
+assert.ok(validateSeoPageMetadata({ seo_page: { type: 'comparison' } }, 'curto').length >= 6);
+assert.equal(jaccardSimilarity(pageFingerprint('quadro carbono suspensao'), pageFingerprint('quadro carbono freios')), 0.5);
 assert.match(intelligenceMarkdown(report), /20 sinais de YouTube Brasil/);
 assert.match(intelligenceMarkdown(report), /até \*\*1\.000 consultas por propriedade\*\*/);
 assert.match(intelligenceMarkdown(report), /Payload compacto para o planejador mensal/);

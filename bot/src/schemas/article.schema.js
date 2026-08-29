@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { assertPortfolioPromotion } from "../portfolio-policy.js";
+import { META_DESCRIPTION_MAX, META_DESCRIPTION_MIN, SEO_TITLE_MAX, seoMetadataIssues } from "../seo-metadata.js";
 
 export const ALLOWED_CATEGORIES = [
   "reviews",
@@ -108,8 +109,8 @@ const FaqItemSchema = z.object({
 });
 
 export const ArticleSchema = z.object({
-  title: z.string().min(10, "Título precisa ter ao menos 10 caracteres").max(120, "Título muito longo"),
-  description: z.string().min(100, "Description precisa ter ao menos 100 caracteres").max(200, "Description muito longa"),
+  title: z.string().min(10, "Título precisa ter ao menos 10 caracteres").max(SEO_TITLE_MAX, `Título deve ter no máximo ${SEO_TITLE_MAX} caracteres`),
+  description: z.string().min(META_DESCRIPTION_MIN, `Description precisa ter ao menos ${META_DESCRIPTION_MIN} caracteres`).max(META_DESCRIPTION_MAX, `Description deve ter no máximo ${META_DESCRIPTION_MAX} caracteres`),
   direct_answer: z.string().min(80, "Resposta direta precisa ter ao menos 80 caracteres").max(420, "Resposta direta muito longa"),
   faq: z.array(FaqItemSchema).max(5, "Use no máximo cinco perguntas frequentes").default([]),
   slug: z.string().regex(/^[a-z0-9]+(-[a-z0-9]+)*$/, "slug inválido"),
@@ -154,6 +155,10 @@ export const ArticleSchema = z.object({
     image_license: z.string().default("Uso editorial da TheBiker"),
   }).optional().default({}),
 }).superRefine((article, ctx) => {
+  for (const message of seoMetadataIssues({ title: article.title, description: article.description, directAnswer: article.direct_answer })) {
+    ctx.addIssue({ code: "custom", path: ["description"], message });
+  }
+
   const promoted = [...article.promoted_brands];
   if (article.brand) promoted.push(article.brand);
 

@@ -2,7 +2,7 @@
 image_subject_id: "bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9"
 layout: post
 published: true
-title: "Addict RC 20: Ultegra Di2, rodas de 40 mm e o equilíbrio da montagem"
+title: "Addict RC 20: Ultegra Di2, rodas de 40 mm e equilíbrio"
 slug: "review-addict-rc-20"
 date: 2026-08-12
 last_modified_at: 2026-08-05
@@ -27,8 +27,8 @@ price_currency: "BRL"
 price_checked_at: "2026-08-04"
 category: "reviews"
 tags: ["ciclismo", "road", "scott", "addict-rc", "ultegra-di2", "review"]
-description: "Análise documental da Scott Addict RC 20 2026: quadro HMX Carbon, grupo Ultegra Di2 e rodas Syncros Capital 1.0 40 Disc. Entenda o posicionamento, as escolhas técnicas e para quem essa bike entrega o"
-direct_answer: "Análise documental da Scott Addict RC 20 2026: quadro HMX Carbon, grupo Ultegra Di2 e rodas Syncros Capital 1.0 40 Disc. Entenda o posicionamento, as escolhas técnicas e para quem essa bike entrega o"
+description: "Análise da Scott Addict RC 20 2026 com quadro HMX, Ultegra Di2 e rodas Syncros de 40 mm: posicionamento, limitações e perfil de ciclista indicado."
+direct_answer: "A Scott Addict RC 20 combina quadro HMX, Ultegra Di2 e rodas Syncros Capital de 40 mm em uma montagem race equilibrada. É indicada a quem prioriza resposta e velocidade, aceitando menos conforto que a Addict endurance."
 image: "/assets/img/posts/review-addict-rc-20/hero-1600.webp"
 image_mobile: "/assets/img/posts/review-addict-rc-20/hero-800.webp"
 thumbnail: "/assets/img/posts/review-addict-rc-20/card-640.webp"

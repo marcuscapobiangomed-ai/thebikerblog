@@ -1,4 +1,23 @@
 const STOPWORDS = new Set(['para', 'como', 'com', 'uma', 'das', 'dos', 'que', 'por', 'thebiker', 'bike', 'bikes', 'ciclismo']);
+const HIGH_INTENT_SEARCH_INTENTS = new Set([
+  'alternative',
+  'comparison',
+  'constraint',
+  'commercial',
+  'use-case',
+  'feature',
+  'evaluation',
+]);
+const PRIORITY_SEARCH_INTENTS = new Set([...HIGH_INTENT_SEARCH_INTENTS, 'problem']);
+const SEO_PAGE_TYPES = {
+  alternative: 'alternative',
+  comparison: 'comparison',
+  constraint: 'constraint',
+  commercial: 'pricing',
+  'use-case': 'use-case',
+  problem: 'problem',
+  feature: 'feature',
+};
 const DEFAULT_CYCLING_TERMS = [
   'ciclismo',
   'ciclista',
@@ -192,11 +211,11 @@ function marketDemandOpportunity(item, articles, config) {
     Math.log10(averageMonthlySearches + 1) * 30
     + Math.max(-10, Math.min(20, trend * 20))
     + (portfolioMatch ? 15 : 0)
-    + (['commercial', 'comparison', 'evaluation'].includes(intent) ? 8 : 0),
+    + (PRIORITY_SEARCH_INTENTS.has(intent) ? 8 : 0),
   );
   let recommendedAction = 'Criar conteúdo editorial técnico e validar aderência ao portfólio antes de qualquer CTA.';
   if (coverage) recommendedAction = 'Otimizar o conteúdo existente e reforçar links internos conforme a intenção da busca.';
-  else if (portfolioMatch && ['commercial', 'comparison', 'evaluation'].includes(intent)) {
+  else if (portfolioMatch && HIGH_INTENT_SEARCH_INTENTS.has(intent)) {
     recommendedAction = 'Criar guia comercial técnico e vincular somente produto ou categoria com estoque verificado.';
   }
   return {
@@ -225,11 +244,45 @@ function marketDemandOpportunity(item, articles, config) {
 
 export function searchIntent(value) {
   const text = normalizeText(value);
+  if (/\b(alternativa|alternativas|substituto|substituir)\b/.test(text)) return 'alternative';
+  if (/\b(ate|abaixo de|menos de|no maximo|sem assinatura|sem compromisso|sem cartao|sem instalacao|sem fio|sem camara|tubeless ready)\b/.test(text)) return 'constraint';
   if (/\b(comprar|preco|precos|valor|onde comprar|loja|promocao)\b/.test(text)) return 'commercial';
   if (/\b(melhor|melhores|versus|\bvs\b|comparativo|diferenca)\b/.test(text)) return 'comparison';
+  if (/\b(para xc|para cross country|para maratona|para gravel|para estrada|para trilha|para competir|para competicao|para primeira prova|para longas distancias|para bikepacking|para iniciantes)\b/.test(text)) return 'use-case';
+  if (/\b(com [a-z0-9 ]{0,20}(di2|axs)|com api|com ia|com inteligencia artificial|com suspensao integrada|com carbono hmx|com carbono hmf|eletronico|eletronica)\b/.test(text)) return 'feature';
+  if (/\b(barulho|ruido|folga|raspando|travando|falha|desgaste|contaminacao|nao troca|nao funciona|perde potencia|evitar|reduzir)\b/.test(text)) return 'problem';
   if (/\b(como|ajustar|regular|consertar|manutencao|limpar|trocar|resolver)\b/.test(text)) return 'how-to';
   if (/\b(review|analise|vale a pena|opinioes)\b/.test(text)) return 'evaluation';
   return 'informational';
+}
+
+export function audienceIntentForSearchIntent(intent) {
+  if (['alternative', 'comparison'].includes(intent)) return 'compare_products';
+  if (['constraint', 'commercial', 'use-case', 'feature', 'evaluation'].includes(intent)) return 'purchase_consideration';
+  if (['problem', 'how-to'].includes(intent)) return 'solve_problem';
+  return 'technical_learning';
+}
+
+export function seoPageEligibility(opportunity, existing = null) {
+  const source = opportunity.source;
+  const intent = opportunity.intent || searchIntent(opportunity.topic);
+  const measuredDemand = source === 'search-console'
+    ? number(opportunity.impressions) > 0
+    : source === 'google-keyword-planner' && number(opportunity.averageMonthlySearches) > 0;
+  const pageType = SEO_PAGE_TYPES[intent] || null;
+  const blockers = [];
+  if (!pageType) blockers.push('intencao_sem_template_seo_especifico');
+  if (!measuredDemand) blockers.push('demanda_google_nao_medida');
+  if (opportunity.blockedBrandDetected) blockers.push('marca_bloqueada_para_promocao');
+  if (existing) blockers.push('cobertura_existente_deve_ser_atualizada');
+  return {
+    eligible: blockers.length === 0,
+    pageType,
+    intent,
+    demandSource: measuredDemand ? source : null,
+    action: existing ? 'refresh' : blockers.length === 0 ? 'new-content' : 'editorial-only',
+    blockers,
+  };
 }
 
 export function queryCluster(value) {
@@ -377,6 +430,8 @@ function briefFrom(opportunity, articles, config) {
   const existing = covered(opportunity.topic, articles);
   const action = existing ? 'refresh' : 'new-content';
   const safeTopic = opportunity.topic;
+  const intent = opportunity.intent || searchIntent(safeTopic);
+  const seoPage = seoPageEligibility(opportunity, existing);
   return {
     id: normalizeText(`${opportunity.source}-${safeTopic}`).replace(/ /g, '-').slice(0, 72),
     action,
@@ -385,7 +440,8 @@ function briefFrom(opportunity, articles, config) {
     score: opportunity.score,
     source: opportunity.source,
     audienceSegment: 'core_technical_cyclists',
-    audienceIntent: opportunity.source === 'search-console' ? 'solve_problem' : 'follow_market_competition',
+    searchIntent: intent,
+    audienceIntent: audienceIntentForSearchIntent(intent),
     experienceLevelTarget: 'intermediate_advanced',
     evidence: opportunity.evidence,
     evidenceUrl: opportunity.sourceUrl,
@@ -394,11 +450,15 @@ function briefFrom(opportunity, articles, config) {
       ? 'Atualizar a resposta existente, acrescentar evidência nova e reforçar links internos.'
       : 'Criar resposta técnica original para ciclista intermediário ou avançado, com método e limitações declarados.',
     publicationGate: [
+      'demanda medida no Search Console ou Keyword Planner para qualquer pagina SEO programatica',
+      'diferenciacao substancial em relacao ao acervo; atualizar em vez de criar quando ja houver cobertura',
+      'ao menos dois produtos verificados para comparacoes e alternativas',
       'fontes primárias verificadas',
       'nenhuma experiência ou especificação inventada',
       'produto e CTA somente com inventário TheBiker verificado',
       'gates determinísticos obrigatórios; revisão humana apenas para exceções',
     ],
+    seoPage,
     allowedBrands: config.portfolioBrands || [],
   };
 }
@@ -467,12 +527,13 @@ export function buildEditorialIntelligence({
       clicks: item.clicks,
       targetUrls: item.targetUrls,
       opportunityScore: item.opportunityScore,
-      recommendedAction: item.intent === 'commercial' || item.intent === 'evaluation' || item.intent === 'comparison'
+      recommendedAction: HIGH_INTENT_SEARCH_INTENTS.has(item.intent)
         ? 'Conectar o conteúdo editorial à categoria ou ao produto verificado da loja.'
         : 'Preservar a resposta principal no blog e usar a loja como destino comercial contextual.',
     }));
   const seoCandidates = topSeo.slice(0, 100).map((item) => ({
     source: 'search-console', topic: item.term, targetUrl: item.targetUrls[0] || null, sourceUrl: item.targetUrls[0] || null,
+    intent: item.intent, impressions: item.impressions,
     score: item.opportunityScore, evidence: `${item.impressions} impressões no Brasil; posição ${item.position.toFixed(1)}; CTR ${(item.ctr * 100).toFixed(1)}%`, directPromotionAllowed: true,
   }));
   const directCandidates = [...seoCandidates, ...marketDemandSignals, ...trendSignals, ...videoSignals]
@@ -512,7 +573,7 @@ export function buildEditorialIntelligence({
   }, new Map()).values()].map((item) => ({ ...item, pages: [...item.pages].sort() }))
     .sort((left, right) => right.impressions - left.impressions || right.queries - left.queries);
   return {
-    schemaVersion: 6,
+    schemaVersion: 7,
     runKey: context.runKey,
     cadence: context.cadence,
     generatedAt: context.generatedAt,
@@ -790,6 +851,7 @@ export function intelligenceMarkdown(report) {
     lines.push(`   - Evidência: ${brief.evidence} ([fonte](${brief.evidenceUrl}))`);
     lines.push(`   - Direção: ${brief.angle}`);
     lines.push(`   - Público: ${brief.audienceSegment}; intenção: ${brief.audienceIntent}; nível-alvo: ${brief.experienceLevelTarget}`);
+    lines.push(`   - Pagina SEO: ${brief.seoPage.eligible ? `elegivel (${brief.seoPage.pageType})` : `nao elegivel (${brief.seoPage.blockers.join(', ')})`}`);
     if (brief.targetUrl) lines.push(`   - Página-alvo: ${brief.targetUrl}`);
   }
   lines.push('', '## Atualizações do acervo', '');
