@@ -2693,6 +2693,65 @@
         "title": "Scott Scale 940 e 980: diferenças verificáveis de quadro, suspensão e componentes"
       },
       "reason": "[RESEARCH_INSUFFICIENT] Rascunho bloqueado após 2 reparos: Artigo bloqueado por integridade de claims: inferencias tecnicas ausentes dos fatos confirmados: a negligencia na remocao desses residuos compromete a eficiencia da transmissao e reduz a vida util dos componentes. | estabelecer um protocolo de limpeza e inspecao e a medida tecnica fundamental para manter a precisao das trocas e a integridade estrutural do sistema. | a negligencia prolongada pode resultar em corrosao galvanica em pontos de contato entre metais distintos, tornando a remocao de componentes para manutencao futura uma tarefa complexa e potencialmente destrutiva."
+    },
+    {
+      "recordedAt": "2026-08-30T14:20:55.172Z",
+      "campaignId": "thebiker-rolling-2026-08-21",
+      "replacedItem": {
+        "day": 10,
+        "publishDate": "2026-08-30",
+        "id": "contingencia-spark-world-cup-documentacao",
+        "title": "Scott Spark RC World Cup: quadro, suspensão e montagem 2027",
+        "summary": "Análise da plataforma de cross-country, dos componentes, dos ajustes, do peso e do perfil de ciclista atendido pela configuração.",
+        "category": "review",
+        "freshness": "revalidate-24h",
+        "status": "blocked",
+        "productIds": [
+          "quadro-suspensao-spark-rc-world-cup-hmx-2026-flight-attendant",
+          "bicicleta-scott-spark-rc-world-cup-2027"
+        ],
+        "heroImage": {
+          "mode": "real-context",
+          "productId": "quadro-suspensao-spark-rc-world-cup-hmx-2026-flight-attendant",
+          "relationship": "category-example",
+          "rationale": "Fotografia real do catálogo TheBiker selecionada deterministicamente como exemplo visual da categoria técnica abordada."
+        },
+        "imageAssetIds": [],
+        "blockReason": "[VALIDATION_FAILED] Quarentena: artigo integral de fallback determinístico exige nova redação e revisão independente",
+        "failure": {
+          "code": "VALIDATION_FAILED",
+          "retryable": false,
+          "stage": "editorial-quarantine",
+          "message": "Artigo integral de fallback determinístico reprovado pelo gate de qualidade editorial",
+          "recordedAt": "2026-08-22T04:47:18.904Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-20T16:13:24.231Z",
+        "aiReview": {
+          "score": null,
+          "finalScore": null,
+          "finalBlockers": 1,
+          "premiumEditUsed": false,
+          "providers": {
+            "factSheet": "groq",
+            "draft": "gemini",
+            "critique": "groq",
+            "final": "gemini",
+            "finalAudit": "groq",
+            "deterministicFallback": "grounded-deterministic"
+          },
+          "generatedAt": "2026-08-20T16:13:24.231Z",
+          "contentHash": "sha256:ad39545e593baa7a5334e21b40701bf190a766e2989c798f8121ff087b034c31",
+          "sourceHash": "2c870e73b476c90cac086abe4a3e304c26d879e0ca4969ea3404e459e920fb43",
+          "deterministicFullArticleFallbackUsed": true,
+          "deterministicFullArticleFallbackTrigger": "repair-fallback"
+        }
+      },
+      "replacement": {
+        "id": "reserva-limpeza-transmissao-metodo",
+        "title": "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação"
+      },
+      "reason": "[VALIDATION_FAILED] Quarentena: artigo integral de fallback determinístico exige nova redação e revisão independente"
     }
   ]
 }
