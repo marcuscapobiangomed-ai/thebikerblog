@@ -2811,6 +2811,97 @@
         "title": "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação"
       },
       "reason": "[VALIDATION_FAILED] Quarentena: artigo integral de fallback determinístico exige nova redação e revisão independente"
+    },
+    {
+      "recordedAt": "2026-08-31T16:53:25.490Z",
+      "campaignId": "thebiker-rolling-2026-08-21",
+      "replacedItem": {
+        "day": 11,
+        "publishDate": "2026-08-31",
+        "id": "contingencia-scale-rc-team-quadro",
+        "title": "Quadro Scott Scale RC Team HMF: interfaces, padrões e verificações antes da montagem",
+        "summary": "Análise das medidas, dos padrões de montagem, das interfaces e dos componentes compatíveis com o quadro.",
+        "category": "review",
+        "freshness": "revalidate-24h",
+        "status": "blocked",
+        "productIds": [
+          "quadro-scott-scale-rc-team-hmf-2026"
+        ],
+        "heroImage": {
+          "mode": "real-context",
+          "productId": "quadro-scott-scale-rc-team-hmf-2026",
+          "relationship": "category-example",
+          "rationale": "Fotografia real do catálogo TheBiker selecionada deterministicamente como exemplo visual da categoria técnica abordada."
+        },
+        "imageAssetIds": [],
+        "blockReason": "[VALIDATION_FAILED] Quarentena: artigo integral de fallback determinístico exige nova redação e revisão independente",
+        "failure": {
+          "code": "VALIDATION_FAILED",
+          "retryable": false,
+          "stage": "editorial-quarantine",
+          "message": "Artigo integral de fallback determinístico reprovado pelo gate de qualidade editorial",
+          "recordedAt": "2026-08-22T04:47:18.904Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-20T17:33:41.925Z",
+        "aiReview": {
+          "score": null,
+          "finalScore": null,
+          "finalBlockers": 1,
+          "premiumEditUsed": false,
+          "providers": {
+            "deterministicFallback": "grounded-deterministic"
+          },
+          "generatedAt": "2026-08-20T17:33:41.925Z",
+          "contentHash": "sha256:31ec2ba3b3c3fe984b82bed36874b21cf7d10865956ab4ccf693a250e6f4992a",
+          "deterministicFullArticleFallbackUsed": true,
+          "deterministicFullArticleFallbackTrigger": "pipeline-failure"
+        }
+      },
+      "replacement": {
+        "id": "reserva-limpeza-transmissao-metodo",
+        "title": "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação"
+      },
+      "reason": "[VALIDATION_FAILED] Quarentena: artigo integral de fallback determinístico exige nova redação e revisão independente"
+    },
+    {
+      "recordedAt": "2026-08-31T16:54:33.743Z",
+      "campaignId": "thebiker-rolling-2026-08-21",
+      "replacedItem": {
+        "day": 11,
+        "publishDate": "2026-08-31",
+        "id": "reserva-limpeza-transmissao-metodo",
+        "title": "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação",
+        "summary": "Procedimento técnico baseado em orientações oficiais para remover contaminantes, verificar danos e devolver a corrente ao uso seguro.",
+        "category": "manutencao-ajustes",
+        "freshness": "evergreen",
+        "status": "blocked",
+        "productIds": [
+          "corrente-sram-nx-eagle"
+        ],
+        "heroImage": {
+          "mode": "real-context",
+          "productId": "corrente-sram-nx-eagle",
+          "relationship": "category-example",
+          "rationale": "Fotografia real do catálogo TheBiker usada apenas como exemplo visual da categoria técnica abordada."
+        },
+        "imageAssetIds": [],
+        "blockReason": "[RESEARCH_INSUFFICIENT] Rascunho bloqueado após 2 reparos: Artigo bloqueado por integridade de claims: inferencias tecnicas ausentes dos fatos confirmados: a contaminacao por detritos abrasivos, quando nao removida, atua como um agente de friccao constante, comprometendo a eficiencia da transmissao e a precisao das trocas. | no sistema de freios, a contaminacao por lama pode criar uma camada vitrea nas pastilhas, reduzindo drasticamente o coeficiente de atrito entre a pastilha e o rotor. | a negligencia na remocao desses residuos apos o pedal resulta em uma degradacao acelerada dos componentes, forcando o sistema a operar sob estresse mecanico constante e reduzindo ",
+        "failure": {
+          "code": "RESEARCH_INSUFFICIENT",
+          "retryable": false,
+          "stage": "production",
+          "message": "Rascunho bloqueado após 2 reparos: Artigo bloqueado por integridade de claims: inferencias tecnicas ausentes dos fatos confirmados: a contaminacao por detritos abrasivos, quando nao removida, atua como um agente de friccao constante, comprometendo a eficiencia da transmissao e a precisao das trocas. | no sistema de freios, a contaminacao por lama pode criar uma camada vitrea nas pastilhas, reduzindo drasticamente o coeficiente de atrito entre a pastilha e o rotor. | a negligencia na remocao desses residuos apos o pedal resulta em uma degradacao acelerada dos componentes, forcando o sistema a operar sob estresse mecanico constante e reduzindo ",
+          "recordedAt": "2026-08-31T16:53:26.186Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-31T16:53:26.186Z"
+      },
+      "replacement": {
+        "id": "reserva-scale-940-980-comparativo",
+        "title": "Scott Scale 940 e 980: diferenças verificáveis de quadro, suspensão e componentes"
+      },
+      "reason": "[RESEARCH_INSUFFICIENT] Rascunho bloqueado após 2 reparos: Artigo bloqueado por integridade de claims: inferencias tecnicas ausentes dos fatos confirmados: a contaminacao por detritos abrasivos, quando nao removida, atua como um agente de friccao constante, comprometendo a eficiencia da transmissao e a precisao das trocas. | no sistema de freios, a contaminacao por lama pode criar uma camada vitrea nas pastilhas, reduzindo drasticamente o coeficiente de atrito entre a pastilha e o rotor. | a negligencia na remocao desses residuos apos o pedal resulta em uma degradacao acelerada dos componentes, forcando o sistema a operar sob estresse mecanico constante e reduzindo "
     }
   ]
 }
