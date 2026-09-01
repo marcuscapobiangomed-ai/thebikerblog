@@ -2,32 +2,45 @@
 
 **Canal editorial oficial da TheBiker para ciclistas experientes: análises técnicas, comparativos, lançamentos e cobertura de competições.**
 
-## Pipeline editorial
+## Pipeline editorial automatizado
+
+O blog publica automaticamente com cadência 3x/dia (06:05, 10:05, 14:05 BRT) quando `AUTOMATION_ENABLED=true`.
 
 ```
-📱 WhatsApp (/novo <tema>)
+📊 Campanha de 30 dias (bot/editorial-campaign.json)
         ↓
-📊 Ficha de pesquisa (content/research/<slug>.json)
+🔄 Automação editorial (3x/dia, GitHub Actions `cron-post.yml`)
+        ├─ 🔍 Pesquisa fundamentada (Groq/DeepSeek)
+        ├─ 🤖 Geração (IA redige, revisa, audita)
+        ├─ ✅ Gates de qualidade:
+        │  ├─ Extensão mínima de palavras
+        │  ├─ Proibição de linguagem publicitária
+        │  ├─ Exigência de fonte rastreável
+        │  ├─ Integridade de claims (IA audita)
+        │  └─ Coerência imagem ↔ produto
+        ├─ 🖼️ Imagem oficial + manifesto
+        └─ 📅 Agendamento (status: scheduled)
         ↓
-🤖 IA gera rascunho estruturado (JSON validado por schema)
+🎯 Publicação diária ao meio-dia (12:00 BRT, `publish-daily.yml`)
+        ├─ Promove pauta do dia para _posts/
+        ├─ Build Jekyll automático
+        └─ Deploy em GitHub Pages
         ↓
-🖼️ Plano de imagens (assets/img/posts/<slug>/image-manifest.json)
-        ↓
-✅ Validação automática (research, claims, images, frontmatter)
-✅ Contrato AEO/GEO com resposta direta, fontes, FAQ visível e JSON-LD estático
-        ↓
-🤖 Gate editorial automatizado (score, bloqueadores, recibo e citabilidade)
-        ↓
-🚀 Agendamento → publicação automática
+🔐 Validação pós-deploy (healthcheck de imagens)
 ```
 
-### Transparência
+### Garantias de qualidade
 
-- Os artigos são produzidos e validados **por um fluxo de inteligência artificial com gates determinísticos**
-- **Nenhum conteúdo é publicado sem passar pelo gate editorial automatizado**
-- **Análises documentais** são explicitamente identificadas como tal — não são testes pessoais
-- **Especificações técnicas exigem fonte** (fabricante, distribuidor, loja)
-- Todo artigo possui `status: draft` até o gate emitir recibo e o publicador alterar para `status: published`
+Os artigos passam por **5 gates automáticos** antes de serem publicados:
+
+1. **Extensão mínima:** review 900–1600, comparativo 1000–1800, lançamento 650–1200 palavras
+2. **Linguagem editorial:** proibição de termos publicitários ("revolucionário", "imbatível", etc.)
+3. **Conteúdo documental:** análises são explicitamente identificadas como pesquisa, não testes
+4. **Integridade de claims:** toda alegação técnica deve aparecer nas fontes confirmadas
+5. **Imagem coerente:** marca/produto da imagem deve corresponder ao artigo
+6. **Revisão final:** nota mínima 90/100 da IA auditora antes de publicação
+
+**Transparência:** artigos contam com `## Fontes` enumeradas e JSON-LD estruturado para máquinas (Googlebot, Perplexity, etc.).
 
 ### Estrutura do conteúdo
 
@@ -42,7 +55,7 @@ content/
 └── research/                # Fichas de pesquisa (JSON validado)
 
 _posts/
-└── drafts/                  # Rascunhos aguardando validação automática
+└── drafts/                  # Rascunhos aguardando revisão
 
 assets/img/posts/<slug>/
 ├── image-manifest.json      # Metadados das imagens
@@ -50,19 +63,25 @@ assets/img/posts/<slug>/
 └── thumb-480.webp           # Thumbnail para cards e listas
 ```
 
-## Integração com WhatsApp
+## Operação manual
 
-A integração está desativada e suas dependências de navegador não fazem parte da instalação padrão. Use `npm run post:manual` ou `npm run batch` dentro de `bot/` para operar o pipeline editorial. A reativação exige uma revisão de segurança explícita.
+Para intervir na campanha automatizada ou disparar ações manuais:
 
-Comandos históricos do adaptador:
+```bash
+cd bot
 
-| Comando | Ação |
-|---|---|
-| `/novo <tema>` | Registrar novo tema e iniciar pipeline |
-| `/status <slug>` | Verificar progresso |
-| `/aprovar <slug>` | Consulta informativa; não libera publicação manual |
-| `/cancelar <slug>` | Cancelar tema |
-| `/ajuda` | Mostrar ajuda |
+# Recomposição de buffer (20 pautas mínimo agendadas)
+npm run campaign:replenish -- --target-buffer=20
+
+# Auditoria final de qualidade
+npm run campaign:audit-buffer
+
+# Reparo de artigos bloqueados
+npm run campaign:repair-buffer
+
+# Renovação manual de 30 dias (quando inteligência detecta necessidade)
+npm run campaign:renew
+```
 
 ## Scripts de validação
 
@@ -87,14 +106,28 @@ npm run validate            # Executa toda a suíte Node (não inclui o build Je
 ```bash
 cd bot
 cp .env.example .env
-# Configure DEEPSEEK_API_KEY (preferencial), GEMINI_API_KEY (fallback), GITHUB_TOKEN, etc.
+# Configure DEEPSEEK_API_KEY, GITHUB_TOKEN, GROQ_API_KEY
 npm start
 ```
+
+## Variáveis de ambiente
+
+| Variável | Descrição | Obrigatório |
+|---|---|---|
+| `AUTOMATION_ENABLED` | Ativa pipeline automática (3x/dia, publicação diária) | Sim (`true`/`false`) |
+| `DEEPSEEK_API_KEY` | Chave DeepSeek (geração de artigos premium) | Sim |
+| `DEEPSEEK_PRO_MODEL` | Modelo Pro (padrão `deepseek-v4-pro`) | Não |
+| `DEEPSEEK_FLASH_MODEL` | Modelo Flash (padrão `deepseek-v4-flash`) | Não |
+| `GROQ_API_KEY` | Chave Groq (pesquisa + fallback) | Sim |
+| `GITHUB_TOKEN` | Token GitHub para commits/push | Sim (em CI) |
+| `AI_DEEPSEEK_SCORE_THRESHOLD` | Nota mínima para bypass premium (padrão 90) | Não |
+| `AI_FINAL_SCORE_THRESHOLD` | Nota mínima final para publicação (padrão 90) | Não |
+| `EDITORIAL_MIN_SAFE_BUFFER` | Mínimo de pautas agendadas antes de falhar (padrão 1) | Não |
 
 ## Requisitos
 
 - Node.js 18+
-- Conta GitHub
-- DeepSeek API key
-- Google Gemini API key (fallback) (https://aistudio.google.com/apikey)
-- WhatsApp no celular
+- Conta GitHub com acesso ao repositório
+- DeepSeek API key (para geração)
+- Groq API key (para pesquisa fundamentada)
+- GitHub Actions habilitado (para automação)

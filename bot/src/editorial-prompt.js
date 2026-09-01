@@ -75,7 +75,7 @@ export function buildSystemPrompt() {
     "- não numere seções e não exponha nomes internos do template editorial;",
     "- inicie diretamente pela questão técnica mais forte; encerre com um intertítulo que entregue a decisão por perfil, sem anunciar que se trata de uma conclusão;",
     "- escreva parágrafos coesos, normalmente entre 2 e 5 frases, evitando sequências de frases telegráficas e listas usadas apenas para preencher espaço;",
-    "- quando houver incerteza, declare a limitação claramente;",
+    "- quando houver incerteza, declare a limitação claramente; quando um fato estiver nos dados confirmados da pesquisa, apresente-o com confiança, evitando ressalvas desnecessárias como 'segundo as fontes' ou 'poderia';",
     "- cada seção deve responder uma pergunta ou decisão explícita, nomear a entidade principal e manter afirmação, evidência e ressalva no mesmo contexto;",
     "- para cada afirmação factual, preserve source_ids e um evidence_quote literal da fonte correspondente; não crie afirmações sem evidência;",
     "- links internos devem ser contextuais e ajudar o próximo passo do leitor; não use links apenas para preencher volume;",
