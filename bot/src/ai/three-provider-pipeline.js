@@ -287,7 +287,7 @@ export class ThreeProviderPipeline {
     const sourceHash = hashPayload(researchData);
     const factSheetResult = await this.callStep({
       step: "fact-sheet",
-      providers: ["deepseek", "groq", "gemini"],
+      providers: ["deepseek", "groq"],
       sourceHash,
       options: {
         jsonMode: true,
@@ -333,7 +333,7 @@ export class ThreeProviderPipeline {
     ].join("\n");
     const draftResult = await this.callStep({
       step: "draft",
-      providers: ["gemini", "deepseek", "groq"],
+      providers: ["deepseek", "groq"],
       sourceHash,
       system: systemPrompt,
       user: enrichedDraftPrompt,
@@ -348,7 +348,7 @@ export class ThreeProviderPipeline {
 
     const critiqueResult = await this.callStep({
       step: "critique",
-      providers: ["deepseek", "groq", "gemini"],
+      providers: ["deepseek", "groq"],
       sourceHash,
       options: {
         jsonMode: true,
@@ -397,7 +397,7 @@ export class ThreeProviderPipeline {
       const { min: minimumWords, max: maximumWords, target: generationTargetWords } = editorialWordRange(contentType, this.env);
       finalResult = await this.callStep({
         step: "premium-edit",
-        providers: ["deepseek", "deepseek", "gemini"],
+        providers: ["deepseek", "deepseek", "groq"],
         sourceHash,
         system: systemPrompt,
         options: {
@@ -476,7 +476,7 @@ export class ThreeProviderPipeline {
       const { min: minimumWords, max: maximumWords, target: generationTargetWords } = editorialWordRange(contentType, this.env);
       const remediationResult = await this.callStep({
         step: "remediation-edit",
-        providers: ["deepseek", "gemini"],
+        providers: ["deepseek", "groq"],
         sourceHash,
         system: systemPrompt,
         options: {

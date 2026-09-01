@@ -75,7 +75,7 @@ export function buildSystemPrompt() {
     "- não numere seções e não exponha nomes internos do template editorial;",
     "- inicie diretamente pela questão técnica mais forte; encerre com um intertítulo que entregue a decisão por perfil, sem anunciar que se trata de uma conclusão;",
     "- escreva parágrafos coesos, normalmente entre 2 e 5 frases, evitando sequências de frases telegráficas e listas usadas apenas para preencher espaço;",
-    "- quando houver incerteza, declare a limitação claramente;",
+    "- quando um fato estiver nos dados confirmados da pesquisa, apresente-o com confiança; evite ressalvas desnecessárias como 'segundo as fontes' ou 'poderia';",
     "- use o mercado brasileiro como referência padrão;",
     "- todo veredito deve ser sustentado por critérios explícitos;",
     "- é estritamente proibido anunciar, recomendar, valorizar ou incluir chamada para compra de marca que não esteja no portfólio confirmado da TheBiker;",

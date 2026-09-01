@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "verifiedAt": "2026-08-21",
+  "verifiedAt": "2026-09-01",
   "totalBikes": 5,
   "bikes": [
     {
@@ -19,7 +19,7 @@
       "image": "/assets/img/products/comparator/scott-addict-50-2026.webp",
       "slug": "scott/scott-addict-50-2026-thebiker",
       "storeProductUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-addict-50-2026-pre-venda-cumulus-white/",
-      "portfolioVerifiedAt": "2026-08-21"
+      "portfolioVerifiedAt": "2026-09-01"
     },
     {
       "id": "scott-addict-rc-pro-di2-2026-thebiker-br",
@@ -37,7 +37,7 @@
       "image": "/assets/img/products/comparator/scott-addict-rc-pro-di2-2026.webp",
       "slug": "scott/scott-addict-rc-pro-di2-2026-thebiker",
       "storeProductUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-addict-rc-pro-di2-2026-pre-venda/",
-      "portfolioVerifiedAt": "2026-08-21"
+      "portfolioVerifiedAt": "2026-09-01"
     },
     {
       "id": "scott-spark-rc-expert-2027-thebiker-br",
@@ -55,7 +55,7 @@
       "image": "/assets/img/products/comparator/scott-spark-rc-expert-2027.webp",
       "slug": "scott/scott-spark-rc-expert-2027-thebiker",
       "storeProductUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-spark-rc-expert-2027/",
-      "portfolioVerifiedAt": "2026-08-21"
+      "portfolioVerifiedAt": "2026-09-01"
     },
     {
       "id": "scott-spark-rc-team-2027-thebiker-br",
@@ -73,7 +73,7 @@
       "image": "/assets/img/products/comparator/scott-spark-rc-team-2027.webp",
       "slug": "scott/scott-spark-rc-team-2027-thebiker",
       "storeProductUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-spark-rc-world-cup-2027/",
-      "portfolioVerifiedAt": "2026-08-21"
+      "portfolioVerifiedAt": "2026-09-01"
     },
     {
       "id": "scott-spark-rc-world-cup-2027-thebiker-br",
@@ -91,7 +91,7 @@
       "image": "/assets/img/products/comparator/scott-spark-rc-world-cup-2027.webp",
       "slug": "scott/scott-spark-rc-world-cup-2027-thebiker",
       "storeProductUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-spark-rc-world-cup-20271/",
-      "portfolioVerifiedAt": "2026-08-21"
+      "portfolioVerifiedAt": "2026-09-01"
     }
   ]
 }

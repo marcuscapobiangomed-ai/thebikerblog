@@ -51,7 +51,7 @@
         "origin": "pipeline",
         "reviewedContentHash": "sha256:7d6ba828ccf59f0c8ecca668b0e49d71785ed738bee05bb4042cfab231ba5daa",
         "scheduledContentHash": "sha256:98ce16d75185db5d6c8175f319ec45368bdc04417af950194297ac851fcc2618",
-        "publishedContentHash": "sha256:9e2bfd3198fca10e42bd978cf6138b81c598e13546bcc272bfebd3c6ebe0742a",
+        "publishedContentHash": "sha256:5a2e0876a56654f2986041ff7b9250422d010b339199a990a3e990dd8bc3c6cd",
         "researchHash": "sha256:4d3047eb5f60044677740a8d4890400f8ff26b22bc5f74314f08c416ff91eea8",
         "sourceHash": null,
         "finalScore": 95,
@@ -260,37 +260,18 @@
     {
       "day": 6,
       "publishDate": "2026-08-26",
-      "id": "reserva-radar-profissional-oficial",
-      "title": "Radar profissional: próxima prova com calendário e resultados oficialmente verificáveis",
-      "summary": "Reserva de cobertura profissional que só avança depois de ser vinculada a um evento e a fontes oficiais revalidadas.",
-      "category": "competicoes",
-      "race": {
-        "track": "professional-coverage",
-        "format": "weekly-roundup",
-        "eventIds": [
-          "uci-2026-roa-76940",
-          "uci-2026-roa-76941",
-          "uci-2026-mtb-74366"
-        ],
-        "sourceStatus": "blocked"
-      },
-      "freshness": "event-driven",
-      "status": "blocked",
+      "id": "contingencia-canote-selim",
+      "title": "Canote e selim: interfaces, fixação e sinais que não devem ser ignorados",
+      "summary": "Inspeção organizada de diâmetro, inserção, trilhos e superfícies de contato baseada na documentação de cada componente.",
+      "category": "manutencao-ajustes",
+      "freshness": "evergreen",
+      "status": "planned",
       "productIds": [],
       "heroImage": {
         "mode": "conceptual"
       },
       "imageAssetIds": [],
-      "blockReason": "[TRANSIENT_PROVIDER] Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat",
-      "failure": {
-        "code": "TRANSIENT_PROVIDER",
-        "retryable": true,
-        "stage": "production",
-        "message": "Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat",
-        "recordedAt": "2026-08-20T15:57:05.302Z"
-      },
-      "attempts": 2,
-      "lastAttemptAt": "2026-08-20T15:57:05.302Z"
+      "attempts": 0
     },
     {
       "day": 7,
@@ -386,35 +367,18 @@
     {
       "day": 9,
       "publishDate": "2026-08-29",
-      "id": "corridas-pro-resumo-principal",
-      "title": "Resumo da principal corrida profissional da semana: resultado, tática e impacto na temporada",
-      "summary": "Análise pós-prova baseada em resultado oficial, movimentos decisivos e contexto técnico, sem transformar rumor ou impressão em fato.",
-      "category": "competicoes",
-      "race": {
-        "track": "professional-coverage",
-        "format": "recap",
-        "eventIds": [
-          "uci-2026-roa-76939"
-        ],
-        "sourceStatus": "blocked"
-      },
-      "freshness": "event-driven",
-      "status": "blocked",
+      "id": "contingencia-posicao-selim",
+      "title": "Posição do selim: como registrar alterações sem transformar ajuste em prescrição médica",
+      "summary": "Método para documentar altura, recuo e inclinação com pequenas mudanças, sintomas observados e limites de orientação.",
+      "category": "engenharia",
+      "freshness": "evergreen",
+      "status": "planned",
       "productIds": [],
       "heroImage": {
         "mode": "conceptual"
       },
       "imageAssetIds": [],
-      "blockReason": "[RESEARCH_INSUFFICIENT] Pesquisa bloqueada após verificação em Groq e Gemini: Groq: Pesquisa bloqueada por integridade de fontes: pesquisa concluída sem fontes rastreáveis; pesquisa sem fatos explicitamente fundamentados; Gemini: Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat",
-      "failure": {
-        "code": "RESEARCH_INSUFFICIENT",
-        "retryable": false,
-        "stage": "production",
-        "message": "Pesquisa bloqueada após verificação em Groq e Gemini: Groq: Pesquisa bloqueada por integridade de fontes: pesquisa concluída sem fontes rastreáveis; pesquisa sem fatos explicitamente fundamentados; Gemini: Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat",
-        "recordedAt": "2026-08-20T16:13:24.231Z"
-      },
-      "attempts": 1,
-      "lastAttemptAt": "2026-08-20T16:13:24.231Z"
+      "attempts": 0
     },
     {
       "day": 10,
@@ -555,17 +519,11 @@
     {
       "day": 13,
       "publishDate": "2026-09-02",
-      "id": "corridas-pro-radar-semana-1",
-      "title": "Radar profissional de ciclismo: provas, classificações e histórias técnicas da semana",
-      "summary": "Boletim de competições profissionais com eventos e resultados rastreáveis em federações, organizadores e canais oficiais.",
-      "category": "competicoes",
-      "race": {
-        "track": "professional-coverage",
-        "format": "weekly-roundup",
-        "eventIds": [],
-        "sourceStatus": "pending"
-      },
-      "freshness": "event-driven",
+      "id": "contingencia-tacos-pedais",
+      "title": "Tacos e pedais: inspeção de desgaste, fixação e repetibilidade do encaixe",
+      "summary": "Checklist técnico para observar interfaces e simetria sem extrapolar para diagnóstico clínico ou ajuste biomecânico individual.",
+      "category": "manutencao-ajustes",
+      "freshness": "evergreen",
       "status": "planned",
       "productIds": [],
       "heroImage": {
@@ -609,17 +567,11 @@
     {
       "day": 16,
       "publishDate": "2026-09-05",
-      "id": "corridas-pro-radar-semana-2",
-      "title": "Segundo radar profissional do mês: calendário, resultados e decisões técnicas em destaque",
-      "summary": "Atualização profissional sem promoção de concorrentes, usando apenas calendário, resultados e documentos oficiais verificados.",
-      "category": "competicoes",
-      "race": {
-        "track": "professional-coverage",
-        "format": "weekly-roundup",
-        "eventIds": [],
-        "sourceStatus": "pending"
-      },
-      "freshness": "event-driven",
+      "id": "contingencia-cockpit-alinhamento",
+      "title": "Cockpit da bicicleta: método para conferir alinhamento, interfaces e fixação",
+      "summary": "Sequência de inspeção de guidão, mesa, espaçadores e comandos mantendo cada limite associado ao manual aplicável.",
+      "category": "manutencao-ajustes",
+      "freshness": "evergreen",
       "status": "planned",
       "productIds": [],
       "heroImage": {
@@ -679,17 +631,11 @@
     {
       "day": 20,
       "publishDate": "2026-09-09",
-      "id": "corridas-participar-calendario-1",
-      "title": "Calendário de provas para participar no Brasil: datas, modalidades e inscrições verificadas",
-      "summary": "Agenda para o ciclista encontrar provas, distinguindo evento confirmado, inscrição aberta, prazo encerrado e informação ainda desconhecida.",
-      "category": "competicoes",
-      "race": {
-        "track": "participant-calendar",
-        "format": "calendar-roundup",
-        "eventIds": [],
-        "sourceStatus": "pending"
-      },
-      "freshness": "event-driven",
+      "id": "contingencia-torque-documentacao",
+      "title": "Torque de montagem: como localizar a especificação correta e evitar valores genéricos",
+      "summary": "Guia documental para identificar interface, material, condição de rosca e fonte antes de aplicar qualquer valor de aperto.",
+      "category": "engenharia",
+      "freshness": "evergreen",
       "status": "planned",
       "productIds": [],
       "heroImage": {
@@ -733,17 +679,11 @@
     {
       "day": 23,
       "publishDate": "2026-09-12",
-      "id": "corridas-participar-calendario-2",
-      "title": "Atualização do calendário brasileiro de ciclismo: novas provas, mudanças e prazos oficiais",
-      "summary": "Segunda atualização mensal das provas participativas, com mudanças de data, cancelamentos e inscrições checados na fonte oficial.",
-      "category": "competicoes",
-      "race": {
-        "track": "participant-calendar",
-        "format": "calendar-roundup",
-        "eventIds": [],
-        "sourceStatus": "pending"
-      },
-      "freshness": "event-driven",
+      "id": "contingencia-carbono-inspecao",
+      "title": "Componentes de carbono: inspeção visual, histórico de impacto e critérios de interrupção de uso",
+      "summary": "Roteiro conservador para registrar sinais e encaminhar avaliação adequada sem declarar integridade estrutural por fotografia.",
+      "category": "manutencao-ajustes",
+      "freshness": "evergreen",
       "status": "planned",
       "productIds": [],
       "heroImage": {
@@ -803,17 +743,11 @@
     {
       "day": 27,
       "publishDate": "2026-09-16",
-      "id": "corridas-participar-guia-1",
-      "title": "Guia da prova para o ciclista: percurso, categorias, inscrição e logística confirmada",
-      "summary": "Guia de um evento brasileiro escolhido após verificação oficial, com lacunas claramente marcadas quando a organização ainda não publicou dados.",
-      "category": "competicoes",
-      "race": {
-        "track": "participant-calendar",
-        "format": "event-guide",
-        "eventIds": [],
-        "sourceStatus": "pending"
-      },
-      "freshness": "event-driven",
+      "id": "contingencia-pos-chuva",
+      "title": "Inspeção pós-chuva: pontos de contaminação, corrosão e desgaste que merecem registro",
+      "summary": "Rotina técnica após uso molhado priorizando transmissão, freios, rolamentos e interfaces sem lavagem agressiva.",
+      "category": "manutencao-ajustes",
+      "freshness": "evergreen",
       "status": "planned",
       "productIds": [],
       "heroImage": {
@@ -857,17 +791,11 @@
     {
       "day": 30,
       "publishDate": "2026-09-19",
-      "id": "corridas-participar-guia-2",
-      "title": "Próxima prova no radar: o que confirmar antes de pagar a inscrição e organizar a viagem",
-      "summary": "Checklist aplicado a uma prova oficial, cobrindo regulamento, elegibilidade, inscrição, percurso, segurança e logística sem links presumidos.",
-      "category": "competicoes",
-      "race": {
-        "track": "participant-calendar",
-        "format": "event-guide",
-        "eventIds": [],
-        "sourceStatus": "pending"
-      },
-      "freshness": "event-driven",
+      "id": "contingencia-armazenamento-bike",
+      "title": "Armazenamento da bicicleta: umidade, carga, bateria e inspeções periódicas",
+      "summary": "Checklist para reduzir degradação durante períodos sem uso respeitando orientações específicas de componentes e baterias.",
+      "category": "manutencao-ajustes",
+      "freshness": "evergreen",
       "status": "planned",
       "productIds": [],
       "heroImage": {
@@ -878,62 +806,6 @@
     }
   ],
   "reserves": [
-    {
-      "id": "contingencia-canote-selim",
-      "title": "Canote e selim: interfaces, fixação e sinais que não devem ser ignorados",
-      "summary": "Inspeção organizada de diâmetro, inserção, trilhos e superfícies de contato baseada na documentação de cada componente.",
-      "category": "manutencao-ajustes",
-      "productIds": []
-    },
-    {
-      "id": "contingencia-posicao-selim",
-      "title": "Posição do selim: como registrar alterações sem transformar ajuste em prescrição médica",
-      "summary": "Método para documentar altura, recuo e inclinação com pequenas mudanças, sintomas observados e limites de orientação.",
-      "category": "engenharia",
-      "productIds": []
-    },
-    {
-      "id": "contingencia-tacos-pedais",
-      "title": "Tacos e pedais: inspeção de desgaste, fixação e repetibilidade do encaixe",
-      "summary": "Checklist técnico para observar interfaces e simetria sem extrapolar para diagnóstico clínico ou ajuste biomecânico individual.",
-      "category": "manutencao-ajustes",
-      "productIds": []
-    },
-    {
-      "id": "contingencia-cockpit-alinhamento",
-      "title": "Cockpit da bicicleta: método para conferir alinhamento, interfaces e fixação",
-      "summary": "Sequência de inspeção de guidão, mesa, espaçadores e comandos mantendo cada limite associado ao manual aplicável.",
-      "category": "manutencao-ajustes",
-      "productIds": []
-    },
-    {
-      "id": "contingencia-torque-documentacao",
-      "title": "Torque de montagem: como localizar a especificação correta e evitar valores genéricos",
-      "summary": "Guia documental para identificar interface, material, condição de rosca e fonte antes de aplicar qualquer valor de aperto.",
-      "category": "engenharia",
-      "productIds": []
-    },
-    {
-      "id": "contingencia-carbono-inspecao",
-      "title": "Componentes de carbono: inspeção visual, histórico de impacto e critérios de interrupção de uso",
-      "summary": "Roteiro conservador para registrar sinais e encaminhar avaliação adequada sem declarar integridade estrutural por fotografia.",
-      "category": "manutencao-ajustes",
-      "productIds": []
-    },
-    {
-      "id": "contingencia-pos-chuva",
-      "title": "Inspeção pós-chuva: pontos de contaminação, corrosão e desgaste que merecem registro",
-      "summary": "Rotina técnica após uso molhado priorizando transmissão, freios, rolamentos e interfaces sem lavagem agressiva.",
-      "category": "manutencao-ajustes",
-      "productIds": []
-    },
-    {
-      "id": "contingencia-armazenamento-bike",
-      "title": "Armazenamento da bicicleta: umidade, carga, bateria e inspeções periódicas",
-      "summary": "Checklist para reduzir degradação durante períodos sem uso respeitando orientações específicas de componentes e baterias.",
-      "category": "manutencao-ajustes",
-      "productIds": []
-    },
     {
       "id": "contingencia-lavagem-bike",
       "title": "Lavagem da bicicleta: sequência para remover sujeira sem deslocar contaminação",
