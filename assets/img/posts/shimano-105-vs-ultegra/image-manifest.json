@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "status": "approved",
   "editorialUse": "publishable",
-  "assetType": "catalog-product-photo",
+  "assetType": "official-product-photo",
   "factualSubject": "conceptual",
   "editorialScope": "portfolio",
   "purpose": "Ilustrar o tema do artigo com produto real do catálogo TheBiker, sem declarar como o produto exato analisado.",
@@ -57,7 +57,7 @@
   "approval": {
     "reviewedBy": "Revisão editorial manual (sessão Claude Code)",
     "approvedAt": "2026-09-01",
-    "method": "manual-review",
+    "method": "human",
     "checks": [
       "fonte-oficial-thebiker",
       "webp-otimizado",
@@ -67,8 +67,12 @@
     ]
   },
   "composition": {
-    "strategy": "contain-white-background",
+    "strategy": "trim-contain-safe-area",
+    "safeArea": 0.9,
+    "trimThreshold": 16,
     "sourceWidth": 991,
-    "sourceHeight": 942
+    "sourceHeight": 942,
+    "subjectWidth": 991,
+    "subjectHeight": 942
   }
 }

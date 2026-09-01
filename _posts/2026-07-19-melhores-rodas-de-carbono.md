@@ -65,7 +65,6 @@ faq:
   - question: "Qual profundidade escolher para uso misto (serra + plano)?"
     answer: "40-50 mm é o ponto ideal. A DT Swiss ERC 1400 (45 mm) ou a Reynolds BlackLabel 60 (se você prioriza velocidade no plano) são boas escolhas."
 ---
-> **Como este artigo foi produzido:** pesquisa em sites oficiais dos fabricantes e distribuidores no Brasil. Preços em julho/2026. O conteúdo foi elaborado com auxílio de IA e revisado editorialmente.
 
 ## Introdução
 

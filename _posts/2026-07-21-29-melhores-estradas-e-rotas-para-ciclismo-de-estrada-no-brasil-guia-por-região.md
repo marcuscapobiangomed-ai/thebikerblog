@@ -59,7 +59,6 @@ faq:
   - question: "Qual o nível de dificuldade das rotas?"
     answer: "Varia: Lagoa (fácil), Estrada do Côco (fácil-médio), Cidades Históricas (médio-difícil), Serra do Rio do Rastro (difícil), Transamazônica (extremo)."
 ---
-> **Como este artigo foi produzido:** pesquisa em comunidades de ciclismo, Strava e guias de cicloturismo. O conteúdo foi elaborado com auxílio de IA e revisado editorialmente.
 
 ## Introdução
 

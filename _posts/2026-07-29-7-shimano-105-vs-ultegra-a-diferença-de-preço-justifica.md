@@ -102,7 +102,7 @@ Se preferir aplicar essa diferença em rodas, veja nosso <a href="{{ site.baseur
 
 O Ultegra é ~373g mais leve que o 105 (medido pela BikeRadar). Isso equivale a ~3-5 segundos a mais por km em uma subida de 8% para um ciclista de 75kg. Relevante para competidores, irrelevante para a maioria.
 
-A diferença não vem de um único componente, mas se acumula em pequenas margens espalhadas pelo grupo inteiro. Segundo dados publicados pela BikeRadar, os manetes Di2 do 105 (R7150) pesam cerca de 442g o par, contra 385g do Ultegra (R8150) — uma diferença de 57g atribuída ao uso de fibra de carbono nas lâminas dos manetes Ultegra, em vez do composto de fibra de vidro usado no 105. No pedivela, a diferença é bem menor: 767g no 105 contra 749g no Ultegra, cerca de 18g explicados por um forjamento oco mais refinado. Já no cassete de 11-34 dentes, o 105 registra 360g contra 342g do Ultegra, uma economia atribuída ao uso mais extensivo de liga de alumínio em vez de aço nos pinhões maiores. Somadas, essas pequenas diferenças por componente explicam a maior parte dos ~373g totais entre os dois grupos completos — não existe um único "vilão" pesado no 105.
+A diferença não vem de um único componente, mas se acumula em pequenas margens espalhadas pelo grupo inteiro. Segundo dados publicados pela BikeRadar, os manetes Di2 do 105 (R7150) pesam cerca de 442g o par, contra 385g do Ultegra (R8150) — uma diferença de 57g atribuída ao uso de fibra de carbono nas lâminas dos manetes Ultegra, em vez do composto de fibra de vidro usado no 105. No <a href="https://thebikershop.com.br/componentes/pedivela/" class="thebiker-product-link" target="_blank" rel="noopener">pedivela</a>, a diferença é bem menor: 767g no 105 contra 749g no Ultegra, cerca de 18g explicados por um forjamento oco mais refinado. Já no <a href="https://thebikershop.com.br/componentes/cassetes/" class="thebiker-product-link" target="_blank" rel="noopener">cassete</a> de 11-34 dentes, o 105 registra 360g contra 342g do Ultegra, uma economia atribuída ao uso mais extensivo de liga de alumínio em vez de aço nos pinhões maiores. Somadas, essas pequenas diferenças por componente explicam a maior parte dos ~373g totais entre os dois grupos completos — não existe um único "vilão" pesado no 105.
 
 ### Performance de shifting
 
@@ -119,7 +119,7 @@ Segundo a Pro Bike Tech, cassetes, correntes e pedivelas dos dois grupos são fi
 ### Recursos exclusivos do Ultegra
 
 - Hyperglide+: engrenagens com perfil otimizado para trocas mais suaves sob carga
-- Power meter de fábrica (opcional no <a href="https://thebikershop.com.br/componentes/pedivela/" class="thebiker-product-link" target="_blank" rel="noopener">pedivela</a>)
+- Power meter de fábrica (opcional no pedivela)
 - Compatibilidade com shifters satélite (útil em barras de triathlon)
 - Terceiro botão nos manetes (para head unit ou modo de treino)
 - Disponível em versão rim brake (105 Di2 é apenas disco)
@@ -140,7 +140,7 @@ O Shimano 105 R7100/R7150 entrega 90-95% da performance do Ultegra por ~70% do p
 Para 90% dos ciclistas, não. O dinheiro é melhor gasto em rodas, pneus e bike fit.
 
 **2. 105 e Ultegra são compatíveis entre si?**
-Sim. <a href="https://thebikershop.com.br/componentes/cassetes/" class="thebiker-product-link" target="_blank" rel="noopener">Cassetes</a>, correntes e pedivelas são intercambiáveis. Muita gente usa pedivela Ultegra com câmbio 105.
+Sim. Cassetes, correntes e pedivelas são intercambiáveis. Muita gente usa pedivela Ultegra com câmbio 105.
 
 **3. 105 ou Ultegra Di2?**
 A versão Di2 do 105 é a melhor porta de entrada para electronic shifting. O Ultegra Di2 adiciona Hyperglide+ e power meter opcional.
