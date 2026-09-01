@@ -1,7 +1,7 @@
 {
   "version": 1,
   "timezone": "America/Sao_Paulo",
-  "updatedAt": "2026-08-17T16:09:18.376Z",
+  "updatedAt": "2026-08-20T12:24:30.006Z",
   "policy": {
     "officialSourcesOnly": true,
     "revalidateBeforePublicationHours": 24,
@@ -204,37 +204,95 @@
     }
   ],
   "publicCalendar": {
-    "generatedAt": "2026-08-17T16:09:18.376Z",
-    "asOfDate": "2026-08-17",
-    "asOfDateDisplay": "17/08/2026",
+    "generatedAt": "2026-08-20T12:24:30.006Z",
+    "asOfDate": "2026-08-20",
+    "asOfDateDisplay": "20/08/2026",
     "timezone": "America/Sao_Paulo",
-    "sourceStatus": "verified",
-    "selectionPolicy": "Agenda combinada: próximas provas mantêm maioria brasileira, validada por descoberta e confirmação do organizador; UCI completa a cobertura mundial. Recentes permanecem na fonte oficial UCI.",
+    "sourceStatus": "degraded",
+    "degradation": {
+      "code": "brazilian-upcoming-shortfall",
+      "expectedBrazilianUpcoming": 6,
+      "availableBrazilianUpcoming": 5,
+      "safeMinimumBrazilianUpcoming": 5
+    },
+    "selectionPolicy": "Contingência explícita: cinco provas brasileiras revalidadas por organizadores permanecem publicadas sem criar uma sexta; eventos oficiais UCI completam dez posições factuais até a recuperação da cobertura brasileira.",
     "today": [
       {
-        "id": "uci-2026-roa-78955",
+        "id": "uci-2026-roa-76941",
         "track": "professional-coverage",
-        "name": "Tour Cycliste International Féminin du Burundi",
+        "name": "Lloyds Tour of Britain Women",
         "disciplineCode": "ROA",
         "disciplineLabel": "Ciclismo de estrada",
-        "countryCode": "BDI",
-        "country": "Burundi",
+        "countryCode": "GBR",
+        "country": "United Kingdom",
         "venue": "",
-        "startsOn": "2026-08-16",
+        "startsOn": "2026-08-19",
+        "endsOn": "2026-08-23",
+        "displayDate": {
+          "startsOn": "19/08",
+          "endsOn": "23/08",
+          "endsOnWithYear": "23/08/2026"
+        },
+        "eventStatus": "today",
+        "competitionClass": "2.WWT - Stages - UCI Women’s WorldTour",
+        "source": {
+          "provider": "Union Cycliste Internationale",
+          "officialUrl": "https://www.uci.org/competition-details/2026/ROA/76941",
+          "validationMethod": "official-calendar",
+          "organizerUrl": "https://britishcycling.org.uk/tourofbritain",
+          "checkedAt": "2026-08-20T12:24:30.006Z"
+        }
+      },
+      {
+        "id": "uci-2026-roa-76940",
+        "track": "professional-coverage",
+        "name": "Renewi Tour",
+        "disciplineCode": "ROA",
+        "disciplineLabel": "Ciclismo de estrada",
+        "countryCode": "BEL",
+        "country": "Belgium",
+        "venue": "",
+        "startsOn": "2026-08-19",
+        "endsOn": "2026-08-23",
+        "displayDate": {
+          "startsOn": "19/08",
+          "endsOn": "23/08",
+          "endsOnWithYear": "23/08/2026"
+        },
+        "eventStatus": "today",
+        "competitionClass": "2.UWT - Stages - UCI WorldTour",
+        "source": {
+          "provider": "Union Cycliste Internationale",
+          "officialUrl": "https://www.uci.org/competition-details/2026/ROA/76940",
+          "validationMethod": "official-calendar",
+          "organizerUrl": "https://www.renewitour.com",
+          "checkedAt": "2026-08-20T12:24:30.006Z"
+        }
+      },
+      {
+        "id": "uci-2026-roa-78351",
+        "track": "professional-coverage",
+        "name": "GP Lucien Van Impe",
+        "disciplineCode": "ROA",
+        "disciplineLabel": "Ciclismo de estrada",
+        "countryCode": "BEL",
+        "country": "Belgium",
+        "venue": "",
+        "startsOn": "2026-08-20",
         "endsOn": "2026-08-20",
         "displayDate": {
-          "startsOn": "16/08",
+          "startsOn": "20/08",
           "endsOn": "20/08",
           "endsOnWithYear": "20/08/2026"
         },
         "eventStatus": "today",
-        "competitionClass": "2.2 - Stages - Class 2",
+        "competitionClass": "1.Pro - 1 day - UCI ProSeries",
         "source": {
           "provider": "Union Cycliste Internationale",
-          "officialUrl": "https://www.uci.org/competition-details/2026/ROA/78955",
+          "officialUrl": "https://www.uci.org/competition-details/2026/ROA/78351",
           "validationMethod": "official-calendar",
-          "organizerUrl": "https://fbc-burundi.org/",
-          "checkedAt": "2026-08-17T16:09:18.376Z"
+          "organizerUrl": "https://www.gplucienvanimpe.be",
+          "checkedAt": "2026-08-20T12:24:30.006Z"
         }
       }
     ],
@@ -262,7 +320,7 @@
           "officialUrl": "https://www.uci.org/competition-details/2026/ROA/76939",
           "validationMethod": "official-calendar",
           "organizerUrl": "https://www.cyclassics-hamburg.de",
-          "checkedAt": "2026-08-17T16:09:18.376Z"
+          "checkedAt": "2026-08-20T12:24:30.006Z"
         }
       },
       {
@@ -288,7 +346,7 @@
           "officialUrl": "https://www.uci.org/competition-details/2026/MTB/77092",
           "validationMethod": "official-calendar",
           "organizerUrl": "https://ucimtbworldseries.com/",
-          "checkedAt": "2026-08-17T16:09:18.376Z"
+          "checkedAt": "2026-08-20T12:24:30.006Z"
         }
       },
       {
@@ -314,113 +372,139 @@
           "officialUrl": "https://www.uci.org/competition-details/2026/ROA/78339",
           "validationMethod": "official-calendar",
           "organizerUrl": "https://www.arctic-race.com",
-          "checkedAt": "2026-08-17T16:09:18.376Z"
+          "checkedAt": "2026-08-20T12:24:30.006Z"
         }
       }
     ],
     "upcoming": [
       {
-        "id": "uci-2026-roa-78349",
+        "id": "uci-2026-mtb-77087",
         "track": "professional-coverage",
-        "name": "Lidl Deutschland Tour",
-        "disciplineCode": "ROA",
-        "disciplineLabel": "Ciclismo de estrada",
-        "countryCode": "GER",
-        "country": "Germany",
-        "venue": "",
-        "startsOn": "2026-08-19",
+        "name": "UCI MOUNTAIN BIKE WORLD CUP – XCO/XCC/DHI",
+        "disciplineCode": "MTB",
+        "disciplineLabel": "Mountain bike",
+        "countryCode": "FRA",
+        "country": "France",
+        "venue": "Haute-Savoie",
+        "startsOn": "2026-08-21",
         "endsOn": "2026-08-23",
         "displayDate": {
-          "startsOn": "19/08",
+          "startsOn": "21/08",
           "endsOn": "23/08",
           "endsOnWithYear": "23/08/2026"
         },
         "eventStatus": "scheduled",
-        "competitionClass": "2.Pro - Stages - UCI ProSeries",
+        "competitionClass": "CDM - World Cup",
         "source": {
           "provider": "Union Cycliste Internationale",
-          "officialUrl": "https://www.uci.org/competition-details/2026/ROA/78349",
+          "officialUrl": "https://www.uci.org/competition-details/2026/MTB/77087",
           "validationMethod": "official-calendar",
-          "organizerUrl": "https://www.deutschland-tour.com",
-          "checkedAt": "2026-08-17T16:09:18.376Z"
+          "organizerUrl": "https://ucimtbworldseries.com/",
+          "checkedAt": "2026-08-20T12:24:30.006Z"
         }
       },
       {
-        "id": "uci-2026-roa-76941",
+        "id": "uci-2026-roa-76942",
         "track": "professional-coverage",
-        "name": "Lloyds Tour of Britain Women",
+        "name": "La Vuelta Ciclista a España",
         "disciplineCode": "ROA",
         "disciplineLabel": "Ciclismo de estrada",
-        "countryCode": "GBR",
-        "country": "United Kingdom",
+        "countryCode": "ESP",
+        "country": "Spain",
         "venue": "",
-        "startsOn": "2026-08-19",
-        "endsOn": "2026-08-23",
+        "startsOn": "2026-08-22",
+        "endsOn": "2026-09-13",
         "displayDate": {
-          "startsOn": "19/08",
-          "endsOn": "23/08",
-          "endsOnWithYear": "23/08/2026"
-        },
-        "eventStatus": "scheduled",
-        "competitionClass": "2.WWT - Stages - UCI Women’s WorldTour",
-        "source": {
-          "provider": "Union Cycliste Internationale",
-          "officialUrl": "https://www.uci.org/competition-details/2026/ROA/76941",
-          "validationMethod": "official-calendar",
-          "organizerUrl": "https://britishcycling.org.uk/tourofbritain",
-          "checkedAt": "2026-08-17T16:09:18.376Z"
-        }
-      },
-      {
-        "id": "uci-2026-roa-76940",
-        "track": "professional-coverage",
-        "name": "Renewi Tour",
-        "disciplineCode": "ROA",
-        "disciplineLabel": "Ciclismo de estrada",
-        "countryCode": "BEL",
-        "country": "Belgium",
-        "venue": "",
-        "startsOn": "2026-08-19",
-        "endsOn": "2026-08-23",
-        "displayDate": {
-          "startsOn": "19/08",
-          "endsOn": "23/08",
-          "endsOnWithYear": "23/08/2026"
+          "startsOn": "22/08",
+          "endsOn": "13/09",
+          "endsOnWithYear": "13/09/2026"
         },
         "eventStatus": "scheduled",
         "competitionClass": "2.UWT - Stages - UCI WorldTour",
         "source": {
           "provider": "Union Cycliste Internationale",
-          "officialUrl": "https://www.uci.org/competition-details/2026/ROA/76940",
+          "officialUrl": "https://www.uci.org/competition-details/2026/ROA/76942",
           "validationMethod": "official-calendar",
-          "organizerUrl": "https://www.renewitour.com",
-          "checkedAt": "2026-08-17T16:09:18.376Z"
+          "organizerUrl": "https://lavuelta.com",
+          "checkedAt": "2026-08-20T12:24:30.006Z"
         }
       },
       {
-        "id": "uci-2026-roa-78351",
+        "id": "uci-2026-mtb-74366",
         "track": "professional-coverage",
-        "name": "GP Lucien Van Impe",
-        "disciplineCode": "ROA",
-        "disciplineLabel": "Ciclismo de estrada",
-        "countryCode": "BEL",
-        "country": "Belgium",
-        "venue": "",
-        "startsOn": "2026-08-20",
-        "endsOn": "2026-08-20",
+        "name": "UCI MTB WORLD CHAMPIONSHIPS - XCO/XCR/XCC/E-XC/DHI",
+        "disciplineCode": "MTB",
+        "disciplineLabel": "Mountain bike",
+        "countryCode": "ITA",
+        "country": "Italy",
+        "venue": "Val di Sole",
+        "startsOn": "2026-08-26",
+        "endsOn": "2026-08-30",
         "displayDate": {
-          "startsOn": "20/08",
-          "endsOn": "20/08",
-          "endsOnWithYear": "20/08/2026"
+          "startsOn": "26/08",
+          "endsOn": "30/08",
+          "endsOnWithYear": "30/08/2026"
         },
         "eventStatus": "scheduled",
-        "competitionClass": "1.Pro - 1 day - UCI ProSeries",
+        "competitionClass": "CM - UCI World Championships",
         "source": {
           "provider": "Union Cycliste Internationale",
-          "officialUrl": "https://www.uci.org/competition-details/2026/ROA/78351",
+          "officialUrl": "https://www.uci.org/competition-details/2026/MTB/74366",
           "validationMethod": "official-calendar",
-          "organizerUrl": "https://www.gplucienvanimpe.be",
-          "checkedAt": "2026-08-17T16:09:18.376Z"
+          "organizerUrl": "https://www.valdisolebikeland.com",
+          "checkedAt": "2026-08-20T12:24:30.006Z"
+        }
+      },
+      {
+        "id": "uci-2026-roa-76943",
+        "track": "professional-coverage",
+        "name": "Classic Lorient Agglomération",
+        "disciplineCode": "ROA",
+        "disciplineLabel": "Ciclismo de estrada",
+        "countryCode": "FRA",
+        "country": "France",
+        "venue": "",
+        "startsOn": "2026-08-29",
+        "endsOn": "2026-08-29",
+        "displayDate": {
+          "startsOn": "29/08",
+          "endsOn": "29/08",
+          "endsOnWithYear": "29/08/2026"
+        },
+        "eventStatus": "scheduled",
+        "competitionClass": "1.WWT - 1 day - UCI Women’s WorldTour",
+        "source": {
+          "provider": "Union Cycliste Internationale",
+          "officialUrl": "https://www.uci.org/competition-details/2026/ROA/76943",
+          "validationMethod": "official-calendar",
+          "organizerUrl": "https://www.pco.bzh",
+          "checkedAt": "2026-08-20T12:24:30.006Z"
+        }
+      },
+      {
+        "id": "uci-2026-roa-76944",
+        "track": "professional-coverage",
+        "name": "Bretagne Classic - CIC",
+        "disciplineCode": "ROA",
+        "disciplineLabel": "Ciclismo de estrada",
+        "countryCode": "FRA",
+        "country": "France",
+        "venue": "",
+        "startsOn": "2026-08-30",
+        "endsOn": "2026-08-30",
+        "displayDate": {
+          "startsOn": "30/08",
+          "endsOn": "30/08",
+          "endsOnWithYear": "30/08/2026"
+        },
+        "eventStatus": "scheduled",
+        "competitionClass": "1.UWT - 1 day - UCI WorldTour",
+        "source": {
+          "provider": "Union Cycliste Internationale",
+          "officialUrl": "https://www.uci.org/competition-details/2026/ROA/76944",
+          "validationMethod": "official-calendar",
+          "organizerUrl": "https://www.pco.bzh",
+          "checkedAt": "2026-08-20T12:24:30.006Z"
         }
       },
       {
@@ -445,12 +529,13 @@
           "provider": "Iron Biker",
           "officialUrl": "https://www.ironbiker.com.br/",
           "discoveryUrl": "https://www.calendariomtb.com.br/evento/Iron-Biker-Brasil-2026/10469/",
-          "validationMethod": "discovery-plus-organizer",
-          "checkedAt": "2026-08-17T16:09:18.376Z"
+          "validationMethod": "verified-snapshot-plus-organizer",
+          "discoveryCheckedAt": "2026-08-11T21:24:09.832Z",
+          "checkedAt": "2026-08-20T12:24:30.006Z"
         },
         "deepProfile": {
           "status": "verified",
-          "checkedAt": "2026-08-17T16:09:18.376Z",
+          "checkedAt": "2026-08-20T12:24:30.006Z",
           "source": {
             "publisher": "Iron Biker Brasil",
             "url": "https://www.ironbiker.com.br/regulamento",
@@ -550,12 +635,13 @@
           "provider": "Challenge MTB",
           "officialUrl": "https://www.challengemtb.com.br/",
           "discoveryUrl": "https://www.calendariomtb.com.br/evento/Challenge-MTB-4-etapa-2026/10818/",
-          "validationMethod": "discovery-plus-organizer",
-          "checkedAt": "2026-08-17T16:09:18.376Z"
+          "validationMethod": "verified-snapshot-plus-organizer",
+          "discoveryCheckedAt": "2026-08-11T21:24:09.832Z",
+          "checkedAt": "2026-08-20T12:24:30.006Z"
         },
         "deepProfile": {
           "status": "verified",
-          "checkedAt": "2026-08-17T16:09:18.376Z",
+          "checkedAt": "2026-08-20T12:24:30.006Z",
           "source": {
             "publisher": "Challenge Chaoyang de MTB / RaceTop",
             "url": "https://www.racetop.com.br/evento/5534/challenge-chaoyang-de-mtb-etapa-paulo-lopes",
@@ -623,112 +709,6 @@
         }
       },
       {
-        "id": "br-mtb-11062",
-        "track": "participant-calendar",
-        "name": "RMG Rocky Mountain Games Pico do Jaraguá 2026",
-        "disciplineCode": "MTB",
-        "disciplineLabel": "Mountain bike",
-        "countryCode": "BRA",
-        "country": "Brasil",
-        "venue": "Pico do Jaraguá/SP",
-        "startsOn": "2026-09-19",
-        "endsOn": "2026-09-19",
-        "displayDate": {
-          "startsOn": "19/09",
-          "endsOn": "19/09",
-          "endsOnWithYear": "19/09/2026"
-        },
-        "eventStatus": "scheduled",
-        "competitionClass": "MTB brasileira · prova participativa",
-        "source": {
-          "provider": "Go Outside",
-          "officialUrl": "https://rockymountaingames.com.br/",
-          "discoveryUrl": "https://www.calendariomtb.com.br/evento/RMG-Rocky-Mountain-Games-Pico-do-Jaragua-2026/11062/",
-          "validationMethod": "discovery-plus-organizer",
-          "checkedAt": "2026-08-17T16:09:18.376Z"
-        },
-        "deepProfile": {
-          "status": "verified",
-          "checkedAt": "2026-08-17T16:09:18.376Z",
-          "source": {
-            "publisher": "Rocky Mountain Games",
-            "url": "https://rockymountaingames.com.br/",
-            "validationMethod": "official-event-details"
-          },
-          "participation": {
-            "status": "open",
-            "label": "Inscrições abertas",
-            "description": "Inscrição individual pela página oficial do evento, com modalidades de mountain bike, e-bike, gravel e outras atividades do festival.",
-            "url": "https://www.sympla.com.br/evento/rocky-mountain-games-pico-do-jaragua/3363751"
-          },
-          "route": {
-            "format": "Etapa de um dia com mountain bike, e-bike e gravel",
-            "difficulty": {
-              "label": "Moderada a alta conforme a modalidade",
-              "basis": "Síntese editorial baseada nas distâncias e altimetrias oficiais publicadas para os percursos do Pico do Jaraguá.",
-              "assessmentType": "editorial-from-official-route"
-            },
-            "highlights": [
-              "A etapa ocorre no Pico do Jaraguá, em São Paulo, em 19 de setembro de 2026.",
-              "Os percursos de MTB têm 25 km e 50 km, com altimetrias oficiais distintas.",
-              "A modalidade de 50 km registra 1.615 m de ganho acumulado, segundo a página do evento."
-            ],
-            "courseOptions": [
-              {
-                "label": "MTB 25 km",
-                "distanceKm": 25,
-                "elevationGainM": 936,
-                "difficulty": "Moderada",
-                "terrain": "Percurso de mountain bike no Pico do Jaraguá",
-                "note": "Altimetria oficial publicada: 936 m de ganho acumulado."
-              },
-              {
-                "label": "MTB 50 km",
-                "distanceKm": 50,
-                "elevationGainM": 1615,
-                "difficulty": "Alta",
-                "terrain": "Percurso de mountain bike no Pico do Jaraguá",
-                "note": "Altimetria oficial publicada: 1.615 m de ganho acumulado."
-              },
-              {
-                "label": "E-MTB 50 km",
-                "distanceKm": 50,
-                "elevationGainM": 1615,
-                "difficulty": "Alta em volume",
-                "terrain": "Percurso de e-mountain bike no Pico do Jaraguá",
-                "note": "A página oficial publica a mesma distância e altimetria do MTB 50 km."
-              },
-              {
-                "label": "Gravel 50 km",
-                "distanceKm": 50,
-                "elevationGainM": 1615,
-                "difficulty": "Alta em volume",
-                "terrain": "Percurso de gravel no Pico do Jaraguá",
-                "note": "A página oficial publica a mesma distância e altimetria do MTB 50 km."
-              }
-            ]
-          },
-          "categories": [
-            "Mountain bike, e-bike e gravel têm largadas previstas às 7h30, divididas em ondas.",
-            "O festival também oferece trail run, trekking e outras atividades, que não fazem parte deste perfil de ciclismo."
-          ],
-          "logistics": [
-            {
-              "label": "Local",
-              "detail": "Pico do Jaraguá, São Paulo/SP."
-            },
-            {
-              "label": "Largada",
-              "detail": "Mountain bike, e-bike e gravel às 7h30, conforme a página oficial consultada."
-            },
-            {
-              "label": "Regulamento",
-              "detail": "O regulamento oficial vigente deve ser consultado novamente antes da prova, pois a organização informa que pode atualizá-lo."
-            }
-          ]
-        }
-      },
-      {
         "id": "br-mtb-10520",
         "track": "participant-calendar",
         "name": "Desafio Natureza 4ª etapa 2026",
@@ -750,12 +730,13 @@
           "provider": "Desafio Natureza",
           "officialUrl": "https://desafionatureza.com.br/",
           "discoveryUrl": "https://www.calendariomtb.com.br/evento/Desafio-Natureza-4-etapa-2026/10520/",
-          "validationMethod": "discovery-plus-organizer",
-          "checkedAt": "2026-08-17T16:09:18.376Z"
+          "validationMethod": "verified-snapshot-plus-organizer",
+          "discoveryCheckedAt": "2026-08-11T21:24:09.832Z",
+          "checkedAt": "2026-08-20T12:24:30.006Z"
         },
         "deepProfile": {
           "status": "verified",
-          "checkedAt": "2026-08-17T16:09:18.376Z",
+          "checkedAt": "2026-08-20T12:24:30.006Z",
           "source": {
             "publisher": "Desafio Natureza",
             "url": "https://inscricoes.desafionatureza.com.br/regulamento.php",
@@ -850,12 +831,13 @@
           "provider": "CIMTB Copa Internacional de Mountain Bike",
           "officialUrl": "https://cimtb.com.br/",
           "discoveryUrl": "https://www.calendariomtb.com.br/evento/CIMTB-Congonhas-2026/10409/",
-          "validationMethod": "discovery-plus-organizer",
-          "checkedAt": "2026-08-17T16:09:18.376Z"
+          "validationMethod": "verified-snapshot-plus-organizer",
+          "discoveryCheckedAt": "2026-08-11T21:24:09.832Z",
+          "checkedAt": "2026-08-20T12:24:30.006Z"
         },
         "deepProfile": {
           "status": "verified",
-          "checkedAt": "2026-08-17T16:09:18.376Z",
+          "checkedAt": "2026-08-20T12:24:30.006Z",
           "source": {
             "publisher": "Copa Internacional de Mountain Bike",
             "url": "https://cimtb.com.br/inscricoes-abertas-para-o-grande-encerramento-da-temporada-da-cimtb-em-congonhas/",
@@ -946,12 +928,13 @@
           "provider": "Brasil Ride",
           "officialUrl": "https://www.brasilride.com.br/",
           "discoveryUrl": "https://www.calendariomtb.com.br/evento/Brasil-Ride-2026/10678/",
-          "validationMethod": "discovery-plus-organizer",
-          "checkedAt": "2026-08-17T16:09:18.376Z"
+          "validationMethod": "verified-snapshot-plus-organizer",
+          "discoveryCheckedAt": "2026-08-11T21:24:09.832Z",
+          "checkedAt": "2026-08-20T12:24:30.006Z"
         },
         "deepProfile": {
           "status": "verified",
-          "checkedAt": "2026-08-17T16:09:18.376Z",
+          "checkedAt": "2026-08-20T12:24:30.006Z",
           "source": {
             "publisher": "Brasil Ride",
             "url": "https://www.brasilride.com.br/provas/brasil-ride-paraiba-2026/",

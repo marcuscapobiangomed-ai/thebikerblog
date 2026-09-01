@@ -30,7 +30,7 @@ export const TEMPLATES = {
       "Após X quilômetros de uso…",
     ],
     structure: [
-      "Abrir pela descoberta técnica central, incorporando como testamos sem usar rótulo genérico",
+      "Abrir pela descoberta técnica central",
       "Entregar cedo o veredito técnico com um intertítulo específico",
       "Ficha técnica",
       "Explicar quem, onde, quando e em quais condições o teste ocorreu",
@@ -43,13 +43,13 @@ export const TEMPLATES = {
       "Preço e disponibilidade no Brasil",
       "Fechar com a decisão por perfil, usando um intertítulo específico",
       "Responder dúvidas avançadas com perguntas usadas como intertítulos",
-      "Apresentar fontes e metodologia sob um intertítulo editorial específico",
+      "Fontes oficiais em lista concisa",
     ],
   },
 
   "review-desk": {
     label: "Review documental (3.2)",
-    methodology_notice: "Este artigo é uma análise documental baseada em especificações oficiais e pesquisa de mercado. O produto não foi testado presencialmente pela equipe.",
+    methodology_notice: "",
     allowed_phrases: [
       "A ficha técnica indica…",
       "Segundo o fabricante…",
@@ -69,7 +69,7 @@ export const TEMPLATES = {
       accessory: ["segurança", "conforto", "ajuste", "materiais", "certificações", "durabilidade", "facilidade de uso", "garantia", "preço"],
     },
     structure: [
-      "Abrir pela questão técnica central e incorporar a metodologia sem rótulo genérico",
+      "Abrir pela questão técnica central",
       "Entregar cedo o veredito técnico com um intertítulo específico",
       "Ficha técnica com fontes",
       "Posicionar o produto na linha, na geração e no uso pretendido",
@@ -82,7 +82,7 @@ export const TEMPLATES = {
       "Preço e disponibilidade no Brasil",
       "Fechar com a decisão por perfil, usando um intertítulo específico",
       "Responder dúvidas avançadas com perguntas usadas como intertítulos",
-      "Apresentar fontes e metodologia sob um intertítulo editorial específico",
+      "Fontes oficiais em lista concisa",
     ],
   },
 
@@ -110,7 +110,7 @@ export const TEMPLATES = {
       "melhor para manutenção simples",
     ],
     structure: [
-      "Abrir pelo conflito técnico que realmente separa os produtos e incorporar a metodologia",
+      "Abrir pela diferença técnica que realmente separa os produtos",
       "Entregar cedo o veredito por cenário com um intertítulo específico",
       "Tabela comparativa com os mesmos critérios",
       "Análise individual de cada produto",
@@ -118,7 +118,7 @@ export const TEMPLATES = {
       "Vencedor por categoria",
       "Fechar com a decisão por tipo de ciclista, sem usar o rótulo conclusão",
       "Tabela de especificações",
-      "Apresentar fontes e metodologia sob um intertítulo editorial específico",
+      "Fontes oficiais em lista concisa",
     ],
   },
 
@@ -134,15 +134,15 @@ export const TEMPLATES = {
       "produtos excluídos e por quê",
     ],
     structure: [
-      "Incorporar a metodologia à abertura sem criar um intertítulo burocrático",
+      "Abrir pela decisão de compra que o guia resolve",
       "Definição do público e orçamento",
       "Critérios de seleção",
-      "Metodologia da pesquisa",
+      "Critérios verificáveis de seleção",
       "Lista de produtos recomendados (com justificativa)",
       "Comparativo entre as opções",
       "Para quem cada opção é melhor",
       "Responder dúvidas decisivas com perguntas usadas como intertítulos",
-      "Apresentar fontes e metodologia sob um intertítulo editorial específico",
+      "Fontes oficiais em lista concisa",
     ],
   },
 
@@ -158,7 +158,7 @@ export const TEMPLATES = {
       "referências utilizadas",
     ],
     structure: [
-      "Incorporar a metodologia à abertura sem criar um intertítulo burocrático",
+      "Abrir pelo problema técnico que o guia resolve",
       "O que é / Para que serve",
       "Termos técnicos essenciais",
       "Passo a passo ou explicação detalhada",
@@ -166,7 +166,7 @@ export const TEMPLATES = {
       "Alertas de segurança",
       "Quando procurar ajuda profissional",
       "Responder dúvidas técnicas com perguntas usadas como intertítulos",
-      "Apresentar fontes e referências sob um intertítulo editorial específico",
+      "Encerrar com uma lista concisa de referências",
     ],
   },
 
@@ -187,7 +187,7 @@ export const TEMPLATES = {
       "Sem confirmação, usar título como 'Possível novo Produto X: o que já sabemos e o que ainda é rumor'",
     ],
     structure: [
-      "Incorporar a metodologia à abertura sem criar um intertítulo burocrático",
+      "Abrir pelo fato novo confirmado e sua relevância",
       "O que foi anunciado (com fonte)",
       "O que é confirmado vs. o que é especulação",
       "Contexto e relevância para o mercado brasileiro",

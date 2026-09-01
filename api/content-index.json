@@ -15,7 +15,6 @@ sitemap: false
   },
   "language": {{ site.lang | jsonify }},
   "editorialPolicy": {{ '/api/editorial-policy.json' | absolute_url | jsonify }},
-  "audiencePolicy": {{ '/api/audience.json' | absolute_url | jsonify }},
   "sitemap": {{ '/sitemap.xml' | absolute_url | jsonify }},
   "feed": {{ '/feed.xml' | absolute_url | jsonify }},
   "totalArticles": {{ public_posts.size }},
@@ -33,8 +32,6 @@ sitemap: false
       "experienceLevelTarget": {{ post.experience_level_target | default: site.data.audience.defaults.experienceLevelTarget | jsonify }},
       "author": {{ post.author | default: site.author | jsonify }},
       "contentType": {{ post.content_type | jsonify }},
-      "reviewMethod": {{ post.review_method | jsonify }},
-      "testedByTheBiker": {{ post.tested_by_thebikerblog | default: false | jsonify }},
       "image": {{ post.image | absolute_url | jsonify }},
       "tags": {{ post.tags | jsonify }},
       "sources": {{ post.sources | default: empty | jsonify }}

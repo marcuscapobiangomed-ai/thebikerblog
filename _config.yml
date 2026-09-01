@@ -50,6 +50,10 @@ defaults:
 
 exclude:
   # Operação, governança e evidências ficam no repositório, não no índice público.
+  # Rascunhos e arquivo morto são bloqueados também pelo caminho, independentemente
+  # do frontmatter, para que uma alteração acidental em `published` não os exponha.
+  - _posts/drafts
+  - _posts/archived
   - admin
   - automation
   - audit

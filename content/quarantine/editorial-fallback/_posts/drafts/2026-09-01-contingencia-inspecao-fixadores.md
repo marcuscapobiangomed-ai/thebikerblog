@@ -1,13 +1,13 @@
 ---
-image_subject_id: "corrente-sram-nx-eagle"
+image_subject_id: "manopla-thule-com-limitador-de-torque-acutight"
 layout: post
-published: true
-title: "Limpeza da transmissão após chuva e lama: método"
-slug: "limpeza-da-transmissao-depois-de-chuva-e-lama-metodo-inspecao-e-lubrificacao"
-date: 2026-08-15
-last_modified_at: 2026-08-15
+published: false
+title: "Inspeção de fixadores da bicicleta: sequência, registro e sinais que exigem avaliação técnica"
+slug: "inspecao-de-fixadores-da-bicicleta-sequencia-registro-e-sinais-que-exigem-avaliacao-tecnica"
+date: 2026-09-01
+last_modified_at: 2026-08-21
 author: "Equipe TheBiker"
-reviewed_by: "TheBiker AI Editorial Gate"
+reviewed_by: ""
 content_type: "guia-tecnico"
 editorial_format: "full-article-v1"
 audience_segment: "core_technical_cyclists"
@@ -25,7 +25,7 @@ weight_source: "Não informado"
 price_min: 0
 price_max: 0
 price_currency: "BRL"
-price_checked_at: "2026-08-13"
+price_checked_at: "2026-08-21"
 category: "guia-tecnico"
 tags: ["ciclismo", "guia-tecnico", "manutencao"]
 description: "Método documental para limpar a transmissão após chuva e lama, inspecionar freios e reconhecer limites antes de voltar a pedalar."
@@ -35,37 +35,37 @@ faq:
     answer: "Não. A orientação confirmada é evitar pressão direta para proteger componentes, vedações e rolamentos; consulte o manual para completar o procedimento do conjunto instalado."
   - question: "O que deve ser conferido antes de voltar a pedalar?"
     answer: "Confira a limpeza e a secagem da transmissão, o estado de pastilhas e rotores, o funcionamento dos freios e qualquer sinal de dano, vazamento ou ruído anormal."
-image: "/assets/img/posts/reserva-limpeza-transmissao-metodo/hero-1600.webp"
-image_mobile: "/assets/img/posts/reserva-limpeza-transmissao-metodo/hero-800.webp"
-thumbnail: "/assets/img/posts/reserva-limpeza-transmissao-metodo/card-640.webp"
+image: "/assets/img/posts/contingencia-inspecao-fixadores/hero-1600.webp"
+image_mobile: "/assets/img/posts/contingencia-inspecao-fixadores/hero-800.webp"
+thumbnail: "/assets/img/posts/contingencia-inspecao-fixadores/card-640.webp"
 image_manifest_version: 2
 image_asset_type: "official-product-photo"
 image_status: "approved"
-image_alt: "Corrente Sram NX Eagle em fotografia oficial de TheBiker Shop"
-image_caption: "Corrente Sram NX Eagle, em fotografia oficial de TheBiker Shop."
+image_alt: "Manopla Thule com limitador de torque Acutight em fotografia oficial de TheBiker Shop"
+image_caption: "Manopla Thule com limitador de torque Acutight, em fotografia oficial de TheBiker Shop."
 image_credit: "TheBiker Shop"
 image_license: "Uso editorial no blog oficial TheBiker"
 affiliate_links: false
 editorial_scope: "portfolio"
-promoted_brands: ["SRAM"]
+promoted_brands: ["TheBiker"]
 context_only_brands: []
 portfolio_evidence_url: "https://thebikershop.com.br/componentes/"
-portfolio_verified_at: "2026-08-13"
-editorial_status: "published"
-status: "published"
+portfolio_verified_at: "2026-08-21"
+editorial_status: "draft"
+status: "draft"
 sources:
   - name: "SRAM — AXS Bike Care and Maintenance"
     type: "manufacturer"
     url: "https://www.sram.com/en/learn/axs-bike-care-and-maintenance"
-    accessed_at: "2026-08-13"
+    accessed_at: "2026-08-21"
   - name: "SRAM — Apex Maintenance"
     type: "manufacturer"
     url: "https://www.sram.com/en/learn/apex-d1-welcome-guide/maintenance"
-    accessed_at: "2026-08-13"
+    accessed_at: "2026-08-21"
   - name: "Shimano — Hydraulic Disc Brake User Manual"
     type: "manufacturer"
     url: "https://si.shimano.com/en/pdfs/um/04L0A/UM-04L0A-000-00-ENG.pdf"
-    accessed_at: "2026-08-13"
+    accessed_at: "2026-08-21"
 ---
 Como este artigo foi produzido: análise documental baseada em orientações oficiais e trechos rastreáveis. A equipe não realizou teste presencial.
 
@@ -171,7 +171,7 @@ O cache curado conserva trechos oficiais, mas não substitui a revalidação fut
 
 ## De onde vêm os dados desta análise
 
-- **SRAM — AXS Bike Care and Maintenance** (manufacturer) — https://www.sram.com/en/learn/axs-bike-care-and-maintenance — acessado em 2026-08-13
-- **SRAM — Apex Maintenance** (manufacturer) — https://www.sram.com/en/learn/apex-d1-welcome-guide/maintenance — acessado em 2026-08-13
-- **Shimano — Hydraulic Disc Brake User Manual** (manufacturer) — https://si.shimano.com/en/pdfs/um/04L0A/UM-04L0A-000-00-ENG.pdf — acessado em 2026-08-13
+- **SRAM — AXS Bike Care and Maintenance** (manufacturer) — https://www.sram.com/en/learn/axs-bike-care-and-maintenance — acessado em 2026-08-21
+- **SRAM — Apex Maintenance** (manufacturer) — https://www.sram.com/en/learn/apex-d1-welcome-guide/maintenance — acessado em 2026-08-21
+- **Shimano — Hydraulic Disc Brake User Manual** (manufacturer) — https://si.shimano.com/en/pdfs/um/04L0A/UM-04L0A-000-00-ENG.pdf — acessado em 2026-08-21
 

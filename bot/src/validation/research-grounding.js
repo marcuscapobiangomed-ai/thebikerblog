@@ -89,7 +89,34 @@ export function researchEvidenceContractErrors(research) {
     errors.push("pesquisa sem contrato de evidência recuperada retrieved-excerpt-v1");
   }
   if (!research.grounding?.verifiedAt) errors.push("pesquisa sem data de verificação ativa das fontes");
-  for (const [index, fact] of factEntries(research).entries()) {
+  const contentType = text(research.content_type || research.contentType);
+  const productContent = new Set(["review", "comparativo", "lancamento"]).has(contentType);
+  const sources = Array.isArray(research.sources) ? research.sources : [];
+  const sourcesWithoutIdentity = sources.filter((source) => !text(source?.id) || !text(source?.url));
+  if (sourcesWithoutIdentity.length > 0) {
+    errors.push(`${sourcesWithoutIdentity.length} fonte(s) sem ID e URL obrigatórios`);
+  }
+
+  const manufacturerSources = sources.filter((source) => text(source?.type).toLowerCase() === "manufacturer");
+  if (productContent && manufacturerSources.length === 0) {
+    errors.push("conteúdo de produto exige fonte técnica do fabricante");
+  }
+  if (productContent && evidenceContract !== "retrieved-excerpt-v1") {
+    errors.push("conteúdo de produto exige recuperação ativa da fonte; cache offline não é publicável");
+  }
+
+  const facts = factEntries(research);
+  const minimumFacts = { review: 8, comparativo: 10, lancamento: 5 }[contentType] || 0;
+  if (minimumFacts > 0 && facts.length < minimumFacts) {
+    errors.push(`cobertura factual insuficiente para ${contentType}: ${facts.length}/${minimumFacts} fatos`);
+  }
+  const manufacturerReferences = new Set(manufacturerSources.flatMap((source) => [text(source?.id), text(source?.name)]).filter(Boolean));
+  const manufacturerFactCount = facts.filter((fact) => factReferences(fact).some((reference) => manufacturerReferences.has(reference))).length;
+  const minimumManufacturerFacts = { review: 5, comparativo: 6, lancamento: 3 }[contentType] || 0;
+  if (minimumManufacturerFacts > 0 && manufacturerFactCount < minimumManufacturerFacts) {
+    errors.push(`base técnica do fabricante insuficiente para ${contentType}: ${manufacturerFactCount}/${minimumManufacturerFacts} fatos`);
+  }
+  for (const [index, fact] of facts.entries()) {
     if (offlineCampaignCache) {
       if (text(fact?.fact || fact?.statement).length < 12) errors.push(`fato ${index + 1} sem registro rastreável no cache`);
     } else if (text(fact?.evidence_quote).length < 12) {

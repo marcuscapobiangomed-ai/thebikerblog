@@ -287,19 +287,19 @@ const deterministicFallbackProvider = new AIProvider({
     callStep: async () => ({ provider: "deepseek", content: "{}" }),
   },
 });
-const deterministicFallbackResult = await deterministicFallbackProvider.processCase(
-  "Limpeza da transmissÃ£o depois de chuva e lama",
+await assert.rejects(() => deterministicFallbackProvider.processCase(
+  "Limpeza da transmissão depois de chuva e lama",
   {
-    title: "Limpeza da transmissÃ£o depois de chuva e lama",
+    title: "Limpeza da transmissão depois de chuva e lama",
     content_type: "guia-tecnico",
     editorialPriority: "P1",
     portfolio_evidence_url: "https://thebikershop.com.br/componentes/",
     portfolio_verified_at: "2026-08-13",
     confirmed_facts: [
       { fact: "drivetrainCleaning: use o limpador recomendado pelo fabricante e seque a corrente depois da limpeza." },
-      { fact: "pressureWashing: jatos de alta pressÃ£o podem danificar componentes e vedaÃ§Ãµes." },
+      { fact: "pressureWashing: jatos de alta pressão podem danificar componentes e vedações." },
       { fact: "brakeInspection: inspecione pastilhas, rotores, comando e vazamentos antes de voltar a pedalar." },
-      { fact: "wetBraking: a distÃ¢ncia de frenagem aumenta em piso molhado." },
+      { fact: "wetBraking: a distância de frenagem aumenta em piso molhado." },
       { fact: "escalation: procure uma oficina quando houver dano, vazamento ou funcionamento irregular." },
     ],
     sources: [
@@ -308,15 +308,7 @@ const deterministicFallbackResult = await deterministicFallbackProvider.processC
     ],
     grounding: { fallback: "curated-official-offline-cache-v1" },
   },
-);
-assert.equal(deterministicFallbackResult.pipelineMetadata.deterministicFullArticleFallbackUsed, true);
-assert.equal(deterministicFallbackResult.pipelineMetadata.deterministicFullArticleFallbackTrigger, "deepseek-unavailable");
-assert.equal(deterministicFallbackResult.pipelineMetadata.scoreBeforePremium, 92);
-assert.equal(deterministicFallbackResult.pipelineMetadata.finalScore, 95);
-assert.equal(deterministicFallbackResult.pipelineMetadata.finalBlockers, 0);
-assert.equal(deterministicFallbackResult.pipelineMetadata.providers.deterministicFallback, "grounded-deterministic");
-assert.equal(JSON.parse(deterministicFallbackResult.rawJson).sections.length, 10);
-assert.doesNotThrow(() => assertEditorialPublicationGates(JSON.parse(deterministicFallbackResult.rawJson), { AI_MIN_ARTICLE_WORDS: "1600" }));
+), /Fallback determinístico integral desativado/);
 const previousCacheFirst = process.env.AI_DETERMINISTIC_CACHE_FIRST;
 process.env.AI_DETERMINISTIC_CACHE_FIRST = "true";
 let cacheFirstPipelineCalled = false;
@@ -327,26 +319,25 @@ const cacheFirstProvider = new AIProvider({
     run: async () => { cacheFirstPipelineCalled = true; throw new Error("provider should not be called in cache-first mode"); },
   },
 });
-const cacheFirstResult = await cacheFirstProvider.processCase("Limpeza da transmissao depois de chuva e lama", {
-  title: "Limpeza da transmissao depois de chuva e lama",
+await assert.rejects(() => cacheFirstProvider.processCase("Limpeza da transmissão depois de chuva e lama", {
+  title: "Limpeza da transmissão depois de chuva e lama",
   content_type: "guia-tecnico",
   editorialPriority: "P1",
   portfolio_evidence_url: "https://thebikershop.com.br/componentes/",
   portfolio_verified_at: "2026-08-13",
   confirmed_facts: [
-    { fact: "drivetrainCleaning: limpe a transmissao com produto nao acido e seque a corrente." },
-    { fact: "pressureWashing: evite jato de alta pressao em componentes e vedacoes." },
+    { fact: "drivetrainCleaning: limpe a transmissão com produto não ácido e seque a corrente." },
+    { fact: "pressureWashing: evite jato de alta pressão em componentes e vedações." },
     { fact: "brakeInspection: confira pastilhas, rotores e vazamentos antes de pedalar." },
-    { fact: "wetBraking: a distancia de frenagem aumenta em piso molhado." },
+    { fact: "wetBraking: a distância de frenagem aumenta em piso molhado." },
     { fact: "escalation: procure uma oficina diante de dano ou funcionamento irregular." },
   ],
   sources: [
     { name: "SRAM Support", type: "official-website", url: "https://www.sram.com/en/learn/axs-bike-care-and-maintenance", accessed: "2026-08-13" },
   ],
   grounding: { fallback: "campaign-research-offline-cache-v1" },
-});
-assert.equal(cacheFirstPipelineCalled, false);
-assert.equal(cacheFirstResult.pipelineMetadata.deterministicFullArticleFallbackTrigger, "cache-first");
+}), /provider should not be called|Fallback determinístico integral desativado/);
+assert.equal(cacheFirstPipelineCalled, true);
 if (previousCacheFirst === undefined) delete process.env.AI_DETERMINISTIC_CACHE_FIRST;
 else process.env.AI_DETERMINISTIC_CACHE_FIRST = previousCacheFirst;
 const pipelineFailureProvider = new AIProvider({
@@ -356,21 +347,20 @@ const pipelineFailureProvider = new AIProvider({
     run: async () => { throw new Error("Nenhum provedor configurado"); },
   },
 });
-const pipelineFailureResult = await pipelineFailureProvider.processCase("Fallback sem provedor", {
+await assert.rejects(() => pipelineFailureProvider.processCase("Fallback sem provedor", {
   content_type: "guia-tecnico",
   portfolio_evidence_url: "https://thebikershop.com.br/componentes/",
   portfolio_verified_at: "2026-08-13",
   confirmed_facts: [
     { fact: "drivetrainCleaning: use o limpador recomendado pelo fabricante e seque a corrente depois da limpeza." },
-    { fact: "pressureWashing: jatos de alta pressÃ£o podem danificar componentes e vedaÃ§Ãµes." },
+    { fact: "pressureWashing: jatos de alta pressão podem danificar componentes e vedações." },
     { fact: "brakeInspection: inspecione pastilhas, rotores, comando e vazamentos antes de voltar a pedalar." },
-    { fact: "wetBraking: a distÃ¢ncia de frenagem aumenta em piso molhado." },
+    { fact: "wetBraking: a distância de frenagem aumenta em piso molhado." },
     { fact: "escalation: procure uma oficina quando houver dano, vazamento ou funcionamento irregular." },
   ],
   sources: [{ name: "Fonte oficial", type: "official-website", url: "https://www.sram.com/", accessed: "2026-08-13" }],
   grounding: { fallback: "curated-official-offline-cache-v1" },
-});
-assert.equal(pipelineFailureResult.pipelineMetadata.deterministicFullArticleFallbackTrigger, "pipeline-failure");
+}), /Fallback determinístico integral desativado/);
 const internalFallbackProvider = new AIProvider({
   pipeline: {
     runtime,
@@ -378,7 +368,7 @@ const internalFallbackProvider = new AIProvider({
     run: async () => { throw new Error("Etapa final-audit falhou. deepseek: 402 Insufficient Balance | groq: 413 tokens per minute"); },
   },
 });
-const internalFallbackResult = await internalFallbackProvider.processCase("Ficha documental com cota indisponível", {
+await assert.rejects(() => internalFallbackProvider.processCase("Ficha documental com cota indisponível", {
   status: "pesquisa_concluida",
   content_type: "guia-tecnico",
   confirmed_facts: [
@@ -393,10 +383,7 @@ const internalFallbackResult = await internalFallbackProvider.processCase("Ficha
     claimContract: "explicit-units-v1",
     verifiedAt: "2026-08-13T12:00:00.000Z",
   },
-});
-assert.equal(internalFallbackResult.pipelineMetadata.deterministicFullArticleFallbackUsed, true);
-assert.equal(internalFallbackResult.pipelineMetadata.deterministicFullArticleFallbackTrigger, "pipeline-failure");
-assert.equal(internalFallbackResult.pipelineMetadata.finalScore, 95);
+}), /fallback determinístico|Gates editoriais não atendidos/i);
 if (previousDeterministicFallback === undefined) delete process.env.AI_DETERMINISTIC_CURATED_FALLBACK;
 else process.env.AI_DETERMINISTIC_CURATED_FALLBACK = previousDeterministicFallback;
 if (previousCacheFirst === undefined) delete process.env.AI_DETERMINISTIC_CACHE_FIRST;

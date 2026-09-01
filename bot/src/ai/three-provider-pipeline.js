@@ -1,6 +1,7 @@
 import { ProviderClients } from "./provider-clients.js";
 import { AIRuntime, hashPayload } from "./runtime.js";
 import { canonicalPortfolioBrand } from "../portfolio-policy.js";
+import { editorialWordRange } from "../editorial-length-policy.js";
 
 function extractJson(text) {
   let value = String(text || "").trim();
@@ -178,19 +179,6 @@ function hasResearchEvidence(researchData) {
 
 function isPremiumRequired(contentType, priority) {
   return priority === "P0" || ["review", "comparativo", "previa-corrida", "resumo-corrida"].includes(contentType);
-}
-
-function minimumWordsFor(contentType) {
-  return {
-    review: 1800,
-    comparativo: 2000,
-    "guia-de-compra": 1800,
-    "guia-tecnico": 1600,
-    noticia: 900,
-    lancamento: 1200,
-    "previa-corrida": 1400,
-    "resumo-corrida": 1500,
-  }[contentType] || 900;
 }
 
 function verifiedSourceConflicts(value) {
@@ -406,8 +394,7 @@ export class ThreeProviderPipeline {
     let finalAudit = critique;
     const premiumConfigured = this.clients.isConfigured("deepseek");
     if (requiresPremium && premiumConfigured) {
-      const minimumWords = minimumWordsFor(contentType);
-      const generationTargetWords = Math.ceil(minimumWords * 1.2);
+      const { min: minimumWords, max: maximumWords, target: generationTargetWords } = editorialWordRange(contentType, this.env);
       finalResult = await this.callStep({
         step: "premium-edit",
         providers: ["deepseek", "deepseek", "gemini"],
@@ -422,8 +409,9 @@ export class ThreeProviderPipeline {
         user: [
           "Edite o rascunho usando exclusivamente a pesquisa e a crítica fornecidas.",
           "Corrija todos os bloqueios. Preserve o schema completo e responda somente em JSON.",
-          `O corpo final deve ter pelo menos ${generationTargetWords} palavras reais para assegurar o gate local de ${minimumWords}, sem repetição ou conteúdo genérico.`,
-          `Mantenha o corpo entre ${generationTargetWords} e ${generationTargetWords + 300} palavras; nenhuma seção deve ultrapassar 250 palavras.`,
+          "Em especificações técnicas, use a fonte do fabricante; não exponha no artigo conflitos, inconsistências ou correções de outras fontes.",
+          `Mire aproximadamente ${generationTargetWords} palavras úteis e nunca adicione repetição ou conteúdo genérico para atingir a extensão.`,
+          `Mantenha o corpo entre ${minimumWords} e ${maximumWords} palavras úteis; nenhuma seção deve ultrapassar 250 palavras.`,
           "O JSON completo deve ter menos de 32000 caracteres para não ser truncado pelo provedor.",
           "Conte as palavras dos campos content antes de responder e amplie os eixos técnicos mais relevantes caso o total esteja abaixo da meta.",
           "Não crie fatos, fontes, testes ou disponibilidade.",
@@ -470,6 +458,7 @@ export class ThreeProviderPipeline {
             "produto, versão ou medida incompatível",
             "teste prático não realizado",
             "texto genérico ou repetitivo",
+            "conflito entre fontes exposto ao leitor em vez de resolvido pela precedência do fabricante",
             "plano visual incompatível",
           ],
           output: { score: "calcule um inteiro de 0 a 100", blockers: [{ type: "...", detail: "..." }], warnings: [] },
@@ -484,8 +473,7 @@ export class ThreeProviderPipeline {
     let finalBlockers = Array.isArray(finalAudit.blockers) ? finalAudit.blockers : [];
     let remediationEditUsed = false;
     if (premiumConfigured && (finalScore < finalThreshold || finalBlockers.length > 0)) {
-      const minimumWords = minimumWordsFor(contentType);
-      const generationTargetWords = Math.ceil(minimumWords * 1.2);
+      const { min: minimumWords, max: maximumWords, target: generationTargetWords } = editorialWordRange(contentType, this.env);
       const remediationResult = await this.callStep({
         step: "remediation-edit",
         providers: ["deepseek", "gemini"],
@@ -500,9 +488,10 @@ export class ThreeProviderPipeline {
         user: [
           "Faça uma correção final estritamente baseada nas evidências. Preserve o schema completo e responda somente em JSON.",
           "Remova integralmente cada alegação proibida e cada afirmação apontada pelos bloqueadores; não as reformule como fato, inferência ou recomendação.",
+          "Em especificações técnicas, mantenha apenas o valor do fabricante e não exponha ao leitor conflitos, inconsistências ou correções de cadastro.",
           "Corrija também todos os avisos e deficiências implícitas na nota da auditoria final, priorizando precisão, utilidade técnica, clareza e decisões sustentadas.",
           "Substitua o espaço removido por explicação de método, critérios de decisão e limitações que não exijam novos fatos.",
-          `Mantenha pelo menos ${generationTargetWords} palavras reais, sem repetição, fatos novos ou conteúdo genérico.`,
+          `Mantenha entre ${minimumWords} e ${maximumWords} palavras úteis, mirando ${generationTargetWords}, sem repetição, fatos novos ou conteúdo genérico.`,
           "Não crie especificações, compatibilidades, categorias de uso, testes, preço, estoque ou disponibilidade.",
           "",
           "ALEGAÇÕES PROIBIDAS DA FICHA:",
@@ -552,6 +541,7 @@ export class ThreeProviderPipeline {
             "produto, versão ou medida incompatível",
             "teste prático não realizado",
             "texto genérico ou repetitivo",
+            "conflito entre fontes exposto ao leitor em vez de resolvido pela precedência do fabricante",
           ],
           output: { score: "calcule um inteiro de 0 a 100", blockers: [{ type: "...", detail: "..." }], warnings: [] },
         }),

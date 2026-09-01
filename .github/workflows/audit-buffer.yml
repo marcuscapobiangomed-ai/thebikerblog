@@ -8,6 +8,7 @@ permissions:
 
 concurrency:
   group: thebiker-editorial-write
+  queue: max
   cancel-in-progress: false
 
 jobs:
@@ -39,10 +40,13 @@ jobs:
           DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
         run: npm run campaign:audit-buffer
         working-directory: bot
-      - name: Persistir notas e bloqueios
-        if: always()
+      - name: Validar integralmente notas e bloqueios
+        id: validation
+        if: steps.audit.outcome == 'success'
+        run: npm run validate
+      - name: Persistir somente auditoria aprovada
+        if: steps.audit.outcome == 'success' && steps.validation.outcome == 'success'
         run: |
-          npm run validate
           git config user.name "thebiker-editorial-bot"
           git config user.email "thebiker-editorial-bot@users.noreply.github.com"
           git add bot/editorial-campaign.json bot/operational-state _data/editorial-calendar.json

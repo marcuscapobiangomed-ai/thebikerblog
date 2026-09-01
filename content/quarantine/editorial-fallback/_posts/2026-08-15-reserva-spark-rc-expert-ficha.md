@@ -1,13 +1,13 @@
 ---
 image_subject_id: "bicicleta-scott-spark-rc-expert-2027"
 layout: post
-published: true
-title: "Scott Spark RC Expert 2027: ficha verificada"
+published: false
+title: "Scott Spark RC Expert 2027: leitura técnica da montagem confirmada pelas fontes atuais"
 slug: "scott-spark-rc-expert-2027-leitura-tecnica-da-montagem-confirmada-pelas-fontes-atuais"
 date: 2026-08-15
 last_modified_at: 2026-08-15
 author: "Equipe TheBiker"
-reviewed_by: "TheBiker AI Editorial Gate"
+reviewed_by: ""
 content_type: "review"
 editorial_format: "full-article-v1"
 audience_segment: "core_technical_cyclists"
@@ -28,7 +28,7 @@ price_currency: "BRL"
 price_checked_at: "2026-08-13"
 category: "reviews"
 tags: ["ciclismo", "dados", "ficha-tecnica"]
-description: "Ficha documental da Scott Spark RC Expert 2027, com especificações confirmadas e limites da fonte."
+description: "Leitura documental de Scott Spark RC Expert 2027: leitura técnica da montagem confirmada pelas fontes atuais, organizada por registros oficiais, limites e lacunas que precisam permanecer visiveis."
 direct_answer: "Use esta ficha como roteiro documental: confronte cada dado com a fonte oficial, registre lacunas e nao trate a leitura como teste presencial ou promessa de desempenho."
 faq:
   - question: "Como usar esta ficha técnica sem extrapolar os dados?"
@@ -51,8 +51,8 @@ promoted_brands: ["TheBiker"]
 context_only_brands: []
 portfolio_evidence_url: "https://thebikershop.com.br/bikes/"
 portfolio_verified_at: "2026-08-13"
-editorial_status: "published"
-status: "published"
+editorial_status: "draft"
+status: "draft"
 sources:
   - name: "TheBiker — Bicicleta Scott Spark RC Expert 2027"
     type: "store"
@@ -154,14 +154,6 @@ Leia a fonte indicada na etapa 9 e mantenha a identificacao do componente, model
 Compare o texto da ficha na etapa 9 com o item observado e anote somente o que estiver explicitamente documentado. O objetivo do eixo Registro 9 da ficha oficial: Shimano XT Di é deixar um histórico legível para a próxima consulta. No registro de Registro 9 da ficha oficial: Shimano XT Di, descreva somente o que está diante dos olhos, sem transformar impressão em medição, promessa ou diagnóstico remoto.
 
 Quando faltar um detalhe na etapa 9, deixe a lacuna visivel e retorne ao documento antes de transformar a leitura em decisao. Se o documento não apresentar um detalhe no eixo Registro 9 da ficha oficial: Shimano XT Di, deixe o campo pendente e retorne à fonte antes de seguir. Ao revisar Registro 9 da ficha oficial: Shimano XT Di, essa pausa preserva o escopo do artigo e mantém a decisão ligada à evidência registrada.
-
-## Para quem é indicado
-
-Esta ficha atende quem precisa conferir uma montagem documentada antes de comparar versões, comprar ou levar perguntas à loja. Ela não substitui teste presencial, ajuste de <a href="https://thebikershop.com.br/componentes/suspensao/" class="thebiker-product-link" target="_blank" rel="noopener">suspensão</a> ou orientação do fabricante.
-
-## Alternativas de decisão
-
-A alternativa segura não é inferir desempenho a partir da ficha. Compare a disponibilidade da versão, o conjunto de componentes identificado e os campos ainda ausentes. Se a decisão depender de ajuste, compatibilidade ou uso específico, solicite a documentação correspondente antes de concluir.
 
 ## Revisao final antes da publicacao
 

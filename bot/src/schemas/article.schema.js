@@ -155,6 +155,19 @@ export const ArticleSchema = z.object({
     image_license: z.string().default("Uso editorial da TheBiker"),
   }).optional().default({}),
 }).superRefine((article, ctx) => {
+  if (["review", "lancamento"].includes(article.content_type)) {
+    for (const field of ["brand", "product_name", "model_year"]) {
+      const value = article[field];
+      if (value === undefined || value === null || String(value).trim() === "") {
+        ctx.addIssue({
+          code: "custom",
+          path: [field],
+          message: "Identidade exata do produto é obrigatória para impedir mistura de modelos.",
+        });
+      }
+    }
+  }
+
   const promoted = [...article.promoted_brands];
   if (article.brand) promoted.push(article.brand);
 

@@ -1,4 +1,7 @@
 ---
+editorial_hold_reason: "Revisão de fontes, precisão e concisão pendente"
+status: "draft"
+published: false
 image_subject_id: "bicicleta-scott-addict-50-2026-pre-venda-cumulus-white"
 layout: post
 title: "Melhores Estradas e Rotas de Ciclismo no Brasil"
@@ -7,7 +10,7 @@ direct_answer: "Não existe uma única melhor rota no Brasil: a escolha deve com
 date: 2026-07-21
 last_modified_at: 2026-07-21
 author: "Equipe The Biker Blog"
-reviewed_by: "Equipe The Biker Blog"
+reviewed_by: ""
 content_type: "guia-turistico"
 audience_segment: "core_technical_cyclists"
 audience_intent: "plan_ride"
@@ -41,7 +44,7 @@ sources:
     url: "https://www.wikiloc.com"
     accessed_at: "2026-07-19"
 affiliate_links: false
-editorial_status: "published"
+editorial_status: "draft"
 thumbnail: "/assets/img/posts/melhores-estradas-rotas-brasil/card-640.webp"
 image_mobile: "/assets/img/posts/melhores-estradas-rotas-brasil/hero-800.webp"
 image_manifest_version: 2

@@ -1,0 +1,191 @@
+{
+  "slug": "contingencia-scale-980-variantes",
+  "title": "Scott Scale 980: método para distinguir variantes, cores e montagens sem misturar fichas",
+  "content_type": "comparativo",
+  "review_method": "desk-research",
+  "tested_by_thebikerblog": false,
+  "market": "Brasil",
+  "generated_at": "2026-08-20",
+  "status": "pesquisa_concluida",
+  "sources": [
+    {
+      "name": "TheBiker — Bicicleta Scott Scale 980 Black",
+      "url": "https://thebikershop.com.br/produtos/bicicleta-scott-scale-980-black/",
+      "accessed": "2026-08-04",
+      "id": "internal-src-1",
+      "type": "store"
+    },
+    {
+      "name": "TheBiker — Bicicleta Scott Scale 980 Blue",
+      "url": "https://thebikershop.com.br/produtos/bicicleta-scott-scale-980-blue/",
+      "accessed": "2026-08-04",
+      "id": "internal-src-2",
+      "type": "store"
+    }
+  ],
+  "editorialPriority": "P1",
+  "confirmed_facts": [
+    {
+      "fact": "identity.storeName: Bicicleta Scott Scale 980 Black",
+      "source_ids": [
+        "internal-src-1"
+      ],
+      "evidence_quote": "bicicleta scott scale 980 black para trilhas desafiadoras import url"
+    },
+    {
+      "fact": "commercial.storeUrl: https://thebikershop.com.br/produtos/bicicleta-scott-scale-980-black/",
+      "source_ids": [
+        "internal-src-1"
+      ],
+      "evidence_quote": "bicicleta scott scale 980 black item https thebikershop com br produtos bicicleta scott scale 980 black mainentity type product id https"
+    },
+    {
+      "fact": "identity.color: Black",
+      "source_ids": [
+        "internal-src-1"
+      ],
+      "evidence_quote": "bicicleta scott scale 980 black para trilhas desafiadoras import url"
+    },
+    {
+      "fact": "identity.sizes: S, M, L, XL",
+      "source_ids": [
+        "internal-src-1"
+      ],
+      "evidence_quote": "algumas promocoes ver mais detalhes tamanho s m l xl tamanho m s m l"
+    },
+    {
+      "fact": "frame.material: Scale Alloy 6061 Custom Butted Tubing",
+      "source_ids": [
+        "internal-src-1"
+      ],
+      "evidence_quote": "iacute sticas principais quadro fabricado em scale alloy 6061 custom butted tubing oferecendo leveza e resist ecirc"
+    },
+    {
+      "fact": "suspension.fork: Suntour X1 32 RL-R",
+      "source_ids": [
+        "internal-src-1"
+      ],
+      "evidence_quote": "mica suspens atilde o equipado com suntour x1 32 rl r proporciona 100mm de viagem com"
+    },
+    {
+      "fact": "drivetrain.rearDerailleur: Shimano Deore RD-M6100",
+      "source_ids": [
+        "internal-src-1"
+      ],
+      "evidence_quote": "com o c acirc mbio traseiro shimano deore rd m6100 de 12 velocidades voc ecirc"
+    },
+    {
+      "fact": "drivetrain.speeds: 12 velocidades",
+      "source_ids": [
+        "internal-src-1"
+      ],
+      "evidence_quote": "traseiro shimano deore rd m6100 de 12 velocidades voc ecirc experimentar aacute trocas"
+    },
+    {
+      "fact": "drivetrain.crankset: Shimano FC-MT512-1",
+      "source_ids": [
+        "internal-src-1"
+      ],
+      "evidence_quote": "pidas e precisas enquanto o pedivela shimano fc mt512 1 assegura uma pedalada eficiente freios"
+    },
+    {
+      "fact": "brakes.calipers: Shimano MT200",
+      "source_ids": [
+        "internal-src-1"
+      ],
+      "evidence_quote": "eficiente freios os freios a disco shimano mt200 garantem uma frenagem confi aacute"
+    },
+    {
+      "fact": "limits.maxSystemWeight: 128 kg",
+      "source_ids": [
+        "internal-src-1"
+      ],
+      "evidence_quote": "solo peso m aacute ximo suportado 128 kg incluindo bike piloto e equipamentos"
+    },
+    {
+      "fact": "identity.storeName: Bicicleta Scott Scale 980 Blue",
+      "source_ids": [
+        "internal-src-2"
+      ],
+      "evidence_quote": "bicicleta scott scale 980 blue para trilhas radicais import url"
+    },
+    {
+      "fact": "commercial.storeUrl: https://thebikershop.com.br/produtos/bicicleta-scott-scale-980-blue/",
+      "source_ids": [
+        "internal-src-2"
+      ],
+      "evidence_quote": "bicicleta scott scale 980 blue item https thebikershop com br produtos bicicleta scott scale 980 blue mainentity type product id https"
+    },
+    {
+      "fact": "identity.color: Blue",
+      "source_ids": [
+        "internal-src-2"
+      ],
+      "evidence_quote": "bicicleta scott scale 980 blue para trilhas radicais import url"
+    },
+    {
+      "fact": "frame.material: Scale Alloy 6061 Custom Butted Tubing",
+      "source_ids": [
+        "internal-src-2"
+      ],
+      "evidence_quote": "iacute sticas principais quadro fabricado em scale alloy 6061 custom butted tubing oferecendo leveza e resist ecirc"
+    },
+    {
+      "fact": "suspension.fork: Suntour X1 32 RL-R",
+      "source_ids": [
+        "internal-src-2"
+      ],
+      "evidence_quote": "mica suspens atilde o equipado com suntour x1 32 rl r proporciona 100mm de viagem com"
+    },
+    {
+      "fact": "drivetrain.rearDerailleur: Shimano Deore RD-M6100",
+      "source_ids": [
+        "internal-src-2"
+      ],
+      "evidence_quote": "com o c acirc mbio traseiro shimano deore rd m6100 de 12 velocidades voc ecirc"
+    },
+    {
+      "fact": "drivetrain.speeds: 12 velocidades",
+      "source_ids": [
+        "internal-src-2"
+      ],
+      "evidence_quote": "traseiro shimano deore rd m6100 de 12 velocidades voc ecirc experimentar aacute trocas"
+    },
+    {
+      "fact": "drivetrain.crankset: Shimano FC-MT512-1",
+      "source_ids": [
+        "internal-src-2"
+      ],
+      "evidence_quote": "pidas e precisas enquanto o pedivela shimano fc mt512 1 assegura uma pedalada eficiente freios"
+    },
+    {
+      "fact": "brakes.calipers: Shimano MT200",
+      "source_ids": [
+        "internal-src-2"
+      ],
+      "evidence_quote": "eficiente freios os freios a disco shimano mt200 garantem uma frenagem confi aacute"
+    },
+    {
+      "fact": "limits.maxSystemWeight: 128 kg",
+      "source_ids": [
+        "internal-src-2"
+      ],
+      "evidence_quote": "solo peso m aacute ximo suportado 128 kg incluindo bike piloto e equipamentos"
+    }
+  ],
+  "limitations": [
+    "Pesquisa web indisponível nesta execução (Groq sem evidência: Pesquisa bloqueada por integridade de fontes: pesquisa concluída sem fontes rastreáveis; pesquisa sem fatos explicitamente fundamentados; Gemini sem evidência: Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat); conteúdo limitado à base interna com fontes oficiais.",
+    "8 fato(s) removido(s) por falta de trecho verificavel na fonte recuperada."
+  ],
+  "grounding": {
+    "queries": [],
+    "sourceCount": 2,
+    "fallback": "internal-product-knowledge",
+    "claimContract": "explicit-units-v1",
+    "evidenceContract": "retrieved-excerpt-v1",
+    "verifiedAt": "2026-08-20T16:13:31.287Z"
+  },
+  "portfolio_evidence_url": "https://thebikershop.com.br/bikes/",
+  "portfolio_verified_at": "2026-08-20",
+  "portfolio_evidence_scope": "portfolio-category"
+}

@@ -16,9 +16,14 @@
     "validate:manifests-v2": "npm --prefix bot run validate:images-v2",
     "validate:data": "node _data/schemas/validate-all.js",
     "validate:races": "node scripts/validate-race-program.mjs",
+    "validate:races:freshness": "node scripts/validate-race-program.mjs --freshness",
     "sync:races": "node scripts/sync-race-calendar.mjs",
     "check:claims": "npm --prefix bot run check:claims",
     "audit:editorial": "npm --prefix bot run audit:editorial",
+    "quarantine:editorial-fallbacks": "node scripts/quarantine-editorial-fallbacks.mjs --write",
+    "check:editorial-fallbacks": "node scripts/quarantine-editorial-fallbacks.mjs --check",
+    "hold:published-quality": "node scripts/enforce-published-editorial-quality.mjs --write",
+    "check:published-quality": "node scripts/enforce-published-editorial-quality.mjs",
     "audit:seo": "node scripts/audit-seo.mjs",
     "test": "npm --prefix bot test && node scripts/test-calculators.mjs && node scripts/test-homepage-recent.mjs && node scripts/test-editorial-intelligence.mjs && node scripts/test-monthly-campaign.mjs && node scripts/test-campaign-recovery.mjs && node scripts/test-campaign-replenishment.mjs && node scripts/test-editorial-governance.mjs && node scripts/test-audience-strategy.mjs && node scripts/test-primary-navigation.mjs && node scripts/test-race-program.mjs && node scripts/test-race-calendar-sync.mjs && node scripts/test-race-navigation.mjs && node scripts/test-public-catalog.mjs && node scripts/test-workflow-resilience.mjs",
     "test:analytics": "node scripts/test-analytics-tracking.mjs",
@@ -29,6 +34,8 @@
     "automation:doctor": "npm --prefix bot run automation:doctor",
     "automation:run": "npm --prefix bot run automation:run",
     "build:jekyll": "bundle exec jekyll build --baseurl \"\"",
+    "check:publication-boundaries": "node scripts/validate-public-artifact.mjs --source-only",
+    "validate:public-artifact": "node scripts/validate-public-artifact.mjs",
     "validate:ai-build": "node scripts/validate-built-ai-discovery.mjs",
     "sync:product-pages": "node scripts/sync-product-pages.js",
     "check:product-pages": "node scripts/sync-product-pages.js --check",
@@ -55,13 +62,13 @@
     "check:brand": "node scripts/check-brand-consistency.mjs",
     "links:thebiker": "node scripts/link-thebiker-products.js --write --rebuild",
     "check:thebiker-links": "node scripts/link-thebiker-products.js --check",
-    "validate:artifacts": "npm run security:secrets && npm run check:brand && npm run validate:research && npm run receipts:check && npm run audit:buffer-shadow && npm run validate:scheduled && npm run validate:posts && npm run audit:editorial && npm run audit:seo && npm run check:audience && npm run media:audit && npm run validate:images && npm run validate:manifests && npm run validate:manifests-v2 && npm run validate:data && npm run validate:races && npm run check:catalog-public && npm run check:machine-readable && npm run check:claims && npm run check:thebiker-links && npm run check:n8n",
+    "validate:artifacts": "npm run security:secrets && npm run check:publication-boundaries && npm run check:brand && npm run check:editorial-fallbacks && npm run check:published-quality && npm run validate:research && npm run receipts:check && npm run audit:buffer-shadow && npm run validate:scheduled && npm run validate:posts && npm run audit:editorial && npm run audit:seo && npm run check:audience && npm run media:audit && npm run validate:images && npm run validate:manifests && npm run validate:manifests-v2 && npm run validate:data && npm run validate:races && npm run check:catalog-public && npm run check:machine-readable && npm run check:claims && npm run check:thebiker-links && npm run check:n8n",
     "validate": "npm run validate:artifacts && npm test && npm run test:analytics && npm run lint",
     "validate:ci": "npm run prepare:derived && npm run validate",
-    "audit:images": "node ../medblog-automation/src/audit-images.js",
-    "generate:thumbnails": "node ../medblog-automation/src/generate-thumbnails.js",
-    "generate:placeholders": "node ../medblog-automation/src/generate-placeholders.js && node ../medblog-automation/src/generate-data-placeholders.js",
-    "pipeline:images": "npm run generate:placeholders && npm run generate:thumbnails && npm run validate:images"
+    "audit:images": "npm run media:audit && npm run validate:images",
+    "generate:thumbnails": "node scripts/deprecated-image-pipeline.mjs generate:thumbnails",
+    "generate:placeholders": "node scripts/deprecated-image-pipeline.mjs generate:placeholders",
+    "pipeline:images": "node scripts/deprecated-image-pipeline.mjs pipeline:images"
     ,"images:reframe-products": "node scripts/reframe-product-images.js"
     ,"media:recalibrate-campaign": "node scripts/recalibrate-campaign-images.js"
     ,"media:recalibrate-active": "node scripts/recalibrate-active-legacy-images.js"

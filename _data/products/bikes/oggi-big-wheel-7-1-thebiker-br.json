@@ -11,7 +11,7 @@
   "storeProductUrl": "https://thebikershop.com.br/produtos/bicicleta-oggi-big-wheel-7-1/",
   "image": "/assets/img/products/comparator/oggi-big-wheel-7-1.webp",
   "portfolioStatus": "verified",
-  "portfolioVerifiedAt": "2026-08-15",
+  "portfolioVerifiedAt": "2026-08-21",
   "theBikerPrice": 4499,
   "frame": {
     "material": "aluminum"
@@ -34,7 +34,7 @@
   "tires": {},
   "testedByTheBikerBlog": false,
   "createdAt": "2026-08-05",
-  "updatedAt": "2026-08-15",
+  "updatedAt": "2026-08-21",
   "reviewStatus": "verified",
   "sourceId": "thebiker-oggi-big-wheel-7-1"
 }

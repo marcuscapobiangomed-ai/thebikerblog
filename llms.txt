@@ -12,18 +12,9 @@ Site: {{ site.url }}{{ site.baseurl }}/
 Sitemap: {{ site.url }}{{ site.baseurl }}/sitemap.xml
 Feed: {{ site.url }}{{ site.baseurl }}/feed.xml
 Catálogo verificável: {{ site.url }}{{ site.baseurl }}/api/products.json
-Política editorial: {{ site.url }}{{ site.baseurl }}/api/editorial-policy.json
-Público-alvo e critérios de mensuração: {{ site.url }}{{ site.baseurl }}/api/audience.json
 Índice editorial estruturado: {{ site.url }}{{ site.baseurl }}/api/content-index.json
-Sobre a equipe e o método: {{ site.url }}{{ site.baseurl }}/sobre/
-
-## Como interpretar o conteúdo
-
-- Fatos técnicos devem estar ligados a fontes oficiais do fabricante ou à página correspondente da TheBiker Shop.
-- Preços e disponibilidade são observações datadas e devem ser revalidados antes de uma decisão de compra.
-- Valores aproximados, pendentes ou não confirmados são identificados explicitamente.
-- Produtos sem correspondência exata permanecem bloqueados; ausência de dado não é preenchida por inferência.
-- Páginas publicadas e endpoints públicos excluem rascunhos editoriais.
+Compromissos públicos de qualidade: {{ site.url }}{{ site.baseurl }}/api/editorial-policy.json
+Sobre a equipe: {{ site.url }}{{ site.baseurl }}/sobre/
 
 ## Fontes prioritárias dentro deste site
 
@@ -33,7 +24,7 @@ Sobre a equipe e o método: {{ site.url }}{{ site.baseurl }}/sobre/
 
 ## Artigos recentes prioritários
 
-Esta lista é deliberadamente limitada para permanecer pequena. O índice editorial estruturado acima contém o acervo público completo.
+O índice editorial estruturado acima contém o acervo público completo.
 
 {% assign public_posts = site.posts | where_exp: "post", "post.published != false" %}{% for post in public_posts limit:20 %}
 - [{{ post.title }}]({{ post.url | absolute_url }}): {{ post.description | strip_newlines }}

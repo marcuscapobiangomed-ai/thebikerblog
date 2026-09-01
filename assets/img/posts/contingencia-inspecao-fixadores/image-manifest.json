@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 2,
+  "status": "approved",
+  "editorialUse": "publishable",
+  "assetType": "official-product-photo",
+  "factualSubject": "exact-product",
+  "editorialScope": "portfolio",
+  "purpose": "Ilustrar Inspeção de fixadores da bicicleta: sequência, registro e sinais que exigem avaliação técnica com produto real do catálogo TheBiker.",
+  "alt": "Manopla Thule com limitador de torque Acutight em fotografia oficial de TheBiker Shop",
+  "caption": "Manopla Thule com limitador de torque Acutight, em fotografia oficial de TheBiker Shop.",
+  "credit": "TheBiker Shop",
+  "containsText": false,
+  "aiGenerated": false,
+  "assetId": "thebiker-manopla-thule-com-limitador-de-torque-acutight-7ad54f757c",
+  "sha256": "7ad54f757c120244010b261d4ea9b3cf24e8906f4deb357af1111984d37fa91f",
+  "perceptualHash": "1111111111111111111001111110001111000011110001111110111111111111",
+  "preserveFullProduct": true,
+  "outputFormat": "webp",
+  "qualityTier": "standard",
+  "matchedProduct": {
+    "id": "manopla-thule-com-limitador-de-torque-acutight",
+    "name": "Manopla Thule com limitador de torque Acutight",
+    "sku": null,
+    "matchLevel": "exact-id"
+  },
+  "depictedBrands": [
+    "Thule"
+  ],
+  "depictedProducts": [
+    "Manopla Thule com limitador de torque Acutight"
+  ],
+  "focalPoint": {
+    "x": 0.5,
+    "y": 0.5
+  },
+  "source": {
+    "type": "thebiker",
+    "name": "TheBiker Shop",
+    "url": "https://thebikershop.com.br/produtos/manopla-thule-com-limitador-de-torque-acutight/",
+    "fileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/5554161-128186553d5324bf5116750900865761-1024-1024.webp",
+    "localFile": "source.webp",
+    "obtainedAt": "2026-08-21",
+    "license": "Uso editorial no blog oficial TheBiker",
+    "licenseEvidence": "Diretriz editorial registrada pelo responsável do blog oficial TheBiker.",
+    "rightsPolicyId": "thebiker-official-editorial-v1"
+  },
+  "files": {
+    "hero": {
+      "file": "hero-1600.webp",
+      "width": 1600,
+      "height": 900,
+      "maxKB": 300
+    },
+    "mobile": {
+      "file": "hero-800.webp",
+      "width": 800,
+      "height": 450,
+      "maxKB": 160
+    },
+    "card": {
+      "file": "card-640.webp",
+      "width": 640,
+      "height": 360,
+      "maxKB": 100
+    }
+  },
+  "approval": {
+    "reviewedBy": "TheBiker deterministic image gate",
+    "approvedAt": "2026-08-21",
+    "method": "automated-editorial-gate",
+    "checks": [
+      "fonte-oficial",
+      "resolucao-padrao-declarada",
+      "webp-otimizado",
+      "direitos",
+      "produto-relacionado",
+      "sha256",
+      "hash-perceptual",
+      "sem-concorrente"
+    ]
+  },
+  "composition": {
+    "strategy": "trim-contain-safe-area",
+    "safeArea": 0.9,
+    "trimThreshold": 16,
+    "sourceWidth": 1024,
+    "sourceHeight": 677,
+    "subjectWidth": 395,
+    "subjectHeight": 369
+  }
+}

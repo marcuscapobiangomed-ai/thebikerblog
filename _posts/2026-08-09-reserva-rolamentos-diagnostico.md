@@ -1,13 +1,14 @@
 ---
+editorial_hold_reason: "Revisão de fontes, precisão e concisão pendente"
 image_subject_id: "kit-de-rolamentos-direcao-scott-foil"
 layout: post
-published: true
+published: false
 title: "Rolamentos sob carga: como localizar folga e contaminação"
 slug: "rolamentos-sob-carga-diagnostico"
 date: 2026-08-09
 last_modified_at: 2026-08-13
 author: "Equipe TheBiker"
-reviewed_by: "TheBiker AI Editorial Gate"
+reviewed_by: ""
 content_type: "guia-tecnico"
 audience_segment: "core_technical_cyclists"
 audience_intent: "solve_problem"
@@ -45,8 +46,8 @@ promoted_brands: ["TheBiker"]
 context_only_brands: []
 portfolio_evidence_url: "https://thebikershop.com.br/"
 portfolio_verified_at: "2026-08-05"
-editorial_status: "published"
-status: "published"
+editorial_status: "draft"
+status: "draft"
 sources:
   - name: "TheBiker — Bicicleta Infantil Oggi Hacker 24 - Cinza e Amarelo"
     type: "store"

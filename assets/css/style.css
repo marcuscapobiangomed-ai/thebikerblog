@@ -2453,6 +2453,8 @@ button.comparison-slot { width: 100%; font: inherit; cursor: pointer; }
 .brand-section-heading > a:hover { color: var(--accent); }
 .brand-guide-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px; }
 .brand-guide-card > a { display: block; aspect-ratio: 3 / 2; overflow: hidden; background: #eee; }
+.brand-latest .brand-guide-card > a { aspect-ratio: 16 / 9; background: #f7f7f5; }
+.brand-latest .brand-guide-card > a img { object-fit: contain; }
 .brand-guide-card time { display: block; margin: 15px 0 8px; color: #888; font-size: 0.64rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
 .brand-guide-card h3 { margin: 0 0 9px; font-family: var(--font-heading); font-size: 1.25rem; line-height: 1.15; text-transform: uppercase; }
 .brand-guide-card p { margin: 0; color: #6a6a6a; font-size: 0.82rem; line-height: 1.5; }
@@ -2462,6 +2464,7 @@ button.comparison-slot { width: 100%; font: inherit; cursor: pointer; }
 .brand-shop-cta strong { display: block; font-family: var(--font-heading); font-size: 1.7rem; letter-spacing: 0.01em; line-height: 1.1; text-transform: uppercase; }
 .brand-shop-cta span { color: #6a6a6a; font-size: 0.84rem; }
 .brand-shop-cta a span { margin-left: 9px; color: #fff; }
+.brand-shop-cta a { flex: 0 0 auto; min-width: 168px; white-space: nowrap; }
 
 .site-footer { padding-top: 42px; background: #fff; color: #666; border-top: 1px solid #ededed; }
 .footer-logo-img { display: block; width: 210px; height: auto; }
@@ -2844,6 +2847,7 @@ button.comparison-slot { width: 100%; font: inherit; cursor: pointer; }
   .brand-guide-grid { grid-template-columns: 1fr; gap: 38px; }
   .brand-shop-cta-inner { align-items: flex-start; flex-direction: column; }
   .brand-shop-cta strong { font-size: 1.42rem; }
+  .brand-shop-cta a { width: 100%; min-height: 52px; padding: 0 18px; justify-content: space-between; }
   .footer-grid { grid-template-columns: 1fr; }
 }
 

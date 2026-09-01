@@ -8,6 +8,20 @@ export function eligible(product, now = new Date()) {
   if (product.portfolioStatus !== 'verified') return false
   if (!/^https:\/\/(www\.)?thebikershop\.com\.br\/produtos\//i.test(product.storeProductUrl || '')) return false
   if (!/^\d{4}-\d{2}-\d{2}$/.test(product.portfolioVerifiedAt || '')) return false
+  // A ficha pública só existe quando o conjunto técnico essencial está completo.
+  // Estados operacionais e placeholders permanecem na base privada para
+  // enriquecimento, mas nunca chegam ao catálogo, sitemap ou APIs públicas.
+  const requiredFacts = [
+    product.brand, product.model, product.modelYear, product.category, product.image,
+    product.frame?.material, product.frame?.technology, product.fork?.model,
+    product.drivetrain?.brand, product.drivetrain?.groupset,
+    product.drivetrain?.speeds, product.drivetrain?.shifting,
+    product.brakes?.brand, product.brakes?.model, product.brakes?.type,
+    product.wheels?.brand, product.wheels?.model,
+    product.tires?.brand, product.tires?.model,
+  ]
+  const operationalValue = /(?:n[aã]o\s+(?:confirmad[oa]|informad[oa]|dispon[ií]vel)|pendente|em\s+revis[aã]o|unknown|n\/a)/iu
+  if (requiredFacts.some((value) => value === null || value === undefined || String(value).trim() === '' || operationalValue.test(String(value)))) return false
   const age = Math.floor((now - new Date(`${product.portfolioVerifiedAt}T00:00:00Z`)) / 86400000)
   return age >= 0 && age <= 7
 }

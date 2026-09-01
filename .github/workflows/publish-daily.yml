@@ -13,13 +13,18 @@ on:
         required: false
         default: true
         type: boolean
+      catch_up:
+        description: "Quitar um overdue aprovado antes da pauta de hoje"
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   contents: write
-  actions: write
 
 concurrency:
   group: thebiker-editorial-write
+  queue: max
   cancel-in-progress: false
 
 jobs:
@@ -43,17 +48,39 @@ jobs:
         working-directory: bot
       - name: Revalidar disponibilidade do catálogo TheBiker
         run: npm run catalog:revalidate
-      - name: Preparar derivados e validar baseline antes de publicar
-        run: npm run validate:ci
-      - name: Garantir artigo aprovado para hoje antes da promoção
-        if: ${{ github.event_name == 'schedule' || inputs.dry_run == false }}
+      - name: Preparar derivados e validar núcleo estrutural
+        run: |
+          npm run prepare:derived
+          npm run security:secrets
+          npm run check:brand
+          npm run validate:data
+          npm run check:catalog-public
+          npm run check:machine-readable
+          npm run check:n8n
+      - name: Inspecionar candidato já aprovado
+        id: candidate_probe
+        continue-on-error: true
+        env:
+          AUTOMATION_DRY_RUN: "true"
+          AUTOMATION_CATCH_UP_POLICY: ${{ github.event_name == 'schedule' && 'oldest-approved' || (inputs.catch_up && 'oldest-approved' || 'disabled') }}
+        run: |
+          result="$(node src/publish_scheduled.js)"
+          echo "$result"
+          echo "status=$(echo "$result" | jq -r .status)" >> "$GITHUB_OUTPUT"
+          echo "item_id=$(echo "$result" | jq -r '.itemId // empty')" >> "$GITHUB_OUTPUT"
+          echo "catch_up=$(echo "$result" | jq -r '.catchUp // false')" >> "$GITHUB_OUTPUT"
+        working-directory: bot
+      - name: Recuperar pauta somente quando não há candidato publicável
+        id: recovery
+        continue-on-error: true
+        if: ${{ (steps.candidate_probe.outcome == 'failure' || (steps.candidate_probe.outputs.status == 'idle' && steps.candidate_probe.outputs.item_id == '')) && (github.event_name == 'schedule' || inputs.dry_run == false) }}
         env:
           AUTOMATION_ENABLED: "true"
           AUTOMATION_DRY_RUN: "false"
           CAMPAIGN_RESEARCH_MAX_ATTEMPTS: "2"
           CAMPAIGN_CURATED_OFFLINE_FALLBACK: "true"
-          AI_DETERMINISTIC_CURATED_FALLBACK: "true"
-          AI_DETERMINISTIC_CACHE_FIRST: "true"
+          AI_DETERMINISTIC_CURATED_FALLBACK: "false"
+          AI_DETERMINISTIC_CACHE_FIRST: "false"
           AI_PIPELINE_MODE: three-provider
           AI_MONTHLY_BUDGET_USD: ${{ vars.AI_MONTHLY_BUDGET_USD || '5.00' }}
           DEEPSEEK_FLASH_MODEL: ${{ vars.DEEPSEEK_FLASH_MODEL || 'deepseek-v4-flash' }}
@@ -72,19 +99,42 @@ jobs:
           today="$(TZ=America/Sao_Paulo date +%F)"
           npm run campaign:replenish -- --target-buffer=1 --max-attempts=3 --required-date="$today"
         working-directory: bot
+      - name: Validar e fixar o candidato da transação
+        id: candidate
+        env:
+          AUTOMATION_DRY_RUN: "true"
+          AUTOMATION_CATCH_UP_POLICY: ${{ github.event_name == 'schedule' && 'oldest-approved' || (inputs.catch_up && 'oldest-approved' || 'disabled') }}
+        run: |
+          result="$(node src/publish_scheduled.js)"
+          echo "$result"
+          echo "status=$(echo "$result" | jq -r .status)" >> "$GITHUB_OUTPUT"
+          echo "item_id=$(echo "$result" | jq -r '.itemId // empty')" >> "$GITHUB_OUTPUT"
+          echo "catch_up=$(echo "$result" | jq -r '.catchUp // false')" >> "$GITHUB_OUTPUT"
+          echo "remaining_overdue=$(echo "$result" | jq -r '.remainingOverdue // 0')" >> "$GITHUB_OUTPUT"
+        working-directory: bot
+      - name: Propagar recovery sem candidato em execução real
+        if: ${{ (github.event_name == 'schedule' || inputs.dry_run == false) && steps.recovery.outcome != 'skipped' && steps.candidate.outputs.item_id == '' }}
+        run: |
+          echo "::error::Recovery executado, mas nenhum candidato publicável foi produzido."
+          exit 1
       - name: Publicar somente o conteúdo aprovado para hoje
         id: publication
         env:
           AUTOMATION_DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run && 'true' || 'false' }}
+          AUTOMATION_CATCH_UP_POLICY: ${{ github.event_name == 'schedule' && 'oldest-approved' || (inputs.catch_up && 'oldest-approved' || 'disabled') }}
+          AUTOMATION_EXPECTED_ITEM_ID: ${{ steps.candidate.outputs.item_id }}
         run: |
           result="$(node src/publish_scheduled.js)"
           echo "$result"
           echo "status=$(echo "$result" | jq -r .status)" >> "$GITHUB_OUTPUT"
         working-directory: bot
-      - name: Validar conteúdo e calendário
+      - name: Validar integralmente o artefato publicado
+        id: publication_validation
+        if: ${{ steps.publication.outputs.status == 'published' }}
         run: npm run validate:artifacts
       - name: Registrar publicação
-        if: ${{ github.event_name == 'schedule' || !inputs.dry_run }}
+        id: persistence
+        if: ${{ steps.publication.outputs.status == 'published' && steps.publication_validation.outcome == 'success' && (github.event_name == 'schedule' || !inputs.dry_run) }}
         run: |
           git config user.name "thebiker-editorial-bot"
           git config user.email "thebiker-editorial-bot@users.noreply.github.com"
@@ -96,8 +146,18 @@ jobs:
             sleep $((attempt * 5))
           done
           exit 1
-      - name: Disparar deploy da publicação confirmada
-        if: ${{ steps.publication.outputs.status == 'published' }}
+      - name: Solicitar deploy do SHA publicado
+        if: ${{ steps.publication.outputs.status == 'published' && steps.publication_validation.outcome == 'success' && steps.persistence.outcome == 'success' && (github.event_name == 'schedule' || !inputs.dry_run) }}
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh workflow run deploy.yml --ref main
+        run: gh api --method POST "repos/${{ github.repository }}/dispatches" -f event_type=editorial-deploy
+      - name: Resumo da recuperação transacional
+        if: always()
+        run: |
+          echo "### Publicação transacional" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Probe inicial: ${{ steps.candidate_probe.outcome }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Recuperação: ${{ steps.recovery.outcome }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Candidato: ${{ steps.candidate.outputs.item_id }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Catch-up: ${{ steps.candidate.outputs.catch_up }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Overdues restantes: ${{ steps.candidate.outputs.remaining_overdue }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Publicação: ${{ steps.publication.outputs.status }}" >> "$GITHUB_STEP_SUMMARY"

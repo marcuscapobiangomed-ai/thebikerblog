@@ -17,6 +17,7 @@ permissions:
 
 concurrency:
   group: thebiker-editorial-write
+  queue: max
   cancel-in-progress: false
 
 jobs:
@@ -99,8 +100,8 @@ jobs:
           AUTOMATION_ENABLED: "true"
           AUTOMATION_DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run && 'true' || 'false' }}
           CAMPAIGN_CURATED_OFFLINE_FALLBACK: "true"
-          AI_DETERMINISTIC_CURATED_FALLBACK: "true"
-          AI_DETERMINISTIC_CACHE_FIRST: "true"
+          AI_DETERMINISTIC_CURATED_FALLBACK: "false"
+          AI_DETERMINISTIC_CACHE_FIRST: "false"
           AI_PIPELINE_MODE: three-provider
           AI_MONTHLY_BUDGET_USD: ${{ vars.AI_MONTHLY_BUDGET_USD || '5.00' }}
           DEEPSEEK_FLASH_MODEL: ${{ vars.DEEPSEEK_FLASH_MODEL || 'deepseek-v4-flash' }}
@@ -126,8 +127,8 @@ jobs:
           AUTOMATION_DRY_RUN: "false"
           CAMPAIGN_RESEARCH_MAX_ATTEMPTS: "2"
           CAMPAIGN_CURATED_OFFLINE_FALLBACK: "true"
-          AI_DETERMINISTIC_CURATED_FALLBACK: "true"
-          AI_DETERMINISTIC_CACHE_FIRST: "true"
+          AI_DETERMINISTIC_CURATED_FALLBACK: "false"
+          AI_DETERMINISTIC_CACHE_FIRST: "false"
           AI_PIPELINE_MODE: three-provider
           AI_MONTHLY_BUDGET_USD: ${{ vars.AI_MONTHLY_BUDGET_USD || '5.00' }}
           DEEPSEEK_FLASH_MODEL: ${{ vars.DEEPSEEK_FLASH_MODEL || 'deepseek-v4-flash' }}
@@ -160,8 +161,8 @@ jobs:
           CAMPAIGN_RESEARCH_MAX_ATTEMPTS: "2"
           CAMPAIGN_FINALIZATION_MAX_ATTEMPTS: "3"
           CAMPAIGN_CURATED_OFFLINE_FALLBACK: "true"
-          AI_DETERMINISTIC_CURATED_FALLBACK: "true"
-          AI_DETERMINISTIC_CACHE_FIRST: "true"
+          AI_DETERMINISTIC_CURATED_FALLBACK: "false"
+          AI_DETERMINISTIC_CACHE_FIRST: "false"
           AI_PIPELINE_MODE: three-provider
           AI_MONTHLY_BUDGET_USD: ${{ vars.AI_MONTHLY_BUDGET_USD || '5.00' }}
           DEEPSEEK_FLASH_MODEL: ${{ vars.DEEPSEEK_FLASH_MODEL || 'deepseek-v4-flash' }}
@@ -201,26 +202,13 @@ jobs:
             sleep $((attempt * 5))
           done
           exit 1
-      - name: Persistir candidato revisado para retomar finalização
-        if: always() && (steps.automation.outcome == 'success' || steps.automation_retry.outcome == 'success') && steps.finalization.outcome == 'failure' && steps.finalization_retry.outcome != 'success' && (github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.dry_run == false))
-        run: |
-          git config user.name "thebiker-editorial-bot"
-          git config user.email "thebiker-editorial-bot@users.noreply.github.com"
-          git add -- bot/editorial-campaign.json _data/editorial-calendar.json _posts/drafts content/product-discovery/thebiker-media-catalog.json content/research/campaign
-          git diff --cached --quiet || git commit -m "state: preservar candidato revisado para retomada"
-          for attempt in 1 2 3; do
-            git pull --rebase --autostash origin main && git push && exit 0
-            git rebase --abort 2>/dev/null || true
-            sleep $((attempt * 5))
-          done
-          exit 1
-      - name: Persistir somente estado seguro da falha
+      - name: Persistir somente diagnóstico seguro da falha
         if: always() && ((steps.automation.outcome == 'failure' && steps.automation_retry.outcome != 'success') || (steps.finalization.outcome == 'failure' && steps.finalization_retry.outcome != 'success')) && (github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.dry_run == false))
         run: |
           git config user.name "thebiker-editorial-bot"
           git config user.email "thebiker-editorial-bot@users.noreply.github.com"
-          git add -- bot/editorial-campaign.json _data/editorial-calendar.json content/product-discovery/thebiker-media-catalog.json bot/operational-state/editorial-exceptions.json
-          git diff --cached --quiet || git commit -m "state: registrar falha editorial tipada"
+          git add -- bot/operational-state/editorial-exceptions.json
+          git diff --cached --quiet || git commit -m "state: registrar diagnóstico editorial"
           for attempt in 1 2 3; do
             git pull --rebase --autostash origin main && git push && exit 0
             git rebase --abort 2>/dev/null || true
@@ -230,7 +218,7 @@ jobs:
       - name: Propagar falha da produção
         if: steps.automation.outcome == 'failure' && steps.automation_retry.outcome != 'success'
         env:
-          EDITORIAL_MIN_SAFE_BUFFER: ${{ vars.EDITORIAL_MIN_SAFE_BUFFER || '3' }}
+          EDITORIAL_MIN_SAFE_BUFFER: ${{ vars.EDITORIAL_MIN_SAFE_BUFFER || '1' }}
         run: |
           scheduled_count="$(node --input-type=module -e "import fs from 'node:fs'; const c=JSON.parse(fs.readFileSync('bot/editorial-campaign.json','utf8')); const today=new Intl.DateTimeFormat('en-CA',{timeZone:'America/Sao_Paulo',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date()); console.log(c.items.filter(i=>i.status==='scheduled'&&i.publishDate>=today).length)")"
           if [ "$scheduled_count" -ge "$EDITORIAL_MIN_SAFE_BUFFER" ]; then
@@ -242,7 +230,7 @@ jobs:
       - name: Propagar falha de finalização
         if: steps.finalization.outcome == 'failure' && steps.finalization_retry.outcome != 'success'
         env:
-          EDITORIAL_MIN_SAFE_BUFFER: ${{ vars.EDITORIAL_MIN_SAFE_BUFFER || '3' }}
+          EDITORIAL_MIN_SAFE_BUFFER: ${{ vars.EDITORIAL_MIN_SAFE_BUFFER || '1' }}
         run: |
           scheduled_count="$(node --input-type=module -e "import fs from 'node:fs'; const c=JSON.parse(fs.readFileSync('bot/editorial-campaign.json','utf8')); const today=new Intl.DateTimeFormat('en-CA',{timeZone:'America/Sao_Paulo',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date()); console.log(c.items.filter(i=>i.status==='scheduled'&&i.publishDate>=today).length)")"
           if [ "$scheduled_count" -ge "$EDITORIAL_MIN_SAFE_BUFFER" ]; then

@@ -28,8 +28,8 @@ price_currency: "BRL"
 price_checked_at: "2026-08-13"
 category: "comparativos"
 tags: ["scott", "carbono"]
-description: "Comparativo documental das Scott Spark RC Expert, Team e World Cup 2027, com quadro, suspensão, transmissão, freios e limites confirmados nas fontes."
-direct_answer: "Expert, Team e World Cup compartilham 120 mm de curso dianteiro e traseiro, mas apresentam quadros, suspensões, transmissões e freios distintos nas fichas consultadas."
+description: "Comparativo das Scott Spark RC Expert, Team e World Cup 2027, com diferenças de quadro, suspensão, transmissão e freios entre as três versões."
+direct_answer: "Expert, Team e World Cup têm 120 mm de curso dianteiro e traseiro. A Expert combina Fox Factory e Shimano XT Di2; Team e World Cup usam suspensões RockShox e transmissões SRAM distintas."
 image: "/assets/img/posts/spark-rc-team-expert-world-cup/hero-1600.webp"
 image_mobile: "/assets/img/posts/spark-rc-team-expert-world-cup/hero-800.webp"
 thumbnail: "/assets/img/posts/spark-rc-team-expert-world-cup/card-640.webp"
@@ -74,39 +74,33 @@ sources:
     url: "https://www.scott-sports.com/global/en/product/scott-spark-rc-world-cup-bike"
     accessed_at: "2026-08-04"
 ---
-> **Como este comparativo foi produzido:** análise documental das páginas da Scott e do catálogo TheBiker. As bicicletas não foram testadas presencialmente pela equipe do blog; campos ausentes nas fontes consultadas não foram estimados.
+As três Scott Spark RC deste comparativo pertencem à mesma família, mas adotam montagens distintas. A Expert reúne quadro Spark RC HMF Carbon Gen5, <a href="https://thebikershop.com.br/componentes/suspensao/" class="thebiker-product-link" target="_blank" rel="noopener">suspensão</a> Fox Factory e transmissão Shimano XT Di2. A Team combina quadro Spark RC Carbon HMF, conjunto RockShox e SRAM S1000 Eagle AXS Transmission. A World Cup traz quadro Spark RC Carbon HMX, suspensão RockShox e SRAM X01 Eagle AXS.
 
-As três Scott Spark RC deste comparativo pertencem à mesma família, mas as fichas recuperadas registram montagens distintas. A Expert reúne quadro Spark RC HMF Carbon Gen5, <a href="https://thebikershop.com.br/componentes/suspensao/" class="thebiker-product-link" target="_blank" rel="noopener">suspensão</a> Fox Factory e transmissão Shimano XT Di2. A Team aparece com quadro Spark RC Carbon HMF, conjunto RockShox e SRAM S1000 Eagle AXS Transmission. A World Cup traz quadro Spark RC Carbon HMX, suspensão RockShox e SRAM X01 Eagle AXS.
-
-O ponto comum mais claro está no curso: as três fichas registram **120 mm na dianteira e 120 mm na traseira**. A comparação, portanto, não se resume a uma mudança de curso entre versões. Ela passa pelos materiais declarados para o quadro e pelos componentes associados a cada montagem.
+O ponto comum está no curso: as três usam **120 mm na dianteira e 120 mm na traseira**. A escolha, portanto, passa pelo material do quadro, pelo conjunto de suspensão, pela transmissão e pelos freios de cada configuração.
 
 ## Spark RC Expert: HMF Carbon Gen5, Fox Factory e Shimano XT Di2
 
 A Scott Spark RC Expert 2027 é identificada no catálogo TheBiker e na página oficial correspondente. Para o quadro, a Scott registra **Spark RC HMF Carbon Gen5**. O curso declarado é de **120 mm dianteiros e 120 mm traseiros**.
 
-Na dianteira, a montagem confirmada usa **Fox 34SL Factory Grip SL, Kashima, 3P**. Na traseira, a ficha lista **Fox Float Factory Traction Control EVOL, Kashima**. Esses nomes diferenciam a Expert das outras duas versões deste recorte, que aparecem com componentes RockShox nas posições equivalentes.
+Na dianteira, a Expert usa **Fox 34SL Factory Grip SL, Kashima, 3P**. Na traseira, traz **Fox Float Factory Traction Control EVOL, Kashima**. O conjunto diferencia a Expert das outras duas versões, equipadas com componentes RockShox nas posições equivalentes.
 
-A transmissão documentada para a Expert inclui **Shimano XT Di2 RD-M8250**, acionamento eletrônico sem fio e **12 velocidades**. A mesma ficha registra <a href="https://thebikershop.com.br/componentes/pedivela/" class="thebiker-product-link" target="_blank" rel="noopener">pedivela</a> **Shimano XT FC-M8200 com 34T** e <a href="https://thebikershop.com.br/componentes/cassetes/" class="thebiker-product-link" target="_blank" rel="noopener">cassete</a> **Shimano Deore CS-M7200, 10-51T**. Nos freios, o componente confirmado é o **Shimano Deore BR-M6220 de quatro pistões**.
-
-O conjunto de dados da Expert é o mais detalhado entre as três versões nesta pesquisa para pedivela e cassete. Isso não autoriza preencher os mesmos campos nas demais bicicletas: quando a fonte recuperada não trouxe o valor, o comparativo mantém a lacuna.
+A transmissão da Expert inclui **Shimano XT Di2 RD-M8250**, acionamento eletrônico sem fio e **12 velocidades**. O <a href="https://thebikershop.com.br/componentes/pedivela/" class="thebiker-product-link" target="_blank" rel="noopener">pedivela</a> é o **Shimano XT FC-M8200 com 34T**, acompanhado do <a href="https://thebikershop.com.br/componentes/cassetes/" class="thebiker-product-link" target="_blank" rel="noopener">cassete</a> **Shimano Deore CS-M7200, 10-51T**. Nos freios, a montagem usa **Shimano Deore BR-M6220 de quatro pistões**.
 
 ## Spark RC Team: quadro HMF e conjunto eletrônico SRAM
 
-A Scott Spark RC Team 2027 aparece nas fontes com código de fabricante **425328**, cor declarada **carbon black** e tamanhos **S, M, L e XL**. O material registrado para o quadro é **Spark RC Carbon HMF**.
+A Scott Spark RC Team 2027 tem código de fabricante **425328**, cor **carbon black** e tamanhos **S, M, L e XL**. O quadro é o **Spark RC Carbon HMF**.
 
-Assim como na Expert, a Team tem **120 mm de curso dianteiro e 120 mm de curso traseiro** nas páginas recuperadas. O garfo identificado é o **RockShox SID 3P Air, Rush RL 3-Mode**. O amortecedor traseiro é o **RockShox NUDE 5 RL3 Trunnion**.
+Assim como na Expert, a Team tem **120 mm de curso dianteiro e 120 mm de curso traseiro**. O garfo é o **RockShox SID 3P Air, Rush RL 3-Mode**. O amortecedor traseiro é o **RockShox NUDE 5 RL3 Trunnion**.
 
-Na transmissão, a ficha oficial registra **SRAM S1000 Eagle AXS Transmission**, sistema eletrônico sem fio e **12 velocidades**. O conjunto de freios confirmado é o **SRAM DB6 de quatro pistões**. Esses campos colocam a Team em uma coluna própria no comparativo, sem misturar peças registradas para a Expert ou para a World Cup.
-
-Há um detalhe editorial na leitura das fontes: o endereço comercial recuperado para a Team contém “world-cup” no caminho, embora o nome do produto na página seja Spark RC Team 2027. Por isso, a identificação do modelo neste artigo segue o nome documentado do produto e a página oficial da Team, não apenas o texto do endereço.
+Na transmissão, a Team usa **SRAM S1000 Eagle AXS Transmission**, sistema eletrônico sem fio e **12 velocidades**. Os freios são **SRAM DB6 de quatro pistões**. A combinação separa claramente a Team da Expert com Shimano e da World Cup com SRAM X01 Eagle AXS.
 
 ## Spark RC World Cup: quadro HMX e SRAM X01 Eagle AXS
 
-A Scott Spark RC World Cup 2027 é registrada com código de fabricante **290103** e tamanhos **S, M, L e XL**. Para o quadro, a ficha consultada informa **Spark RC Carbon HMX**, enquanto Expert e Team aparecem com denominações HMF.
+A Scott Spark RC World Cup 2027 tem código de fabricante **290103**, tamanhos **S, M, L e XL** e quadro **Spark RC Carbon HMX**. Expert e Team usam denominações HMF em seus respectivos quadros.
 
-O curso continua em **120 mm na dianteira e 120 mm na traseira**. O garfo documentado é o **RockShox SID Select+ RL3 Air**; o amortecedor traseiro é o **RockShox NUDE 5 RL3 Trunnion**. O amortecedor tem a mesma denominação confirmada para a Team, enquanto os garfos têm nomes diferentes nas duas fichas.
+O curso continua em **120 mm na dianteira e 120 mm na traseira**. O garfo é o **RockShox SID Select+ RL3 Air**; o amortecedor traseiro é o **RockShox NUDE 5 RL3 Trunnion**. Team e World Cup compartilham o nome do amortecedor, mas usam garfos diferentes.
 
-A transmissão registrada usa **SRAM X01 Eagle AXS**, com acionamento eletrônico sem fio. Os freios aparecem como **SRAM Level TLM Disc**. A fonte comercial da Team registra **130 kg de peso máximo do sistema**. Esse limite pertence à Team no conjunto de evidências recuperado e não foi transferido para Expert ou World Cup.
+A transmissão usa **SRAM X01 Eagle AXS**, com acionamento eletrônico sem fio. Os freios são **SRAM Level TLM Disc**. Em relação à Team, a World Cup muda o nível da transmissão e o conjunto de freios, embora mantenha a arquitetura de suspensão com 120 mm nos dois eixos.
 
 ## Comparação direta das especificações confirmadas
 
@@ -120,24 +114,22 @@ A transmissão registrada usa **SRAM X01 Eagle AXS**, com acionamento eletrônic
 | <a href="https://thebikershop.com.br/componentes/cambio-traseiro/" class="thebiker-product-link" target="_blank" rel="noopener">Câmbio traseiro</a> | Shimano XT Di2 RD-M8250 | SRAM S1000 Eagle AXS Transmission | SRAM X01 Eagle AXS |
 | Acionamento | Eletrônico sem fio | Eletrônico sem fio | Eletrônico sem fio |
 | Freios | Shimano Deore BR-M6220, quatro pistões | SRAM DB6, quatro pistões | SRAM Level TLM Disc |
-| Tamanhos | Não registrados no recorte | S, M, L e XL | S, M, L e XL |
-| Peso máximo do sistema | Não registrado no recorte | 130 kg | Não registrado no recorte |
 
-A tabela mostra três montagens com a mesma medida de curso, mas com registros diferentes de quadro, garfo, amortecedor, transmissão e freios. Ela também separa “não registrado no recorte” de uma especificação negativa: ausência na pesquisa não quer dizer que o produto não possua o atributo.
+A tabela mostra três montagens com a mesma medida de curso, mas com diferenças de quadro, garfo, amortecedor, transmissão e freios. A Expert se destaca pelo conjunto Fox Factory e Shimano XT Di2; Team e World Cup seguem com RockShox e SRAM em níveis distintos.
 
 ## O que considerar antes de comparar as três versões
 
-Este artigo não atribui peso total às bicicletas, preço, rodas ou geometria porque esses campos não ficaram confirmados de forma uniforme no material recuperado. Sem uma base equivalente para os três modelos, usar esses itens como critério direto criaria uma comparação assimétrica.
+Para escolher entre as três, compare primeiro o conjunto completo, não apenas o nome Spark RC. A Expert combina HMF Carbon Gen5, Fox Factory, Shimano XT Di2 e freios Deore de quatro pistões. A Team usa quadro HMF, RockShox, SRAM S1000 Eagle AXS Transmission e freios DB6. A World Cup passa ao quadro HMX, mantém RockShox e adota SRAM X01 Eagle AXS com freios Level TLM Disc.
 
-Para uma leitura objetiva, comece pelos campos presentes nas três colunas: quadro, curso, garfo, amortecedor, câmbio traseiro, acionamento e freios. Depois, consulte a página atual de cada produto para tamanho, estoque e demais especificações. Catálogos podem receber atualizações, e o nome completo do componente é uma referência mais segura do que uma associação genérica entre linhas.
+O tamanho correto continua sendo decisivo porque as três compartilham a proposta de cross-country e 120 mm de curso, mas a posição precisa se ajustar ao ciclista. Antes da compra, confira a disponibilidade da medida adequada e a montagem efetivamente incluída na unidade anunciada.
 
-## Três montagens claramente separadas pelas fichas
+## Qual montagem combina com cada prioridade
 
-O comparativo documental identifica uma Expert com Fox Factory e Shimano XT Di2, uma Team com RockShox e SRAM S1000 Eagle AXS Transmission e uma World Cup com quadro HMX, RockShox e SRAM X01 Eagle AXS. As três registram **120 mm nos dois eixos de suspensão**.
+Quem prioriza Fox Factory e transmissão Shimano encontra essa combinação na Expert. A Team reúne RockShox e SRAM S1000 Eagle AXS Transmission, enquanto a World Cup acrescenta quadro HMX e SRAM X01 Eagle AXS. As três mantêm **120 mm nos dois eixos de suspensão**.
 
-A decisão entre elas deve começar pela confirmação da montagem efetivamente anunciada no momento da consulta. Este artigo organiza o que estava documentado nas fontes acessadas; ele não substitui a ficha comercial atual, a conferência do tamanho ou uma avaliação presencial da bicicleta.
+A decisão deve considerar a preferência de componentes, o tamanho disponível e o orçamento para a configuração completa. Compare os códigos exatos de garfo, amortecedor, transmissão e freios, porque é nesses itens que as três versões se separam com maior clareza.
 
-## Fontes consultadas
+## Fontes
 
 - **TheBiker — Bicicleta Scott Spark RC Expert 2027** — https://thebikershop.com.br/produtos/bicicleta-scott-spark-rc-expert-2027/
 - **Scott — Spark RC Expert** — https://www.scott-sports.com/global/en/product/scott-spark-rc-expert-bike

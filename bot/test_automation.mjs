@@ -4,13 +4,15 @@ import os from "node:os";
 import path from "node:path";
 import matter from "gray-matter";
 import { loadQueue, selectReadyItem } from "./src/automation/queue.js";
-import { CampaignSchema, selectProductionCandidate, selectPublicationCandidate, publicCampaignSummary } from "./src/automation/campaign.js";
+import { CampaignSchema, publicationResearchIsFresh, selectProductionCandidate, selectPublicationCandidate, publicCampaignSummary } from "./src/automation/campaign.js";
 import { GroundedResearcher } from "./src/automation/grounded-research.js";
 import { cleanupFailedFinalization, finalizeCampaignItem, normalizeCategoryExamplePromotion } from "./src/campaign_finalize.js";
 import { produceCampaignCover } from "./src/images/campaign-cover.js";
 import { classifyOfficialImageQuality } from "./src/images/official-campaign-image.js";
 import { selectKnowledgeEvidence } from "./src/campaign_producer.js";
-import { publishScheduled, selectScheduledPublication } from "./src/publish_scheduled.js";
+import { CatchUpPolicy, publishScheduled, selectScheduledPublication } from "./src/publish_scheduled.js";
+import { resolveLegacyTarget } from "./src/publish_post.js";
+import { GitHubPublisher, LEGACY_GITHUB_PUBLISHER_FLAG } from "./src/publisher.js";
 import { buildRepairPrompt } from "./src/editorial-prompt.js";
 import { produceCampaignVisual } from "./src/campaign_finalize.js";
 import { markdownPublicationErrors, neutralizeMarkdownPolicyPhrases } from "./src/validation/markdown-publication-gates.js";
@@ -19,11 +21,107 @@ import { assertScheduledReceipt, hashEditorialText } from "./src/validation/edit
 import { assertArticleResearchGrounding, articleResearchGroundingErrors } from "./src/validation/article-research-grounding.js";
 import { assertResearchEvidenceContract } from "./src/validation/research-grounding.js";
 import { classifyEditorialFailure } from "./src/validation/editorial-failures.js";
+import { researchForPublication } from "./src/validation/publication-research.js";
+import { assertReceiptAuditPolicy, auditEditorialReceipts } from "../scripts/backfill-editorial-receipts.mjs";
+
+const contaminatedEditorialMarkdown = `---
+content_type: "review"
+review_method: "desk-research"
+tested_by_thebikerblog: false
+direct_answer: "Use esta ficha como roteiro documental: confronte cada dado com a fonte oficial e registre lacunas antes de decidir."
+tags: ["ciclismo"]
+---
+## Identidade e escopo da ficha
+
+Este ficha editorial parte de um produto e o segundo modelo listado na pesquisa. Comece pela pagina oficial, confira titulo, preco e versao, e Abra o registro de identidade.
+`;
+const contaminatedErrors = markdownPublicationErrors(contaminatedEditorialMarkdown).join(" | ");
+assert.match(contaminatedErrors, /placeholder ou erro gramatical/);
+assert.match(contaminatedErrors, /português sem acentuação/);
+assert.match(contaminatedErrors, /instrução interna exposta/);
+assert.match(contaminatedErrors, /intertítulo de processo editorial/);
+assert.match(contaminatedErrors, /resposta direta descreve o processo editorial/);
+assert.match(markdownPublicationErrors(`---
+content_type: "guia-tecnico"
+review_method: "desk-research"
+tested_by_thebikerblog: false
+direct_answer: "A sequência organiza a manutenção preventiva com critérios técnicos claros para inspeção, limpeza e encaminhamento à oficina."
+tags: ["manutencao"]
+---
+## Bastidores
+
+Como este artigo foi produzido: conteúdo elaborado com auxílio de IA. O produto não foi testado presencialmente pela equipe.
+`).join(" | "), /disclosure de bastidor editorial exposto/);
+assert.deepEqual(markdownPublicationErrors(`---
+content_type: "review"
+review_method: "desk-research"
+tested_by_thebikerblog: false
+brand: "Scott"
+product_name: "Addict RC Pro"
+model_year: 2026
+direct_answer: "A Scott Addict RC Pro reúne quadro HMX, transmissão Shimano Dura-Ace Di2 e rodas Syncros, conforme a ficha oficial consultada."
+tags: ["ciclismo"]
+sources:
+  - name: "Scott"
+    type: "manufacturer"
+    url: "https://www.scott-sports.com/"
+---
+## Quadro HMX e montagem Dura-Ace Di2
+
+A ficha oficial identifica o quadro Addict RC HMX Carbon e o grupo Shimano Dura-Ace Di2.
+`), []);
+assert.match(markdownPublicationErrors(`---
+content_type: "review"
+review_method: "desk-research"
+tested_by_thebikerblog: false
+direct_answer: "O modelo usa quadro HMX, transmissão eletrônica e rodas de carbono segundo a especificação técnica do fabricante."
+tags: ["ciclismo"]
+---
+## Peso máximo do sistema
+
+Há uma divergência entre as fontes: a loja apresenta um valor, mas o fabricante informa outro.
+`).join(" | "), /conflito entre fontes exposto/);
+
+const publicationResearch = researchForPublication({
+  title: "Scott Addict RC Pro: preço e divergências entre fontes",
+  notes: "Não deve chegar ao redator público.",
+  sources: [
+    { id: "manufacturer", type: "manufacturer" },
+    { id: "store", type: "store" },
+  ],
+  confirmed_facts: [
+    { fact: "weight.maxSystem: 120 kg", source_ids: ["manufacturer"] },
+    { fact: "weight.maxSystem: 128 kg", source_ids: ["store"] },
+    { fact: "commercial.price: R$ 94.990,00", source_ids: ["store"] },
+    { fact: "sourceConflict.weight: 120 kg vs 128 kg", source_ids: ["manufacturer", "store"] },
+  ],
+  limitations: ["Divergência entre fontes registrada internamente.", "Preço deve ser reconfirmado."],
+  grounding: {},
+});
+assert.deepEqual(publicationResearch.confirmed_facts.map((fact) => fact.fact), [
+  "weight.maxSystem: 120 kg",
+  "commercial.price: R$ 94.990,00",
+]);
+assert.deepEqual(publicationResearch.limitations, ["Preço deve ser reconfirmado."]);
+assert.equal(publicationResearch.grounding.publicationPolicy, "manufacturer-precedence-v1");
+assert.equal(publicationResearch.title, "Scott Addict RC Pro: preço");
+assert.equal("notes" in publicationResearch, false);
 
 const minimalResearch = {
   confirmed_facts: [{ fact: "frame.material: Spark RC Carbon HMX" }, { fact: "suspension.frontTravel: 120 mm" }],
   sources: [],
 };
+assert.equal(publicationResearchIsFresh(
+  { freshness: "revalidate-24h" },
+  { grounding: { verifiedAt: "2026-08-20T10:00:00.000Z" } },
+  new Date("2026-08-21T09:59:00.000Z"),
+), true);
+assert.equal(publicationResearchIsFresh(
+  { freshness: "revalidate-24h" },
+  { grounding: { verifiedAt: "2026-08-19T10:00:00.000Z" } },
+  new Date("2026-08-21T10:00:00.000Z"),
+), false);
+assert.equal(publicationResearchIsFresh({ freshness: "evergreen" }, {}, new Date()), true);
 const cacheResearcher = new GroundedResearcher({
   RESEARCH_PROVIDER: "groq",
   CAMPAIGN_CURATED_OFFLINE_FALLBACK: "true",
@@ -169,25 +267,56 @@ conceptualComparison.items[0] = {
   ...conceptualComparison.items[0],
   category: 'comparativo',
   status: 'validation',
+  postPath: '_posts/drafts/fixture-comparativo.md',
   productIds: [],
   heroImage: { mode: 'conceptual' },
   aiReview: { ...conceptualComparison.items[0].aiReview, contentHash: `sha256:${'a'.repeat(64)}` },
 };
 assert.doesNotThrow(() => CampaignSchema.parse(conceptualComparison));
 const reviewWithoutProduct = structuredClone(campaign);
-reviewWithoutProduct.items[0] = { ...reviewWithoutProduct.items[0], category: 'review', status: 'validation', productIds: [] };
+reviewWithoutProduct.items[0] = { ...reviewWithoutProduct.items[0], category: 'review', status: 'validation', postPath: '_posts/drafts/fixture-review.md', productIds: [] };
 assert.throws(() => CampaignSchema.parse(reviewWithoutProduct), /review validado exige ao menos um produto rastreável/);
 const scheduledWithoutReceipt = structuredClone(campaign);
-const scheduledFixture = scheduledWithoutReceipt.items.find((item) => item.status === "published");
-scheduledFixture.status = "scheduled";
+const scheduledFixture = scheduledWithoutReceipt.items[0];
+Object.assign(scheduledFixture, {
+  category: "engenharia",
+  status: "scheduled",
+  productIds: [],
+  heroImage: { mode: "conceptual" },
+  postPath: "_posts/drafts/fixture-recibo.md",
+  imageManifestPath: "assets/img/posts/fixture-recibo/image-manifest.json",
+  imageStatus: "approved",
+  imageAssetIds: ["fixture-image"],
+  aiReview: {
+    score: 95,
+    finalScore: 95,
+    finalBlockers: 0,
+    premiumEditUsed: false,
+    providers: { fixture: "fixture" },
+    generatedAt: "2026-08-20T12:00:00.000Z",
+    contentHash: `sha256:${"a".repeat(64)}`,
+  },
+  visualDecision: {
+    schemaVersion: 1,
+    policyVersion: "thebiker-visual-autonomy-v1",
+    inputHash: `sha256:${"b".repeat(64)}`,
+    mode: "real-context",
+    productId: null,
+    score: 100,
+    hardGates: { fixture: true },
+    blockers: [],
+    issuedAt: "2026-08-20T12:00:00.000Z",
+  },
+});
 delete scheduledFixture.publishedAt;
 delete scheduledFixture.editorialReceipt;
 assert.throws(() => CampaignSchema.parse(scheduledWithoutReceipt), /scheduled exige recibo editorial/);
 const blockedWithoutReason = structuredClone(campaign);
-const plannedWithoutReason = blockedWithoutReason.items.find((item) => item.status === "planned");
-plannedWithoutReason.status = "blocked";
-delete plannedWithoutReason.blockReason;
-delete plannedWithoutReason.failure;
+const candidateWithoutReason = blockedWithoutReason.items.find((item) => item.status !== "blocked");
+assert.ok(candidateWithoutReason, "fixture precisa conter ao menos uma pauta não bloqueada");
+candidateWithoutReason.status = "blocked";
+delete candidateWithoutReason.blockReason;
+delete candidateWithoutReason.failure;
 assert.throws(() => CampaignSchema.parse(blockedWithoutReason), /blocked exige motivo ou falha tipada/);
 const inferred = selectKnowledgeEvidence([
   { id: 'addict-rc-20', model: 'Addict RC 20' },
@@ -214,7 +343,7 @@ assert.match(buildRepairPrompt({
   contentType: 'guia-tecnico',
   template: { label: 'Guia técnico' },
   today: '2026-08-08',
-}), /ao menos 1840 palavras reais/);
+}), /entre 900 e 1700 palavras úteis/);
 await assert.rejects(() => produceCampaignVisual({
   root: path.join(root, "conceptual-visual"),
   item: {
@@ -256,19 +385,76 @@ assert.throws(
 const catchUpCampaign = structuredClone(campaign);
 for (const item of catchUpCampaign.items) item.status = 'planned';
 catchUpCampaign.items[0].status = 'scheduled';
+catchUpCampaign.items[0].postPath = `_posts/drafts/${catchUpCampaign.items[0].publishDate}-catch-up.md`;
 catchUpCampaign.items[1].status = 'published';
 catchUpCampaign.items[1].publishedAt = '2026-08-05T15:00:00.000Z';
-assert.deepEqual(selectScheduledPublication(catchUpCampaign, catchUpCampaign.items[1].publishDate), {
+assert.deepEqual(selectScheduledPublication(catchUpCampaign, catchUpCampaign.items[1].publishDate, {
+  catchUpPolicy: CatchUpPolicy.OLDEST_APPROVED,
+}), {
   item: catchUpCampaign.items[0],
   catchUp: true,
+  catchUpPolicy: CatchUpPolicy.OLDEST_APPROVED,
+  overdueCount: 1,
+  dueStatus: 'published',
 });
 const backlogWithToday = structuredClone(catchUpCampaign);
 backlogWithToday.items[1].status = 'scheduled';
 delete backlogWithToday.items[1].publishedAt;
-assert.deepEqual(selectScheduledPublication(backlogWithToday, backlogWithToday.items[1].publishDate), {
+assert.deepEqual(selectScheduledPublication(backlogWithToday, backlogWithToday.items[1].publishDate, {
+  catchUpPolicy: CatchUpPolicy.OLDEST_APPROVED,
+}), {
   item: backlogWithToday.items[0],
   catchUp: true,
+  catchUpPolicy: CatchUpPolicy.OLDEST_APPROVED,
+  overdueCount: 1,
+  dueStatus: 'scheduled',
 }, 'o atraso mais antigo deve ser publicado antes da pauta do dia');
+const blockedTodayWithBacklog = structuredClone(backlogWithToday);
+blockedTodayWithBacklog.items[1].status = 'blocked';
+blockedTodayWithBacklog.items[1].blockReason = 'Falha induzida na pauta do dia';
+assert.deepEqual(selectScheduledPublication(blockedTodayWithBacklog, blockedTodayWithBacklog.items[1].publishDate, {
+  catchUpPolicy: CatchUpPolicy.OLDEST_APPROVED,
+}), {
+  item: blockedTodayWithBacklog.items[0],
+  catchUp: true,
+  catchUpPolicy: CatchUpPolicy.OLDEST_APPROVED,
+  overdueCount: 1,
+  dueStatus: 'blocked',
+}, 'pauta bloqueada hoje não deve impedir overdue scheduled quando catch-up seguro está explícito');
+assert.throws(
+  () => selectScheduledPublication(blockedTodayWithBacklog, blockedTodayWithBacklog.items[1].publishDate),
+  /pauta .* de hoje esta em blocked/,
+  'sem política explícita, o publicador deve permanecer fail-closed',
+);
+assert.throws(
+  () => selectScheduledPublication(backlogWithToday, backlogWithToday.items[1].publishDate, { catchUpPolicy: 'all' }),
+  /Politica de catch-up invalida/,
+);
+assert.deepEqual(selectScheduledPublication(campaign, '2026-01-01'), {
+  item: null,
+  catchUp: false,
+  cycleComplete: true,
+}, 'data anterior à próxima janela deve ser no-op idempotente');
+assert.equal(resolveLegacyTarget(backlogWithToday, backlogWithToday.items[0].id).id, backlogWithToday.items[0].id);
+assert.equal(resolveLegacyTarget(backlogWithToday, backlogWithToday.items[0].postPath).id, backlogWithToday.items[0].id);
+assert.throws(() => resolveLegacyTarget(backlogWithToday, "arquivo-fora-do-ledger.md"), /nao esta no ledger/);
+const legacyPublisherEnv = { GITHUB_TOKEN: "test", GITHUB_USER: "test", GITHUB_REPO: "test" };
+const disabledLegacyPublisher = new GitHubPublisher({ env: legacyPublisherEnv, warn: () => {} });
+await assert.rejects(
+  disabledLegacyPublisher.publishPost({ postContent: "---\n---", slug: "teste" }),
+  new RegExp(LEGACY_GITHUB_PUBLISHER_FLAG),
+);
+const legacyWarnings = [];
+const enabledLegacyPublisher = new GitHubPublisher({
+  env: { ...legacyPublisherEnv, [LEGACY_GITHUB_PUBLISHER_FLAG]: "true" },
+  warn: (message) => legacyWarnings.push(message),
+});
+enabledLegacyPublisher.findOpenPullRequest = async () => ({ html_url: "https://example.invalid/pr/1" });
+assert.equal(
+  await enabledLegacyPublisher.publishPost({ postContent: "---\n---", slug: "teste" }),
+  "https://example.invalid/pr/1",
+);
+assert.equal(legacyWarnings.length, 1, "uso legado explícito deve deixar aviso auditável");
 const groundedPayload = {
   candidates: [{ content: { parts: [{ text: JSON.stringify({ confirmed_facts: [{ fact: 'Carbono HMF', evidence_quote: 'Quadro construído integralmente em carbono HMF para competição', source_ids: ['src-scott'] }], limitations: [], sources: [{ id: 'src-scott', name: 'Scott', type: 'manufacturer', url: 'https://www.scott-sports.com/global/en/product/test', accessed: '2026-08-04' }] }) }] }, groundingMetadata: { webSearchQueries: ['site:scott-sports.com teste'] } }]
 };
@@ -285,7 +471,7 @@ const researcher = new GroundedResearcher({ GROQ_API_KEY: 'test' }, async (_url,
   groundedRequest = JSON.parse(init.body);
   return { ok: true, json: async () => groqPayload };
 }, verifiedSourceResponse);
-const grounded = await researcher.research({ item: { ...campaign.items[0], freshness: 'revalidate-24h' }, internalEvidence: [], today: '2026-08-04' });
+const grounded = await researcher.research({ item: { ...campaign.items[0], category: 'componentes', productIds: [], heroImage: { mode: 'conceptual' }, freshness: 'revalidate-24h' }, internalEvidence: [], today: '2026-08-04' });
 assert.equal(grounded.status, 'pesquisa_concluida');
 assert.equal(grounded.sources.length, 1);
 assert.equal(grounded.portfolio_evidence_url, 'https://thebikershop.com.br/componentes/');
@@ -586,6 +772,8 @@ finalizeCampaign.items[0].productIds = [testProduct.id];
 finalizeCampaign.items[0].heroImage = { mode: "real-context", productId: testProduct.id, relationship: "platform-example", rationale: "Produto real usado como plataforma visual do teste deterministico de finalizacao." };
 finalizeCampaign.items[0].aiReview.finalScore = 95;
 finalizeCampaign.items[0].aiReview.finalBlockers = 0;
+delete finalizeCampaign.items[0].aiReview.deterministicFullArticleFallbackUsed;
+delete finalizeCampaign.items[0].aiReview.deterministicFullArticleFallbackTrigger;
 finalizeCampaign.items[0].postPath = `_posts/drafts/${finalizeCampaign.items[0].publishDate}-${finalizeCampaign.items[0].id}.md`;
 await fs.writeFile(path.join(finalizeRoot, "bot/editorial-campaign.json"), JSON.stringify(finalizeCampaign));
 await fs.writeFile(path.join(finalizeRoot, "content/research/campaign", `${finalizeCampaign.items[0].id}.json`), JSON.stringify({
@@ -600,7 +788,7 @@ await fs.writeFile(path.join(finalizeRoot, "content/research/campaign", `${final
   confirmed_facts: [{ fact: "Conteúdo técnico sustentado por fonte oficial.", evidence_quote: "Conteúdo técnico sustentado por fonte oficial", source_ids: ["src-scott"] }],
   limitations: [],
   sources: [{ id: "src-scott", name: "Scott", type: "manufacturer", url: "https://www.scott-sports.com/", accessed: "2026-08-05" }],
-  grounding: { sourceCount: 1, claimContract: "explicit-units-v1", evidenceContract: "retrieved-excerpt-v1", verifiedAt: "2026-08-05T08:00:00.000Z" },
+  grounding: { sourceCount: 1, claimContract: "explicit-units-v1", evidenceContract: "retrieved-excerpt-v1", verifiedAt: `${finalizeCampaign.items[0].publishDate}T08:00:00.000Z` },
 }));
 const sections = Array.from({ length: 5 }, (_, index) => `## Seção técnica ${index + 1}\n\nConteúdo técnico sustentado pelas fontes editoriais.`).join("\n\n");
 await fs.writeFile(path.join(finalizeRoot, finalizeCampaign.items[0].postPath), `---\nlayout: post\npublished: false\ndate: 2026-08-04\nlast_modified_at: 2026-08-04\ndirect_answer: "Este guia apresenta um diagnóstico técnico verificável, baseado nas fontes declaradas, para orientar ajustes sem transformar hipótese em constatação."\nimage: "/assets/img/system/covers/guia-tecnico-v2/hero-1600.webp"\nimage_mobile: "/assets/img/system/covers/guia-tecnico-v2/hero-800.webp"\nthumbnail: "/assets/img/system/covers/guia-tecnico-v2/card-640.webp"\nimage_asset_type: "system-fallback"\nimage_status: "draft"\nimage_alt: "Capa"\nimage_caption: "Capa"\nimage_credit: "TheBiker"\nimage_license: "Interno"\nreviewed_by: ""\neditorial_status: "draft"\nstatus: "draft"\nsources:\n  - name: "Scott"\n    url: "https://www.scott-sports.com/"\n---\n\n${sections}\n`);
@@ -661,6 +849,11 @@ const publishedTarget = path.join(finalizeRoot, "_posts", `${finalizedCampaign.i
 await assert.rejects(publishScheduled({
   root: finalizeRoot,
   now: publicationNow,
+  expectedItemId: "outro-candidato",
+}), /alvo esperado outro-candidato/);
+await assert.rejects(publishScheduled({
+  root: finalizeRoot,
+  now: publicationNow,
   beforePromote: ({ index }) => { if (index === 1) throw new Error("falha induzida na promoção da publicação"); },
 }), /falha induzida/);
 assert.equal(await fs.readFile(path.join(finalizeRoot, finalizedCampaign.items[0].postPath), "utf8"), finalizedContent,
@@ -678,6 +871,44 @@ assert.match(publishedContent, /^promoted_brands: \["Scott"\]$/m,
 await assert.rejects(fs.stat(path.join(finalizeRoot, finalizedCampaign.items[0].postPath)), /ENOENT/);
 assert.equal((await publishScheduled({ root: finalizeRoot, now: publicationNow })).status, "already-published",
   "repetir a mesma publicação deve ser idempotente");
+const legacyReceiptCampaignPath = path.join(finalizeRoot, "bot/editorial-campaign.json");
+const legacyReceiptCampaign = JSON.parse(await fs.readFile(legacyReceiptCampaignPath, "utf8"));
+delete legacyReceiptCampaign.items[0].editorialReceipt;
+await fs.writeFile(legacyReceiptCampaignPath, `${JSON.stringify(legacyReceiptCampaign, null, 2)}\n`);
+const legacyReceiptAudit = await auditEditorialReceipts({
+  root: finalizeRoot,
+  itemIds: [legacyReceiptCampaign.items[0].id],
+});
+assert.deepEqual(legacyReceiptAudit.publishedMissing.map((entry) => entry.id), [legacyReceiptCampaign.items[0].id]);
+assert.equal(legacyReceiptAudit.changed, 0, "auditoria não deve fabricar recibo histórico sem reconhecimento explícito");
+assert.doesNotThrow(
+  () => assertReceiptAuditPolicy(legacyReceiptAudit),
+  "published sem baseline permanece uma migração explícita no check padrão",
+);
+assert.throws(
+  () => assertReceiptAuditPolicy(legacyReceiptAudit, { strictPublished: true }),
+  /published sem recibo auditável/,
+);
+const legacyReceiptBackfill = await auditEditorialReceipts({
+  root: finalizeRoot,
+  acknowledgePublishedBaseline: true,
+  itemIds: [legacyReceiptCampaign.items[0].id],
+});
+assert.equal(legacyReceiptBackfill.changed, 1);
+const backfilledCampaign = JSON.parse(await fs.readFile(legacyReceiptCampaignPath, "utf8"));
+assert.equal(backfilledCampaign.items[0].editorialReceipt.origin, "legacy-backfill");
+assert.equal(backfilledCampaign.items[0].editorialReceipt.publishedContentHash, hashEditorialText(publishedContent));
+await fs.appendFile(publishedTarget, "\nmutação posterior ao recibo\n");
+const divergentReceiptAudit = await auditEditorialReceipts({
+  root: finalizeRoot,
+  itemIds: [legacyReceiptCampaign.items[0].id],
+});
+assert.deepEqual(divergentReceiptAudit.publishedDivergent.map((entry) => entry.id), [legacyReceiptCampaign.items[0].id]);
+assert.throws(
+  () => assertReceiptAuditPolicy(divergentReceiptAudit),
+  /published com recibo divergente/,
+  "divergência publicada deve falhar inclusive no check padrão",
+);
 
 const cleanupRoot = path.join(root, "cleanup-finalization");
 const cleanupItem = {

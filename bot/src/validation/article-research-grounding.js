@@ -25,7 +25,8 @@ function signatures(value) {
     .replace(/%[0-9a-f]{2}/giu, " ");
   return [...new Set((normalize(prose).match(NUMERIC_CLAIM) || []).map((claim) => claim
     .replace(/\s+/g, "")
-    .replace(/^(\d+)[.,](\d{3})(?=[a-z%/])/, "$1$2")))];
+    .replace(/^(\d+)[.,](\d{3})(?=[a-z%/])/, "$1$2")
+    .replace(/(\d),(\d)/g, "$1.$2")))];
 }
 
 function governmentSource(source) {
@@ -127,15 +128,10 @@ export function assertArticleResearchGrounding(options) {
 function removeUnsupportedSentences(value, research) {
   const text = String(value || "");
   const parts = text.match(/[^.!?\n]+[.!?]?|\n+/gu) || [];
-  const neutral = [
-    "Esse ponto não é quantificado porque as fontes confirmadas não oferecem base suficiente; a decisão deve seguir a documentação específica e as regras aplicáveis.",
-    "A evidência disponível não permite fixar esse valor com segurança; confirme a documentação correspondente antes de transformar o critério em decisão prática.",
-    "Sem confirmação explícita nas fontes aceitas, o artigo não atribui medida a esse aspecto e mantém a análise limitada aos dados rastreáveis.",
-  ];
   return parts
-    .map((part, index) => /^\s*\n+\s*$/u.test(part) || articleResearchGroundingErrors({ content: part, research }).length === 0
+    .map((part) => /^\s*\n+\s*$/u.test(part) || articleResearchGroundingErrors({ content: part, research }).length === 0
       ? part
-      : ` ${neutral[index % neutral.length]}`)
+      : "")
     .join("")
     .replace(/\n{3,}/g, "\n\n")
     .trim();
@@ -152,18 +148,12 @@ export function sanitizeStructuredArticleClaims(articleInput, research) {
   if (Array.isArray(article.sections)) {
     article.sections = article.sections.map((section) => ({ ...section, content: removeUnsupportedSentences(section.content, research) }));
   }
-  if (String(article.description || "").length < 140) {
-    article.description = "Análise documental dos critérios técnicos, limitações e decisões de uso, baseada apenas nas fontes confirmadas e nas evidências disponíveis.";
-  }
-  if (String(article.direct_answer || "").length < 80) {
-    article.direct_answer = "A decisão técnica deve considerar o uso previsto, as limitações documentadas e as especificações efetivamente confirmadas nas fontes do artigo.";
-  }
+  // Never replace rejected claims with generic editorial boilerplate. If a
+  // required field becomes too short, schema validation fails closed and the
+  // draft must be rewritten from evidence.
   if (Array.isArray(article.faq)) article.faq = article.faq.filter((item) => String(item.answer || "").trim().length > 0);
   if (Array.isArray(article.sections)) {
-    article.sections = article.sections.map((section) => ({
-      ...section,
-      content: section.content || "Esta seção permanece limitada às evidências documentadas; confirme as especificações aplicáveis antes de decidir.",
-    }));
+    article.sections = article.sections.filter((section) => String(section.content || "").trim().length > 0);
   }
   return article;
 }

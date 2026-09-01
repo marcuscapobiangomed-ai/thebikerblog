@@ -1,7 +1,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { CampaignSchema, publicCampaignSummary, racePublicationSourceIsFresh } from "./automation/campaign.js";
+import { CampaignSchema, publicCampaignSummary, publicationResearchIsFresh } from "./automation/campaign.js";
 import { validateImageManifestV2 } from "./validation/image-manifest-v2.js";
 import { assertMarkdownPublicationGates } from "./validation/markdown-publication-gates.js";
 import matter from "gray-matter";
@@ -11,8 +11,14 @@ import { createStagedWorkspace, discardStagedWorkspace, promoteStagedPaths } fro
 import { assertResearchEvidenceContract, assertResearchGrounding } from "./validation/research-grounding.js";
 import { assertArticleResearchGrounding } from "./validation/article-research-grounding.js";
 import { canonicalPortfolioBrand } from "./portfolio-policy.js";
+import { researchForPublication } from "./validation/publication-research.js";
 
 const defaultRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
+
+export const CatchUpPolicy = Object.freeze({
+  DISABLED: "disabled",
+  OLDEST_APPROVED: "oldest-approved",
+});
 
 function localDate(now = new Date()) {
   return new Intl.DateTimeFormat("en-CA", {
@@ -23,19 +29,36 @@ function localDate(now = new Date()) {
   }).format(now);
 }
 
-export function selectScheduledPublication(campaign, date) {
+function assertCatchUpPolicy(policy) {
+  if (!Object.values(CatchUpPolicy).includes(policy)) {
+    throw new Error(`Politica de catch-up invalida: ${policy}`);
+  }
+  return policy;
+}
+
+export function selectScheduledPublication(campaign, date, { catchUpPolicy = CatchUpPolicy.DISABLED } = {}) {
+  assertCatchUpPolicy(catchUpPolicy);
   const due = campaign.items.find((candidate) => candidate.publishDate === date) || null;
+  const overdueItems = campaign.items
+    .filter((candidate) => candidate.status === "scheduled" && candidate.publishDate < date)
+    .sort((left, right) => left.publishDate.localeCompare(right.publishDate));
+
+  // Catch-up precisa ser habilitado explicitamente. Quando habilitado, quitar
+  // o scheduled mais antigo é seguro mesmo que a pauta de hoje esteja blocked:
+  // o candidato vencido ainda atravessa todos os gates e uma única transação.
+  if (catchUpPolicy === CatchUpPolicy.OLDEST_APPROVED && overdueItems.length > 0) {
+    return {
+      item: overdueItems[0],
+      catchUp: true,
+      catchUpPolicy,
+      overdueCount: overdueItems.length,
+      dueStatus: due?.status || null,
+    };
+  }
+
   if (due && !["scheduled", "published"].includes(due.status)) {
     throw new Error(`Publicacao bloqueada: pauta ${due.id} de hoje esta em ${due.status}, nao scheduled`);
   }
-
-  // Quite primeiro o atraso mais antigo. As três execuções idempotentes do
-  // workflow podem então recuperar o backlog e ainda publicar a pauta de hoje,
-  // sem deixar uma lacuna antiga presa indefinidamente.
-  const overdue = campaign.items
-    .filter((candidate) => candidate.status === "scheduled" && candidate.publishDate < date)
-    .sort((left, right) => left.publishDate.localeCompare(right.publishDate))[0] || null;
-  if (overdue) return { item: overdue, catchUp: true };
   if (due?.status === "scheduled") return { item: due, catchUp: false };
 
   const catchUpAlreadyPublished = campaign.items.some((candidate) => {
@@ -43,6 +66,7 @@ export function selectScheduledPublication(campaign, date) {
     return localDate(new Date(candidate.publishedAt)) === date;
   });
   if (catchUpAlreadyPublished) return { item: null, catchUp: false, alreadyPublished: true };
+  if (date < campaign.startsOn) return { item: null, catchUp: false, cycleComplete: true };
 
   return { item: null, catchUp: false, alreadyPublished: due?.status === "published" };
 }
@@ -58,28 +82,33 @@ function ensurePortfolioPromotion(content, manifest) {
   return content.replace(/^---\s*\r?\n/, (opening) => `${opening}promoted_brands: ${value}\n`);
 }
 
-async function publishInWorkspace({ now, dryRun, root }) {
+async function publishInWorkspace({ now, dryRun, root, catchUpPolicy, expectedItemId }) {
   const campaignPath = path.join(root, "bot/editorial-campaign.json");
   const calendarPath = path.join(root, "_data/editorial-calendar.json");
   const campaign = CampaignSchema.parse(JSON.parse(await fs.readFile(campaignPath, "utf8")));
   const date = localDate(now);
-  const selected = selectScheduledPublication(campaign, date);
+  const selected = selectScheduledPublication(campaign, date, { catchUpPolicy });
   const item = selected.item;
+
+  if (expectedItemId && item?.id !== expectedItemId) {
+    throw new Error(`Publicacao bloqueada: alvo esperado ${expectedItemId}, candidato seguro ${item?.id || "nenhum"}`);
+  }
 
   if (!item) {
     if (selected.alreadyPublished) return { status: "already-published", date };
+    if (selected.cycleComplete) return { status: "cycle-complete", date, message: "Dia já encerrado antes do início da próxima janela" };
     const endDate = campaign.items.at(-1)?.publishDate;
     if (date >= campaign.startsOn && date <= endDate) {
       throw new Error(`Publicacao bloqueada: campanha possui lacuna em ${date}`);
     }
     return { status: "idle", date, message: "Data fora da campanha ativa" };
   }
-  if (!racePublicationSourceIsFresh(item, now)) {
-    throw new Error(`Publicacao bloqueada: pauta de corrida ${item.id} sem fonte oficial verificada nas ultimas 24 horas`);
-  }
   if (!item.postPath) throw new Error(`Pauta ${item.id} esta agendada sem postPath`);
   if (item.imageStatus !== "approved" || !item.imageManifestPath) {
     throw new Error(`Pauta ${item.id} sem imagem oficial aprovada`);
+  }
+  if (item.aiReview?.deterministicFullArticleFallbackUsed) {
+    throw new Error(`Publicacao bloqueada: pauta ${item.id} usa fallback deterministico sem revisao independente`);
   }
   if ((item.aiReview?.finalScore ?? 0) < 90 || (item.aiReview?.finalBlockers ?? 0) > 0) {
     throw new Error(`Pauta ${item.id} sem aprovacao editorial final >= 90 e zero bloqueadores`);
@@ -96,9 +125,12 @@ async function publishInWorkspace({ now, dryRun, root }) {
   if (!sourcePath.startsWith(draftsRoot)) throw new Error(`postPath inseguro: ${item.postPath}`);
   let content = await fs.readFile(sourcePath, "utf8");
   const research = JSON.parse(await fs.readFile(path.join(root, "content/research/campaign", `${item.id}.json`), "utf8"));
+  if (!publicationResearchIsFresh(item, research, now)) {
+    throw new Error(`Publicacao bloqueada: pauta ${item.id} exige pesquisa revalidada nas ultimas 24 horas`);
+  }
   assertResearchGrounding(research, { requireFactReferences: true });
   assertResearchEvidenceContract(research);
-  assertArticleResearchGrounding({ content, research });
+  assertArticleResearchGrounding({ content, research: researchForPublication(research) });
   const catalog = JSON.parse(await fs.readFile(path.join(root, "content/product-discovery/thebiker-media-catalog.json"), "utf8"));
   assertImageArticleConsistency({ article: matter(content).data, manifest: validatedManifest, campaignItem: item, catalog });
   assertScheduledReceipt(content, item);
@@ -118,12 +150,17 @@ async function publishInWorkspace({ now, dryRun, root }) {
   item.editorialReceipt.publishedContentHash = hashEditorialText(content);
   const targetName = `${selected.catchUp ? date : item.publishDate}-${item.id}.md`;
   const targetPath = path.join(root, "_posts", targetName);
+  const targetExists = await fs.access(targetPath).then(() => true).catch((error) => error?.code === "ENOENT" ? false : Promise.reject(error));
+  if (targetExists) throw new Error(`Publicacao bloqueada: destino ja existe ${targetName}`);
   if (dryRun) return {
     status: "ready",
     date,
     itemId: item.id,
     scheduledDate: item.publishDate,
     catchUp: selected.catchUp,
+    catchUpPolicy: selected.catchUp ? selected.catchUpPolicy : CatchUpPolicy.DISABLED,
+    remainingOverdue: selected.catchUp ? Math.max(0, selected.overdueCount - 1) : 0,
+    dueStatus: selected.dueStatus || null,
     targetPath,
   };
 
@@ -140,17 +177,31 @@ async function publishInWorkspace({ now, dryRun, root }) {
     itemId: item.id,
     scheduledDate: item.publishDate,
     catchUp: selected.catchUp,
+    catchUpPolicy: selected.catchUp ? selected.catchUpPolicy : CatchUpPolicy.DISABLED,
+    remainingOverdue: selected.catchUp ? Math.max(0, selected.overdueCount - 1) : 0,
+    dueStatus: selected.dueStatus || null,
     targetPath,
   };
 }
 
-export async function publishScheduled({ now = new Date(), dryRun = false, root = defaultRoot, beforePromote } = {}) {
-  if (dryRun) return publishInWorkspace({ now, dryRun: true, root });
+export async function publishScheduled({
+  now = new Date(),
+  dryRun = false,
+  root = defaultRoot,
+  beforePromote,
+  catchUpPolicy = CatchUpPolicy.DISABLED,
+  expectedItemId = null,
+} = {}) {
+  assertCatchUpPolicy(catchUpPolicy);
+  if (dryRun) return publishInWorkspace({ now, dryRun: true, root, catchUpPolicy, expectedItemId });
   const campaignPath = path.join(root, "bot/editorial-campaign.json");
   const campaign = CampaignSchema.parse(JSON.parse(await fs.readFile(campaignPath, "utf8")));
   const date = localDate(now);
-  const selected = selectScheduledPublication(campaign, date);
-  if (!selected.item) return publishInWorkspace({ now, dryRun: false, root });
+  const selected = selectScheduledPublication(campaign, date, { catchUpPolicy });
+  if (expectedItemId && selected.item?.id !== expectedItemId) {
+    throw new Error(`Publicacao bloqueada: alvo esperado ${expectedItemId}, candidato seguro ${selected.item?.id || "nenhum"}`);
+  }
+  if (!selected.item) return publishInWorkspace({ now, dryRun: false, root, catchUpPolicy, expectedItemId });
   const item = selected.item;
   const imageDirectory = item.imageManifestPath ? path.dirname(item.imageManifestPath).replace(/\\/g, "/") : null;
   const transaction = await createStagedWorkspace(root, [
@@ -162,7 +213,13 @@ export async function publishScheduled({ now = new Date(), dryRun = false, root 
     "content/product-discovery/thebiker-media-catalog.json",
   ].filter(Boolean), { transactionId: `publish-${item.id}-${process.pid}-${Date.now()}` });
   try {
-    const result = await publishInWorkspace({ now, dryRun: false, root: transaction.workspaceRoot });
+    const result = await publishInWorkspace({
+      now,
+      dryRun: false,
+      root: transaction.workspaceRoot,
+      catchUpPolicy,
+      expectedItemId,
+    });
     const targetRelative = path.relative(transaction.workspaceRoot, result.targetPath).replace(/\\/g, "/");
     await promoteStagedPaths(
       transaction,
@@ -176,7 +233,11 @@ export async function publishScheduled({ now = new Date(), dryRun = false, root 
 }
 
 if (path.resolve(process.argv[1] || "") === fileURLToPath(import.meta.url)) {
-  publishScheduled({ dryRun: process.env.AUTOMATION_DRY_RUN === "true" })
+  publishScheduled({
+    dryRun: process.env.AUTOMATION_DRY_RUN === "true",
+    catchUpPolicy: process.env.AUTOMATION_CATCH_UP_POLICY || CatchUpPolicy.DISABLED,
+    expectedItemId: process.env.AUTOMATION_EXPECTED_ITEM_ID || null,
+  })
     .then((result) => console.log(JSON.stringify(result)))
     .catch((error) => {
       console.error(error.stack || error.message);

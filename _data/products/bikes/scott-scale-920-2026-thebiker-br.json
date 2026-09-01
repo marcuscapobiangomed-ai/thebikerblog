@@ -11,7 +11,7 @@
   "storeProductUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-scale-920-2026-white/",
   "image": "/assets/img/products/comparator/scott-scale-920-2026.webp",
   "portfolioStatus": "verified",
-  "portfolioVerifiedAt": "2026-08-15",
+  "portfolioVerifiedAt": "2026-08-21",
   "theBikerPrice": 19499,
   "frame": {
     "material": "carbon"
@@ -34,7 +34,7 @@
   "tires": {},
   "testedByTheBikerBlog": false,
   "createdAt": "2026-08-05",
-  "updatedAt": "2026-08-15",
+  "updatedAt": "2026-08-21",
   "reviewStatus": "verified",
   "sourceId": "thebiker-scott-scale-920-2026"
 }

@@ -1,3 +1,10 @@
+---
+layout: default
+title: "Transparência comercial e afiliados"
+description: "Como o TheBiker Blog identifica relações comerciais, links de afiliados e possíveis conflitos de interesse."
+permalink: /legal/affiliate-disclosure/
+---
+
 # Divulgação de Afiliados — TheBikerBlog
 
 ## Política
@@ -15,10 +22,4 @@ O TheBikerBlog participa de programas de afiliados. Quando um usuário clica em 
 - A independência editorial é mantida independentemente de parcerias de afiliados
 
 ## Dúvidas
-Contato: contato@thebikerblog.com.br
----
-layout: default
-title: "Transparência comercial e afiliados"
-description: "Como o TheBiker Blog identifica relações comerciais, links de afiliados e possíveis conflitos de interesse."
-permalink: /legal/affiliate-disclosure/
----
+Contato: atendimento@thebiker.com.br

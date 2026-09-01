@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-08-17T16:56:23.187Z",
+  "updatedAt": "2026-08-21T09:41:24.749Z",
   "assets": [
     {
       "assetId": "thebiker-scott-addict-rc-pro-hmx-frame-set-def10da96a",
@@ -377,121 +377,70 @@
       ]
     },
     {
-      "assetId": "thebiker-fita-de-guidao-supacaz-super-sticky-preta-980e62f540",
-      "sha256": "980e62f5409d4fd5da3d348cf7124be713b136e460b803fafcad375e883d1328",
-      "perceptualHash": "1111111111111111100100010000000101100101000001010001111100111111",
-      "sourcePageUrl": "https://thebikershop.com.br/produtos/fita-de-guidao-supacaz-super-sticky-preta/",
-      "sourceFileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/e777e55c-2c06-11ee-8a9e-2a9ed02269b6-167065f63039231bda17340106504947-1024-1024.webp",
-      "productId": "fita-de-guidao-supacaz-super-sticky-preta",
-      "productName": "Fita de Guidão Supacaz Super Sticky - Preta",
+      "assetId": "thebiker-bicicleta-scott-addict-rc-pro-di2-2026-pre-venda-5caaf12305",
+      "sha256": "5caaf123051d06875f686c70ce99ab45b6d7cf8d21a483cd9ea0b28c76b25517",
+      "perceptualHash": "1110111111101111110000011111000111100110110001101001011000011101",
+      "sourcePageUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-addict-rc-pro-di2-2026-pre-venda/",
+      "sourceFileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/c09d3c6a-cb92-11f0-976b-421ea7c02475-69ce9386e66a236b0017751631326814-1024-1024.webp",
+      "productId": "bicicleta-scott-addict-rc-pro-di2-2026-pre-venda",
+      "productName": "Bicicleta Scott Addict RC Pró Di2 2026 - Pré Venda",
       "rightsPolicyId": "thebiker-official-editorial-v1",
       "uses": [
         {
-          "postId": "reserva-checklist-montagem-cockpit",
+          "postId": "contingencia-addict-rc-pro-documentacao",
           "position": "hero",
-          "usedAt": "2026-08-17T12:00:00.000Z"
+          "usedAt": "2026-08-20T12:00:00.000Z"
         }
       ]
     },
     {
-      "assetId": "thebiker-guidao-syncros-fraser-sl-xc-740x70-10-1e97c1ebde",
-      "sha256": "1e97c1ebde13647d73489c994b75d1c5de255f8e723010ea31e32f51ba29dcfa",
-      "perceptualHash": "1111111111111111111111111111010000000001011111111111111111111111",
-      "sourcePageUrl": "https://thebikershop.com.br/produtos/guidao-syncros-fraser-sl-xc-740x70-10/",
-      "sourceFileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/2879900135_1799140_png_zoom_121-137c62af62184745d516557357192432-1024-1024.webp",
-      "productId": "guidao-syncros-fraser-sl-xc-740x70-10",
-      "productName": "Guidão Syncros Fraser SL XC 740x70 -10",
+      "assetId": "thebiker-bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9-ca2844fc68",
+      "sha256": "ca2844fc68f129d9c05e7a60f31f212f0eed787a1b781e5794c19c54f7655473",
+      "perceptualHash": "0001011111100111111101101011000100000001101100011110111100011111",
+      "sourcePageUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9/",
+      "sourceFileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/9f14bd5e-7451-11f0-bced-76750ea50910-2f9062f16505f0bfff17751629729869-1024-1024.webp",
+      "productId": "bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9",
+      "productName": "Bicicleta Scott Addict RC 20 Di2 2026 - Pré Venda",
       "rightsPolicyId": "thebiker-official-editorial-v1",
       "uses": [
         {
-          "postId": "guidao-drop-flare-reach-controle-conforto",
+          "postId": "contingencia-addict-rc20-documentacao",
           "position": "hero",
-          "usedAt": "2026-08-17T12:00:00.000Z"
+          "usedAt": "2026-08-20T12:00:00.000Z"
         }
       ]
     },
     {
-      "assetId": "thebiker-kit-reparo-suspensao-rock-shox-sid-flight-attendant-af0e2fa90b",
-      "sha256": "af0e2fa90b5f814226b360969b90b274f4677dd5b1cd76ffb59f4b4a2af82396",
-      "perceptualHash": "1111111111111111000011111000111100001011000000011111111111111111",
-      "sourcePageUrl": "https://thebikershop.com.br/produtos/kit-reparo-suspensao-rock-shox-sid-flight-attendant/",
-      "sourceFileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/fork-servicekit-1912847-8173335d4ce719cf4d17803506184697-1024-1024.webp",
-      "productId": "kit-reparo-suspensao-rock-shox-sid-flight-attendant",
-      "productName": "Kit Reparo Suspensão RockShox SID SL 32 Flight Attendant 2026+",
+      "assetId": "thebiker-bicicleta-scott-addict-50-2026-pre-venda-1bxzy-380ed941d1",
+      "sha256": "380ed941d1ca358c70b5f7406020bcff04870023d18b04a876aa82a819d1d90f",
+      "perceptualHash": "0000000000101110001011001110111011111111111111110100011000000000",
+      "sourcePageUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-addict-50-2026-pre-venda-1bxzy/",
+      "sourceFileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/4253583649a_2260677-b240a116882165558817761938152803-1024-1024.webp",
+      "productId": "bicicleta-scott-addict-50-2026-pre-venda-1bxzy",
+      "productName": "Bicicleta Scott Addict 50 2026 - Pré Venda",
       "rightsPolicyId": "thebiker-official-editorial-v1",
       "uses": [
         {
-          "postId": "suspensao-traseira-link-progressao",
+          "postId": "contingencia-addict-50-documentacao",
           "position": "hero",
-          "usedAt": "2026-08-17T12:00:00.000Z"
+          "usedAt": "2026-08-20T12:00:00.000Z"
         }
       ]
     },
     {
-      "assetId": "thebiker-freehub-xd-xdr-para-rolo-de-treino-elite-c14a42d16b",
-      "sha256": "c14a42d16b10112ade633a1b2d808cd701cb4d3e7844ed89c4070940c799ef5f",
-      "perceptualHash": "1111111111011111100000010000001110000000100000011101111111111111",
-      "sourcePageUrl": "https://thebikershop.com.br/produtos/freehub-xd-xdr-para-rolo-de-treino-elite/",
-      "sourceFileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/freehub-para-rolo-de-treino-compativel-c-xd-xdr1-5b9c896a433e1c664316956654789113-1024-1024.webp",
-      "productId": "freehub-xd-xdr-para-rolo-de-treino-elite",
-      "productName": "Freehub XD/XDR para Rolo de Treino Elite",
+      "assetId": "thebiker-bicicleta-scott-spark-rc-expert-2027-3e931d818d",
+      "sha256": "3e931d818d25444b671f7570314e61a202135db8df348d117cf6310406c30c9b",
+      "perceptualHash": "0111110000110000011110000011111001011111010110101000111000001110",
+      "sourcePageUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-spark-rc-expert-2027/",
+      "sourceFileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/4275478350m-ed42d0a9f91fbe067e17812055738459-1024-1024.webp",
+      "productId": "bicicleta-scott-spark-rc-expert-2027",
+      "productName": "Bicicleta Scott Spark RC Expert 2027",
       "rightsPolicyId": "thebiker-official-editorial-v1",
       "uses": [
         {
-          "postId": "padroes-cubo-eixo-boost",
+          "postId": "contingencia-spark-rc-expert-documentacao",
           "position": "hero",
-          "usedAt": "2026-08-17T12:00:00.000Z"
-        }
-      ]
-    },
-    {
-      "assetId": "thebiker-pedivela-sram-gx-eagle-carbon-dub-175mm-1ca4a5cbe6",
-      "sha256": "1ca4a5cbe6a85e239a8abdf25d31f0708bf07c5341abb2f4f6c4a505672e9068",
-      "perceptualHash": "1111111111011111100011110000000000000000000011111101111111111111",
-      "sourcePageUrl": "https://thebikershop.com.br/produtos/pedivela-sram-gx-eagle-carbon-dub-175mm/",
-      "sourceFileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/3404271-6e530f376e3c48a65716478753362125-1024-1024.webp",
-      "productId": "pedivela-sram-gx-eagle-carbon-dub-175mm",
-      "productName": "Pedivela Sram GX Eagle Carbon Dub 175mm",
-      "rightsPolicyId": "thebiker-official-editorial-v1",
-      "uses": [
-        {
-          "postId": "movimento-central-rosca-pressfit",
-          "position": "hero",
-          "usedAt": "2026-08-17T12:00:00.000Z"
-        }
-      ]
-    },
-    {
-      "assetId": "thebiker-selante-muc-off-mtb-puncture-hassle-500ml-1d158b1e88",
-      "sha256": "1d158b1e887889a969e6c1033670965e43e1f43e3b54c3f7b37f648d5be5bd6d",
-      "perceptualHash": "1111111111100111111001111110011111100111111001111110011111100111",
-      "sourcePageUrl": "https://thebikershop.com.br/produtos/selante-muc-off-mtb-puncture-hassle-500ml/",
-      "sourceFileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/500ml_mtb_sealant_850x850_crop_center-jpg-f7240aeb4baceced8b17430215238434-1024-1024.webp",
-      "productId": "selante-muc-off-mtb-puncture-hassle-500ml",
-      "productName": "Selante Muc Off MTB Puncture Hassle 500ml",
-      "rightsPolicyId": "thebiker-official-editorial-v1",
-      "uses": [
-        {
-          "postId": "rodas-sem-camara-selante-ressecamento",
-          "position": "hero",
-          "usedAt": "2026-08-17T12:00:00.000Z"
-        }
-      ]
-    },
-    {
-      "assetId": "thebiker-power-link-sram-eagle-t-type-12v-53f1dbe9c3",
-      "sha256": "53f1dbe9c362d54ae4de61eca358b4484d7f9a01e39d2f182b0e67c8256edad5",
-      "perceptualHash": "1111111111111111110000111000001110000001110001111111111111111111",
-      "sourcePageUrl": "https://thebikershop.com.br/produtos/power-link-sram-eagle-t-type-12v/",
-      "sourceFileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/chpc8059008_59865_1024x10241-b5aa2c273ef22049f916917761236868-1024-1024.webp",
-      "productId": "power-link-sram-eagle-t-type-12v",
-      "productName": "Power Link Sram Eagle T-Type 12v",
-      "rightsPolicyId": "thebiker-official-editorial-v1",
-      "uses": [
-        {
-          "postId": "desgaste-corrente-medicao",
-          "position": "hero",
-          "usedAt": "2026-08-17T12:00:00.000Z"
+          "usedAt": "2026-08-20T12:00:00.000Z"
         }
       ]
     },
@@ -506,9 +455,43 @@
       "rightsPolicyId": "thebiker-official-editorial-v1",
       "uses": [
         {
-          "postId": "garfo-dianteiro-camara-ar-progressao",
+          "postId": "contingencia-spark-world-cup-documentacao",
           "position": "hero",
-          "usedAt": "2026-08-17T12:00:00.000Z"
+          "usedAt": "2026-08-20T12:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "assetId": "thebiker-quadro-scott-scale-rc-team-hmf-2026-f9aab2bc13",
+      "sha256": "f9aab2bc133eb6504e7c1fbafc89cc653750c5de12e5d5e2dfa828542576bab0",
+      "perceptualHash": "1111111011111000111000011110100111001011101000110000011111000111",
+      "sourcePageUrl": "https://thebikershop.com.br/produtos/quadro-scott-scale-rc-team-hmf-2026/",
+      "sourceFileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/b6f1f242-1efc-11f1-bc89-762fe4583a60-97055a591ca044916d17751346940337-1024-1024.webp",
+      "productId": "quadro-scott-scale-rc-team-hmf-2026",
+      "productName": "Quadro Scott Scale RC Team HMF 2026",
+      "rightsPolicyId": "thebiker-official-editorial-v1",
+      "uses": [
+        {
+          "postId": "contingencia-scale-rc-team-quadro",
+          "position": "hero",
+          "usedAt": "2026-08-20T12:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "assetId": "thebiker-manopla-thule-com-limitador-de-torque-acutight-7ad54f757c",
+      "sha256": "7ad54f757c120244010b261d4ea9b3cf24e8906f4deb357af1111984d37fa91f",
+      "perceptualHash": "1111111111111111111001111110001111000011110001111110111111111111",
+      "sourcePageUrl": "https://thebikershop.com.br/produtos/manopla-thule-com-limitador-de-torque-acutight/",
+      "sourceFileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/5554161-128186553d5324bf5116750900865761-1024-1024.webp",
+      "productId": "manopla-thule-com-limitador-de-torque-acutight",
+      "productName": "Manopla Thule com limitador de torque Acutight",
+      "rightsPolicyId": "thebiker-official-editorial-v1",
+      "uses": [
+        {
+          "postId": "contingencia-inspecao-fixadores",
+          "position": "hero",
+          "usedAt": "2026-08-21T12:00:00.000Z"
         }
       ]
     }
