@@ -2993,6 +2993,58 @@
         "title": "Scott Scale 940 e 980: diferenças verificáveis de quadro, suspensão e componentes"
       },
       "reason": "[RESEARCH_INSUFFICIENT] Rascunho bloqueado após 2 reparos: Artigo bloqueado por integridade de claims: alegações numéricas ausentes dos fatos confirmados: 0.9mm; inferencias tecnicas ausentes dos fatos confirmados: o protocolo de limpeza pos-pedal nao e apenas uma questao estetica, mas uma medida tecnica necessaria para manter a precisao das trocas e a eficiencia do sistema de transmissao. | alem disso, a precisao do indexamento das marchas e diretamente prejudicada, pois a folga excessiva entre os elos impede que as trocas ocorram no tempo e na posicao exatos projetados pelo fabricante. | em sistemas eletronicos ou mecanicos de alta precisao, essa variacao milimetr"
+    },
+    {
+      "recordedAt": "2026-09-01T14:02:30.947Z",
+      "campaignId": "thebiker-rolling-2026-08-21",
+      "replacedItem": {
+        "day": 12,
+        "publishDate": "2026-09-01",
+        "id": "contingencia-inspecao-fixadores",
+        "title": "Inspeção de fixadores da bicicleta: sequência, registro e sinais que exigem avaliação técnica",
+        "summary": "Método preventivo para organizar inspeção visual e documental sem recomendar torque genérico nem substituir o manual do fabricante.",
+        "category": "manutencao-ajustes",
+        "freshness": "evergreen",
+        "status": "blocked",
+        "productIds": [
+          "manopla-thule-com-limitador-de-torque-acutight"
+        ],
+        "heroImage": {
+          "mode": "real-context",
+          "productId": "manopla-thule-com-limitador-de-torque-acutight",
+          "relationship": "category-example",
+          "rationale": "Fotografia real do catálogo TheBiker selecionada deterministicamente como exemplo visual da categoria técnica abordada."
+        },
+        "imageAssetIds": [],
+        "blockReason": "[VALIDATION_FAILED] Quarentena: artigo integral de fallback determinístico exige nova redação e revisão independente",
+        "failure": {
+          "code": "VALIDATION_FAILED",
+          "retryable": false,
+          "stage": "editorial-quarantine",
+          "message": "Artigo integral de fallback determinístico reprovado pelo gate de qualidade editorial",
+          "recordedAt": "2026-08-22T04:47:18.904Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-21T09:41:15.793Z",
+        "aiReview": {
+          "score": null,
+          "finalScore": null,
+          "finalBlockers": 1,
+          "premiumEditUsed": false,
+          "providers": {
+            "deterministicFallback": "grounded-deterministic"
+          },
+          "generatedAt": "2026-08-21T09:41:15.793Z",
+          "contentHash": "sha256:7ce58656bde1b1a494fcc6f012f5bf60658eb89e77cdbf09f98d2d58c0c0b3f9",
+          "deterministicFullArticleFallbackUsed": true,
+          "deterministicFullArticleFallbackTrigger": "cache-first"
+        }
+      },
+      "replacement": {
+        "id": "reserva-limpeza-transmissao-metodo",
+        "title": "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação"
+      },
+      "reason": "[VALIDATION_FAILED] Quarentena: artigo integral de fallback determinístico exige nova redação e revisão independente"
     }
   ]
 }
