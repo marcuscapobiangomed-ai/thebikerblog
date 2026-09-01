@@ -97,7 +97,7 @@ const result = await pipeline.run({
   priority: "P2",
 });
 
-assert.deepEqual(calls.map((call) => call.provider), ["deepseek", "gemini", "deepseek"]);
+assert.deepEqual(calls.map((call) => call.provider), ["deepseek", "deepseek", "deepseek"]);
 assert.equal(result.metadata.premiumEditUsed, false);
 assert.equal(result.metadata.remediationEditUsed, false);
 assert.throws(

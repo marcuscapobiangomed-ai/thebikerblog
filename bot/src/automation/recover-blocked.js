@@ -54,8 +54,6 @@ function clearDiscardedDraftState(item) {
 
 const RECOVERY_RESERVES = [
   { id: 'reserva-limpeza-transmissao-metodo', title: 'Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação', summary: 'Procedimento técnico baseado em orientações oficiais para remover contaminantes, verificar danos e devolver a corrente ao uso seguro.', category: 'manutencao-ajustes', productIds: ['corrente-sram-nx-eagle'] },
-  { id: 'reserva-radar-profissional-oficial', title: 'Radar profissional: próxima prova com calendário e resultados oficialmente verificáveis', summary: 'Reserva de cobertura profissional que só avança depois de ser vinculada a um evento e a fontes oficiais revalidadas.', category: 'competicoes', race: { track: 'professional-coverage', format: 'weekly-roundup', eventIds: [], sourceStatus: 'pending' } },
-  { id: 'reserva-calendario-participativo-oficial', title: 'Calendário brasileiro de provas: atualização com inscrições e mudanças verificadas', summary: 'Reserva participativa que permanece pendente até receber eventos oficiais, situação de inscrição e checagem recente das fontes.', category: 'competicoes', race: { track: 'participant-calendar', format: 'calendar-roundup', eventIds: [], sourceStatus: 'pending' } },
   { id: 'reserva-scale-940-980-comparativo', title: 'Scott Scale 940 e 980: diferenças verificáveis de quadro, suspensão e componentes', summary: 'Comparação limitada às especificações atualmente recuperáveis nas páginas oficiais e no catálogo TheBiker.', category: 'comparativo', productIds: ['bicicleta-scott-scale-940-black', 'bicicleta-scott-scale-980-black'], heroImage: { mode: 'exact-product', productId: 'bicicleta-scott-scale-940-black' } },
   { id: 'reserva-addict-50-rc20-comparativo', title: 'Scott Addict 50 vs. Addict RC 20: geometria, carbono e montagem', summary: 'Comparação de posição, materiais, transmissão, rodas, pneus, peso e perfil de uso dos dois modelos de estrada.', category: 'comparativo', productIds: ['bicicleta-scott-addict-50-2026-pre-venda-1bxzy', 'bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9'], heroImage: { mode: 'exact-product', productId: 'bicicleta-scott-addict-50-2026-pre-venda-1bxzy' } },
   { id: 'reserva-spark-rc-expert-ficha', title: 'Scott Spark RC Expert 2027: suspensão integrada e montagem completa', summary: 'Análise do quadro, dos 120 mm de curso, da transmissão, dos freios, das rodas, dos pneus e do peso declarado.', category: 'review', productIds: ['bicicleta-scott-spark-rc-expert-2027'], heroImage: { mode: 'exact-product', productId: 'bicicleta-scott-spark-rc-expert-2027' } },
@@ -87,8 +85,7 @@ function reserveToItem(reserve, blocked) {
     title: reserve.title,
     summary: reserve.summary,
     category: reserve.category,
-    ...(reserve.race ? { race: structuredClone(reserve.race) } : {}),
-    freshness: reserve.category === 'competicoes' ? 'event-driven' : ['review', 'comparativo', 'lancamentos'].includes(reserve.category) ? 'revalidate-24h' : 'evergreen',
+    freshness: ['review', 'comparativo', 'lancamentos'].includes(reserve.category) ? 'revalidate-24h' : 'evergreen',
     status: 'planned',
     productIds,
     heroImage,
@@ -113,11 +110,10 @@ function nextReserve(campaign, blocked, { excludedVisualProductIds = [] } = {}) 
     const visualProductIds = reserveVisualProductIds(item)
     return excluded.size === 0 || visualProductIds.some((productId) => !excluded.has(productId))
   })
-  if (blocked.race) return available.find((item) => item.race?.track === blocked.race.track) || null
   // Legacy reserves can omit productIds while still having a safe
   // real-context mapping. Treat that mapping as executable evidence instead
   // of declaring the reserve pool empty.
-  return available.find((item) => item.category !== 'competicoes' && (item.productIds?.length > 0 || realContextPolicy(item)?.productId)) || null
+  return available.find((item) => item.productIds?.length > 0 || realContextPolicy(item)?.productId) || null
 }
 
 function appendAlternativeVisualProducts(campaign, item) {

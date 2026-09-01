@@ -1,14 +1,10 @@
 const WORD_RANGES = {
-  review: { min: 900, max: 1600 },
-  comparativo: { min: 1000, max: 1800 },
-  "guia-de-compra": { min: 1000, max: 1800 },
-  "guia-tecnico": { min: 900, max: 1700 },
+  review: { min: 850, max: 1550 },
+  comparativo: { min: 950, max: 1750 },
+  "guia-de-compra": { min: 950, max: 1750 },
+  "guia-tecnico": { min: 850, max: 1650 },
   noticia: { min: 650, max: 1200 },
-  lancamento: { min: 700, max: 1300 },
-  "previa-corrida": { min: 800, max: 1500 },
-  "resumo-corrida": { min: 900, max: 1600 },
-  "calendario-provas": { min: 750, max: 1400 },
-  "guia-prova": { min: 900, max: 1600 },
+  lancamento: { min: 650, max: 1250 },
 };
 
 export function editorialWordRange(contentType, env = {}) {

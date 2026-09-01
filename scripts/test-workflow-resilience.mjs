@@ -111,12 +111,8 @@ assert.match(replenish, /Detectar avan\u00e7o editorial validado[^]*steps\.reple
 assert.match(replenish, /Persistir somente avan\u00e7o validado[^]*steps\.replenish\.outputs\.exit_code == '0' && steps\.validation\.outcome == 'success'/);
 assert.match(replenish, /if \[ "\$\{\{ steps\.replenish\.outputs\.exit_code \}\}" != "0" \][^]*exit 1/);
 
-const raceCalendar = read("update-race-calendar.yml");
-assert.match(raceCalendar, /Registrar snapshot verificado[^]*steps\.validation\.outcome == 'success'/);
-assert.match(raceCalendar, /Solicitar deploy do snapshot persistido[^]*steps\.persistence\.outcome == 'success'/);
-
 const workflowDirectory = path.join(root, ".github/workflows");
-const protectedGitAdd = /git add[^\n]*(?:_posts|assets\/img\/posts|bot\/editorial-campaign\.json|_data\/editorial-calendar\.json|_data\/editorial-refresh-queue\.json|_data\/race-events\.json|_data\/catalog-public\.json|api\/products\.json)/;
+const protectedGitAdd = /git add[^\n]*(?:_posts|assets\/img\/posts|bot\/editorial-campaign\.json|_data\/editorial-calendar\.json|_data\/editorial-refresh-queue\.json|_data\/catalog-public\.json|api\/products\.json)/;
 for (const workflowName of fs.readdirSync(workflowDirectory).filter((name) => /\.ya?ml$/i.test(name))) {
   const workflow = yaml.load(fs.readFileSync(path.join(workflowDirectory, workflowName), "utf8"));
   for (const [jobName, job] of Object.entries(workflow?.jobs || {})) {
@@ -142,7 +138,7 @@ assert.match(watchdog, /actions: write/);
 assert.match(watchdog, /id: monthly_readiness[\s\S]*check-monthly-readiness\.mjs/);
 assert.match(watchdog, /outputs\.needs_renewal == 'true'[\s\S]*renew-monthly-campaign\.yml[\s\S]*contingency=true[\s\S]*dry_run=false/);
 
-for (const name of ["update-race-calendar.yml", "replenish-buffer.yml", "publish-daily.yml", "repair-buffer.yml", "cron-post.yml", "renew-monthly-campaign.yml", "audit-buffer.yml"]) {
+for (const name of ["replenish-buffer.yml", "publish-daily.yml", "repair-buffer.yml", "cron-post.yml", "renew-monthly-campaign.yml", "audit-buffer.yml"]) {
   assert.match(read(name), /group: thebiker-editorial-write\s+queue: max\s+cancel-in-progress: false/, `${name} deve enfileirar todos os escritores`);
 }
 const prValidation = read("pr-validate.yml");

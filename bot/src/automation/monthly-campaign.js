@@ -2,10 +2,9 @@ import fs from 'node:fs/promises'
 import path from 'node:path'
 import crypto from 'node:crypto'
 import { CampaignSchema, publicCampaignSummary } from './campaign.js'
-import { RACE_MONTHLY_TARGETS } from './race-program.js'
 
 const READY_STATUSES = new Set(['researching', 'research-ready', 'drafting', 'validation', 'approved', 'scheduled'])
-const CATEGORY_VALUES = new Set(['manutencao-ajustes', 'engenharia', 'review', 'comparativo', 'componentes', 'lancamentos', 'competicoes'])
+const CATEGORY_VALUES = new Set(['manutencao-ajustes', 'engenharia', 'review', 'comparativo', 'componentes', 'lancamentos'])
 const MONTHLY_PLANNER_REVISION = 3
 
 const CONTINGENCY_TOPIC_TEMPLATES = [
@@ -47,17 +46,6 @@ const CONTINGENCY_TOPIC_TEMPLATES = [
   ['contingencia-offset-garfo', 'Offset do garfo e direção: relações geométricas que exigem contexto', 'Explicação documental de medidas e relações, evitando promessas isoladas de estabilidade, agilidade ou desempenho.', 'engenharia'],
 ].map(([id, title, summary, category, productIds = []]) => ({ id, title, summary, category, productIds }))
 
-const RACE_SLOT_TEMPLATES = [
-  { id: 'corridas-pro-previa-principal', title: 'Prévia da principal corrida profissional da semana: percurso, favoritos e pontos técnicos', summary: 'Cobertura profissional vinculada a um evento oficial, com percurso, largadas e transmissão confirmados novamente antes da publicação.', category: 'competicoes', race: { track: 'professional-coverage', format: 'preview', eventIds: [], sourceStatus: 'pending' } },
-  { id: 'corridas-pro-resumo-principal', title: 'Resumo da principal corrida profissional da semana: resultado, tática e impacto na temporada', summary: 'Análise pós-prova baseada em resultado oficial, movimentos decisivos e contexto técnico, sem transformar rumor ou impressão em fato.', category: 'competicoes', race: { track: 'professional-coverage', format: 'recap', eventIds: [], sourceStatus: 'pending' } },
-  { id: 'corridas-pro-radar-semana-1', title: 'Radar profissional de ciclismo: provas, classificações e histórias técnicas da semana', summary: 'Boletim de competições profissionais com eventos e resultados rastreáveis em federações, organizadores e canais oficiais.', category: 'competicoes', race: { track: 'professional-coverage', format: 'weekly-roundup', eventIds: [], sourceStatus: 'pending' } },
-  { id: 'corridas-pro-radar-semana-2', title: 'Segundo radar profissional do mês: calendário, resultados e decisões técnicas em destaque', summary: 'Atualização profissional sem promoção de concorrentes, usando apenas calendário, resultados e documentos oficiais verificados.', category: 'competicoes', race: { track: 'professional-coverage', format: 'weekly-roundup', eventIds: [], sourceStatus: 'pending' } },
-  { id: 'corridas-participar-calendario-1', title: 'Calendário de provas para participar no Brasil: datas, modalidades e inscrições verificadas', summary: 'Agenda para o ciclista encontrar provas, distinguindo evento confirmado, inscrição aberta, prazo encerrado e informação ainda desconhecida.', category: 'competicoes', race: { track: 'participant-calendar', format: 'calendar-roundup', eventIds: [], sourceStatus: 'pending' } },
-  { id: 'corridas-participar-calendario-2', title: 'Atualização do calendário brasileiro de ciclismo: novas provas, mudanças e prazos oficiais', summary: 'Segunda atualização mensal das provas participativas, com mudanças de data, cancelamentos e inscrições checados na fonte oficial.', category: 'competicoes', race: { track: 'participant-calendar', format: 'calendar-roundup', eventIds: [], sourceStatus: 'pending' } },
-  { id: 'corridas-participar-guia-1', title: 'Guia da prova para o ciclista: percurso, categorias, inscrição e logística confirmada', summary: 'Guia de um evento brasileiro escolhido após verificação oficial, com lacunas claramente marcadas quando a organização ainda não publicou dados.', category: 'competicoes', race: { track: 'participant-calendar', format: 'event-guide', eventIds: [], sourceStatus: 'pending' } },
-  { id: 'corridas-participar-guia-2', title: 'Próxima prova no radar: o que confirmar antes de pagar a inscrição e organizar a viagem', summary: 'Checklist aplicado a uma prova oficial, cobrindo regulamento, elegibilidade, inscrição, percurso, segurança e logística sem links presumidos.', category: 'competicoes', race: { track: 'participant-calendar', format: 'event-guide', eventIds: [], sourceStatus: 'pending' } },
-]
-
 function normalize(value) {
   return String(value || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim()
 }
@@ -82,7 +70,6 @@ function titleCaseStart(value) {
 function categoryFor(value, suggested) {
   if (CATEGORY_VALUES.has(suggested)) return suggested
   const text = normalize(value)
-  if (/campeonato|corrida|xco|xc[o|m]|tour|prova|competicao/.test(text)) return 'competicoes'
   if (/compar|versus|\bvs\b|diferenca/.test(text)) return 'comparativo'
   if (/review|teste|analise.*modelo|modelo.*analise/.test(text)) return 'review'
   if (/lancamento|novidade|nova linha|mercado/.test(text)) return 'lancamentos'
@@ -92,18 +79,9 @@ function categoryFor(value, suggested) {
 }
 
 function freshnessFor(source, category) {
-  if (source === 'youtube' || category === 'competicoes') return 'event-driven'
+  if (source === 'youtube') return 'event-driven'
   if (['review', 'comparativo', 'lancamentos'].includes(category)) return 'revalidate-24h'
   return 'evergreen'
-}
-
-function raceMetadataFor(value, provided) {
-  if (provided?.track && provided?.format) return { ...provided, eventIds: provided.eventIds || [], sourceStatus: provided.sourceStatus || 'pending' }
-  const text = normalize(value)
-  const participant = /inscri|particip|calendario|proxima prova|guia da prova/.test(text)
-  return participant
-    ? { track: 'participant-calendar', format: 'calendar-roundup', eventIds: [], sourceStatus: 'pending' }
-    : { track: 'professional-coverage', format: 'weekly-roundup', eventIds: [], sourceStatus: 'pending' }
 }
 
 function localDate(now, timezone = 'America/Sao_Paulo') {
@@ -133,7 +111,6 @@ function candidateFromBrief(brief) {
     imageAssetIds: [],
     attempts: 0,
   }
-  if (category === 'competicoes') candidate.race = raceMetadataFor(`${brief.topic} ${brief.angle || ''}`, brief.race)
   return candidate
 }
 
@@ -150,42 +127,7 @@ function candidateFromReserve(reserve) {
     imageAssetIds: [],
     attempts: 0,
   }
-  if (category === 'competicoes') candidate.race = raceMetadataFor(`${reserve.title} ${reserve.summary}`, reserve.race)
   return candidate
-}
-
-function raceSlotsFor(retained) {
-  const counts = { 'professional-coverage': 0, 'participant-calendar': 0 }
-  for (const item of retained.values()) if (item.category === 'competicoes' && item.race) counts[item.race.track] += 1
-  const needs = {
-    'professional-coverage': Math.max(0, RACE_MONTHLY_TARGETS.professionalCoverage - counts['professional-coverage']),
-    'participant-calendar': Math.max(0, RACE_MONTHLY_TARGETS.participantCalendar - counts['participant-calendar']),
-  }
-  return RACE_SLOT_TEMPLATES
-    .filter((slot) => needs[slot.race.track]-- > 0)
-    .map(candidateFromReserve)
-}
-
-function distributeRaceSlots(candidates, raceSlots, primaryLength) {
-  const regular = candidates.filter((candidate) => candidate.category !== 'competicoes')
-  const extraRace = candidates.filter((candidate) => candidate.category === 'competicoes')
-  const races = [...raceSlots, ...extraRace]
-  if (races.length === 0) return regular
-  if (races.length > primaryLength) throw new Error(`Há ${races.length} pautas de corrida para apenas ${primaryLength} posições abertas`)
-  const primaryRegularCount = Math.max(0, primaryLength - races.length)
-  const primaryRegular = regular.slice(0, primaryRegularCount)
-  const reserveRegular = regular.slice(primaryRegularCount)
-  const total = primaryRegular.length + races.length
-  const result = []
-  let regularIndex = 0
-  let raceIndex = 0
-  for (let position = 0; position < total; position += 1) {
-    const racesExpected = Math.floor(((position + 1) * races.length) / total)
-    if (raceIndex < racesExpected && raceIndex < races.length) result.push(races[raceIndex++])
-    else if (regularIndex < primaryRegular.length) result.push(primaryRegular[regularIndex++])
-    else result.push(races[raceIndex++])
-  }
-  return [...result, ...reserveRegular]
 }
 
 function candidateTitleKey(value) {
@@ -221,7 +163,7 @@ async function expandWithAi({ missing, report, occupiedTitles, ai }) {
   if (!ai?.generate) throw new Error(`Inteligência mensal insuficiente: faltam ${missing} pautas e nenhum planejador de IA está disponível`)
   const response = await ai.generate(
     'Você planeja o blog oficial TheBiker para ciclistas intermediários e avançados. Não promova concorrentes, não invente testes, preços, estoque ou especificações. Retorne somente JSON válido.',
-    `Crie exatamente ${missing} pautas editoriais novas e não sobrepostas para ciclistas brasileiros intermediários e avançados. Use consultas SEO medidas no Brasil, clusters, pautas derivadas e sinais do YouTube Brasil apenas como inteligência, nunca como prova factual. Priorize intenção de busca, desempenho observado, lacunas do acervo e inventário TheBiker; não repita palavras-chave e não crie páginas que canibalizem a mesma intenção. Evite estes títulos já usados: ${JSON.stringify(occupiedTitles)}. Inteligência: ${JSON.stringify({ brazilRankings: { seoMeasured: report.brazilRankings?.seoMeasured?.slice(0, 100) || [], youtubeDiscovery: report.brazilRankings?.youtubeDiscovery || [] }, queryClusters: report.queryClusters || [], briefs: report.briefs, discoverySignals: report.discoverySignals?.slice(0, 20) || [] })}. Formato: {"topics":[{"id":"slug","title":"20 a 140 caracteres","summary":"40 a 260 caracteres","category":"manutencao-ajustes|engenharia|review|comparativo|componentes|lancamentos|competicoes","freshness":"evergreen|revalidate-24h|event-driven"}]}`,
+    `Crie exatamente ${missing} pautas editoriais novas e não sobrepostas para ciclistas brasileiros intermediários e avançados. Use consultas SEO medidas no Brasil, clusters, pautas derivadas e sinais do YouTube Brasil apenas como inteligência, nunca como prova factual. Priorize intenção de busca, desempenho observado, lacunas do acervo e inventário TheBiker; não repita palavras-chave e não crie páginas que canibalizem a mesma intenção. Evite estes títulos já usados: ${JSON.stringify(occupiedTitles)}. Inteligência: ${JSON.stringify({ brazilRankings: { seoMeasured: report.brazilRankings?.seoMeasured?.slice(0, 100) || [], youtubeDiscovery: report.brazilRankings?.youtubeDiscovery || [] }, queryClusters: report.queryClusters || [], briefs: report.briefs, discoverySignals: report.discoverySignals?.slice(0, 20) || [] })}. Formato: {"topics":[{"id":"slug","title":"20 a 140 caracteres","summary":"40 a 260 caracteres","category":"manutencao-ajustes|engenharia|review|comparativo|componentes|lancamentos","freshness":"evergreen|revalidate-24h|event-driven"}]}`,
     {
       jsonMode: true,
       temperature: 0.2,
@@ -276,12 +218,6 @@ export function validateMonthlyCampaignPlan(value) {
   const unusable = campaign.items.filter((item) => ['blocked', 'replaced'].includes(item.status))
   if (unusable.length > 0) throw new Error(`Plano mensal contém ${unusable.length} pauta(s) inutilizável(is)`)
   if (campaign.reserves.length < 3) throw new Error(`Plano mensal exige pelo menos 3 reservas; recebido: ${campaign.reserves.length}`)
-  const races = campaign.items.filter((item) => item.race)
-  const professional = races.filter((item) => item.race.track === 'professional-coverage')
-  const participant = races.filter((item) => item.race.track === 'participant-calendar')
-  if (races.length < RACE_MONTHLY_TARGETS.total || professional.length < RACE_MONTHLY_TARGETS.professionalCoverage || participant.length < RACE_MONTHLY_TARGETS.participantCalendar) {
-    throw new Error(`Plano mensal sem mix mínimo de corridas: ${races.length}/${RACE_MONTHLY_TARGETS.total}`)
-  }
   return {
     campaignId: campaign.id,
     startsOn: campaign.startsOn,
@@ -289,7 +225,6 @@ export function validateMonthlyCampaignPlan(value) {
     planned: campaign.items.filter((item) => item.status === 'planned').length,
     retainedReady: campaign.items.filter((item) => READY_STATUSES.has(item.status)).length,
     reserves: campaign.reserves.length,
-    races: { total: races.length, professional: professional.length, participant: participant.length },
   }
 }
 
@@ -310,7 +245,6 @@ export async function buildRollingCampaign({ existing, report, now = new Date(),
   const occupiedTitles = [...retained.values()].map((item) => normalize(item.title))
   const occupiedIds = [...retained.values()].map((item) => item.id)
   const fresh = (report.briefs || []).filter((brief) => brief.action === 'new-content').map(candidateFromBrief)
-  const raceSlots = raceSlotsFor(retained)
   const contingency = CONTINGENCY_TOPIC_TEMPLATES.map(candidateFromReserve)
   let candidates = uniqueCandidates([
     ...contingency.slice(0, 7),
@@ -318,24 +252,17 @@ export async function buildRollingCampaign({ existing, report, now = new Date(),
     ...contingency.slice(7),
   ], occupiedTitles, occupiedIds)
   const openDates = dates.filter((date) => !retained.has(date)).length
-  const missingBeforeAi = openDates + 3 - candidates.length - raceSlots.length
+  const missingBeforeAi = openDates + 3 - candidates.length
   if (missingBeforeAi > 0) {
     const aiCandidates = await expandWithAi({ missing: missingBeforeAi, report, occupiedTitles: [...occupiedTitles, ...candidates.map((item) => item.title)], ai })
     candidates = uniqueCandidates([...candidates, ...aiCandidates], occupiedTitles, occupiedIds)
   }
-  candidates = distributeRaceSlots(candidates, raceSlots, openDates)
   const items = dates.map((publishDate, index) => {
     const item = retained.get(publishDate) || candidates.shift()
     if (!item) throw new Error(`Não foi possível preencher a campanha: data sem pauta ${publishDate}`)
     return { ...item, day: index + 1, publishDate }
   })
   const usedIds = new Set(items.map((item) => item.id))
-  const raceItems = items.filter((item) => item.category === 'competicoes')
-  const professionalRaceItems = raceItems.filter((item) => item.race?.track === 'professional-coverage')
-  const participantRaceItems = raceItems.filter((item) => item.race?.track === 'participant-calendar')
-  if (raceItems.length < RACE_MONTHLY_TARGETS.total || professionalRaceItems.length < RACE_MONTHLY_TARGETS.professionalCoverage || participantRaceItems.length < RACE_MONTHLY_TARGETS.participantCalendar) {
-    throw new Error(`Mix de corridas insuficiente: total ${raceItems.length}/${RACE_MONTHLY_TARGETS.total}, profissional ${professionalRaceItems.length}/${RACE_MONTHLY_TARGETS.professionalCoverage}, participativo ${participantRaceItems.length}/${RACE_MONTHLY_TARGETS.participantCalendar}`)
-  }
   const reservePool = uniqueCandidates([
     ...candidates,
     ...fresh,
