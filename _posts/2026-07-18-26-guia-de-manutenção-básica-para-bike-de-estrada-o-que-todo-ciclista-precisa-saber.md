@@ -2,7 +2,8 @@
 image_subject_id: "kit-de-escovas-muc-off"
 layout: post
 title: "Manutenção Básica da Bike de Estrada: guia do ciclista"
-description: "Guia completo de manutenção básica para bikes de estrada: limpeza, lubrificação, pneus, freios a disco e transmissão. Periodicidade e ferramentas recomendadas."
+slug: "guia-manutencao-basica-bike-estrada"
+description: "Guia de manutenção básica para bikes de estrada: limpeza, lubrificação, pneus, freios a disco e transmissão. Periodicidade e ferramentas recomendadas."
 direct_answer: "A manutenção básica combina inspeção antes de cada pedal, limpeza sem jato de alta pressão, lubrificação correta da corrente e controle de pneus, freios e transmissão. Ruído persistente, folga, dano ou frenagem irregular exigem avaliação técnica antes de continuar rodando."
 date: 2026-07-18
 redirect_from:
@@ -46,6 +47,15 @@ sources:
     type: "manufacturer"
     url: "https://www.sram.com"
     accessed_at: "2026-07-19"
+faq:
+  - question: "Com que frequência devo fazer a manutenção da minha bike?"
+    answer: "Limpeza e lubrificação a cada 200-300 km. Verificação de pressão dos pneus antes de cada pedal. Revisão completa com mecânico a cada 3.000-5.000 km."
+  - question: "Posso usar óleo comum (WD-40, óleo de cozinha) na corrente?"
+    answer: "Não. Use lubrificante específico para bicicletas. WD-40 original é desengraxante/secante, não lubrificante. WD-40 Bike Chain Lube é adequado."
+  - question: "Qual a pressão ideal dos pneus?"
+    answer: "Depende do seu peso. Para pneus 25-28 mm, a faixa fica entre 70 e 95 PSI na maioria dos casos."
+  - question: "Como sei se a pastilha de freio a disco está gasta?"
+    answer: "A pastilha tem uma camada de material de fricção; quando estiver abaixo de 1 mm, deve ser substituída. Pastilhas resinadas gastam mais rápido que sinterizadas."
 affiliate_links: false
 editorial_status: "published"
 thumbnail: "/assets/img/posts/guia-manutencao-basica/card-640.webp"
@@ -112,6 +122,8 @@ Inspecione os pneus antes de cada pedal: cortes, bolhas ou desgaste irregular in
 - Sangria do fluido (mineral Shimano ou DOT SRAM): a cada 12 meses ou conforme manual
 - Evite contaminar pastilhas com óleo ou lubrificante — uma vez contaminadas, perdem potência e precisam ser substituídas
 
+Disco arranhando ou roçando geralmente indica desalinhamento entre pinça e rotor — veja o <a href="{{ site.baseurl }}/2026/08/alinhamento-pinca-rotores/">guia de alinhamento de pinça e rotores</a> para diagnosticar e corrigir.
+
 **Freios de aro (V-brake / caliper):** ainda comuns em bikes de entrada (Allez, Domane AL, CAAD13). Verifique o desgaste das sapatas e o alinhamento.
 
 ## 5. Transmissão — Câmbio, Cassete e Corrente
@@ -123,6 +135,8 @@ A transmissão moderna (Shimano 105 Di2, Ultegra Di2, SRAM Rival AXS) exige meno
 - **Câmbio eletrônico:** mantenha as baterias carregadas. Shimano Di2: carga a cada 2-3 meses (uso normal). SRAM AXS: pilhas CR2032 duram 6-12 meses
 
 **Sinais de que algo está errado:** corrento pulando sob carga, troca ruidosa, marcha que não engata, folga no pedal.
+
+Folga ou ruído percebido no cubo da roda sob carga costuma apontar para desgaste dos rolamentos — veja o <a href="{{ site.baseurl }}/2026/08/rolamentos-sob-carga-diagnostico/">guia de diagnóstico de rolamentos sob carga</a>.
 
 ## Ferramentas Essenciais para Levar na Pedal
 

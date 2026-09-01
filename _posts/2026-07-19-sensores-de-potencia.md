@@ -1,10 +1,11 @@
 ---
 layout: post
-published: false
+published: true
 title: "Sensores de Potência para Bike: Guia Completo 2026 — Vale a Pena para Amador?"
+slug: "sensores-de-potencia"
 description: "Guia definitivo sobre sensores de potência para ciclismo em 2026. Tipos, modelos, preços no Brasil e se vale o investimento para ciclistas amadores."
 date: 2026-07-19
-last_modified_at: 2026-07-19
+last_modified_at: 2026-09-01
 author: "Equipe The Biker Blog"
 reviewed_by: "Equipe The Biker Blog"
 content_type: "guia-tecnico"
@@ -25,11 +26,12 @@ price_currency: "BRL"
 price_checked_at: "2026-07-19"
 category: "guia-tecnico"
 tags: [sensores-de-potencia, ciclismo, treino, tecnologia]
-image: "/assets/img/posts/sensores-de-potencia/hero.jpg"
-image_alt: "Sensor de potência Garmin Rally RS200 instalado em bike de estrada"
-image_caption: "Garmin Rally RS200 (R$ 7.500, medição bilateral) — o padrão entre sensores de potência em pedal."
-image_credit: "Garmin"
-image_license: "Uso editorial autorizado pelo fabricante"
+image: "/assets/img/posts/sensores-de-potencia/hero-1600.webp"
+image_mobile: "/assets/img/posts/sensores-de-potencia/hero-800.webp"
+image_alt: "Pedivela Shimano 105 e pedal clipless em bike de estrada"
+image_caption: "Pedivela e pedal clipless em bike de estrada — foto ilustrativa (Pexels/Pavel Danilyuk)."
+image_credit: "Pavel Danilyuk (Pexels)"
+image_license: "Pexels License (uso livre, comercial, sem atribuição obrigatória)"
 sources:
   - name: "Garmin — Rally RS200 / RK200"
     type: "manufacturer"
@@ -48,9 +50,19 @@ sources:
     url: "https://www.sram.com/"
     accessed_at: "2026-07-19"
 affiliate_links: false
-editorial_status: "draft"
+editorial_status: "published"
 permalink: /guias/sensores-de-potencia/
-thumbnail: "/assets/img/posts/sensores-de-potencia/thumb-480.webp"
+thumbnail: "/assets/img/posts/sensores-de-potencia/card-640.webp"
+direct_answer: "Sensores de potência valem o investimento para ciclistas que treinam com regularidade e buscam dados precisos; o Favero Assioma Duo é o modelo com melhor custo-benefício, enquanto o Garmin Rally RS200 é o mais completo."
+faq:
+  - question: "Preciso de um ciclocomputador para usar sensor de potência?"
+    answer: "Sim, para ver os dados em tempo real. Garmin Edge, Wahoo ELEMNT e Hammerhead Karoo são compatíveis. Também funciona com smartphone via apps como TrainingPeaks ou Strava."
+  - question: "Medição unilateral vs bilateral: qual a diferença?"
+    answer: "Unilateral mede apenas uma perna (esquerda) e dobra o valor. É preciso (±1%) para a maioria dos ciclistas, mas perde assimetrias. Bilateral mede as duas pernas separadamente."
+  - question: "Quanto tempo dura a bateria?"
+    answer: "Favero Assioma: 50 horas (recarregável). Garmin Rally e 4iiii: pilha CR2032 (600-1.200 horas)."
+  - question: "Como sei se o sensor é compatível com minha bike?"
+    answer: "Sensores em pedal (Favero, Garmin) funcionam em qualquer bike — é a opção mais segura. Sensores de spider (Quarq) precisam de pedivela compatível."
 ---
 > **Este artigo foi produzido com pesquisa em sites oficiais dos fabricantes e lojas brasileiras em julho/2026. O conteúdo foi elaborado com auxílio de IA e revisado editorialmente.
 
@@ -60,7 +72,7 @@ Sensor de potência é o equipamento que mais transforma o treino de um ciclista
 
 Em 2026, os sensores ficaram mais baratos, mais precisos e mais fáceis de instalar. Um bom sensor de entrada custa a partir de R$ 2.400, e a precisão de ±1% se tornou padrão mesmo em modelos de entrada.
 
-Este guia ajuda você a decidir se vale o investimento e qual modelo escolher.
+Este guia ajuda você a decidir se vale o investimento e qual modelo escolher. Para outras novidades técnicas da temporada, veja nosso guia de <a href="{{ site.baseurl }}/2026/07/inovacoes-componentes-2026/">inovações em componentes de bike 2026</a>.
 
 ## O que é e como funciona
 
@@ -161,6 +173,8 @@ Sim, **se** você atende a pelo menos dois destes critérios:
 
 Neste caso, invista em um ciclocomputador com GPS (Garmin Edge 130, Wahoo ELEMNT Bolt) e um sensor de frequência cardíaca — vai trazer mais retorno pelo mesmo investimento.
 
+Se já decidiu investir em dados de treino, confira também os <a href="{{ site.baseurl }}/2026/07/melhores-apps-treino-ciclismo-2026/">melhores apps de treino para ciclismo em 2026</a>.
+
 ## Perguntas Frequentes
 
 **1. Preciso de um ciclocomputador para usar sensor de potência?**
@@ -178,10 +192,7 @@ Sensores em pedal (Favero, Garmin) funcionam em qualquer bike — é a opção m
 **5. Um sensor de potência ajuda a emagrecer?**
 Indiretamente. Ele permite que você treine na zona de intensidade ideal para queima de gordura (Zona 2, 55-75% do FTP). Sem ele, você pode estar treinando muito leve ou muito intenso.
 
-### Fontes consultadas
+## Fontes
 
-1. Garmin — Rally RS200 specs, garmin.com. Acessado em 19 jul. 2026.
-2. Favero Assioma — assioma.com. Acessado em 19 jul. 2026.
-3. 4iiii — Precision Pro, 4iiii.com. Acessado em 19 jul. 2026.
-4. SRAM — Quarq Power Meter, sram.com. Acessado em 19 jul. 2026.
-5. Pesquisa de mercado em lojas brasileiras — julho/2026.
+- [Garmin Rally™ RS200 — Power Meter Pedals (especificações oficiais)](https://www.garmin.com/en-US/p/658593/) — Garmin. Acessado em 1 set. 2026.
+- [SRAM / Quarq DZero DUB Power Meter — especificações e compatibilidade](https://www.sram.com/en/quarq/models/pm-dz-spdr-d1) — SRAM/Quarq. Acessado em 1 set. 2026.

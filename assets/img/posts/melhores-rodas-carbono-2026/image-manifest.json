@@ -1,21 +1,74 @@
 {
-  "hero": {
-    "file": "hero.jpg",
-    "source": "Unsplash",
-    "sourceUrl": "https://images.unsplash.com/photo-1576435728678-68d0fbf94e91",
-    "license": "Unsplash Free",
-    "credit": "Alex Alvarez",
-    "alt": "Melhores rodas de carbono para bike de estrada",
-    "width": 1200,
-    "height": 675
+  "schemaVersion": 2,
+  "status": "approved",
+  "editorialUse": "publishable",
+  "assetType": "catalog-product-photo",
+  "factualSubject": "conceptual",
+  "editorialScope": "portfolio",
+  "purpose": "Ilustrar o tema do artigo com produto real do catálogo TheBiker, sem declarar como o produto exato analisado.",
+  "alt": "Roda Corima Essentia DX de carbono, vendida pela TheBiker Shop",
+  "caption": "Corima Essentia DX — roda de carbono disponível no catálogo da TheBiker Shop.",
+  "credit": "TheBiker Shop",
+  "containsText": true,
+  "aiGenerated": false,
+  "assetId": "thebiker-melhores-rodas-carbono-2026-f7c3f85039",
+  "sha256": "f7c3f85039ebe330d9b96c12981c965b23970fc43277c4655c3bf08f9d8f2052",
+  "perceptualHash": "1100011111000011110110111100001111000011110110111100001111100011",
+  "preserveFullProduct": true,
+  "outputFormat": "webp",
+  "qualityTier": "standard",
+  "depictedBrands": [],
+  "depictedProducts": [],
+  "focalPoint": {
+    "x": 0.5,
+    "y": 0.5
   },
-  "variants": {
-    "thumb-480": {
-      "file": "thumb-480.webp",
-      "width": 480,
-      "height": 320,
-      "sizeKB": 23,
-      "quality": 82
+  "source": {
+    "type": "thebiker",
+    "name": "TheBiker Shop",
+    "url": "https://thebikershop.com.br/produtos/roda-road-corima-essentia-dx-40mm/",
+    "fileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/20231024160255_r1206305015_roda_traseira_para_bicicleta_rr_essentia_40_wheel_shimano_sram_959_1_1aa0d0fee4a01df1590b75ae6dbca65c-jpg-5c1f099dfa1ecc636717486959986280-1024-1024.webp",
+    "localFile": "source.webp",
+    "obtainedAt": "2026-09-01",
+    "license": "Uso editorial no blog oficial TheBiker",
+    "licenseEvidence": "Foto de produto do catálogo público da TheBiker Shop, mesma loja editada pelo blog.",
+    "rightsPolicyId": "thebiker-official-editorial-v1"
+  },
+  "files": {
+    "hero": {
+      "file": "hero-1600.webp",
+      "width": 1600,
+      "height": 900,
+      "maxKB": 300
+    },
+    "mobile": {
+      "file": "hero-800.webp",
+      "width": 800,
+      "height": 450,
+      "maxKB": 160
+    },
+    "card": {
+      "file": "card-640.webp",
+      "width": 640,
+      "height": 360,
+      "maxKB": 100
     }
+  },
+  "approval": {
+    "reviewedBy": "Revisão editorial manual (sessão Claude Code)",
+    "approvedAt": "2026-09-01",
+    "method": "manual-review",
+    "checks": [
+      "fonte-oficial-thebiker",
+      "webp-otimizado",
+      "sem-concorrente",
+      "sha256",
+      "hash-perceptual"
+    ]
+  },
+  "composition": {
+    "strategy": "contain-white-background",
+    "sourceWidth": 800,
+    "sourceHeight": 600
   }
 }

@@ -1,21 +1,74 @@
 {
-  "hero": {
-    "file": "hero.jpg",
-    "source": "Unsplash",
-    "sourceUrl": "https://images.unsplash.com/photo-1517649763962-0c623066013b",
-    "license": "Unsplash Free",
-    "credit": "Alex Alvarez",
-    "alt": "Componentes e inovações para bicicleta 2026",
-    "width": 1200,
-    "height": 675
+  "schemaVersion": 2,
+  "status": "approved",
+  "editorialUse": "publishable",
+  "assetType": "catalog-product-photo",
+  "factualSubject": "conceptual",
+  "editorialScope": "portfolio",
+  "purpose": "Ilustrar o tema do artigo com produto real do catálogo TheBiker, sem declarar como o produto exato analisado.",
+  "alt": "Cage e polia CeramicSpeed OSPW Aero para Sram AXS, vendido pela TheBiker Shop",
+  "caption": "CeramicSpeed OSPW Aero — inovação em componentes disponível no catálogo da TheBiker Shop.",
+  "credit": "TheBiker Shop",
+  "containsText": true,
+  "aiGenerated": false,
+  "assetId": "thebiker-inovacoes-componentes-2026-c472d76a7d",
+  "sha256": "c472d76a7df86a5e6938d3ca93f52dbddb63951a2ccfab1f793212e5999ed482",
+  "perceptualHash": "1111111111100111111001111110011111100111111001111110011111101111",
+  "preserveFullProduct": true,
+  "outputFormat": "webp",
+  "qualityTier": "standard",
+  "depictedBrands": [],
+  "depictedProducts": [],
+  "focalPoint": {
+    "x": 0.5,
+    "y": 0.5
   },
-  "variants": {
-    "thumb-480": {
-      "file": "thumb-480.webp",
-      "width": 480,
-      "height": 320,
-      "sizeKB": 42,
-      "quality": 82
+  "source": {
+    "type": "thebiker",
+    "name": "TheBiker Shop",
+    "url": "https://thebikershop.com.br/produtos/cage-e-polia-ceramicspeed-ospw-aero-alpha-sram-red-e-force-axs/",
+    "fileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/113806_dd4d76be-17e7-424b-ae62-0d5950fce7b4-png-36e8e606f228d8503117374081550293-1024-1024.webp",
+    "localFile": "source.webp",
+    "obtainedAt": "2026-09-01",
+    "license": "Uso editorial no blog oficial TheBiker",
+    "licenseEvidence": "Foto de produto do catálogo público da TheBiker Shop, mesma loja editada pelo blog.",
+    "rightsPolicyId": "thebiker-official-editorial-v1"
+  },
+  "files": {
+    "hero": {
+      "file": "hero-1600.webp",
+      "width": 1600,
+      "height": 900,
+      "maxKB": 300
+    },
+    "mobile": {
+      "file": "hero-800.webp",
+      "width": 800,
+      "height": 450,
+      "maxKB": 160
+    },
+    "card": {
+      "file": "card-640.webp",
+      "width": 640,
+      "height": 360,
+      "maxKB": 100
     }
+  },
+  "approval": {
+    "reviewedBy": "Revisão editorial manual (sessão Claude Code)",
+    "approvedAt": "2026-09-01",
+    "method": "manual-review",
+    "checks": [
+      "fonte-oficial-thebiker",
+      "webp-otimizado",
+      "sem-concorrente",
+      "sha256",
+      "hash-perceptual"
+    ]
+  },
+  "composition": {
+    "strategy": "contain-white-background",
+    "sourceWidth": 1024,
+    "sourceHeight": 1024
   }
 }

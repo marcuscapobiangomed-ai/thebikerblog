@@ -28,8 +28,17 @@ price_currency: "BRL"
 price_checked_at: "2026-08-21"
 category: "reviews"
 tags: ["scott", "road-bike", "shimano", "carbono"]
-description: "Ficha da Scott Addict RC Pro 2026 com quadro HMX, grupo Dura-Ace Di2, rodas Capital 1.0S, peso declarado e preço verificado no Brasil."
+description: "Ficha técnica da Scott Addict RC Pro 2026: quadro HMX, grupo Dura-Ace Di2, rodas Capital 1.0S, peso declarado e preço verificado no Brasil hoje."
 direct_answer: "A Scott Addict RC Pro 2026 combina quadro HMX, grupo Dura-Ace Di2, rodas Syncros Capital 1.0S de 40 mm e peso declarado de 6,7 kg. Em 21/08/2026, o modelo era anunciado pela TheBiker por R$ 94.990,00."
+faq:
+  - question: "Qual é o peso da Scott Addict RC Pro 2026?"
+    answer: "A Scott declara peso aproximado de 6,7 kg, valor que pode variar conforme tamanho, montagem e acessórios instalados."
+  - question: "Qual grupo de transmissão equipa a Addict RC Pro?"
+    answer: "O Shimano Dura-Ace Di2, com câmbios RD-R9250 e FD-R9250, comandos ST-R9270, pedivela FC-R9200 com coroas 52x36 e cassete CS-R9200-12 na proporção 11-34."
+  - question: "Qual é o peso máximo suportado pela bicicleta?"
+    answer: "O limite do sistema é de 120 kg, somando bicicleta, ciclista, equipamentos e eventual bagagem transportada."
+  - question: "Qual era o preço da Addict RC Pro no Brasil em agosto de 2026?"
+    answer: "Em 21 de agosto de 2026, a TheBiker anunciava o modelo por R$ 94.990,00, com preço anterior exibido de R$ 109.990,00."
 image: "/assets/img/posts/reserva-addict-rc-pro-ficha-oficial/hero-1600.webp"
 image_mobile: "/assets/img/posts/reserva-addict-rc-pro-ficha-oficial/hero-800.webp"
 thumbnail: "/assets/img/posts/reserva-addict-rc-pro-ficha-oficial/card-640.webp"
@@ -75,7 +84,7 @@ A transmissão é formada pelo <a href="https://thebikershop.com.br/componentes/
 
 O <a href="https://thebikershop.com.br/componentes/pedivela/" class="thebiker-product-link" target="_blank" rel="noopener">pedivela</a> Dura-Ace FC-R9200 Hollowtech II usa coroas 52x36. Na traseira, o cassete Dura-Ace CS-R9200-12 adota a combinação 11-34 e trabalha com a <a href="https://thebikershop.com.br/componentes/corrente/" class="thebiker-product-link" target="_blank" rel="noopener">corrente</a> CN-M9100-12. Essa é a montagem integral informada para o modelo 425683.
 
-A configuração 52x36 e 11-34 oferece desde a relação 52x11 até a 36x34. Para o comprador, o dado relevante é confirmar se essa combinação atende à cadência e ao terreno habituais. Alterações de cassete, coroas ou comprimento de corrente devem respeitar as especificações do grupo e ser executadas com os ajustes correspondentes.
+A configuração 52x36 e 11-34 oferece desde a relação 52x11 até a 36x34. Para o comprador, o dado relevante é confirmar se essa combinação atende à cadência e ao terreno habituais. Alterações de cassete, coroas ou comprimento de corrente devem respeitar as especificações do grupo e ser executadas com os ajustes correspondentes. Para quem considera opções mais acessíveis dentro da mesma família Shimano, o comparativo <a href="{{ site.baseurl }}/2026/07/shimano-105-vs-ultegra/">Shimano 105 vs. Ultegra</a> detalha as diferenças entre os grupos abaixo do Dura-Ace.
 
 ## Freios e medidas dos rotores
 
@@ -91,7 +100,7 @@ As rodas são Syncros Capital 1.0S com perfil de 40 mm. A Scott informa 24 raios
 
 Os <a href="https://thebikershop.com.br/componentes/pneus-para-ciclismo/" class="thebiker-product-link" target="_blank" rel="noopener">pneus</a> são Schwalbe PRO ONE TL-Easy Fold 700x30C. A ficha inclui câmaras Schwalbe Aerothan, informação importante para compreender como a bicicleta é apresentada de fábrica. Mudanças no sistema de pneus devem considerar aro, válvula, fita, pressão e componentes compatíveis.
 
-O perfil de 40 mm fica registrado como característica física da roda. A decisão entre manter esse conjunto ou alterá-lo deve considerar percurso, peso do ciclista e peças compatíveis.
+O perfil de 40 mm fica registrado como característica física da roda. A decisão entre manter esse conjunto ou alterá-lo deve considerar percurso, peso do ciclista e peças compatíveis. Para comparar outras opções de alto desempenho, veja nosso guia com as <a href="{{ site.baseurl }}/guias/melhores-rodas-de-carbono/">melhores rodas de carbono</a> do mercado.
 
 ## Cockpit, canote e pontos de contato
 
