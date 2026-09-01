@@ -14,7 +14,7 @@ import { assertEditorialPublicationGates } from "./src/validation/editorial-publ
 const validArticle = {
   title: "Comparativo de bikes endurance e race em 2026",
   description:
-    "Uma análise editorial de mais de cem caracteres sobre diferenças de geometria, peso, custo e perfil de uso entre bikes endurance e race.",
+    "Uma análise editorial detalhada sobre diferenças de geometria, peso, custo e perfil de uso entre bikes endurance e race para diferentes ciclistas.",
   direct_answer:
     "Bikes endurance priorizam estabilidade e tolerância em percursos longos; bikes race usam uma posição mais agressiva e respostas mais rápidas para ritmo competitivo.",
   faq: [
@@ -122,6 +122,10 @@ const validResearch = {
 };
 
 assert.doesNotThrow(() => validateArticle(validArticle));
+assert.throws(() => validateArticle({ ...validArticle, title: "T".repeat(71) }), /70 caracteres/);
+assert.throws(() => validateArticle({ ...validArticle, description: "Descrição curta." }), /140 caracteres/);
+assert.throws(() => validateArticle({ ...validArticle, description: "A".repeat(150) }), /pontuacao final/);
+assert.throws(() => validateArticle({ ...validArticle, direct_answer: validArticle.description }), /funcoes diferentes/);
 const generatedMarkdown = generateMarkdown(validArticle);
 assert.match(generatedMarkdown, /editorial_scope: "portfolio"/);
 assert.match(generatedMarkdown, /published: false/);

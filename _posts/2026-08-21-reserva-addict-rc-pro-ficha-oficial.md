@@ -28,7 +28,7 @@ price_currency: "BRL"
 price_checked_at: "2026-08-21"
 category: "reviews"
 tags: ["scott", "road-bike", "shimano", "carbono"]
-description: "Ficha da Scott Addict RC Pro 2026 com quadro HMX, grupo Dura-Ace Di2, rodas Capital 1.0S, peso declarado e preço verificado no Brasil."
+description: "Ficha da Scott Addict RC Pro 2026 com quadro HMX, grupo Dura-Ace Di2, rodas Capital 1.0S, peso declarado e preço verificado no Brasil pela loja oficial."
 direct_answer: "A Scott Addict RC Pro 2026 combina quadro HMX, grupo Dura-Ace Di2, rodas Syncros Capital 1.0S de 40 mm e peso declarado de 6,7 kg. Em 21/08/2026, o modelo era anunciado pela TheBiker por R$ 94.990,00."
 image: "/assets/img/posts/reserva-addict-rc-pro-ficha-oficial/hero-1600.webp"
 image_mobile: "/assets/img/posts/reserva-addict-rc-pro-ficha-oficial/hero-800.webp"

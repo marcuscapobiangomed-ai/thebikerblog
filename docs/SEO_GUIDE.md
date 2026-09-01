@@ -5,6 +5,14 @@
 - 140–160 caracteres
 - Incluir palavra-chave principal
 - Terminar com call-to-action ou benefício
+- Encerrar com pontuação; nunca cortar silenciosamente uma frase
+- Cumprir função de resumo para busca, sem repetir literalmente a resposta direta
+
+## Título SEO
+
+- Até 70 caracteres
+- Preservar a entidade ou problema principal e a promessa da página
+- Remover enumerações secundárias antes de abreviar termos importantes
 
 ## Estrutura de headings
 

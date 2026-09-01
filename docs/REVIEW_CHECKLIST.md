@@ -4,6 +4,8 @@
 
 - [ ] Título claro e informativo
 - [ ] Meta description entre 140–160 caracteres
+- [ ] Título com até 70 caracteres
+- [ ] Meta description termina com pontuação e não repete a resposta direta
 - [ ] Tags usam o vocabulário controlado
 - [ ] Status definido (`draft`, `reviewed` ou `published`)
 
