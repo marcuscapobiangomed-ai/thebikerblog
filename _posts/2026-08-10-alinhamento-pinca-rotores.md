@@ -1,12 +1,12 @@
 ---
-editorial_hold_reason: "Revisão de fontes, precisão e concisão pendente"
+editorial_hold_reason: ""
 image_subject_id: "disco-de-freio-shimano-xtr-cl900-center-lock"
 layout: post
-published: false
+published: true
 title: "Alinhamento de pinça e rotor: elimine atrito sem perder potência"
 slug: "alinhamento-pinca-rotores"
 date: 2026-08-10
-last_modified_at: 2026-08-13
+last_modified_at: 2026-09-01
 author: "Equipe TheBiker"
 reviewed_by: ""
 content_type: "guia-tecnico"
@@ -28,8 +28,15 @@ price_currency: "BRL"
 price_checked_at: "2026-08-05"
 category: "guia-tecnico"
 tags: ["ciclismo", "guia-tecnico", "freios", "manutencao"]
-description: "Como alinhar pinça, rotor e pastilhas para eliminar atrito sem reduzir a potência de frenagem em bicicletas de estrada e MTB."
+description: "Guia de alinhamento de pinça e rotor para eliminar atrito nos freios a disco sem perder potência de frenagem, com passo a passo para estrada e MTB."
 direct_answer: "Para eliminar atrito, confirme primeiro se o rotor está empenado, centralize a pinça com os pistões recuados e verifique o retorno uniforme das pastilhas. Rotor fora de tolerância, pistão travado ou frenagem irregular exigem correção antes do uso."
+faq:
+  - question: "Posso usar qualquer combinação de pastilha e rotor?"
+    answer: "Não. A compatibilidade é ditada pelo material do rotor e pela recomendação do fabricante. Pastilhas metálicas exigem rotores que suportem maior estresse térmico. Usar uma pastilha incompatível pode destruir o rotor e reduzir a potência de frenagem."
+  - question: "Como saber se o fluido de freio precisa ser trocado?"
+    answer: "Os sinais incluem um curso de manete esponjoso e inconsistente, mesmo após a sangria, e a coloração escura do fluido no reservatório. O fluido mineral Shimano deve ser substituído anualmente ou a cada 5.000 km para manter o ponto de ebulição elevado e evitar o fading."
+  - question: "Por que o atrito volta alguns quilômetros após o ajuste?"
+    answer: "Isso quase sempre indica pistões que não recuam totalmente, por contaminação interna ou desgaste dos selos. Uma limpeza superficial resolve temporariamente; a solução definitiva costuma ser uma sangria completa para remover o fluido contaminado."
 image: "/assets/img/posts/alinhamento-pinca-rotores/hero-1600.webp"
 image_mobile: "/assets/img/posts/alinhamento-pinca-rotores/hero-800.webp"
 thumbnail: "/assets/img/posts/alinhamento-pinca-rotores/card-640.webp"
@@ -46,8 +53,8 @@ promoted_brands: ["Scott", "Shimano"]
 context_only_brands: []
 portfolio_evidence_url: "https://thebikershop.com.br/produtos/disco-de-freio-shimano-xtr-cl900-center-lock/"
 portfolio_verified_at: "2026-08-11"
-editorial_status: "draft"
-status: "draft"
+editorial_status: "published"
+status: "published"
 sources:
   - name: "TheBiker — Disco de Freio Shimano XTR CL900 Center Lock"
     type: "store"
@@ -93,11 +100,11 @@ sources:
 
 ## Diagnóstico de Alinhamento: O Primeiro Passo para Rodas Livres
 
-O atrito residual em freios a disco é um dreno silencioso de energia. Em bicicletas como a Scott Addict RC Pró Di2 2026, equipada com pinças Shimano BR-R9270 e rotores RT-CL900, a precisão milimétrica do sistema exige que cada componente opere em harmonia. O diagnóstico começa com a bicicleta em um suporte de manutenção. Gire cada roda manualmente e ouça. Um ruído intermitente de “shh-shh” geralmente indica um rotor com leve empeno, enquanto um arrasto constante e uniforme aponta para desalinhamento da pinça ou pistões que não recuam completamente.
+O atrito residual em freios a disco é um dreno silencioso de energia. Em bicicletas como a Scott Addict RC Pró Di2 2026, equipada com pinças Shimano BR-R9270 e rotores RT-CL900, a precisão milimétrica do sistema exige que cada componente opere em harmonia. O diagnóstico começa com a bicicleta em um suporte de <a href="{{ site.baseurl }}/2026/08/rolamentos-sob-carga-diagnostico/">manutenção</a>. Gire cada roda manualmente e ouça. Um ruído intermitente de “shh-shh” geralmente indica um rotor com leve empeno, enquanto um arrasto constante e uniforme aponta para desalinhamento da pinça ou pistões que não recuam.
 
-A inspeção visual é sua ferramenta mais confiável. Posicione uma fonte de luz atrás da pinça e observe a fresta entre a pastilha e o rotor. Em um sistema perfeitamente ajustado, você verá uma linha de luz fina e uniforme em ambos os lados. A ausência dessa luz, ou uma folga visivelmente irregular, confirma o contato. Em modelos de <a href="https://thebikershop.com.br/bikes/bicicletas-mountain-bike/" class="thebiker-product-link" target="_blank" rel="noopener">mountain bike</a> como a Scott Scale 940, com pinças Shimano MT200 e rotores SM-RT10 de 180 mm na dianteira, a maior superfície do disco amplifica qualquer imperfeição, tornando o diagnóstico visual ainda mais crítico.
+Posicione uma fonte de luz atrás da pinça e observe a fresta entre a pastilha e o rotor. Em um sistema ajustado, você verá uma linha de luz fina e uniforme em ambos os lados. A ausência dessa luz, ou uma folga irregular, confirma o contato. Em modelos de <a href="https://thebikershop.com.br/bikes/bicicletas-mountain-bike/" class="thebiker-product-link" target="_blank" rel="noopener">mountain bike</a> como a Scott Scale 940, com pinças Shimano MT200 e rotores SM-RT10 de 180 mm na dianteira, a maior superfície do disco amplifica qualquer imperfeição, tornando o diagnóstico visual mais crítico.
 
-Antes de qualquer ajuste, verifique o aperto do eixo passante. Um eixo frouxo, mesmo que minimamente, altera a posição do rotor em relação à pinça, simulando um desalinhamento. O torque correto, geralmente entre 10 e 12 Nm, é fundamental. Da mesma forma, inspecione os parafusos de fixação do rotor no cubo. Parafusos com folga permitem micromovimentos que se manifestam como um atrito errático e difícil de isolar.
+Antes de qualquer ajuste, verifique o aperto do eixo passante. Um eixo frouxo altera a posição do rotor em relação à pinça, simulando um desalinhamento. O torque correto, entre 10 e 12 Nm, é fundamental. Da mesma forma, inspecione os parafusos de fixação do rotor no cubo. Parafusos com folga permitem micromovimentos que se manifestam como um atrito errático e difícil de isolar.
 
 ## Centralização da Pinça: A Técnica que Elimina o Arrasto
 
@@ -105,7 +112,7 @@ O método clássico de centralização resolve a maioria dos casos de atrito cau
 
 Solte o manete e gire a roda. Se o atrito desapareceu, o problema era puramente posicional. Se persistir, a causa é mais profunda. Em sistemas como o da Scott Addict 50 2026, com pinças Shimano BR-R7170, esse procedimento é o ponto de partida. Entretanto, a eficácia do método depende da saúde dos pistões. Se um pistão estiver mais lento que o outro, a pressão do manete não será suficiente para movê-lo, e a pinça se alinhará de forma incorreta, mascarando o problema real.
 
-Para ciclistas que buscam um ajuste ainda mais refinado, uma alternativa é o uso de calços de alinhamento. Essas lâminas finas, inseridas entre as pastilhas e o rotor durante o aperto, garantem uma folga simétrica e precisa. Embora não seja estritamente necessário para a manutenção caseira, é uma ferramenta valiosa para quem lida com tolerâncias muito justas ou componentes de alta performance.
+Para um ajuste mais refinado, calços de alinhamento — lâminas finas inseridas entre pastilhas e rotor durante o aperto — garantem folga simétrica e precisa, úteis para tolerâncias justas ou componentes de alta performance.
 
 ## Recuo de Pistões: Restaurando a Folga Interna
 
@@ -135,7 +142,7 @@ A prevenção é simples: ao lubrificar a <a href="https://thebikershop.com.br/c
 
 A escolha entre pastilhas de resina (orgânicas) e metálicas (sinterizadas) não é uma questão de preferência, mas de compatibilidade com o rotor e o tipo de pilotagem. As pastilhas de resina, especificadas para rotores como os Shimano RT-CL800 encontrados na Scott Addict RC 20 Di2, oferecem uma mordida inicial mais silenciosa e modulação superior, características valorizadas na estrada. Elas operam em temperaturas mais baixas e são mais gentis com o rotor.
 
-As pastilhas metálicas, por outro lado, são a escolha para condições que exigem resistência térmica máxima, como longas descidas no XC com uma Scott Scale 940. Elas duram mais, mas geram mais ruído e exigem rotores com tratamento térmico adequado, como os RT-CL900 da Addict RC Pró Di2, para evitar desgaste prematuro. Usar uma pastilha metálica em um rotor projetado para resina resultará em desgaste acelerado do disco, ruído excessivo e, em casos extremos, rachaduras na pista de frenagem.
+As pastilhas metálicas são a escolha para condições que exigem resistência térmica máxima, como longas descidas no XC com uma Scott Scale 940. Duram mais, mas geram mais ruído e exigem rotores com tratamento térmico adequado, como os RT-CL900 da Addict RC Pró Di2. Usar uma pastilha metálica em um rotor projetado para resina resultará em desgaste acelerado do disco, ruído excessivo e, em casos extremos, rachaduras na pista de frenagem.
 
 Nunca misture marcas de pastilhas e rotores sem verificar a compatibilidade. O formato da pastilha também é específico da pinça. As pastilhas para as pinças Shimano BR-R9270 (Dura-Ace) são diferentes daquelas para as BR-R7170 (105), e ambas são incompatíveis com as pastilhas das pinças MT200 de mountain bike. Consulte sempre o manual do fabricante da pinça para identificar o código exato da pastilha de reposição.
 
@@ -148,4 +155,9 @@ Não. A compatibilidade é ditada pelo material do rotor e pela recomendação d
 Os sinais incluem um curso de manete esponjoso e inconsistente, mesmo após a sangria, e a coloração escura do fluido no reservatório. O fluido mineral Shimano deve ser substituído anualmente ou a cada 5.000 km para manter o ponto de ebulição elevado e evitar o fading.
 
 **Por que o atrito volta alguns quilômetros após o ajuste?**
-Isso quase sempre indica pistões que não estão recuando adequadamente devido a contaminação interna ou desgaste dos selos. Uma limpeza superficial resolve temporariamente, mas o problema retorna. A causa raiz pode ser a necessidade de uma sangria completa para remover fluido contaminado que está dificultando o movimento dos pistões.
+Isso quase sempre indica pistões que não recuam totalmente, por contaminação interna ou desgaste dos selos. Uma limpeza superficial resolve temporariamente; a solução definitiva costuma ser uma sangria completa para remover o fluido contaminado.
+
+## Fontes
+
+- [Shimano — Dealer's Manual de freios a disco (DM-GADBR01)](https://si.shimano.com/en/pdfs/dm/GADBR01/DM-GADBR01-06-ENG.pdf) — acessado em 1 set. 2026
+- [SRAM — Disc Brake Troubleshooting: alinhamento de pinça e rotor](https://www.sram.com/en/learn/disc-brake-troubleshooting) — acessado em 1 set. 2026

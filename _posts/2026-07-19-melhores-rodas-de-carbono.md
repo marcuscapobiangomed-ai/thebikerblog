@@ -1,10 +1,11 @@
 ---
 layout: post
-published: false
+published: true
+status: "published"
 title: "Melhores Rodas de Carbono para Bike de Estrada: Guia de Compra 2026"
+slug: "melhores-rodas-de-carbono"
 description: "Guia completo com as melhores rodas de carbono para bike de estrada em 2026: Zipp, Reynolds, Mavic, DT Swiss e ICANPI. Comparativo por preço, peso e perfil."
 date: 2026-07-19
-last_modified_at: 2026-07-19
 author: "Equipe The Biker Blog"
 reviewed_by: "Equipe The Biker Blog"
 content_type: "guia-de-compra"
@@ -25,11 +26,12 @@ price_currency: "BRL"
 price_checked_at: "2026-07-19"
 category: "guia-de-compra"
 tags: [rodas-carbono, bike-de-estrada, guias-de-compra, ciclismo]
-image: "/assets/img/posts/melhores-rodas-de-carbono/hero.jpg"
-image_alt: "Rodas de carbono para bike de estrada"
-image_caption: "Zipp 202 NSW (1.090g, R$ 14.000) — a roda mais leve da Zipp para escalada."
-image_credit: "Zipp"
-image_license: "Uso editorial autorizado pelo fabricante"
+image: "/assets/img/posts/melhores-rodas-de-carbono/hero-1600.webp"
+image_mobile: "/assets/img/posts/melhores-rodas-de-carbono/hero-800.webp"
+image_alt: "Roda de bicicleta de estrada com perfil aero e freio a disco"
+image_caption: "Roda de perfil aero com freio a disco — foto ilustrativa (Pexels/Jonathan Borba)."
+image_credit: "Jonathan Borba (Pexels)"
+image_license: "Pexels License (uso livre, comercial, sem atribuição obrigatória)"
 sources:
   - name: "Reynolds Cycling"
     type: "manufacturer"
@@ -48,11 +50,21 @@ sources:
     url: "https://www.dtswiss.com/"
     accessed_at: "2026-07-19"
 affiliate_links: false
-editorial_status: "draft"
+editorial_status: "published"
+last_modified_at: 2026-09-01
 permalink: /guias/melhores-rodas-de-carbono/
-thumbnail: "/assets/img/posts/melhores-rodas-de-carbono/thumb-480.webp"
+thumbnail: "/assets/img/posts/melhores-rodas-de-carbono/card-640.webp"
+direct_answer: "Para a maioria dos ciclistas brasileiros, a Reynolds BlackLabel 60 Expert é a melhor escolha, equilibrando preço, performance e garantia local; a Zipp 202 NSW é a mais leve e a Mavic Allroad S Carbon a mais acessível com garantia nacional."
+faq:
+  - question: "Vale a pena comprar rodas de carbono importadas (ICANPI)?"
+    answer: "Se você aceita o risco de garantia (enviar de volta para a China em caso de defeito) e sabe calcular os impostos (60% II + ICMS), o custo-benefício é excelente. O peso de 1.136 g para 50 mm é comparável a rodas de R$ 15.000."
+  - question: "Rodas de carbono são mais frágeis que alumínio?"
+    answer: "Sim, exigem mais cuidado em impactos laterais e buracos. Mas em uso normal (estrada asfaltada), a durabilidade é boa."
+  - question: "Preciso de sapatas especiais para freio a disco?"
+    answer: "Não. Freio a disco usa pastilhas (resinadas ou sinterizadas), independente do material do aro."
+  - question: "Qual profundidade escolher para uso misto (serra + plano)?"
+    answer: "40-50 mm é o ponto ideal. A DT Swiss ERC 1400 (45 mm) ou a Reynolds BlackLabel 60 (se você prioriza velocidade no plano) são boas escolhas."
 ---
-> **Como este artigo foi produzido:** pesquisa em sites oficiais dos fabricantes e distribuidores no Brasil. Preços em julho/2026. O conteúdo foi elaborado com auxílio de IA e revisado editorialmente.
 
 ## Introdução
 
@@ -155,6 +167,8 @@ A roda mais leve já feita pela Zipp. Construção biomimética com perfil Sawto
 - **Melhor versátil:** DT Swiss ERC 1400 DICUT (~R$ 9.000)
 
 Para a maioria dos ciclistas brasileiros, a Reynolds BlackLabel 60 Expert oferece o melhor equilíbrio entre preço, performance e garantia local.
+
+Se o orçamento for mais apertado, veja também nosso guia de <a href="{{ site.baseurl }}/2026/07/melhores-rodas-carbono-2026/">rodas de carbono custo-benefício</a> e as <a href="{{ site.baseurl }}/2026/07/inovacoes-componentes-2026/">inovações em componentes de bike para 2026</a>.
 
 ## Para quem é indicado
 

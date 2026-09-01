@@ -30,6 +30,15 @@ category: "comparativos"
 tags: ["scott", "carbono"]
 description: "Comparativo das Scott Spark RC Expert, Team e World Cup 2027, com diferenças de quadro, suspensão, transmissão e freios entre as três versões."
 direct_answer: "Expert, Team e World Cup têm 120 mm de curso dianteiro e traseiro. A Expert combina Fox Factory e Shimano XT Di2; Team e World Cup usam suspensões RockShox e transmissões SRAM distintas."
+faq:
+  - question: "Qual é a diferença de curso de suspensão entre as três Spark RC?"
+    answer: "Nenhuma: Expert, Team e World Cup têm 120 mm de curso dianteiro e 120 mm de curso traseiro."
+  - question: "Qual versão usa componentes Shimano?"
+    answer: "Apenas a Spark RC Expert, que combina suspensão Fox Factory com transmissão Shimano XT Di2 e freios Shimano Deore de quatro pistões."
+  - question: "O que diferencia o quadro da Team e da World Cup?"
+    answer: "A Team usa quadro Spark RC Carbon HMF, enquanto a World Cup usa quadro Spark RC Carbon HMX, um carbono de classificação diferente dentro da linha."
+  - question: "Qual transmissão equipa a World Cup?"
+    answer: "A SRAM X01 Eagle AXS, eletrônica sem fio, com freios SRAM Level TLM Disc, diferente da SRAM S1000 Eagle AXS Transmission usada na Team."
 image: "/assets/img/posts/spark-rc-team-expert-world-cup/hero-1600.webp"
 image_mobile: "/assets/img/posts/spark-rc-team-expert-world-cup/hero-800.webp"
 thumbnail: "/assets/img/posts/spark-rc-team-expert-world-cup/card-640.webp"
@@ -76,7 +85,7 @@ sources:
 ---
 As três Scott Spark RC deste comparativo pertencem à mesma família, mas adotam montagens distintas. A Expert reúne quadro Spark RC HMF Carbon Gen5, <a href="https://thebikershop.com.br/componentes/suspensao/" class="thebiker-product-link" target="_blank" rel="noopener">suspensão</a> Fox Factory e transmissão Shimano XT Di2. A Team combina quadro Spark RC Carbon HMF, conjunto RockShox e SRAM S1000 Eagle AXS Transmission. A World Cup traz quadro Spark RC Carbon HMX, suspensão RockShox e SRAM X01 Eagle AXS.
 
-O ponto comum está no curso: as três usam **120 mm na dianteira e 120 mm na traseira**. A escolha, portanto, passa pelo material do quadro, pelo conjunto de suspensão, pela transmissão e pelos freios de cada configuração.
+O ponto comum está no curso: as três usam **120 mm na dianteira e 120 mm na traseira**. A escolha, portanto, passa pelo material do quadro, pelo conjunto de suspensão, pela transmissão e pelos freios de cada configuração. As três compartilham ainda a mesma suspensão integrada ao quadro, detalhada em nosso <a href="{{ site.baseurl }}/2026/08/engenharia-suspensao-integrada-spark/">guia de engenharia da suspensão da Spark RC</a>.
 
 ## Spark RC Expert: HMF Carbon Gen5, Fox Factory e Shimano XT Di2
 
@@ -121,7 +130,7 @@ A tabela mostra três montagens com a mesma medida de curso, mas com diferenças
 
 Para escolher entre as três, compare primeiro o conjunto completo, não apenas o nome Spark RC. A Expert combina HMF Carbon Gen5, Fox Factory, Shimano XT Di2 e freios Deore de quatro pistões. A Team usa quadro HMF, RockShox, SRAM S1000 Eagle AXS Transmission e freios DB6. A World Cup passa ao quadro HMX, mantém RockShox e adota SRAM X01 Eagle AXS com freios Level TLM Disc.
 
-O tamanho correto continua sendo decisivo porque as três compartilham a proposta de cross-country e 120 mm de curso, mas a posição precisa se ajustar ao ciclista. Antes da compra, confira a disponibilidade da medida adequada e a montagem efetivamente incluída na unidade anunciada.
+O tamanho correto continua sendo decisivo porque as três compartilham a proposta de cross-country e 120 mm de curso, mas a posição precisa se ajustar ao ciclista. Antes da compra, confira a disponibilidade da medida adequada e a montagem efetivamente incluída na unidade anunciada. Depois de definir o tamanho, o <a href="{{ site.baseurl }}/2026/08/sag-spark-rc-ajuste-preciso/">guia de ajuste de sag da Spark RC</a> ajuda a calibrar a suspensão para o peso e o estilo de pedalada do ciclista.
 
 ## Qual montagem combina com cada prioridade
 
