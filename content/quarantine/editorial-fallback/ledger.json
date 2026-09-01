@@ -154,6 +154,62 @@
       "sha256": "e4626ab7115313ac62455411caf54d3edb210b5f3cba4e5e6fe83b363e929b54",
       "reason": "Artigo integral de fallback determinístico sem revisão editorial independente",
       "quarantinedAt": "2026-08-22T03:30:00.000Z"
+    },
+    {
+      "originalPath": "_posts/drafts/2026-08-23-reserva-checklist-montagem-cockpit.md",
+      "quarantinePath": "content/quarantine/editorial-fallback/_posts/drafts/2026-08-23-reserva-checklist-montagem-cockpit.md",
+      "sha256": "f325504ac8b2686a42a32fcaf25166c8af9cf139b367e5d9b891bfdd29c31dce",
+      "reason": "Artigo integral de fallback determinístico sem revisão editorial independente",
+      "quarantinedAt": "2026-09-01T13:36:22.855Z"
+    },
+    {
+      "originalPath": "_posts/drafts/2026-08-24-guidao-drop-flare-reach-controle-conforto.md",
+      "quarantinePath": "content/quarantine/editorial-fallback/_posts/drafts/2026-08-24-guidao-drop-flare-reach-controle-conforto.md",
+      "sha256": "6a8a0c17ab6f879f7c044ce77452b3480f08ef1100e789695c778330b49a9b29",
+      "reason": "Artigo integral de fallback determinístico sem revisão editorial independente",
+      "quarantinedAt": "2026-09-01T13:36:22.855Z"
+    },
+    {
+      "originalPath": "_posts/drafts/2026-08-25-suspensao-traseira-link-progressao.md",
+      "quarantinePath": "content/quarantine/editorial-fallback/_posts/drafts/2026-08-25-suspensao-traseira-link-progressao.md",
+      "sha256": "acc380f196d5d3f4140819ea3cd12daf39716a4b88f9fe52a6f88ce5f96ba63f",
+      "reason": "Artigo integral de fallback determinístico sem revisão editorial independente",
+      "quarantinedAt": "2026-09-01T13:36:22.855Z"
+    },
+    {
+      "originalPath": "_posts/drafts/2026-08-26-padroes-cubo-eixo-boost.md",
+      "quarantinePath": "content/quarantine/editorial-fallback/_posts/drafts/2026-08-26-padroes-cubo-eixo-boost.md",
+      "sha256": "c52a260477b9f1e76b317c790b3f7c4ef3af3cfbbc4078806bf48256777ff113",
+      "reason": "Artigo integral de fallback determinístico sem revisão editorial independente",
+      "quarantinedAt": "2026-09-01T13:36:22.855Z"
+    },
+    {
+      "originalPath": "_posts/drafts/2026-08-27-movimento-central-rosca-pressfit.md",
+      "quarantinePath": "content/quarantine/editorial-fallback/_posts/drafts/2026-08-27-movimento-central-rosca-pressfit.md",
+      "sha256": "796c91bd25f3f3dc459fa95523ccb4af98271e2688e910d063607b61d42c6db3",
+      "reason": "Artigo integral de fallback determinístico sem revisão editorial independente",
+      "quarantinedAt": "2026-09-01T13:36:22.855Z"
+    },
+    {
+      "originalPath": "_posts/drafts/2026-08-28-rodas-sem-camara-selante-ressecamento.md",
+      "quarantinePath": "content/quarantine/editorial-fallback/_posts/drafts/2026-08-28-rodas-sem-camara-selante-ressecamento.md",
+      "sha256": "71b5f55f29bfd05c43267c4e2f40493605167950c25058c7f58de64fa5f5e262",
+      "reason": "Artigo integral de fallback determinístico sem revisão editorial independente",
+      "quarantinedAt": "2026-09-01T13:36:22.855Z"
+    },
+    {
+      "originalPath": "_posts/drafts/2026-08-29-desgaste-corrente-medicao.md",
+      "quarantinePath": "content/quarantine/editorial-fallback/_posts/drafts/2026-08-29-desgaste-corrente-medicao.md",
+      "sha256": "182f3c67d382914b3aae29ab2c291b57eb249eb85e8c84df7f2af0a0e65f1e90",
+      "reason": "Artigo integral de fallback determinístico sem revisão editorial independente",
+      "quarantinedAt": "2026-09-01T13:36:22.855Z"
+    },
+    {
+      "originalPath": "_posts/drafts/2026-08-30-garfo-dianteiro-camara-ar-progressao.md",
+      "quarantinePath": "content/quarantine/editorial-fallback/_posts/drafts/2026-08-30-garfo-dianteiro-camara-ar-progressao.md",
+      "sha256": "07a5478b1ef66f3b9dde19762607a94e5c5d476d446f8dfd8a18bad3afba1236",
+      "reason": "Artigo integral de fallback determinístico sem revisão editorial independente",
+      "quarantinedAt": "2026-09-01T13:36:22.855Z"
     }
   ]
 }

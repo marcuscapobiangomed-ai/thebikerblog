@@ -1,0 +1,66 @@
+{
+  "slug": "padroes-cubo-eixo-boost",
+  "title": "Padrões de cubo e eixo: Boost e compatibilidade entre gerações",
+  "content_type": "guia-tecnico",
+  "review_method": "desk-research",
+  "tested_by_thebikerblog": false,
+  "market": "Brasil",
+  "generated_at": "2026-08-17",
+  "status": "pesquisa_concluida",
+  "sources": [
+    {
+      "name": "Shimano — 2026 E-BIKE Product Catalogue",
+      "url": "https://si.shimano.com/en/pdfs/sm/2026_E-BIKE_CAT_GB/SM-2026_E-BIKE_CAT-000-ENG-GB.pdf",
+      "accessed": "2026-08-17",
+      "id": "cache-src-1",
+      "type": "manufacturer"
+    },
+    {
+      "name": "SRAM — DUB MTB Bottom Bracket Compatibility Chart",
+      "url": "https://www.sram.com/globalassets/document-hierarchy/compatibility-map/mtb/dub-mtb-bottom-bracket-compatibility-chart.pdf",
+      "accessed": "2026-08-17",
+      "id": "cache-src-2",
+      "type": "manufacturer"
+    }
+  ],
+  "confirmed_facts": [
+    {
+      "fact": "O catálogo Shimano lista cubos traseiros com O.L.D. de 148 mm e eixo E-THRU de 12 mm.",
+      "source_ids": [
+        "cache-src-1"
+      ],
+      "evidence_quote": "O.L.D.: 148 mm; Axle fixing method: 12 mm E-THRU"
+    },
+    {
+      "fact": "A tabela de compatibilidade SRAM relaciona tipo de pedivela, chainline e espaçamento do cubo pelo eixo passante.",
+      "source_ids": [
+        "cache-src-2"
+      ],
+      "evidence_quote": "The frame specification, chainline, and thru axle hub spacing OLD are used to determine the crankset type."
+    },
+    {
+      "fact": "A etiqueta Boost não substitui a conferência conjunta de largura, diâmetro do eixo, corpo de cassete e especificação do quadro.",
+      "source_ids": [
+        "cache-src-1",
+        "cache-src-2"
+      ],
+      "evidence_quote": "Follow the chart to determine which bottom bracket works with your frame. Choose the bottom bracket and crankset combination for your frame."
+    }
+  ],
+  "limitations": [
+    "As fontes usadas são exemplos de padrões e tabelas de fabricantes; não permitem declarar compatibilidade universal entre gerações sem medir o conjunto.",
+    "Pesquisa de rede indisponÃ­vel; esta execuÃ§Ã£o reutilizou somente a ficha editorial oficial previamente validada."
+  ],
+  "grounding": {
+    "queries": [],
+    "sourceCount": 2,
+    "fallback": "campaign-research-offline-cache-v1",
+    "evidenceContract": "campaign-research-cache-v1",
+    "verifiedAt": "2026-08-17T16:54:34.946Z",
+    "verificationMode": "campaign-offline-cache",
+    "claimContract": "explicit-units-v1"
+  },
+  "portfolio_evidence_url": "https://thebikershop.com.br/componentes/",
+  "portfolio_verified_at": "2026-08-17",
+  "portfolio_evidence_scope": "portfolio-category"
+}

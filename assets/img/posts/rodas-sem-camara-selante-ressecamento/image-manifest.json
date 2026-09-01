@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 2,
+  "status": "approved",
+  "editorialUse": "publishable",
+  "assetType": "official-product-photo",
+  "factualSubject": "exact-product",
+  "editorialScope": "portfolio",
+  "purpose": "Ilustrar Rodas sem câmara: volume de selante e sinais de ressecamento com produto real do catálogo TheBiker.",
+  "alt": "Selante Muc Off MTB Puncture Hassle 500ml em fotografia oficial de TheBiker Shop",
+  "caption": "Selante Muc Off MTB Puncture Hassle 500ml, em fotografia oficial de TheBiker Shop.",
+  "credit": "TheBiker Shop",
+  "containsText": false,
+  "aiGenerated": false,
+  "assetId": "thebiker-selante-muc-off-mtb-puncture-hassle-500ml-1d158b1e88",
+  "sha256": "1d158b1e887889a969e6c1033670965e43e1f43e3b54c3f7b37f648d5be5bd6d",
+  "perceptualHash": "1111111111100111111001111110011111100111111001111110011111100111",
+  "preserveFullProduct": true,
+  "outputFormat": "webp",
+  "qualityTier": "standard",
+  "matchedProduct": {
+    "id": "selante-muc-off-mtb-puncture-hassle-500ml",
+    "name": "Selante Muc Off MTB Puncture Hassle 500ml",
+    "sku": "21090",
+    "matchLevel": "exact-id"
+  },
+  "depictedBrands": [
+    "Muc-Off"
+  ],
+  "depictedProducts": [
+    "Selante Muc Off MTB Puncture Hassle 500ml"
+  ],
+  "focalPoint": {
+    "x": 0.5,
+    "y": 0.5
+  },
+  "source": {
+    "type": "thebiker",
+    "name": "TheBiker Shop",
+    "url": "https://thebikershop.com.br/produtos/selante-muc-off-mtb-puncture-hassle-500ml/",
+    "fileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/500ml_mtb_sealant_850x850_crop_center-jpg-f7240aeb4baceced8b17430215238434-1024-1024.webp",
+    "localFile": "source.webp",
+    "obtainedAt": "2026-08-17",
+    "license": "Uso editorial no blog oficial TheBiker",
+    "licenseEvidence": "Diretriz editorial registrada pelo responsável do blog oficial TheBiker.",
+    "rightsPolicyId": "thebiker-official-editorial-v1"
+  },
+  "files": {
+    "hero": {
+      "file": "hero-1600.webp",
+      "width": 1600,
+      "height": 900,
+      "maxKB": 300
+    },
+    "mobile": {
+      "file": "hero-800.webp",
+      "width": 800,
+      "height": 450,
+      "maxKB": 160
+    },
+    "card": {
+      "file": "card-640.webp",
+      "width": 640,
+      "height": 360,
+      "maxKB": 100
+    }
+  },
+  "approval": {
+    "reviewedBy": "TheBiker deterministic image gate",
+    "approvedAt": "2026-08-17",
+    "method": "automated-editorial-gate",
+    "checks": [
+      "fonte-oficial",
+      "resolucao-padrao-declarada",
+      "webp-otimizado",
+      "direitos",
+      "produto-relacionado",
+      "sha256",
+      "hash-perceptual",
+      "sem-concorrente"
+    ]
+  },
+  "composition": {
+    "strategy": "trim-contain-safe-area",
+    "safeArea": 0.9,
+    "trimThreshold": 16,
+    "sourceWidth": 850,
+    "sourceHeight": 850,
+    "subjectWidth": 231,
+    "subjectHeight": 786
+  }
+}

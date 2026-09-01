@@ -1,0 +1,66 @@
+{
+  "slug": "desgaste-corrente-medicao",
+  "title": "Desgaste de corrente: como medir e decidir a troca",
+  "content_type": "guia-tecnico",
+  "review_method": "desk-research",
+  "tested_by_thebikerblog": false,
+  "market": "Brasil",
+  "generated_at": "2026-08-17",
+  "status": "pesquisa_concluida",
+  "sources": [
+    {
+      "name": "SRAM — Chains User Manual",
+      "url": "https://docs.sram.com/en-US/publications/6sfLCOGTn6FE98W8vXLqm0/UM%20-%20Chains",
+      "accessed": "2026-08-17",
+      "id": "cache-src-1",
+      "type": "manufacturer"
+    },
+    {
+      "name": "Shimano — Dealer Manual DM-0001A-006",
+      "url": "https://si.shimano.com/en/pdfs/dm/0001A/DM-0001A-006-ENG.pdf",
+      "accessed": "2026-08-17",
+      "id": "cache-src-2",
+      "type": "manufacturer"
+    }
+  ],
+  "confirmed_facts": [
+    {
+      "fact": "A SRAM orienta substituir a corrente quando o alongamento chega a 0,8% para limitar o desgaste do cassete e da coroa.",
+      "source_ids": [
+        "cache-src-1"
+      ],
+      "evidence_quote": "Replace your chain at 0.8% elongation to maintain performance and limit wear to the cassette and chainring."
+    },
+    {
+      "fact": "A Shimano recomenda usar um indicador de desgaste ou ferramenta semelhante para verificar se a corrente está alongada ou danificada.",
+      "source_ids": [
+        "cache-src-2"
+      ],
+      "evidence_quote": "Use a TL-CN41 chain wear indicator or a similar tool to check if the chain has become stretched or damaged."
+    },
+    {
+      "fact": "A SRAM descreve corrente, cassete e coroa como peças que se desgastam juntas com o uso normal.",
+      "source_ids": [
+        "cache-src-1"
+      ],
+      "evidence_quote": "The chain, cassette, and chainring wear together over time as a result of normal use."
+    }
+  ],
+  "limitations": [
+    "O limite de 0,8% é a referência dos documentos SRAM citados; o procedimento e a ferramenta devem ser compatíveis com a corrente examinada.",
+    "Pesquisa de rede indisponÃ­vel; esta execuÃ§Ã£o reutilizou somente a ficha editorial oficial previamente validada.",
+    "Pesquisa de rede indisponÃ­vel; esta execuÃ§Ã£o reutilizou somente a ficha editorial oficial previamente validada."
+  ],
+  "grounding": {
+    "queries": [],
+    "sourceCount": 2,
+    "fallback": "campaign-research-offline-cache-v1",
+    "evidenceContract": "campaign-research-cache-v1",
+    "verifiedAt": "2026-08-17T16:56:01.357Z",
+    "verificationMode": "campaign-offline-cache",
+    "claimContract": "explicit-units-v1"
+  },
+  "portfolio_evidence_url": "https://thebikershop.com.br/componentes/",
+  "portfolio_verified_at": "2026-08-17",
+  "portfolio_evidence_scope": "portfolio-category"
+}

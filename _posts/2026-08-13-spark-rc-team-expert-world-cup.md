@@ -2,7 +2,7 @@
 image_subject_id: "bicicleta-scott-spark-rc-world-cup-20271"
 layout: post
 published: true
-title: "Spark RC Team, Expert e World Cup: três montagens, três decisões técnicas"
+title: "Spark RC Expert, Team e World Cup: decisões"
 slug: "spark-rc-team-expert-world-cup"
 date: 2026-08-13
 last_modified_at: 2026-08-13

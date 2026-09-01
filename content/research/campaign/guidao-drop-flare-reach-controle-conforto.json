@@ -1,0 +1,65 @@
+{
+  "slug": "guidao-drop-flare-reach-controle-conforto",
+  "title": "Guidão drop: flare, reach e controle em diferentes terrenos",
+  "content_type": "guia-tecnico",
+  "review_method": "desk-research",
+  "tested_by_thebikerblog": false,
+  "market": "Brasil",
+  "generated_at": "2026-08-17",
+  "status": "pesquisa_concluida",
+  "sources": [
+    {
+      "name": "Zipp — Stems and Drop Handlebars User Manual",
+      "url": "https://www.sram.com/globalassets/document-hierarchy/user-manuals/zipp/stems-and-bars/zipp-stems-and-drop-handlebars-user-manual.pdf",
+      "accessed": "2026-08-17",
+      "id": "cache-src-1",
+      "type": "manufacturer"
+    },
+    {
+      "name": "Zipp — Service Course SL-70",
+      "url": "https://www.sram.com/es/zipp/models/hb-dbsc-sl70-b2",
+      "accessed": "2026-08-17",
+      "id": "cache-src-2",
+      "type": "manufacturer"
+    }
+  ],
+  "confirmed_facts": [
+    {
+      "fact": "Reach é uma medida publicada para o modelo Zipp Service Course SL-70, que informa 70 mm.",
+      "source_ids": [
+        "cache-src-2"
+      ],
+      "evidence_quote": "El alcance de 70 mm es el más corto de todos los manillares Service Course de Zipp."
+    },
+    {
+      "fact": "O manual Zipp recomenda alinhar os comandos pelas marcas-guia do guidão.",
+      "source_ids": [
+        "cache-src-1"
+      ],
+      "evidence_quote": "Use the guide marks on the handlebar for alignment."
+    },
+    {
+      "fact": "A altura de cada comando pode ser conferida medindo da extremidade do guidão até a base do comando.",
+      "source_ids": [
+        "cache-src-1"
+      ],
+      "evidence_quote": "For precision alignment, measure the height of each shifter from the bar end to the bottom of each shifter."
+    }
+  ],
+  "limitations": [
+    "O cache não confirma um valor universal de flare nem uma relação causal geral entre flare e conforto; esses campos devem ser tratados conforme a ficha do guidão.",
+    "Pesquisa de rede indisponÃ­vel; esta execuÃ§Ã£o reutilizou somente a ficha editorial oficial previamente validada."
+  ],
+  "grounding": {
+    "queries": [],
+    "sourceCount": 2,
+    "fallback": "campaign-research-offline-cache-v1",
+    "evidenceContract": "campaign-research-cache-v1",
+    "verifiedAt": "2026-08-17T16:54:15.099Z",
+    "verificationMode": "campaign-offline-cache",
+    "claimContract": "explicit-units-v1"
+  },
+  "portfolio_evidence_url": "https://thebikershop.com.br/componentes/",
+  "portfolio_verified_at": "2026-08-17",
+  "portfolio_evidence_scope": "portfolio-category"
+}
