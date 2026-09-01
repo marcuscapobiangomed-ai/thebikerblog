@@ -1,13 +1,14 @@
 ---
+editorial_hold_reason: "Revisão de fontes, precisão e concisão pendente"
 image_subject_id: "bicicleta-scott-spark-rc-expert-2027"
 layout: post
-published: true
+published: false
 title: "SAG da Scott Spark RC: guia de ajuste preciso"
 slug: "sag-spark-rc-ajuste-preciso"
 date: 2026-08-05
 last_modified_at: 2026-08-05
 author: "Equipe TheBiker"
-reviewed_by: "TheBiker AI Editorial Gate"
+reviewed_by: ""
 content_type: "guia-tecnico"
 audience_segment: "core_technical_cyclists"
 audience_intent: "solve_problem"
@@ -45,8 +46,8 @@ promoted_brands: ["Scott"]
 context_only_brands: []
 portfolio_evidence_url: "https://thebikershop.com.br/produtos/bicicleta-scott-spark-rc-expert-2027/"
 portfolio_verified_at: "2026-08-05"
-editorial_status: "published"
-status: "published"
+editorial_status: "draft"
+status: "draft"
 sources:
   - name: "The Biker Shop – Bicicleta Scott Spark RC Expert 2027"
     type: "store"

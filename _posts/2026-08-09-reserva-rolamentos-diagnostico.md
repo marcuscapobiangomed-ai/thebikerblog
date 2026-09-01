@@ -1,13 +1,14 @@
 ---
+editorial_hold_reason: "Revisão de fontes, precisão e concisão pendente"
 image_subject_id: "kit-de-rolamentos-direcao-scott-foil"
 layout: post
-published: true
+published: false
 title: "Rolamentos sob carga: como localizar folga e contaminação"
 slug: "rolamentos-sob-carga-diagnostico"
 date: 2026-08-09
-last_modified_at: 2026-08-05
+last_modified_at: 2026-08-13
 author: "Equipe TheBiker"
-reviewed_by: "TheBiker AI Editorial Gate"
+reviewed_by: ""
 content_type: "guia-tecnico"
 audience_segment: "core_technical_cyclists"
 audience_intent: "solve_problem"
@@ -27,8 +28,8 @@ price_currency: "BRL"
 price_checked_at: "2026-08-05"
 category: "guia-tecnico"
 tags: ["ciclismo", "manutencao", "rolamentos", "diagnostico", "guia-tecnico"]
-description: "Aprenda a diferenciar folga, contaminação e desgaste em rolamentos de bike sob carga, identificar sinais de risco e saber quando procurar uma oficina."
-direct_answer: "Folga, vibração e aspereza sob carga podem indicar ajuste incorreto, contaminação ou desgaste do rolamento. O diagnóstico deve isolar cubos, direção e movimento central antes de definir ajuste ou troca."
+description: "Diagnóstico de folga, ruído e contaminação em rolamentos de bicicleta sob carga, com testes seguros e critérios para interromper o uso."
+direct_answer: "Para localizar folga em rolamentos, isole cada conjunto, aplique carga controlada e compare ruído, aspereza e movimento lateral. Contaminação, travamento ou folga persistente exigem desmontagem e avaliação técnica antes de continuar rodando."
 image: "/assets/img/posts/reserva-rolamentos-diagnostico/hero-1600.webp"
 image_mobile: "/assets/img/posts/reserva-rolamentos-diagnostico/hero-800.webp"
 thumbnail: "/assets/img/posts/reserva-rolamentos-diagnostico/card-640.webp"
@@ -45,8 +46,8 @@ promoted_brands: ["TheBiker"]
 context_only_brands: []
 portfolio_evidence_url: "https://thebikershop.com.br/"
 portfolio_verified_at: "2026-08-05"
-editorial_status: "published"
-status: "published"
+editorial_status: "draft"
+status: "draft"
 sources:
   - name: "TheBiker — Bicicleta Infantil Oggi Hacker 24 - Cinza e Amarelo"
     type: "store"

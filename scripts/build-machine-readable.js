@@ -11,14 +11,20 @@ const knowledge = new Map(fs.readdirSync(knowledgeDir).filter((name) => name.end
   const record = JSON.parse(fs.readFileSync(path.join(knowledgeDir, name), 'utf8'))
   return [record.id, record]
 }))
-const products = catalog.bikes.map((item) => {
+const products = catalog.bikes.flatMap((item) => {
   const record = knowledge.get(item.id)
-  return { ...item, pageUrl: `https://blog.thebiker.com.br/bikes/${item.slug}/`, sources: record?.sources || [{ name: 'TheBiker Shop', type: 'store', url: item.storeProductUrl, accessedAt: item.portfolioVerifiedAt }], confirmedFacts: record ? Object.fromEntries(Object.entries(record.facts).filter(([, fact]) => fact.status === 'confirmed')) : {}, dataNotice: 'Preço e disponibilidade são observações datadas; revalidar na loja.' }
+  const confirmedFacts = record ? Object.fromEntries(Object.entries(record.facts)
+    .filter(([, fact]) => fact.status === 'confirmed' && fact.value != null && fact.value !== '')
+    .map(([key, fact]) => [key, { value: fact.value, unit: fact.unit ?? null }])) : {}
+  const sources = (record?.sources || []).filter((source) => source.type === 'manufacturer' && /^https:\/\//.test(source.url || ''))
+  if (!record || !sources.length || !Object.keys(confirmedFacts).length) return []
+  const { portfolioVerifiedAt, ...publicItem } = item
+  return [{ ...publicItem, pageUrl: `https://blog.thebiker.com.br/bikes/${item.slug}/`, sources, confirmedFacts }]
 })
 const files = {
   'api/products.json': { schemaVersion: '1.0', generatedAt: catalog.verifiedAt, language: 'pt-BR', publisher: 'TheBiker Blog', total: products.length, products },
   'api/audience.json': audience,
-  'api/editorial-policy.json': { schemaVersion: '1.1', updatedAt: audience.updatedAt, publisher: 'TheBiker Blog', language: 'pt-BR', audience: audience.positioning, audiencePolicy: 'https://blog.thebiker.com.br/api/audience.json', sourcePriority: ['Fabricante oficial', 'TheBiker Shop'], rules: ['Não inferir especificações ausentes', 'Distinguir confirmado, aproximado, pendente e bloqueado', 'Revalidar preço e disponibilidade', 'Não publicar marcas concorrentes'] }
+  'api/editorial-policy.json': { schemaVersion: '2.0', updatedAt: audience.updatedAt, publisher: 'TheBiker Blog', language: 'pt-BR', commitment: ['Conteúdo técnico claro e preciso', 'Especificações baseadas em referências oficiais', 'Informações comerciais acompanhadas de data de consulta'] }
 }
 for (const [relative, data] of Object.entries(files)) {
   const target = path.join(root, relative)

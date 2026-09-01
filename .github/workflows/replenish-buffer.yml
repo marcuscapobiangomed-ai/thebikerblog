@@ -1,0 +1,193 @@
+name: TheBiker — Recomposição automática do buffer editorial
+
+on:
+  schedule:
+    # Evita as janelas de race sync (08:20 UTC) e publicação (14:55 UTC).
+    # O grupo único continua serializando qualquer atraso excepcional.
+    - cron: "15 2,20 * * *"
+    - cron: "35 7 * * *"
+    - cron: "45 13 * * *"
+  workflow_dispatch:
+    inputs:
+      target_buffer:
+        description: "Quantidade mínima de pautas futuras em scheduled"
+        required: false
+        default: "7"
+        type: string
+      max_attempts:
+        description: "Máximo de ciclos de produção por execução"
+        required: false
+        default: "3"
+        type: string
+      required_date:
+        description: "Data que obrigatoriamente precisa ficar publicável (AAAA-MM-DD)"
+        required: false
+        default: ""
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: thebiker-editorial-write
+  queue: max
+  cancel-in-progress: false
+
+jobs:
+  replenish:
+    if: ${{ vars.AUTOMATION_ENABLED == 'true' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    environment: editorial-automation
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            bot/package-lock.json
+      - run: npm ci
+      - run: npm ci
+        working-directory: bot
+      - name: Revalidar catálogo e baseline antes de consumir IA
+        run: npm run catalog:revalidate && npm run validate:ci
+      - name: Recompor pautas futuras sem relaxar gates
+        id: replenish
+        env:
+          AUTOMATION_ENABLED: "true"
+          AUTOMATION_DRY_RUN: "false"
+          CAMPAIGN_RESEARCH_MAX_ATTEMPTS: "2"
+          CAMPAIGN_CURATED_OFFLINE_FALLBACK: "true"
+          AI_DETERMINISTIC_CURATED_FALLBACK: "false"
+          AI_DETERMINISTIC_CACHE_FIRST: "false"
+          AI_PIPELINE_MODE: three-provider
+          AI_MONTHLY_BUDGET_USD: ${{ vars.AI_MONTHLY_BUDGET_USD || '5.00' }}
+          DEEPSEEK_FLASH_MODEL: ${{ vars.DEEPSEEK_FLASH_MODEL || 'deepseek-v4-flash' }}
+          DEEPSEEK_PRO_MODEL: ${{ vars.DEEPSEEK_PRO_MODEL || 'deepseek-v4-pro' }}
+          AI_HTTP_TIMEOUT_MS: ${{ vars.AI_HTTP_TIMEOUT_MS || '120000' }}
+          AI_HTTP_RETRY_ATTEMPTS: ${{ vars.AI_HTTP_RETRY_ATTEMPTS || '2' }}
+          AI_FINAL_REPAIR_ATTEMPTS: ${{ vars.AI_FINAL_REPAIR_ATTEMPTS || '2' }}
+          AI_FINAL_REPAIR_TIMEOUT_MS: ${{ vars.AI_FINAL_REPAIR_TIMEOUT_MS || '75000' }}
+          DEEPSEEK_MAX_TOKENS: ${{ vars.DEEPSEEK_MAX_TOKENS || '14000' }}
+          RESEARCH_PROVIDER: ${{ vars.RESEARCH_PROVIDER || 'groq' }}
+          GEMINI_RESEARCH_MODEL: ${{ vars.GEMINI_RESEARCH_MODEL || 'gemini-3.6-flash' }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          TARGET_BUFFER_INPUT: ${{ inputs.target_buffer || '7' }}
+          MAX_ATTEMPTS_INPUT: ${{ inputs.max_attempts || '3' }}
+          REQUIRED_DATE_INPUT: ${{ inputs.required_date || '' }}
+        # Qualquer resultado parcial é uma falha transacional. O workspace pode
+        # ser validado para diagnóstico, mas nunca será persistido nesse caso.
+        run: |
+          if [[ ! "$TARGET_BUFFER_INPUT" =~ ^[0-9]+$ ]]; then
+            echo "::error::target_buffer precisa ser um inteiro entre 1 e 30."
+            exit 2
+          fi
+          if [[ ! "$MAX_ATTEMPTS_INPUT" =~ ^[0-9]+$ ]]; then
+            echo "::error::max_attempts precisa ser um inteiro entre 1 e 10."
+            exit 2
+          fi
+          target_buffer=$((10#$TARGET_BUFFER_INPUT))
+          max_attempts=$((10#$MAX_ATTEMPTS_INPUT))
+          if (( target_buffer < 1 || target_buffer > 30 )); then
+            echo "::error::target_buffer fora da faixa permitida (1..30)."
+            exit 2
+          fi
+          if (( max_attempts < 1 || max_attempts > 10 )); then
+            echo "::error::max_attempts fora da faixa permitida (1..10)."
+            exit 2
+          fi
+          if [ -n "$REQUIRED_DATE_INPUT" ] && [[ ! "$REQUIRED_DATE_INPUT" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}$ ]]; then
+            echo "::error::required_date precisa usar o formato AAAA-MM-DD."
+            exit 2
+          fi
+          arguments=(--target-buffer="$target_buffer" --max-attempts="$max_attempts")
+          if [ -n "$REQUIRED_DATE_INPUT" ]; then
+            arguments+=(--required-date="$REQUIRED_DATE_INPUT")
+          fi
+          set +e
+          npm run campaign:replenish -- "${arguments[@]}"
+          replenish_exit_code=$?
+          set -e
+          echo "exit_code=$replenish_exit_code" >> "$GITHUB_OUTPUT"
+          if [ "$replenish_exit_code" -ne 0 ]; then
+            echo "Recomposição não atingiu o alvo neste ciclo; a classificação ocorrerá após a validação do estado seguro."
+          fi
+        working-directory: bot
+      - name: Validar avanço antes de qualquer persistência
+        id: validation
+        if: always()
+        run: npm run validate:artifacts
+      - name: Detectar avanço editorial validado
+        id: changes
+        if: steps.replenish.outputs.exit_code == '0' && steps.validation.outcome == 'success'
+        run: |
+          if git diff --quiet -- bot/editorial-campaign.json bot/operational-state _data/editorial-calendar.json _posts/drafts content/research/campaign assets/img/posts content/image-library/index.json; then
+            echo "editorial=false" >> "$GITHUB_OUTPUT"
+            echo "Nenhum avanço editorial para persistir."
+          else
+            echo "editorial=true" >> "$GITHUB_OUTPUT"
+            echo "Avanço editorial validado e pronto para persistência."
+          fi
+      - name: Persistir somente avanço validado
+        id: persistence
+        if: steps.replenish.outputs.exit_code == '0' && steps.validation.outcome == 'success' && steps.changes.outputs.editorial == 'true'
+        run: |
+          git config user.name "thebiker-editorial-bot"
+          git config user.email "thebiker-editorial-bot@users.noreply.github.com"
+          git add _data/products/bikes _posts/drafts content/product-discovery/thebiker-media-catalog.json content/research/campaign assets/img/posts content/image-library/index.json bot/editorial-campaign.json bot/operational-state _data/editorial-calendar.json _data/catalog-public.json api/products.json
+          git diff --cached --quiet || git commit -m "state: recompor buffer editorial"
+          persist_status=1
+          for attempt in 1 2 3; do
+            if git pull --rebase --autostash origin main && git push; then
+              persist_status=0
+              break
+            fi
+            git rebase --abort 2>/dev/null || true
+            sleep $((attempt * 5))
+          done
+          if [ "$persist_status" -ne 0 ]; then
+            echo "Falha ao persistir o estado editorial após 3 tentativas." >&2
+            exit "$persist_status"
+          fi
+      - name: Propagar falha operacional
+        if: always() && (steps.replenish.outputs.exit_code != '0' || steps.validation.outcome == 'failure' || steps.persistence.outcome == 'failure')
+        env:
+          EDITORIAL_CRITICAL_BUFFER: ${{ vars.EDITORIAL_CRITICAL_BUFFER || '1' }}
+          REQUIRED_DATE_INPUT: ${{ inputs.required_date || '' }}
+        run: |
+          if [ "${{ steps.replenish.outputs.exit_code }}" != "0" ] || [ "${{ steps.validation.outcome }}" = "failure" ] || [ "${{ steps.persistence.outcome }}" = "failure" ]; then
+            echo "::error::Recomposição=${{ steps.replenish.outcome }} validação=${{ steps.validation.outcome }} persistência=${{ steps.persistence.outcome }}"
+            exit 1
+          fi
+          scheduled_count="$(node --input-type=module -e "import fs from 'node:fs'; const c=JSON.parse(fs.readFileSync('bot/editorial-campaign.json','utf8')); const today=new Intl.DateTimeFormat('en-CA',{timeZone:'America/Sao_Paulo',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date()); console.log(c.items.filter(i=>i.status==='scheduled'&&i.publishDate>=today).length)")"
+          required_ready="true"
+          if [ -n "$REQUIRED_DATE_INPUT" ]; then
+            required_ready="$(node --input-type=module -e "import fs from 'node:fs'; const c=JSON.parse(fs.readFileSync('bot/editorial-campaign.json','utf8')); const item=c.items.find(i=>i.publishDate===process.env.REQUIRED_DATE_INPUT); console.log(Boolean(item&&['scheduled','published'].includes(item.status)))")"
+          fi
+          if [ "$required_ready" != "true" ]; then
+            echo "::error::A data obrigatória ${REQUIRED_DATE_INPUT} ainda não ficou publicável."
+            exit 1
+          fi
+          if [ "$scheduled_count" -ge "$EDITORIAL_CRITICAL_BUFFER" ]; then
+            echo "::warning::Recomposição sem mudanças, com ${scheduled_count} pauta(s) futura(s) já preservadas."
+            exit 0
+          fi
+          echo "::error::Recomposição sem progresso e buffer crítico: ${scheduled_count} pauta(s) futura(s)."
+          exit 1
+      - name: Resumo do buffer
+        if: always()
+        run: |
+          echo "### Recomposição automática do buffer" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Recomposição: exit ${{ steps.replenish.outputs.exit_code || '0' }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Validação: ${{ steps.validation.outcome }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Avanço editorial: ${{ steps.changes.outputs.editorial || 'não validado' }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Persistência: ${{ steps.persistence.outcome }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Data obrigatória: ${{ inputs.required_date || 'não definida' }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Resultado parcial ou reprovado nunca é persistido; somente uma recomposição concluída e validada pode alterar o repositório." >> "$GITHUB_STEP_SUMMARY"
+

@@ -5,107 +5,369 @@
   "review_method": "desk-research",
   "tested_by_thebikerblog": false,
   "market": "Brasil",
-  "generated_at": "2026-08-07",
+  "generated_at": "2026-08-13",
   "status": "pesquisa_concluida",
   "sources": [
     {
-      "name": "The Biker Shop — Bicicleta Scott Spark RC Team 2027",
+      "name": "TheBiker — Bicicleta Scott Spark RC Expert 2027",
+      "url": "https://thebikershop.com.br/produtos/bicicleta-scott-spark-rc-expert-2027/",
+      "accessed": "2026-08-04",
+      "id": "internal-src-1",
+      "type": "store"
+    },
+    {
+      "name": "Scott — página oficial do modelo",
+      "url": "https://www.scott-sports.com/global/en/product/scott-spark-rc-expert-bike",
+      "accessed": "2026-08-04",
+      "id": "internal-src-2",
+      "type": "manufacturer"
+    },
+    {
+      "name": "TheBiker — Bicicleta Scott Spark RC Team 2027",
       "url": "https://thebikershop.com.br/produtos/bicicleta-scott-spark-rc-world-cup-2027/",
-      "accessed": "2026-08-07",
-      "type": "store",
-      "id": "team_store"
+      "accessed": "2026-08-04",
+      "id": "internal-src-3",
+      "type": "store"
     },
     {
-      "name": "Scott — página oficial do modelo Spark RC Team",
+      "name": "Scott — página oficial do modelo",
       "url": "https://www.scott-sports.com/global/en/product/scott-spark-rc-team-bike",
-      "accessed": "2026-08-07",
-      "type": "manufacturer",
-      "id": "team_manufacturer"
+      "accessed": "2026-08-04",
+      "id": "internal-src-4",
+      "type": "manufacturer"
     },
     {
-      "name": "The Biker Shop — Bicicleta Scott Spark RC Pró 2026 (Expert)",
-      "url": "https://thebikershop.com.br/produtos/bicicleta-scott-spark-rc-pro-2026/",
-      "accessed": "2026-08-07",
-      "type": "store",
-      "id": "expert_store"
-    },
-    {
-      "name": "The Biker Shop — Bicicleta Scott Spark RC World Cup 2027",
+      "name": "TheBiker — Bicicleta Scott Spark RC World Cup 2027",
       "url": "https://thebikershop.com.br/produtos/bicicleta-scott-spark-rc-world-cup-20271/",
-      "accessed": "2026-08-07",
-      "type": "store",
-      "id": "worldcup_store"
+      "accessed": "2026-08-04",
+      "id": "internal-src-5",
+      "type": "store"
     },
     {
-      "name": "Scott — página oficial do modelo Spark RC World Cup",
+      "name": "Scott — página oficial do modelo",
       "url": "https://www.scott-sports.com/global/en/product/scott-spark-rc-world-cup-bike",
-      "accessed": "2026-08-07",
-      "type": "manufacturer",
-      "id": "worldcup_manufacturer"
+      "accessed": "2026-08-04",
+      "id": "internal-src-6",
+      "type": "manufacturer"
     }
   ],
   "editorialPriority": "P1",
-  "confirmed_facts": {
-    "team_price": {
-      "description": "Bicicleta Scott Spark RC Team 2027 está à venda na The Biker Shop por R$45.999,00.",
-      "sourceIds": [
-        "team_store"
-      ]
+  "confirmed_facts": [
+    {
+      "fact": "identity.storeName: Bicicleta Scott Spark RC Expert 2027",
+      "source_ids": [
+        "internal-src-1"
+      ],
+      "evidence_quote": "bicicleta scott spark rc expert 2027 mtb carbono 12v import url"
     },
-    "team_specs": {
-      "description": "O modelo Team possui quadro Spark RC Carbon HMF, suspensão RockShox SID 3P 120 mm, transmissão SRAM S1000 AXS 12 v, peso aproximado 12,5 kg e limite máximo do sistema de 130 kg.",
-      "sourceIds": [
-        "team_manufacturer"
-      ]
+    {
+      "fact": "commercial.storeUrl: https://thebikershop.com.br/produtos/bicicleta-scott-spark-rc-expert-2027/",
+      "source_ids": [
+        "internal-src-1"
+      ],
+      "evidence_quote": "scott spark rc expert 2027 item https thebikershop com br produtos bicicleta scott spark rc expert 2027 mainentity type product id https"
     },
-    "expert_price": {
-      "description": "Bicicleta Scott Spark RC Pró (Expert) 2026 está à venda na The Biker Shop por R$65.999,00.",
-      "sourceIds": [
-        "expert_store"
-      ]
+    {
+      "fact": "identity.officialUrl: https://www.scott-sports.com/global/en/product/scott-spark-rc-expert-bike",
+      "source_ids": [
+        "internal-src-2"
+      ],
+      "evidence_quote": "type listitem position 3 item id https www scott sports com global en product scott spark rc expert bike name scott spark rc expert"
     },
-    "expert_specs": {
-      "description": "O modelo Expert tem quadro Spark RC Carbon HMF, suspensão Flex Pivot com FOX 34SL Front 120 mm e FOX Nude 6 Rear, transmissão Shimano XT Di2 12 v, rodas Syncros Silverton 1.0 Carbon com pneus Maxxis Rekon Race 29×2.4\", peso aproximado 12,5 kg e limite máximo do sistema de 130 kg.",
-      "sourceIds": [
-        "expert_store"
-      ]
+    {
+      "fact": "frame.material: Spark RC HMF Carbon Gen5",
+      "source_ids": [
+        "internal-src-2"
+      ],
+      "evidence_quote": "the detail for more information frame spark rc hmf carbon gen5 adjustable head angle and fork"
     },
-    "worldcup_price": {
-      "description": "Bicicleta Scott Spark RC World Cup 2027 está à venda na The Biker Shop por R$89.999,00.",
-      "sourceIds": [
-        "worldcup_store"
-      ]
+    {
+      "fact": "suspension.frontTravel: 120 mm",
+      "source_ids": [
+        "internal-src-2"
+      ],
+      "evidence_quote": "12x148mm with 55mm chainline travel front 120 mm rear 120 mm fork fox"
     },
-    "worldcup_specs": {
-      "description": "O modelo World Cup possui quadro Spark RC Carbon HMX, suspensão RockShox SID Select+ 120 mm com tecnologia Flight Attendant, transmissão SRAM X01 Eagle AXS 12 v, peso aproximado 10,9 kg e limite máximo do sistema de 128 kg.",
-      "sourceIds": [
-        "worldcup_manufacturer"
-      ]
+    {
+      "fact": "suspension.rearTravel: 120 mm",
+      "source_ids": [
+        "internal-src-2"
+      ],
+      "evidence_quote": "12x148mm with 55mm chainline travel front 120 mm rear 120 mm fork fox"
     },
-    "suspension_comparison": {
-      "description": "O Expert utiliza suspensão FOX (34SL Front e Nude 6 Rear), enquanto o Team e o World Cup utilizam suspensão RockShox (SID 3P no Team e SID Select+ com Flight Attendant no World Cup).",
-      "sourceIds": [
-        "expert_store",
-        "worldcup_store"
-      ]
+    {
+      "fact": "suspension.fork: Fox 34SL Factory Grip SL, Kashima, 3P",
+      "source_ids": [
+        "internal-src-2"
+      ],
+      "evidence_quote": "120 mm rear 120 mm fork fox 34sl factory grip sl kashima 3p kabolt 15x110mm axle tapered steerer"
     },
-    "wheelset_comparison": {
-      "description": "Todos os três modelos usam rodas Syncros Silverton em carbono, porém o Team usa a versão 2.5 TR, o Expert a versão 1.0 e o World Cup a versão CF2.",
-      "sourceIds": [
-        "team_manufacturer",
-        "expert_store",
-        "worldcup_manufacturer"
-      ]
+    {
+      "fact": "suspension.rearShock: Fox Float Factory Traction Control EVOL, Kashima",
+      "source_ids": [
+        "internal-src-2"
+      ],
+      "evidence_quote": "steerer reb adj lockout rear shock fox float factory traction control evol kashima scott custom w travel geo"
+    },
+    {
+      "fact": "drivetrain.rearDerailleur: Shimano XT Di2 RD-M8250",
+      "source_ids": [
+        "internal-src-2"
+      ],
+      "evidence_quote": "remote 3 suspension modes rear derailleur shimano xt di2 rd m8250 12 speed wireless electronic shift"
+    },
+    {
+      "fact": "drivetrain.speeds: 12 velocidades",
+      "source_ids": [
+        "internal-src-1"
+      ],
+      "evidence_quote": "sem fio shimano xt di2 de 12 velocidades proporciona trocas r aacute pidas"
+    },
+    {
+      "fact": "drivetrain.shifting: wireless electronic",
+      "source_ids": [
+        "internal-src-2"
+      ],
+      "evidence_quote": "xt di2 rd m8250 12 speed wireless electronic shift system shifters shimano deore"
+    },
+    {
+      "fact": "drivetrain.crankset: Shimano XT FC-M8200, 34T",
+      "source_ids": [
+        "internal-src-2"
+      ],
+      "evidence_quote": "shimano deore di2 sw m6250 crankset shimano xt fc m8200 34t chainguide spark rc gen5 chainguide"
+    },
+    {
+      "fact": "drivetrain.cassette: Shimano Deore CS-M7200, 10-51T",
+      "source_ids": [
+        "internal-src-2"
+      ],
+      "evidence_quote": "bsa chain shimano cn m7100 cassette shimano deore cs m7200 10 51t brakes shimano deore br m6220"
+    },
+    {
+      "fact": "brakes.calipers: Shimano Deore BR-M6220 4-Piston",
+      "source_ids": [
+        "internal-src-2"
+      ],
+      "evidence_quote": "deore cs m7200 10 51t brakes shimano deore br m6220 4 piston front disc rotor shimano rt"
+    },
+    {
+      "fact": "identity.storeName: Bicicleta Scott Spark RC Team 2027",
+      "source_ids": [
+        "internal-src-3"
+      ],
+      "evidence_quote": "bicicleta scott spark rc team 2027 performance xc em carbono import"
+    },
+    {
+      "fact": "commercial.storeUrl: https://thebikershop.com.br/produtos/bicicleta-scott-spark-rc-world-cup-2027/",
+      "source_ids": [
+        "internal-src-3"
+      ],
+      "evidence_quote": "scott spark rc team 2027 item https thebikershop com br produtos bicicleta scott spark rc world cup 2027 mainentity type product id https"
+    },
+    {
+      "fact": "identity.officialUrl: https://www.scott-sports.com/global/en/product/scott-spark-rc-team-bike",
+      "source_ids": [
+        "internal-src-4"
+      ],
+      "evidence_quote": "type listitem position 6 item id https www scott sports com global en product scott spark rc team bike name scott spark rc team"
+    },
+    {
+      "fact": "identity.manufacturerModelCode: 425328",
+      "source_ids": [
+        "internal-src-4"
+      ],
+      "evidence_quote": "team bike product type product id 425328 product price else if false"
+    },
+    {
+      "fact": "identity.color: carbon black",
+      "source_ids": [
+        "internal-src-4"
+      ],
+      "evidence_quote": "cross country bikes spark rc color carbon black description the spark rc team"
+    },
+    {
+      "fact": "identity.sizes: S, M, L, XL",
+      "source_ids": [
+        "internal-src-4"
+      ],
+      "evidence_quote": "1 color carbon black 2 size s m l xl size chart times var defaulttheme"
+    },
+    {
+      "fact": "frame.material: Spark RC Carbon HMF",
+      "source_ids": [
+        "internal-src-4"
+      ],
+      "evidence_quote": "team bike model 425328 key features spark rc carbon hmf frame rockshox sid 3p 120mm"
+    },
+    {
+      "fact": "suspension.frontTravel: 120 mm",
+      "source_ids": [
+        "internal-src-3"
+      ],
+      "evidence_quote": "suspens atilde o rockshox fork sid 120 mm sidluxe select traseiro oferece 120"
+    },
+    {
+      "fact": "suspension.rearTravel: 120 mm",
+      "source_ids": [
+        "internal-src-3"
+      ],
+      "evidence_quote": "suspens atilde o rockshox fork sid 120 mm sidluxe select traseiro oferece 120"
+    },
+    {
+      "fact": "suspension.fork: RockShox SID 3P Air, Rush RL 3-Mode",
+      "source_ids": [
+        "internal-src-4"
+      ],
+      "evidence_quote": "interface 12x148mm with 55mm chainline fork rockshox sid 3p air rush rl 3 mode damper 15x110mm maxle stealth 44mm"
+    },
+    {
+      "fact": "suspension.rearShock: RockShox NUDE 5 RL3 Trunnion",
+      "source_ids": [
+        "internal-src-4"
+      ],
+      "evidence_quote": "reb adj 120mm travel rear shock rockshox nude 5 rl3 trunnion scott custom w travel geo"
+    },
+    {
+      "fact": "drivetrain.rearDerailleur: SRAM S1000 Eagle AXS Transmission",
+      "source_ids": [
+        "internal-src-4"
+      ],
+      "evidence_quote": "remote 3 suspension modes rear derailleur sram s1000 eagle axs transmission 12 speed wireless electronic shift"
+    },
+    {
+      "fact": "drivetrain.speeds: 12 velocidades",
+      "source_ids": [
+        "internal-src-3"
+      ],
+      "evidence_quote": "nico sram s1000 eagle axs de 12 velocidades proporciona trocas r aacute pidas"
+    },
+    {
+      "fact": "drivetrain.shifting: wireless electronic",
+      "source_ids": [
+        "internal-src-4"
+      ],
+      "evidence_quote": "s1000 eagle axs transmission 12 speed wireless electronic shift system shifters sram axs"
+    },
+    {
+      "fact": "brakes.calipers: SRAM DB6 4-Piston Disc",
+      "source_ids": [
+        "internal-src-4"
+      ],
+      "evidence_quote": "s1000 axs transmission 12 speed drivetrain sram db6 4 piston disc brakes syncros silverton 2 5"
+    },
+    {
+      "fact": "limits.maxSystemWeight: 130 kg",
+      "source_ids": [
+        "internal-src-3"
+      ],
+      "evidence_quote": "xima do sistema piloto bike equipamento 130 kg benef iacute cios comerciais pronta"
+    },
+    {
+      "fact": "identity.storeName: Bicicleta Scott Spark RC World Cup 2027",
+      "source_ids": [
+        "internal-src-5"
+      ],
+      "evidence_quote": "bicicleta scott spark rc world cup 2027 alta performance e suspensa import"
+    },
+    {
+      "fact": "commercial.storeUrl: https://thebikershop.com.br/produtos/bicicleta-scott-spark-rc-world-cup-20271/",
+      "source_ids": [
+        "internal-src-5"
+      ],
+      "evidence_quote": "spark rc world cup 2027 item https thebikershop com br produtos bicicleta scott spark rc world cup 20271 mainentity type product id https"
+    },
+    {
+      "fact": "identity.officialUrl: https://www.scott-sports.com/global/en/product/scott-spark-rc-world-cup-bike",
+      "source_ids": [
+        "internal-src-6"
+      ],
+      "evidence_quote": "type listitem position 4 item id https www scott sports com global en product scott spark rc world cup bike name scott spark rc world"
+    },
+    {
+      "fact": "identity.manufacturerModelCode: 290103",
+      "source_ids": [
+        "internal-src-6"
+      ],
+      "evidence_quote": "type nude suspension technology product id 290103 product price else if false"
+    },
+    {
+      "fact": "identity.sizes: S, M, L, XL",
+      "source_ids": [
+        "internal-src-6"
+      ],
+      "evidence_quote": "rekon race foldable tires 1 size s m l xl size chart times var defaulttheme"
+    },
+    {
+      "fact": "frame.material: Spark RC Carbon HMX",
+      "source_ids": [
+        "internal-src-6"
+      ],
+      "evidence_quote": "cup bike model 290103 key features spark rc carbon hmx frame rockshox sid select rl3"
+    },
+    {
+      "fact": "suspension.frontTravel: 120 mm",
+      "source_ids": [
+        "internal-src-5"
+      ],
+      "evidence_quote": "udh 12x148mm 55mm chainline curso front 120 mm rear 120 mm garfo rockshox"
+    },
+    {
+      "fact": "suspension.rearTravel: 120 mm",
+      "source_ids": [
+        "internal-src-5"
+      ],
+      "evidence_quote": "udh 12x148mm 55mm chainline curso front 120 mm rear 120 mm garfo rockshox"
+    },
+    {
+      "fact": "suspension.fork: RockShox SID Select+ RL3 Air",
+      "source_ids": [
+        "internal-src-6"
+      ],
+      "evidence_quote": "interface 12x148mm with 55mm chainline fork rockshox sid select rl3 air custom charger 3 mode damper"
+    },
+    {
+      "fact": "suspension.rearShock: RockShox NUDE 5 RL3 Trunnion",
+      "source_ids": [
+        "internal-src-6"
+      ],
+      "evidence_quote": "reb adj 120mm travel rear shock rockshox nude 5 rl3 trunnion scott custom w travel geo"
+    },
+    {
+      "fact": "drivetrain.rearDerailleur: SRAM X01 Eagle AXS",
+      "source_ids": [
+        "internal-src-6"
+      ],
+      "evidence_quote": "rs nude 5 rl3 120mm twinloc sram x01 eagle axs 12 speed sram level disc"
+    },
+    {
+      "fact": "drivetrain.shifting: wireless electronic",
+      "source_ids": [
+        "internal-src-6"
+      ],
+      "evidence_quote": "sram x01 eagle axs 12 speed wireless electronic shift system shifters sram gx"
+    },
+    {
+      "fact": "brakes.calipers: SRAM Level TLM Disc",
+      "source_ids": [
+        "internal-src-6"
+      ],
+      "evidence_quote": "x01 xg1295 10 52 t brakes sram level tlm disc tool free reach adj rotor"
     }
-  },
+  ],
   "limitations": [
-    "Os preços podem variar conforme promoções ou condições de pagamento.",
-    "Especificações técnicas podem ser alteradas pelos fabricantes sem aviso prévio.",
-    "Disponibilidade de estoque pode mudar rapidamente devido à alta demanda."
+    "Pesquisa web indisponível nesta execução (Groq 429; Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat); conteúdo limitado à base interna com fontes oficiais.",
+    "25 fato(s) removido(s) por falta de trecho verificavel na fonte recuperada."
   ],
   "grounding": {
     "queries": [],
-    "sourceCount": 5,
-    "provider": "groq-browser-search"
-  }
+    "sourceCount": 6,
+    "fallback": "internal-product-knowledge",
+    "claimContract": "explicit-units-v1",
+    "evidenceContract": "retrieved-excerpt-v1",
+    "verifiedAt": "2026-08-13T19:16:20.550Z"
+  },
+  "portfolio_evidence_url": "https://thebikershop.com.br/bikes/",
+  "portfolio_verified_at": "2026-08-13",
+  "portfolio_evidence_scope": "portfolio-category"
 }

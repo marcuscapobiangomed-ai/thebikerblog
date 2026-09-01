@@ -1,3 +1,12 @@
+---
+layout: default
+title: "Acordo de processamento de dados"
+description: "Modelo operacional de processamento de dados pessoais do TheBiker Blog."
+permalink: /legal/data-processing-agreement/
+robots: "noindex,follow"
+sitemap: false
+---
+
 # Acordo de Processamento de Dados — TheBikerBlog
 
 ## Partes

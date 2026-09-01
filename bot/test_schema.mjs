@@ -5,6 +5,11 @@ import { validateResearch } from "./src/schemas/research.schema.js";
 import { generateMarkdown } from "./src/generator.js";
 import { buildProductKnowledgeRecord } from "./src/knowledge/product-knowledge.js";
 import { extractPortfolioBikeUrls, productFromJsonLd } from "../scripts/discover-thebiker-catalog.js";
+import { assertResearchGrounding, researchGroundingErrors } from "./src/validation/research-grounding.js";
+import { articleResearchGroundingErrors, sanitizeStructuredArticleClaims } from "./src/validation/article-research-grounding.js";
+import { buildRepairPrompt } from "./src/editorial-prompt.js";
+import { buildDeterministicGroundedArticle } from "./src/automation/deterministic-article.js";
+import { assertEditorialPublicationGates } from "./src/validation/editorial-publication-gates.js";
 
 const validArticle = {
   title: "Comparativo de bikes endurance e race em 2026",
@@ -128,7 +133,8 @@ assert.match(generatedMarkdown, /promoted_brands: \["Scott"\]/);
 assert.match(generatedMarkdown, /portfolio_evidence_url: "https:\/\/www\.thebiker\.com\.br\/bikes\/estrada\/"/);
 assert.match(generatedMarkdown, /direct_answer:/);
 assert.match(generatedMarkdown, /faq:/);
-assert.match(generatedMarkdown, /## De onde vêm os dados desta análise/);
+assert.match(generatedMarkdown, /## Fontes/);
+assert.doesNotMatch(generatedMarkdown, /Como este artigo foi produzido|Análise documental baseada em especificações/);
 assert.throws(
   () => validateArticle({
     ...validArticle,
@@ -154,7 +160,160 @@ assert.throws(
   }),
   /site oficial da TheBiker/i,
 );
+assert.throws(
+  () => validateArticle({
+    ...validArticle,
+    content_type: "review",
+    brand: "",
+    product_name: "",
+    model_year: undefined,
+  }),
+  /Identidade exata do produto é obrigatória/i,
+);
 assert.doesNotThrow(() => validateResearch(validResearch));
+const groundedEditorialResearch = {
+  slug: "grounded-test",
+  title: "Pesquisa técnica rastreável",
+  content_type: "guia-tecnico",
+  review_method: "desk-research",
+  tested_by_thebikerblog: false,
+  market: "Brasil",
+  generated_at: "2026-08-13",
+  status: "pesquisa_concluida",
+  sources: [{ id: "src-1", name: "Fonte oficial", type: "official-website", url: "https://example.com/oficial", accessed: "2026-08-13" }],
+  confirmed_facts: [{ fact: "Fato confirmado.", source_ids: ["src-1"] }],
+  grounding: { sourceCount: 1, provider: "test-web-search" },
+};
+assert.doesNotThrow(() => assertResearchGrounding(groundedEditorialResearch, { requireFactReferences: true }));
+
+const curatedMaintenanceResearch = {
+  title: "Como limpar a transmissão depois de chuva e lama",
+  market: "Brasil",
+  confirmed_facts: [
+    { fact: "drivetrainCleaning: use o limpador recomendado pelo fabricante e seque a corrente depois da limpeza." },
+    { fact: "pressureWashing: jatos de alta pressão podem danificar componentes e vedações." },
+    { fact: "brakeInspection: inspecione pastilhas, rotores, comando e vazamentos antes de voltar a pedalar." },
+    { fact: "wetBraking: a distância de frenagem aumenta em piso molhado." },
+    { fact: "escalation: procure uma oficina quando houver dano, vazamento ou funcionamento irregular." },
+  ],
+  sources: [
+    { name: "SRAM Support", type: "official-website", url: "https://support.sram.com/hc/en-us/articles/", accessed_at: "2026-08-13" },
+    { name: "Shimano Manuals", type: "official-website", url: "https://si.shimano.com/", accessed_at: "2026-08-13" },
+  ],
+  portfolio_evidence_url: "https://thebikershop.com.br/componentes/",
+  portfolio_verified_at: "2026-08-13",
+  grounding: { fallback: "curated-official-offline-cache-v1" },
+};
+assert.throws(() => buildDeterministicGroundedArticle({
+  topic: curatedMaintenanceResearch.title,
+  researchData: curatedMaintenanceResearch,
+  contentType: "guia-tecnico",
+  today: "2026-08-13",
+}), /Fallback determinístico integral desativado/);
+const genericCachedResearch = {
+  ...curatedMaintenanceResearch,
+  title: "Scott Spark RC Expert 2027: ficha tecnica",
+  content_type: "review",
+  confirmed_facts: [
+    { fact: "frame.material: Spark RC HMF Carbon Gen5" },
+    { fact: "suspension.frontTravel: 120 mm" },
+    { fact: "suspension.rearTravel: 120 mm" },
+    { fact: "drivetrain.speeds: 12 velocidades" },
+    { fact: "drivetrain.shifting: wireless electronic" },
+  ],
+  sources: [{ name: "Scott Sports", type: "manufacturer", url: "https://www.scott-sports.com/global/en/product/scott-spark-rc-expert-bike", accessed_at: "2026-08-13" }],
+};
+assert.throws(
+  () => buildDeterministicGroundedArticle({
+    topic: genericCachedResearch.title,
+    researchData: genericCachedResearch,
+    contentType: "review",
+    today: "2026-08-13",
+  }),
+  /Fallback determinístico integral desativado/,
+);
+
+assert.throws(() => assertResearchGrounding({
+    ...groundedEditorialResearch,
+    confirmed_facts: [{ fact: "Fato órfão.", source_ids: ["src-inexistente"] }],
+  }, { requireFactReferences: true }), /fonte inexistente: src-inexistente/);
+assert.deepEqual(researchGroundingErrors({
+  ...groundedEditorialResearch,
+  grounding: { ...groundedEditorialResearch.grounding, sourceCount: 2 },
+}), ["grounding.sourceCount=2 diverge de sources.length=1"]);
+assert.deepEqual(researchGroundingErrors({
+  ...groundedEditorialResearch,
+  confirmed_facts: [],
+}, { requireFactReferences: true }), ["pesquisa sem fatos explicitamente fundamentados"]);
+assert.deepEqual(articleResearchGroundingErrors({
+  content: "A lei limita a assistência a 25 km/h e recomenda revisão a cada 1000 km.",
+  research: {
+    confirmed_facts: [{ fact: "A bateria foi testada a 25 km/h.", source_ids: ["src-shimano"] }],
+    sources: [{ id: "src-shimano", url: "https://bike.shimano.com/steps" }],
+  },
+}), [
+  "alegações numéricas ausentes dos fatos confirmados: 1000km",
+  "alegações legais exigem fonte governamental oficial",
+  "alegações legais numéricas sem suporte governamental: 25km/h, 1000km",
+]);
+assert.deepEqual(articleResearchGroundingErrors({
+  content: "A legislação limita a assistência a 25 km/h e exige revisão em seis meses.",
+  research: {
+    confirmed_facts: [
+      { fact: "O fabricante mede autonomia a 25 km/h.", source_ids: ["src-shimano"] },
+      { fact: "O CONTRAN admite propulsão auxiliar até 32 km/h e 1000 W.", source_ids: ["src-contran"] },
+    ],
+    sources: [
+      { id: "src-shimano", url: "https://bike.shimano.com/steps" },
+      { id: "src-contran", url: "https://www.gov.br/transportes/resolucao-996.pdf" },
+    ],
+  },
+}), [
+  "alegações numéricas ausentes dos fatos confirmados: seismeses",
+  "alegações legais numéricas sem suporte governamental: 25km/h, seismeses",
+]);
+assert.deepEqual(articleResearchGroundingErrors({
+  content: "A Resolução CONTRAN limita a propulsão auxiliar a 32 km/h e 1000 W.",
+  research: {
+    confirmed_facts: [{ fact: "A propulsão auxiliar é limitada a 32 km/h e 1000 W.", source_ids: ["src-contran"] }],
+    sources: [{ id: "src-contran", url: "https://www.gov.br/transportes/resolucao-996.pdf" }],
+  },
+}), []);
+const groundedRepairPrompt = buildRepairPrompt({
+  topic: "Bicicletas elétricas",
+  rawText: '{"sections":[]}',
+  validationError: "alegações numéricas ausentes: 90rpm",
+  contentType: "guia-tecnico",
+  template: { label: "Guia técnico" },
+  today: "2026-08-13",
+  researchData: {
+    confirmed_facts: [{ fact: "A propulsão auxiliar é limitada a 32 km/h.", source_ids: ["src-gov"] }],
+    sources: [{ id: "src-gov", url: "https://www.gov.br/transportes/resolucao.pdf" }],
+  },
+});
+assert.match(groundedRepairPrompt, /32 km\/h/);
+assert.match(groundedRepairPrompt, /remova a frase quando não houver fato confirmado equivalente/);
+const sanitizedClaims = sanitizeStructuredArticleClaims({
+  description: "Guia técnico de bicicletas elétricas.",
+  direct_answer: "A revisão ocorre em seis meses. A assistência legal chega a 32 km/h.",
+  methodologyNotice: "Análise documental.",
+  faq: [],
+  sections: [{ heading: "Manutenção", content: "Revise em seis meses. Confirme sempre o manual do fabricante." }],
+}, {
+  confirmed_facts: [{ fact: "O CONTRAN admite propulsão auxiliar até 32 km/h.", source_ids: ["src-gov"] }],
+  sources: [{ id: "src-gov", url: "https://www.gov.br/transportes/resolucao.pdf" }],
+});
+assert.match(sanitizedClaims.direct_answer, /32 km\/h/);
+assert.match(sanitizedClaims.sections[0].content, /Confirme sempre o manual do fabricante/);
+const schemaSafeClaims = sanitizeStructuredArticleClaims({
+  description: "Revisão em seis meses.", direct_answer: "Revisão em seis meses.", methodologyNotice: "Análise.",
+  faq: [{ question: "Quando revisar?", answer: "Em seis meses." }],
+  sections: [{ heading: "Manutenção", content: "Revise em seis meses." }],
+}, { confirmed_facts: [], sources: [] });
+assert.equal(schemaSafeClaims.description, "");
+assert.equal(schemaSafeClaims.direct_answer, "");
+assert.equal(schemaSafeClaims.faq.length, 0);
+assert.equal(schemaSafeClaims.sections.length, 0);
 
 const productKnowledgeResearch = {
   slug: "scott-addict-50-2026",

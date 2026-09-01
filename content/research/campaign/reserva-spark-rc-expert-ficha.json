@@ -1,0 +1,144 @@
+{
+  "slug": "reserva-spark-rc-expert-ficha",
+  "title": "Scott Spark RC Expert 2027: leitura técnica da montagem confirmada pelas fontes atuais",
+  "content_type": "review",
+  "review_method": "desk-research",
+  "tested_by_thebikerblog": false,
+  "market": "Brasil",
+  "generated_at": "2026-08-13",
+  "status": "pesquisa_concluida",
+  "sources": [
+    {
+      "name": "TheBiker — Bicicleta Scott Spark RC Expert 2027",
+      "url": "https://thebikershop.com.br/produtos/bicicleta-scott-spark-rc-expert-2027/",
+      "accessed": "2026-08-04",
+      "id": "cache-src-1",
+      "type": "store"
+    },
+    {
+      "name": "Scott — página oficial do modelo",
+      "url": "https://www.scott-sports.com/global/en/product/scott-spark-rc-expert-bike",
+      "accessed": "2026-08-04",
+      "id": "cache-src-2",
+      "type": "manufacturer"
+    }
+  ],
+  "editorialPriority": "P1",
+  "confirmed_facts": [
+    {
+      "fact": "identity.storeName: Bicicleta Scott Spark RC Expert 2027",
+      "source_ids": [
+        "cache-src-1"
+      ],
+      "evidence_quote": "bicicleta scott spark rc expert 2027 mtb carbono 12v import url"
+    },
+    {
+      "fact": "commercial.storeUrl: https://thebikershop.com.br/produtos/bicicleta-scott-spark-rc-expert-2027/",
+      "source_ids": [
+        "cache-src-1"
+      ],
+      "evidence_quote": "scott spark rc expert 2027 item https thebikershop com br produtos bicicleta scott spark rc expert 2027 mainentity type product id https"
+    },
+    {
+      "fact": "identity.officialUrl: https://www.scott-sports.com/global/en/product/scott-spark-rc-expert-bike",
+      "source_ids": [
+        "cache-src-2"
+      ],
+      "evidence_quote": "type listitem position 3 item id https www scott sports com global en product scott spark rc expert bike name scott spark rc expert"
+    },
+    {
+      "fact": "frame.material: Spark RC HMF Carbon Gen5",
+      "source_ids": [
+        "cache-src-2"
+      ],
+      "evidence_quote": "the detail for more information frame spark rc hmf carbon gen5 adjustable head angle and fork"
+    },
+    {
+      "fact": "suspension.frontTravel: 120 mm",
+      "source_ids": [
+        "cache-src-2"
+      ],
+      "evidence_quote": "12x148mm with 55mm chainline travel front 120 mm rear 120 mm fork fox"
+    },
+    {
+      "fact": "suspension.rearTravel: 120 mm",
+      "source_ids": [
+        "cache-src-2"
+      ],
+      "evidence_quote": "12x148mm with 55mm chainline travel front 120 mm rear 120 mm fork fox"
+    },
+    {
+      "fact": "suspension.fork: Fox 34SL Factory Grip SL, Kashima, 3P",
+      "source_ids": [
+        "cache-src-2"
+      ],
+      "evidence_quote": "120 mm rear 120 mm fork fox 34sl factory grip sl kashima 3p kabolt 15x110mm axle tapered steerer"
+    },
+    {
+      "fact": "suspension.rearShock: Fox Float Factory Traction Control EVOL, Kashima",
+      "source_ids": [
+        "cache-src-2"
+      ],
+      "evidence_quote": "steerer reb adj lockout rear shock fox float factory traction control evol kashima scott custom w travel geo"
+    },
+    {
+      "fact": "drivetrain.rearDerailleur: Shimano XT Di2 RD-M8250",
+      "source_ids": [
+        "cache-src-2"
+      ],
+      "evidence_quote": "remote 3 suspension modes rear derailleur shimano xt di2 rd m8250 12 speed wireless electronic shift"
+    },
+    {
+      "fact": "drivetrain.speeds: 12 velocidades",
+      "source_ids": [
+        "cache-src-1"
+      ],
+      "evidence_quote": "sem fio shimano xt di2 de 12 velocidades proporciona trocas r aacute pidas"
+    },
+    {
+      "fact": "drivetrain.shifting: wireless electronic",
+      "source_ids": [
+        "cache-src-2"
+      ],
+      "evidence_quote": "xt di2 rd m8250 12 speed wireless electronic shift system shifters shimano deore"
+    },
+    {
+      "fact": "drivetrain.crankset: Shimano XT FC-M8200, 34T",
+      "source_ids": [
+        "cache-src-2"
+      ],
+      "evidence_quote": "shimano deore di2 sw m6250 crankset shimano xt fc m8200 34t chainguide spark rc gen5 chainguide"
+    },
+    {
+      "fact": "drivetrain.cassette: Shimano Deore CS-M7200, 10-51T",
+      "source_ids": [
+        "cache-src-2"
+      ],
+      "evidence_quote": "bsa chain shimano cn m7100 cassette shimano deore cs m7200 10 51t brakes shimano deore br m6220"
+    },
+    {
+      "fact": "brakes.calipers: Shimano Deore BR-M6220 4-Piston",
+      "source_ids": [
+        "cache-src-2"
+      ],
+      "evidence_quote": "deore cs m7200 10 51t brakes shimano deore br m6220 4 piston front disc rotor shimano rt"
+    }
+  ],
+  "limitations": [
+    "Pesquisa web indisponível nesta execução (Groq 429; Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat); conteúdo limitado à base interna com fontes oficiais.",
+    "7 fato(s) removido(s) por falta de trecho verificavel na fonte recuperada.",
+    "Pesquisa de rede indisponÃ­vel; esta execuÃ§Ã£o reutilizou somente a ficha editorial oficial previamente validada."
+  ],
+  "grounding": {
+    "queries": [],
+    "sourceCount": 2,
+    "fallback": "campaign-research-offline-cache-v1",
+    "claimContract": "explicit-units-v1",
+    "evidenceContract": "campaign-research-cache-v1",
+    "verifiedAt": "2026-08-13T23:27:36.087Z",
+    "verificationMode": "campaign-offline-cache"
+  },
+  "portfolio_evidence_url": "https://thebikershop.com.br/bikes/",
+  "portfolio_verified_at": "2026-08-13",
+  "portfolio_evidence_scope": "portfolio-category"
+}

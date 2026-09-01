@@ -109,6 +109,7 @@ const FaqItemSchema = z.object({
 });
 
 export const ArticleSchema = z.object({
+  editorial_format: z.literal("full-article-v1").default("full-article-v1"),
   title: z.string().min(10, "Título precisa ter ao menos 10 caracteres").max(SEO_TITLE_MAX, `Título deve ter no máximo ${SEO_TITLE_MAX} caracteres`),
   description: z.string().min(META_DESCRIPTION_MIN, `Description precisa ter ao menos ${META_DESCRIPTION_MIN} caracteres`).max(META_DESCRIPTION_MAX, `Description deve ter no máximo ${META_DESCRIPTION_MAX} caracteres`),
   direct_answer: z.string().min(80, "Resposta direta precisa ter ao menos 80 caracteres").max(420, "Resposta direta muito longa"),
@@ -157,6 +158,19 @@ export const ArticleSchema = z.object({
 }).superRefine((article, ctx) => {
   for (const message of seoMetadataIssues({ title: article.title, description: article.description, directAnswer: article.direct_answer })) {
     ctx.addIssue({ code: "custom", path: ["description"], message });
+  }
+
+  if (["review", "lancamento"].includes(article.content_type)) {
+    for (const field of ["brand", "product_name", "model_year"]) {
+      const value = article[field];
+      if (value === undefined || value === null || String(value).trim() === "") {
+        ctx.addIssue({
+          code: "custom",
+          path: [field],
+          message: "Identidade exata do produto é obrigatória para impedir mistura de modelos.",
+        });
+      }
+    }
   }
 
   const promoted = [...article.promoted_brands];

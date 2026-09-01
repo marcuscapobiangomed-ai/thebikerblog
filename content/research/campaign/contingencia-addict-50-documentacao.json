@@ -1,0 +1,156 @@
+{
+  "slug": "contingencia-addict-50-documentacao",
+  "title": "Scott Addict 50: geometria, montagem e pontos que precisam ser confirmados na ficha atual",
+  "content_type": "review",
+  "review_method": "desk-research",
+  "tested_by_thebikerblog": false,
+  "market": "Brasil",
+  "generated_at": "2026-08-20",
+  "status": "pesquisa_concluida",
+  "sources": [
+    {
+      "name": "TheBiker — Bicicleta Scott Addict 50 2026 - Pré Venda",
+      "url": "https://thebikershop.com.br/produtos/bicicleta-scott-addict-50-2026-pre-venda-1bxzy/",
+      "accessed": "2026-08-04",
+      "id": "internal-src-1",
+      "type": "store"
+    },
+    {
+      "name": "Scott — página oficial do modelo",
+      "url": "https://www.scott-sports.com/global/en/product/scott-addict-50-bike",
+      "accessed": "2026-08-04",
+      "id": "internal-src-2",
+      "type": "manufacturer"
+    }
+  ],
+  "editorialPriority": "P1",
+  "confirmed_facts": [
+    {
+      "fact": "identity.storeName: Bicicleta Scott Addict 50 2026 - Pré Venda",
+      "source_ids": [
+        "internal-src-1"
+      ],
+      "evidence_quote": "bicicleta scott addict 50 2026 pre venda import url fonts googleapis com"
+    },
+    {
+      "fact": "commercial.storeUrl: https://thebikershop.com.br/produtos/bicicleta-scott-addict-50-2026-pre-venda-1bxzy/",
+      "source_ids": [
+        "internal-src-1"
+      ],
+      "evidence_quote": "addict 50 2026 pre venda item https thebikershop com br produtos bicicleta scott addict 50 2026 pre venda 1bxzy mainentity type product id https"
+    },
+    {
+      "fact": "identity.officialUrl: https://www.scott-sports.com/global/en/product/scott-addict-50-bike",
+      "source_ids": [
+        "internal-src-2"
+      ],
+      "evidence_quote": "type listitem position 5 item id https www scott sports com global en product scott addict 50 bike name scott addict 50 bike"
+    },
+    {
+      "fact": "identity.manufacturerModelCode: 425358",
+      "source_ids": [
+        "internal-src-2"
+      ],
+      "evidence_quote": "type road bikes ride product id 425358 product price else if false"
+    },
+    {
+      "fact": "frame.material: Addict HMF Carbon",
+      "source_ids": [
+        "internal-src-2"
+      ],
+      "evidence_quote": "50 bike model 425358 key features addict hmf carbon frame shimano 105 24 speed"
+    },
+    {
+      "fact": "fork.model: Addict HMF Flatmount Disc",
+      "source_ids": [
+        "internal-src-2"
+      ],
+      "evidence_quote": "internal cable routing integrated storage fork addict hmf flatmount disc 27 2 mm eccentric carbon"
+    },
+    {
+      "fact": "geometry.intent: endurance",
+      "source_ids": [
+        "internal-src-1"
+      ],
+      "evidence_quote": "hmf leve e aerodinamico com geometria endurance que oferece uma postura confortavel"
+    },
+    {
+      "fact": "drivetrain.groupset: Shimano 105",
+      "source_ids": [
+        "internal-src-2"
+      ],
+      "evidence_quote": "key features addict hmf carbon frame shimano 105 24 speed drivetrain shimano 105"
+    },
+    {
+      "fact": "drivetrain.rearSpeeds: 12 velocidades",
+      "source_ids": [
+        "internal-src-1"
+      ],
+      "evidence_quote": "e desempenho cambio shimano 105 2x 12 velocidades desempenho e confiabilidade para todas"
+    },
+    {
+      "fact": "drivetrain.cassette: Shimano CS-R7100 11-34",
+      "source_ids": [
+        "internal-src-2"
+      ],
+      "evidence_quote": "pb chain shimano cn m6100 cassette shimano cs r7100 11 34 brakes shimano br r7170 hyd"
+    },
+    {
+      "fact": "brakes.model: Shimano BR-R7170",
+      "source_ids": [
+        "internal-src-2"
+      ],
+      "evidence_quote": "105 st r7120 24 speed system shimano br r7170 hyd disc crankset shimano 105"
+    },
+    {
+      "fact": "wheels.model: Syncros RP2.0 Disc",
+      "source_ids": [
+        "internal-src-2"
+      ],
+      "evidence_quote": "24 speed drivetrain shimano 105 brakes syncros rp2 0 disc wheelset schwalbe one fold tires"
+    },
+    {
+      "fact": "tires.model: Schwalbe ONE 700x34C",
+      "source_ids": [
+        "internal-src-1"
+      ],
+      "evidence_quote": "syncros rp2 0 disc com pneus schwalbe one 700x34c garantem leveza e resistencia para"
+    },
+    {
+      "fact": "limits.maxSystemWeight: 120 kg",
+      "source_ids": [
+        "internal-src-1"
+      ],
+      "evidence_quote": "maxima do sistema bike ciclista equipamentos 120 kg ideal para competicao em estrada"
+    },
+    {
+      "fact": "identity.color: Carbon Grey",
+      "source_ids": [
+        "internal-src-1"
+      ],
+      "evidence_quote": "true contact false option0 47 option1 carbon grey option2 null id 1502501818 image"
+    },
+    {
+      "fact": "commercial.sizesListed: 47, 49, 52, 54, 56, 58",
+      "source_ids": [
+        "internal-src-1"
+      ],
+      "evidence_quote": "algumas promocoes ver mais detalhes tamanho 47 49 52 54 56 58 tamanho 52 47 49 52"
+    }
+  ],
+  "limitations": [
+    "Pesquisa web indisponível nesta execução (Groq 429; Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat); conteúdo limitado à base interna com fontes oficiais.",
+    "5 fato(s) removido(s) por falta de trecho verificavel na fonte recuperada."
+  ],
+  "grounding": {
+    "queries": [],
+    "sourceCount": 2,
+    "fallback": "internal-product-knowledge",
+    "claimContract": "explicit-units-v1",
+    "evidenceContract": "retrieved-excerpt-v1",
+    "verifiedAt": "2026-08-20T16:01:22.136Z"
+  },
+  "portfolio_evidence_url": "https://thebikershop.com.br/bikes/",
+  "portfolio_verified_at": "2026-08-20",
+  "portfolio_evidence_scope": "portfolio-category"
+}

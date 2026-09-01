@@ -213,17 +213,6 @@ function fixBodyContent(body, contentType) {
   return fixed;
 }
 
-function buildMethodology(contentType, reviewMethod) {
-  if (reviewMethod === "hands-on-test") {
-    return `> **Como testamos:** o produto foi testado presencialmente pela equipe The Biker Blog.`;
-  }
-  return `> **Como este artigo foi produzido:** análise documental baseada em especificações oficiais, pesquisa de preços no mercado brasileiro e comparação com modelos concorrentes. O produto não foi testado presencialmente pelo The Biker Blog. O conteúdo foi elaborado com auxílio de IA e revisado editorialmente.`;
-}
-
-function buildSourcesSection(contentType) {
-  return `\n\n---\n\n## Fontes e metodologia\n\nAs informações técnicas foram verificadas nas páginas oficiais dos fabricantes e distribuidores. Os preços foram consultados em lojas brasileiras e podem variar.\n\nEste artigo é uma análise documental. Os produtos não foram testados presencialmente pela equipe.\n\n### Fontes consultadas\n\n1. Site oficial do fabricante.\n2. Distribuidor oficial no Brasil.\n3. Pesquisa de mercado em lojas brasileiras.\n`;
-}
-
 function migratePost(filePath, dryRun) {
   const fileName = path.basename(filePath);
   const content = fs.readFileSync(filePath, "utf-8");
@@ -286,17 +275,7 @@ function migratePost(filePath, dryRun) {
 
   // Corrigir body
   let fixedBody = fixBodyContent(body, contentType);
-
-  // Adicionar aviso de metodologia se não existir
-  const methodologyNotice = buildMethodology(contentType, reviewMethod);
-  if (!fixedBody.includes("Como este artigo foi produzido") && !fixedBody.includes("Como testamos")) {
-    fixedBody = methodologyNotice + "\n\n" + fixedBody;
-  }
-
-  // Adicionar seção de fontes se não existir
-  if (!fixedBody.match(/##\s*Fontes/i)) {
-    fixedBody += buildSourcesSection(contentType);
-  }
+  fixedBody = fixedBody.replace(/^>\s*\*\*(?:Como este artigo foi produzido|Como testamos):\*\*.*(?:\r?\n){1,2}/gimu, "");
 
   // Remover fonte duplicada se já existe
   fixedBody = fixedBody.replace(/\n---\n\n## Fontes e metodologia[\s\S]*?(\n##|$)/, "\n$1");
@@ -304,6 +283,7 @@ function migratePost(filePath, dryRun) {
   // Construir novo frontmatter
   const newFrontmatter = `---
 layout: post
+published: false
 title: "${escapeYaml(existingTitle)}"
 description: "${escapeYaml(existingDescription || existingTitle)}"
 date: ${existingDate}

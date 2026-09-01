@@ -8,6 +8,9 @@ import { hashEditorialText } from './validation/editorial-receipt.js'
 import { classifyEditorialFailure } from './validation/editorial-failures.js'
 import { RaceProgramSchema, selectRaceEventsForEditorialItem, validateRaceEditorialStructure } from './automation/race-program.js'
 import { linkTheBikerProducts, loadTheBikerLinkData } from './editorial/product-linker.js'
+import { assertResearchGrounding } from './validation/research-grounding.js'
+import { assertArticleResearchGrounding } from './validation/article-research-grounding.js'
+import { assertCampaignVisualAvailable } from './images/official-campaign-image.js'
 
 const defaultRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..')
 
@@ -78,7 +81,11 @@ export async function runCampaignProducer({ root = defaultRoot, env = process.en
     item.lastAttemptAt = now.toISOString()
     item.status = 'researching'
     await persist(root, campaign)
+    if (['exact-product', 'real-context'].includes(item.heroImage?.mode)) {
+      await assertCampaignVisualAvailable({ root, item, approvedAt: today })
+    }
     const research = await researcher.research({ item, internalEvidence: knowledge.evidence, raceEvents, today })
+    assertResearchGrounding(research, { requireFactReferences: true })
     if (item.race) {
       if (!Array.isArray(research.sources) || research.sources.length === 0) throw new Error('Pesquisa de corrida sem fontes oficiais rastreáveis')
       item.race.sourceStatus = 'verified'
@@ -94,6 +101,7 @@ export async function runCampaignProducer({ root = defaultRoot, env = process.en
     const post = await ai.processCase(item.title, research)
     if (post.pipelineMetadata?.premiumEditPending) throw new Error('Revisão premium necessária, mas DeepSeek não está disponível')
     const linkedPost = linkTheBikerProducts(post.content, loadTheBikerLinkData(root))
+    assertArticleResearchGrounding({ content: linkedPost.content, research })
     const draftDir = path.join(root, '_posts/drafts')
     await fs.mkdir(draftDir, { recursive: true })
     const postPath = `_posts/drafts/${item.publishDate}-${item.id}.md`
@@ -109,6 +117,10 @@ export async function runCampaignProducer({ root = defaultRoot, env = process.en
       generatedAt: now.toISOString(),
       contentHash: hashEditorialText(linkedPost.content),
       sourceHash: post.pipelineMetadata?.sourceHash,
+      ...(post.pipelineMetadata?.deterministicFullArticleFallbackUsed ? {
+        deterministicFullArticleFallbackUsed: true,
+        deterministicFullArticleFallbackTrigger: post.pipelineMetadata.deterministicFullArticleFallbackTrigger,
+      } : {}),
     }
     delete item.failure
     await persist(root, campaign)

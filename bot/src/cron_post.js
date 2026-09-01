@@ -53,11 +53,9 @@ export async function runAutomation({ env = process.env, ai, publisher, now = ne
 }
 
 async function main() {
-  const result = await runAutomation();
-  console.log(JSON.stringify(result));
-  if (process.env.GITHUB_OUTPUT) {
-    await fs.appendFile(process.env.GITHUB_OUTPUT, `status=${result.status}\npr_url=${result.prUrl || ""}\n`);
-  }
+  throw new Error(
+    "Entrypoint automation:run legado bloqueado. Use campaign:produce e campaign:finalize, que exigem ledger, imagens, recibos e gates.",
+  );
 }
 
 if (path.resolve(process.argv[1] || "") === fileURLToPath(import.meta.url)) {

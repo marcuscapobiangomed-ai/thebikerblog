@@ -1,9 +1,7 @@
 {% assign product_id = include.product_id %}
 {% assign price_data = site.data.prices[product_id] %}
 {% assign commerce_config = site.data.affiliates["affiliates-config"] %}
-{% unless commerce_config.commerceEnabled %}
-<p class="prices-unavailable">Preços e disponibilidade estão em revisão editorial. Consulte a loja oficial antes de decidir a compra.</p>
-{% else %}
+{% if commerce_config.commerceEnabled %}
 {% if price_data and price_data.observations.size > 0 %}
 <div class="product-prices">
   <h4>Preços no Brasil</h4>
@@ -40,4 +38,4 @@
 {% else %}
 <p class="prices-unavailable">Preços não disponíveis no momento.</p>
 {% endif %}
-{% endunless %}
+{% endif %}

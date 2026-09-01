@@ -1,7 +1,13 @@
+import fs from 'node:fs/promises'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { validateResearch } from '../schemas/research.schema.js'
+import { assertResearchGrounding, pruneUnsupportedFacts } from '../validation/research-grounding.js'
+import { verifyResearchEvidence } from '../validation/source-evidence.js'
 
 const PRODUCT_DOMAINS = ['thebikershop.com.br', 'scott-sports.com', 'syncros.com', 'bike.shimano.com', 'si.shimano.com', 'sram.com', 'rockshox.com', 'ridefox.com', 'maxxis.com', 'oggi.com.br']
 const SPORT_DOMAINS = ['uci.org', 'cbc.esp.br', 'ucimtbworldseries.com', 'olympics.com']
+const REGULATORY_DOMAINS = ['gov.br']
 const PORTFOLIO_CATEGORY_URLS = {
   'manutencao-ajustes': 'https://thebikershop.com.br/componentes/',
   componentes: 'https://thebikershop.com.br/componentes/',
@@ -38,6 +44,13 @@ const CURATED_TOPIC_EVIDENCE = [
       wetBraking: 'Em piso molhado, a distância de frenagem aumenta; reduza a velocidade e acione os freios mais cedo e de forma suave.',
       escalation: 'Danos, vazamentos, ruídos anormais ou funcionamento irregular exigem avaliação da loja ou de mecânico qualificado.',
     },
+    evidenceQuotes: {
+      drivetrainCleaning: 'Use only biodegradable non-acidic cleaners to clean the cassette, chainring, and chain. Rinse thoroughly with water and wipe dry.',
+      pressureWashing: 'Avoid direct pressure washing to protect the components as you would with all the seals and bearings on any bike.',
+      brakeInspection: 'Brake pads and rotors only take a minute to check every few rides.',
+      wetBraking: 'The required braking distance will be longer during wet conditions.',
+      escalation: 'If any damage is found, consult your dealer for further inspection.',
+    },
     sources: [
       { name: 'SRAM — AXS Bike Care and Maintenance', type: 'manufacturer', url: 'https://www.sram.com/en/learn/axs-bike-care-and-maintenance' },
       { name: 'SRAM — Apex Maintenance', type: 'manufacturer', url: 'https://www.sram.com/en/learn/apex-d1-welcome-guide/maintenance' },
@@ -45,6 +58,100 @@ const CURATED_TOPIC_EVIDENCE = [
     ],
   },
 ]
+
+const REPOSITORY_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../..')
+
+async function loadCampaignResearchCache({ item, today, contentType, env }) {
+  if (String(env.CAMPAIGN_CURATED_OFFLINE_FALLBACK || 'false').toLowerCase() === 'false') return null
+  const filename = `${item.id}.json`
+  const directories = [
+    path.resolve(process.cwd(), 'content/research/campaign'),
+    path.resolve(process.cwd(), '../content/research/campaign'),
+    path.join(REPOSITORY_ROOT, 'content/research/campaign'),
+  ]
+  let cached = null
+  for (const directory of directories) {
+    try {
+      cached = JSON.parse(await fs.readFile(path.join(directory, filename), 'utf8'))
+      break
+    } catch {
+      // O cache é opcional; a pesquisa interna continua sendo a próxima camada.
+    }
+  }
+  if (!cached || (cached.slug && cached.slug !== item.id)) return null
+
+  const rawSources = Array.isArray(cached.sources) ? cached.sources : []
+  const sourceIdMap = new Map()
+  const sources = rawSources.map((source, index) => {
+    const url = String(source?.url || '').trim()
+    if (!url) return null
+    const originalId = String(source?.id || index + 1)
+    const id = `cache-src-${index + 1}`
+    sourceIdMap.set(originalId, id)
+    return {
+      id,
+      name: String(source.name || `Fonte oficial ${index + 1}`),
+      type: ['manufacturer', 'distributor', 'store', 'official-website', 'import-data'].includes(source.type)
+        ? source.type
+        : 'official-website',
+      url,
+      accessed: String(source.accessed || source.accessed_at || source.accessedAt || today),
+    }
+  }).filter(Boolean)
+  if (sources.length === 0) return null
+  const sourceIds = sources.map((source) => source.id)
+  const rawFacts = Array.isArray(cached.confirmed_facts)
+    ? cached.confirmed_facts
+    : Object.entries(cached.confirmed_facts || {}).map(([key, value]) => ({
+      fact: `${key}: ${typeof value === 'object' ? (value.statement || value.value || JSON.stringify(value)) : value}`,
+      source_ids: typeof value === 'object' ? value.source_ids || value.sourceIds || [] : [],
+    }))
+  const confirmedFacts = rawFacts.map((entry) => {
+    const fact = typeof entry === 'string'
+      ? entry
+      : String(entry?.fact || entry?.statement || entry?.value || '').trim()
+    if (!fact) return null
+    const referenced = Array.isArray(entry?.source_ids)
+      ? entry.source_ids.map((id) => sourceIdMap.get(String(id)) || String(id)).filter((id) => sourceIds.includes(id))
+      : []
+    return {
+      fact,
+      source_ids: referenced.length > 0 ? [...new Set(referenced)] : sourceIds,
+      ...(entry?.evidence_quote ? { evidence_quote: String(entry.evidence_quote) } : {}),
+    }
+  }).filter(Boolean)
+  if (confirmedFacts.length === 0) return null
+
+  const normalized = {
+    ...cached,
+    slug: item.id,
+    title: item.title,
+    content_type: contentType,
+    review_method: 'desk-research',
+    tested_by_thebikerblog: false,
+    market: 'Brasil',
+    generated_at: today,
+    status: 'pesquisa_concluida',
+    confirmed_facts: confirmedFacts,
+    sources,
+    limitations: [
+      ...(Array.isArray(cached.limitations) ? cached.limitations : []),
+      'Pesquisa de rede indisponível; esta execução reutilizou somente a ficha editorial oficial previamente validada.',
+    ],
+    grounding: {
+      ...(cached.grounding || {}),
+      queries: [],
+      sourceCount: sources.length,
+      fallback: 'campaign-research-offline-cache-v1',
+      evidenceContract: 'campaign-research-cache-v1',
+      verifiedAt: new Date().toISOString(),
+      verificationMode: 'campaign-offline-cache',
+      claimContract: 'explicit-units-v1',
+    },
+    ...portfolioEvidenceFor(item, today),
+  }
+  return assertResearchGrounding(validateResearch(normalized), { requireFactReferences: true })
+}
 
 function extractJson(text) {
   const clean = String(text || '').replace(/^```(?:json)?\s*/i, '').replace(/```\s*$/i, '').trim()
@@ -58,7 +165,7 @@ function extractJson(text) {
 
 function allowedSource(url, raceCoverage) {
   const host = new URL(url).hostname.toLowerCase().replace(/^www\./, '')
-  return [...PRODUCT_DOMAINS, ...(raceCoverage ? SPORT_DOMAINS : [])].some((domain) => host === domain || host.endsWith(`.${domain}`))
+  return [...PRODUCT_DOMAINS, ...REGULATORY_DOMAINS, ...(raceCoverage ? SPORT_DOMAINS : [])].some((domain) => host === domain || host.endsWith(`.${domain}`))
 }
 
 function compactEvidence(records) {
@@ -77,6 +184,7 @@ function curatedEvidence(item, today) {
     .map((entry) => ({
       id: entry.id,
       facts: entry.facts,
+      evidenceQuotes: entry.evidenceQuotes,
       sources: entry.sources.map((source) => ({ ...source, accessedAt: today })),
     }))
 }
@@ -144,24 +252,49 @@ async function fetchGeminiGrounded(fetchImpl, prompt, env) {
   }
 }
 
-function internalResearch({ item, internalEvidence, today, contentType, reason, raceCoverage = false }) {
+async function internalResearch({ item, internalEvidence, today, contentType, reason, raceCoverage = false, fetchImpl = fetch, env = process.env }) {
   const curated = curatedEvidence(item, today)
   const evidence = [...internalEvidence, ...curated]
   const sourceMap = new Map()
+  const confirmedFacts = []
   for (const record of evidence) {
+    const sourceIds = []
+    const recordSourceIds = new Map()
     for (const source of record.sources || []) {
       if (!source.url || !allowedSource(source.url, raceCoverage)) continue
-      sourceMap.set(source.url, {
-        name: source.name,
-        type: source.type || 'official-website',
-        url: source.url,
-        accessed: source.accessedAt || today,
+      if (!sourceMap.has(source.url)) {
+        sourceMap.set(source.url, {
+          id: `internal-src-${sourceMap.size + 1}`,
+          name: source.name,
+          type: source.type || 'official-website',
+          url: source.url,
+          accessed: source.accessedAt || today,
+        })
+      }
+      sourceIds.push(sourceMap.get(source.url).id)
+      recordSourceIds.set(source.id, sourceMap.get(source.url).id)
+    }
+    for (const [field, detail] of Object.entries(record.facts || {})) {
+      if (detail?.status && detail.status !== 'confirmed') continue
+      const value = detail && typeof detail === 'object' && 'value' in detail ? detail.value : detail
+      const unit = detail && typeof detail === 'object' ? detail.unit : null
+      const factSources = Array.isArray(detail?.sourceIds)
+        ? detail.sourceIds.map((id) => recordSourceIds.get(id)).filter(Boolean)
+        : sourceIds
+      const display = Array.isArray(value) ? value.join(', ') : String(value ?? '')
+      const lookup = `${display}${unit ? ` ${unit}` : ''}`.trim()
+      if (lookup && factSources.length > 0) confirmedFacts.push({
+        fact: `${field}: ${lookup}`,
+        ...(record.evidenceQuotes?.[field] ? { evidence_quote: record.evidenceQuotes[field] } : {}),
+        evidence_lookup: lookup,
+        evidence_candidate_ids: [...new Set(sourceIds)],
+        source_ids: [...new Set(factSources)],
       })
     }
   }
   const sources = [...sourceMap.values()]
   if (sources.length === 0) throw new Error(`Fallback interno bloqueado: nenhuma fonte oficial permitida (${reason})`)
-  return validateResearch({
+  const research = {
     slug: item.id,
     title: item.title,
     content_type: contentType,
@@ -171,12 +304,47 @@ function internalResearch({ item, internalEvidence, today, contentType, reason, 
     generated_at: today,
     status: 'pesquisa_concluida',
     editorialPriority: 'P1',
-    confirmed_facts: Object.fromEntries(evidence.map((record) => [record.id, record.facts || {}])),
+    confirmed_facts: confirmedFacts,
     limitations: [`Pesquisa web indisponível nesta execução (${reason}); conteúdo limitado à base interna com fontes oficiais.`],
     sources,
-    grounding: { queries: [], sourceCount: sources.length, fallback: curated.length > 0 ? 'curated-official-knowledge' : 'internal-product-knowledge' },
+    grounding: { queries: [], sourceCount: sources.length, fallback: curated.length > 0 ? 'curated-official-knowledge' : 'internal-product-knowledge', claimContract: 'explicit-units-v1' },
     ...portfolioEvidenceFor(item, today),
+  }
+  const verified = await verifyResearchEvidence(research, {
+    fetchImpl,
+    allowedSource: (url) => allowedSource(url, raceCoverage),
+    requireExcerpts: true,
+    deriveEvidenceFromLookup: true,
+    timeoutMs: Math.max(1000, Number(env.SOURCE_HTTP_TIMEOUT_MS || 30000)),
   })
+  const curatedFacts = research.confirmed_facts.filter((fact) => String(fact.evidence_quote || '').trim().length >= 12)
+  const activeFacts = Array.isArray(verified.confirmed_facts) ? verified.confirmed_facts : []
+  const curatedFallbackEnabled = String(env.CAMPAIGN_CURATED_OFFLINE_FALLBACK || 'true').toLowerCase() !== 'false'
+  if (curatedFallbackEnabled && curated.length > 0 && curatedFacts.length > 0 && activeFacts.length < curatedFacts.length) {
+    const curatedSourceIds = new Set(curatedFacts.flatMap((fact) => Array.isArray(fact.source_ids) ? fact.source_ids : []))
+    const curatedSources = research.sources.filter((source) => curatedSourceIds.has(source.id))
+    if (curatedSources.length > 0) {
+      const offline = {
+        ...research,
+        confirmed_facts: curatedFacts,
+        sources: curatedSources,
+        limitations: [
+          ...(Array.isArray(research.limitations) ? research.limitations : []),
+          'Trechos oficiais mantidos em cache curado; a revalidação HTTP foi indisponível nesta execução.',
+        ],
+        grounding: {
+          ...(research.grounding || {}),
+          sourceCount: curatedSources.length,
+          evidenceContract: 'curated-official-excerpt-v1',
+          verifiedAt: new Date().toISOString(),
+          fallback: 'curated-official-offline-cache-v1',
+          verificationMode: 'curated-offline-cache',
+        },
+      }
+      return assertResearchGrounding(validateResearch(offline), { requireFactReferences: true })
+    }
+  }
+  return assertResearchGrounding(validateResearch(verified), { requireFactReferences: true })
 }
 
 export function contentTypeForCampaignItem(item) {
@@ -195,9 +363,10 @@ export function contentTypeForCampaignItem(item) {
 }
 
 export class GroundedResearcher {
-  constructor(env = process.env, fetchImpl = fetch) {
+  constructor(env = process.env, fetchImpl = fetch, sourceFetchImpl = fetchImpl) {
     this.env = env
     this.fetch = fetchImpl
+    this.sourceFetch = sourceFetchImpl
   }
 
   async research({ item, internalEvidence, raceEvents = [], today }) {
@@ -209,6 +378,9 @@ export class GroundedResearcher {
       'Priorize documentos oficiais, manuais dos fabricantes, TheBiker Shop e, em competições, organizadores oficiais.',
       'É proibido promover produtos ou marcas concorrentes. Não invente testes, medidas, resultados ou disponibilidade.',
       'Toda afirmação técnica deve aparecer em confirmed_facts e ter suporte em uma fonte URL permitida.',
+      'Para cada fato, inclua evidence_quote com um trecho literal curto (12 a 20 palavras) encontrado na URL indicada. Sem trecho literal, o fato será descartado.',
+      'Alegações legais brasileiras exigem fonte primária gov.br, preferencialmente a resolução vigente do CONTRAN. Não atribua limites legais a fonte comercial ou fabricante.',
+      'Qualquer número com unidade usado no artigo precisa aparecer literalmente em um confirmed_fact.',
       'Seja conciso: retorne no máximo 8 fatos confirmados, 5 fontes e 3 limitações.',
       `Título: ${item.title}`,
       `Resumo editorial: ${item.summary}`,
@@ -218,10 +390,25 @@ export class GroundedResearcher {
       `Data: ${today}`,
       `Evidência de portfólio TheBiker obrigatória: ${JSON.stringify(portfolioEvidenceFor(item, today))}`,
       `Conteúdo interno já validado: ${JSON.stringify(compactEvidence(internalEvidence))}`,
-      `Retorne: {"slug":"${item.id}","title":"${item.title}","content_type":"${contentType}","review_method":"desk-research","tested_by_thebikerblog":false,"market":"Brasil","generated_at":"${today}","status":"pesquisa_concluida","editorialPriority":"P1","confirmed_facts":{},"limitations":[],"sources":[{"name":"...","type":"manufacturer|store|official-website","url":"https://...","accessed":"${today}"}]}`
+      'Cada fonte deve ter id único. Cada fato deve usar source_ids e referenciar somente IDs presentes em sources.',
+      `Retorne: {"slug":"${item.id}","title":"${item.title}","content_type":"${contentType}","review_method":"desk-research","tested_by_thebikerblog":false,"market":"Brasil","generated_at":"${today}","status":"pesquisa_concluida","editorialPriority":"P1","confirmed_facts":[{"fact":"...","evidence_quote":"trecho literal curto da fonte","source_ids":["src-1"]}],"limitations":[],"sources":[{"id":"src-1","name":"...","type":"manufacturer|store|official-website","url":"https://...","accessed":"${today}"}]}`
     ].join('\n')
     if (provider !== 'groq') throw new Error(`Provedor de pesquisa não suportado: ${provider}`)
-    if (!this.env.GROQ_API_KEY) throw new Error('GROQ_API_KEY é obrigatória para pesquisa atual')
+    const fallbackResearch = async (reason) => {
+      if (!raceCoverage) {
+        try {
+          const cached = await loadCampaignResearchCache({ item, today, contentType, env: this.env })
+          if (cached) return cached
+        } catch {
+          // Cache inválido: deixa a camada interna aplicar seus próprios gates.
+        }
+      }
+      return internalResearch({ item, internalEvidence, today, contentType, reason, raceCoverage, fetchImpl: this.sourceFetch, env: this.env })
+    }
+    if (!this.env.GROQ_API_KEY) {
+      if (!raceCoverage) return fallbackResearch('GROQ_API_KEY ausente')
+      throw new Error('GROQ_API_KEY é obrigatória para pesquisa atual')
+    }
     const model = this.env.GROQ_RESEARCH_MODEL || 'groq/compound-mini'
     const requestBody = model.startsWith('groq/compound')
       ? {
@@ -247,7 +434,7 @@ export class GroundedResearcher {
       }, this.env)
     } catch (error) {
       if (!raceCoverage) {
-        return internalResearch({ item, internalEvidence, today, contentType, reason: `Groq indisponível: ${error.name || error.message}`, raceCoverage })
+        return fallbackResearch(`Groq indisponível: ${error.name || error.message}`)
       }
       throw error
     }
@@ -269,14 +456,7 @@ export class GroundedResearcher {
           groundingQueries = gemini.queries
         } catch (geminiError) {
           if (!raceCoverage) {
-            return internalResearch({
-              item,
-              internalEvidence,
-              today,
-              contentType,
-              reason: `Groq ${response.status}; ${geminiError.message}`,
-              raceCoverage,
-            })
+            return fallbackResearch(`Groq ${response.status}; ${geminiError.message}`)
           }
           throw geminiError
         }
@@ -286,7 +466,7 @@ export class GroundedResearcher {
           : contextLengthExceeded
             ? 'Groq 400 context_length_exceeded'
             : `Groq ${response.status}`
-        return internalResearch({ item, internalEvidence, today, contentType, reason, raceCoverage })
+        return fallbackResearch(reason)
       } else {
         throw new Error(`Groq grounded research: ${response.status} - ${detail}`)
       }
@@ -296,37 +476,72 @@ export class GroundedResearcher {
       try {
         research = extractJson(text)
       } catch (error) {
-        if (!raceCoverage) {
-          return internalResearch({
-            item,
-            internalEvidence,
-            today,
-            contentType,
-            reason: `Groq retornou JSON inválido: ${error.message}`,
-            raceCoverage,
-          })
-        }
-        throw error
+        if (this.env.GEMINI_API_KEY) {
+          try {
+            const gemini = await fetchGeminiGrounded(this.fetch, prompt, this.env)
+            research = gemini.research
+            groundingProvider = 'gemini-google-search'
+            groundingModel = gemini.model
+            groundingQueries = gemini.queries
+          } catch (geminiError) {
+            if (!raceCoverage) {
+              return fallbackResearch(`Groq retornou JSON inválido; ${geminiError.message}`)
+            }
+            throw geminiError
+          }
+        } else if (!raceCoverage) {
+          return fallbackResearch(`Groq retornou JSON inválido: ${error.message}`)
+        } else throw error
       }
     }
-    research.sources = (research.sources || []).filter((source) => source.url && allowedSource(source.url, raceCoverage))
-    if (research.sources.length === 0) throw new Error('Pesquisa bloqueada: nenhuma fonte oficial permitida foi retornada')
-    research.slug = item.id
-    research.title = item.title
-    research.content_type = contentType
-    research.review_method = 'desk-research'
-    research.tested_by_thebikerblog = false
-    research.market = 'Brasil'
-    research.generated_at = today
-    research.status = 'pesquisa_concluida'
-    research.editorialPriority = 'P1'
-    Object.assign(research, portfolioEvidenceFor(item, today))
-    research.grounding = {
-      queries: groundingQueries,
-      sourceCount: research.sources.length,
-      provider: groundingProvider,
-      model: groundingModel,
+    const verifyCandidate = async (candidate, { providerName, modelName, queries }) => {
+      candidate.sources = (candidate.sources || []).filter((source) => source.url && allowedSource(source.url, raceCoverage))
+      candidate = pruneUnsupportedFacts(candidate)
+      if (candidate.sources.length === 0) throw new Error('nenhuma fonte oficial permitida foi retornada')
+      candidate.slug = item.id
+      candidate.title = item.title
+      candidate.content_type = contentType
+      candidate.review_method = 'desk-research'
+      candidate.tested_by_thebikerblog = false
+      candidate.market = 'Brasil'
+      candidate.generated_at = today
+      candidate.status = 'pesquisa_concluida'
+      candidate.editorialPriority = 'P1'
+      Object.assign(candidate, portfolioEvidenceFor(item, today))
+      candidate.grounding = {
+        queries,
+        sourceCount: candidate.sources.length,
+        provider: providerName,
+        model: modelName,
+        claimContract: 'explicit-units-v1',
+      }
+      candidate = await verifyResearchEvidence(candidate, {
+        fetchImpl: this.sourceFetch,
+        allowedSource: (url) => allowedSource(url, raceCoverage),
+        requireExcerpts: true,
+        timeoutMs: Math.max(1000, Number(this.env.SOURCE_HTTP_TIMEOUT_MS || 30000)),
+      })
+      const validated = validateResearch(candidate)
+      return assertResearchGrounding(validated, { requireFactReferences: true })
     }
-    return validateResearch(research)
+    try {
+      return await verifyCandidate(research, { providerName: groundingProvider, modelName: groundingModel, queries: groundingQueries })
+    } catch (primaryError) {
+      if (groundingProvider !== 'gemini-google-search' && this.env.GEMINI_API_KEY) {
+        try {
+          const gemini = await fetchGeminiGrounded(this.fetch, prompt, this.env)
+          return await verifyCandidate(gemini.research, {
+            providerName: 'gemini-google-search',
+            modelName: gemini.model,
+            queries: gemini.queries,
+          })
+        } catch (fallbackError) {
+          if (!raceCoverage) return fallbackResearch(`Groq sem evidência: ${primaryError.message}; Gemini sem evidência: ${fallbackError.message}`)
+          throw new Error(`Pesquisa bloqueada após verificação em Groq e Gemini: Groq: ${primaryError.message}; Gemini: ${fallbackError.message}`)
+        }
+      }
+      if (!raceCoverage) return fallbackResearch(primaryError.message)
+      throw new Error(`Pesquisa bloqueada após verificação documental: ${primaryError.message}`)
+    }
   }
 }

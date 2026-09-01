@@ -1,13 +1,14 @@
 ---
+editorial_hold_reason: "Revisão de fontes, precisão e concisão pendente"
 image_subject_id: "quadro-suspensao-spark-rc-world-cup-hmx-2026-flight-attendant"
 layout: post
-published: true
-title: "Spark RC: como a suspensão integrada muda estrutura e serviço"
+published: false
+title: "Suspensão integrada da Spark RC: estrutura, serviço e massa"
 slug: "engenharia-suspensao-integrada-spark"
 date: 2026-08-11
-last_modified_at: 2026-08-05
+last_modified_at: 2026-08-13
 author: "Equipe TheBiker"
-reviewed_by: "TheBiker AI Editorial Gate"
+reviewed_by: ""
 content_type: "guia-tecnico"
 audience_segment: "core_technical_cyclists"
 audience_intent: "solve_problem"
@@ -27,8 +28,8 @@ price_currency: "BRL"
 price_checked_at: "2026-08-05"
 category: "guia-tecnico"
 tags: ["ciclismo", "mtb", "suspensao-integrada", "scott-spark-rc", "flex-pivot", "flight-attendant"]
-description: "Entenda como a suspensão integrada e o Flex Pivot da Scott Spark RC afetam estrutura, manutenção e distribuição de massa em uma plataforma XC de 120 mm."
-direct_answer: "Na Scott Spark RC, o amortecedor integrado protege o conjunto e concentra massa, mas muda o acesso para inspeção e serviço. O Flex Pivot completa os 120 mm de curso por deformação controlada dos seatstays."
+description: "Análise da suspensão integrada e do Flex Pivot da Scott Spark RC: estrutura, acesso para manutenção e distribuição de massa."
+direct_answer: "Na Spark RC, o amortecedor integrado protege o componente e concentra massa dentro do quadro, mas torna o acesso de serviço dependente das tampas e do procedimento correto. O Flex Pivot reduz articulações, sem eliminar inspeção e manutenção periódicas."
 image: "/assets/img/posts/engenharia-suspensao-integrada-spark/hero-1600.webp"
 image_mobile: "/assets/img/posts/engenharia-suspensao-integrada-spark/hero-800.webp"
 thumbnail: "/assets/img/posts/engenharia-suspensao-integrada-spark/card-640.webp"
@@ -45,8 +46,8 @@ promoted_brands: ["Scott"]
 context_only_brands: []
 portfolio_evidence_url: "https://thebikershop.com.br/produtos/quadro-suspensao-spark-rc-world-cup-hmx-2026-flight-attendant/"
 portfolio_verified_at: "2026-08-05"
-editorial_status: "published"
-status: "published"
+editorial_status: "draft"
+status: "draft"
 sources:
   - name: "The Biker — Quadro + Suspensão Spark RC World Cup HMX 2026 Flight Attendant"
     type: "store"

@@ -1,4 +1,7 @@
 ---
+editorial_hold_reason: "Revisão de fontes, precisão e concisão pendente"
+status: "draft"
+published: false
 image_subject_id: "rolo-de-treino-elite-novo-force"
 layout: post
 title: "Zwift, TrainerRoad, TrainingPeaks ou MyWhoosh: qual app usar?"
@@ -6,9 +9,11 @@ description: "Comparativo completo dos melhores apps de treino para ciclismo em 
 
 direct_answer: "A escolha depende do objetivo: Zwift prioriza experiência virtual e comunidade; TrainerRoad, treino estruturado; TrainingPeaks, planejamento e análise; MyWhoosh, acesso sem assinatura. Compatibilidade, recursos e preço devem ser verificados antes da contratação."
 date: 2026-07-17
+redirect_from:
+  - /2026/07/melhores-apps-de-treino-para-ciclismo-2026-comparativo-entre-zwift-trainerroad-trainingpeaks-e-mywhoosh/
 last_modified_at: 2026-07-19
 author: "Equipe The Biker Blog"
-reviewed_by: "Equipe The Biker Blog"
+reviewed_by: ""
 content_type: "comparativo"
 audience_segment: "core_technical_cyclists"
 audience_intent: "compare_products"
@@ -54,7 +59,7 @@ sources:
     url: "https://rouvy.com"
     accessed_at: "2026-07-19"
 affiliate_links: false
-editorial_status: "published"
+editorial_status: "draft"
 thumbnail: "/assets/img/posts/melhores-apps-treino-ciclismo-2026/card-640.png"
 image_mobile: "/assets/img/posts/melhores-apps-treino-ciclismo-2026/hero-800.png"
 image_manifest_version: 2

@@ -1,0 +1,133 @@
+function text(value) {
+  return String(value ?? "").trim();
+}
+
+function factEntries(research) {
+  const facts = research?.confirmed_facts;
+  if (Array.isArray(facts)) return facts;
+  if (facts && typeof facts === "object") return Object.values(facts);
+  return [];
+}
+
+function factReferences(fact) {
+  if (!fact || typeof fact !== "object") return [];
+  const values = [
+    fact.source_id,
+    fact.sourceId,
+    fact.source,
+    ...(Array.isArray(fact.source_ids) ? fact.source_ids : []),
+    ...(Array.isArray(fact.sourceIds) ? fact.sourceIds : []),
+  ];
+  return [...new Set(values.map(text).filter(Boolean))];
+}
+
+export function pruneUnsupportedFacts(research) {
+  if (!Array.isArray(research?.confirmed_facts)) return research;
+  const sources = Array.isArray(research.sources) ? research.sources : [];
+  const knownReferences = new Set(sources.flatMap((source) => [text(source?.id), text(source?.name)]).filter(Boolean));
+  const retained = research.confirmed_facts.filter((fact) => {
+    const references = factReferences(fact);
+    return references.length > 0 && references.every((reference) => knownReferences.has(reference));
+  });
+  const dropped = research.confirmed_facts.length - retained.length;
+  if (dropped === 0) return research;
+  return {
+    ...research,
+    confirmed_facts: retained,
+    limitations: [
+      ...(Array.isArray(research.limitations) ? research.limitations : []),
+      `${dropped} fato(s) removido(s) porque suas fontes não permaneceram no conjunto oficial permitido.`,
+    ],
+  };
+}
+
+export function researchGroundingErrors(research, { requireFactReferences = false } = {}) {
+  if (!research || research.status !== "pesquisa_concluida") return [];
+  const errors = [];
+  const sources = Array.isArray(research.sources) ? research.sources : [];
+  const sourceIds = sources.map((source) => text(source?.id)).filter(Boolean);
+  const sourceNames = sources.map((source) => text(source?.name)).filter(Boolean);
+  const knownReferences = new Set([...sourceIds, ...sourceNames]);
+
+  if (sources.length === 0) errors.push("pesquisa concluída sem fontes rastreáveis");
+  if (requireFactReferences && sourceIds.length !== sources.length) {
+    errors.push("todas as fontes precisam de ID único para rastreabilidade");
+  }
+  if (new Set(sourceIds).size !== sourceIds.length) errors.push("IDs de fontes duplicados");
+  if (research.grounding?.sourceCount !== undefined
+      && Number(research.grounding.sourceCount) !== sources.length) {
+    errors.push(`grounding.sourceCount=${research.grounding.sourceCount} diverge de sources.length=${sources.length}`);
+  }
+
+  const facts = factEntries(research);
+  if (requireFactReferences && facts.length === 0) errors.push("pesquisa sem fatos explicitamente fundamentados");
+  for (const [index, fact] of facts.entries()) {
+    const references = factReferences(fact);
+    if (requireFactReferences && references.length === 0) {
+      errors.push(`fato ${index + 1} sem referência explícita`);
+      continue;
+    }
+    for (const reference of references) {
+      if (!knownReferences.has(reference)) errors.push(`fato ${index + 1} referencia fonte inexistente: ${reference}`);
+    }
+  }
+  return errors;
+}
+
+export function assertResearchGrounding(research, options) {
+  const errors = researchGroundingErrors(research, options);
+  if (errors.length > 0) throw new Error(`Pesquisa bloqueada por integridade de fontes: ${errors.join("; ")}`);
+  return research;
+}
+
+export function researchEvidenceContractErrors(research) {
+  if (!research || research.status !== "pesquisa_concluida") return [];
+  const errors = [];
+  const evidenceContract = research.grounding?.evidenceContract;
+  const offlineCampaignCache = evidenceContract === "campaign-research-cache-v1";
+  if (!new Set(["retrieved-excerpt-v1", "curated-official-excerpt-v1", "campaign-research-cache-v1"]).has(evidenceContract)) {
+    errors.push("pesquisa sem contrato de evidência recuperada retrieved-excerpt-v1");
+  }
+  if (!research.grounding?.verifiedAt) errors.push("pesquisa sem data de verificação ativa das fontes");
+  const contentType = text(research.content_type || research.contentType);
+  const productContent = new Set(["review", "comparativo", "lancamento"]).has(contentType);
+  const sources = Array.isArray(research.sources) ? research.sources : [];
+  const sourcesWithoutIdentity = sources.filter((source) => !text(source?.id) || !text(source?.url));
+  if (sourcesWithoutIdentity.length > 0) {
+    errors.push(`${sourcesWithoutIdentity.length} fonte(s) sem ID e URL obrigatórios`);
+  }
+
+  const manufacturerSources = sources.filter((source) => text(source?.type).toLowerCase() === "manufacturer");
+  if (productContent && manufacturerSources.length === 0) {
+    errors.push("conteúdo de produto exige fonte técnica do fabricante");
+  }
+  if (productContent && evidenceContract !== "retrieved-excerpt-v1") {
+    errors.push("conteúdo de produto exige recuperação ativa da fonte; cache offline não é publicável");
+  }
+
+  const facts = factEntries(research);
+  const minimumFacts = { review: 8, comparativo: 10, lancamento: 5 }[contentType] || 0;
+  if (minimumFacts > 0 && facts.length < minimumFacts) {
+    errors.push(`cobertura factual insuficiente para ${contentType}: ${facts.length}/${minimumFacts} fatos`);
+  }
+  const manufacturerReferences = new Set(manufacturerSources.flatMap((source) => [text(source?.id), text(source?.name)]).filter(Boolean));
+  const manufacturerFactCount = facts.filter((fact) => factReferences(fact).some((reference) => manufacturerReferences.has(reference))).length;
+  const minimumManufacturerFacts = { review: 5, comparativo: 6, lancamento: 3 }[contentType] || 0;
+  if (minimumManufacturerFacts > 0 && manufacturerFactCount < minimumManufacturerFacts) {
+    errors.push(`base técnica do fabricante insuficiente para ${contentType}: ${manufacturerFactCount}/${minimumManufacturerFacts} fatos`);
+  }
+  for (const [index, fact] of facts.entries()) {
+    if (offlineCampaignCache) {
+      if (text(fact?.fact || fact?.statement).length < 12) errors.push(`fato ${index + 1} sem registro rastreável no cache`);
+    } else if (text(fact?.evidence_quote).length < 12) {
+      errors.push(`fato ${index + 1} sem trecho literal verificável`);
+    }
+  }
+  return errors;
+}
+
+export function assertResearchEvidenceContract(research) {
+  const errors = researchEvidenceContractErrors(research);
+  if (errors.length > 0) throw new Error(`Pesquisa bloqueada por evidência não recuperada: ${errors.join("; ")}`);
+  return research;
+}

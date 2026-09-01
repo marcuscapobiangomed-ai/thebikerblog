@@ -146,11 +146,6 @@
 
       {% if deep.coverage %}<p class="race-detail-coverage"><strong>{{ deep.coverage.label }}:</strong> {{ deep.coverage.description }}</p>{% endif %}
     </section>
-  {% else %}
-    <div class="race-detail-depth-pending">
-      <strong>Percurso aprofundado ainda não confirmado</strong>
-      <p>Quilometragem, altimetria, dificuldade e inscrição só entram aqui quando uma página oficial da organização permite validar esses dados. Não completamos lacunas por estimativa.</p>
-    </div>
   {% endif %}
 
   <div class="race-detail-explanation">
@@ -160,20 +155,14 @@
   </div>
 
   <div class="race-detail-integrity">
-    <strong>O que foi validado</strong>
-    {% if event.source.validationMethod == "verified-snapshot-plus-organizer" %}
-      <p>O registro original do Calendário MTB foi preservado do snapshot conferido em {{ event.source.discoveryCheckedAt | date: "%d/%m/%Y às %H:%M UTC" }}. Como o diretório bloqueou a consulta automática mais recente, local e período foram revalidados diretamente na página oficial da organização em {{ event.source.checkedAt | date: "%d/%m/%Y às %H:%M UTC" }}.</p>
-    {% elsif event.source.validationMethod == "discovery-plus-organizer" %}
-      <p>Nome, modalidade, local e período foram encontrados no Calendário MTB e confirmados com o mesmo local e período na página oficial da organização em {{ event.source.checkedAt | date: "%d/%m/%Y às %H:%M UTC" }}.</p>
-    {% else %}
-      <p>Nome, modalidade, país, período e classe foram conferidos na ficha da Union Cycliste Internationale em {{ event.source.checkedAt | date: "%d/%m/%Y às %H:%M UTC" }}.</p>
-    {% endif %}
+    <strong>Fonte e atualização</strong>
+    <p>Informações consultadas em {{ event.source.checkedAt | date: "%d/%m/%Y" }} na fonte oficial indicada abaixo.</p>
     {% if include.status == "past" %}
-      <p>O encerramento acima representa o fim do período oficial. Resultados, vencedores e classificação não são afirmados enquanto não entrarem em uma fonte de resultados integrada e validada.</p>
+      <p>O período oficial desta edição já foi encerrado.</p>
     {% elsif include.status == "today" %}
-      <p>“Em disputa hoje” significa que a data de hoje está dentro do período oficial. Não significa transmissão ao vivo nem confirma o andamento esportivo em tempo real.</p>
+      <p>A data de hoje está dentro do período divulgado pela organização.</p>
     {% else %}
-      <p>Data e classe podem mudar por decisão da organização. A sincronização diária atualiza esta página ou bloqueia o snapshot se a fonte ficar inconsistente.</p>
+      <p>Consulte a organização para eventuais atualizações de data e categoria.</p>
     {% endif %}
   </div>
 

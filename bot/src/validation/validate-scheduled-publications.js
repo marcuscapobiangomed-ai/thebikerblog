@@ -8,6 +8,10 @@ import { validateImageManifestV2 } from "./image-manifest-v2.js";
 import { imageArticleConsistencyErrors } from "./image-article-consistency.js";
 import { assertScheduledReceipt } from "./editorial-receipt.js";
 import { visualDecisionErrors } from "./visual-decision.js";
+import { researchEvidenceContractErrors, researchGroundingErrors } from "./research-grounding.js";
+import { articleResearchGroundingErrors } from "./article-research-grounding.js";
+import { researchForPublication } from "./publication-research.js";
+import { productIdentityConsistencyErrors } from "./product-identity-consistency.js";
 
 const defaultRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../../..");
 
@@ -22,6 +26,13 @@ export function scheduledDraftErrors(content) {
     errors.push("rascunho scheduled precisa conter published: false");
   }
   return [...errors, ...markdownPublicationErrors(content)];
+}
+
+export function orphanedCampaignDraftErrors({ campaign, drafts, researchSlugs }) {
+  const referencedDrafts = new Set(campaign.items.map((item) => item.postPath).filter(Boolean));
+  return drafts
+    .filter((draft) => draft.slug && researchSlugs.has(draft.slug) && !referencedDrafts.has(draft.path))
+    .map((draft) => `${draft.slug}: rascunho de campanha órfão, sem referência no estado editorial`);
 }
 
 export async function validateScheduledPublications({ root = defaultRoot } = {}) {
@@ -56,6 +67,19 @@ export async function validateScheduledPublications({ root = defaultRoot } = {})
       errors.push(`${item.id}: ${error}`);
     }
     try {
+      const research = JSON.parse(await fs.readFile(path.join(root, "content/research/campaign", `${item.id}.json`), "utf8"));
+      for (const error of researchGroundingErrors(research)) errors.push(`${item.id}: ${error}`);
+      for (const error of researchEvidenceContractErrors(research)) errors.push(`${item.id}: ${error}`);
+      for (const error of productIdentityConsistencyErrors({ article: matter(content).data, campaignItem: item, catalog, research })) {
+        errors.push(`${item.id}: ${error}`);
+      }
+      if (research.grounding?.claimContract === "explicit-units-v1") {
+        for (const error of articleResearchGroundingErrors({ content, research: researchForPublication(research) })) errors.push(`${item.id}: ${error}`);
+      }
+    } catch (error) {
+      errors.push(`${item.id}: pesquisa indisponível ou inválida (${error.code || error.message})`);
+    }
+    try {
       assertScheduledReceipt(content, item);
     } catch (error) {
       errors.push(`${item.id}: ${error.message}`);
@@ -84,6 +108,22 @@ export async function validateScheduledPublications({ root = defaultRoot } = {})
       }
     } catch (error) {
       errors.push(`${item.id}: manifesto de imagem inválido (${error.message})`);
+    }
+  }
+
+  const referencedDrafts = new Set(campaign.items.map((item) => item.postPath).filter(Boolean));
+  for (const entry of await fs.readdir(draftsRoot, { withFileTypes: true }).catch((error) => error.code === "ENOENT" ? [] : Promise.reject(error))) {
+    if (!entry.isFile() || !entry.name.endsWith(".md")) continue;
+    const relativeDraft = `_posts/drafts/${entry.name}`;
+    if (referencedDrafts.has(relativeDraft)) continue;
+    const draftContent = await fs.readFile(path.join(draftsRoot, entry.name), "utf8");
+    const slug = String(matter(draftContent).data.slug || "").trim();
+    if (!slug) continue;
+    try {
+      await fs.access(path.join(root, "content/research/campaign", `${slug}.json`));
+      errors.push(`${slug}: rascunho de campanha órfão, sem referência no estado editorial`);
+    } catch (error) {
+      if (error.code !== "ENOENT") throw error;
     }
   }
 

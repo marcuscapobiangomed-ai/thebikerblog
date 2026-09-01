@@ -1,5 +1,5 @@
 $baseUrl = "https://blog.thebiker.com.br"
-$screenshotDir = "C:\Users\marcu\Downloads\Blog - APRENDA!\medblog-full\screenshots"
+$screenshotDir = Join-Path (Resolve-Path (Join-Path $PSScriptRoot "..")).Path "screenshots"
 $chromePath = "C:\Program Files\Google\Chrome\Application\chrome.exe"
 
 if (!(Test-Path $screenshotDir)) {

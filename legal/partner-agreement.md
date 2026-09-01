@@ -1,3 +1,12 @@
+---
+layout: default
+title: "Acordo de parceria"
+description: "Termos operacionais para parceiros comerciais do TheBiker Blog."
+permalink: /legal/partner-agreement/
+robots: "noindex,follow"
+sitemap: false
+---
+
 # Acordo de Parceria — TheBikerBlog
 
 ## Escopo

@@ -4,10 +4,6 @@
  * Uso: node src/batch.js
  */
 import "dotenv/config";
-import { AIProvider } from "./gemini.js";
-import { GitHubPublisher } from "./publisher.js";
-import fs from "fs/promises";
-import path from "path";
 
 const TOPICOS = [
   // Bloco 1: Guias de compra
@@ -51,75 +47,14 @@ const TOPICOS = [
   "Bicicletarias especializadas em bike de estrada: como encontrar a melhor perto de você",
 ];
 
-const DELAY_MS = 5000;
-
-async function sleep(ms) {
-  return new Promise((r) => setTimeout(r, ms));
-}
-
 async function main() {
-  if (process.env.AI_PIPELINE_MODE !== "legacy") {
-    throw new Error(
-      "O batch legado não contém fichas por tópico e está bloqueado no pipeline de três provedores. Use post:manual com --research ou implemente uma fila de fichas validadas.",
-    );
-  }
-
-  console.log("=".repeat(50));
-  console.log("🚴 Batch Generator — 30 Posts de Ciclismo");
-  console.log("=".repeat(50));
-
-  const ai = new AIProvider();
-  const publisher = new GitHubPublisher();
-
-  const startFrom = parseInt(process.argv[2] || "1");
-  const endAt = parseInt(process.argv[3] || TOPICOS.length);
-
-  console.log(`Gerando posts ${startFrom} a ${endAt} de ${TOPICOS.length}\n`);
-
-  const resultsDir = path.join(process.cwd(), "_generated");
-  await fs.mkdir(resultsDir, { recursive: true });
-
-  for (let i = startFrom - 1; i < endAt; i++) {
-    const topico = TOPICOS[i];
-    const num = i + 1;
-
-    console.log(`[${num}/${TOPICOS.length}] Processando: "${topico.substring(0, 50)}..."`);
-
-    try {
-      const post = await ai.processCase(topico);
-
-      const filePath = path.join(resultsDir, `${num}-${post.slug}.md`);
-      await fs.writeFile(filePath, post.content, "utf-8");
-
-      console.log(`   ✅ Salvo: ${filePath}`);
-
-      if (process.env.AUTO_CREATE_PR === "true" && process.env.GITHUB_TOKEN) {
-        try {
-          const url = await publisher.publishPost({
-            postContent: post.content,
-            slug: `${num}-${post.slug}`,
-            researchData: null,
-            imageManifest: null,
-            imageProductionPlan: post.imageProductionPlan,
-            checklist: post.claims || [],
-          });
-          console.log(`   🔀 PR criado: ${url}`);
-        } catch (pubErr) {
-          console.log(`   ⚠️  Erro ao publicar: ${pubErr.message} (salvo localmente)`);
-        }
-      }
-
-      if (i < endAt - 1) {
-        console.log(`   ⏳ Aguardando ${DELAY_MS / 1000}s...\n`);
-        await sleep(DELAY_MS);
-      }
-    } catch (err) {
-      console.error(`   ❌ Erro no post ${num}: ${err.message}`);
-    }
-  }
-
-  console.log("\n✅ Geração concluída!");
-  console.log(`📁 Arquivos salvos em: ${resultsDir}`);
+  throw new Error(
+    `Batch legado bloqueado permanentemente: as ${TOPICOS.length} pautas não possuem fichas individuais `
+      + "nem recibos editoriais. Use campaign:produce e campaign:finalize.",
+  );
 }
 
-main().catch(console.error);
+main().catch((error) => {
+  console.error(error.message);
+  process.exitCode = 1;
+});

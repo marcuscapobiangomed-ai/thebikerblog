@@ -39,7 +39,7 @@
     "url": "https://thebikershop.com.br/produtos/bicicleta-scott-spark-rc-world-cup-20271/",
     "fileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/4275448086a-69855010392fd33f6117812058566683-1024-1024.webp",
     "localFile": "source.webp",
-    "obtainedAt": "2026-08-07",
+    "obtainedAt": "2026-08-13",
     "license": "Uso editorial no blog oficial TheBiker",
     "licenseEvidence": "Diretriz editorial registrada pelo responsável do blog oficial TheBiker.",
     "rightsPolicyId": "thebiker-official-editorial-v1"
@@ -66,7 +66,7 @@
   },
   "approval": {
     "reviewedBy": "TheBiker deterministic image gate",
-    "approvedAt": "2026-08-07",
+    "approvedAt": "2026-08-13",
     "method": "automated-editorial-gate",
     "checks": [
       "fonte-oficial",

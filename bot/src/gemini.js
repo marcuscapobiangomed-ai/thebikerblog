@@ -11,8 +11,11 @@ import { getTemplate } from "./templates.js";
 import { ThreeProviderPipeline } from "./ai/three-provider-pipeline.js";
 import { AIRuntime } from "./ai/runtime.js";
 import { assertEditorialPublicationGates } from "./validation/editorial-publication-gates.js";
+import { researchForPublication } from "./validation/publication-research.js";
 import { assertMarkdownPublicationGates, neutralizeMarkdownPolicyPhrases } from "./validation/markdown-publication-gates.js";
 import { buildImageProductionPlan } from "./image-manifest.js";
+import { assertArticleResearchGrounding, sanitizeStructuredArticleClaims } from "./validation/article-research-grounding.js";
+import { buildDeterministicGroundedArticle } from "./automation/deterministic-article.js";
 
 const CATEGORY_ALIASES = {
   review: "reviews",
@@ -35,6 +38,29 @@ const CATEGORY_ALIASES = {
 };
 
 const LENGTH_GATE = /Gates editoriais não atendidos:\s*extensão insuficiente:\s*(\d+) palavras; mínimo (\d+)\s*$/i;
+
+const DETERMINISTIC_CACHE_FALLBACKS = new Set([
+  "curated-official-offline-cache-v1",
+  "campaign-research-offline-cache-v1",
+]);
+
+function hasVerifiedInternalResearch(researchData) {
+  if (researchData?.grounding?.fallback !== "internal-product-knowledge") return false;
+  if (researchData?.grounding?.evidenceContract !== "retrieved-excerpt-v1") return false;
+  if (!researchData?.grounding?.verifiedAt) return false;
+  const sources = Array.isArray(researchData?.sources) ? researchData.sources : [];
+  const facts = Array.isArray(researchData?.confirmed_facts) ? researchData.confirmed_facts : [];
+  if (sources.length === 0 || facts.length === 0) return false;
+  const sourceIds = new Set(sources.map((source) => String(source?.id || "").trim()).filter(Boolean));
+  if (sourceIds.size !== sources.length) return false;
+  if (sources.some((source) => !/^https?:\/\//i.test(String(source?.url || "")))) return false;
+  return facts.every((fact) => {
+    const references = Array.isArray(fact?.source_ids) ? fact.source_ids : [];
+    return references.length > 0
+      && references.every((reference) => sourceIds.has(String(reference).trim()))
+      && String(fact?.evidence_quote || "").trim().length >= 12;
+  });
+}
 
 const CONTENT_TYPE_ALIASES = {
   review: "review",
@@ -151,7 +177,8 @@ export class AIProvider {
   async _tryDeepSeek(system, user, options = {}) {
     const baseUrl = process.env.DEEPSEEK_BASE_URL || "https://api.deepseek.com";
     const model = options.model || process.env.DEEPSEEK_MODEL || "deepseek-v4-pro";
-    const maxTokens = toNumber(process.env.DEEPSEEK_MAX_TOKENS || options.maxTokens, 8192);
+    const maxTokens = toNumber(options.maxTokens, toNumber(process.env.DEEPSEEK_MAX_TOKENS, 8192));
+    const timeoutMs = toNumber(options.timeoutMs, toNumber(process.env.AI_HTTP_TIMEOUT_MS, 90000));
 
     const payload = {
       model,
@@ -177,6 +204,7 @@ export class AIProvider {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(payload),
+      signal: AbortSignal.timeout(timeoutMs),
     });
 
     if (!res.ok) {
@@ -185,6 +213,10 @@ export class AIProvider {
     }
 
     const data = await res.json();
+    const finishReason = data.choices?.[0]?.finish_reason || "";
+    if (["length", "max_tokens"].includes(String(finishReason).toLowerCase())) {
+      throw new Error("DeepSeek API: resposta truncada ao atingir o limite de saída");
+    }
     const content = data.choices?.[0]?.message?.content || "";
     if (!content) throw new Error("DeepSeek API: resposta vazia");
     const usage = {
@@ -333,7 +365,9 @@ export class AIProvider {
     next.methodologyNotice = neutralize(this._sanitizeHtml(next.methodologyNotice || ""));
     next.brand = this._sanitizeHtml(next.brand || "");
     next.product_name = this._sanitizeHtml(next.product_name || "");
-    next.model_year = toNumber(next.model_year, undefined);
+    const modelYear = toNumber(next.model_year, null);
+    if (modelYear === null) delete next.model_year;
+    else next.model_year = modelYear;
     next.market = this._sanitizeHtml(next.market || "Brasil");
     next.weight = this._sanitizeHtml(next.weight || "Não informado");
     next.weight_source = this._sanitizeHtml(next.weight_source || "Não informado");
@@ -374,10 +408,22 @@ export class AIProvider {
       answer: truncateAtWordBoundary(neutralize(this._sanitizeHtml(item.answer || "")), 600),
     }));
 
-    next.sections = normalizeList(next.sections).map((section) => ({
-      heading: neutralize(this._sanitizeHtml(section.heading || "")),
-      content: neutralize(this._sanitizeHtml(section.content || "")),
-    }));
+    next.sections = normalizeList(next.sections).map((section, index) => {
+      const content = neutralize(this._sanitizeHtml(section.content || ""));
+      let heading = neutralize(this._sanitizeHtml(section.heading || "")).trim();
+      if (!heading && content) {
+        const contentLead = content
+          .replace(/^#+\s*/, "")
+          .replace(/[*_`]/g, "")
+          .split(/(?<=[.!?])\s|\n/)[0]
+          .trim();
+        heading = truncateAtWordBoundary(contentLead, 100);
+      }
+      if (!heading) {
+        heading = truncateAtWordBoundary(`Critério técnico ${index + 1} — ${next.title}`, 100);
+      }
+      return { heading, content };
+    });
 
     next.imagePlan = normalizeList(next.imagePlan).map((item) => ({
       position: this._sanitizeHtml(item.position || "hero"),
@@ -477,6 +523,13 @@ export class AIProvider {
       if (!Number.isInteger(index) || index < 0 || index >= article.sections.length || !addition) {
         throw new Error("Reparo aditivo inválido: seção ou conteúdo inválido");
       }
+      const normalizeExpansion = (value) => String(value || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s+/g, " ").trim().toLowerCase();
+      const existing = normalizeExpansion(article.sections[index].content);
+      const candidate = normalizeExpansion(addition);
+      const copiedPrefix = candidate.slice(0, Math.min(existing.length, 220));
+      if (copiedPrefix.length >= 120 && existing.includes(copiedPrefix)) {
+        throw new Error("Reparo aditivo inválido: complemento repete o conteúdo existente");
+      }
       article.sections[index].content = `${article.sections[index].content.trim()}\n\n${addition}`;
       touched.add(index);
     }
@@ -486,13 +539,47 @@ export class AIProvider {
     return JSON.stringify(article);
   }
 
+  _mergeRepairCandidate(articleText, repairText) {
+    try {
+      const original = structuredClone(this._extractJson(articleText));
+      const repair = structuredClone(this._extractJson(repairText));
+      if (["PESQUISA INSUFICIENTE", "PORTFÓLIO NÃO CONFIRMADO"].includes(repair?.status)) {
+        return JSON.stringify(repair);
+      }
+      const merge = (base, patch, key = "") => {
+        if (patch === undefined || patch === null || patch === "") return base;
+        if (Array.isArray(patch)) {
+          if (patch.length === 0) {
+            return ["sections", "sources", "imagePlan", "tags"].includes(key) && Array.isArray(base) && base.length > 0
+              ? base
+              : patch;
+          }
+          if (key === "sections" && Array.isArray(base) && patch.length < base.length) {
+            return base.map((entry, index) => index < patch.length ? merge(entry, patch[index], "section") : entry);
+          }
+          return patch;
+        }
+        if (typeof patch === "object") {
+          const baseObject = base && typeof base === "object" && !Array.isArray(base) ? base : {};
+          return Object.fromEntries([...new Set([...Object.keys(baseObject), ...Object.keys(patch)])]
+            .map((field) => [field, merge(baseObject[field], patch[field], field)]));
+        }
+        return patch;
+      };
+      return JSON.stringify(merge(original, repair));
+    } catch {
+      return repairText;
+    }
+  }
+
   async processCase(descricaoCurta, researchData = null) {
-    const contentType = researchData?.content_type || inferContentType(descricaoCurta);
-    const template = getTemplate(resolveTemplateKey(contentType, researchData));
+    const publicationResearch = researchForPublication(researchData);
+    const contentType = publicationResearch?.content_type || inferContentType(descricaoCurta);
+    const template = getTemplate(resolveTemplateKey(contentType, publicationResearch));
     const today = new Date().toISOString().split("T")[0];
     const userPrompt = buildUserPrompt({
       topic: descricaoCurta,
-      researchData,
+      researchData: publicationResearch,
       contentType,
       template,
       today,
@@ -500,37 +587,120 @@ export class AIProvider {
 
     let rawText;
     let pipelineMetadata = null;
-    if (process.env.AI_PIPELINE_MODE === "legacy") {
-      rawText = await this.generate(AIProvider.systemPrompt(), userPrompt, {
-        jsonMode: true,
-        maxTokens: Number(process.env.DEEPSEEK_MAX_TOKENS || 8192),
-      });
-    } else {
-      const pipelineResult = await this.pipeline.run({
+    const parseGroundedResponse = (candidateText) => {
+      const parsed = this._parseStructuredResponse(candidateText, descricaoCurta);
+      if (publicationResearch?.grounding?.claimContract === "explicit-units-v1") {
+        assertArticleResearchGrounding({ content: parsed.content, research: publicationResearch });
+      }
+      return parsed;
+    };
+    const deterministicFallbackEnabled = (DETERMINISTIC_CACHE_FALLBACKS.has(publicationResearch?.grounding?.fallback)
+      || hasVerifiedInternalResearch(publicationResearch))
+      && String(process.env.AI_DETERMINISTIC_CURATED_FALLBACK || "false").toLowerCase() === "true";
+    const buildDeterministicFallback = (metadata, trigger) => {
+      if (!deterministicFallbackEnabled) return null;
+      const deterministic = buildDeterministicGroundedArticle({
         topic: descricaoCurta,
-        researchData,
+        researchData: publicationResearch,
         contentType,
-        template,
-        systemPrompt: AIProvider.systemPrompt(),
-        draftPrompt: userPrompt,
-        priority: researchData?.editorialPriority || researchData?.editorial_priority || "P1",
+        today,
       });
-      rawText = pipelineResult.content;
-      pipelineMetadata = pipelineResult.metadata;
+      // The fallback is eligible only after the same schema, editorial,
+      // Markdown and claim-grounding gates used by the normal pipeline pass.
+      // A deterministic draft is a recovery artifact, not an independent
+      // editorial review. It must never manufacture a publishable score.
+      const parsed = parseGroundedResponse(JSON.stringify(deterministic));
+      return {
+        ...parsed,
+        pipelineMetadata: {
+          ...metadata,
+          scoreBeforePremium: null,
+          finalScore: null,
+          finalBlockers: 1,
+          premiumEditUsed: false,
+          providers: {
+            ...metadata?.providers,
+            deterministicFallback: "grounded-deterministic",
+          },
+          deterministicFallbackAudit: "independent-review-required-v2",
+          finalRepairUsed: false,
+          deterministicFullArticleFallbackUsed: true,
+          deterministicFullArticleFallbackTrigger: trigger,
+        },
+      };
+    };
+
+    // A verified offline research cache is already a complete editorial
+    // contract. When the workflow explicitly enables cache-first mode, use
+    // the same gated deterministic article immediately instead of waiting for
+    // every exhausted provider/retry timeout. Live research never enters this
+    // branch because its grounding fallback is different.
+    const deterministicCacheFirst = DETERMINISTIC_CACHE_FALLBACKS.has(publicationResearch?.grounding?.fallback)
+      && String(process.env.AI_DETERMINISTIC_CACHE_FIRST || "false").toLowerCase() === "true";
+    if (deterministicCacheFirst) {
+      try {
+        const fallback = buildDeterministicFallback({}, "cache-first");
+        if (fallback) return fallback;
+      } catch {
+        // If the cache itself fails a gate, continue through the normal
+        // provider pipeline so the item can still be diagnosed/recovered.
+      }
+    }
+
+    try {
+      if (process.env.AI_PIPELINE_MODE === "legacy") {
+        rawText = await this.generate(AIProvider.systemPrompt(), userPrompt, {
+          jsonMode: true,
+          maxTokens: Number(process.env.DEEPSEEK_MAX_TOKENS || 8192),
+        });
+      } else {
+        const pipelineResult = await this.pipeline.run({
+          topic: descricaoCurta,
+          researchData: publicationResearch,
+          contentType,
+          template,
+          systemPrompt: AIProvider.systemPrompt(),
+          draftPrompt: userPrompt,
+          priority: publicationResearch?.editorialPriority || publicationResearch?.editorial_priority || "P1",
+        });
+        rawText = pipelineResult.content;
+        pipelineMetadata = pipelineResult.metadata;
+      }
+    } catch (pipelineError) {
+      try {
+        const fallback = buildDeterministicFallback(pipelineMetadata, "pipeline-failure");
+        if (fallback) return fallback;
+      } catch (fallbackError) {
+        throw new Error(`${pipelineError.message}; fallback determinístico: ${fallbackError.message}`);
+      }
+      throw pipelineError;
     }
 
     try {
       return {
-        ...this._parseStructuredResponse(rawText, descricaoCurta),
+        ...parseGroundedResponse(rawText),
         pipelineMetadata,
       };
     } catch (err) {
       if (String(err.message || "").includes("STATUS: PESQUISA INSUFICIENTE")) {
+        if (!deterministicFallbackEnabled) throw err;
+        try {
+          const fallback = buildDeterministicFallback(pipelineMetadata, "research-status");
+          if (fallback) return fallback;
+        } catch (fallbackError) {
+          throw new Error(`${err.message}; fallback determinístico: ${fallbackError.message}`);
+        }
         throw err;
       }
 
       if (process.env.AI_PIPELINE_MODE !== "legacy") {
         if (!this.pipeline.clients.isConfigured("deepseek")) {
+          try {
+            const fallback = buildDeterministicFallback(pipelineMetadata, "deepseek-unavailable");
+            if (fallback) return fallback;
+          } catch (fallbackError) {
+            throw new Error(`${err.message}; fallback determinístico: ${fallbackError.message}`);
+          }
           throw new Error(`Rascunho bloqueado após o pipeline: ${err.message}`);
         }
 
@@ -554,6 +724,7 @@ export class AIProvider {
               contentType,
               template,
               today,
+              researchData: publicationResearch,
             });
           const repaired = await this.pipeline.callStep({
           step: `final-repair-${round}`,
@@ -584,11 +755,11 @@ export class AIProvider {
               continue;
             }
           } else {
-            candidateText = repaired.content;
+            candidateText = this._mergeRepairCandidate(candidateText, repaired.content);
           }
           try {
             return {
-              ...this._parseStructuredResponse(candidateText, descricaoCurta),
+              ...parseGroundedResponse(candidateText),
               pipelineMetadata: {
                 ...pipelineMetadata,
                 finalRepairUsed: true,
@@ -600,7 +771,29 @@ export class AIProvider {
             validationError = repairError;
           }
         }
-        throw new Error(`Rascunho bloqueado apÃ³s ${maximumRepairRounds} reparos: ${validationError.message}`);
+        try {
+          const sanitizedText = JSON.stringify(sanitizeStructuredArticleClaims(this._extractJson(candidateText), publicationResearch));
+          return {
+            ...parseGroundedResponse(sanitizedText),
+            pipelineMetadata: {
+              ...pipelineMetadata,
+              finalRepairUsed: true,
+              finalRepairRounds: maximumRepairRounds,
+              deterministicClaimRepairUsed: true,
+            },
+          };
+        } catch {
+          // Mantém o erro original do gate para diagnóstico e fail-closed.
+        }
+        if (deterministicFallbackEnabled) {
+          try {
+            const fallback = buildDeterministicFallback(pipelineMetadata, "repair-fallback");
+            if (fallback) return fallback;
+          } catch (deterministicError) {
+            validationError = new Error(`${validationError.message}; fallback determinístico: ${deterministicError.message}`);
+          }
+        }
+        throw new Error(`Rascunho bloqueado após ${maximumRepairRounds} reparos: ${validationError.message}`);
       }
 
       const repairPrompt = buildRepairPrompt({
@@ -610,6 +803,7 @@ export class AIProvider {
         contentType,
         template,
         today,
+        researchData: publicationResearch,
       });
 
       const repairedText = await this.generate(AIProvider.systemPrompt(), repairPrompt, {
@@ -618,7 +812,7 @@ export class AIProvider {
         maxTokens: Number(process.env.DEEPSEEK_MAX_TOKENS || 8192),
       });
 
-      return this._parseStructuredResponse(repairedText, descricaoCurta);
+      return parseGroundedResponse(repairedText);
     }
   }
 }

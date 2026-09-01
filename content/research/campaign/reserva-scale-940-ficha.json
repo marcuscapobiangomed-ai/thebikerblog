@@ -1,0 +1,130 @@
+{
+  "slug": "reserva-scale-940-ficha",
+  "title": "Scott Scale 940: o que a ficha atual confirma sobre quadro, suspensão e transmissão",
+  "content_type": "review",
+  "review_method": "desk-research",
+  "tested_by_thebikerblog": false,
+  "market": "Brasil",
+  "generated_at": "2026-08-14",
+  "status": "pesquisa_concluida",
+  "sources": [
+    {
+      "name": "TheBiker — Bicicleta Scott Scale 940 - Black",
+      "url": "https://thebikershop.com.br/produtos/bicicleta-scott-scale-940-black/",
+      "accessed": "2026-08-04",
+      "id": "cache-src-1",
+      "type": "store"
+    },
+    {
+      "name": "Scott — página oficial do modelo",
+      "url": "https://www.scott-sports.com/global/en/product/scott-scale-940-bike",
+      "accessed": "2026-08-04",
+      "id": "cache-src-2",
+      "type": "manufacturer"
+    }
+  ],
+  "editorialPriority": "P1",
+  "confirmed_facts": [
+    {
+      "fact": "identity.storeName: Bicicleta Scott Scale 940 - Black",
+      "source_ids": [
+        "cache-src-1"
+      ],
+      "evidence_quote": "bicicleta scott scale 940 black import url fonts googleapis com"
+    },
+    {
+      "fact": "commercial.storeUrl: https://thebikershop.com.br/produtos/bicicleta-scott-scale-940-black/",
+      "source_ids": [
+        "cache-src-1"
+      ],
+      "evidence_quote": "bicicleta scott scale 940 black item https thebikershop com br produtos bicicleta scott scale 940 black mainentity type product id https"
+    },
+    {
+      "fact": "identity.officialUrl: https://www.scott-sports.com/global/en/product/scott-scale-940-bike",
+      "source_ids": [
+        "cache-src-2"
+      ],
+      "evidence_quote": "type listitem position 6 item id https www scott sports com global en product scott scale 940 bike name scott scale 940 bike"
+    },
+    {
+      "fact": "identity.manufacturerModelCode: 425466",
+      "source_ids": [
+        "cache-src-2"
+      ],
+      "evidence_quote": "940 bike product type product id 425466 product price else if false"
+    },
+    {
+      "fact": "identity.color: black",
+      "source_ids": [
+        "cache-src-2"
+      ],
+      "evidence_quote": "bikes cross country bikes scale color black description balancing the scale s"
+    },
+    {
+      "fact": "identity.sizes: XS, S, M, L, XL, XXL",
+      "source_ids": [
+        "cache-src-2"
+      ],
+      "evidence_quote": "parts 1 color black 2 size xs s m l xl xxl size chart times var defaulttheme"
+    },
+    {
+      "fact": "frame.material: Scale Alloy 6061 Custom Butted Tubing",
+      "source_ids": [
+        "cache-src-2"
+      ],
+      "evidence_quote": "the detail for more information frame scale alloy 6061 custom butted tubing syncros cable integration system bb92"
+    },
+    {
+      "fact": "suspension.fork: RockShox Judy Silver TK Coil",
+      "source_ids": [
+        "cache-src-2"
+      ],
+      "evidence_quote": "axle 5x141mm with 55mm chainline fork rockshox judy silver tk coil qr 51mm offset reb adj"
+    },
+    {
+      "fact": "drivetrain.rearDerailleur: Shimano Deore RD-M6100 SGS",
+      "source_ids": [
+        "cache-src-2"
+      ],
+      "evidence_quote": "adj lockout 100mm travel rear derailleur shimano deore rd m6100 sgs shadow plus 12 speed shifters"
+    },
+    {
+      "fact": "drivetrain.speeds: 12 velocidades",
+      "source_ids": [
+        "cache-src-1"
+      ],
+      "evidence_quote": "acirc mbio traseiro sram nx eagle 12 velocidades e pedivela sram sx eagle"
+    },
+    {
+      "fact": "brakes.calipers: Shimano MT200 Disc Brake",
+      "source_ids": [
+        "cache-src-2"
+      ],
+      "evidence_quote": "m6100 12 10 51 t brakes shimano mt200 disc brake rotor shimano sm rt10 cl"
+    },
+    {
+      "fact": "tires: Maxxis Rekon Race 29x2.4, EXO, tubeless ready",
+      "source_ids": [
+        "cache-src-2"
+      ],
+      "evidence_quote": "32h 25mm tubeless ready front tire maxxis rekon race 29x2 4 exo tubeless ready rear tire maxxis rekon race"
+    }
+  ],
+  "limitations": [
+    "Pesquisa web indisponível nesta execução (Groq sem evidência: Pesquisa bloqueada por integridade de fontes: pesquisa concluída sem fontes rastreáveis; pesquisa sem fatos explicitamente fundamentados; Gemini sem evidência: Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat); conteúdo limitado à base interna com fontes oficiais.",
+    "9 fato(s) removido(s) por falta de trecho verificavel na fonte recuperada.",
+    "Pesquisa de rede indisponÃ­vel; esta execuÃ§Ã£o reutilizou somente a ficha editorial oficial previamente validada."
+  ],
+  "grounding": {
+    "queries": [],
+    "sourceCount": 2,
+    "fallback": "campaign-research-offline-cache-v1",
+    "claimContract": "explicit-units-v1",
+    "evidenceContract": "campaign-research-cache-v1",
+    "verifiedAt": "2026-08-14T01:04:10.332Z",
+    "verificationMode": "campaign-offline-cache"
+  },
+  "portfolio_evidence_url": "https://thebikershop.com.br/bikes/",
+  "portfolio_verified_at": "2026-08-14",
+  "portfolio_evidence_scope": "portfolio-category"
+}

@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
   html += '<div class="product-section" style="margin-top:28px;"><h3>Sobre bikes Endurance</h3>'
   html += '<p>Bikes endurance são projetadas para oferecer conforto em longas distâncias sem abrir mão de performance. Com geometria mais elevada na frente (mais stack), caixas de direção mais altas e pneus mais largos (30-32mm), elas absorvem melhor as irregularidades do asfalto.</p>'
-  html += '<p>Das 30 bikes catalogadas, ' + endurance.length + ' são do perfil endurance. Preços e disponibilidade estão em revisão editorial.</p></div>'
+  html += '<p>Conheça ' + endurance.length + ' bicicletas verificadas do perfil endurance.</p></div>'
 
   document.getElementById('category-content').innerHTML = html
 })

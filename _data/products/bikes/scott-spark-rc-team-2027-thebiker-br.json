@@ -11,7 +11,7 @@
   "storeProductUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-spark-rc-world-cup-2027/",
   "image": "/assets/img/products/comparator/scott-spark-rc-team-2027.webp",
   "portfolioStatus": "verified",
-  "portfolioVerifiedAt": "2026-08-13",
+  "portfolioVerifiedAt": "2026-08-21",
   "theBikerPrice": 45999,
   "frame": {
     "material": "carbon",
@@ -49,7 +49,7 @@
   "knowledgeRecord": "_data/product-knowledge/bikes/bicicleta-scott-spark-rc-world-cup-2027.json",
   "testedByTheBikerBlog": false,
   "createdAt": "2026-08-05",
-  "updatedAt": "2026-08-13",
+  "updatedAt": "2026-08-21",
   "reviewStatus": "verified",
   "sourceId": "thebiker-bicicleta-scott-spark-rc-world-cup-2027"
 }

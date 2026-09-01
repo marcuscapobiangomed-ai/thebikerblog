@@ -1,13 +1,14 @@
 ---
+editorial_hold_reason: "Revisão de fontes, precisão e concisão pendente"
 image_subject_id: "disco-de-freio-shimano-xtr-cl900-center-lock"
 layout: post
-published: true
-title: "Pinça de freio e rotor: como eliminar atrito sem perder potência"
+published: false
+title: "Alinhamento de pinça e rotor: elimine atrito sem perder potência"
 slug: "alinhamento-pinca-rotores"
 date: 2026-08-10
-last_modified_at: 2026-08-05
+last_modified_at: 2026-08-13
 author: "Equipe TheBiker"
-reviewed_by: "TheBiker AI Editorial Gate"
+reviewed_by: ""
 content_type: "guia-tecnico"
 audience_segment: "core_technical_cyclists"
 audience_intent: "solve_problem"
@@ -27,8 +28,8 @@ price_currency: "BRL"
 price_checked_at: "2026-08-05"
 category: "guia-tecnico"
 tags: ["ciclismo", "guia-tecnico", "freios", "manutencao"]
-description: "Aprenda a alinhar a pinça, verificar rotor, pistões e pastilhas e eliminar o atrito no freio a disco sem comprometer a potência em bikes de estrada e MTB."
-direct_answer: "O atrito persistente no freio a disco pode vir de pinça desalinhada, rotor empenado, pistões com retorno desigual ou contaminação. O diagnóstico correto trata cada causa sem reduzir a potência de frenagem."
+description: "Como alinhar pinça, rotor e pastilhas para eliminar atrito sem reduzir a potência de frenagem em bicicletas de estrada e MTB."
+direct_answer: "Para eliminar atrito, confirme primeiro se o rotor está empenado, centralize a pinça com os pistões recuados e verifique o retorno uniforme das pastilhas. Rotor fora de tolerância, pistão travado ou frenagem irregular exigem correção antes do uso."
 image: "/assets/img/posts/alinhamento-pinca-rotores/hero-1600.webp"
 image_mobile: "/assets/img/posts/alinhamento-pinca-rotores/hero-800.webp"
 thumbnail: "/assets/img/posts/alinhamento-pinca-rotores/card-640.webp"
@@ -45,8 +46,8 @@ promoted_brands: ["Scott", "Shimano"]
 context_only_brands: []
 portfolio_evidence_url: "https://thebikershop.com.br/produtos/disco-de-freio-shimano-xtr-cl900-center-lock/"
 portfolio_verified_at: "2026-08-11"
-editorial_status: "published"
-status: "published"
+editorial_status: "draft"
+status: "draft"
 sources:
   - name: "TheBiker — Disco de Freio Shimano XTR CL900 Center Lock"
     type: "store"

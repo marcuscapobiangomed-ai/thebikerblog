@@ -1,8 +1,6 @@
+{% assign commerce_config = site.data.affiliates["affiliates-config"] %}
+{% if commerce_config.commerceEnabled %}
 <div class="affiliate-links" style="background:var(--bg-card);border:1px solid var(--border-card);border-radius:var(--radius-lg);padding:16px 18px;margin:20px 0;">
-  {% assign commerce_config = site.data.affiliates["affiliates-config"] %}
-  {% unless commerce_config.commerceEnabled %}
-  <p style="font-size:0.82rem;color:var(--text-muted);margin:0;"><strong>Ofertas em revisão.</strong> {{ commerce_config.commerceReviewNote }}</p>
-  {% else %}
   <p style="font-size:0.78rem;color:var(--text-muted);margin-bottom:10px;"><strong>Compre na TheBiker</strong> — Preços e disponibilidade podem variar. Confira as condições atuais na loja oficial.</p>
   {% assign affiliate_prices = site.data.prices[include.product_id] %}
   <div id="affiliate-links-{{ include.product_id }}" style="display:flex;flex-wrap:wrap;gap:8px;">
@@ -17,5 +15,5 @@
     {% endif %}
     {% if available_stores == 0 %}<span style="font-size:0.82rem;color:var(--text-muted);">Nenhuma loja disponível no momento.</span>{% endif %}
   </div>
-  {% endunless %}
 </div>
+{% endif %}

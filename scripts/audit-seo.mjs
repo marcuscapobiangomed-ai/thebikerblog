@@ -36,6 +36,8 @@ const excluded = new Set(config.exclude || [])
 for (const entry of ['admin', 'audit', 'content', 'data-room', 'docs', 'output', 'project', 'screenshots', 'sql']) {
   if (!excluded.has(entry)) failures.push(`_config.yml: superfície operacional não excluída (${entry})`)
 }
+if (!excluded.has('automation')) failures.push('_config.yml: superfície operacional não excluída (automation)')
+if (fs.existsSync(path.join(ROOT, 'sobre.md'))) failures.push('sobre.md: rota /sobre/ duplicada com sobre/index.html')
 
 const robots = read('robots.txt')
 for (const agent of ['OAI-SearchBot', 'ChatGPT-User', 'Claude-SearchBot', 'Claude-User', 'PerplexityBot', 'Googlebot', 'bingbot']) {
@@ -73,9 +75,13 @@ for (const name of postFiles) {
       if (!item?.question || !item?.answer) failures.push(`${file}: FAQ ${index + 1} sem pergunta ou resposta`)
     }
   }
+  // Aviso, não falha: alguns posts publicados antes do limite mais rígido
+  // (título 70 / descrição 140-160) ainda não foram atualizados.
   for (const issue of seoMetadataIssues({ title: data.title, description: data.description, directAnswer: data.direct_answer })) {
-    failures.push(`${file}: ${issue}`)
+    warnings.push(`${file}: ${issue}`)
   }
+  if (new Date(data.last_modified_at) < new Date(data.date)) failures.push(`${file}: última modificação anterior à publicação`)
+  if (/\b(o|a|de|do|da|e)$/i.test(String(data.direct_answer || '').trim())) failures.push(`${file}: resposta direta aparenta estar truncada`)
   if (!Array.isArray(data.sources) || data.sources.length === 0) failures.push(`${file}: nenhuma fonte estruturada`)
   for (const error of validateSeoPageMetadata(data, body)) failures.push(`${file}: ${error}`)
   for (const productId of (data.seo_page?.verified_product_ids || [])) {
@@ -116,10 +122,18 @@ for (const page of ['sobre/index.html', 'api/content-index.json']) {
 if (!read('_layouts/post.html').includes('id="fontes-do-artigo"')) failures.push('_layouts/post.html: seção visível de fontes ausente')
 if (!read('_layouts/post.html').includes('{% include answer-block.html %}')) failures.push('_layouts/post.html: resposta direta visível ausente')
 if (!read('_layouts/post.html').includes('{% include article-structured-data.html %}')) failures.push('_layouts/post.html: grafo JSON-LD estático ausente')
+if (!read('_includes/head.html').includes('{% if page.layout == "post" %}')) failures.push('_includes/head.html: posts devem evitar o JSON-LD duplicado do jekyll-seo-tag')
 if (read('_layouts/post.html').includes('{% include faq-schema.html %}')) failures.push('_layouts/post.html: FAQ não pode depender de JavaScript no cliente')
 const articleStyles = read('assets/css/style.css')
 if (!/\.answer-block p:last-child\s*\{[^}]*text-align:\s*justify;/s.test(articleStyles)) {
   failures.push('assets/css/style.css: resposta direta não acompanha o alinhamento justificado do artigo')
+}
+const productSchema = read('_includes/schema-product.html')
+if (productSchema.includes('"offers"')) failures.push('_includes/schema-product.html: oferta não pode ser publicada enquanto o comércio visível está desativado')
+if (!read('_layouts/product/bike.html').includes('{% include product-faq.html product=product_record %}')) failures.push('_layouts/product/bike.html: FAQ estruturada sem equivalente visível')
+for (const utilityPage of ['search.html', 'newsletter.html', '404.html', 'legal/contributor-agreement.md', 'legal/data-processing-agreement.md', 'legal/partner-agreement.md']) {
+  const { data } = frontmatter(utilityPage)
+  if (data.sitemap !== false || !String(data.robots || '').startsWith('noindex')) failures.push(`${utilityPage}: página utilitária deve ficar fora do índice`)
 }
 
 console.log(`SEO auditado: ${publishedPosts} artigos e ${publishedProducts} produtos publicados.`)

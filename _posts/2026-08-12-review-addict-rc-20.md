@@ -1,13 +1,14 @@
 ---
+editorial_hold_reason: "Revisão de fontes, precisão e concisão pendente"
 image_subject_id: "bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9"
 layout: post
-published: true
-title: "Addict RC 20: Ultegra Di2, rodas de 40 mm e equilíbrio"
+published: false
+title: "Addict RC 20: Ultegra Di2, rodas de 40 mm e o equilíbrio da montagem"
 slug: "review-addict-rc-20"
 date: 2026-08-12
-last_modified_at: 2026-08-05
+last_modified_at: 2026-08-13
 author: "Equipe TheBiker"
-reviewed_by: "TheBiker AI Editorial Gate"
+reviewed_by: ""
 content_type: "review"
 audience_segment: "core_technical_cyclists"
 audience_intent: "purchase_consideration"
@@ -27,8 +28,8 @@ price_currency: "BRL"
 price_checked_at: "2026-08-04"
 category: "reviews"
 tags: ["ciclismo", "road", "scott", "addict-rc", "ultegra-di2", "review"]
-description: "Análise da Scott Addict RC 20 2026 com quadro HMX, Ultegra Di2 e rodas Syncros de 40 mm: posicionamento, limitações e perfil de ciclista indicado."
-direct_answer: "A Scott Addict RC 20 combina quadro HMX, Ultegra Di2 e rodas Syncros Capital de 40 mm em uma montagem race equilibrada. É indicada a quem prioriza resposta e velocidade, aceitando menos conforto que a Addict endurance."
+description: "Análise documental da Scott Addict RC 20 2026: quadro HMX, Ultegra Di2, rodas Syncros de 40 mm e posicionamento técnico da montagem."
+direct_answer: "A Scott Addict RC 20 2026 combina quadro HMX, Ultegra Di2 e rodas Syncros Capital 1.0 de 40 mm em uma montagem voltada a desempenho. A avaliação é documental: componentes e posição na linha foram verificados, sem alegação de teste de campo."
 image: "/assets/img/posts/review-addict-rc-20/hero-1600.webp"
 image_mobile: "/assets/img/posts/review-addict-rc-20/hero-800.webp"
 thumbnail: "/assets/img/posts/review-addict-rc-20/card-640.webp"
@@ -45,8 +46,8 @@ promoted_brands: ["Scott"]
 context_only_brands: []
 portfolio_evidence_url: "https://thebikershop.com.br/produtos/bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9/"
 portfolio_verified_at: "2026-08-04"
-editorial_status: "published"
-status: "published"
+editorial_status: "draft"
+status: "draft"
 sources:
   - name: "TheBiker — Bicicleta Scott Addict RC 20 Di2 2026 - Pré Venda"
     type: "store"

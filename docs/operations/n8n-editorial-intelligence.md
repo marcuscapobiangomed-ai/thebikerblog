@@ -111,8 +111,8 @@ O workflow de produção utiliza apenas o `GITHUB_TOKEN` efêmero com leitura de
 6. O título e as tags do índice público indicam se a resposta já existe. Nesse caso, a ação é `refresh`; caso contrário, `new-content`.
 7. Sinal que cita concorrente pode informar tendência de categoria, mas o briefing não autoriza promoção, link ou CTA para concorrente.
 8. Cada briefing registra evidência, URL, ângulo, página-alvo, score e gates de publicação.
-9. A issue semanal permanece como relatório. A issue mensal é reconhecida por `[INTEL] monthly-` e renova automaticamente a campanha rolante.
-10. O renovador preserva itens futuros já em produção ou agendados, remove dias publicados, substitui bloqueios e completa exatamente 30 datas consecutivas.
+9. A issue semanal permanece como relatório. A issue mensal é reconhecida por `[INTEL-BR] monthly-` e renova automaticamente a campanha rolante.
+10. O renovador preserva itens futuros já em produção ou agendados, remove dias publicados, substitui bloqueios e completa exatamente 30 datas consecutivas. Antes de persistir, um gate estrutural exige 30 itens utilizáveis, ao menos três reservas e o mix mensal 4+4 de corridas.
 11. Briefings `refresh` não viram artigos duplicados: são gravados em `_data/editorial-refresh-queue.json` para o fluxo de atualização do acervo.
 12. A geração final continua no pipeline GitHub/IA protegido; revisão humana passa a ser exigida somente para exceções bloqueadas.
 
@@ -139,6 +139,7 @@ O workflow de produção utiliza apenas o `GITHUB_TOKEN` efêmero com leitura de
 - erro GitHub: o relatório permanece nos dados da execução; repetir depois de corrigir a credencial.
 - qualquer falha: nenhum post é aprovado; o incidente fica disponível para revisão e uma pauta bloqueada pode ser substituída por reserva na renovação seguinte.
 - timeout, 429 ou falha transitória: `campaign:recover` libera uma tentativa adicional; na reincidência, ou em erro permanente, preserva a exceção no ledger e ocupa a mesma data com uma pauta-reserva.
+- relatório mensal ausente ou inteligência desabilitada: o watchdog aciona uma campanha de contingência local e rastreável; esse caminho não autoriza métricas ou tendências inventadas e ainda passa por todos os gates de produção antes de agendar qualquer artigo.
 
 ## Métricas do próprio fluxo
 

@@ -1,13 +1,14 @@
 ---
+editorial_hold_reason: "Revisão de fontes, precisão e concisão pendente"
 image_subject_id: "grupo-shimano-105-di2"
 layout: post
-published: true
+published: false
 title: "Câmbio eletrônico sob carga: ajuste e diagnóstico do Shimano Di2"
 slug: "cambio-eletronico-ajuste-diagnostico"
 date: 2026-08-08
 last_modified_at: 2026-08-09
 author: "Equipe TheBiker"
-reviewed_by: "TheBiker AI Editorial Gate"
+reviewed_by: ""
 content_type: "guia-tecnico"
 audience_segment: "core_technical_cyclists"
 audience_intent: "solve_problem"
@@ -45,8 +46,8 @@ promoted_brands: ["Shimano"]
 context_only_brands: []
 portfolio_evidence_url: "https://www.thebiker.com.br/categoria/cambio-eletronico"
 portfolio_verified_at: "2026-08-05"
-editorial_status: "published"
-status: "published"
+editorial_status: "draft"
+status: "draft"
 sources:
   - name: "Shimano Di2 Rear Derailleur Dealer's Manual (PDF)"
     type: "manufacturer"

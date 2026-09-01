@@ -113,10 +113,10 @@ model: ""
     <section id="proximas" class="race-content-section" aria-labelledby="upcoming-races-title">
       <div class="race-section-heading">
         <div>
-          <span>Agenda verificada</span>
+          <span>Agenda de competições</span>
           <h2 id="upcoming-races-title">As próximas 10 corridas</h2>
         </div>
-        <p>Seis vagas mantêm maioria brasileira validada; quatro preservam a cobertura mundial. Mudanças entram automaticamente na próxima sincronização.</p>
+        <p>Confira as próximas provas do calendário brasileiro e internacional.</p>
       </div>
       <div class="race-calendar-tools" data-race-filters>
         <div>
@@ -187,7 +187,7 @@ model: ""
       {% unless professional_found %}
         <div class="race-empty-state">
           <strong>Nenhuma análise publicada neste momento</strong>
-          <p>O calendário oficial acima já está ativo. Novas análises entram aqui somente depois de passarem pela verificação editorial.</p>
+          <p>O calendário oficial acima está ativo. As análises disponíveis aparecem nesta seção.</p>
         </div>
       {% endunless %}
     </section>

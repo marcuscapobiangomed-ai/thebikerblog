@@ -6,12 +6,10 @@ layout: default
 {% assign price_lowest = page.price_lowest %}
 {% assign price_highest = page.price_highest %}
 {% assign product_record = site.data.products.bikes[product_id] | default: page %}
-{% assign schema_price_lowest = price_lowest | default: product_record.theBikerPrice %}
-{% assign schema_price_highest = price_highest | default: product_record.theBikerPrice %}
 {% assign geometry = site.data.geometries[product_id] %}
 {% assign catalog = site.data["catalog-public"].bikes %}
 
-{% include schema-product.html product=product_record price_lowest=schema_price_lowest price_highest=schema_price_highest show_breadcrumb=true %}
+{% include schema-product.html product=product_record show_breadcrumb=true %}
 {% include schema-faq.html %}
 
 <section class="product-layout">
@@ -39,9 +37,9 @@ layout: default
         {% include affiliate-links.html product_id=product_id %}
         {% include product-prices.html product_id=product_id %}
 
+        {% if geometry and geometry.sizes.size > 0 %}
         <div class="product-section">
           <h3>Geometria</h3>
-          {% if geometry and geometry.sizes.size > 0 %}
           <div class="table-scroll" role="region" aria-label="Tabela de geometria" tabindex="0">
             <table class="specs-table">
               <thead><tr><th>Tamanho</th><th>Stack</th><th>Reach</th><th>Top Tube</th><th>Seat Tube</th><th>Head Tube</th><th>Head Angle</th><th>Seat Angle</th><th>Chainstay</th><th>Wheelbase</th></tr></thead>
@@ -52,10 +50,8 @@ layout: default
               </tbody>
             </table>
           </div>
-          {% else %}
-          <p style="color:var(--text-muted);font-style:italic;">Geometria não disponível.</p>
-          {% endif %}
         </div>
+        {% endif %}
 
         {% if page.content and page.content != '' %}
         <div class="product-section">
@@ -63,6 +59,8 @@ layout: default
           <div class="post-content">{{ content }}</div>
         </div>
         {% endif %}
+
+        {% include product-faq.html product=product_record %}
 
         <div class="product-section">
           <h3>Artigos relacionados</h3>

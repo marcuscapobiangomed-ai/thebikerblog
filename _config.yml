@@ -22,7 +22,7 @@ social:
     - https://www.instagram.com/thebikerbrasil
 
 webmaster_verifications:
-  google: googleae077bce8e335daa
+  google: mkJNzb9AFu9YfOskVdsxIUVSgjkZKqkR9vlgVdrpuuc
 
 google_analytics: G-DHD86P6XDZ
 clarity_project_id: "xyo6bi7k8g"
@@ -50,7 +50,12 @@ defaults:
 
 exclude:
   # Operação, governança e evidências ficam no repositório, não no índice público.
+  # Rascunhos e arquivo morto são bloqueados também pelo caminho, independentemente
+  # do frontmatter, para que uma alteração acidental em `published` não os exponha.
+  - _posts/drafts
+  - _posts/archived
   - admin
+  - automation
   - audit
   - bot
   - content
@@ -81,3 +86,4 @@ plugins:
   - jekyll-sitemap
   - jekyll-paginate
   - jekyll-feed
+  - jekyll-redirect-from

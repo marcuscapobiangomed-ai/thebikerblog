@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import assert from "node:assert/strict";
-import { ThreeProviderPipeline, applyPortfolioEvidence } from "./src/ai/three-provider-pipeline.js";
+import { ThreeProviderPipeline, applyPortfolioEvidence, buildAuditContext } from "./src/ai/three-provider-pipeline.js";
 import { AIProvider } from "./src/gemini.js";
 import { assertEditorialPublicationGates } from "./src/validation/editorial-publication-gates.js";
 
@@ -13,7 +13,7 @@ const clients = {
       return {
         provider,
         model: "test",
-        content: JSON.stringify({ facts: [], gaps: [], conflicts: [], forbiddenClaims: [], technicalAngles: [] }),
+        content: JSON.stringify({ facts: [], gaps: [], conflicts: ["Não há conflitos factuais entre as fontes fornecidas."], forbiddenClaims: [], technicalAngles: [] }),
         usage: {},
         durationMs: 1,
       };
@@ -70,6 +70,23 @@ const blockedExternalBrand = applyPortfolioEvidence({ promoted_brands: ['Marca E
   portfolio_verified_at: '2026-08-13',
 });
 assert.deepEqual(blockedExternalBrand.promoted_brands, ['Marca Externa']);
+const oversizedAuditContext = buildAuditContext({
+  topic: "Tema com contexto extenso",
+  researchData: {
+    title: "Produto",
+    sources: [{ id: "source-1", name: "Fonte", type: "official", url: "https://example.com", accessed: "2026-08-13" }],
+    confirmed_facts: [{ fact: "campo: " + "fato ".repeat(500), source_ids: ["source-1"], evidence_quote: "trecho " + "evidencia ".repeat(500) }],
+    limitations: ["limite ".repeat(500)],
+  },
+  factSheet: { facts: [{ statement: "fato ".repeat(500), source: "Fonte" }] },
+  finalArticle: {
+    title: "Artigo",
+    sections: [{ heading: "Seção", content: "texto ".repeat(5000) }],
+  },
+});
+const oversizedAuditJson = JSON.stringify(oversizedAuditContext);
+assert.ok(oversizedAuditJson.length < 20000, `Contexto de auditoria excedeu o limite: ${oversizedAuditJson.length}`);
+assert.match(oversizedAuditJson, /conteúdo truncado para auditoria/);
 const result = await pipeline.run({
   topic: "Notícia técnica",
   researchData: { sources: [{ name: "Fonte", url: "https://example.com" }] },
@@ -172,6 +189,54 @@ assert.equal(repairRounds, 2);
 assert.equal(retryResult.pipelineMetadata.finalRepairRounds, 2);
 assert.equal(retryResult.content, "repair-2");
 
+const completeCandidate = JSON.stringify({
+  title: "Estrutura original preservada",
+  description: "Descrição editorial suficientemente completa para permanecer válida durante um reparo parcial devolvido pelo provedor de inteligência artificial.",
+  direct_answer: "Resposta direta original suficientemente detalhada para o contrato editorial da publicação automatizada.",
+  sections: [
+    { heading: "Primeiro eixo técnico", content: "Conteúdo original um." },
+    { heading: "Segundo eixo técnico", content: "Conteúdo original dois." },
+  ],
+  claimsRequiringReview: ["Alegação que o reparo resolveu"],
+});
+let partialRepairParses = 0;
+const partialRepairProvider = new AIProvider({
+  pipeline: {
+    runtime,
+    clients: { isConfigured: () => true },
+    run: async () => ({ content: completeCandidate, metadata: { sourceHash: "partial-repair-test", providers: {} } }),
+    callStep: async () => ({
+      provider: "deepseek",
+      content: JSON.stringify({ description: "", sections: [], claimsRequiringReview: [], direct_answer: "Resposta direta corrigida sem apagar os demais campos estruturais já válidos do candidato original." }),
+    }),
+  },
+});
+partialRepairProvider._parseStructuredResponse = (content) => {
+  partialRepairParses += 1;
+  if (partialRepairParses === 1) throw new Error("Campo reparável fora do contrato");
+  const merged = JSON.parse(content);
+  assert.equal(merged.description, JSON.parse(completeCandidate).description);
+  assert.equal(merged.sections.length, 2);
+  assert.deepEqual(merged.claimsRequiringReview, []);
+  assert.match(merged.direct_answer, /corrigida/);
+  return { content, title: merged.title };
+};
+const partialRepairResult = await partialRepairProvider.processCase("Pauta com reparo parcial", { content_type: "guia-tecnico", editorialPriority: "P1" });
+assert.equal(partialRepairResult.pipelineMetadata.finalRepairRounds, 1);
+assert.equal(partialRepairParses, 2);
+
+const blankHeadingProvider = new AIProvider({ pipeline: { runtime, clients: { isConfigured: () => true } } });
+const recoveredHeadings = blankHeadingProvider._sanitizeStructuredArticle({
+  title: "Ciclocross com critérios oficiais",
+  sections: Array.from({ length: 22 }, (_, index) => ({
+    heading: "",
+    content: `O critério técnico ${index + 1} relaciona regulamento, equipamento e decisão de uso sem extrapolar as fontes. Conteúdo complementar.`,
+  })),
+});
+assert.equal(recoveredHeadings.sections.length, 22);
+assert.ok(recoveredHeadings.sections.every((section) => section.heading.length > 0));
+assert.match(recoveredHeadings.sections[0].heading, /critério técnico 1/i);
+
 const additiveArticle = JSON.stringify({
   sections: Array.from({ length: 5 }, (_, index) => ({ heading: `Seção ${index}`, content: `Conteúdo original ${index}.` })),
 });
@@ -211,6 +276,118 @@ additiveProvider._parseStructuredResponse = (content) => {
 const additiveResult = await additiveProvider.processCase("Pauta para expansão", { content_type: "guia-tecnico", editorialPriority: "P1" });
 assert.equal(additiveResult.pipelineMetadata.finalRepairRounds, 1);
 assert.equal(additiveParseRounds, 2);
+
+const previousDeterministicFallback = process.env.AI_DETERMINISTIC_CURATED_FALLBACK;
+process.env.AI_DETERMINISTIC_CURATED_FALLBACK = "true";
+const deterministicFallbackProvider = new AIProvider({
+  pipeline: {
+    runtime,
+    clients: { isConfigured: () => false },
+    run: async () => ({ content: "{}", metadata: { sourceHash: "deterministic-fallback-test", providers: {} } }),
+    callStep: async () => ({ provider: "deepseek", content: "{}" }),
+  },
+});
+await assert.rejects(() => deterministicFallbackProvider.processCase(
+  "Limpeza da transmissão depois de chuva e lama",
+  {
+    title: "Limpeza da transmissão depois de chuva e lama",
+    content_type: "guia-tecnico",
+    editorialPriority: "P1",
+    portfolio_evidence_url: "https://thebikershop.com.br/componentes/",
+    portfolio_verified_at: "2026-08-13",
+    confirmed_facts: [
+      { fact: "drivetrainCleaning: use o limpador recomendado pelo fabricante e seque a corrente depois da limpeza." },
+      { fact: "pressureWashing: jatos de alta pressão podem danificar componentes e vedações." },
+      { fact: "brakeInspection: inspecione pastilhas, rotores, comando e vazamentos antes de voltar a pedalar." },
+      { fact: "wetBraking: a distância de frenagem aumenta em piso molhado." },
+      { fact: "escalation: procure uma oficina quando houver dano, vazamento ou funcionamento irregular." },
+    ],
+    sources: [
+      { name: "SRAM Support", type: "official-website", url: "https://www.sram.com/en/learn/axs-bike-care-and-maintenance", accessed: "2026-08-13" },
+      { name: "Shimano Manuals", type: "official-website", url: "https://si.shimano.com/", accessed: "2026-08-13" },
+    ],
+    grounding: { fallback: "curated-official-offline-cache-v1" },
+  },
+), /Fallback determinístico integral desativado/);
+const previousCacheFirst = process.env.AI_DETERMINISTIC_CACHE_FIRST;
+process.env.AI_DETERMINISTIC_CACHE_FIRST = "true";
+let cacheFirstPipelineCalled = false;
+const cacheFirstProvider = new AIProvider({
+  pipeline: {
+    runtime,
+    clients: { isConfigured: () => true },
+    run: async () => { cacheFirstPipelineCalled = true; throw new Error("provider should not be called in cache-first mode"); },
+  },
+});
+await assert.rejects(() => cacheFirstProvider.processCase("Limpeza da transmissão depois de chuva e lama", {
+  title: "Limpeza da transmissão depois de chuva e lama",
+  content_type: "guia-tecnico",
+  editorialPriority: "P1",
+  portfolio_evidence_url: "https://thebikershop.com.br/componentes/",
+  portfolio_verified_at: "2026-08-13",
+  confirmed_facts: [
+    { fact: "drivetrainCleaning: limpe a transmissão com produto não ácido e seque a corrente." },
+    { fact: "pressureWashing: evite jato de alta pressão em componentes e vedações." },
+    { fact: "brakeInspection: confira pastilhas, rotores e vazamentos antes de pedalar." },
+    { fact: "wetBraking: a distância de frenagem aumenta em piso molhado." },
+    { fact: "escalation: procure uma oficina diante de dano ou funcionamento irregular." },
+  ],
+  sources: [
+    { name: "SRAM Support", type: "official-website", url: "https://www.sram.com/en/learn/axs-bike-care-and-maintenance", accessed: "2026-08-13" },
+  ],
+  grounding: { fallback: "campaign-research-offline-cache-v1" },
+}), /provider should not be called|Fallback determinístico integral desativado/);
+assert.equal(cacheFirstPipelineCalled, true);
+if (previousCacheFirst === undefined) delete process.env.AI_DETERMINISTIC_CACHE_FIRST;
+else process.env.AI_DETERMINISTIC_CACHE_FIRST = previousCacheFirst;
+const pipelineFailureProvider = new AIProvider({
+  pipeline: {
+    runtime,
+    clients: { isConfigured: () => false },
+    run: async () => { throw new Error("Nenhum provedor configurado"); },
+  },
+});
+await assert.rejects(() => pipelineFailureProvider.processCase("Fallback sem provedor", {
+  content_type: "guia-tecnico",
+  portfolio_evidence_url: "https://thebikershop.com.br/componentes/",
+  portfolio_verified_at: "2026-08-13",
+  confirmed_facts: [
+    { fact: "drivetrainCleaning: use o limpador recomendado pelo fabricante e seque a corrente depois da limpeza." },
+    { fact: "pressureWashing: jatos de alta pressão podem danificar componentes e vedações." },
+    { fact: "brakeInspection: inspecione pastilhas, rotores, comando e vazamentos antes de voltar a pedalar." },
+    { fact: "wetBraking: a distância de frenagem aumenta em piso molhado." },
+    { fact: "escalation: procure uma oficina quando houver dano, vazamento ou funcionamento irregular." },
+  ],
+  sources: [{ name: "Fonte oficial", type: "official-website", url: "https://www.sram.com/", accessed: "2026-08-13" }],
+  grounding: { fallback: "curated-official-offline-cache-v1" },
+}), /Fallback determinístico integral desativado/);
+const internalFallbackProvider = new AIProvider({
+  pipeline: {
+    runtime,
+    clients: { isConfigured: () => false },
+    run: async () => { throw new Error("Etapa final-audit falhou. deepseek: 402 Insufficient Balance | groq: 413 tokens per minute"); },
+  },
+});
+await assert.rejects(() => internalFallbackProvider.processCase("Ficha documental com cota indisponível", {
+  status: "pesquisa_concluida",
+  content_type: "guia-tecnico",
+  confirmed_facts: [
+    { fact: "frame.material: alumínio 6061", source_ids: ["internal-src-1"], evidence_quote: "material alumínio 6061 informado na ficha" },
+    { fact: "suspension.fork: garfo documentado", source_ids: ["internal-src-1"], evidence_quote: "garfo documentado na página oficial" },
+    { fact: "drivetrain.rearDerailleur: câmbio documentado", source_ids: ["internal-src-1"], evidence_quote: "câmbio documentado na página oficial" },
+  ],
+  sources: [{ id: "internal-src-1", name: "Catálogo interno verificado", type: "store", url: "https://thebikershop.com.br/produtos/ficha", accessed: "2026-08-13" }],
+  grounding: {
+    fallback: "internal-product-knowledge",
+    evidenceContract: "retrieved-excerpt-v1",
+    claimContract: "explicit-units-v1",
+    verifiedAt: "2026-08-13T12:00:00.000Z",
+  },
+}), /fallback determinístico|Gates editoriais não atendidos/i);
+if (previousDeterministicFallback === undefined) delete process.env.AI_DETERMINISTIC_CURATED_FALLBACK;
+else process.env.AI_DETERMINISTIC_CURATED_FALLBACK = previousDeterministicFallback;
+if (previousCacheFirst === undefined) delete process.env.AI_DETERMINISTIC_CACHE_FIRST;
+else process.env.AI_DETERMINISTIC_CACHE_FIRST = previousCacheFirst;
 if (previousPipelineMode === undefined) delete process.env.AI_PIPELINE_MODE;
 else process.env.AI_PIPELINE_MODE = previousPipelineMode;
 

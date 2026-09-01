@@ -1,4 +1,4 @@
-$root = "C:\Users\marcu\Downloads\Blog - APRENDA!\medblog-full"
+$root = (Resolve-Path (Join-Path $PSScriptRoot "..")).Path
 $patterns = @("*.md", "*.html", "*.yml", "*.json")
 $fixedCount = 0
 $fileCount = 0

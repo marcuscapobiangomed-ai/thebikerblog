@@ -4,6 +4,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import matter from "gray-matter";
 import { canonicalPortfolioBrand, isPortfolioBrand } from "../portfolio-policy.js";
+import { editorialWordRange } from "../editorial-length-policy.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const postsDir = path.resolve(__dirname, "../../../_posts");
@@ -42,13 +43,15 @@ const rows = listMarkdown(postsDir).map((file) => {
   const portfolioBrands = brands.declared.map(canonicalPortfolioBrand).filter(Boolean);
   const headingCount = (parsed.content.match(/^##\s+/gm) || []).length;
   const sourceLinkCount = (parsed.content.match(/^[-*]\s+.*https?:\/\//gim) || []).length;
+  const contentWords = words(parsed.content);
+  const wordRange = editorialWordRange(String(parsed.data.content_type || ""));
   const beginnerSignals = (parsed.content.match(/\b(iniciante|primeira bike|começando|começar)\b/giu) || []).length;
   const isPublished = parsed.data.published !== false;
   const isInactiveDirectory = relative.includes("/archived/") || relative.includes("/drafts/");
   const declaresDraft = parsed.data.status === "draft" || parsed.data.editorial_status === "draft";
   const isRaceCoverage = ["previa-corrida", "resumo-corrida", "calendario-provas", "guia-prova"].includes(String(parsed.data.content_type || ""));
   const unsafeCompetitorMention = brands.mentionedCompetitors.length > 0 && !isRaceCoverage;
-  let disposition = "reestruturar";
+  let disposition = "aprovado";
   const commercialList = /\b(melhor|melhores|onde comprar|vale o investimento|qual escolher)\b/iu.test(String(parsed.data.title || ""));
   if (declaresDraft && isPublished) disposition = "despublicar-status-inconsistente";
   else if (isInactiveDirectory && isPublished) disposition = "despublicar-diretorio-inativo";
@@ -57,7 +60,9 @@ const rows = listMarkdown(postsDir).map((file) => {
   else if (commercialList && brands.mentionedCompetitors.length > 0) disposition = "reescrever-promocao";
   else if (brands.mentionedCompetitors.length > 0) disposition = "auditar-mencao-contextual";
   else if (beginnerSignals > 2) disposition = "reduzir-foco-iniciante";
-  else if (words(parsed.content) < 900 || headingCount < 5) disposition = "aprofundar";
+  else if (sourceLinkCount < 2) disposition = "adicionar-fontes";
+  else if (contentWords < wordRange.min || headingCount < 5) disposition = "aprofundar";
+  else if (contentWords > wordRange.max) disposition = "condensar";
 
   return {
     file: relative,
@@ -66,7 +71,7 @@ const rows = listMarkdown(postsDir).map((file) => {
     published: isPublished,
     isInactiveDirectory,
     declaresDraft,
-    words: words(parsed.content),
+    words: contentWords,
     h2: headingCount,
     sourceLinks: sourceLinkCount,
     portfolioBrands,

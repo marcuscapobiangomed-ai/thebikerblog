@@ -13,6 +13,9 @@ import { assertVisualDecision, issueVisualDecision } from "./validation/visual-d
 import { alignCampaignVisual } from "./images/align-campaign-visual.js";
 import { releaseAssetUse } from "./images/asset-library.js";
 import { createStagedWorkspace, discardStagedWorkspace, promoteStagedPaths } from "./automation/file-transaction.js";
+import { assertResearchEvidenceContract, assertResearchGrounding } from "./validation/research-grounding.js";
+import { assertArticleResearchGrounding } from "./validation/article-research-grounding.js";
+import { researchForPublication } from "./validation/publication-research.js";
 
 const defaultRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 
@@ -35,6 +38,15 @@ function setOptionalField(content, field, value) {
   if (value === null) return content.replace(pattern, "");
   if (pattern.test(content)) return content.replace(pattern, `${field}: ${value}\n`);
   return content.replace(/^---\s*\r?\n/, (opening) => `${opening}${field}: ${value}\n`);
+}
+
+export function normalizeCategoryExamplePromotion(content, item) {
+  if (item?.heroImage?.relationship !== "category-example") return content;
+  const parsed = matter(content);
+  if (parsed.data.editorial_scope !== "portfolio") return content;
+  let normalized = setField(content, "brand", '""');
+  normalized = setField(normalized, "promoted_brands", "[]");
+  return normalized;
 }
 
 export async function cleanupFailedFinalization(root, item) {
@@ -61,12 +73,22 @@ export async function produceCampaignVisual({ root, item, approvedAt, force = fa
   if (!["exact-product", "real-context"].includes(visualPolicy.mode)) {
     throw new Error(`Politica visual ${visualPolicy.mode}: agendamento exige fotografia real explicitamente vinculada`);
   }
-  return produceOfficialCampaignImage({
+  const productIds = visualPolicy.mode === "real-context"
+    ? [...new Set([visualPolicy.productId, ...(item.productIds || [])])]
+    : [visualPolicy.productId];
+  const cover = await produceOfficialCampaignImage({
     root,
-    item: { ...item, productIds: [visualPolicy.productId] },
+    item: { ...item, productIds },
     approvedAt,
     force,
   });
+  // A category-example image may use another real product when the preferred
+  // asset is already consumed. Keep the policy and audit trail aligned with
+  // the product that actually passed the image gates.
+  if (visualPolicy.mode === "real-context" && cover.manifest.matchedProduct?.id) {
+    item.heroImage = { ...visualPolicy, productId: cover.manifest.matchedProduct.id };
+  }
+  return cover;
 }
 
 async function finalizeInWorkspace({ root, now, imageProducer }) {
@@ -81,6 +103,11 @@ async function finalizeInWorkspace({ root, now, imageProducer }) {
     const draftRoot = path.resolve(root, "_posts/drafts") + path.sep;
     if (!absolutePost.startsWith(draftRoot)) throw new Error(`postPath inseguro: ${item.postPath}`);
     let content = await fs.readFile(absolutePost, "utf8");
+    const researchPath = path.join(root, "content/research/campaign", `${item.id}.json`);
+    const research = JSON.parse(await fs.readFile(researchPath, "utf8"));
+    assertResearchGrounding(research, { requireFactReferences: true });
+    assertResearchEvidenceContract(research);
+    assertArticleResearchGrounding({ content, research: researchForPublication(research) });
     assertReviewedContentIntegrity(content, item.aiReview);
     const parsed = matter(content);
     if (parsed.data.published !== false) throw new Error("Rascunho precisa permanecer com published: false");
@@ -91,17 +118,22 @@ async function finalizeInWorkspace({ root, now, imageProducer }) {
       throw new Error("FAQ precisa ser uma lista de até cinco perguntas visíveis");
     }
     if ((parsed.content.match(/^##\s+/gm) || []).length < 5) throw new Error("Post com menos de cinco seções");
+    if (item.aiReview?.deterministicFullArticleFallbackUsed) {
+      throw new Error("Fallback determinístico é somente rascunho e exige revisão editorial independente");
+    }
     if (item.aiReview?.finalScore !== null && item.aiReview?.finalScore !== undefined && item.aiReview.finalScore < 90) {
       throw new Error(`Nota editorial final insuficiente: ${item.aiReview.finalScore}`);
     }
     if ((item.aiReview?.finalBlockers || 0) > 0) throw new Error("Auditoria editorial final ainda possui bloqueadores");
     assertMarkdownPublicationGates(content);
+    content = normalizeCategoryExamplePromotion(content, item);
+    const normalizedArticle = matter(content).data;
     const [catalog, library] = await Promise.all([
       fs.readFile(path.join(root, "content/product-discovery/thebiker-media-catalog.json"), "utf8").then(JSON.parse),
       fs.readFile(path.join(root, "content/image-library/index.json"), "utf8").then(JSON.parse)
         .catch((error) => error?.code === "ENOENT" ? { assets: [] } : Promise.reject(error)),
     ]);
-    const visualAlignment = alignCampaignVisual({ item, article: parsed.data, catalog, library });
+    const visualAlignment = alignCampaignVisual({ item, article: normalizedArticle, catalog, library });
     const cover = await imageProducer({ root, item, approvedAt });
     content = setField(content, "date", item.publishDate);
     content = setField(content, "last_modified_at", approvedAt);
@@ -137,8 +169,8 @@ async function finalizeInWorkspace({ root, now, imageProducer }) {
     content = linkResult.content;
     if (/\/assets\/img\/system\/covers\//.test(content.split("---", 3)[1] || "")) throw new Error("Fallback de imagem ainda presente no frontmatter");
     assertMarkdownPublicationGates(content);
-    const researchPath = path.join(root, "content/research/campaign", `${item.id}.json`);
-    const researchContent = await fs.readFile(researchPath, "utf8").catch((error) => error?.code === "ENOENT" ? null : Promise.reject(error));
+    const receiptResearchPath = path.join(root, "content/research/campaign", `${item.id}.json`);
+    const researchContent = await fs.readFile(receiptResearchPath, "utf8").catch((error) => error?.code === "ENOENT" ? null : Promise.reject(error));
     item.editorialReceipt = issueEditorialReceipt({ content, researchContent, aiReview: item.aiReview, now, origin: "pipeline" });
     await fs.writeFile(absolutePost, content);
     item.imageManifestPath = `assets/img/posts/${item.id}/image-manifest.json`;

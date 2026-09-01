@@ -1,6 +1,6 @@
 import { createHash } from "node:crypto";
 
-export const EDITORIAL_POLICY_VERSION = "thebiker-editorial-2026-08-v2";
+export const EDITORIAL_POLICY_VERSION = "thebiker-editorial-2026-08-v3";
 
 export function hashEditorialText(value) {
   const normalized = String(value ?? "").replace(/\r\n/g, "\n");
@@ -17,6 +17,9 @@ export function assertReviewedContentIntegrity(content, aiReview) {
 }
 
 export function issueEditorialReceipt({ content, researchContent = null, aiReview, now = new Date(), origin = "pipeline" }) {
+  if (aiReview?.deterministicFullArticleFallbackUsed) {
+    throw new Error("Recibo editorial não pode ser emitido para artigo integral de fallback determinístico");
+  }
   if ((aiReview?.finalScore ?? 0) < 90 || (aiReview?.finalBlockers ?? 0) > 0) {
     throw new Error("Recibo editorial exige nota final >= 90 e zero bloqueadores");
   }
@@ -37,6 +40,9 @@ export function issueEditorialReceipt({ content, researchContent = null, aiRevie
 export function assertScheduledReceipt(content, item) {
   const receipt = item?.editorialReceipt;
   if (!receipt) throw new Error(`Pauta ${item?.id || "desconhecida"} sem recibo editorial`);
+  if (item.aiReview?.deterministicFullArticleFallbackUsed) {
+    throw new Error("Recibo editorial inválido para artigo integral de fallback determinístico");
+  }
   if (receipt.policyVersion !== EDITORIAL_POLICY_VERSION) {
     throw new Error(`Política editorial desatualizada: ${receipt.policyVersion}`);
   }

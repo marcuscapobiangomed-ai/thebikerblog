@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 2,
+  "status": "approved",
+  "editorialUse": "publishable",
+  "assetType": "official-product-photo",
+  "factualSubject": "exact-product",
+  "editorialScope": "portfolio",
+  "purpose": "Ilustrar Scott Scale 940: o que a ficha atual confirma sobre quadro, suspensão e transmissão com produto real do catálogo TheBiker.",
+  "alt": "Bicicleta Scott Scale 940 - Black em fotografia oficial de Scott",
+  "caption": "Bicicleta Scott Scale 940 - Black, em fotografia oficial de Scott.",
+  "credit": "Scott",
+  "containsText": false,
+  "aiGenerated": false,
+  "assetId": "manufacturer-bicicleta-scott-scale-940-black-5171146828",
+  "sha256": "5171146828e2ac8182503a538cd3248abb84a325ecc4892f068fef537c53b5ee",
+  "perceptualHash": "1111111100111111111111111100111111000001110000001111111111111111",
+  "preserveFullProduct": true,
+  "outputFormat": "png",
+  "qualityTier": "high-definition",
+  "matchedProduct": {
+    "id": "bicicleta-scott-scale-940-black",
+    "name": "Bicicleta Scott Scale 940 - Black",
+    "sku": null,
+    "matchLevel": "exact-id"
+  },
+  "depictedBrands": [
+    "Scott"
+  ],
+  "depictedProducts": [
+    "Bicicleta Scott Scale 940 - Black"
+  ],
+  "focalPoint": {
+    "x": 0.5,
+    "y": 0.5
+  },
+  "source": {
+    "type": "manufacturer",
+    "name": "Scott",
+    "url": "https://www.scott-sports.com/global/en/product/scott-scale-940-bike",
+    "fileUrl": "https://static.scott-sports.com/image/upload/v1779976552/2217844.png",
+    "localFile": "source.avif",
+    "obtainedAt": "2026-08-14",
+    "license": "Uso editorial no blog oficial TheBiker",
+    "licenseEvidence": "Diretriz editorial do responsável pelo blog permitindo imagens dos sites oficiais das marcas vendidas pela TheBiker.",
+    "rightsPolicyId": "official-brand-editorial-v1"
+  },
+  "files": {
+    "hero": {
+      "file": "hero-1600.png",
+      "width": 1600,
+      "height": 900,
+      "maxKB": 1800
+    },
+    "mobile": {
+      "file": "hero-800.png",
+      "width": 800,
+      "height": 450,
+      "maxKB": 700
+    },
+    "card": {
+      "file": "card-640.png",
+      "width": 640,
+      "height": 360,
+      "maxKB": 450
+    }
+  },
+  "approval": {
+    "reviewedBy": "TheBiker deterministic image gate",
+    "approvedAt": "2026-08-14",
+    "method": "automated-editorial-gate",
+    "checks": [
+      "fonte-oficial",
+      "alta-resolucao",
+      "png-sem-perdas",
+      "direitos",
+      "produto-relacionado",
+      "sha256",
+      "hash-perceptual",
+      "sem-concorrente"
+    ]
+  },
+  "composition": {
+    "strategy": "trim-contain-safe-area",
+    "safeArea": 0.9,
+    "trimThreshold": 16,
+    "sourceWidth": 2315,
+    "sourceHeight": 827,
+    "subjectWidth": 2010,
+    "subjectHeight": 508
+  }
+}
