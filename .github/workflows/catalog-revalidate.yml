@@ -31,40 +31,23 @@ jobs:
           cache: npm
           cache-dependency-path: package-lock.json
       - run: npm ci
-      - name: Revalidar links de produtos ativos na loja
+      - name: Revalidar links de produtos e reconstruir catálogo
         id: revalidate
-        run: |
-          set +e
-          npm run catalog:revalidate
-          revalidate_exit_code=$?
-          set -e
-          echo "exit_code=$revalidate_exit_code" >> "$GITHUB_OUTPUT"
-      - name: Reconstruir catálogo público com os dados revalidados
-        if: steps.revalidate.outputs.exit_code == '0'
-        run: npm run catalog:public
-      - name: Persistir catálogo revalidado
-        if: steps.revalidate.outputs.exit_code == '0'
+        continue-on-error: true
+        run: npm run catalog:revalidate && npm run catalog:public
+      - name: Validar integralmente antes de persistir
+        id: validation
+        if: steps.revalidate.outcome == 'success'
+        run: npm run validate
+      - name: Persistir somente catálogo validado
+        if: steps.revalidate.outcome == 'success' && steps.validation.outcome == 'success'
         run: |
           git config user.name "thebiker-editorial-bot"
           git config user.email "thebiker-editorial-bot@users.noreply.github.com"
-          git add _data/products/bikes _data/catalog-public.json
+          git add _data/products/bikes _data/catalog-public.json api/products.json
           git diff --cached --quiet || git commit -m "state: revalidar catálogo público de produtos"
-          persist_status=1
-          for attempt in 1 2 3; do
-            if git pull --rebase --autostash origin main && git push; then
-              persist_status=0
-              break
-            fi
-            git rebase --abort 2>/dev/null || true
-            sleep $((attempt * 5))
-          done
-          if [ "$persist_status" -ne 0 ]; then
-            echo "Falha ao persistir a revalidação do catálogo após 3 tentativas." >&2
-            exit "$persist_status"
-          fi
-      - name: Resumo da revalidação
-        if: always()
-        run: |
-          echo "### Revalidação do catálogo público" >> "$GITHUB_STEP_SUMMARY"
-          echo "- Revalidação de links: exit ${{ steps.revalidate.outputs.exit_code || 'não executado' }}" >> "$GITHUB_STEP_SUMMARY"
-          echo "- Este workflow roda isolado da geração de conteúdo por IA: uma falha de provedor (DeepSeek/Groq) não deve mais impedir a atualização do catálogo." >> "$GITHUB_STEP_SUMMARY"
+          git pull --rebase origin main
+          git push
+      - name: Propagar resultado
+        if: steps.revalidate.outcome == 'failure'
+        run: exit 1
