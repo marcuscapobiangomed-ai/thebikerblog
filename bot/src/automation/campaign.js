@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { editorialBriefQualityErrors } from '../validation/editorial-text-quality.js'
 
 const HeroImageSchema = z.discriminatedUnion('mode', [
   z.object({ mode: z.literal('exact-product'), productId: z.string().min(3) }),
@@ -93,6 +94,9 @@ export function campaignItemInvariantErrors(item) {
   if (reviewed && !item.postPath) errors.push({ path: ['postPath'], message: `${item.status} exige postPath` })
   if (reviewed && !item.aiReview?.contentHash) errors.push({ path: ['aiReview', 'contentHash'], message: `${item.status} exige revisão com hash do conteúdo` })
   if (item.status === 'scheduled') {
+    if (item.aiReview?.deterministicFullArticleFallbackUsed) {
+      errors.push({ path: ['aiReview'], message: 'scheduled não aceita artigo integral produzido por fallback determinístico' })
+    }
     if ((item.aiReview?.finalScore ?? 0) < 90 || (item.aiReview?.finalBlockers ?? 1) !== 0) {
       errors.push({ path: ['aiReview'], message: 'scheduled exige nota final >= 90 e zero bloqueadores' })
     }
@@ -126,10 +130,16 @@ export const CampaignSchema = z.object({
   startsOn: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
   minimumApprovedBuffer: z.number().int().min(3).max(14),
   items: z.array(CampaignItemSchema).length(30),
-  reserves: z.array(ReserveSchema).min(3),
+  // The reserve pool is consumed during normal recovery. Its desired size is
+  // an operational buffer target, not a structural requirement: rejecting a
+  // campaign after a successful replacement makes the recovery itself crash.
+  reserves: z.array(ReserveSchema).default([]),
 }).superRefine((campaign, context) => {
   const ids = new Set()
   for (const [index, item] of campaign.items.entries()) {
+    for (const message of editorialBriefQualityErrors(item)) {
+      context.addIssue({ code: 'custom', path: ['items', index, 'title'], message })
+    }
     for (const error of campaignItemInvariantErrors(item)) {
       context.addIssue({ code: 'custom', path: ['items', index, ...error.path], message: error.message })
     }
@@ -164,6 +174,11 @@ export const CampaignSchema = z.object({
       if (!item.race.sourceVerifiedAt) context.addIssue({ code: 'custom', path: ['items', index, 'race', 'sourceVerifiedAt'], message: 'pauta de corrida pronta para produção exige data de verificação' })
     }
   }
+  for (const [index, reserve] of campaign.reserves.entries()) {
+    for (const message of editorialBriefQualityErrors(reserve)) {
+      context.addIssue({ code: 'custom', path: ['reserves', index, 'title'], message })
+    }
+  }
 })
 
 export function selectProductionCandidate(campaign) {
@@ -174,6 +189,16 @@ export function racePublicationSourceIsFresh(item, now = new Date(), maximumAgeH
   if (!item.race) return true
   if (item.race?.sourceStatus !== 'verified' || !item.race.sourceVerifiedAt || item.race.eventIds.length === 0) return false
   const verifiedAt = new Date(item.race.sourceVerifiedAt)
+  const ageHours = (now.getTime() - verifiedAt.getTime()) / 3_600_000
+  return Number.isFinite(ageHours) && ageHours >= 0 && ageHours <= maximumAgeHours
+}
+
+export function publicationResearchIsFresh(item, research, now = new Date(), maximumAgeHours = 24) {
+  if (item.race) return racePublicationSourceIsFresh(item, now, maximumAgeHours)
+  if (item.freshness === 'evergreen') return true
+  const verifiedValue = research?.grounding?.verifiedAt || research?.verified_at || research?.generated_at
+  if (!verifiedValue) return false
+  const verifiedAt = new Date(verifiedValue)
   const ageHours = (now.getTime() - verifiedAt.getTime()) / 3_600_000
   return Number.isFinite(ageHours) && ageHours >= 0 && ageHours <= maximumAgeHours
 }

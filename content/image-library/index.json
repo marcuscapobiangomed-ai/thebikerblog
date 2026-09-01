@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-08-14T02:17:10.540Z",
+  "updatedAt": "2026-08-21T09:41:24.749Z",
   "assets": [
     {
       "assetId": "thebiker-scott-addict-rc-pro-hmx-frame-set-def10da96a",
@@ -339,6 +339,159 @@
           "postId": "reserva-diagnostico-ruidos-bike",
           "position": "hero",
           "usedAt": "2026-08-14T12:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "assetId": "thebiker-bicicleta-scott-addict-rc-pro-di2-2026-pre-venda-65cdfb6ed9",
+      "sha256": "65cdfb6ed95d55b568a5f58f568b5c1ce33da5bc5a44ba506f0b67c94c50c1da",
+      "perceptualHash": "1110111111100111111101111111011100010111000001111100001110100010",
+      "sourcePageUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-addict-rc-pro-di2-2026-pre-venda/",
+      "sourceFileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/c06db896-cb92-11f0-976b-421ea7c02475-6ef145bcd1b62ff2ea17751631326810-1024-1024.webp",
+      "productId": "bicicleta-scott-addict-rc-pro-di2-2026-pre-venda",
+      "productName": "Bicicleta Scott Addict RC Pró Di2 2026 - Pré Venda",
+      "rightsPolicyId": "thebiker-official-editorial-v1",
+      "uses": [
+        {
+          "postId": "reserva-addict-rc-pro-ficha-oficial",
+          "position": "hero",
+          "usedAt": "2026-08-14T12:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "assetId": "manufacturer-bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9-2d8af118d6",
+      "sha256": "2d8af118d617149c25a33450b973b6735a87c09f260a544e2e9f628ee558849d",
+      "perceptualHash": "0000000000000000000001001100111101111111011111110000000000000000",
+      "sourcePageUrl": "https://www.scott-sports.com/global/en/product/scott-addict-rc-20-bike",
+      "sourceFileUrl": "https://static.scott-sports.com/image/upload/v1779982198/2290581.png",
+      "productId": "bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9",
+      "productName": "Bicicleta Scott Addict RC 20 Di2 2026 - Pré Venda",
+      "rightsPolicyId": "official-brand-editorial-v1",
+      "uses": [
+        {
+          "postId": "reserva-addict-rc20-ficha-oficial",
+          "position": "hero",
+          "usedAt": "2026-08-15T12:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "assetId": "thebiker-bicicleta-scott-addict-rc-pro-di2-2026-pre-venda-5caaf12305",
+      "sha256": "5caaf123051d06875f686c70ce99ab45b6d7cf8d21a483cd9ea0b28c76b25517",
+      "perceptualHash": "1110111111101111110000011111000111100110110001101001011000011101",
+      "sourcePageUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-addict-rc-pro-di2-2026-pre-venda/",
+      "sourceFileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/c09d3c6a-cb92-11f0-976b-421ea7c02475-69ce9386e66a236b0017751631326814-1024-1024.webp",
+      "productId": "bicicleta-scott-addict-rc-pro-di2-2026-pre-venda",
+      "productName": "Bicicleta Scott Addict RC Pró Di2 2026 - Pré Venda",
+      "rightsPolicyId": "thebiker-official-editorial-v1",
+      "uses": [
+        {
+          "postId": "contingencia-addict-rc-pro-documentacao",
+          "position": "hero",
+          "usedAt": "2026-08-20T12:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "assetId": "thebiker-bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9-ca2844fc68",
+      "sha256": "ca2844fc68f129d9c05e7a60f31f212f0eed787a1b781e5794c19c54f7655473",
+      "perceptualHash": "0001011111100111111101101011000100000001101100011110111100011111",
+      "sourcePageUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9/",
+      "sourceFileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/9f14bd5e-7451-11f0-bced-76750ea50910-2f9062f16505f0bfff17751629729869-1024-1024.webp",
+      "productId": "bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9",
+      "productName": "Bicicleta Scott Addict RC 20 Di2 2026 - Pré Venda",
+      "rightsPolicyId": "thebiker-official-editorial-v1",
+      "uses": [
+        {
+          "postId": "contingencia-addict-rc20-documentacao",
+          "position": "hero",
+          "usedAt": "2026-08-20T12:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "assetId": "thebiker-bicicleta-scott-addict-50-2026-pre-venda-1bxzy-380ed941d1",
+      "sha256": "380ed941d1ca358c70b5f7406020bcff04870023d18b04a876aa82a819d1d90f",
+      "perceptualHash": "0000000000101110001011001110111011111111111111110100011000000000",
+      "sourcePageUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-addict-50-2026-pre-venda-1bxzy/",
+      "sourceFileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/4253583649a_2260677-b240a116882165558817761938152803-1024-1024.webp",
+      "productId": "bicicleta-scott-addict-50-2026-pre-venda-1bxzy",
+      "productName": "Bicicleta Scott Addict 50 2026 - Pré Venda",
+      "rightsPolicyId": "thebiker-official-editorial-v1",
+      "uses": [
+        {
+          "postId": "contingencia-addict-50-documentacao",
+          "position": "hero",
+          "usedAt": "2026-08-20T12:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "assetId": "thebiker-bicicleta-scott-spark-rc-expert-2027-3e931d818d",
+      "sha256": "3e931d818d25444b671f7570314e61a202135db8df348d117cf6310406c30c9b",
+      "perceptualHash": "0111110000110000011110000011111001011111010110101000111000001110",
+      "sourcePageUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-spark-rc-expert-2027/",
+      "sourceFileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/4275478350m-ed42d0a9f91fbe067e17812055738459-1024-1024.webp",
+      "productId": "bicicleta-scott-spark-rc-expert-2027",
+      "productName": "Bicicleta Scott Spark RC Expert 2027",
+      "rightsPolicyId": "thebiker-official-editorial-v1",
+      "uses": [
+        {
+          "postId": "contingencia-spark-rc-expert-documentacao",
+          "position": "hero",
+          "usedAt": "2026-08-20T12:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "assetId": "thebiker-quadro-suspensao-spark-rc-world-cup-hmx-2026-flight-attendant-879576c205",
+      "sha256": "879576c205fa0d3aa8ad91297ee20c1b940c99d4e3a0733c2d84b7d5d464b965",
+      "perceptualHash": "0000000000000000000011100011111001111011111100010000000000000000",
+      "sourcePageUrl": "https://thebikershop.com.br/produtos/quadro-suspensao-spark-rc-world-cup-hmx-2026-flight-attendant/",
+      "sourceFileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/4257103020a_2266586_1-040245d2cf96b2518417630384961352-1024-1024.webp",
+      "productId": "quadro-suspensao-spark-rc-world-cup-hmx-2026-flight-attendant",
+      "productName": "Quadro + Suspensão Spark RC World Cup HMX 2026 Flight Attendant",
+      "rightsPolicyId": "thebiker-official-editorial-v1",
+      "uses": [
+        {
+          "postId": "contingencia-spark-world-cup-documentacao",
+          "position": "hero",
+          "usedAt": "2026-08-20T12:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "assetId": "thebiker-quadro-scott-scale-rc-team-hmf-2026-f9aab2bc13",
+      "sha256": "f9aab2bc133eb6504e7c1fbafc89cc653750c5de12e5d5e2dfa828542576bab0",
+      "perceptualHash": "1111111011111000111000011110100111001011101000110000011111000111",
+      "sourcePageUrl": "https://thebikershop.com.br/produtos/quadro-scott-scale-rc-team-hmf-2026/",
+      "sourceFileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/b6f1f242-1efc-11f1-bc89-762fe4583a60-97055a591ca044916d17751346940337-1024-1024.webp",
+      "productId": "quadro-scott-scale-rc-team-hmf-2026",
+      "productName": "Quadro Scott Scale RC Team HMF 2026",
+      "rightsPolicyId": "thebiker-official-editorial-v1",
+      "uses": [
+        {
+          "postId": "contingencia-scale-rc-team-quadro",
+          "position": "hero",
+          "usedAt": "2026-08-20T12:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "assetId": "thebiker-manopla-thule-com-limitador-de-torque-acutight-7ad54f757c",
+      "sha256": "7ad54f757c120244010b261d4ea9b3cf24e8906f4deb357af1111984d37fa91f",
+      "perceptualHash": "1111111111111111111001111110001111000011110001111110111111111111",
+      "sourcePageUrl": "https://thebikershop.com.br/produtos/manopla-thule-com-limitador-de-torque-acutight/",
+      "sourceFileUrl": "https://acdn-us.mitiendanube.com/stores/001/062/247/products/5554161-128186553d5324bf5116750900865761-1024-1024.webp",
+      "productId": "manopla-thule-com-limitador-de-torque-acutight",
+      "productName": "Manopla Thule com limitador de torque Acutight",
+      "rightsPolicyId": "thebiker-official-editorial-v1",
+      "uses": [
+        {
+          "postId": "contingencia-inspecao-fixadores",
+          "position": "hero",
+          "usedAt": "2026-08-21T12:00:00.000Z"
         }
       ]
     }

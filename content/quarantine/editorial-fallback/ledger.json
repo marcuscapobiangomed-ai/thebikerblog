@@ -1,0 +1,159 @@
+{
+  "schemaVersion": 1,
+  "entries": [
+    {
+      "originalPath": "_posts/2026-08-15-reserva-spark-rc-expert-ficha.md",
+      "quarantinePath": "content/quarantine/editorial-fallback/_posts/2026-08-15-reserva-spark-rc-expert-ficha.md",
+      "sha256": "e51320dfa8744ee47e50fafcf24859d575a6a7fb86a75823de3154387e6dd8e0",
+      "reason": "Artigo integral de fallback determinístico sem revisão editorial independente",
+      "quarantinedAt": "2026-08-21T15:00:00.000Z"
+    },
+    {
+      "originalPath": "_posts/2026-08-20-reserva-addict-50-rc20-comparativo.md",
+      "quarantinePath": "content/quarantine/editorial-fallback/_posts/2026-08-20-reserva-addict-50-rc20-comparativo.md",
+      "sha256": "c2d84ac6be8dbd3ce92fe218aaeb5b71bf31855284db9c7d5732de066fa7a449",
+      "reason": "Artigo integral de fallback determinístico sem revisão editorial independente",
+      "quarantinedAt": "2026-08-21T15:00:00.000Z"
+    },
+    {
+      "originalPath": "_posts/2026-08-20-reserva-diagnostico-ruidos-bike.md",
+      "quarantinePath": "content/quarantine/editorial-fallback/_posts/2026-08-20-reserva-diagnostico-ruidos-bike.md",
+      "sha256": "a1a1048be81ea2964709573e820ebda65e20a0a0259e9491c353eb20d87960d6",
+      "reason": "Artigo integral de fallback determinístico sem revisão editorial independente",
+      "quarantinedAt": "2026-08-21T15:00:00.000Z"
+    },
+    {
+      "originalPath": "_posts/2026-08-20-reserva-scale-940-980-comparativo.md",
+      "quarantinePath": "content/quarantine/editorial-fallback/_posts/2026-08-20-reserva-scale-940-980-comparativo.md",
+      "sha256": "0c8523bb34291ccb2593516f2f08fcfdeadd5bbfa38525e74ffd332bf733d7fa",
+      "reason": "Artigo integral de fallback determinístico sem revisão editorial independente",
+      "quarantinedAt": "2026-08-21T15:00:00.000Z"
+    },
+    {
+      "originalPath": "_posts/2026-08-20-reserva-scale-940-ficha.md",
+      "quarantinePath": "content/quarantine/editorial-fallback/_posts/2026-08-20-reserva-scale-940-ficha.md",
+      "sha256": "4e7751591d0b46fcf90fef32f646a37f56f04ca5c7fcec3f479522c9e6093a8b",
+      "reason": "Artigo integral de fallback determinístico sem revisão editorial independente",
+      "quarantinedAt": "2026-08-21T15:00:00.000Z"
+    },
+    {
+      "originalPath": "_posts/2026-08-20-reserva-spark-rc-world-cup-ficha.md",
+      "quarantinePath": "content/quarantine/editorial-fallback/_posts/2026-08-20-reserva-spark-rc-world-cup-ficha.md",
+      "sha256": "0b9f287c1ca0c05cae62511d08e919a93542285a06b532088b01f7d5355a8b49",
+      "reason": "Artigo integral de fallback determinístico sem revisão editorial independente",
+      "quarantinedAt": "2026-08-21T15:00:00.000Z"
+    },
+    {
+      "originalPath": "_posts/drafts/2026-08-21-reserva-addict-rc-pro-ficha-oficial.md",
+      "quarantinePath": "content/quarantine/editorial-fallback/_posts/drafts/2026-08-21-reserva-addict-rc-pro-ficha-oficial.md",
+      "sha256": "206a591d2d26048ad87572788dece2bee112b04217ab499cd495b5ca62648244",
+      "reason": "Artigo integral de fallback determinístico sem revisão editorial independente",
+      "quarantinedAt": "2026-08-21T15:00:00.000Z"
+    },
+    {
+      "originalPath": "_posts/drafts/2026-08-22-reserva-addict-rc20-ficha-oficial.md",
+      "quarantinePath": "content/quarantine/editorial-fallback/_posts/drafts/2026-08-22-reserva-addict-rc20-ficha-oficial.md",
+      "sha256": "8c6507ffdef40349339135832eefcea2655e66564ab47cdafb16615f81d13af1",
+      "reason": "Artigo integral de fallback determinístico sem revisão editorial independente",
+      "quarantinedAt": "2026-08-21T15:00:00.000Z"
+    },
+    {
+      "originalPath": "_posts/drafts/2026-08-23-contingencia-addict-rc-pro-documentacao.md",
+      "quarantinePath": "content/quarantine/editorial-fallback/_posts/drafts/2026-08-23-contingencia-addict-rc-pro-documentacao.md",
+      "sha256": "7805be97ebfc3339963a84371453d6fa122c2b3fc7872377ee64224ced0462e9",
+      "reason": "Artigo integral de fallback determinístico sem revisão editorial independente",
+      "quarantinedAt": "2026-08-21T15:00:00.000Z"
+    },
+    {
+      "originalPath": "_posts/drafts/2026-08-24-contingencia-addict-rc20-documentacao.md",
+      "quarantinePath": "content/quarantine/editorial-fallback/_posts/drafts/2026-08-24-contingencia-addict-rc20-documentacao.md",
+      "sha256": "37cb978614951c5c552428c9a9c6d0c41f1ec6de74cb9acfb24c3244276f933d",
+      "reason": "Artigo integral de fallback determinístico sem revisão editorial independente",
+      "quarantinedAt": "2026-08-21T15:00:00.000Z"
+    },
+    {
+      "originalPath": "_posts/drafts/2026-08-25-contingencia-addict-50-documentacao.md",
+      "quarantinePath": "content/quarantine/editorial-fallback/_posts/drafts/2026-08-25-contingencia-addict-50-documentacao.md",
+      "sha256": "572071c02b72620b2b8983a33df87bb4e651a7606af035cada688b56b20d64f1",
+      "reason": "Artigo integral de fallback determinístico sem revisão editorial independente",
+      "quarantinedAt": "2026-08-21T15:00:00.000Z"
+    },
+    {
+      "originalPath": "_posts/drafts/2026-08-27-contingencia-scale-980-variantes.md",
+      "quarantinePath": "content/quarantine/editorial-fallback/_posts/drafts/2026-08-27-contingencia-scale-980-variantes.md",
+      "sha256": "b672458f4333737a32bfd184c9e7d805abd474fa447a5793047c198477d06f68",
+      "reason": "Artigo integral de fallback determinístico sem revisão editorial independente",
+      "quarantinedAt": "2026-08-21T15:00:00.000Z"
+    },
+    {
+      "originalPath": "_posts/drafts/2026-08-28-contingencia-spark-rc-expert-documentacao.md",
+      "quarantinePath": "content/quarantine/editorial-fallback/_posts/drafts/2026-08-28-contingencia-spark-rc-expert-documentacao.md",
+      "sha256": "d6dd11ecac71576a7b5baefd04d7f2cf9fb52df082211bc6ff03c0c82eb46649",
+      "reason": "Artigo integral de fallback determinístico sem revisão editorial independente",
+      "quarantinedAt": "2026-08-21T15:00:00.000Z"
+    },
+    {
+      "originalPath": "_posts/drafts/2026-08-30-contingencia-spark-world-cup-documentacao.md",
+      "quarantinePath": "content/quarantine/editorial-fallback/_posts/drafts/2026-08-30-contingencia-spark-world-cup-documentacao.md",
+      "sha256": "5483fa3ae80d952737f85f4430662dd24b16d3ad8343cf0db6b1be5ce35071e2",
+      "reason": "Artigo integral de fallback determinístico sem revisão editorial independente",
+      "quarantinedAt": "2026-08-21T15:00:00.000Z"
+    },
+    {
+      "originalPath": "_posts/drafts/2026-08-31-contingencia-scale-rc-team-quadro.md",
+      "quarantinePath": "content/quarantine/editorial-fallback/_posts/drafts/2026-08-31-contingencia-scale-rc-team-quadro.md",
+      "sha256": "3e64ab3670a495006cc3c225349f81879e23a92f6547adb544196e7acc3b6f27",
+      "reason": "Artigo integral de fallback determinístico sem revisão editorial independente",
+      "quarantinedAt": "2026-08-21T15:00:00.000Z"
+    },
+    {
+      "originalPath": "_posts/drafts/2026-09-01-contingencia-inspecao-fixadores.md",
+      "quarantinePath": "content/quarantine/editorial-fallback/_posts/drafts/2026-09-01-contingencia-inspecao-fixadores.md",
+      "sha256": "4e161dfdc9782301ffe0358c6517993bfbd7406b9d2f9c803c4f825b00f81c63",
+      "reason": "Artigo integral de fallback determinístico sem revisão editorial independente",
+      "quarantinedAt": "2026-08-21T15:00:00.000Z"
+    },
+    {
+      "originalPath": "_posts/2026-07-19-peso-medio-bikes-carbono-vs-aluminio-brasil-2026.md",
+      "quarantinePath": "content/quarantine/editorial-fallback/_posts/2026-07-19-peso-medio-bikes-carbono-vs-aluminio-brasil-2026.md",
+      "sha256": "8ec61d8276637e4a8cd1efd0d4427b6f9475aadbcea09e2491a11c83c39c0ae9",
+      "reason": "Artigo integral de fallback determinístico sem revisão editorial independente",
+      "quarantinedAt": "2026-08-22T03:30:00.000Z"
+    },
+    {
+      "originalPath": "_posts/2026-08-04-scott-addict-2026-guia-completo.md",
+      "quarantinePath": "content/quarantine/editorial-fallback/_posts/2026-08-04-scott-addict-2026-guia-completo.md",
+      "sha256": "b465279062d35983dc3071b60ad8ec671783dc5b9341d74f2cec7ad141d04445",
+      "reason": "Artigo integral de fallback determinístico sem revisão editorial independente",
+      "quarantinedAt": "2026-08-22T03:30:00.000Z"
+    },
+    {
+      "originalPath": "_posts/2026-08-15-reserva-limpeza-transmissao-metodo.md",
+      "quarantinePath": "content/quarantine/editorial-fallback/_posts/2026-08-15-reserva-limpeza-transmissao-metodo.md",
+      "sha256": "853cbf029ea7dbae320065b61b4171061ce8bfecefa680c6c8715309c5bac659",
+      "reason": "Artigo integral de fallback determinístico sem revisão editorial independente",
+      "quarantinedAt": "2026-08-22T03:30:00.000Z"
+    },
+    {
+      "originalPath": "_posts/archived/2026-06-29-11-scott-addict-2026-ficha-técnica-completa-preço-no-brasil-e-para-quem-é-indicada.md",
+      "quarantinePath": "content/quarantine/editorial-fallback/_posts/archived/2026-06-29-11-scott-addict-2026-ficha-técnica-completa-preço-no-brasil-e-para-quem-é-indicada.md",
+      "sha256": "3f1ac85d74a4c795710bc65a50d60afec6dfba4c321e825d0cbf91a54ed68b84",
+      "reason": "Artigo integral de fallback determinístico sem revisão editorial independente",
+      "quarantinedAt": "2026-08-22T03:30:00.000Z"
+    },
+    {
+      "originalPath": "_posts/drafts/2026-09-04-contingencia-transmissao-desgaste.md",
+      "quarantinePath": "content/quarantine/editorial-fallback/_posts/drafts/2026-09-04-contingencia-transmissao-desgaste.md",
+      "sha256": "b5f451771141974add726a4adbeece2f327263600cbc2fe9d7a5b31e3bba4651",
+      "reason": "Artigo integral de fallback determinístico sem revisão editorial independente",
+      "quarantinedAt": "2026-08-22T03:30:00.000Z"
+    },
+    {
+      "originalPath": "_posts/drafts/2026-09-07-contingencia-tubeless-selante.md",
+      "quarantinePath": "content/quarantine/editorial-fallback/_posts/drafts/2026-09-07-contingencia-tubeless-selante.md",
+      "sha256": "e4626ab7115313ac62455411caf54d3edb210b5f3cba4e5e6fe83b363e929b54",
+      "reason": "Artigo integral de fallback determinístico sem revisão editorial independente",
+      "quarantinedAt": "2026-08-22T03:30:00.000Z"
+    }
+  ]
+}

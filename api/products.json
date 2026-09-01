@@ -1,271 +1,10 @@
 {
   "schemaVersion": "1.0",
-  "generatedAt": "2026-08-14",
+  "generatedAt": "2026-08-21",
   "language": "pt-BR",
   "publisher": "TheBiker Blog",
-  "total": 28,
+  "total": 1,
   "products": [
-    {
-      "id": "oggi-big-wheel-7-1-thebiker-br",
-      "brand": "Oggi",
-      "model": "Big Wheel 7.1",
-      "year": 2025,
-      "category": "mtb-cross-country",
-      "priceLowest": 4499,
-      "weightKg": null,
-      "frameMaterial": "aluminum",
-      "groupset": "não informado",
-      "speeds": 10,
-      "shifting": "não informado",
-      "brakeType": "hydraulic-disc",
-      "image": "/assets/img/products/comparator/oggi-big-wheel-7-1.webp",
-      "slug": "oggi/oggi-big-wheel-7-1-thebiker",
-      "storeProductUrl": "https://thebikershop.com.br/produtos/bicicleta-oggi-big-wheel-7-1/",
-      "portfolioVerifiedAt": "2026-08-14",
-      "pageUrl": "https://blog.thebiker.com.br/bikes/oggi/oggi-big-wheel-7-1-thebiker/",
-      "sources": [
-        {
-          "name": "TheBiker Shop",
-          "type": "store",
-          "url": "https://thebikershop.com.br/produtos/bicicleta-oggi-big-wheel-7-1/",
-          "accessedAt": "2026-08-14"
-        }
-      ],
-      "confirmedFacts": {},
-      "dataNotice": "Preço e disponibilidade são observações datadas; revalidar na loja."
-    },
-    {
-      "id": "oggi-big-wheel-7-2-thebiker-br",
-      "brand": "Oggi",
-      "model": "Big Wheel 7.2",
-      "year": 2025,
-      "category": "mtb-cross-country",
-      "priceLowest": 6499,
-      "weightKg": null,
-      "frameMaterial": "não informado",
-      "groupset": "Shimano Deore",
-      "speeds": 12,
-      "shifting": "wireless",
-      "brakeType": "não informado",
-      "image": "/assets/img/products/comparator/oggi-big-wheel-7-2.webp",
-      "slug": "oggi/oggi-big-wheel-7-2-thebiker",
-      "storeProductUrl": "https://thebikershop.com.br/produtos/bicicleta-oggi-big-wheel-7-2/",
-      "portfolioVerifiedAt": "2026-08-14",
-      "pageUrl": "https://blog.thebiker.com.br/bikes/oggi/oggi-big-wheel-7-2-thebiker/",
-      "sources": [
-        {
-          "name": "TheBiker Shop",
-          "type": "store",
-          "url": "https://thebikershop.com.br/produtos/bicicleta-oggi-big-wheel-7-2/",
-          "accessedAt": "2026-08-14"
-        }
-      ],
-      "confirmedFacts": {},
-      "dataNotice": "Preço e disponibilidade são observações datadas; revalidar na loja."
-    },
-    {
-      "id": "oggi-big-wheel-8-0-eletrica-2025-thebiker-br",
-      "brand": "Oggi",
-      "model": "Big Wheel 8.0 Elétrica",
-      "year": 2025,
-      "category": "e-mtb",
-      "priceLowest": 9999,
-      "weightKg": null,
-      "frameMaterial": "aluminum",
-      "groupset": "SRAM Rival",
-      "speeds": null,
-      "shifting": "wireless",
-      "brakeType": "hydraulic-disc",
-      "image": "/assets/img/products/comparator/oggi-big-wheel-8-0-eletrica-2025.webp",
-      "slug": "oggi/oggi-big-wheel-8-0-eletrica-2025-thebiker",
-      "storeProductUrl": "https://thebikershop.com.br/produtos/bicicleta-eletrica-oggi-big-wheel-8-0-2025/",
-      "portfolioVerifiedAt": "2026-08-14",
-      "pageUrl": "https://blog.thebiker.com.br/bikes/oggi/oggi-big-wheel-8-0-eletrica-2025-thebiker/",
-      "sources": [
-        {
-          "name": "TheBiker Shop",
-          "type": "store",
-          "url": "https://thebikershop.com.br/produtos/bicicleta-eletrica-oggi-big-wheel-8-0-2025/",
-          "accessedAt": "2026-08-14"
-        }
-      ],
-      "confirmedFacts": {},
-      "dataNotice": "Preço e disponibilidade são observações datadas; revalidar na loja."
-    },
-    {
-      "id": "oggi-cattura-pro-2025-thebiker-br",
-      "brand": "Oggi",
-      "model": "Cattura Pro",
-      "year": 2025,
-      "category": "mtb-trail",
-      "priceLowest": 35999,
-      "weightKg": null,
-      "frameMaterial": "carbon",
-      "groupset": "SRAM Rival",
-      "speeds": 12,
-      "shifting": "wireless",
-      "brakeType": "não informado",
-      "image": "/assets/img/products/comparator/oggi-cattura-pro-2025.webp",
-      "slug": "oggi/oggi-cattura-pro-2025-thebiker",
-      "storeProductUrl": "https://thebikershop.com.br/produtos/bicicleta-oggi-cattura-pro-2025/",
-      "portfolioVerifiedAt": "2026-08-14",
-      "pageUrl": "https://blog.thebiker.com.br/bikes/oggi/oggi-cattura-pro-2025-thebiker/",
-      "sources": [
-        {
-          "name": "TheBiker Shop",
-          "type": "store",
-          "url": "https://thebikershop.com.br/produtos/bicicleta-oggi-cattura-pro-2025/",
-          "accessedAt": "2026-08-14"
-        }
-      ],
-      "confirmedFacts": {},
-      "dataNotice": "Preço e disponibilidade são observações datadas; revalidar na loja."
-    },
-    {
-      "id": "oggi-cattura-sport-2025-thebiker-br",
-      "brand": "Oggi",
-      "model": "Cattura Sport",
-      "year": 2025,
-      "category": "mtb-trail",
-      "priceLowest": 18690,
-      "weightKg": null,
-      "frameMaterial": "carbon",
-      "groupset": "Shimano Deore",
-      "speeds": 12,
-      "shifting": "wireless",
-      "brakeType": "hydraulic-disc",
-      "image": "/assets/img/products/comparator/oggi-cattura-sport-2025.webp",
-      "slug": "oggi/oggi-cattura-sport-2025-thebiker",
-      "storeProductUrl": "https://thebikershop.com.br/produtos/bicicleta-oggi-cattura-sport-2025/",
-      "portfolioVerifiedAt": "2026-08-14",
-      "pageUrl": "https://blog.thebiker.com.br/bikes/oggi/oggi-cattura-sport-2025-thebiker/",
-      "sources": [
-        {
-          "name": "TheBiker Shop",
-          "type": "store",
-          "url": "https://thebikershop.com.br/produtos/bicicleta-oggi-cattura-sport-2025/",
-          "accessedAt": "2026-08-14"
-        }
-      ],
-      "confirmedFacts": {},
-      "dataNotice": "Preço e disponibilidade são observações datadas; revalidar na loja."
-    },
-    {
-      "id": "oggi-razzo-t-110-2025-thebiker-br",
-      "brand": "Oggi",
-      "model": "Razzo T 110",
-      "year": 2025,
-      "category": "e-mtb",
-      "priceLowest": 29999,
-      "weightKg": null,
-      "frameMaterial": "aluminum",
-      "groupset": "Shimano Deore",
-      "speeds": null,
-      "shifting": "wireless",
-      "brakeType": "hydraulic-disc",
-      "image": "/assets/img/products/comparator/oggi-razzo-t-110-2025.webp",
-      "slug": "oggi/oggi-razzo-t-110-2025-thebiker",
-      "storeProductUrl": "https://thebikershop.com.br/produtos/bicicleta-eletrica-oggi-razzo-t-110-2025/",
-      "portfolioVerifiedAt": "2026-08-14",
-      "pageUrl": "https://blog.thebiker.com.br/bikes/oggi/oggi-razzo-t-110-2025-thebiker/",
-      "sources": [
-        {
-          "name": "TheBiker Shop",
-          "type": "store",
-          "url": "https://thebikershop.com.br/produtos/bicicleta-eletrica-oggi-razzo-t-110-2025/",
-          "accessedAt": "2026-08-14"
-        }
-      ],
-      "confirmedFacts": {},
-      "dataNotice": "Preço e disponibilidade são observações datadas; revalidar na loja."
-    },
-    {
-      "id": "oggi-razzo-t-130-2025-thebiker-br",
-      "brand": "Oggi",
-      "model": "Razzo T 130",
-      "year": 2025,
-      "category": "e-mtb",
-      "priceLowest": 36990,
-      "weightKg": null,
-      "frameMaterial": "não informado",
-      "groupset": "Shimano Deore",
-      "speeds": 11,
-      "shifting": "wireless",
-      "brakeType": "hydraulic-disc",
-      "image": "/assets/img/products/comparator/oggi-razzo-t-130-2025.webp",
-      "slug": "oggi/oggi-razzo-t-130-2025-thebiker",
-      "storeProductUrl": "https://thebikershop.com.br/produtos/bicicleta-eletrica-oggi-razzo-t-130-2025/",
-      "portfolioVerifiedAt": "2026-08-14",
-      "pageUrl": "https://blog.thebiker.com.br/bikes/oggi/oggi-razzo-t-130-2025-thebiker/",
-      "sources": [
-        {
-          "name": "TheBiker Shop",
-          "type": "store",
-          "url": "https://thebikershop.com.br/produtos/bicicleta-eletrica-oggi-razzo-t-130-2025/",
-          "accessedAt": "2026-08-14"
-        }
-      ],
-      "confirmedFacts": {},
-      "dataNotice": "Preço e disponibilidade são observações datadas; revalidar na loja."
-    },
-    {
-      "id": "scott-addict-30-2026-thebiker-br",
-      "brand": "Scott",
-      "model": "Addict 30 2026",
-      "year": 2026,
-      "category": "road-endurance",
-      "priceLowest": 44999,
-      "weightKg": null,
-      "frameMaterial": "carbon",
-      "groupset": "105 Di2",
-      "speeds": null,
-      "shifting": "wireless",
-      "brakeType": "não informado",
-      "image": "/assets/img/products/comparator/scott-addict-30-2026.webp",
-      "slug": "scott/scott-addict-30-2026-thebiker",
-      "storeProductUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-addict-30-2026-pre-venda/",
-      "portfolioVerifiedAt": "2026-08-14",
-      "pageUrl": "https://blog.thebiker.com.br/bikes/scott/scott-addict-30-2026-thebiker/",
-      "sources": [
-        {
-          "name": "TheBiker Shop",
-          "type": "store",
-          "url": "https://thebikershop.com.br/produtos/bicicleta-scott-addict-30-2026-pre-venda/",
-          "accessedAt": "2026-08-14"
-        }
-      ],
-      "confirmedFacts": {},
-      "dataNotice": "Preço e disponibilidade são observações datadas; revalidar na loja."
-    },
-    {
-      "id": "scott-addict-30-di2-2025-thebiker-br",
-      "brand": "Scott",
-      "model": "Addict 30 Di2",
-      "year": 2025,
-      "category": "road-endurance",
-      "priceLowest": 39999,
-      "weightKg": null,
-      "frameMaterial": "não informado",
-      "groupset": "105 Di2",
-      "speeds": null,
-      "shifting": "wireless",
-      "brakeType": "hydraulic-disc",
-      "image": "/assets/img/products/comparator/scott-addict-30-di2-2025.webp",
-      "slug": "scott/scott-addict-30-di2-2025-thebiker",
-      "storeProductUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-addict-30-di2-2025-pre-venda/",
-      "portfolioVerifiedAt": "2026-08-14",
-      "pageUrl": "https://blog.thebiker.com.br/bikes/scott/scott-addict-30-di2-2025-thebiker/",
-      "sources": [
-        {
-          "name": "TheBiker Shop",
-          "type": "store",
-          "url": "https://thebikershop.com.br/produtos/bicicleta-scott-addict-30-di2-2025-pre-venda/",
-          "accessedAt": "2026-08-14"
-        }
-      ],
-      "confirmedFacts": {},
-      "dataNotice": "Preço e disponibilidade são observações datadas; revalidar na loja."
-    },
     {
       "id": "scott-addict-50-2026-thebiker-br",
       "brand": "Scott",
@@ -282,16 +21,8 @@
       "image": "/assets/img/products/comparator/scott-addict-50-2026.webp",
       "slug": "scott/scott-addict-50-2026-thebiker",
       "storeProductUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-addict-50-2026-pre-venda-cumulus-white/",
-      "portfolioVerifiedAt": "2026-08-14",
       "pageUrl": "https://blog.thebiker.com.br/bikes/scott/scott-addict-50-2026-thebiker/",
       "sources": [
-        {
-          "id": "thebiker-scott-addict-50-2026",
-          "name": "TheBiker — Scott Addict 50 2026",
-          "type": "store",
-          "url": "https://thebikershop.com.br/produtos/bicicleta-scott-addict-50-2026-pre-venda-cumulus-white/",
-          "accessedAt": "2026-08-04"
-        },
         {
           "id": "scott-addict-manual-2026-pt",
           "name": "Scott — manual oficial Addict 2026 em português",
@@ -310,47 +41,19 @@
       "confirmedFacts": {
         "identity.color": {
           "value": "Cumulus White",
-          "unit": null,
-          "status": "confirmed",
-          "sourceIds": [
-            "thebiker-scott-addict-50-2026"
-          ],
-          "observedAt": "2026-08-04",
-          "market": "BR",
-          "qualifier": null
+          "unit": null
         },
         "commercial.price": {
           "value": 28999,
-          "unit": "BRL",
-          "status": "confirmed",
-          "sourceIds": [
-            "thebiker-scott-addict-50-2026"
-          ],
-          "observedAt": "2026-08-04",
-          "market": "BR",
-          "qualifier": "Preço observado; revalidar antes de publicar"
+          "unit": "BRL"
         },
         "commercial.saleStatus": {
           "value": "pre-order",
-          "unit": null,
-          "status": "confirmed",
-          "sourceIds": [
-            "thebiker-scott-addict-50-2026"
-          ],
-          "observedAt": "2026-08-04",
-          "market": "BR",
-          "qualifier": "Condição observada na página"
+          "unit": null
         },
         "commercial.unitsObserved": {
           "value": 1,
-          "unit": "unidade",
-          "status": "confirmed",
-          "sourceIds": [
-            "thebiker-scott-addict-50-2026"
-          ],
-          "observedAt": "2026-08-04",
-          "market": "BR",
-          "qualifier": "Não inferir estoque futuro ou por tamanho"
+          "unit": "unidade"
         },
         "commercial.sizesListed": {
           "value": [
@@ -361,880 +64,133 @@
             56,
             58
           ],
-          "unit": null,
-          "status": "confirmed",
-          "sourceIds": [
-            "thebiker-scott-addict-50-2026"
-          ],
-          "observedAt": "2026-08-04",
-          "market": "BR",
-          "qualifier": "Lista exibida; não garante disponibilidade simultânea"
+          "unit": null
         },
         "frame.model": {
           "value": "Addict HMF Carbon",
-          "unit": null,
-          "status": "confirmed",
-          "sourceIds": [
-            "thebiker-scott-addict-50-2026"
-          ],
-          "observedAt": "2026-08-04",
-          "market": "BR",
-          "qualifier": null
+          "unit": null
         },
         "frame.internalCableRouting": {
           "value": true,
-          "unit": null,
-          "status": "confirmed",
-          "sourceIds": [
-            "thebiker-scott-addict-50-2026"
-          ],
-          "observedAt": "2026-08-04",
-          "market": "BR",
-          "qualifier": null
+          "unit": null
         },
         "frame.derailleurHanger": {
           "value": "UDH",
-          "unit": null,
-          "status": "confirmed",
-          "sourceIds": [
-            "thebiker-scott-addict-50-2026"
-          ],
-          "observedAt": "2026-08-04",
-          "market": "BR",
-          "qualifier": null
+          "unit": null
         },
         "fork.model": {
           "value": "Addict HMF Flatmount Disc",
-          "unit": null,
-          "status": "confirmed",
-          "sourceIds": [
-            "thebiker-scott-addict-50-2026"
-          ],
-          "observedAt": "2026-08-04",
-          "market": "BR",
-          "qualifier": "Espiga de carbono excêntrica"
+          "unit": null
         },
         "geometry.intent": {
           "value": "endurance",
-          "unit": null,
-          "status": "confirmed",
-          "sourceIds": [
-            "thebiker-scott-addict-50-2026"
-          ],
-          "observedAt": "2026-08-04",
-          "market": "BR",
-          "qualifier": "Stack mais alto e reach mais curto que configuração race; tabela completa não integrada"
+          "unit": null
         },
         "drivetrain.groupset": {
           "value": "Shimano 105",
-          "unit": null,
-          "status": "confirmed",
-          "sourceIds": [
-            "thebiker-scott-addict-50-2026"
-          ],
-          "observedAt": "2026-08-04",
-          "market": "BR",
-          "qualifier": "Mecânico, 2x12"
+          "unit": null
         },
         "drivetrain.rearSpeeds": {
           "value": 12,
-          "unit": "velocidades",
-          "status": "confirmed",
-          "sourceIds": [
-            "thebiker-scott-addict-50-2026"
-          ],
-          "observedAt": "2026-08-04",
-          "market": "BR",
-          "qualifier": null
+          "unit": "velocidades"
         },
         "brakes.model": {
           "value": "Shimano BR-R7170",
-          "unit": null,
-          "status": "confirmed",
-          "sourceIds": [
-            "thebiker-scott-addict-50-2026"
-          ],
-          "observedAt": "2026-08-04",
-          "market": "BR",
-          "qualifier": "Hidráulicos a disco"
+          "unit": null
         },
         "wheels.model": {
           "value": "Syncros RP2.0 Disc",
-          "unit": null,
-          "status": "confirmed",
-          "sourceIds": [
-            "thebiker-scott-addict-50-2026"
-          ],
-          "observedAt": "2026-08-04",
-          "market": "BR",
-          "qualifier": "Material, largura interna e tubeless não confirmados"
+          "unit": null
         },
         "tires.model": {
           "value": "Schwalbe ONE",
-          "unit": null,
-          "status": "confirmed",
-          "sourceIds": [
-            "thebiker-scott-addict-50-2026"
-          ],
-          "observedAt": "2026-08-04",
-          "market": "BR",
-          "qualifier": "700x34C"
+          "unit": null
         },
         "tires.installedWidth": {
           "value": 34,
-          "unit": "mm",
-          "status": "confirmed",
-          "sourceIds": [
-            "thebiker-scott-addict-50-2026"
-          ],
-          "observedAt": "2026-08-04",
-          "market": "BR",
-          "qualifier": "Largura nominal"
+          "unit": "mm"
         },
         "limits.maximumTireWidth": {
           "value": 38,
-          "unit": "mm",
-          "status": "confirmed",
-          "sourceIds": [
-            "scott-addict-manual-2026-pt"
-          ],
-          "observedAt": "2026-08-04",
-          "market": "BR",
-          "qualifier": null
+          "unit": "mm"
         },
         "limits.maximumSystemWeight": {
           "value": 120,
-          "unit": "kg",
-          "status": "confirmed",
-          "sourceIds": [
-            "thebiker-scott-addict-50-2026"
-          ],
-          "observedAt": "2026-08-04",
-          "market": "BR",
-          "qualifier": "Bicicleta, ciclista, equipamento e bagagem"
+          "unit": "kg"
         },
         "compatibility.frontAxle": {
           "value": "12x100",
-          "unit": "mm",
-          "status": "confirmed",
-          "sourceIds": [
-            "scott-addict-manual-2026-pt"
-          ],
-          "observedAt": "2026-08-04",
-          "market": "BR",
-          "qualifier": null
+          "unit": "mm"
         },
         "compatibility.rearAxle": {
           "value": "12x142",
-          "unit": "mm",
-          "status": "confirmed",
-          "sourceIds": [
-            "scott-addict-manual-2026-pt"
-          ],
-          "observedAt": "2026-08-04",
-          "market": "BR",
-          "qualifier": null
+          "unit": "mm"
         },
         "compatibility.bottomBracketShell": {
           "value": "41x86.5",
-          "unit": "mm",
-          "status": "confirmed",
-          "sourceIds": [
-            "scott-addict-manual-2026-pt"
-          ],
-          "observedAt": "2026-08-04",
-          "market": "BR",
-          "qualifier": null
+          "unit": "mm"
         },
         "limits.maximumFrontRotor": {
           "value": 180,
-          "unit": "mm",
-          "status": "confirmed",
-          "sourceIds": [
-            "scott-addict-manual-2026-pt"
-          ],
-          "observedAt": "2026-08-04",
-          "market": "BR",
-          "qualifier": "Limite, não tamanho instalado"
+          "unit": "mm"
         },
         "limits.maximumRearRotor": {
           "value": 160,
-          "unit": "mm",
-          "status": "confirmed",
-          "sourceIds": [
-            "scott-addict-manual-2026-pt"
-          ],
-          "observedAt": "2026-08-04",
-          "market": "BR",
-          "qualifier": "Limite, não tamanho instalado"
+          "unit": "mm"
         },
         "limits.maximum2xChainring": {
           "value": "52-36",
-          "unit": "dentes",
-          "status": "confirmed",
-          "sourceIds": [
-            "scott-addict-manual-2026-pt"
-          ],
-          "observedAt": "2026-08-04",
-          "market": "BR",
-          "qualifier": "Limite, não configuração instalada"
+          "unit": "dentes"
         },
         "manufacturer.modelCode": {
           "value": 425358,
-          "unit": null,
-          "status": "confirmed",
-          "sourceIds": [
-            "scott-addict-50-global-product"
-          ],
-          "observedAt": "2026-08-04",
-          "market": "global",
-          "qualifier": null
+          "unit": null
         },
         "frame.integratedStorage": {
           "value": true,
-          "unit": null,
-          "status": "confirmed",
-          "sourceIds": [
-            "scott-addict-50-global-product"
-          ],
-          "observedAt": "2026-08-04",
-          "market": "global",
-          "qualifier": null
+          "unit": null
         },
         "drivetrain.rearDerailleur": {
           "value": "Shimano 105 RD-R7100",
-          "unit": null,
-          "status": "confirmed",
-          "sourceIds": [
-            "scott-addict-50-global-product"
-          ],
-          "observedAt": "2026-08-04",
-          "market": "global",
-          "qualifier": null
+          "unit": null
         },
         "drivetrain.frontDerailleur": {
           "value": "Shimano 105 FD-R7100",
-          "unit": null,
-          "status": "confirmed",
-          "sourceIds": [
-            "scott-addict-50-global-product"
-          ],
-          "observedAt": "2026-08-04",
-          "market": "global",
-          "qualifier": null
+          "unit": null
         },
         "drivetrain.crankset": {
           "value": "Shimano 105 FC-R7100 50-34T",
-          "unit": null,
-          "status": "confirmed",
-          "sourceIds": [
-            "scott-addict-50-global-product"
-          ],
-          "observedAt": "2026-08-04",
-          "market": "global",
-          "qualifier": "Configuração da página global; confirmar unidade brasileira antes de publicar"
+          "unit": null
         },
         "drivetrain.cassette": {
           "value": "Shimano CS-R7100 11-34",
-          "unit": null,
-          "status": "confirmed",
-          "sourceIds": [
-            "scott-addict-50-global-product"
-          ],
-          "observedAt": "2026-08-04",
-          "market": "global",
-          "qualifier": "Configuração da página global; confirmar unidade brasileira antes de publicar"
+          "unit": null
         },
         "brakes.frontRotorInstalled": {
           "value": 160,
-          "unit": "mm",
-          "status": "confirmed",
-          "sourceIds": [
-            "scott-addict-50-global-product"
-          ],
-          "observedAt": "2026-08-04",
-          "market": "global",
-          "qualifier": "Shimano RT-CL700; configuração global"
+          "unit": "mm"
         },
         "brakes.rearRotorInstalled": {
           "value": 160,
-          "unit": "mm",
-          "status": "confirmed",
-          "sourceIds": [
-            "scott-addict-50-global-product"
-          ],
-          "observedAt": "2026-08-04",
-          "market": "global",
-          "qualifier": "Shimano RT-CL700; configuração global"
+          "unit": "mm"
         },
         "cockpit.handlebar": {
           "value": "Syncros HB-R100-AL",
-          "unit": null,
-          "status": "confirmed",
-          "sourceIds": [
-            "scott-addict-50-global-product"
-          ],
-          "observedAt": "2026-08-04",
-          "market": "global",
-          "qualifier": null
+          "unit": null
         },
         "cockpit.stem": {
           "value": "Syncros ST-R310-AL",
-          "unit": null,
-          "status": "confirmed",
-          "sourceIds": [
-            "scott-addict-50-global-product"
-          ],
-          "observedAt": "2026-08-04",
-          "market": "global",
-          "qualifier": null
+          "unit": null
         },
         "cockpit.seatpost": {
           "value": "Syncros SP-R101-CF",
-          "unit": null,
-          "status": "confirmed",
-          "sourceIds": [
-            "scott-addict-50-global-product"
-          ],
-          "observedAt": "2026-08-04",
-          "market": "global",
-          "qualifier": null
+          "unit": null
         },
         "cockpit.saddle": {
           "value": "Syncros Tofino V 2.0 Cut Out",
-          "unit": null,
-          "status": "confirmed",
-          "sourceIds": [
-            "scott-addict-50-global-product"
-          ],
-          "observedAt": "2026-08-04",
-          "market": "global",
-          "qualifier": null
+          "unit": null
         }
-      },
-      "dataNotice": "Preço e disponibilidade são observações datadas; revalidar na loja."
-    },
-    {
-      "id": "scott-addict-50-2025-thebiker-br",
-      "brand": "Scott",
-      "model": "Addict 50 2025",
-      "year": 2025,
-      "category": "road-endurance",
-      "priceLowest": 26999,
-      "weightKg": null,
-      "frameMaterial": "não informado",
-      "groupset": "Shimano 105",
-      "speeds": null,
-      "shifting": "wireless",
-      "brakeType": "não informado",
-      "image": "/assets/img/products/comparator/scott-addict-50-2025.webp",
-      "slug": "scott/scott-addict-50-2025-thebiker",
-      "storeProductUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-addict-50-2025-pre-venda-cinza/",
-      "portfolioVerifiedAt": "2026-08-14",
-      "pageUrl": "https://blog.thebiker.com.br/bikes/scott/scott-addict-50-2025-thebiker/",
-      "sources": [
-        {
-          "name": "TheBiker Shop",
-          "type": "store",
-          "url": "https://thebikershop.com.br/produtos/bicicleta-scott-addict-50-2025-pre-venda-cinza/",
-          "accessedAt": "2026-08-14"
-        }
-      ],
-      "confirmedFacts": {},
-      "dataNotice": "Preço e disponibilidade são observações datadas; revalidar na loja."
-    },
-    {
-      "id": "scott-addict-gravel-30-2026-thebiker-br",
-      "brand": "Scott",
-      "model": "Addict Gravel 30",
-      "year": 2026,
-      "category": "gravel",
-      "priceLowest": 28999,
-      "weightKg": null,
-      "frameMaterial": "não informado",
-      "groupset": "Shimano GRX",
-      "speeds": null,
-      "shifting": "mechanical",
-      "brakeType": "não informado",
-      "image": "/assets/img/products/comparator/scott-addict-gravel-30-2026.webp",
-      "slug": "scott/scott-addict-gravel-30-2026-thebiker",
-      "storeProductUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-addict-gravel-30-2026-pre-venda/",
-      "portfolioVerifiedAt": "2026-08-14",
-      "pageUrl": "https://blog.thebiker.com.br/bikes/scott/scott-addict-gravel-30-2026-thebiker/",
-      "sources": [
-        {
-          "name": "TheBiker Shop",
-          "type": "store",
-          "url": "https://thebikershop.com.br/produtos/bicicleta-scott-addict-gravel-30-2026-pre-venda/",
-          "accessedAt": "2026-08-14"
-        }
-      ],
-      "confirmedFacts": {},
-      "dataNotice": "Preço e disponibilidade são observações datadas; revalidar na loja."
-    },
-    {
-      "id": "scott-addict-rc-20-di2-2026-thebiker-br",
-      "brand": "Scott",
-      "model": "Addict RC 20 Di2",
-      "year": 2026,
-      "category": "road-race",
-      "priceLowest": 59990,
-      "weightKg": null,
-      "frameMaterial": "carbon",
-      "groupset": "Di2 — configuração pendente de confirmação",
-      "speeds": null,
-      "shifting": "electronic",
-      "brakeType": "não confirmado",
-      "image": "/assets/img/products/comparator/scott-addict-rc-20-di2-2026.webp",
-      "slug": "scott/scott-addict-rc-20-di2-2026-thebiker",
-      "storeProductUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9/",
-      "portfolioVerifiedAt": "2026-08-14",
-      "pageUrl": "https://blog.thebiker.com.br/bikes/scott/scott-addict-rc-20-di2-2026-thebiker/",
-      "sources": [
-        {
-          "name": "TheBiker Shop",
-          "type": "store",
-          "url": "https://thebikershop.com.br/produtos/bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9/",
-          "accessedAt": "2026-08-14"
-        }
-      ],
-      "confirmedFacts": {},
-      "dataNotice": "Preço e disponibilidade são observações datadas; revalidar na loja."
-    },
-    {
-      "id": "scott-addict-rc-30-di2-2026-thebiker-br",
-      "brand": "Scott",
-      "model": "Addict RC 30 Di2",
-      "year": 2026,
-      "category": "road-race",
-      "priceLowest": 49990,
-      "weightKg": null,
-      "frameMaterial": "carbon",
-      "groupset": "105 Di2",
-      "speeds": null,
-      "shifting": "wireless",
-      "brakeType": "não informado",
-      "image": "/assets/img/products/comparator/scott-addict-rc-30-di2-2026.webp",
-      "slug": "scott/scott-addict-rc-30-di2-2026-thebiker",
-      "storeProductUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-addict-rc-30-di2-2026/",
-      "portfolioVerifiedAt": "2026-08-14",
-      "pageUrl": "https://blog.thebiker.com.br/bikes/scott/scott-addict-rc-30-di2-2026-thebiker/",
-      "sources": [
-        {
-          "name": "TheBiker Shop",
-          "type": "store",
-          "url": "https://thebikershop.com.br/produtos/bicicleta-scott-addict-rc-30-di2-2026/",
-          "accessedAt": "2026-08-14"
-        }
-      ],
-      "confirmedFacts": {},
-      "dataNotice": "Preço e disponibilidade são observações datadas; revalidar na loja."
-    },
-    {
-      "id": "scott-addict-rc-pro-di2-2026-thebiker-br",
-      "brand": "Scott",
-      "model": "Addict RC Pro Di2",
-      "year": 2026,
-      "category": "road-race",
-      "priceLowest": 94990,
-      "weightKg": 6.7,
-      "frameMaterial": "carbon",
-      "groupset": "Dura-Ace Di2",
-      "speeds": 12,
-      "shifting": "electronic",
-      "brakeType": "hydraulic-disc",
-      "image": "/assets/img/products/comparator/scott-addict-rc-pro-di2-2026.webp",
-      "slug": "scott/scott-addict-rc-pro-di2-2026-thebiker",
-      "storeProductUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-addict-rc-pro-di2-2026-pre-venda/",
-      "portfolioVerifiedAt": "2026-08-14",
-      "pageUrl": "https://blog.thebiker.com.br/bikes/scott/scott-addict-rc-pro-di2-2026-thebiker/",
-      "sources": [
-        {
-          "name": "TheBiker Shop",
-          "type": "store",
-          "url": "https://thebikershop.com.br/produtos/bicicleta-scott-addict-rc-pro-di2-2026-pre-venda/",
-          "accessedAt": "2026-08-14"
-        }
-      ],
-      "confirmedFacts": {},
-      "dataNotice": "Preço e disponibilidade são observações datadas; revalidar na loja."
-    },
-    {
-      "id": "scott-patron-eride-910-2026-thebiker-br",
-      "brand": "Scott",
-      "model": "Patron eRIDE 910",
-      "year": 2026,
-      "category": "e-mtb",
-      "priceLowest": 74999,
-      "weightKg": null,
-      "frameMaterial": "carbon",
-      "groupset": "S1000 Eagle AXS",
-      "speeds": 12,
-      "shifting": "wireless",
-      "brakeType": "não informado",
-      "image": "/assets/img/products/comparator/scott-patron-eride-910-2026.webp",
-      "slug": "scott/scott-patron-eride-910-2026-thebiker",
-      "storeProductUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-patron-eride-910-2026/",
-      "portfolioVerifiedAt": "2026-08-14",
-      "pageUrl": "https://blog.thebiker.com.br/bikes/scott/scott-patron-eride-910-2026-thebiker/",
-      "sources": [
-        {
-          "name": "TheBiker Shop",
-          "type": "store",
-          "url": "https://thebikershop.com.br/produtos/bicicleta-scott-patron-eride-910-2026/",
-          "accessedAt": "2026-08-14"
-        }
-      ],
-      "confirmedFacts": {},
-      "dataNotice": "Preço e disponibilidade são observações datadas; revalidar na loja."
-    },
-    {
-      "id": "scott-plasma-rc-pro-thebiker-br",
-      "brand": "Scott",
-      "model": "Plasma RC Pro",
-      "year": 2025,
-      "category": "triathlon",
-      "priceLowest": 99999,
-      "weightKg": null,
-      "frameMaterial": "não informado",
-      "groupset": "Ultegra Di2",
-      "speeds": null,
-      "shifting": "wireless",
-      "brakeType": "hydraulic-disc",
-      "image": "/assets/img/products/comparator/scott-plasma-rc-pro.webp",
-      "slug": "scott/scott-plasma-rc-pro-thebiker",
-      "storeProductUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-plasma-rc-pro/",
-      "portfolioVerifiedAt": "2026-08-14",
-      "pageUrl": "https://blog.thebiker.com.br/bikes/scott/scott-plasma-rc-pro-thebiker/",
-      "sources": [
-        {
-          "name": "TheBiker Shop",
-          "type": "store",
-          "url": "https://thebikershop.com.br/produtos/bicicleta-scott-plasma-rc-pro/",
-          "accessedAt": "2026-08-14"
-        }
-      ],
-      "confirmedFacts": {},
-      "dataNotice": "Preço e disponibilidade são observações datadas; revalidar na loja."
-    },
-    {
-      "id": "scott-scale-910-2026-thebiker-br",
-      "brand": "Scott",
-      "model": "Scale 910",
-      "year": 2026,
-      "category": "mtb-cross-country",
-      "priceLowest": 23999,
-      "weightKg": null,
-      "frameMaterial": "carbon",
-      "groupset": "Eagle 70",
-      "speeds": null,
-      "shifting": "electronic",
-      "brakeType": "não informado",
-      "image": "/assets/img/products/comparator/scott-scale-910-2026.webp",
-      "slug": "scott/scott-scale-910-2026-thebiker",
-      "storeProductUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-scale-910-2026-pre-venda1/",
-      "portfolioVerifiedAt": "2026-08-14",
-      "pageUrl": "https://blog.thebiker.com.br/bikes/scott/scott-scale-910-2026-thebiker/",
-      "sources": [
-        {
-          "name": "TheBiker Shop",
-          "type": "store",
-          "url": "https://thebikershop.com.br/produtos/bicicleta-scott-scale-910-2026-pre-venda1/",
-          "accessedAt": "2026-08-14"
-        }
-      ],
-      "confirmedFacts": {},
-      "dataNotice": "Preço e disponibilidade são observações datadas; revalidar na loja."
-    },
-    {
-      "id": "scott-scale-920-2026-thebiker-br",
-      "brand": "Scott",
-      "model": "Scale 920",
-      "year": 2026,
-      "category": "mtb-cross-country",
-      "priceLowest": 19499,
-      "weightKg": null,
-      "frameMaterial": "carbon",
-      "groupset": "Shimano Deore",
-      "speeds": null,
-      "shifting": "electronic",
-      "brakeType": "não informado",
-      "image": "/assets/img/products/comparator/scott-scale-920-2026.webp",
-      "slug": "scott/scott-scale-920-2026-thebiker",
-      "storeProductUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-scale-920-2026-white/",
-      "portfolioVerifiedAt": "2026-08-14",
-      "pageUrl": "https://blog.thebiker.com.br/bikes/scott/scott-scale-920-2026-thebiker/",
-      "sources": [
-        {
-          "name": "TheBiker Shop",
-          "type": "store",
-          "url": "https://thebikershop.com.br/produtos/bicicleta-scott-scale-920-2026-white/",
-          "accessedAt": "2026-08-14"
-        }
-      ],
-      "confirmedFacts": {},
-      "dataNotice": "Preço e disponibilidade são observações datadas; revalidar na loja."
-    },
-    {
-      "id": "scott-scale-935-2026-thebiker-br",
-      "brand": "Scott",
-      "model": "Scale 935",
-      "year": 2026,
-      "category": "mtb-cross-country",
-      "priceLowest": 12499,
-      "weightKg": null,
-      "frameMaterial": "não informado",
-      "groupset": "Shimano Deore",
-      "speeds": null,
-      "shifting": "mechanical",
-      "brakeType": "não informado",
-      "image": "/assets/img/products/comparator/scott-scale-935-2026.webp",
-      "slug": "scott/scott-scale-935-2026-thebiker",
-      "storeProductUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-scale-935-2026-pre-venda/",
-      "portfolioVerifiedAt": "2026-08-14",
-      "pageUrl": "https://blog.thebiker.com.br/bikes/scott/scott-scale-935-2026-thebiker/",
-      "sources": [
-        {
-          "name": "TheBiker Shop",
-          "type": "store",
-          "url": "https://thebikershop.com.br/produtos/bicicleta-scott-scale-935-2026-pre-venda/",
-          "accessedAt": "2026-08-14"
-        }
-      ],
-      "confirmedFacts": {},
-      "dataNotice": "Preço e disponibilidade são observações datadas; revalidar na loja."
-    },
-    {
-      "id": "scott-scale-940-2026-thebiker-br",
-      "brand": "Scott",
-      "model": "Scale 940",
-      "year": 2026,
-      "category": "mtb-cross-country",
-      "priceLowest": 9999,
-      "weightKg": null,
-      "frameMaterial": "não informado",
-      "groupset": "Shimano Deore",
-      "speeds": null,
-      "shifting": "wireless",
-      "brakeType": "não informado",
-      "image": "/assets/img/products/comparator/scott-scale-940-2026.webp",
-      "slug": "scott/scott-scale-940-2026-thebiker",
-      "storeProductUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-scale-940-2026-black/",
-      "portfolioVerifiedAt": "2026-08-14",
-      "pageUrl": "https://blog.thebiker.com.br/bikes/scott/scott-scale-940-2026-thebiker/",
-      "sources": [
-        {
-          "name": "TheBiker Shop",
-          "type": "store",
-          "url": "https://thebikershop.com.br/produtos/bicicleta-scott-scale-940-2026-black/",
-          "accessedAt": "2026-08-14"
-        }
-      ],
-      "confirmedFacts": {},
-      "dataNotice": "Preço e disponibilidade são observações datadas; revalidar na loja."
-    },
-    {
-      "id": "scott-scale-965-2025-thebiker-br",
-      "brand": "Scott",
-      "model": "Scale 965",
-      "year": 2025,
-      "category": "mtb-cross-country",
-      "priceLowest": 9999,
-      "weightKg": null,
-      "frameMaterial": "não informado",
-      "groupset": "Shimano Deore",
-      "speeds": null,
-      "shifting": "mechanical",
-      "brakeType": "não informado",
-      "image": "/assets/img/products/comparator/scott-scale-965-2025.webp",
-      "slug": "scott/scott-scale-965-2025-thebiker",
-      "storeProductUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-scale-965/",
-      "portfolioVerifiedAt": "2026-08-14",
-      "pageUrl": "https://blog.thebiker.com.br/bikes/scott/scott-scale-965-2025-thebiker/",
-      "sources": [
-        {
-          "name": "TheBiker Shop",
-          "type": "store",
-          "url": "https://thebikershop.com.br/produtos/bicicleta-scott-scale-965/",
-          "accessedAt": "2026-08-14"
-        }
-      ],
-      "confirmedFacts": {},
-      "dataNotice": "Preço e disponibilidade são observações datadas; revalidar na loja."
-    },
-    {
-      "id": "scott-scale-970-2025-thebiker-br",
-      "brand": "Scott",
-      "model": "Scale 970",
-      "year": 2025,
-      "category": "mtb-cross-country",
-      "priceLowest": 9999,
-      "weightKg": null,
-      "frameMaterial": "não informado",
-      "groupset": "SRAM Rival",
-      "speeds": null,
-      "shifting": "wireless",
-      "brakeType": "não informado",
-      "image": "/assets/img/products/comparator/scott-scale-970-2025.webp",
-      "slug": "scott/scott-scale-970-2025-thebiker",
-      "storeProductUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-scale-970/",
-      "portfolioVerifiedAt": "2026-08-14",
-      "pageUrl": "https://blog.thebiker.com.br/bikes/scott/scott-scale-970-2025-thebiker/",
-      "sources": [
-        {
-          "name": "TheBiker Shop",
-          "type": "store",
-          "url": "https://thebikershop.com.br/produtos/bicicleta-scott-scale-970/",
-          "accessedAt": "2026-08-14"
-        }
-      ],
-      "confirmedFacts": {},
-      "dataNotice": "Preço e disponibilidade são observações datadas; revalidar na loja."
-    },
-    {
-      "id": "scott-scale-980-thebiker-br",
-      "brand": "Scott",
-      "model": "Scale 980",
-      "year": 2025,
-      "category": "mtb-cross-country",
-      "priceLowest": 7999,
-      "weightKg": null,
-      "frameMaterial": "não informado",
-      "groupset": "Shimano Deore",
-      "speeds": null,
-      "shifting": "electronic",
-      "brakeType": "não informado",
-      "image": "/assets/img/products/comparator/scott-scale-980.webp",
-      "slug": "scott/scott-scale-980-thebiker",
-      "storeProductUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-scale-980-black/",
-      "portfolioVerifiedAt": "2026-08-14",
-      "pageUrl": "https://blog.thebiker.com.br/bikes/scott/scott-scale-980-thebiker/",
-      "sources": [
-        {
-          "name": "TheBiker Shop",
-          "type": "store",
-          "url": "https://thebikershop.com.br/produtos/bicicleta-scott-scale-980-black/",
-          "accessedAt": "2026-08-14"
-        }
-      ],
-      "confirmedFacts": {},
-      "dataNotice": "Preço e disponibilidade são observações datadas; revalidar na loja."
-    },
-    {
-      "id": "scott-spark-rc-expert-2027-thebiker-br",
-      "brand": "Scott",
-      "model": "Spark RC Expert",
-      "year": 2027,
-      "category": "mtb-cross-country",
-      "priceLowest": 57999,
-      "weightKg": null,
-      "frameMaterial": "carbon",
-      "groupset": "XT Di2",
-      "speeds": 12,
-      "shifting": "wireless",
-      "brakeType": "hydraulic-disc",
-      "image": "/assets/img/products/comparator/scott-spark-rc-expert-2027.webp",
-      "slug": "scott/scott-spark-rc-expert-2027-thebiker",
-      "storeProductUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-spark-rc-expert-2027/",
-      "portfolioVerifiedAt": "2026-08-14",
-      "pageUrl": "https://blog.thebiker.com.br/bikes/scott/scott-spark-rc-expert-2027-thebiker/",
-      "sources": [
-        {
-          "name": "TheBiker Shop",
-          "type": "store",
-          "url": "https://thebikershop.com.br/produtos/bicicleta-scott-spark-rc-expert-2027/",
-          "accessedAt": "2026-08-14"
-        }
-      ],
-      "confirmedFacts": {},
-      "dataNotice": "Preço e disponibilidade são observações datadas; revalidar na loja."
-    },
-    {
-      "id": "scott-spark-rc-team-2027-thebiker-br",
-      "brand": "Scott",
-      "model": "Spark RC Team",
-      "year": 2027,
-      "category": "mtb-cross-country",
-      "priceLowest": 45999,
-      "weightKg": null,
-      "frameMaterial": "carbon",
-      "groupset": "S1000 Eagle AXS",
-      "speeds": 12,
-      "shifting": "wireless",
-      "brakeType": "hydraulic-disc",
-      "image": "/assets/img/products/comparator/scott-spark-rc-team-2027.webp",
-      "slug": "scott/scott-spark-rc-team-2027-thebiker",
-      "storeProductUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-spark-rc-world-cup-2027/",
-      "portfolioVerifiedAt": "2026-08-14",
-      "pageUrl": "https://blog.thebiker.com.br/bikes/scott/scott-spark-rc-team-2027-thebiker/",
-      "sources": [
-        {
-          "name": "TheBiker Shop",
-          "type": "store",
-          "url": "https://thebikershop.com.br/produtos/bicicleta-scott-spark-rc-world-cup-2027/",
-          "accessedAt": "2026-08-14"
-        }
-      ],
-      "confirmedFacts": {},
-      "dataNotice": "Preço e disponibilidade são observações datadas; revalidar na loja."
-    },
-    {
-      "id": "scott-spark-rc-world-cup-2027-thebiker-br",
-      "brand": "Scott",
-      "model": "Spark RC World Cup",
-      "year": 2027,
-      "category": "mtb-cross-country",
-      "priceLowest": 89999,
-      "weightKg": null,
-      "frameMaterial": "carbon",
-      "groupset": "X01 Eagle AXS",
-      "speeds": 12,
-      "shifting": "wireless",
-      "brakeType": "hydraulic-disc",
-      "image": "/assets/img/products/comparator/scott-spark-rc-world-cup-2027.webp",
-      "slug": "scott/scott-spark-rc-world-cup-2027-thebiker",
-      "storeProductUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-spark-rc-world-cup-20271/",
-      "portfolioVerifiedAt": "2026-08-14",
-      "pageUrl": "https://blog.thebiker.com.br/bikes/scott/scott-spark-rc-world-cup-2027-thebiker/",
-      "sources": [
-        {
-          "name": "TheBiker Shop",
-          "type": "store",
-          "url": "https://thebikershop.com.br/produtos/bicicleta-scott-spark-rc-world-cup-20271/",
-          "accessedAt": "2026-08-14"
-        }
-      ],
-      "confirmedFacts": {},
-      "dataNotice": "Preço e disponibilidade são observações datadas; revalidar na loja."
-    },
-    {
-      "id": "tsw-e-quest-carbon-thebiker-br",
-      "brand": "TSW",
-      "model": "E-Quest Carbon",
-      "year": 2025,
-      "category": "e-mtb",
-      "priceLowest": 35999,
-      "weightKg": null,
-      "frameMaterial": "carbon",
-      "groupset": "não informado",
-      "speeds": null,
-      "shifting": "não informado",
-      "brakeType": "não informado",
-      "image": "/assets/img/products/comparator/tsw-e-quest-carbon.webp",
-      "slug": "tsw/tsw-e-quest-carbon-thebiker",
-      "storeProductUrl": "https://thebikershop.com.br/produtos/bicicleta-eletrica-tsw-e-quest-carbon/",
-      "portfolioVerifiedAt": "2026-08-14",
-      "pageUrl": "https://blog.thebiker.com.br/bikes/tsw/tsw-e-quest-carbon-thebiker/",
-      "sources": [
-        {
-          "name": "TheBiker Shop",
-          "type": "store",
-          "url": "https://thebikershop.com.br/produtos/bicicleta-eletrica-tsw-e-quest-carbon/",
-          "accessedAt": "2026-08-14"
-        }
-      ],
-      "confirmedFacts": {},
-      "dataNotice": "Preço e disponibilidade são observações datadas; revalidar na loja."
+      }
     }
   ]
 }

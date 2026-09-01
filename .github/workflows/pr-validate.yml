@@ -60,6 +60,9 @@ jobs:
       - name: Bloquear credenciais no repositorio
         run: npm run security:secrets
 
+      - name: Auditar recibos editoriais publicados
+        run: npm run receipts:check
+
       - name: Lint (JS)
         run: |
           node --check src/schemas/research.schema.js
@@ -157,6 +160,9 @@ jobs:
 
       - name: Validate AI discovery artifact
         run: npm run validate:ai-build
+
+      - name: Validate public publication boundaries
+        run: npm run validate:public-artifact
 
       - name: Bloquear credenciais no site gerado
         run: npm run security:public

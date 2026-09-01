@@ -1,14 +1,14 @@
 ---
+editorial_hold_reason: "Revisão de fontes, precisão e concisão pendente"
 image_subject_id: "quadro-suspensao-spark-rc-world-cup-hmx-2026-flight-attendant"
 layout: post
-published: true
+published: false
 title: "Suspensão integrada da Spark RC: estrutura, serviço e massa"
 slug: "engenharia-suspensao-integrada-spark"
 date: 2026-08-11
 last_modified_at: 2026-08-13
 author: "Equipe TheBiker"
 reviewed_by: ""
-ai_reviewed_by: "TheBiker AI Editorial Gate"
 content_type: "guia-tecnico"
 audience_segment: "core_technical_cyclists"
 audience_intent: "solve_problem"
@@ -46,8 +46,8 @@ promoted_brands: ["Scott"]
 context_only_brands: []
 portfolio_evidence_url: "https://thebikershop.com.br/produtos/quadro-suspensao-spark-rc-world-cup-hmx-2026-flight-attendant/"
 portfolio_verified_at: "2026-08-05"
-editorial_status: "published"
-status: "published"
+editorial_status: "draft"
+status: "draft"
 sources:
   - name: "The Biker — Quadro + Suspensão Spark RC World Cup HMX 2026 Flight Attendant"
     type: "store"
@@ -63,8 +63,6 @@ Análise documental baseada em especificações oficiais do fabricante e ficha t
 ## A suspensão que desaparece: como a integração redefine o quadro
 
 A Scott Spark RC 2026 não esconde apenas os cabos. A <a href="https://thebikershop.com.br/componentes/suspensao/" class="thebiker-product-link" target="_blank" rel="noopener">suspensão</a> integrada com tecnologia Flex Pivot elimina o amortecedor traseiro convencional, incorporando‑o à estrutura do quadro. Essa abordagem altera radicalmente a distribuição de massa, a rigidez torsional e a própria arquitetura do conjunto. Em vez de um amortecedor aparente, o sistema fica encapsulado, protegido e alinhado ao tubo superior. O resultado é uma silhueta limpa, mas as implicações vão muito além da estética. A centralização de massa reduz o momento de inércia, favorecendo mudanças de direção mais ágeis. A rigidez estrutural é otimizada porque o amortecedor passa a trabalhar em conjunto com o quadro, não como um elemento isolado. O peso declarado de 1995 g para o conjunto quadro + amortecedor (fonte: TheBiker) coloca a Spark RC entre as opções mais leves da categoria, mas é a forma como essa massa está distribuída que faz a diferença. A integração também permite um curso de 120 mm sem comprometer a geometria ou a eficiência de pedalada. O sistema Flex Pivot substitui os tradicionais pivôs traseiros por uma lamina de carbono que flexiona, eliminando <a href="https://thebikershop.com.br/componentes/rolamentos/" class="thebiker-product-link" target="_blank" rel="noopener">rolamentos</a> e reduzindo manutenção. Essa solução, combinada ao amortecedor oculto, cria uma plataforma de suspensão que responde com menos atrito e maior sensibilidade. Para o ciclista de XC e marathon, isso significa tração consistente em subidas técnicas e controle em descidas rápidas, sem a penalidade de peso ou complexidade mecânica.
-
-Leia também: [Spark RC Team 2027: review documental da plataforma](/2026/08/review-spark-rc-team-2027/) mostra como a suspensão e a transmissão aparecem na montagem completa.
 
 ## O que é a suspensão integrada e para que serve
 
@@ -97,8 +95,6 @@ O sistema Flight Attendant é um dos grandes diferenciais da Spark RC 2026. Ele 
 ## Como a centralização de massa afeta a pilotagem em subidas técnicas?
 
 A centralização de massa é um dos benefícios mais subestimados da suspensão integrada. Ao posicionar o amortecedor no interior do tubo superior, a Spark RC concentra o peso próximo ao centro geométrico da bike. Isso reduz o momento de inércia, facilitando mudanças de direção e manobras em baixa velocidade. Em subidas técnicas, onde é preciso reposicionar o corpo rapidamente para manter tração na roda traseira e evitar que a dianteira levante, a resposta da bike é mais imediata. O ciclista sente menos resistência para contornar obstáculos e pode manter uma cadência mais constante. Além disso, o centro de gravidade mais baixo melhora a estabilidade em trechos inclinados, dando confiança para enfrentar raízes e pedras soltas. O curso de 120 mm, combinado com a ação sensível do Flex Pivot, garante que a roda traseira permaneça em contato com o solo, maximizando a tração. Tudo isso se traduz em subidas mais rápidas e com menor gasto energético, um fator decisivo em competições de XC e marathon.
-
-Leia também: [SAG da Scott Spark RC: guia de ajuste](/2026/08/sag-spark-rc-ajuste-preciso/) complementa esta análise com o procedimento de regulagem documentado.
 
 ## Manutenção da suspensão integrada: o que muda em relação ao sistema tradicional?
 

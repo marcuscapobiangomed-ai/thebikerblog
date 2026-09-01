@@ -1,0 +1,149 @@
+{
+  "slug": "reserva-addict-rc20-ficha-oficial",
+  "title": "Scott Addict RC 20: o que a ficha oficial permite afirmar",
+  "content_type": "review",
+  "review_method": "desk-research",
+  "tested_by_thebikerblog": false,
+  "market": "Brasil",
+  "generated_at": "2026-08-15",
+  "status": "pesquisa_concluida",
+  "sources": [
+    {
+      "name": "TheBiker — Bicicleta Scott Addict RC 20 Di2 2026 - Pré Venda",
+      "url": "https://thebikershop.com.br/produtos/bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9/",
+      "accessed": "2026-08-04",
+      "id": "internal-src-1",
+      "type": "store"
+    },
+    {
+      "name": "Scott — página oficial do modelo",
+      "url": "https://www.scott-sports.com/global/en/product/scott-addict-rc-20-bike",
+      "accessed": "2026-08-04",
+      "id": "internal-src-2",
+      "type": "manufacturer"
+    }
+  ],
+  "editorialPriority": "P1",
+  "confirmed_facts": [
+    {
+      "fact": "identity.storeName: Bicicleta Scott Addict RC 20 Di2 2026 - Pré Venda",
+      "source_ids": [
+        "internal-src-1"
+      ],
+      "evidence_quote": "novidades type listitem position 3 name bicicleta scott addict rc 20 di2 2026 pre venda item https thebikershop com br"
+    },
+    {
+      "fact": "commercial.storeUrl: https://thebikershop.com.br/produtos/bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9/",
+      "source_ids": [
+        "internal-src-1"
+      ],
+      "evidence_quote": "20 di2 2026 pre venda item https thebikershop com br produtos bicicleta scott addict rc 20 di2 2026 pre venda vzvx9 mainentity type product id https"
+    },
+    {
+      "fact": "identity.officialUrl: https://www.scott-sports.com/global/en/product/scott-addict-rc-20-bike",
+      "source_ids": [
+        "internal-src-2"
+      ],
+      "evidence_quote": "type listitem position 6 item id https www scott sports com global en product scott addict rc 20 bike name scott addict rc 20"
+    },
+    {
+      "fact": "identity.manufacturerModelCode: 425685",
+      "source_ids": [
+        "internal-src-2"
+      ],
+      "evidence_quote": "type road bikes race product id 425685 product price else if false"
+    },
+    {
+      "fact": "identity.color: reseda green",
+      "source_ids": [
+        "internal-src-2"
+      ],
+      "evidence_quote": "lightweight road bikes addict rc color reseda green description engineered to defy gravity"
+    },
+    {
+      "fact": "identity.sizes: XXS, XS, S, M, L, XL, XXL",
+      "source_ids": [
+        "internal-src-2"
+      ],
+      "evidence_quote": "1 color reseda green 2 size xxs xs s m l xl xxl size chart times var defaulttheme"
+    },
+    {
+      "fact": "frame.material: Addict RC HMX Carbon",
+      "source_ids": [
+        "internal-src-2"
+      ],
+      "evidence_quote": "20 bike model 425685 key features addict rc hmx carbon frame shimano ultegra di2 24"
+    },
+    {
+      "fact": "fork.model: Addict RC HMX Flatmount Disc",
+      "source_ids": [
+        "internal-src-2"
+      ],
+      "evidence_quote": "derailleur hanger internal cable routing fork addict rc hmx flatmount disc 27 2mm eccentric carbon steerer"
+    },
+    {
+      "fact": "drivetrain.groupset: Shimano Ultegra Di2",
+      "source_ids": [
+        "internal-src-2"
+      ],
+      "evidence_quote": "features addict rc hmx carbon frame shimano ultegra di2 24 speed drivetrain shimano ultegra"
+    },
+    {
+      "fact": "drivetrain.shifting: electronic",
+      "source_ids": [
+        "internal-src-2"
+      ],
+      "evidence_quote": "ultegra di2 rd r8150 24 speed electronic shift system front derailleur shimano"
+    },
+    {
+      "fact": "drivetrain.rearDerailleur: Shimano Ultegra Di2 RD-R8150",
+      "source_ids": [
+        "internal-src-2"
+      ],
+      "evidence_quote": "shimano built in dn300 rear derailleur shimano ultegra di2 rd r8150 24 speed electronic shift system"
+    },
+    {
+      "fact": "drivetrain.crankset: Shimano Ultegra FC-R8100 52-36T",
+      "source_ids": [
+        "internal-src-1"
+      ],
+      "evidence_quote": "r8170 movimenta ccedil atilde o pedaleiro shimano ultegra fc r8100 52 36t e cassete cs r8100 12"
+    },
+    {
+      "fact": "drivetrain.cassette: Shimano Ultegra CS-R8100-12, 11-34",
+      "source_ids": [
+        "internal-src-2"
+      ],
+      "evidence_quote": "41b chain shimano cn m8100 cassette shimano ultegra cs r8100 12 11 34 brakes shimano br r8170 hyd"
+    },
+    {
+      "fact": "wheels.wheelset: Syncros Capital 1.0 40 Disc",
+      "source_ids": [
+        "internal-src-2"
+      ],
+      "evidence_quote": "24 speed drivetrain shimano ultegra brakes syncros capital 1 0 40 disc wheelset continental grand prix tr"
+    },
+    {
+      "fact": "tires: Continental Grand Prix TR 30x622",
+      "source_ids": [
+        "internal-src-2"
+      ],
+      "evidence_quote": "24 rear syncros axle front tire continental grand prix tr 30x622 rear tire continental grand prix"
+    }
+  ],
+  "limitations": [
+    "Pesquisa web indisponível nesta execução (Groq sem evidência: Pesquisa bloqueada por integridade de fontes: pesquisa concluída sem fontes rastreáveis; pesquisa sem fatos explicitamente fundamentados; Gemini sem evidência: Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat); conteúdo limitado à base interna com fontes oficiais.",
+    "7 fato(s) removido(s) por falta de trecho verificavel na fonte recuperada."
+  ],
+  "grounding": {
+    "queries": [],
+    "sourceCount": 2,
+    "fallback": "internal-product-knowledge",
+    "claimContract": "explicit-units-v1",
+    "evidenceContract": "retrieved-excerpt-v1",
+    "verifiedAt": "2026-08-15T13:47:49.696Z"
+  },
+  "portfolio_evidence_url": "https://thebikershop.com.br/bikes/",
+  "portfolio_verified_at": "2026-08-15",
+  "portfolio_evidence_scope": "portfolio-category"
+}

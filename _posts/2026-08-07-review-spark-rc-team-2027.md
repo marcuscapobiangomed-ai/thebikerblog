@@ -1,14 +1,14 @@
 ---
+editorial_hold_reason: "Revisão de fontes, precisão e concisão pendente"
 image_subject_id: "bicicleta-scott-spark-rc-world-cup-2027"
 layout: post
-published: true
+published: false
 title: "Spark RC Team 2027: plataforma de 120 mm e transmissão AXS"
 slug: "review-spark-rc-team-2027"
 date: 2026-08-07
 last_modified_at: 2026-08-07
 author: "Equipe TheBiker"
 reviewed_by: ""
-ai_reviewed_by: "TheBiker AI Editorial Gate"
 content_type: "review"
 audience_segment: "core_technical_cyclists"
 audience_intent: "purchase_consideration"
@@ -46,8 +46,8 @@ promoted_brands: ["Scott"]
 context_only_brands: []
 portfolio_evidence_url: "https://thebikershop.com.br/produtos/bicicleta-scott-spark-rc-world-cup-2027/"
 portfolio_verified_at: "2026-08-04"
-editorial_status: "published"
-status: "published"
+editorial_status: "draft"
+status: "draft"
 sources:
   - name: "TheBiker — Bicicleta Scott Spark RC Team 2027"
     type: "store"
@@ -79,8 +79,6 @@ A ficha técnica da Spark RC Team 2027 revela uma seleção de componentes orien
 
 A transmissão é o ponto alto: <a href="https://thebikershop.com.br/componentes/cambio-traseiro/" class="thebiker-product-link" target="_blank" rel="noopener">câmbio traseiro</a> SRAM S1000 Eagle AXS Transmission, eletrônico sem fio, de 12 velocidades, com montagem direta ao quadro. O <a href="https://thebikershop.com.br/componentes/pedivela/" class="thebiker-product-link" target="_blank" rel="noopener">pedivela</a> SRAM Eagle 70 Transmission traz coroa de 34 dentes, enquanto o cassete SRAM Eagle XS 1270 V2 oferece amplitude de 10 a 52 dentes. Os freios são SRAM DB6 de quatro pistões, com rotores Centerline CL de 180 mm na dianteira e 160 mm na traseira. As rodas Syncros Silverton 2.5-30 CL têm aro de alumínio com 30 mm de largura interna, preparadas para tubeless. Os pneus Maxxis Rekon Race 29x2.4, com 120 TPI e proteção EXO, completam o conjunto. O peso declarado pelo fabricante é de aproximadamente 12,5 kg em configuração tubeless, e o limite de peso total do sistema é de 130 kg. A cor disponível é carbon black, e os tamanhos vão de S a XL.
 
-Leia também: [Comparativo entre Spark RC Team, Expert e World Cup](/2026/08/spark-rc-team-expert-world-cup/) detalha as diferenças de montagem entre as três versões.
-
 ## Onde a Team se Encaixa na Hierarquia Spark RC
 
 A linha Spark RC 2027 da Scott é composta por três modelos principais disponíveis no Brasil via TheBiker: a World Cup, topo de linha com quadro HMX e peso de 10,9 kg por R$ 89.999; a Expert, intermediária com quadro HMF Gen5 e transmissão Shimano XT Di2, pesando 11,8 kg e custando R$ 57.999; e a Team, objeto desta análise, com quadro HMF e transmissão SRAM AXS, 12,5 kg e R$ 45.999. A Team ocupa a base da pirâmide, mas não é uma bicicleta de entrada: ela compartilha a mesma geometria e cinemática de suspensão das irmãs mais caras, diferenciando-se principalmente no material do quadro, no conjunto de suspensão e nas rodas.
@@ -92,8 +90,6 @@ A escolha da transmissão é o grande diferencial: enquanto a Expert aposta no S
 O quadro da Spark RC Team é construído em carbono HMF (High Modulus Fiber), a segunda opção na hierarquia de materiais da Scott, abaixo do HMX. A diferença entre os dois está na seleção e orientação das fibras de carbono: o HMX utiliza uma maior proporção de fibras de módulo mais elevado, resultando em um quadro mais leve e com rigidez específica superior. O HMF, por sua vez, é projetado para oferecer um equilíbrio entre desempenho e custo, sendo mais pesado que o HMX em um quadro de tamanho médio. Na prática, essa diferença de peso é perceptível em subidas longas e acelerações, mas a rigidez torsional e a eficiência de pedal são mantidas em níveis muito altos.
 
 A Spark RC Team utiliza a mesma geometria e cinemática de suspensão das versões superiores, o que significa que o comportamento dinâmico é essencialmente o mesmo. O quadro é compatível com espigões de selim telescópicos, embora a Team venha de fábrica com um canote rígido, e possui roteamento interno de cabos, protegendo contra sujeira e melhorando a aerodinâmica. O eixo traseiro é Boost 12x148 mm, padrão atual para MTB, garantindo ampla compatibilidade com rodas e transmissões. O limite de peso do sistema é de 130 kg, o que inclui ciclista, equipamento e bike, um número generoso que atende a maioria dos atletas. Em resumo, o quadro HMF é uma plataforma sólida para competição, que não compromete a experiência de pilotagem e permite upgrades futuros para componentes mais leves.
-
-Leia também: [Suspensão integrada da Spark RC: estrutura e serviço](/2026/08/engenharia-suspensao-integrada-spark/) aprofunda o funcionamento e os limites de manutenção do sistema.
 
 ## Suspensão RockShox: 120 mm com Trava Remota de Três Posições
 

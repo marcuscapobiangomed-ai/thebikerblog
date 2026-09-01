@@ -8,14 +8,14 @@ image_alt: "Dois ciclistas de estrada descendo uma serra com vista para o litora
 
 {% assign published_posts = site.posts | where_exp: "p", "p.status != 'draft'" %}
 {% assign recent_posts = published_posts | slice: 0, 4 %}
+{% assign purchase_guides = published_posts | where: "category", "guia-de-compra" %}
+{% assign purchase_guides_plural = published_posts | where: "category", "guias-de-compra" %}
+{% assign technical_guides = published_posts | where: "category", "guia-tecnico" %}
+{% assign guide_posts = purchase_guides | concat: purchase_guides_plural | concat: technical_guides | sort: "date" | reverse | slice: 0, 4 %}
 {% assign hero_post = published_posts | where_exp: "p", "p.title contains 'conhecimento técnico'" | first %}
 {% assign carbon_post = published_posts | where_exp: "p", "p.title contains 'Carbono vs Alumínio'" | first %}
 {% assign wheels_post = published_posts | where_exp: "p", "p.title contains 'Rodas de Carbono Custo-Benefício'" | first %}
 {% assign routes_post = published_posts | where_exp: "p", "p.title contains 'Melhores Estradas e Rotas'" | first %}
-{% assign pedals_post = published_posts | where_exp: "p", "p.title contains 'Pedais Clipless para Iniciantes'" | first %}
-{% assign groups_post = published_posts | where_exp: "p", "p.title contains 'Shimano 105 vs Ultegra'" | first %}
-{% assign helmets_post = published_posts | where_exp: "p", "p.title contains 'Melhores Capacetes'" | first %}
-{% assign maintenance_post = published_posts | where_exp: "p", "p.title contains 'Manutenção Básica'" | first %}
 
 <div class="brand-home">
   <section class="brand-hero" aria-labelledby="brand-hero-title">
@@ -103,38 +103,16 @@ image_alt: "Dois ciclistas de estrada descendo uma serra com vista para o litora
       <a href="{{ site.baseurl }}/categorias#guia-de-compra">Ver todos os guias <span aria-hidden="true">→</span></a>
     </div>
     <div class="brand-guide-grid">
-      {% if pedals_post %}
+      {% for post in guide_posts %}
       <article class="brand-guide-card">
-        <a href="{{ site.baseurl }}{{ pedals_post.url }}"><img src="{{ site.baseurl }}/assets/img/brand/guide-cycling-shoe-900x600.webp" alt="Sapatilha branca para ciclismo de estrada" width="900" height="600" loading="lazy" decoding="async"></a>
-        <time datetime="{{ pedals_post.date | date_to_xmlschema }}">{{ pedals_post.date | date: "%d.%m.%Y" }}</time>
-        <h3><a href="{{ site.baseurl }}{{ pedals_post.url }}">Como escolher pedais e sapatilhas para começar</a></h3>
-        <p>Encaixe, ajuste e conforto para uma transição segura ao pedal clipless.</p>
+        <a href="{{ site.baseurl }}{{ post.url }}">
+          <img src="{{ site.baseurl }}{{ post.thumbnail | default: post.image }}" alt="{{ post.image_alt | default: post.title | escape }}" width="900" height="600" loading="lazy" decoding="async">
+        </a>
+        <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%d.%m.%Y" }}</time>
+        <h3><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h3>
+        {% if post.description %}<p>{{ post.description }}</p>{% endif %}
       </article>
-      {% endif %}
-      {% if groups_post %}
-      <article class="brand-guide-card">
-        <a href="{{ site.baseurl }}{{ groups_post.url }}"><img src="{{ site.baseurl }}/assets/img/brand/guide-drivetrain-900x600.webp" alt="Transmissão de bicicleta de estrada com cassete e câmbio traseiro" width="900" height="600" loading="lazy" decoding="async"></a>
-        <time datetime="{{ groups_post.date | date_to_xmlschema }}">{{ groups_post.date | date: "%d.%m.%Y" }}</time>
-        <h3><a href="{{ site.baseurl }}{{ groups_post.url }}">Shimano 105 ou Ultegra: qual faz mais sentido?</a></h3>
-        <p>As diferenças que importam em funcionamento, peso, preço e manutenção.</p>
-      </article>
-      {% endif %}
-      {% if helmets_post %}
-      <article class="brand-guide-card">
-        <a href="{{ site.baseurl }}{{ helmets_post.url }}"><img src="{{ site.baseurl }}/assets/img/brand/guide-road-helmets-900x600.webp" alt="Capacetes para ciclismo de estrada em fundo escuro" width="900" height="600" loading="lazy" decoding="async"></a>
-        <time datetime="{{ helmets_post.date | date_to_xmlschema }}">{{ helmets_post.date | date: "%d.%m.%Y" }}</time>
-        <h3><a href="{{ site.baseurl }}{{ helmets_post.url }}">Capacetes de estrada: segurança e desempenho</a></h3>
-        <p>Ventilação, ajuste, certificações e tecnologias de proteção explicadas.</p>
-      </article>
-      {% endif %}
-      {% if maintenance_post %}
-      <article class="brand-guide-card">
-        <a href="{{ site.baseurl }}{{ maintenance_post.url }}"><img src="{{ site.baseurl }}/assets/img/brand/guide-bike-lights-900x600.webp" alt="Conjunto de luzes dianteira e traseira para bicicleta" width="900" height="600" loading="lazy" decoding="async"></a>
-        <time datetime="{{ maintenance_post.date | date_to_xmlschema }}">{{ maintenance_post.date | date: "%d.%m.%Y" }}</time>
-        <h3><a href="{{ site.baseurl }}{{ maintenance_post.url }}">Equipamentos essenciais para pedalar com segurança</a></h3>
-        <p>Itens e cuidados que ajudam você a sair mais preparado em qualquer horário.</p>
-      </article>
-      {% endif %}
+      {% endfor %}
     </div>
   </section>
 

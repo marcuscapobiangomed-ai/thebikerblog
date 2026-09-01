@@ -11,6 +11,7 @@ import { getTemplate } from "./templates.js";
 import { ThreeProviderPipeline } from "./ai/three-provider-pipeline.js";
 import { AIRuntime } from "./ai/runtime.js";
 import { assertEditorialPublicationGates } from "./validation/editorial-publication-gates.js";
+import { researchForPublication } from "./validation/publication-research.js";
 import { assertMarkdownPublicationGates, neutralizeMarkdownPolicyPhrases } from "./validation/markdown-publication-gates.js";
 import { buildImageProductionPlan } from "./image-manifest.js";
 import { assertArticleResearchGrounding, sanitizeStructuredArticleClaims } from "./validation/article-research-grounding.js";
@@ -176,7 +177,8 @@ export class AIProvider {
   async _tryDeepSeek(system, user, options = {}) {
     const baseUrl = process.env.DEEPSEEK_BASE_URL || "https://api.deepseek.com";
     const model = options.model || process.env.DEEPSEEK_MODEL || "deepseek-v4-pro";
-    const maxTokens = toNumber(process.env.DEEPSEEK_MAX_TOKENS || options.maxTokens, 8192);
+    const maxTokens = toNumber(options.maxTokens, toNumber(process.env.DEEPSEEK_MAX_TOKENS, 8192));
+    const timeoutMs = toNumber(options.timeoutMs, toNumber(process.env.AI_HTTP_TIMEOUT_MS, 90000));
 
     const payload = {
       model,
@@ -202,6 +204,7 @@ export class AIProvider {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(payload),
+      signal: AbortSignal.timeout(timeoutMs),
     });
 
     if (!res.ok) {
@@ -210,6 +213,10 @@ export class AIProvider {
     }
 
     const data = await res.json();
+    const finishReason = data.choices?.[0]?.finish_reason || "";
+    if (["length", "max_tokens"].includes(String(finishReason).toLowerCase())) {
+      throw new Error("DeepSeek API: resposta truncada ao atingir o limite de saída");
+    }
     const content = data.choices?.[0]?.message?.content || "";
     if (!content) throw new Error("DeepSeek API: resposta vazia");
     const usage = {
@@ -587,12 +594,13 @@ export class AIProvider {
   }
 
   async processCase(descricaoCurta, researchData = null) {
-    const contentType = researchData?.content_type || inferContentType(descricaoCurta);
-    const template = getTemplate(resolveTemplateKey(contentType, researchData));
+    const publicationResearch = researchForPublication(researchData);
+    const contentType = publicationResearch?.content_type || inferContentType(descricaoCurta);
+    const template = getTemplate(resolveTemplateKey(contentType, publicationResearch));
     const today = new Date().toISOString().split("T")[0];
     const userPrompt = buildUserPrompt({
       topic: descricaoCurta,
-      researchData,
+      researchData: publicationResearch,
       contentType,
       template,
       today,
@@ -602,41 +610,41 @@ export class AIProvider {
     let pipelineMetadata = null;
     const parseGroundedResponse = (candidateText) => {
       const parsed = this._parseStructuredResponse(candidateText, descricaoCurta);
-      if (researchData?.grounding?.claimContract === "explicit-units-v1") {
-        assertArticleResearchGrounding({ content: parsed.content, research: researchData });
+      if (publicationResearch?.grounding?.claimContract === "explicit-units-v1") {
+        assertArticleResearchGrounding({ content: parsed.content, research: publicationResearch });
       }
       return parsed;
     };
-    const deterministicFallbackEnabled = (DETERMINISTIC_CACHE_FALLBACKS.has(researchData?.grounding?.fallback)
-      || hasVerifiedInternalResearch(researchData))
-      && String(process.env.AI_DETERMINISTIC_CURATED_FALLBACK || "true").toLowerCase() !== "false";
+    const deterministicFallbackEnabled = (DETERMINISTIC_CACHE_FALLBACKS.has(publicationResearch?.grounding?.fallback)
+      || hasVerifiedInternalResearch(publicationResearch))
+      && String(process.env.AI_DETERMINISTIC_CURATED_FALLBACK || "false").toLowerCase() === "true";
     const buildDeterministicFallback = (metadata, trigger) => {
       if (!deterministicFallbackEnabled) return null;
       const deterministic = buildDeterministicGroundedArticle({
         topic: descricaoCurta,
-        researchData,
+        researchData: publicationResearch,
         contentType,
         today,
       });
       // The fallback is eligible only after the same schema, editorial,
       // Markdown and claim-grounding gates used by the normal pipeline pass.
-      // Record an explicit deterministic review so a provider outage cannot
-      // leave a valid full article without the score required by the receipt.
+      // A deterministic draft is a recovery artifact, not an independent
+      // editorial review. It must never manufacture a publishable score.
       const parsed = parseGroundedResponse(JSON.stringify(deterministic));
       return {
         ...parsed,
         pipelineMetadata: {
           ...metadata,
-          scoreBeforePremium: 92,
-          finalScore: 95,
-          finalBlockers: 0,
+          scoreBeforePremium: null,
+          finalScore: null,
+          finalBlockers: 1,
           premiumEditUsed: false,
           providers: {
             ...metadata?.providers,
             deterministicFallback: "grounded-deterministic",
           },
-          deterministicFallbackAudit: "objective-gates-v1",
-          finalRepairUsed: true,
+          deterministicFallbackAudit: "independent-review-required-v2",
+          finalRepairUsed: false,
           deterministicFullArticleFallbackUsed: true,
           deterministicFullArticleFallbackTrigger: trigger,
         },
@@ -648,7 +656,7 @@ export class AIProvider {
     // the same gated deterministic article immediately instead of waiting for
     // every exhausted provider/retry timeout. Live research never enters this
     // branch because its grounding fallback is different.
-    const deterministicCacheFirst = DETERMINISTIC_CACHE_FALLBACKS.has(researchData?.grounding?.fallback)
+    const deterministicCacheFirst = DETERMINISTIC_CACHE_FALLBACKS.has(publicationResearch?.grounding?.fallback)
       && String(process.env.AI_DETERMINISTIC_CACHE_FIRST || "false").toLowerCase() === "true";
     if (deterministicCacheFirst) {
       try {
@@ -669,12 +677,12 @@ export class AIProvider {
       } else {
         const pipelineResult = await this.pipeline.run({
           topic: descricaoCurta,
-          researchData,
+          researchData: publicationResearch,
           contentType,
           template,
           systemPrompt: AIProvider.systemPrompt(),
           draftPrompt: userPrompt,
-          priority: researchData?.editorialPriority || researchData?.editorial_priority || "P1",
+          priority: publicationResearch?.editorialPriority || publicationResearch?.editorial_priority || "P1",
         });
         rawText = pipelineResult.content;
         pipelineMetadata = pipelineResult.metadata;
@@ -684,7 +692,7 @@ export class AIProvider {
         const fallback = buildDeterministicFallback(pipelineMetadata, "pipeline-failure");
         if (fallback) return fallback;
       } catch (fallbackError) {
-        throw new Error(`${pipelineError.message}; fallback determinÃ­stico: ${fallbackError.message}`);
+        throw new Error(`${pipelineError.message}; fallback determinístico: ${fallbackError.message}`);
       }
       throw pipelineError;
     }
@@ -701,7 +709,7 @@ export class AIProvider {
           const fallback = buildDeterministicFallback(pipelineMetadata, "research-status");
           if (fallback) return fallback;
         } catch (fallbackError) {
-          throw new Error(`${err.message}; fallback determinÃ­stico: ${fallbackError.message}`);
+          throw new Error(`${err.message}; fallback determinístico: ${fallbackError.message}`);
         }
         throw err;
       }
@@ -712,7 +720,7 @@ export class AIProvider {
             const fallback = buildDeterministicFallback(pipelineMetadata, "deepseek-unavailable");
             if (fallback) return fallback;
           } catch (fallbackError) {
-            throw new Error(`${err.message}; fallback determinÃ­stico: ${fallbackError.message}`);
+            throw new Error(`${err.message}; fallback determinístico: ${fallbackError.message}`);
           }
           throw new Error(`Rascunho bloqueado após o pipeline: ${err.message}`);
         }
@@ -737,7 +745,7 @@ export class AIProvider {
               contentType,
               template,
               today,
-              researchData,
+              researchData: publicationResearch,
             });
           const repaired = await this.pipeline.callStep({
           step: `final-repair-${round}`,
@@ -785,7 +793,7 @@ export class AIProvider {
           }
         }
         try {
-          const sanitizedText = JSON.stringify(sanitizeStructuredArticleClaims(this._extractJson(candidateText), researchData));
+          const sanitizedText = JSON.stringify(sanitizeStructuredArticleClaims(this._extractJson(candidateText), publicationResearch));
           return {
             ...parseGroundedResponse(sanitizedText),
             pipelineMetadata: {
@@ -806,7 +814,7 @@ export class AIProvider {
             validationError = new Error(`${validationError.message}; fallback determinístico: ${deterministicError.message}`);
           }
         }
-        throw new Error(`Rascunho bloqueado apÃ³s ${maximumRepairRounds} reparos: ${validationError.message}`);
+        throw new Error(`Rascunho bloqueado após ${maximumRepairRounds} reparos: ${validationError.message}`);
       }
 
       const repairPrompt = buildRepairPrompt({
@@ -816,7 +824,7 @@ export class AIProvider {
         contentType,
         template,
         today,
-        researchData,
+        researchData: publicationResearch,
       });
 
       const repairedText = await this.generate(AIProvider.systemPrompt(), repairPrompt, {

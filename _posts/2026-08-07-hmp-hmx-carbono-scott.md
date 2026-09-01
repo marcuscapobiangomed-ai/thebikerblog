@@ -1,14 +1,14 @@
 ---
+editorial_hold_reason: "Revisão de fontes, precisão e concisão pendente"
 image_subject_id: "scott-addict-rc-pro-hmx-frame-set"
 layout: post
-published: true
+published: false
 title: "HMF ou HMX: o que realmente muda na engenharia dos quadros Scott"
 slug: "hmf-hmx-carbono-scott"
 date: 2026-08-07
 last_modified_at: 2026-08-07
 author: "Equipe TheBiker"
 reviewed_by: ""
-ai_reviewed_by: "TheBiker AI Editorial Gate"
 content_type: "guia-tecnico"
 audience_segment: "core_technical_cyclists"
 audience_intent: "solve_problem"
@@ -46,8 +46,8 @@ promoted_brands: ["Scott"]
 context_only_brands: []
 portfolio_evidence_url: "https://thebikershop.com.br/produtos/bicicleta-scott-addict-50-2026-pre-venda-1bxzy/"
 portfolio_verified_at: "2026-08-04"
-editorial_status: "published"
-status: "published"
+editorial_status: "draft"
+status: "draft"
 sources:
   - name: "Scott — página oficial do modelo Addict 50"
     type: "manufacturer"
@@ -86,8 +86,6 @@ O Addict 50, com HMF, pesa aproximadamente 8,9 kg montado com Shimano 105 e roda
 Outro dado revelador: todos os quadros Addict, independentemente do carbono, suportam o mesmo peso máximo do sistema: 120 kg. Isso indica que a resistência estrutural é equivalente, e a economia de peso no HMX provavelmente vem de uma laminação mais refinada, com menos camadas ou fibras de maior módulo, sem comprometer a segurança.
 
 A geometria também é um divisor: o HMF está sempre na versão endurance (Addict), com maior empilhamento e menor alcance, enquanto o HMX aparece nas versões RC (Addict RC), com posição mais agressiva. Essa separação não é acidental — a Scott usa o tipo de carbono como parte da identidade de cada linha. Assim, a decisão HMF ou HMX é, na prática, uma escolha entre conforto e versatilidade versus leveza e agressividade.
-
-Leia também: o [review da Addict RC 20](/2026/08/review-addict-rc-20/) aplica a distinção HMF/HMX a uma montagem de estrada; o [comparativo das Spark RC](/2026/08/spark-rc-team-expert-world-cup/) mostra a mesma lógica em MTB.
 
 ## O que são HMF e HMX: a nomenclatura por trás da fibra
 

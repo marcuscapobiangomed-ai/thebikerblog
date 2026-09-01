@@ -1,18 +1,29 @@
-import fs from "fs";
-import path from "path";
 import { productKnowledgeCollection } from "./knowledge/product-knowledge.js";
 
+export const LEGACY_GITHUB_PUBLISHER_FLAG = "THEBIKER_ENABLE_LEGACY_GITHUB_PUBLISHER";
+
 export class GitHubPublisher {
-  constructor({ env = process.env } = {}) {
+  constructor({ env = process.env, warn = console.warn } = {}) {
     this.token = env.GITHUB_TOKEN;
     this.user = env.GITHUB_USER;
     this.repo = env.GITHUB_REPO;
     this.branch = env.GITHUB_BRANCH || "main";
     this.baseUrl = env.BLOG_URL;
+    this.legacyWriteEnabled = env[LEGACY_GITHUB_PUBLISHER_FLAG] === "true";
+    this.warn = warn;
     this.apiBase = `https://api.github.com/repos/${this.user}/${this.repo}`;
     if (!this.token || !this.user || !this.repo) {
       throw new Error("GitHubPublisher exige GITHUB_TOKEN, GITHUB_USER e GITHUB_REPO");
     }
+  }
+
+  _assertLegacyWriteEnabled() {
+    if (!this.legacyWriteEnabled) {
+      throw new Error(
+        `GitHubPublisher depreciado: use a campanha transacional; para compatibilidade explícita defina ${LEGACY_GITHUB_PUBLISHER_FLAG}=true`,
+      );
+    }
+    this.warn(`AVISO: GitHubPublisher e um caminho legado habilitado por ${LEGACY_GITHUB_PUBLISHER_FLAG}.`);
   }
 
   async findOpenPullRequest(branchName) {
@@ -71,6 +82,7 @@ export class GitHubPublisher {
   }
 
   async publishPost({ postContent, slug, researchData, productKnowledge, imageManifest, imageProductionPlan, checklist }) {
+    this._assertLegacyWriteEnabled();
     const today = new Date().toISOString().split("T")[0];
     const fileName = `${today}-${slug}.md`;
     const branchName = `content/${slug}`;

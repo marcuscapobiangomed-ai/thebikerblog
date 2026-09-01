@@ -1,4 +1,7 @@
 ---
+editorial_hold_reason: "Revisão de fontes, precisão e concisão pendente"
+status: "draft"
+published: false
 image_subject_id: "bicicleta-scott-addict-50-2026-pre-venda-cumulus-white"
 layout: post
 published: false

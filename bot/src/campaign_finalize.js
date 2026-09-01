@@ -15,6 +15,7 @@ import { releaseAssetUse } from "./images/asset-library.js";
 import { createStagedWorkspace, discardStagedWorkspace, promoteStagedPaths } from "./automation/file-transaction.js";
 import { assertResearchEvidenceContract, assertResearchGrounding } from "./validation/research-grounding.js";
 import { assertArticleResearchGrounding } from "./validation/article-research-grounding.js";
+import { researchForPublication } from "./validation/publication-research.js";
 
 const defaultRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 
@@ -109,7 +110,7 @@ async function finalizeInWorkspace({ root, now, imageProducer }) {
     const research = JSON.parse(await fs.readFile(researchPath, "utf8"));
     assertResearchGrounding(research, { requireFactReferences: true });
     assertResearchEvidenceContract(research);
-    assertArticleResearchGrounding({ content, research });
+    assertArticleResearchGrounding({ content, research: researchForPublication(research) });
     assertReviewedContentIntegrity(content, item.aiReview);
     const parsed = matter(content);
     if (parsed.data.published !== false) throw new Error("Rascunho precisa permanecer com published: false");
@@ -120,6 +121,9 @@ async function finalizeInWorkspace({ root, now, imageProducer }) {
       throw new Error("FAQ precisa ser uma lista de até cinco perguntas visíveis");
     }
     if ((parsed.content.match(/^##\s+/gm) || []).length < 5) throw new Error("Post com menos de cinco seções");
+    if (item.aiReview?.deterministicFullArticleFallbackUsed) {
+      throw new Error("Fallback determinístico é somente rascunho e exige revisão editorial independente");
+    }
     if (item.aiReview?.finalScore !== null && item.aiReview?.finalScore !== undefined && item.aiReview.finalScore < 90) {
       throw new Error(`Nota editorial final insuficiente: ${item.aiReview.finalScore}`);
     }

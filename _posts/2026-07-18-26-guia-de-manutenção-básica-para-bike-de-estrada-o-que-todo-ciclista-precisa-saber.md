@@ -56,8 +56,6 @@ image_manifest_version: 2
 image_asset_type: "official-product-photo"
 image_status: "approved"
 ---
-> **Como este artigo foi produzido:** pesquisa em guias técnicos de fabricantes (Shimano, SRAM, Park Tool) e consenso de mecânicos especializados. O conteúdo foi elaborado com auxílio de IA e revisado editorialmente.
-
 ## Introdução
 
 Manter sua <a href="https://thebikershop.com.br/bikes/bicicletas-estrada/" class="thebiker-product-link" target="_blank" rel="noopener">bike de estrada</a> em boas condições não exige ser mecânico — mas exige consistência. Uma manutenção preventiva simples, feita a cada 200-300 km, aumenta a vida útil dos componentes, melhora o desempenho e, acima de tudo, garante sua segurança.

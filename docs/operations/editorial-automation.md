@@ -4,7 +4,7 @@
 
 O GitHub Actions é o motor de produção permanente. O n8n local serve para visualização e homologação, mas a continuidade do blog não depende de computador ligado.
 
-O workflow `.github/workflows/cron-post.yml` possui três janelas diárias de execução. Cada execução produz no máximo uma pauta e compartilha o grupo de concorrência `thebiker-editorial-write` com auditoria, reparo, renovação e publicação. O workflow `.github/workflows/publish-daily.yml` verifica a publicação às 11h55, 12h00 e 12h10 em `America/Sao_Paulo`; a operação é idempotente.
+O workflow `.github/workflows/cron-post.yml` possui três janelas diárias de execução. Cada execução produz no máximo uma pauta e compartilha a fila `thebiker-editorial-write` com auditoria, reparo, renovação e publicação. A fila usa `queue: max`: sobreposição de horário espera a vez, sem cancelar um escritor pendente. O workflow `.github/workflows/publish-daily.yml` verifica a publicação às 11h55, 12h00 e 12h10 em `America/Sao_Paulo`; a operação é idempotente.
 
 O fluxo completo é:
 
@@ -14,10 +14,10 @@ O fluxo completo é:
 4. gerar e criticar o rascunho;
 5. aplicar edição premium quando necessária;
 6. produzir e validar imagem;
-7. executar `npm run validate` antes de persistir;
+7. executar os gates estruturais antes de promover qualquer arquivo;
 8. agendar somente artigo com nota final mínima 90 e zero bloqueadores;
 9. publicar a pauta aprovada na data local;
-10. executar novamente o gate integral e disparar explicitamente o deploy do novo SHA.
+10. validar o artefato promovido e persistir o novo SHA; somente então emitir `repository_dispatch` para um único deploy do `main` atualizado.
 
 Falha de fonte, modelo, orçamento, schema, imagem, SEO ou build mantém a pauta bloqueada. Popularidade de vídeo é sinal editorial, nunca prova factual.
 
@@ -56,14 +56,39 @@ As chaves não entram em `_config.yml`, `_data`, JavaScript público, logs ou ar
 ## Recuperação e segurança
 
 - `400 output_parse_failed`, 429, timeout e erros transitórios recebem retry limitado.
-- Se a pauta do dia já foi publicada, uma das janelas redundantes pode recuperar no máximo uma pauta vencida, atualizando a data pública para o dia real da recuperação.
+- A recuperação de atraso exige a política explícita `oldest-approved`; cada execução promove no máximo uma pauta vencida e atualiza a data pública para o dia real da recuperação.
 - Resposta de pesquisa inválida pode usar somente evidência interna pertinente e com fontes permitidas.
 - Sem evidência suficiente, a pauta permanece bloqueada e uma reserva evergreen ocupa o buffer.
 - Reviews e comparativos validados exigem produto rastreável.
 - Concorrentes podem ser contexto técnico, nunca promoção ou CTA.
 - Somente inventário TheBiker verificado recebe link comercial.
-- Os alertas cobrem inteligência, renovação, produção, auditoria, reparo, publicação e deploy.
-- Commits feitos pelo bot não dependem de um evento `push` implícito para publicar: o workflow diário dispara `deploy.yml` explicitamente.
+- Os alertas cobrem inteligência, renovação, produção, recomposição do buffer, auditoria, reparo, publicação e deploy; falhas recorrentes são agrupadas pelo fingerprint da causa.
+- Pull requests integrados acionam deploy pelo `push` em `main`. Como commits feitos pelo `GITHUB_TOKEN` não encadeiam workflows por `push`, publicação e atualização de corridas emitem `repository_dispatch` somente depois de persistirem um novo SHA. Dry-runs e no-ops não fazem deploy; um dispatch manual só constrói com `force_deploy=true`.
+
+## Renovação mensal preventiva
+
+O watchdog mede diariamente a quantidade de pautas futuras recuperáveis, o horizonte da última data utilizável e o número de reservas. A renovação é acionada antes de faltar conteúdo quando houver menos de 14 pautas recuperáveis, menos de 14 dias de horizonte ou menos de três reservas.
+
+O renovador sempre constrói e valida primeiro um plano de 30 dias, com ao menos três reservas e oito posições de corridas (quatro profissionais e quatro participativas). Se a issue mensal de inteligência estiver indisponível, a contingência local usa somente pautas técnicas rastreáveis e preserva os artigos já aprovados ou agendados; ela não inventa tendência, métrica ou resultado de produto. Depois do commit, `replenish-buffer.yml` tenta formar sete dias de buffer e recebe uma data obrigatória que precisa permanecer publicável. Repetir o mesmo relatório é um no-op verde e não inicia produção duplicada.
+
+## Recuperação controlada de publicações
+
+1. Execute `publish-daily.yml` manualmente com `dry_run=true` e `catch_up=true` para identificar o atraso aprovado mais antigo.
+2. Confirme no resumo o `item_id`, o indicador de catch-up e a quantidade de atrasos restantes.
+3. Execute novamente com `dry_run=false` e `catch_up=true`.
+4. Aguarde o commit, o deploy disparado pelo `push` e a validação do site antes de repetir.
+
+Uma pauta bloqueada na data atual não impede um atraso anterior que já esteja aprovado. Sem `catch_up=true`, o publicador permanece fail-closed e não escolhe atrasos implicitamente.
+
+## Agenda de corridas
+
+`npm run validate:races` verifica a estrutura factual do snapshot. `npm run validate:races:freshness` aplica separadamente a janela operacional de 48 horas e é obrigatório para atualizar a agenda ou publicar pauta de corrida. Artigos comuns não são bloqueados pela idade global da agenda.
+
+O sincronizador aceita contingência factual com exatamente cinco das seis provas brasileiras esperadas, registrando `sourceStatus: degraded` e metadados tipados. Abaixo de cinco, a atualização falha sem persistir; nenhum evento é inventado para completar a agenda.
+
+## OAuth da inteligência editorial
+
+Se o Google responder `invalid_grant`, defina `INTELLIGENCE_ENABLED=false` e mantenha a produção editorial independente ativa. Renove `GOOGLE_REFRESH_TOKEN`, teste manualmente `editorial-intelligence.yml` e somente então restaure `INTELLIGENCE_ENABLED=true`. Nunca registre o token em issue, log ou arquivo versionado.
 
 ## Critério de autonomia
 

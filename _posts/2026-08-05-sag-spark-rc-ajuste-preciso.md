@@ -1,14 +1,14 @@
 ---
+editorial_hold_reason: "Revisão de fontes, precisão e concisão pendente"
 image_subject_id: "bicicleta-scott-spark-rc-expert-2027"
 layout: post
-published: true
+published: false
 title: "SAG da Scott Spark RC: guia de ajuste preciso"
 slug: "sag-spark-rc-ajuste-preciso"
 date: 2026-08-05
 last_modified_at: 2026-08-05
 author: "Equipe TheBiker"
 reviewed_by: ""
-ai_reviewed_by: "TheBiker AI Editorial Gate"
 content_type: "guia-tecnico"
 audience_segment: "core_technical_cyclists"
 audience_intent: "solve_problem"
@@ -46,8 +46,8 @@ promoted_brands: ["Scott"]
 context_only_brands: []
 portfolio_evidence_url: "https://thebikershop.com.br/produtos/bicicleta-scott-spark-rc-expert-2027/"
 portfolio_verified_at: "2026-08-05"
-editorial_status: "published"
-status: "published"
+editorial_status: "draft"
+status: "draft"
 sources:
   - name: "The Biker Shop – Bicicleta Scott Spark RC Expert 2027"
     type: "store"
@@ -66,8 +66,6 @@ A recomendação de 25% de SAG que aparece no manual da Spark RC 2027 é um pont
 O que o manual não entrega — e nenhum fabricante entrega — é a pressão exata em PSI. A massa total do conjunto ciclista mais equipamento altera a carga estática de forma imprevisível. Dois ciclistas com o mesmo peso corporal podem exigir pressões diferentes por causa de mochila de hidratação, ferramentas, vestimenta ou simplesmente pela distribuição de massa sobre a bike. Por isso o procedimento documentado é iterativo: você ajusta, mede, ajusta de novo até o anel coincidir com a marca de 25%.
 
 Ignorar essa etapa e copiar a pressão de outro ciclista é o caminho mais curto para mascarar a dinâmica da suspensão. Um SAG muito baixo endurece o início de curso e sacrifica tração em raízes e pedras soltas. Um SAG excessivo consome curso precioso antes mesmo de você enfrentar o primeiro obstáculo, deixando a bike mais propensa a batidas de fim de curso e alterando o ângulo de direção de forma indesejada.
-
-Leia também: [Suspensão integrada da Spark RC: estrutura e serviço](/2026/08/engenharia-suspensao-integrada-spark/) explica o conjunto; o [review da Spark RC Team 2027](/2026/08/review-spark-rc-team-2027/) contextualiza a plataforma completa.
 
 ## O procedimento de cinco passos que elimina achismos
 

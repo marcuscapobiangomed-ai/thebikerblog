@@ -293,11 +293,12 @@ function checkAlternatives(content, fileName, fm) {
   if (!fm) return;
   const body = content.replace(/^---\n[\s\S]*?\n---\n?/, "");
 
-  // Reviews e comparativos devem ter alternativas
-  if (fm.content_type === "review" || fm.content_type === "comparativo") {
+  // Comparativos precisam comparar explicitamente. Reviews de portfólio usam
+  // critérios de decisão e não são obrigados a promover produtos concorrentes.
+  if (fm.content_type === "comparativo") {
     const altSection = body.match(/##\s*.*(Alternativas|Concorrentes|Comparativ|Comparaç|Qual escolher|Qual vence|\bvs\b|Modelos \d{4})/i);
     if (!altSection) {
-      logWarning(fileName, "Review sem seção de alternativas/concorrentes");
+      logWarning(fileName, "Comparativo sem seção explícita de comparação");
     }
   }
 }

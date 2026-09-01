@@ -13,7 +13,7 @@ const repositoryRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url))
 const workflow = await fs.readFile(path.join(repositoryRoot, ".github/workflows/cron-post.yml"), "utf8");
 assert.match(workflow, /id: validation/);
 assert.match(workflow, /steps\.validation\.outcome == 'success'/);
-assert.match(workflow, /Persistir somente estado seguro da falha/);
+assert.match(workflow, /Persistir somente diagnóstico seguro da falha/);
 assert.match(workflow, /run: npm run validate:ci/);
 assert.doesNotMatch(workflow, /run: npm run links:thebiker/);
 assert.match(buildSystemPrompt(), /imbatível/);
@@ -64,6 +64,20 @@ try {
   item.postPath = `_posts/drafts/${item.publishDate}-${item.id}.md`;
   item.aiReview = structuredClone(aiReview);
   item.editorialReceipt = structuredClone(receipt);
+  item.imageManifestPath = `assets/img/posts/${item.id}/image-manifest.json`;
+  item.imageStatus = "approved";
+  item.imageAssetIds = ["fixture-image"];
+  item.visualDecision = {
+    schemaVersion: 1,
+    policyVersion: "thebiker-visual-autonomy-v1",
+    inputHash: `sha256:${"a".repeat(64)}`,
+    mode: "exact-product",
+    productId: item.productIds[0] || null,
+    score: 100,
+    hardGates: { fixture: true },
+    blockers: [],
+    issuedAt: "2026-08-11T12:00:00.000Z",
+  };
   await fs.mkdir(path.join(root, "bot"), { recursive: true });
   await fs.mkdir(path.dirname(path.join(root, item.postPath)), { recursive: true });
   await fs.writeFile(path.join(root, "bot/editorial-campaign.json"), `${JSON.stringify(campaign, null, 2)}\n`);

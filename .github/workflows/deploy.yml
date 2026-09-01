@@ -3,22 +3,34 @@ name: Deploy Blog
 on:
   push:
     branches: [main]
+  repository_dispatch:
+    types: [editorial-deploy]
   workflow_dispatch:
+    inputs:
+      force_deploy:
+        description: "Executar deploy manual mesmo sem novo push em main"
+        required: false
+        default: false
+        type: boolean
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
+permissions: {}
 
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build:
+    # Pushes feitos pelo GITHUB_TOKEN não encadeiam novos workflows. Os writers
+    # enviam repository_dispatch apenas depois de persistir um novo SHA.
+    if: ${{ github.event_name == 'push' || inputs.force_deploy == true || github.event_name == 'repository_dispatch' }}
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+        with:
+          ref: main
 
       - uses: actions/setup-node@v7
         with:
@@ -54,6 +66,9 @@ jobs:
       - name: Validate AI discovery artifact
         run: npm run validate:ai-build
 
+      - name: Validate public publication boundaries
+        run: npm run validate:public-artifact
+
       - name: Security gate for public artifact
         run: npm run security:public
 
@@ -63,8 +78,14 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: build
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
     steps:
       - uses: actions/checkout@v7
+        with:
+          ref: main
       - uses: actions/setup-node@v7
         with:
           node-version: 24

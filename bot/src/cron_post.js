@@ -17,8 +17,9 @@ export async function runAutomation({ env = process.env, ai, publisher, now = ne
 }
 
 async function main() {
-  const result = await runAutomation();
-  console.log(JSON.stringify(result));
+  throw new Error(
+    "Entrypoint automation:run legado bloqueado. Use campaign:produce e campaign:finalize, que exigem ledger, imagens, recibos e gates.",
+  );
 }
 
 if (process.argv[1] && process.argv[1].endsWith("cron_post.js")) {

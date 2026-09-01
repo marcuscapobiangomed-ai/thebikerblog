@@ -76,9 +76,13 @@ export function generateMarkdown(article) {
   const imageLicense = isFallbackImage
     ? "Uso editorial interno TheBiker"
     : (data.frontmatter?.image_license || "Uso editorial da TheBiker");
-  const methodologyNotice = data.methodologyNotice || (data.review_method === "hands-on-test"
-    ? "> **Como testamos:** o produto foi testado presencialmente pela equipe TheBiker."
-    : "> **Como este artigo foi produzido:** análise documental baseada em especificações oficiais, catálogo TheBiker e comparação com alternativas vendidas pela loja. O produto não foi testado presencialmente pela equipe TheBiker. O conteúdo foi elaborado com auxílio de IA e revisado editorialmente.");
+  // Desk research is declared in structured metadata and enforced by the
+  // publication gates. It must not become backstage/process copy in the
+  // reader-facing article. A hands-on disclosure is rendered only when a real
+  // test was explicitly declared and a useful disclosure was supplied.
+  const handsOnDisclosure = data.review_method === "hands-on-test"
+    ? String(data.methodologyNotice || "").trim()
+    : "";
 
   const frontmatter = [
     "---",
@@ -149,14 +153,14 @@ export function generateMarkdown(article) {
     "",
   ].join("\n");
 
-  let body = `${methodologyNotice}\n\n`;
+  let body = handsOnDisclosure ? `${handsOnDisclosure}\n\n` : "";
 
   for (const section of data.sections) {
     body += `## ${section.heading}\n\n${section.content}\n\n${renderSectionEvidence(section, sources)}\n\n`;
   }
 
-  if (!body.match(/##\s*(Fontes|Fontes e metodologia|Referências|De onde vêm os dados)/i)) {
-    body += "## De onde vêm os dados desta análise\n\n";
+  if (!body.match(/##\s*(Fontes|Referências)/i)) {
+    body += "## Fontes\n\n";
     for (const source of sources) {
       body += `- **${source.name}** (${source.type})${source.url ? ` — ${source.url}` : ""} — acessado em ${source.accessed_at}\n`;
     }

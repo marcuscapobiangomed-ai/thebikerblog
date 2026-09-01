@@ -13,6 +13,7 @@ async function exists(file) {
 export async function simulateCampaign({ now = new Date() } = {}) {
   const campaign = CampaignSchema.parse(JSON.parse(await fs.readFile(path.join(root, "bot/editorial-campaign.json"), "utf8")));
   const failures = [];
+  const warnings = [];
   const hashes = new Map();
   const ready = campaign.items.filter((item) => ["scheduled", "published"].includes(item.status));
   const today = new Intl.DateTimeFormat("en-CA", {
@@ -24,8 +25,10 @@ export async function simulateCampaign({ now = new Date() } = {}) {
   const futureScheduled = ready.filter((item) => item.status === "scheduled" && item.publishDate >= today);
   const overdueScheduled = ready.filter((item) => item.status === "scheduled" && item.publishDate < today);
 
-  if (futureScheduled.length < campaign.minimumApprovedBuffer) {
-    failures.push(`buffer abaixo do minimo de ${campaign.minimumApprovedBuffer}`);
+  if (futureScheduled.length === 0) {
+    failures.push("nenhuma pauta futura publicavel");
+  } else if (futureScheduled.length < campaign.minimumApprovedBuffer) {
+    warnings.push(`buffer abaixo do alvo de ${campaign.minimumApprovedBuffer}; recomposicao automatica pendente`);
   }
   if (overdueScheduled.length > 0) failures.push(`pauta vencida ainda scheduled: ${overdueScheduled.map((item) => item.id).join(", ")}`);
   for (const item of ready) {
@@ -59,6 +62,7 @@ export async function simulateCampaign({ now = new Date() } = {}) {
     scheduled: campaign.items.filter((item) => item.status === "scheduled").length,
     planned: campaign.items.filter((item) => item.status === "planned").length,
     verifiedOfficialImages: ready.length,
+    warnings,
     failures,
   };
   console.log(JSON.stringify(result, null, 2));

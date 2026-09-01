@@ -1,114 +1,88 @@
 #!/usr/bin/env node
 /**
- * Promove um post de draft para published.
+ * Adaptador de compatibilidade do publicador manual antigo.
  *
- * Uso: node src/publish_post.js <caminho-ou-slug>
+ * Ele não altera mais front matter nem arquivos diretamente. O alvo informado
+ * precisa existir no ledger da campanha e ser exatamente o candidato que o
+ * publicador transacional considera seguro para a data/política escolhida.
  *
- * Exemplo:
- *   node src/publish_post.js _posts/2026-07-20-meu-post.md
- *   node src/publish_post.js meu-post
+ * Uso: node src/publish_post.js <id-ou-postPath>
  */
-import fs from "fs";
-import path from "path";
-import { fileURLToPath } from "url";
-import matter from "gray-matter";
-import { validateImageManifestV2 } from "./validation/image-manifest-v2.js";
-import { assertImageArticleConsistency } from "./validation/image-article-consistency.js";
-import { linkTheBikerProducts, loadTheBikerLinkData } from "./editorial/product-linker.js";
-import { assertAutomatedReviewer } from "./validation/editorial-receipt.js";
+import fs from "node:fs/promises";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import { CampaignSchema } from "./automation/campaign.js";
+import { CatchUpPolicy, publishScheduled } from "./publish_scheduled.js";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const POSTS_DIR = path.resolve(__dirname, "../../_posts");
-const ROOT_DIR = path.resolve(__dirname, "../..");
+const ROOT_DIR = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 
-function main() {
-  const target = process.argv[2];
-  if (!target) {
-    console.log("Uso: node src/publish_post.js <slug-ou-caminho>");
-    process.exit(1);
-  }
-
-  let filePath;
-  if (target.includes(".md") || target.includes("/")) {
-    filePath = path.resolve(target);
-  } else {
-    // Procura por slug no nome do arquivo
-    const files = fs.readdirSync(POSTS_DIR).filter((f) => f.endsWith(".md") && f.includes(target));
-    if (files.length === 0) {
-      console.log(`❌ Nenhum post encontrado com slug "${target}"`);
-      process.exit(1);
-    }
-    if (files.length > 1) {
-      console.log(`❌ Múltiplos posts encontrados: ${files.join(", ")}`);
-      process.exit(1);
-    }
-    filePath = path.join(POSTS_DIR, files[0]);
-  }
-
-  let content = fs.readFileSync(filePath, "utf8");
-  const parsed = matter(content);
-
-  if (parsed.data.ai_assisted === true) {
-    if (parsed.data.editorial_status !== "approved") {
-      console.error("❌ Publicação bloqueada: editorial_status precisa ser approved.");
-      process.exit(1);
-    }
-    try {
-      assertAutomatedReviewer(parsed.data);
-    } catch (error) {
-      console.error(`❌ Publicação bloqueada: ${error.message}`);
-      process.exit(1);
-    }
-    if (parsed.data.image_manifest_version !== 2) {
-      console.error("❌ Publicação bloqueada: image_manifest_version precisa ser 2.");
-      process.exit(1);
-    }
-
-    const imagePath = String(parsed.data.image || "").replace(/^\//, "");
-    const absoluteImage = path.resolve(ROOT_DIR, imagePath);
-    if (!absoluteImage.startsWith(ROOT_DIR + path.sep)) {
-      console.error("❌ Publicação bloqueada: caminho de imagem inválido.");
-      process.exit(1);
-    }
-    const manifestPath = path.join(path.dirname(absoluteImage), "image-manifest.json");
-    if (!fs.existsSync(manifestPath)) {
-      console.error("❌ Publicação bloqueada: image-manifest.json ausente.");
-      process.exit(1);
-    }
-    try {
-      const manifest = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
-      const validatedManifest = validateImageManifestV2(
-        manifest,
-        path.dirname(manifestPath),
-        { requirePublishable: true },
-      );
-      const catalog = JSON.parse(fs.readFileSync(path.join(ROOT_DIR, "content/product-discovery/thebiker-media-catalog.json"), "utf8"));
-      assertImageArticleConsistency({ article: parsed.data, manifest: validatedManifest, catalog });
-    } catch (error) {
-      console.error(`❌ Publicação bloqueada: ${error.message}`);
-      process.exit(1);
-    }
-  }
-
-  const linkResult = linkTheBikerProducts(content, loadTheBikerLinkData(ROOT_DIR));
-  content = linkResult.content;
-  content = content.replace(/^published:\s*false\s*$/m, "published: true");
-  content = content.replace(/^editorial_status:\s*["']?approved["']?\s*$/m, 'editorial_status: "published"');
-
-  // Troca status: draft por status: published
-  if (content.includes("status: draft")) {
-    content = content.replace("status: draft", "status: published");
-    fs.writeFileSync(filePath, content, "utf8");
-    console.log(`✅ Post promovido para published: ${path.basename(filePath)} (${linkResult.links.length} links TheBiker)`);
-  } else if (content.includes("status: published")) {
-    console.log(`ℹ️  Post já está published: ${path.basename(filePath)}`);
-  } else {
-    // Adiciona status: published se não existir
-    content = content.replace(/^layout: post/m, "status: published\nlayout: post");
-    fs.writeFileSync(filePath, content, "utf8");
-    console.log(`✅ Status adicionado (published): ${path.basename(filePath)}`);
-  }
+function normalizedTarget(target, root) {
+  const absolute = path.isAbsolute(target) ? path.resolve(target) : null;
+  const relative = absolute && absolute.startsWith(`${path.resolve(root)}${path.sep}`)
+    ? path.relative(root, absolute)
+    : target;
+  return relative.replaceAll("\\", "/").replace(/^\.\//, "");
 }
 
-main();
+export function resolveLegacyTarget(campaign, target, { root = ROOT_DIR } = {}) {
+  const normalized = normalizedTarget(String(target || "").trim(), root);
+  if (!normalized) throw new Error("Publicacao bloqueada: informe id ou postPath registrado na campanha");
+  const basename = path.posix.basename(normalized);
+  const matches = campaign.items.filter((item) => {
+    const postPath = String(item.postPath || "").replaceAll("\\", "/");
+    return item.id === normalized || postPath === normalized || path.posix.basename(postPath) === basename;
+  });
+  if (matches.length === 0) {
+    throw new Error(`Publicacao bloqueada: alvo legado nao esta no ledger da campanha (${normalized})`);
+  }
+  if (matches.length > 1) {
+    throw new Error(`Publicacao bloqueada: alvo legado ambiguo (${normalized})`);
+  }
+  return matches[0];
+}
+
+export async function publishLegacyTarget({
+  target,
+  root = ROOT_DIR,
+  now = new Date(),
+  dryRun = false,
+  catchUpPolicy = CatchUpPolicy.DISABLED,
+} = {}) {
+  const campaignPath = path.join(root, "bot/editorial-campaign.json");
+  const campaign = CampaignSchema.parse(JSON.parse(await fs.readFile(campaignPath, "utf8")));
+  const item = resolveLegacyTarget(campaign, target, { root });
+  if (item.status === "published") {
+    return { status: "already-published", itemId: item.id, deprecatedAdapter: true };
+  }
+  if (item.status !== "scheduled") {
+    throw new Error(`Publicacao bloqueada: ${item.id} esta em ${item.status}, nao scheduled`);
+  }
+  const result = await publishScheduled({
+    root,
+    now,
+    dryRun,
+    catchUpPolicy,
+    expectedItemId: item.id,
+  });
+  return { ...result, deprecatedAdapter: true };
+}
+
+if (path.resolve(process.argv[1] || "") === fileURLToPath(import.meta.url)) {
+  const target = process.argv[2];
+  if (!target) {
+    console.error("Uso: node src/publish_post.js <id-ou-postPath-registrado>");
+    process.exitCode = 1;
+  } else {
+    console.error("AVISO: publish_post.js esta depreciado; delegando para publish_scheduled.js.");
+    publishLegacyTarget({
+      target,
+      dryRun: process.env.AUTOMATION_DRY_RUN === "true",
+      catchUpPolicy: process.env.AUTOMATION_CATCH_UP_POLICY || CatchUpPolicy.DISABLED,
+    })
+      .then((result) => console.log(JSON.stringify(result)))
+      .catch((error) => {
+        console.error(error.stack || error.message);
+        process.exitCode = 1;
+      });
+  }
+}

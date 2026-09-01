@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "source": "https://thebikershop.com.br/",
-  "discoveredAt": "2026-08-14T10:07:12.291Z",
+  "discoveredAt": "2026-08-21T17:32:55.647Z",
   "rightsPolicyId": "thebiker-official-editorial-v1",
-  "total": 487,
+  "total": 485,
   "products": [
     {
       "id": "quadro-scott-scale-rc-team-hmf-2026",
@@ -83,17 +83,6 @@
       "productUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-spark-rc-world-cup-2027/",
       "images": [
         "https://acdn-us.mitiendanube.com/stores/001/062/247/products/4275488585-01767c407eabe639a917812049642571-480-0.webp"
-      ],
-      "sku": null
-    },
-    {
-      "id": "bicicleta-scott-addict-50-2026-pre-venda-cumulus-white",
-      "name": "Bicicleta Scott Addict 50 2026 - Pré Venda",
-      "brand": "Scott",
-      "category": "bikes",
-      "productUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-addict-50-2026-pre-venda-cumulus-white/",
-      "images": [
-        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/4253588087_2223062_4-c5743f8f2acaad1e3a17761939225164-480-0.webp"
       ],
       "sku": null
     },
@@ -315,17 +304,6 @@
       "sku": null
     },
     {
-      "id": "bicicleta-scott-addict-50-2025-pre-venda-cinza",
-      "name": "Bicicleta Scott Addict 50 2025",
-      "brand": "Scott",
-      "category": "bikes",
-      "productUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-addict-50-2025-pre-venda-cinza/",
-      "images": [
-        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/d4951b0a-ef99-11ef-b9cd-2a1467c58347-ef79fbff461701f2ef17406099561841-480-0.webp"
-      ],
-      "sku": null
-    },
-    {
       "id": "bicicleta-scott-addict-30-di2-2025-pre-venda",
       "name": "Bicicleta Scott Addict 30 Di2 2025 - Pré Venda",
       "brand": "Scott",
@@ -333,6 +311,17 @@
       "productUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-addict-30-di2-2025-pre-venda/",
       "images": [
         "https://acdn-us.mitiendanube.com/stores/001/062/247/products/71323732-ef8f-11ef-9ce2-968ec2db574e-12c60d2f5790b0333017406094428876-480-0.webp"
+      ],
+      "sku": null
+    },
+    {
+      "id": "bicicleta-scott-spark-900-rc-comp-2025",
+      "name": "Bicicleta Scott Spark 900 RC Comp 2025",
+      "brand": "Scott",
+      "category": "bikes",
+      "productUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-spark-900-rc-comp-2025/",
+      "images": [
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/0d668542-de36-11ef-b886-ba9b74a5f4eb-ce95f3e40ddab3ddd417382425419075-480-0.webp"
       ],
       "sku": null
     },
@@ -480,6 +469,17 @@
       "sku": null
     },
     {
+      "id": "bicicleta-scott-addict-50-2026-pre-venda-cumulus-white",
+      "name": "Bicicleta Scott Addict 50 2026 - Pré Venda",
+      "brand": "Scott",
+      "category": "bikes",
+      "productUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-addict-50-2026-pre-venda-cumulus-white/",
+      "images": [
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/4253588087_2223062_4-c5743f8f2acaad1e3a17761939225164-480-0.webp"
+      ],
+      "sku": null
+    },
+    {
       "id": "quadro-scott-plasma-rc-tt-hmx-2026",
       "name": "Quadro Scott Plasma RC TT HMX 2026 - Pré Venda",
       "brand": "Scott",
@@ -586,28 +586,6 @@
       "productUrl": "https://thebikershop.com.br/produtos/bicicleta-eletrica-oggi-big-wheel-8-0-2025/",
       "images": [
         "https://acdn-us.mitiendanube.com/stores/001/062/247/products/bw-8-0-cinza-fb-scaled-2baedd2dda8a8af23a17387887132853-480-0.webp"
-      ],
-      "sku": null
-    },
-    {
-      "id": "bicicleta-scott-spark-900-rc-comp-2025",
-      "name": "Bicicleta Scott Spark 900 RC Comp 2025",
-      "brand": "Scott",
-      "category": "bikes",
-      "productUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-spark-900-rc-comp-2025/",
-      "images": [
-        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/0d668542-de36-11ef-b886-ba9b74a5f4eb-ce95f3e40ddab3ddd417382425419075-480-0.webp"
-      ],
-      "sku": null
-    },
-    {
-      "id": "bicicleta-scott-spark-rc-world-cup-2026",
-      "name": "Bicicleta Scott Spark RC World Cup 2026",
-      "brand": "Scott",
-      "category": "bikes",
-      "productUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-spark-rc-world-cup-2026/",
-      "images": [
-        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/4253263020_2222561_3-7d2b602123afd710b317597763228507-480-0.webp"
       ],
       "sku": null
     },
@@ -865,15 +843,15 @@
       "sku": null
     },
     {
-      "id": "kit-de-cabos-e-conduites-para-spark-2022",
-      "name": "Kit de cabos e Conduites para Spark 2022",
-      "brand": "Scott",
+      "id": "pneu-pirelli-scorpion-xc-rc-2-4-team-edition",
+      "name": "Pneu Pirelli Scorpion Race XC RC 2.4 - Team Edition ProWall",
+      "brand": "Pirelli",
       "category": "componentes",
-      "productUrl": "https://thebikershop.com.br/produtos/kit-de-cabos-e-conduites-para-spark-2022/",
+      "productUrl": "https://thebikershop.com.br/produtos/pneu-pirelli-scorpion-xc-rc-2-4-team-edition/",
       "images": [
-        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/scott-cable-kit-2944331-7f2cbcb3ddd2f7f5d916903198426262-480-0.webp"
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/scorpion_xc_rc_race_compound_prowall_team_edition_1-2dbb97589b3cf4c42c17706752153829-480-0.webp"
       ],
-      "sku": "294433"
+      "sku": "59343"
     },
     {
       "id": "kit-espacadores-syncros-xr-mtb",
@@ -896,6 +874,17 @@
         "https://acdn-us.mitiendanube.com/stores/001/062/247/products/corrente-sram-gx-eagle-12v_iz717620148xvzgrandexpz1xfz254351239-77048271164-1xsz254351239xim1-52b7b045278c021ce715735892932768-480-0.webp"
       ],
       "sku": "COMP-349"
+    },
+    {
+      "id": "kit-de-cabos-e-conduites-para-spark-2022",
+      "name": "Kit de cabos e Conduites para Spark 2022",
+      "brand": "Scott",
+      "category": "componentes",
+      "productUrl": "https://thebikershop.com.br/produtos/kit-de-cabos-e-conduites-para-spark-2022/",
+      "images": [
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/scott-cable-kit-2944331-7f2cbcb3ddd2f7f5d916903198426262-480-0.webp"
+      ],
+      "sku": "294433"
     },
     {
       "id": "disco-sram-paceline-x-160mm-centerloc",
@@ -986,6 +975,17 @@
       "sku": "CXSXZ9L38"
     },
     {
+      "id": "guia-de-corrente-scott-spark-2022",
+      "name": "Guia de Corrente Scott Spark 2023",
+      "brand": "Scott",
+      "category": "componentes",
+      "productUrl": "https://thebikershop.com.br/produtos/guia-de-corrente-scott-spark-2022/",
+      "images": [
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/guia-de-corrente-scott-spark-2023-297548-b84270fb737d19e26217141691931804-480-0.webp"
+      ],
+      "sku": "297548"
+    },
+    {
       "id": "capa-protetora-cambio-sram-xx1-axs",
       "name": "Capa Protetora Câmbio Sram XX1 AXS",
       "brand": "Sram",
@@ -1028,17 +1028,6 @@
         "https://acdn-us.mitiendanube.com/stores/001/062/247/products/abbf6440991-9b6cf23d3673cab21215735899547332-480-0.webp"
       ],
       "sku": null
-    },
-    {
-      "id": "guia-de-corrente-scott-spark-2022",
-      "name": "Guia de Corrente Scott Spark 2023",
-      "brand": "Scott",
-      "category": "componentes",
-      "productUrl": "https://thebikershop.com.br/produtos/guia-de-corrente-scott-spark-2022/",
-      "images": [
-        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/guia-de-corrente-scott-spark-2023-297548-b84270fb737d19e26217141691931804-480-0.webp"
-      ],
-      "sku": "297548"
     },
     {
       "id": "capa-protetora-cambio-sram-gx-axs",
@@ -1998,6 +1987,17 @@
       "sku": "2900569999222"
     },
     {
+      "id": "selim-fizik-vento-argo-r3-adaptive-150mm",
+      "name": "Selim Fizik Vento Argo R3 Adaptive - 150mm",
+      "brand": "Fizik",
+      "category": "componentes",
+      "productUrl": "https://thebikershop.com.br/produtos/selim-fizik-vento-argo-r3-adaptive-150mm/",
+      "images": [
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/5e93830c-18c7-11ed-8c10-869f627c1d921-f3df537a6ce3eb20b516680796104089-480-0.webp"
+      ],
+      "sku": null
+    },
+    {
       "id": "alavanca-de-canote-retratil-fox-universal",
       "name": "Alavanca de Canote Retrátil FOX Universal",
       "brand": "Fox",
@@ -2073,6 +2073,17 @@
         "https://acdn-us.mitiendanube.com/stores/001/062/247/products/cblacksides11-b8e710cde7179d6f8e15985291640297-480-0.webp"
       ],
       "sku": null
+    },
+    {
+      "id": "kit-de-reparo-cambio-traseiro-sram-gx-t-type1",
+      "name": "Kit de Reparo Câmbio Traseiro Sram GX T-Type",
+      "brand": "Sram",
+      "category": "componentes",
+      "productUrl": "https://thebikershop.com.br/produtos/kit-de-reparo-cambio-traseiro-sram-gx-t-type1/",
+      "images": [
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/sram-full-mount-bolt-kit-for-gx-eagle-rear-derailleur-axs-t-type-b1-1692768-5283a5b267d53be57217562460254383-480-0.webp"
+      ],
+      "sku": "11.7518.104.025"
     },
     {
       "id": "abracadeira-rockshox-sid-para-mangueira-de-suspensao",
@@ -2163,39 +2174,6 @@
       "sku": "12029301"
     },
     {
-      "id": "kit-de-reparo-para-caliper-sram-level-ultimate-tlm",
-      "name": "Kit de Reparo para Caliper Sram Level Ultimate/TLM",
-      "brand": "Sram",
-      "category": "componentes",
-      "productUrl": "https://thebikershop.com.br/produtos/kit-de-reparo-para-caliper-sram-level-ultimate-tlm/",
-      "images": [
-        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/600x600-194219_15827245404378-22a17ea46e279cfc23169749290118971-535803ebb9d047d32316974930366697-480-0.webp"
-      ],
-      "sku": "11.5018.058.000"
-    },
-    {
-      "id": "2-unidades-baterias-sram-axs",
-      "name": "Combo Baterias Sram AXS - 2 unidades",
-      "brand": "Sram",
-      "category": "componentes",
-      "productUrl": "https://thebikershop.com.br/produtos/2-unidades-baterias-sram-axs/",
-      "images": [
-        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/baterias-axs1-9c9f4a09f5219f764416704413983061-480-0.webp"
-      ],
-      "sku": null
-    },
-    {
-      "id": "selim-fizik-vento-argo-r3-adaptive-150mm",
-      "name": "Selim Fizik Vento Argo R3 Adaptive - 150mm",
-      "brand": "Fizik",
-      "category": "componentes",
-      "productUrl": "https://thebikershop.com.br/produtos/selim-fizik-vento-argo-r3-adaptive-150mm/",
-      "images": [
-        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/5e93830c-18c7-11ed-8c10-869f627c1d921-f3df537a6ce3eb20b516680796104089-480-0.webp"
-      ],
-      "sku": null
-    },
-    {
       "id": "2-caramanholas-elite-fly-tex-550ml-preto",
       "name": "Combo Caramanholas Elite FLY TEX 550ml Preto - 2 unidades",
       "brand": "Elite",
@@ -2284,17 +2262,6 @@
       "sku": null
     },
     {
-      "id": "paralama-fox-36-e-38",
-      "name": "Paralama Fox 36 e 38",
-      "brand": "Fox",
-      "category": "acessorios",
-      "productUrl": "https://thebikershop.com.br/produtos/paralama-fox-36-e-38/",
-      "images": [
-        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/e7987f06-5ad8-11ed-bc27-3aa93353a4c6-793124a3800bf4e95c17065393882906-480-0.webp"
-      ],
-      "sku": "803-01-441"
-    },
-    {
       "id": "tira-de-plastico-fixacao-roda-thule-velocompact",
       "name": "Tira de Plastico Fixação Roda Thule VeloCompact",
       "brand": "Thule",
@@ -2381,6 +2348,17 @@
         "https://acdn-us.mitiendanube.com/stores/001/062/247/products/2505610001_157756_png_zoom_231-a76a4df28ff740cb6b16848752926344-480-0.webp"
       ],
       "sku": "250561"
+    },
+    {
+      "id": "kit-adaptador-para-rolo-elite-suito-direto",
+      "name": "Kit Adaptador para Rolo Elite Suito / Direto XR",
+      "brand": "Elite",
+      "category": "acessorios",
+      "productUrl": "https://thebikershop.com.br/produtos/kit-adaptador-para-rolo-elite-suito-direto/",
+      "images": [
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/captura-de-tela-2026-06-16-as-09-11-08-ca1bd47e0040a7262317816120751264-480-0.webp"
+      ],
+      "sku": "1014300"
     },
     {
       "id": "tira-de-plastico-fixacao-roda-thule-freeride-530",
@@ -2526,17 +2504,6 @@
       "sku": null
     },
     {
-      "id": "maquina-limpa-corrente-de-bicicleta-muc-off-x3-dirty",
-      "name": "Maquina Limpa Corrente de Bicicleta Muc Off X3 Dirty",
-      "brand": "Muc Off",
-      "category": "acessorios",
-      "productUrl": "https://thebikershop.com.br/produtos/maquina-limpa-corrente-de-bicicleta-muc-off-x3-dirty/",
-      "images": [
-        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/277-x3-chain-machine_grey_1000x1000-474e13c1422202515917150464554458-480-0.webp"
-      ],
-      "sku": "277"
-    },
-    {
       "id": "limpador-a-seco-high-performance-muc-off-750ml",
       "name": "Limpador a Seco High Performance Muc Off 750ml",
       "brand": "Muc Off",
@@ -2546,6 +2513,17 @@
         "https://acdn-us.mitiendanube.com/stores/001/062/247/products/1132_high_performance_waterless_wash_grey_2021_19e03a2e-61eb-48b1-9e5f-539be8aab138_1000x1000-a345439f50380333ed17150452897261-480-0.webp"
       ],
       "sku": "1132"
+    },
+    {
+      "id": "maquina-limpa-corrente-de-bicicleta-muc-off-x3-dirty",
+      "name": "Maquina Limpa Corrente de Bicicleta Muc Off X3 Dirty",
+      "brand": "Muc Off",
+      "category": "acessorios",
+      "productUrl": "https://thebikershop.com.br/produtos/maquina-limpa-corrente-de-bicicleta-muc-off-x3-dirty/",
+      "images": [
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/277-x3-chain-machine_grey_1000x1000-474e13c1422202515917150464554458-480-0.webp"
+      ],
+      "sku": "277"
     },
     {
       "id": "tira-de-plastico-fixacao-roda-thule-proride-591",
@@ -2966,6 +2944,17 @@
       "sku": null
     },
     {
+      "id": "end-cap-thule-proride-598",
+      "name": "End Cap Thule ProRide 598",
+      "brand": "Thule",
+      "category": "acessorios",
+      "productUrl": "https://thebikershop.com.br/produtos/end-cap-thule-proride-598/",
+      "images": [
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/thule-thule-1500052669-end-cap-for-5980011-60a3a7a5c8a9241da616795869469408-480-0.webp"
+      ],
+      "sku": "1500052669"
+    },
+    {
       "id": "apoio-roda-traseira-rack-thule-proride-598",
       "name": "Apoio Roda Traseira Rack Thule ProRide 598",
       "brand": "Thule",
@@ -3019,17 +3008,6 @@
         "https://acdn-us.mitiendanube.com/stores/001/062/247/products/valvula-syncros-e1e7f7469b4eaa0a2817272100857915-480-0.webp"
       ],
       "sku": "419487"
-    },
-    {
-      "id": "suporte-para-rastreador-muc-off-tubeless-tag-holder",
-      "name": "Suporte para Rastreador Muc Off Tubeless Tag Holder",
-      "brand": "Muc Off",
-      "category": "acessorios",
-      "productUrl": "https://thebikershop.com.br/produtos/suporte-para-rastreador-muc-off-tubeless-tag-holder/",
-      "images": [
-        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/web_no_valve_tubeless_tag_holder__2022_1000x1000-b855f1fd8e7f3c89ca17147156347349-480-0.webp"
-      ],
-      "sku": "20707"
     },
     {
       "id": "freehub-xd-xdr-para-rolo-de-treino-elite",
@@ -3307,17 +3285,6 @@
       "sku": null
     },
     {
-      "id": "suporte-de-garmin-syncros-mt-r100",
-      "name": "Suporte de Garmin Syncros MT-R100 AL",
-      "brand": "Syncros",
-      "category": "acessorios",
-      "productUrl": "https://thebikershop.com.br/produtos/suporte-de-garmin-syncros-mt-r100/",
-      "images": [
-        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/40c88300-f194-11f0-bd30-265a6d51ae58-e83b6739981e9b61a617701467246099-480-0.webp"
-      ],
-      "sku": "4253060001010"
-    },
-    {
       "id": "suporte-de-garmin-syncros-mt-r200",
       "name": "Suporte de Garmin Syncros MT-R200",
       "brand": "Syncros",
@@ -3426,6 +3393,17 @@
         "https://acdn-us.mitiendanube.com/stores/001/062/247/products/1384024-9c65e978265906f9d617238367425891-480-0.webp"
       ],
       "sku": "12080121"
+    },
+    {
+      "id": "graxa-de-bicicleta-de-cobre-anti-gripagem-muc-off-450g",
+      "name": "Graxa de Bicicleta de Cobre Anti-gripagem Muc Off 450g",
+      "brand": "Muc Off",
+      "category": "acessorios",
+      "productUrl": "https://thebikershop.com.br/produtos/graxa-de-bicicleta-de-cobre-anti-gripagem-muc-off-450g/",
+      "images": [
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/web-450g-copper-compound_1000x1000-891c264a25a1d75bef17150477860938-480-0.webp"
+      ],
+      "sku": "007"
     },
     {
       "id": "polidor-de-bicileta-muc-off-matt-finish-detailer-250ml",
@@ -3670,6 +3648,17 @@
       "sku": "21089"
     },
     {
+      "id": "tampa-de-acesso-em-borracha-seat-tube-spark-2022",
+      "name": "Tampa de Acesso em Borracha - Seat Tube Spark 2022",
+      "brand": "Scott",
+      "category": "acessorios",
+      "productUrl": "https://thebikershop.com.br/produtos/tampa-de-acesso-em-borracha-seat-tube-spark-2022/",
+      "images": [
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/tmp_b64_4acaada4-026c-4365-a1d6-6ca52327b642_1062247_1188274-260f83d77d7fd45fb017576264350446-480-0.webp"
+      ],
+      "sku": "290015"
+    },
+    {
       "id": "caramanhola-elite-fly-tex-550ml-transparente1",
       "name": "Caramanhola Elite FLY TEX 550ml Transparente",
       "brand": "Elite",
@@ -3714,15 +3703,15 @@
       "sku": null
     },
     {
-      "id": "suporte-de-garrafa-syncros-tailor-1-0-carbon",
-      "name": "Suporte de Garrafa Syncros Tailor 1.0 Carbon",
-      "brand": "Syncros",
-      "category": "acessorios",
-      "productUrl": "https://thebikershop.com.br/produtos/suporte-de-garrafa-syncros-tailor-1-0-carbon/",
+      "id": "camisa-casual-the-biker-world-cup-brasil-24",
+      "name": "Camisa Casual The Biker World Cup Brasil 2024",
+      "brand": "The Biker",
+      "category": "vestuario",
+      "productUrl": "https://thebikershop.com.br/produtos/camisa-casual-the-biker-world-cup-brasil-24/",
       "images": [
-        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/2929116512-png-aa73278afba9e1150417368881494484-480-0.webp"
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/camisa-wc-tbkr-24-5b11a7a1da435becbd17108751984013-480-0.webp"
       ],
-      "sku": "292911651222"
+      "sku": null
     },
     {
       "id": "espuma-interna-capacete-giro-agilis",
@@ -3791,17 +3780,6 @@
       "sku": "VST-220-39"
     },
     {
-      "id": "sapatilha-shimano-xc300-black",
-      "name": "Sapatilha MTB Shimano XC300",
-      "brand": "Shimano",
-      "category": "vestuario",
-      "productUrl": "https://thebikershop.com.br/produtos/sapatilha-shimano-xc300-black/",
-      "images": [
-        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/sh-xc300_c6_1_750_7501-0956184b659ea4663c15985637143488-480-0.webp"
-      ],
-      "sku": null
-    },
-    {
       "id": "sapatilha-road-shimano-rc302",
       "name": "Sapatilha Road Shimano RC302",
       "brand": "Shimano",
@@ -3809,6 +3787,17 @@
       "productUrl": "https://thebikershop.com.br/produtos/sapatilha-road-shimano-rc302/",
       "images": [
         "https://acdn-us.mitiendanube.com/stores/001/062/247/products/sh-rc302-shic165-primary_1_750_750-72df2387c4e81c124417223639352655-480-0.webp"
+      ],
+      "sku": null
+    },
+    {
+      "id": "sapatilha-shimano-xc300-black",
+      "name": "Sapatilha MTB Shimano XC300",
+      "brand": "Shimano",
+      "category": "vestuario",
+      "productUrl": "https://thebikershop.com.br/produtos/sapatilha-shimano-xc300-black/",
+      "images": [
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/sh-xc300_c6_1_750_7501-0956184b659ea4663c15985637143488-480-0.webp"
       ],
       "sku": null
     },
@@ -4000,6 +3989,17 @@
       "sku": null
     },
     {
+      "id": "sapatilha-mtb-scott-crus-r-boa",
+      "name": "Sapatilha MTB Scott Crus-r BOA",
+      "brand": "Scott",
+      "category": "vestuario",
+      "productUrl": "https://thebikershop.com.br/produtos/sapatilha-mtb-scott-crus-r-boa/",
+      "images": [
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/1802250-373b477b56f37bda4917812694895316-480-0.webp"
+      ],
+      "sku": null
+    },
+    {
       "id": "meia-shimano-s-phyre-flash-cano-alto",
       "name": "Meia Shimano S-Phyre Flash Cano Alto",
       "brand": "Shimano",
@@ -4018,17 +4018,6 @@
       "productUrl": "https://thebikershop.com.br/produtos/bretelle-scott-rc-pro-azul/",
       "images": [
         "https://acdn-us.mitiendanube.com/stores/001/062/247/products/5041e1f2-e29f-11ed-83d1-aaae93d6d4f5-ee6d1fcaa70902aa2c17145094381128-480-0.webp"
-      ],
-      "sku": null
-    },
-    {
-      "id": "sapatilha-mtb-scott-crus-r-boa",
-      "name": "Sapatilha MTB Scott Crus-r BOA",
-      "brand": "Scott",
-      "category": "vestuario",
-      "productUrl": "https://thebikershop.com.br/produtos/sapatilha-mtb-scott-crus-r-boa/",
-      "images": [
-        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/1802250-373b477b56f37bda4917812694895316-480-0.webp"
       ],
       "sku": null
     },
@@ -4308,6 +4297,17 @@
       "sku": "VST-197-39"
     },
     {
+      "id": "camisa-de-ciclismo-scott-pro-2026-branca",
+      "name": "Camisa de Ciclismo Scott Pró 2026 Branca",
+      "brand": "Scott",
+      "category": "vestuario",
+      "productUrl": "https://thebikershop.com.br/produtos/camisa-de-ciclismo-scott-pro-2026-branca/",
+      "images": [
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/whatsapp-image-2026-03-31-at-17-17-57-c54f338c21eedc3a9717749913694561-480-0.webp"
+      ],
+      "sku": null
+    },
+    {
       "id": "camisa-de-ciclismo-scott-vultro-team-branca",
       "name": "Camisa de Ciclismo Scott Vultro Team",
       "brand": "Free Force",
@@ -4451,17 +4451,6 @@
       "sku": null
     },
     {
-      "id": "camisa-de-ciclismo-scott-pro-2026-branca",
-      "name": "Camisa de Ciclismo Scott Pró 2026 Branca",
-      "brand": "Scott",
-      "category": "vestuario",
-      "productUrl": "https://thebikershop.com.br/produtos/camisa-de-ciclismo-scott-pro-2026-branca/",
-      "images": [
-        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/whatsapp-image-2026-03-31-at-17-17-57-c54f338c21eedc3a9717749913694561-480-0.webp"
-      ],
-      "sku": null
-    },
-    {
       "id": "camisa-de-ciclismo-manga-longa-scott-pro-2026-cinza-ffaby",
       "name": "Camisa de Ciclismo Manga Longa Scott Pró 2026 Cinza",
       "brand": "Scott",
@@ -4480,6 +4469,17 @@
       "productUrl": "https://thebikershop.com.br/produtos/sapatilha-road-shimano-rc903-wide-s-phyre-branco/",
       "images": [
         "https://acdn-us.mitiendanube.com/stores/001/062/247/products/wswfp6xdnyu0rrcjkf4d_1800x1800-jpg-d5cb0a1f3aeb01758217588147269143-480-0.webp"
+      ],
+      "sku": null
+    },
+    {
+      "id": "sapatilha-mtb-shimano-xc302",
+      "name": "Sapatilha MTB Shimano XC302",
+      "brand": "Shimano",
+      "category": "vestuario",
+      "productUrl": "https://thebikershop.com.br/produtos/sapatilha-mtb-shimano-xc302/",
+      "images": [
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/sh-xc302-shic6-primary_1_750_750-365f699475637331bf17562180165100-480-0.webp"
       ],
       "sku": null
     },
@@ -4550,6 +4550,17 @@
       "sku": null
     },
     {
+      "id": "bretelle-castelli-entrata",
+      "name": "Bretelle Castelli Entrata 2",
+      "brand": "Castelli",
+      "category": "vestuario",
+      "productUrl": "https://thebikershop.com.br/produtos/bretelle-castelli-entrata/",
+      "images": [
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/1922458c-d2a6-11eb-81cc-0242ac1200091-df8ea376b707630cb316327496970577-480-0.webp"
+      ],
+      "sku": null
+    },
+    {
       "id": "luva-scott-rc-endurance-short-cinza",
       "name": "Luva Scott RC Endurance Short",
       "brand": "Scott",
@@ -4594,17 +4605,6 @@
       "sku": null
     },
     {
-      "id": "sapatilha-mtb-shimano-xc302",
-      "name": "Sapatilha MTB Shimano XC302",
-      "brand": "Shimano",
-      "category": "vestuario",
-      "productUrl": "https://thebikershop.com.br/produtos/sapatilha-mtb-shimano-xc302/",
-      "images": [
-        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/sh-xc302-shic6-primary_1_750_750-365f699475637331bf17562180165100-480-0.webp"
-      ],
-      "sku": null
-    },
-    {
       "id": "camisa-sidi-dare-black",
       "name": "Camisa Sidi Dare Black",
       "brand": "Sidi",
@@ -4614,6 +4614,17 @@
         "https://acdn-us.mitiendanube.com/stores/001/062/247/products/d_nq_np_2x_660269-mlb82764889605_022025-f-camisa-de-ciclismo-jersey-masculina-sidi-dare-dry-uv-preta-3f061203e8b925f18e17425628730509-480-0.webp"
       ],
       "sku": null
+    },
+    {
+      "id": "limpador-para-sapatilhas-muc-off-250ml",
+      "name": "Limpador para Sapatilhas Muc Off 250ml",
+      "brand": "Muc Off",
+      "category": "vestuario",
+      "productUrl": "https://thebikershop.com.br/produtos/limpador-para-sapatilhas-muc-off-250ml/",
+      "images": [
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/web_20336-premium-bike-shoe-cleaner-250ml-_shoe-kit__2022_1_7814215d-91fd-449a-ac38-692397c19ce6_1700x1700_crop_center-jpg-4ff729e176a979cbdf17308971849243-480-0.webp"
+      ],
+      "sku": "20336"
     },
     {
       "id": "sapatilha-road-shimano-rc703-carbon-branca",
@@ -4759,17 +4770,6 @@
       "sku": null
     },
     {
-      "id": "limpador-para-sapatilhas-muc-off-250ml",
-      "name": "Limpador para Sapatilhas Muc Off 250ml",
-      "brand": "Muc Off",
-      "category": "vestuario",
-      "productUrl": "https://thebikershop.com.br/produtos/limpador-para-sapatilhas-muc-off-250ml/",
-      "images": [
-        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/web_20336-premium-bike-shoe-cleaner-250ml-_shoe-kit__2022_1_7814215d-91fd-449a-ac38-692397c19ce6_1700x1700_crop_center-jpg-4ff729e176a979cbdf17308971849243-480-0.webp"
-      ],
-      "sku": "20336"
-    },
-    {
       "id": "capacete-kask-protone-icon1",
       "name": "Capacete Kask Protone Icon WG11 Branco Fosco",
       "brand": "Kask",
@@ -4823,17 +4823,6 @@
         "https://acdn-us.mitiendanube.com/stores/001/062/247/products/espuma-scott-supra-tbkr1-0aeecce90d1725c55e16446676221630-480-0.webp"
       ],
       "sku": "2528010001222"
-    },
-    {
-      "id": "bretelle-castelli-entrata",
-      "name": "Bretelle Castelli Entrata 2",
-      "brand": "Castelli",
-      "category": "vestuario",
-      "productUrl": "https://thebikershop.com.br/produtos/bretelle-castelli-entrata/",
-      "images": [
-        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/1922458c-d2a6-11eb-81cc-0242ac1200091-df8ea376b707630cb316327496970577-480-0.webp"
-      ],
-      "sku": null
     },
     {
       "id": "camisa-de-ciclismo-scott-pro-2026-laranja",
@@ -4942,6 +4931,17 @@
       "productUrl": "https://thebikershop.com.br/produtos/sapatilha-road-fizik-tempo-decos-carbon/",
       "images": [
         "https://acdn-us.mitiendanube.com/stores/001/062/247/products/06314366-bab0-11ee-97fc-feb3ee0eb3db-5cd1f089404a3a977a17176234992453-480-0.webp"
+      ],
+      "sku": null
+    },
+    {
+      "id": "sapatilha-shimano-indoor-sh-ic300",
+      "name": "Sapatilha Feminina Shimano Indoor SH-IC300",
+      "brand": "Shimano",
+      "category": "vestuario",
+      "productUrl": "https://thebikershop.com.br/produtos/sapatilha-shimano-indoor-sh-ic300/",
+      "images": [
+        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/p-sh-ic300w_c56_1_750_750-9280b6f1f7fa80dc4b17159584655056-480-0.webp"
       ],
       "sku": null
     },
@@ -5283,28 +5283,6 @@
       "productUrl": "https://thebikershop.com.br/produtos/camisa-sidi-dare-green/",
       "images": [
         "https://acdn-us.mitiendanube.com/stores/001/062/247/products/a324001819ea927c029fcceaeb7849a15c296f27-884fe6aab114e0a76117582116838636-480-0.webp"
-      ],
-      "sku": null
-    },
-    {
-      "id": "sapatilha-road-supacaz-suave-carbon",
-      "name": "Sapatilha Road Supacaz Suave Carbon",
-      "brand": "Supacaz",
-      "category": "vestuario",
-      "productUrl": "https://thebikershop.com.br/produtos/sapatilha-road-supacaz-suave-carbon/",
-      "images": [
-        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/supacaz-suave-shoes-white-1-946b07f38ce6df2e3e17526977016217-480-0.webp"
-      ],
-      "sku": null
-    },
-    {
-      "id": "sapatilha-triathlon-fizik-hydra",
-      "name": "Sapatilha Triathlon Fizik Hydra",
-      "brand": "Fizik",
-      "category": "vestuario",
-      "productUrl": "https://thebikershop.com.br/produtos/sapatilha-triathlon-fizik-hydra/",
-      "images": [
-        "https://acdn-us.mitiendanube.com/stores/001/062/247/products/bcd211a0-01db-11ef-a9df-ba2294e2eef4-e41b12cead93f648e817459308673706-480-0.webp"
       ],
       "sku": null
     },

@@ -129,7 +129,8 @@ assert.match(generatedMarkdown, /promoted_brands: \["Scott"\]/);
 assert.match(generatedMarkdown, /portfolio_evidence_url: "https:\/\/www\.thebiker\.com\.br\/bikes\/estrada\/"/);
 assert.match(generatedMarkdown, /direct_answer:/);
 assert.match(generatedMarkdown, /faq:/);
-assert.match(generatedMarkdown, /## De onde vêm os dados desta análise/);
+assert.match(generatedMarkdown, /## Fontes/);
+assert.doesNotMatch(generatedMarkdown, /Como este artigo foi produzido|Análise documental baseada em especificações/);
 
 const v2Article = {
   ...validArticle,
@@ -183,6 +184,16 @@ assert.throws(
   }),
   /site oficial da TheBiker/i,
 );
+assert.throws(
+  () => validateArticle({
+    ...validArticle,
+    content_type: "review",
+    brand: "",
+    product_name: "",
+    model_year: undefined,
+  }),
+  /Identidade exata do produto é obrigatória/i,
+);
 assert.doesNotThrow(() => validateResearch(validResearch));
 const groundedEditorialResearch = {
   slug: "grounded-test",
@@ -200,13 +211,13 @@ const groundedEditorialResearch = {
 assert.doesNotThrow(() => assertResearchGrounding(groundedEditorialResearch, { requireFactReferences: true }));
 
 const curatedMaintenanceResearch = {
-  title: "Como limpar a transmissÃ£o depois de chuva e lama",
+  title: "Como limpar a transmissão depois de chuva e lama",
   market: "Brasil",
   confirmed_facts: [
     { fact: "drivetrainCleaning: use o limpador recomendado pelo fabricante e seque a corrente depois da limpeza." },
-    { fact: "pressureWashing: jatos de alta pressÃ£o podem danificar componentes e vedaÃ§Ãµes." },
+    { fact: "pressureWashing: jatos de alta pressão podem danificar componentes e vedações." },
     { fact: "brakeInspection: inspecione pastilhas, rotores, comando e vazamentos antes de voltar a pedalar." },
-    { fact: "wetBraking: a distÃ¢ncia de frenagem aumenta em piso molhado." },
+    { fact: "wetBraking: a distância de frenagem aumenta em piso molhado." },
     { fact: "escalation: procure uma oficina quando houver dano, vazamento ou funcionamento irregular." },
   ],
   sources: [
@@ -217,19 +228,12 @@ const curatedMaintenanceResearch = {
   portfolio_verified_at: "2026-08-13",
   grounding: { fallback: "curated-official-offline-cache-v1" },
 };
-const deterministicArticle = buildDeterministicGroundedArticle({
+assert.throws(() => buildDeterministicGroundedArticle({
   topic: curatedMaintenanceResearch.title,
   researchData: curatedMaintenanceResearch,
   contentType: "guia-tecnico",
   today: "2026-08-13",
-});
-assert.doesNotThrow(() => validateArticle(deterministicArticle));
-assert.doesNotThrow(() => assertEditorialPublicationGates(deterministicArticle, { AI_MIN_ARTICLE_WORDS: "1600" }));
-assert.deepEqual(articleResearchGroundingErrors({
-  content: generateMarkdown(deterministicArticle),
-  research: curatedMaintenanceResearch,
-}), []);
-assert.equal(deterministicArticle.sections.length, 10);
+}), /Fallback determinístico integral desativado/);
 const genericCachedResearch = {
   ...curatedMaintenanceResearch,
   title: "Scott Spark RC Expert 2027: ficha tecnica",
@@ -243,19 +247,15 @@ const genericCachedResearch = {
   ],
   sources: [{ name: "Scott Sports", type: "manufacturer", url: "https://www.scott-sports.com/global/en/product/scott-spark-rc-expert-bike", accessed_at: "2026-08-13" }],
 };
-const genericDeterministicArticle = buildDeterministicGroundedArticle({
-  topic: genericCachedResearch.title,
-  researchData: genericCachedResearch,
-  contentType: "review",
-  today: "2026-08-13",
-});
-assert.equal(genericDeterministicArticle.category, "reviews");
-assert.doesNotThrow(() => validateArticle(genericDeterministicArticle));
-assert.doesNotThrow(() => assertEditorialPublicationGates(genericDeterministicArticle, { AI_MIN_ARTICLE_WORDS: "1800" }));
-assert.deepEqual(articleResearchGroundingErrors({
-  content: generateMarkdown(genericDeterministicArticle),
-  research: genericCachedResearch,
-}), []);
+assert.throws(
+  () => buildDeterministicGroundedArticle({
+    topic: genericCachedResearch.title,
+    researchData: genericCachedResearch,
+    contentType: "review",
+    today: "2026-08-13",
+  }),
+  /Fallback determinístico integral desativado/,
+);
 
 assert.throws(() => assertResearchGrounding({
     ...groundedEditorialResearch,
@@ -327,20 +327,17 @@ const sanitizedClaims = sanitizeStructuredArticleClaims({
   confirmed_facts: [{ fact: "O CONTRAN admite propulsão auxiliar até 32 km/h.", source_ids: ["src-gov"] }],
   sources: [{ id: "src-gov", url: "https://www.gov.br/transportes/resolucao.pdf" }],
 });
-assert.match(sanitizedClaims.direct_answer, /fontes confirmadas não oferecem base suficiente/);
 assert.match(sanitizedClaims.direct_answer, /32 km\/h/);
-assert.match(sanitizedClaims.sections[0].content, /fontes confirmadas não oferecem base suficiente/);
 assert.match(sanitizedClaims.sections[0].content, /Confirme sempre o manual do fabricante/);
 const schemaSafeClaims = sanitizeStructuredArticleClaims({
   description: "Revisão em seis meses.", direct_answer: "Revisão em seis meses.", methodologyNotice: "Análise.",
   faq: [{ question: "Quando revisar?", answer: "Em seis meses." }],
   sections: [{ heading: "Manutenção", content: "Revise em seis meses." }],
 }, { confirmed_facts: [], sources: [] });
-assert.ok(schemaSafeClaims.description.length >= 140 && schemaSafeClaims.description.length <= 160);
-assert.ok(schemaSafeClaims.direct_answer.length >= 80);
-assert.equal(schemaSafeClaims.faq.length, 1);
-assert.doesNotMatch(schemaSafeClaims.sections[0].content, /seis meses/);
-assert.match(schemaSafeClaims.sections[0].content, /fontes confirmadas/);
+assert.equal(schemaSafeClaims.description, "");
+assert.equal(schemaSafeClaims.direct_answer, "");
+assert.equal(schemaSafeClaims.faq.length, 0);
+assert.equal(schemaSafeClaims.sections.length, 0);
 
 const productKnowledgeResearch = {
   slug: "scott-addict-50-2026",

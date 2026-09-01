@@ -1300,6 +1300,1699 @@
         "title": "Scott Scale 940: checklist documental para conferir quadro e montagem"
       },
       "reason": "[RESEARCH_INSUFFICIENT] Pesquisa bloqueada por integridade de fontes: pesquisa concluída sem fontes rastreáveis; pesquisa sem fatos explicitamente fundamentados"
+    },
+    {
+      "recordedAt": "2026-08-14T10:43:57.085Z",
+      "campaignId": "thebiker-rolling-2026-08-08",
+      "replacedItem": {
+        "day": 14,
+        "publishDate": "2026-08-21",
+        "id": "reserva-scale-940-checklist-oficial",
+        "title": "Scott Scale 940: checklist documental para conferir quadro e montagem",
+        "summary": "Checklist editorial limitado aos campos de quadro, suspensao e componentes que permanecem comprovados nas fichas oficiais.",
+        "category": "review",
+        "freshness": "revalidate-24h",
+        "status": "blocked",
+        "productIds": [
+          "bicicleta-scott-scale-940-black"
+        ],
+        "heroImage": {
+          "mode": "exact-product",
+          "productId": "bicicleta-scott-scale-940-black"
+        },
+        "postPath": "_posts/drafts/2026-08-21-reserva-scale-940-checklist-oficial.md",
+        "imageAssetIds": [],
+        "blockReason": "Validação final: [IMAGE_NOT_PUBLISHABLE] Galeria oficial sem imagem inédita válida: Imagem duplicada: manufacturer-bicicleta-scott-scale-940-black-5171146828 | Download da imagem: HTTP 403 | resolução insuficiente para o padrão editorial: 480x480",
+        "failure": {
+          "code": "IMAGE_NOT_PUBLISHABLE",
+          "retryable": false,
+          "stage": "finalization",
+          "message": "Galeria oficial sem imagem inédita válida: Imagem duplicada: manufacturer-bicicleta-scott-scale-940-black-5171146828 | Download da imagem: HTTP 403 | resolução insuficiente para o padrão editorial: 480x480",
+          "recordedAt": "2026-08-14T10:08:48.791Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-14T10:07:25.026Z",
+        "aiReview": {
+          "score": 92,
+          "finalScore": 95,
+          "finalBlockers": 0,
+          "premiumEditUsed": false,
+          "providers": {
+            "deterministicFallback": "grounded-deterministic"
+          },
+          "generatedAt": "2026-08-14T10:07:25.026Z",
+          "contentHash": "sha256:a86571b9c24fac15f12b69d468e34536e632f2d0cc5dba898a5591a98fc43e71",
+          "deterministicFullArticleFallbackUsed": true,
+          "deterministicFullArticleFallbackTrigger": "pipeline-failure"
+        }
+      },
+      "replacement": {
+        "id": "reserva-addict-rc-pro-ficha-oficial",
+        "title": "Scott Addict RC Pro: ficha documental das especificacoes confirmadas"
+      },
+      "reason": "Validação final: [IMAGE_NOT_PUBLISHABLE] Galeria oficial sem imagem inédita válida: Imagem duplicada: manufacturer-bicicleta-scott-scale-940-black-5171146828 | Download da imagem: HTTP 403 | resolução insuficiente para o padrão editorial: 480x480"
+    },
+    {
+      "recordedAt": "2026-08-15T13:47:39.522Z",
+      "campaignId": "thebiker-rolling-2026-08-08",
+      "replacedItem": {
+        "day": 15,
+        "publishDate": "2026-08-22",
+        "id": "reserva-pressao-pneus-terreno",
+        "title": "Pressão de pneus por terreno: como testar sem transformar sensação em dado",
+        "summary": "Método de campo para ajustar pressão, registrar comportamento e separar aderência, suporte lateral, impacto e resistência ao rolamento.",
+        "category": "engenharia",
+        "freshness": "evergreen",
+        "status": "blocked",
+        "productIds": [
+          "pneu-schwalbe-racing-ray-29-x-2-25-super-race-tlr-addix"
+        ],
+        "heroImage": {
+          "mode": "real-context",
+          "productId": "pneu-schwalbe-racing-ray-29-x-2-25-super-race-tlr-addix",
+          "relationship": "category-example",
+          "rationale": "Fotografia real do catálogo TheBiker usada apenas como exemplo visual da categoria técnica abordada."
+        },
+        "imageStatus": "blocked",
+        "imageAssetIds": [],
+        "blockReason": "[RESEARCH_INSUFFICIENT] pesquisa sem contrato de evidência recuperada retrieved-excerpt-v1; pesquisa sem data de verificação ativa das fontes; fato 1 sem trecho literal verificável; fato 2 sem trecho literal verificável; fato 3 sem trecho literal verificável; fato 4 sem trecho literal verificável; fato 5 sem trecho literal verificável; fato 6 sem trecho literal verificável; fato 7 sem trecho literal verificável; fato 8 sem trecho literal verificável",
+        "failure": {
+          "code": "RESEARCH_INSUFFICIENT",
+          "retryable": true,
+          "stage": "source-verification-audit",
+          "message": "pesquisa sem contrato de evidência recuperada retrieved-excerpt-v1; pesquisa sem data de verificação ativa das fontes; fato 1 sem trecho literal verificável; fato 2 sem trecho literal verificável; fato 3 sem trecho literal verificável; fato 4 sem trecho literal verificável; fato 5 sem trecho literal verificável; fato 6 sem trecho literal verificável; fato 7 sem trecho literal verificável; fato 8 sem trecho literal verificável",
+          "recordedAt": "2026-08-13T18:15:00.000Z"
+        },
+        "attempts": 4,
+        "lastAttemptAt": "2026-08-13T18:15:00.000Z"
+      },
+      "replacement": {
+        "id": "reserva-scale-940-checklist-oficial",
+        "title": "Scott Scale 940: checklist documental para conferir quadro e montagem"
+      },
+      "reason": "[RESEARCH_INSUFFICIENT] pesquisa sem contrato de evidência recuperada retrieved-excerpt-v1; pesquisa sem data de verificação ativa das fontes; fato 1 sem trecho literal verificável; fato 2 sem trecho literal verificável; fato 3 sem trecho literal verificável; fato 4 sem trecho literal verificável; fato 5 sem trecho literal verificável; fato 6 sem trecho literal verificável; fato 7 sem trecho literal verificável; fato 8 sem trecho literal verificável"
+    },
+    {
+      "recordedAt": "2026-08-15T13:47:41.130Z",
+      "campaignId": "thebiker-rolling-2026-08-08",
+      "replacedItem": {
+        "day": 15,
+        "publishDate": "2026-08-22",
+        "id": "reserva-scale-940-checklist-oficial",
+        "title": "Scott Scale 940: checklist documental para conferir quadro e montagem",
+        "summary": "Checklist editorial limitado aos campos de quadro, suspensao e componentes que permanecem comprovados nas fichas oficiais.",
+        "category": "review",
+        "freshness": "revalidate-24h",
+        "status": "blocked",
+        "productIds": [
+          "bicicleta-scott-scale-940-black"
+        ],
+        "heroImage": {
+          "mode": "exact-product",
+          "productId": "bicicleta-scott-scale-940-black"
+        },
+        "imageAssetIds": [],
+        "blockReason": "[IMAGE_NOT_PUBLISHABLE] Galeria oficial sem imagem inédita válida: bicicleta-scott-scale-940-black: Imagem duplicada: manufacturer-bicicleta-scott-scale-940-black-5171146828 | bicicleta-scott-scale-940-black: Imagem duplicada: thebiker-bicicleta-scott-scale-940-black-bf34dbe9f9 | bicicleta-scott-scale-940-black: resolução insuficiente para o padrão editorial: 521x569 | bicicleta-scott-scale-940-black: resolução insuficiente para o padrão editorial: 506x565 | bicicleta-scott-scale-940-black: Download da imagem: HTTP 403 | bicicleta-scott-scale-940-black: resolução insuficiente para o padrão editorial: 480x480",
+        "failure": {
+          "code": "IMAGE_NOT_PUBLISHABLE",
+          "retryable": false,
+          "stage": "production",
+          "message": "Galeria oficial sem imagem inédita válida: bicicleta-scott-scale-940-black: Imagem duplicada: manufacturer-bicicleta-scott-scale-940-black-5171146828 | bicicleta-scott-scale-940-black: Imagem duplicada: thebiker-bicicleta-scott-scale-940-black-bf34dbe9f9 | bicicleta-scott-scale-940-black: resolução insuficiente para o padrão editorial: 521x569 | bicicleta-scott-scale-940-black: resolução insuficiente para o padrão editorial: 506x565 | bicicleta-scott-scale-940-black: Download da imagem: HTTP 403 | bicicleta-scott-scale-940-black: resolução insuficiente para o padrão editorial: 480x480",
+          "recordedAt": "2026-08-15T13:47:40.276Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-15T13:47:40.276Z"
+      },
+      "replacement": {
+        "id": "reserva-addict-rc20-ficha-oficial",
+        "title": "Scott Addict RC 20: o que a ficha oficial permite afirmar"
+      },
+      "reason": "[IMAGE_NOT_PUBLISHABLE] Galeria oficial sem imagem inédita válida: bicicleta-scott-scale-940-black: Imagem duplicada: manufacturer-bicicleta-scott-scale-940-black-5171146828 | bicicleta-scott-scale-940-black: Imagem duplicada: thebiker-bicicleta-scott-scale-940-black-bf34dbe9f9 | bicicleta-scott-scale-940-black: resolução insuficiente para o padrão editorial: 521x569 | bicicleta-scott-scale-940-black: resolução insuficiente para o padrão editorial: 506x565 | bicicleta-scott-scale-940-black: Download da imagem: HTTP 403 | bicicleta-scott-scale-940-black: resolução insuficiente para o padrão editorial: 480x480"
+    },
+    {
+      "recordedAt": "2026-08-15T17:24:09.460Z",
+      "campaignId": "thebiker-rolling-2026-08-08",
+      "replacedItem": {
+        "day": 16,
+        "publishDate": "2026-08-23",
+        "id": "reserva-cabos-mangueiras-roteamento",
+        "title": "Cabos e mangueiras: roteamento, atrito e sinais de montagem que pedem correção",
+        "summary": "Leitura técnica de curvas, fixações, contato com o quadro e interferências que alteram comando, ruído e durabilidade.",
+        "category": "componentes",
+        "freshness": "evergreen",
+        "status": "blocked",
+        "productIds": [
+          "bicicleta-scott-scale-940-black"
+        ],
+        "heroImage": {
+          "mode": "real-context",
+          "productId": "bicicleta-scott-scale-940-black",
+          "relationship": "category-example",
+          "rationale": "Fotografia real do catálogo TheBiker usada apenas como exemplo visual da categoria técnica abordada."
+        },
+        "imageStatus": "blocked",
+        "imageAssetIds": [],
+        "blockReason": "[RESEARCH_INSUFFICIENT] pesquisa verificada indisponível",
+        "failure": {
+          "code": "RESEARCH_INSUFFICIENT",
+          "retryable": true,
+          "stage": "source-verification-audit",
+          "message": "pesquisa verificada indisponível",
+          "recordedAt": "2026-08-13T18:15:00.000Z"
+        },
+        "attempts": 4,
+        "lastAttemptAt": "2026-08-13T18:15:00.000Z"
+      },
+      "replacement": {
+        "id": "reserva-scale-940-checklist-oficial",
+        "title": "Scott Scale 940: checklist documental para conferir quadro e montagem"
+      },
+      "reason": "[RESEARCH_INSUFFICIENT] pesquisa verificada indisponível"
+    },
+    {
+      "recordedAt": "2026-08-20T15:57:05.302Z",
+      "campaignId": "thebiker-rolling-2026-08-21",
+      "replacedItem": {
+        "day": 6,
+        "publishDate": "2026-08-26",
+        "id": "corridas-pro-previa-principal",
+        "title": "Prévia da principal corrida profissional da semana: percurso, favoritos e pontos técnicos",
+        "summary": "Cobertura profissional vinculada a um evento oficial, com percurso, largadas e transmissão confirmados novamente antes da publicação.",
+        "category": "competicoes",
+        "race": {
+          "track": "professional-coverage",
+          "format": "preview",
+          "eventIds": [
+            "uci-2026-mtb-74366"
+          ],
+          "sourceStatus": "blocked"
+        },
+        "freshness": "event-driven",
+        "status": "blocked",
+        "productIds": [],
+        "heroImage": {
+          "mode": "conceptual"
+        },
+        "imageAssetIds": [],
+        "blockReason": "[TRANSIENT_PROVIDER] Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat",
+        "failure": {
+          "code": "TRANSIENT_PROVIDER",
+          "retryable": true,
+          "stage": "production",
+          "message": "Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat",
+          "recordedAt": "2026-08-20T15:57:05.302Z"
+        },
+        "attempts": 2,
+        "lastAttemptAt": "2026-08-20T15:57:05.302Z"
+      },
+      "replacement": {
+        "id": "reserva-radar-profissional-oficial",
+        "title": "Radar profissional: próxima prova com calendário e resultados oficialmente verificáveis"
+      },
+      "reason": "[TRANSIENT_PROVIDER] Gemini grounded research: 429 - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \",\n    \"stat"
+    },
+    {
+      "recordedAt": "2026-08-22T09:30:47.336Z",
+      "campaignId": "thebiker-rolling-2026-08-21",
+      "replacedItem": {
+        "day": 2,
+        "publishDate": "2026-08-22",
+        "id": "reserva-addict-rc20-ficha-oficial",
+        "title": "Scott Addict RC 20: quadro HMX, 105 Di2 e configuração de estrada",
+        "summary": "Análise da transmissão, das rodas, dos pneus, dos freios, do peso declarado e dos tamanhos disponíveis.",
+        "category": "review",
+        "freshness": "revalidate-24h",
+        "status": "blocked",
+        "productIds": [
+          "bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9"
+        ],
+        "heroImage": {
+          "mode": "exact-product",
+          "productId": "bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9"
+        },
+        "imageAssetIds": [],
+        "blockReason": "[VALIDATION_FAILED] Quarentena: artigo integral de fallback determinístico exige nova redação e revisão independente",
+        "failure": {
+          "code": "VALIDATION_FAILED",
+          "retryable": false,
+          "stage": "editorial-quarantine",
+          "message": "Artigo integral de fallback determinístico reprovado pelo gate de qualidade editorial",
+          "recordedAt": "2026-08-22T04:47:18.904Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-15T13:47:41.531Z",
+        "aiReview": {
+          "score": null,
+          "finalScore": null,
+          "finalBlockers": 1,
+          "premiumEditUsed": false,
+          "providers": {
+            "deterministicFallback": "grounded-deterministic"
+          },
+          "generatedAt": "2026-08-15T13:47:41.531Z",
+          "contentHash": "sha256:80a42ad9fde1386d6e32d5a66cc0ca5c0bd290bf3657f7edd508893a895e05f9",
+          "deterministicFullArticleFallbackUsed": true,
+          "deterministicFullArticleFallbackTrigger": "pipeline-failure"
+        }
+      },
+      "replacement": {
+        "id": "reserva-limpeza-transmissao-metodo",
+        "title": "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação"
+      },
+      "reason": "[VALIDATION_FAILED] Quarentena: artigo integral de fallback determinístico exige nova redação e revisão independente"
+    },
+    {
+      "recordedAt": "2026-08-22T13:35:08.849Z",
+      "campaignId": "thebiker-rolling-2026-08-21",
+      "replacedItem": {
+        "day": 2,
+        "publishDate": "2026-08-22",
+        "id": "reserva-addict-rc20-ficha-oficial",
+        "title": "Scott Addict RC 20: quadro HMX, 105 Di2 e configuração de estrada",
+        "summary": "Análise da transmissão, das rodas, dos pneus, dos freios, do peso declarado e dos tamanhos disponíveis.",
+        "category": "review",
+        "freshness": "revalidate-24h",
+        "status": "blocked",
+        "productIds": [
+          "bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9"
+        ],
+        "heroImage": {
+          "mode": "exact-product",
+          "productId": "bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9"
+        },
+        "imageAssetIds": [],
+        "blockReason": "[VALIDATION_FAILED] Quarentena: artigo integral de fallback determinístico exige nova redação e revisão independente",
+        "failure": {
+          "code": "VALIDATION_FAILED",
+          "retryable": false,
+          "stage": "editorial-quarantine",
+          "message": "Artigo integral de fallback determinístico reprovado pelo gate de qualidade editorial",
+          "recordedAt": "2026-08-22T04:47:18.904Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-15T13:47:41.531Z",
+        "aiReview": {
+          "score": null,
+          "finalScore": null,
+          "finalBlockers": 1,
+          "premiumEditUsed": false,
+          "providers": {
+            "deterministicFallback": "grounded-deterministic"
+          },
+          "generatedAt": "2026-08-15T13:47:41.531Z",
+          "contentHash": "sha256:80a42ad9fde1386d6e32d5a66cc0ca5c0bd290bf3657f7edd508893a895e05f9",
+          "deterministicFullArticleFallbackUsed": true,
+          "deterministicFullArticleFallbackTrigger": "pipeline-failure"
+        }
+      },
+      "replacement": {
+        "id": "reserva-limpeza-transmissao-metodo",
+        "title": "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação"
+      },
+      "reason": "[VALIDATION_FAILED] Quarentena: artigo integral de fallback determinístico exige nova redação e revisão independente"
+    },
+    {
+      "recordedAt": "2026-08-22T13:36:54.433Z",
+      "campaignId": "thebiker-rolling-2026-08-21",
+      "replacedItem": {
+        "day": 2,
+        "publishDate": "2026-08-22",
+        "id": "reserva-limpeza-transmissao-metodo",
+        "title": "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação",
+        "summary": "Procedimento técnico baseado em orientações oficiais para remover contaminantes, verificar danos e devolver a corrente ao uso seguro.",
+        "category": "manutencao-ajustes",
+        "freshness": "evergreen",
+        "status": "blocked",
+        "productIds": [
+          "corrente-sram-nx-eagle"
+        ],
+        "heroImage": {
+          "mode": "real-context",
+          "productId": "corrente-sram-nx-eagle",
+          "relationship": "category-example",
+          "rationale": "Fotografia real do catálogo TheBiker usada apenas como exemplo visual da categoria técnica abordada."
+        },
+        "imageAssetIds": [],
+        "blockReason": "[AI_REVIEW_REJECTED] STATUS: REVISÃO FINAL REPROVADA\nNota 78; bloqueadores: FAQ answers sobre alta pressão e frenagem em piso molhado não têm fontes explícitas no artigo.",
+        "failure": {
+          "code": "AI_REVIEW_REJECTED",
+          "retryable": false,
+          "stage": "production",
+          "message": "STATUS: REVISÃO FINAL REPROVADA\nNota 78; bloqueadores: FAQ answers sobre alta pressão e frenagem em piso molhado não têm fontes explícitas no artigo.",
+          "recordedAt": "2026-08-22T13:35:09.381Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-22T13:35:09.381Z"
+      },
+      "replacement": {
+        "id": "reserva-scale-940-980-comparativo",
+        "title": "Scott Scale 940 e 980: diferenças verificáveis de quadro, suspensão e componentes"
+      },
+      "reason": "[AI_REVIEW_REJECTED] STATUS: REVISÃO FINAL REPROVADA\nNota 78; bloqueadores: FAQ answers sobre alta pressão e frenagem em piso molhado não têm fontes explícitas no artigo."
+    },
+    {
+      "recordedAt": "2026-08-22T17:24:49.849Z",
+      "campaignId": "thebiker-rolling-2026-08-21",
+      "replacedItem": {
+        "day": 2,
+        "publishDate": "2026-08-22",
+        "id": "reserva-addict-rc20-ficha-oficial",
+        "title": "Scott Addict RC 20: quadro HMX, 105 Di2 e configuração de estrada",
+        "summary": "Análise da transmissão, das rodas, dos pneus, dos freios, do peso declarado e dos tamanhos disponíveis.",
+        "category": "review",
+        "freshness": "revalidate-24h",
+        "status": "blocked",
+        "productIds": [
+          "bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9"
+        ],
+        "heroImage": {
+          "mode": "exact-product",
+          "productId": "bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9"
+        },
+        "imageAssetIds": [],
+        "blockReason": "[VALIDATION_FAILED] Quarentena: artigo integral de fallback determinístico exige nova redação e revisão independente",
+        "failure": {
+          "code": "VALIDATION_FAILED",
+          "retryable": false,
+          "stage": "editorial-quarantine",
+          "message": "Artigo integral de fallback determinístico reprovado pelo gate de qualidade editorial",
+          "recordedAt": "2026-08-22T04:47:18.904Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-15T13:47:41.531Z",
+        "aiReview": {
+          "score": null,
+          "finalScore": null,
+          "finalBlockers": 1,
+          "premiumEditUsed": false,
+          "providers": {
+            "deterministicFallback": "grounded-deterministic"
+          },
+          "generatedAt": "2026-08-15T13:47:41.531Z",
+          "contentHash": "sha256:80a42ad9fde1386d6e32d5a66cc0ca5c0bd290bf3657f7edd508893a895e05f9",
+          "deterministicFullArticleFallbackUsed": true,
+          "deterministicFullArticleFallbackTrigger": "pipeline-failure"
+        }
+      },
+      "replacement": {
+        "id": "reserva-limpeza-transmissao-metodo",
+        "title": "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação"
+      },
+      "reason": "[VALIDATION_FAILED] Quarentena: artigo integral de fallback determinístico exige nova redação e revisão independente"
+    },
+    {
+      "recordedAt": "2026-08-23T09:31:44.221Z",
+      "campaignId": "thebiker-rolling-2026-08-21",
+      "replacedItem": {
+        "day": 3,
+        "publishDate": "2026-08-23",
+        "id": "contingencia-addict-rc-pro-documentacao",
+        "title": "Scott Addict RC Pro: quadro HMX, Dura-Ace Di2 e rodas Capital 1.0S",
+        "summary": "Análise da montagem 2026, das relações 52x36 e 11-34, dos rotores, do cockpit integrado, do peso e do preço no Brasil.",
+        "category": "review",
+        "freshness": "revalidate-24h",
+        "status": "blocked",
+        "productIds": [
+          "suporte-de-garmin-syncros-ic-aero-scott-foil-2023-e-addict-rc-2025",
+          "bicicleta-scott-addict-rc-pro-di2-2026-pre-venda"
+        ],
+        "heroImage": {
+          "mode": "real-context",
+          "productId": "bicicleta-scott-addict-rc-pro-di2-2026-pre-venda",
+          "relationship": "category-example",
+          "rationale": "Fotografia real do catálogo TheBiker selecionada deterministicamente como exemplo visual da categoria técnica abordada."
+        },
+        "imageAssetIds": [],
+        "blockReason": "[VALIDATION_FAILED] Quarentena: artigo integral de fallback determinístico exige nova redação e revisão independente",
+        "failure": {
+          "code": "VALIDATION_FAILED",
+          "retryable": false,
+          "stage": "editorial-quarantine",
+          "message": "Artigo integral de fallback determinístico reprovado pelo gate de qualidade editorial",
+          "recordedAt": "2026-08-22T04:47:18.904Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-20T15:57:05.302Z",
+        "aiReview": {
+          "score": null,
+          "finalScore": null,
+          "finalBlockers": 1,
+          "premiumEditUsed": false,
+          "providers": {
+            "deterministicFallback": "grounded-deterministic"
+          },
+          "generatedAt": "2026-08-20T15:57:05.302Z",
+          "contentHash": "sha256:a8ff175b2d60aff28a3e307deb703a0c37c3c06c99f94054025aa813328a0053",
+          "deterministicFullArticleFallbackUsed": true,
+          "deterministicFullArticleFallbackTrigger": "pipeline-failure"
+        }
+      },
+      "replacement": {
+        "id": "reserva-limpeza-transmissao-metodo",
+        "title": "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação"
+      },
+      "reason": "[VALIDATION_FAILED] Quarentena: artigo integral de fallback determinístico exige nova redação e revisão independente"
+    },
+    {
+      "recordedAt": "2026-08-23T13:35:54.173Z",
+      "campaignId": "thebiker-rolling-2026-08-21",
+      "replacedItem": {
+        "day": 3,
+        "publishDate": "2026-08-23",
+        "id": "contingencia-addict-rc-pro-documentacao",
+        "title": "Scott Addict RC Pro: quadro HMX, Dura-Ace Di2 e rodas Capital 1.0S",
+        "summary": "Análise da montagem 2026, das relações 52x36 e 11-34, dos rotores, do cockpit integrado, do peso e do preço no Brasil.",
+        "category": "review",
+        "freshness": "revalidate-24h",
+        "status": "blocked",
+        "productIds": [
+          "suporte-de-garmin-syncros-ic-aero-scott-foil-2023-e-addict-rc-2025",
+          "bicicleta-scott-addict-rc-pro-di2-2026-pre-venda"
+        ],
+        "heroImage": {
+          "mode": "real-context",
+          "productId": "bicicleta-scott-addict-rc-pro-di2-2026-pre-venda",
+          "relationship": "category-example",
+          "rationale": "Fotografia real do catálogo TheBiker selecionada deterministicamente como exemplo visual da categoria técnica abordada."
+        },
+        "imageAssetIds": [],
+        "blockReason": "[VALIDATION_FAILED] Quarentena: artigo integral de fallback determinístico exige nova redação e revisão independente",
+        "failure": {
+          "code": "VALIDATION_FAILED",
+          "retryable": false,
+          "stage": "editorial-quarantine",
+          "message": "Artigo integral de fallback determinístico reprovado pelo gate de qualidade editorial",
+          "recordedAt": "2026-08-22T04:47:18.904Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-20T15:57:05.302Z",
+        "aiReview": {
+          "score": null,
+          "finalScore": null,
+          "finalBlockers": 1,
+          "premiumEditUsed": false,
+          "providers": {
+            "deterministicFallback": "grounded-deterministic"
+          },
+          "generatedAt": "2026-08-20T15:57:05.302Z",
+          "contentHash": "sha256:a8ff175b2d60aff28a3e307deb703a0c37c3c06c99f94054025aa813328a0053",
+          "deterministicFullArticleFallbackUsed": true,
+          "deterministicFullArticleFallbackTrigger": "pipeline-failure"
+        }
+      },
+      "replacement": {
+        "id": "reserva-limpeza-transmissao-metodo",
+        "title": "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação"
+      },
+      "reason": "[VALIDATION_FAILED] Quarentena: artigo integral de fallback determinístico exige nova redação e revisão independente"
+    },
+    {
+      "recordedAt": "2026-08-23T13:37:01.161Z",
+      "campaignId": "thebiker-rolling-2026-08-21",
+      "replacedItem": {
+        "day": 3,
+        "publishDate": "2026-08-23",
+        "id": "reserva-limpeza-transmissao-metodo",
+        "title": "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação",
+        "summary": "Procedimento técnico baseado em orientações oficiais para remover contaminantes, verificar danos e devolver a corrente ao uso seguro.",
+        "category": "manutencao-ajustes",
+        "freshness": "evergreen",
+        "status": "blocked",
+        "productIds": [
+          "corrente-sram-nx-eagle"
+        ],
+        "heroImage": {
+          "mode": "real-context",
+          "productId": "corrente-sram-nx-eagle",
+          "relationship": "category-example",
+          "rationale": "Fotografia real do catálogo TheBiker usada apenas como exemplo visual da categoria técnica abordada."
+        },
+        "imageAssetIds": [],
+        "blockReason": "[RESEARCH_INSUFFICIENT] Rascunho bloqueado após 2 reparos: Artigo bloqueado por integridade de claims: inferencias tecnicas ausentes dos fatos confirmados: a negligencia na limpeza pos-pedal resulta em perda de eficiencia na transferencia de potencia e reducao da vida util dos componentes de alta performance. | sob carga, essas particulas agem como uma ferramenta de corte, aumentando o 'pitch' da corrente — o alongamento mecanico que, por sua vez, causa o desgaste prematuro dos dentes do cassete. | ao remover o excesso com um pano seco, voce garante que apenas a parte movel interna esteja protegida, mantendo a superficie externa da corrente o mais seca possivel para",
+        "failure": {
+          "code": "RESEARCH_INSUFFICIENT",
+          "retryable": false,
+          "stage": "production",
+          "message": "Rascunho bloqueado após 2 reparos: Artigo bloqueado por integridade de claims: inferencias tecnicas ausentes dos fatos confirmados: a negligencia na limpeza pos-pedal resulta em perda de eficiencia na transferencia de potencia e reducao da vida util dos componentes de alta performance. | sob carga, essas particulas agem como uma ferramenta de corte, aumentando o 'pitch' da corrente — o alongamento mecanico que, por sua vez, causa o desgaste prematuro dos dentes do cassete. | ao remover o excesso com um pano seco, voce garante que apenas a parte movel interna esteja protegida, mantendo a superficie externa da corrente o mais seca possivel para",
+          "recordedAt": "2026-08-23T13:35:54.839Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-23T13:35:54.839Z"
+      },
+      "replacement": {
+        "id": "reserva-scale-940-980-comparativo",
+        "title": "Scott Scale 940 e 980: diferenças verificáveis de quadro, suspensão e componentes"
+      },
+      "reason": "[RESEARCH_INSUFFICIENT] Rascunho bloqueado após 2 reparos: Artigo bloqueado por integridade de claims: inferencias tecnicas ausentes dos fatos confirmados: a negligencia na limpeza pos-pedal resulta em perda de eficiencia na transferencia de potencia e reducao da vida util dos componentes de alta performance. | sob carga, essas particulas agem como uma ferramenta de corte, aumentando o 'pitch' da corrente — o alongamento mecanico que, por sua vez, causa o desgaste prematuro dos dentes do cassete. | ao remover o excesso com um pano seco, voce garante que apenas a parte movel interna esteja protegida, mantendo a superficie externa da corrente o mais seca possivel para"
+    },
+    {
+      "recordedAt": "2026-08-23T17:24:25.564Z",
+      "campaignId": "thebiker-rolling-2026-08-21",
+      "replacedItem": {
+        "day": 3,
+        "publishDate": "2026-08-23",
+        "id": "contingencia-addict-rc-pro-documentacao",
+        "title": "Scott Addict RC Pro: quadro HMX, Dura-Ace Di2 e rodas Capital 1.0S",
+        "summary": "Análise da montagem 2026, das relações 52x36 e 11-34, dos rotores, do cockpit integrado, do peso e do preço no Brasil.",
+        "category": "review",
+        "freshness": "revalidate-24h",
+        "status": "blocked",
+        "productIds": [
+          "suporte-de-garmin-syncros-ic-aero-scott-foil-2023-e-addict-rc-2025",
+          "bicicleta-scott-addict-rc-pro-di2-2026-pre-venda"
+        ],
+        "heroImage": {
+          "mode": "real-context",
+          "productId": "bicicleta-scott-addict-rc-pro-di2-2026-pre-venda",
+          "relationship": "category-example",
+          "rationale": "Fotografia real do catálogo TheBiker selecionada deterministicamente como exemplo visual da categoria técnica abordada."
+        },
+        "imageAssetIds": [],
+        "blockReason": "[VALIDATION_FAILED] Quarentena: artigo integral de fallback determinístico exige nova redação e revisão independente",
+        "failure": {
+          "code": "VALIDATION_FAILED",
+          "retryable": false,
+          "stage": "editorial-quarantine",
+          "message": "Artigo integral de fallback determinístico reprovado pelo gate de qualidade editorial",
+          "recordedAt": "2026-08-22T04:47:18.904Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-20T15:57:05.302Z",
+        "aiReview": {
+          "score": null,
+          "finalScore": null,
+          "finalBlockers": 1,
+          "premiumEditUsed": false,
+          "providers": {
+            "deterministicFallback": "grounded-deterministic"
+          },
+          "generatedAt": "2026-08-20T15:57:05.302Z",
+          "contentHash": "sha256:a8ff175b2d60aff28a3e307deb703a0c37c3c06c99f94054025aa813328a0053",
+          "deterministicFullArticleFallbackUsed": true,
+          "deterministicFullArticleFallbackTrigger": "pipeline-failure"
+        }
+      },
+      "replacement": {
+        "id": "reserva-limpeza-transmissao-metodo",
+        "title": "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação"
+      },
+      "reason": "[VALIDATION_FAILED] Quarentena: artigo integral de fallback determinístico exige nova redação e revisão independente"
+    },
+    {
+      "recordedAt": "2026-08-23T17:25:41.485Z",
+      "campaignId": "thebiker-rolling-2026-08-21",
+      "replacedItem": {
+        "day": 3,
+        "publishDate": "2026-08-23",
+        "id": "reserva-limpeza-transmissao-metodo",
+        "title": "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação",
+        "summary": "Procedimento técnico baseado em orientações oficiais para remover contaminantes, verificar danos e devolver a corrente ao uso seguro.",
+        "category": "manutencao-ajustes",
+        "freshness": "evergreen",
+        "status": "blocked",
+        "productIds": [
+          "corrente-sram-nx-eagle"
+        ],
+        "heroImage": {
+          "mode": "real-context",
+          "productId": "corrente-sram-nx-eagle",
+          "relationship": "category-example",
+          "rationale": "Fotografia real do catálogo TheBiker usada apenas como exemplo visual da categoria técnica abordada."
+        },
+        "imageAssetIds": [],
+        "blockReason": "[RESEARCH_INSUFFICIENT] Rascunho bloqueado após 2 reparos: Artigo bloqueado por integridade de claims: inferencias tecnicas ausentes dos fatos confirmados: a limpeza tecnica nao e apenas uma questao estetica, mas um protocolo de preservacao mecanica que visa remover agentes abrasivos que, se mantidos sob friccao, degradam o tratamento superficial das pecas e comprometem a precisao das trocas de marcha. | o acumulo de detritos atua como uma pasta abrasiva que reduz a vida util da corrente e dos dentes do cassete, exigindo uma intervencao imediata apos o retorno do pedal. | a negligencia neste processo resulta em desgaste acelerado dos elos da corrente, o que, por sua",
+        "failure": {
+          "code": "RESEARCH_INSUFFICIENT",
+          "retryable": false,
+          "stage": "production",
+          "message": "Rascunho bloqueado após 2 reparos: Artigo bloqueado por integridade de claims: inferencias tecnicas ausentes dos fatos confirmados: a limpeza tecnica nao e apenas uma questao estetica, mas um protocolo de preservacao mecanica que visa remover agentes abrasivos que, se mantidos sob friccao, degradam o tratamento superficial das pecas e comprometem a precisao das trocas de marcha. | o acumulo de detritos atua como uma pasta abrasiva que reduz a vida util da corrente e dos dentes do cassete, exigindo uma intervencao imediata apos o retorno do pedal. | a negligencia neste processo resulta em desgaste acelerado dos elos da corrente, o que, por sua",
+          "recordedAt": "2026-08-23T17:24:26.173Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-23T17:24:26.173Z"
+      },
+      "replacement": {
+        "id": "reserva-scale-940-980-comparativo",
+        "title": "Scott Scale 940 e 980: diferenças verificáveis de quadro, suspensão e componentes"
+      },
+      "reason": "[RESEARCH_INSUFFICIENT] Rascunho bloqueado após 2 reparos: Artigo bloqueado por integridade de claims: inferencias tecnicas ausentes dos fatos confirmados: a limpeza tecnica nao e apenas uma questao estetica, mas um protocolo de preservacao mecanica que visa remover agentes abrasivos que, se mantidos sob friccao, degradam o tratamento superficial das pecas e comprometem a precisao das trocas de marcha. | o acumulo de detritos atua como uma pasta abrasiva que reduz a vida util da corrente e dos dentes do cassete, exigindo uma intervencao imediata apos o retorno do pedal. | a negligencia neste processo resulta em desgaste acelerado dos elos da corrente, o que, por sua"
+    },
+    {
+      "recordedAt": "2026-08-24T09:52:28.937Z",
+      "campaignId": "thebiker-rolling-2026-08-21",
+      "replacedItem": {
+        "day": 4,
+        "publishDate": "2026-08-24",
+        "id": "contingencia-addict-rc20-documentacao",
+        "title": "Scott Addict RC 20: quadro HMX, 105 Di2 e configuração de estrada",
+        "summary": "Análise da geometria, transmissão, rodas, pneus, peso declarado e pontos de compatibilidade relevantes para a compra.",
+        "category": "review",
+        "freshness": "revalidate-24h",
+        "status": "blocked",
+        "productIds": [
+          "suporte-de-garmin-syncros-ic-aero-scott-foil-2023-e-addict-rc-2025",
+          "bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9"
+        ],
+        "heroImage": {
+          "mode": "real-context",
+          "productId": "bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9",
+          "relationship": "category-example",
+          "rationale": "Fotografia real do catálogo TheBiker selecionada deterministicamente como exemplo visual da categoria técnica abordada."
+        },
+        "imageAssetIds": [],
+        "blockReason": "[VALIDATION_FAILED] Quarentena: artigo integral de fallback determinístico exige nova redação e revisão independente",
+        "failure": {
+          "code": "VALIDATION_FAILED",
+          "retryable": false,
+          "stage": "editorial-quarantine",
+          "message": "Artigo integral de fallback determinístico reprovado pelo gate de qualidade editorial",
+          "recordedAt": "2026-08-22T04:47:18.904Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-20T15:57:05.302Z",
+        "aiReview": {
+          "score": null,
+          "finalScore": null,
+          "finalBlockers": 1,
+          "premiumEditUsed": false,
+          "providers": {
+            "deterministicFallback": "grounded-deterministic"
+          },
+          "generatedAt": "2026-08-20T15:57:05.302Z",
+          "contentHash": "sha256:cb5feb593e16b81d70ba1ab8ea6b69bb9930f711468400d19698910c411bbbda",
+          "deterministicFullArticleFallbackUsed": true,
+          "deterministicFullArticleFallbackTrigger": "pipeline-failure"
+        }
+      },
+      "replacement": {
+        "id": "reserva-limpeza-transmissao-metodo",
+        "title": "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação"
+      },
+      "reason": "[VALIDATION_FAILED] Quarentena: artigo integral de fallback determinístico exige nova redação e revisão independente"
+    },
+    {
+      "recordedAt": "2026-08-24T09:54:45.898Z",
+      "campaignId": "thebiker-rolling-2026-08-21",
+      "replacedItem": {
+        "day": 4,
+        "publishDate": "2026-08-24",
+        "id": "reserva-limpeza-transmissao-metodo",
+        "title": "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação",
+        "summary": "Procedimento técnico baseado em orientações oficiais para remover contaminantes, verificar danos e devolver a corrente ao uso seguro.",
+        "category": "manutencao-ajustes",
+        "freshness": "evergreen",
+        "status": "blocked",
+        "productIds": [
+          "corrente-sram-nx-eagle"
+        ],
+        "heroImage": {
+          "mode": "real-context",
+          "productId": "corrente-sram-nx-eagle",
+          "relationship": "category-example",
+          "rationale": "Fotografia real do catálogo TheBiker usada apenas como exemplo visual da categoria técnica abordada."
+        },
+        "imageAssetIds": [],
+        "blockReason": "[IMAGE_NOT_PUBLISHABLE] Rascunho bloqueado após 2 reparos: Artigo inválido:\nimagePlan: Pelo menos uma imagem obrigatória",
+        "failure": {
+          "code": "IMAGE_NOT_PUBLISHABLE",
+          "retryable": false,
+          "stage": "production",
+          "message": "Rascunho bloqueado após 2 reparos: Artigo inválido:\nimagePlan: Pelo menos uma imagem obrigatória",
+          "recordedAt": "2026-08-24T09:52:29.646Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-24T09:52:29.646Z"
+      },
+      "replacement": {
+        "id": "reserva-scale-940-980-comparativo",
+        "title": "Scott Scale 940 e 980: diferenças verificáveis de quadro, suspensão e componentes"
+      },
+      "reason": "[IMAGE_NOT_PUBLISHABLE] Rascunho bloqueado após 2 reparos: Artigo inválido:\nimagePlan: Pelo menos uma imagem obrigatória"
+    },
+    {
+      "recordedAt": "2026-08-24T13:55:12.478Z",
+      "campaignId": "thebiker-rolling-2026-08-21",
+      "replacedItem": {
+        "day": 4,
+        "publishDate": "2026-08-24",
+        "id": "contingencia-addict-rc20-documentacao",
+        "title": "Scott Addict RC 20: quadro HMX, 105 Di2 e configuração de estrada",
+        "summary": "Análise da geometria, transmissão, rodas, pneus, peso declarado e pontos de compatibilidade relevantes para a compra.",
+        "category": "review",
+        "freshness": "revalidate-24h",
+        "status": "blocked",
+        "productIds": [
+          "suporte-de-garmin-syncros-ic-aero-scott-foil-2023-e-addict-rc-2025",
+          "bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9"
+        ],
+        "heroImage": {
+          "mode": "real-context",
+          "productId": "bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9",
+          "relationship": "category-example",
+          "rationale": "Fotografia real do catálogo TheBiker selecionada deterministicamente como exemplo visual da categoria técnica abordada."
+        },
+        "imageAssetIds": [],
+        "blockReason": "[VALIDATION_FAILED] Quarentena: artigo integral de fallback determinístico exige nova redação e revisão independente",
+        "failure": {
+          "code": "VALIDATION_FAILED",
+          "retryable": false,
+          "stage": "editorial-quarantine",
+          "message": "Artigo integral de fallback determinístico reprovado pelo gate de qualidade editorial",
+          "recordedAt": "2026-08-22T04:47:18.904Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-20T15:57:05.302Z",
+        "aiReview": {
+          "score": null,
+          "finalScore": null,
+          "finalBlockers": 1,
+          "premiumEditUsed": false,
+          "providers": {
+            "deterministicFallback": "grounded-deterministic"
+          },
+          "generatedAt": "2026-08-20T15:57:05.302Z",
+          "contentHash": "sha256:cb5feb593e16b81d70ba1ab8ea6b69bb9930f711468400d19698910c411bbbda",
+          "deterministicFullArticleFallbackUsed": true,
+          "deterministicFullArticleFallbackTrigger": "pipeline-failure"
+        }
+      },
+      "replacement": {
+        "id": "reserva-limpeza-transmissao-metodo",
+        "title": "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação"
+      },
+      "reason": "[VALIDATION_FAILED] Quarentena: artigo integral de fallback determinístico exige nova redação e revisão independente"
+    },
+    {
+      "recordedAt": "2026-08-24T13:57:21.470Z",
+      "campaignId": "thebiker-rolling-2026-08-21",
+      "replacedItem": {
+        "day": 4,
+        "publishDate": "2026-08-24",
+        "id": "reserva-limpeza-transmissao-metodo",
+        "title": "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação",
+        "summary": "Procedimento técnico baseado em orientações oficiais para remover contaminantes, verificar danos e devolver a corrente ao uso seguro.",
+        "category": "manutencao-ajustes",
+        "freshness": "evergreen",
+        "status": "blocked",
+        "productIds": [
+          "corrente-sram-nx-eagle"
+        ],
+        "heroImage": {
+          "mode": "real-context",
+          "productId": "corrente-sram-nx-eagle",
+          "relationship": "category-example",
+          "rationale": "Fotografia real do catálogo TheBiker usada apenas como exemplo visual da categoria técnica abordada."
+        },
+        "imageAssetIds": [],
+        "blockReason": "[VALIDATION_FAILED] Rascunho bloqueado após 2 reparos: Gates editoriais não atendidos: extensão insuficiente: 558 palavras; mínimo 900",
+        "failure": {
+          "code": "VALIDATION_FAILED",
+          "retryable": false,
+          "stage": "production",
+          "message": "Rascunho bloqueado após 2 reparos: Gates editoriais não atendidos: extensão insuficiente: 558 palavras; mínimo 900",
+          "recordedAt": "2026-08-24T13:55:13.139Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-24T13:55:13.139Z"
+      },
+      "replacement": {
+        "id": "reserva-scale-940-980-comparativo",
+        "title": "Scott Scale 940 e 980: diferenças verificáveis de quadro, suspensão e componentes"
+      },
+      "reason": "[VALIDATION_FAILED] Rascunho bloqueado após 2 reparos: Gates editoriais não atendidos: extensão insuficiente: 558 palavras; mínimo 900"
+    },
+    {
+      "recordedAt": "2026-08-24T17:35:09.267Z",
+      "campaignId": "thebiker-rolling-2026-08-21",
+      "replacedItem": {
+        "day": 4,
+        "publishDate": "2026-08-24",
+        "id": "contingencia-addict-rc20-documentacao",
+        "title": "Scott Addict RC 20: quadro HMX, 105 Di2 e configuração de estrada",
+        "summary": "Análise da geometria, transmissão, rodas, pneus, peso declarado e pontos de compatibilidade relevantes para a compra.",
+        "category": "review",
+        "freshness": "revalidate-24h",
+        "status": "blocked",
+        "productIds": [
+          "suporte-de-garmin-syncros-ic-aero-scott-foil-2023-e-addict-rc-2025",
+          "bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9"
+        ],
+        "heroImage": {
+          "mode": "real-context",
+          "productId": "bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9",
+          "relationship": "category-example",
+          "rationale": "Fotografia real do catálogo TheBiker selecionada deterministicamente como exemplo visual da categoria técnica abordada."
+        },
+        "imageAssetIds": [],
+        "blockReason": "[VALIDATION_FAILED] Quarentena: artigo integral de fallback determinístico exige nova redação e revisão independente",
+        "failure": {
+          "code": "VALIDATION_FAILED",
+          "retryable": false,
+          "stage": "editorial-quarantine",
+          "message": "Artigo integral de fallback determinístico reprovado pelo gate de qualidade editorial",
+          "recordedAt": "2026-08-22T04:47:18.904Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-20T15:57:05.302Z",
+        "aiReview": {
+          "score": null,
+          "finalScore": null,
+          "finalBlockers": 1,
+          "premiumEditUsed": false,
+          "providers": {
+            "deterministicFallback": "grounded-deterministic"
+          },
+          "generatedAt": "2026-08-20T15:57:05.302Z",
+          "contentHash": "sha256:cb5feb593e16b81d70ba1ab8ea6b69bb9930f711468400d19698910c411bbbda",
+          "deterministicFullArticleFallbackUsed": true,
+          "deterministicFullArticleFallbackTrigger": "pipeline-failure"
+        }
+      },
+      "replacement": {
+        "id": "reserva-limpeza-transmissao-metodo",
+        "title": "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação"
+      },
+      "reason": "[VALIDATION_FAILED] Quarentena: artigo integral de fallback determinístico exige nova redação e revisão independente"
+    },
+    {
+      "recordedAt": "2026-08-24T17:36:32.777Z",
+      "campaignId": "thebiker-rolling-2026-08-21",
+      "replacedItem": {
+        "day": 4,
+        "publishDate": "2026-08-24",
+        "id": "reserva-limpeza-transmissao-metodo",
+        "title": "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação",
+        "summary": "Procedimento técnico baseado em orientações oficiais para remover contaminantes, verificar danos e devolver a corrente ao uso seguro.",
+        "category": "manutencao-ajustes",
+        "freshness": "evergreen",
+        "status": "blocked",
+        "productIds": [
+          "corrente-sram-nx-eagle"
+        ],
+        "heroImage": {
+          "mode": "real-context",
+          "productId": "corrente-sram-nx-eagle",
+          "relationship": "category-example",
+          "rationale": "Fotografia real do catálogo TheBiker usada apenas como exemplo visual da categoria técnica abordada."
+        },
+        "imageAssetIds": [],
+        "blockReason": "[RESEARCH_INSUFFICIENT] Rascunho bloqueado após 2 reparos: Artigo bloqueado por integridade de claims: inferencias tecnicas ausentes dos fatos confirmados: este cenario acelera o desgaste prematuro dos componentes, reduzindo a precisao das trocas e aumentando o atrito interno do sistema. | a manutencao pos-pedal nao e apenas uma questao estetica, mas um protocolo tecnico de preservacao da integridade mecanica, essencial para manter a eficiencia energetica do conjunto de transmissao. | a negligencia na remocao desses detritos apos a chuva transforma a transmissao em um sistema de moagem, onde a propria sujeira retida atua como uma lixa constante, comprometendo a vida",
+        "failure": {
+          "code": "RESEARCH_INSUFFICIENT",
+          "retryable": false,
+          "stage": "production",
+          "message": "Rascunho bloqueado após 2 reparos: Artigo bloqueado por integridade de claims: inferencias tecnicas ausentes dos fatos confirmados: este cenario acelera o desgaste prematuro dos componentes, reduzindo a precisao das trocas e aumentando o atrito interno do sistema. | a manutencao pos-pedal nao e apenas uma questao estetica, mas um protocolo tecnico de preservacao da integridade mecanica, essencial para manter a eficiencia energetica do conjunto de transmissao. | a negligencia na remocao desses detritos apos a chuva transforma a transmissao em um sistema de moagem, onde a propria sujeira retida atua como uma lixa constante, comprometendo a vida",
+          "recordedAt": "2026-08-24T17:35:09.946Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-24T17:35:09.946Z"
+      },
+      "replacement": {
+        "id": "reserva-scale-940-980-comparativo",
+        "title": "Scott Scale 940 e 980: diferenças verificáveis de quadro, suspensão e componentes"
+      },
+      "reason": "[RESEARCH_INSUFFICIENT] Rascunho bloqueado após 2 reparos: Artigo bloqueado por integridade de claims: inferencias tecnicas ausentes dos fatos confirmados: este cenario acelera o desgaste prematuro dos componentes, reduzindo a precisao das trocas e aumentando o atrito interno do sistema. | a manutencao pos-pedal nao e apenas uma questao estetica, mas um protocolo tecnico de preservacao da integridade mecanica, essencial para manter a eficiencia energetica do conjunto de transmissao. | a negligencia na remocao desses detritos apos a chuva transforma a transmissao em um sistema de moagem, onde a propria sujeira retida atua como uma lixa constante, comprometendo a vida"
+    },
+    {
+      "recordedAt": "2026-08-25T09:39:29.603Z",
+      "campaignId": "thebiker-rolling-2026-08-21",
+      "replacedItem": {
+        "day": 5,
+        "publishDate": "2026-08-25",
+        "id": "contingencia-addict-50-documentacao",
+        "title": "Scott Addict 50: geometria endurance, montagem e perfil de uso",
+        "summary": "Análise do quadro, da transmissão, das rodas, dos pneus, do peso e dos ajustes que influenciam a escolha do tamanho.",
+        "category": "review",
+        "freshness": "revalidate-24h",
+        "status": "blocked",
+        "productIds": [
+          "suporte-de-garmin-syncros-ic-aero-scott-foil-2023-e-addict-rc-2025",
+          "bicicleta-scott-addict-50-2026-pre-venda-1bxzy"
+        ],
+        "heroImage": {
+          "mode": "real-context",
+          "productId": "bicicleta-scott-addict-50-2026-pre-venda-1bxzy",
+          "relationship": "category-example",
+          "rationale": "Fotografia real do catálogo TheBiker selecionada deterministicamente como exemplo visual da categoria técnica abordada."
+        },
+        "imageAssetIds": [],
+        "blockReason": "[VALIDATION_FAILED] Quarentena: artigo integral de fallback determinístico exige nova redação e revisão independente",
+        "failure": {
+          "code": "VALIDATION_FAILED",
+          "retryable": false,
+          "stage": "editorial-quarantine",
+          "message": "Artigo integral de fallback determinístico reprovado pelo gate de qualidade editorial",
+          "recordedAt": "2026-08-22T04:47:18.904Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-20T15:57:05.302Z",
+        "aiReview": {
+          "score": null,
+          "finalScore": null,
+          "finalBlockers": 1,
+          "premiumEditUsed": false,
+          "providers": {
+            "factSheet": "groq",
+            "draft": "gemini",
+            "critique": "gemini",
+            "final": "gemini",
+            "finalAudit": "groq",
+            "deterministicFallback": "grounded-deterministic"
+          },
+          "generatedAt": "2026-08-20T15:57:05.302Z",
+          "contentHash": "sha256:aaab0bc8b4f012240609eeb089456e513cb3854d1f88d741b3dce627de6116e4",
+          "sourceHash": "7a340544a6cede78a625218e568b31b42beea74a5d2a615dcdfd9dd1dfa31e77",
+          "deterministicFullArticleFallbackUsed": true,
+          "deterministicFullArticleFallbackTrigger": "repair-fallback"
+        }
+      },
+      "replacement": {
+        "id": "reserva-limpeza-transmissao-metodo",
+        "title": "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação"
+      },
+      "reason": "[VALIDATION_FAILED] Quarentena: artigo integral de fallback determinístico exige nova redação e revisão independente"
+    },
+    {
+      "recordedAt": "2026-08-25T09:40:22.666Z",
+      "campaignId": "thebiker-rolling-2026-08-21",
+      "replacedItem": {
+        "day": 5,
+        "publishDate": "2026-08-25",
+        "id": "reserva-limpeza-transmissao-metodo",
+        "title": "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação",
+        "summary": "Procedimento técnico baseado em orientações oficiais para remover contaminantes, verificar danos e devolver a corrente ao uso seguro.",
+        "category": "manutencao-ajustes",
+        "freshness": "evergreen",
+        "status": "blocked",
+        "productIds": [
+          "corrente-sram-nx-eagle"
+        ],
+        "heroImage": {
+          "mode": "real-context",
+          "productId": "corrente-sram-nx-eagle",
+          "relationship": "category-example",
+          "rationale": "Fotografia real do catálogo TheBiker usada apenas como exemplo visual da categoria técnica abordada."
+        },
+        "imageAssetIds": [],
+        "blockReason": "[RESEARCH_INSUFFICIENT] Rascunho bloqueado após 2 reparos: Artigo bloqueado por integridade de claims: inferencias tecnicas ausentes dos fatos confirmados: o acumulo de detritos na transmissao e no sistema de frenagem nao apenas compromete a eficiencia da troca de marchas, mas tambem eleva o risco de falhas operacionais em condicoes de uso intenso. | quando essa mistura seca sobre a corrente e os dentes do cassete, ela cria uma pasta que acelera o desgaste por friccao, reduzindo a vida util dos elos e das engrenagens. | a integridade das vedacoes, especialmente nos cubos e no movimento central, e colocada a prova pela pressao da agua da chuva e pela penetracao de pa",
+        "failure": {
+          "code": "RESEARCH_INSUFFICIENT",
+          "retryable": false,
+          "stage": "production",
+          "message": "Rascunho bloqueado após 2 reparos: Artigo bloqueado por integridade de claims: inferencias tecnicas ausentes dos fatos confirmados: o acumulo de detritos na transmissao e no sistema de frenagem nao apenas compromete a eficiencia da troca de marchas, mas tambem eleva o risco de falhas operacionais em condicoes de uso intenso. | quando essa mistura seca sobre a corrente e os dentes do cassete, ela cria uma pasta que acelera o desgaste por friccao, reduzindo a vida util dos elos e das engrenagens. | a integridade das vedacoes, especialmente nos cubos e no movimento central, e colocada a prova pela pressao da agua da chuva e pela penetracao de pa",
+          "recordedAt": "2026-08-25T09:39:30.092Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-25T09:39:30.092Z"
+      },
+      "replacement": {
+        "id": "reserva-scale-940-980-comparativo",
+        "title": "Scott Scale 940 e 980: diferenças verificáveis de quadro, suspensão e componentes"
+      },
+      "reason": "[RESEARCH_INSUFFICIENT] Rascunho bloqueado após 2 reparos: Artigo bloqueado por integridade de claims: inferencias tecnicas ausentes dos fatos confirmados: o acumulo de detritos na transmissao e no sistema de frenagem nao apenas compromete a eficiencia da troca de marchas, mas tambem eleva o risco de falhas operacionais em condicoes de uso intenso. | quando essa mistura seca sobre a corrente e os dentes do cassete, ela cria uma pasta que acelera o desgaste por friccao, reduzindo a vida util dos elos e das engrenagens. | a integridade das vedacoes, especialmente nos cubos e no movimento central, e colocada a prova pela pressao da agua da chuva e pela penetracao de pa"
+    },
+    {
+      "recordedAt": "2026-08-25T13:54:44.712Z",
+      "campaignId": "thebiker-rolling-2026-08-21",
+      "replacedItem": {
+        "day": 5,
+        "publishDate": "2026-08-25",
+        "id": "contingencia-addict-50-documentacao",
+        "title": "Scott Addict 50: geometria endurance, montagem e perfil de uso",
+        "summary": "Análise do quadro, da transmissão, das rodas, dos pneus, do peso e dos ajustes que influenciam a escolha do tamanho.",
+        "category": "review",
+        "freshness": "revalidate-24h",
+        "status": "blocked",
+        "productIds": [
+          "suporte-de-garmin-syncros-ic-aero-scott-foil-2023-e-addict-rc-2025",
+          "bicicleta-scott-addict-50-2026-pre-venda-1bxzy"
+        ],
+        "heroImage": {
+          "mode": "real-context",
+          "productId": "bicicleta-scott-addict-50-2026-pre-venda-1bxzy",
+          "relationship": "category-example",
+          "rationale": "Fotografia real do catálogo TheBiker selecionada deterministicamente como exemplo visual da categoria técnica abordada."
+        },
+        "imageAssetIds": [],
+        "blockReason": "[VALIDATION_FAILED] Quarentena: artigo integral de fallback determinístico exige nova redação e revisão independente",
+        "failure": {
+          "code": "VALIDATION_FAILED",
+          "retryable": false,
+          "stage": "editorial-quarantine",
+          "message": "Artigo integral de fallback determinístico reprovado pelo gate de qualidade editorial",
+          "recordedAt": "2026-08-22T04:47:18.904Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-20T15:57:05.302Z",
+        "aiReview": {
+          "score": null,
+          "finalScore": null,
+          "finalBlockers": 1,
+          "premiumEditUsed": false,
+          "providers": {
+            "factSheet": "groq",
+            "draft": "gemini",
+            "critique": "gemini",
+            "final": "gemini",
+            "finalAudit": "groq",
+            "deterministicFallback": "grounded-deterministic"
+          },
+          "generatedAt": "2026-08-20T15:57:05.302Z",
+          "contentHash": "sha256:aaab0bc8b4f012240609eeb089456e513cb3854d1f88d741b3dce627de6116e4",
+          "sourceHash": "7a340544a6cede78a625218e568b31b42beea74a5d2a615dcdfd9dd1dfa31e77",
+          "deterministicFullArticleFallbackUsed": true,
+          "deterministicFullArticleFallbackTrigger": "repair-fallback"
+        }
+      },
+      "replacement": {
+        "id": "reserva-limpeza-transmissao-metodo",
+        "title": "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação"
+      },
+      "reason": "[VALIDATION_FAILED] Quarentena: artigo integral de fallback determinístico exige nova redação e revisão independente"
+    },
+    {
+      "recordedAt": "2026-08-25T13:55:47.672Z",
+      "campaignId": "thebiker-rolling-2026-08-21",
+      "replacedItem": {
+        "day": 5,
+        "publishDate": "2026-08-25",
+        "id": "reserva-limpeza-transmissao-metodo",
+        "title": "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação",
+        "summary": "Procedimento técnico baseado em orientações oficiais para remover contaminantes, verificar danos e devolver a corrente ao uso seguro.",
+        "category": "manutencao-ajustes",
+        "freshness": "evergreen",
+        "status": "blocked",
+        "productIds": [
+          "corrente-sram-nx-eagle"
+        ],
+        "heroImage": {
+          "mode": "real-context",
+          "productId": "corrente-sram-nx-eagle",
+          "relationship": "category-example",
+          "rationale": "Fotografia real do catálogo TheBiker usada apenas como exemplo visual da categoria técnica abordada."
+        },
+        "imageAssetIds": [],
+        "blockReason": "[VALIDATION_FAILED] Rascunho bloqueado após 2 reparos: Gates editoriais não atendidos: extensão insuficiente: 371 palavras; mínimo 900",
+        "failure": {
+          "code": "VALIDATION_FAILED",
+          "retryable": false,
+          "stage": "production",
+          "message": "Rascunho bloqueado após 2 reparos: Gates editoriais não atendidos: extensão insuficiente: 371 palavras; mínimo 900",
+          "recordedAt": "2026-08-25T13:54:45.417Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-25T13:54:45.417Z"
+      },
+      "replacement": {
+        "id": "reserva-scale-940-980-comparativo",
+        "title": "Scott Scale 940 e 980: diferenças verificáveis de quadro, suspensão e componentes"
+      },
+      "reason": "[VALIDATION_FAILED] Rascunho bloqueado após 2 reparos: Gates editoriais não atendidos: extensão insuficiente: 371 palavras; mínimo 900"
+    },
+    {
+      "recordedAt": "2026-08-25T17:36:05.145Z",
+      "campaignId": "thebiker-rolling-2026-08-21",
+      "replacedItem": {
+        "day": 5,
+        "publishDate": "2026-08-25",
+        "id": "contingencia-addict-50-documentacao",
+        "title": "Scott Addict 50: geometria endurance, montagem e perfil de uso",
+        "summary": "Análise do quadro, da transmissão, das rodas, dos pneus, do peso e dos ajustes que influenciam a escolha do tamanho.",
+        "category": "review",
+        "freshness": "revalidate-24h",
+        "status": "blocked",
+        "productIds": [
+          "suporte-de-garmin-syncros-ic-aero-scott-foil-2023-e-addict-rc-2025",
+          "bicicleta-scott-addict-50-2026-pre-venda-1bxzy"
+        ],
+        "heroImage": {
+          "mode": "real-context",
+          "productId": "bicicleta-scott-addict-50-2026-pre-venda-1bxzy",
+          "relationship": "category-example",
+          "rationale": "Fotografia real do catálogo TheBiker selecionada deterministicamente como exemplo visual da categoria técnica abordada."
+        },
+        "imageAssetIds": [],
+        "blockReason": "[VALIDATION_FAILED] Quarentena: artigo integral de fallback determinístico exige nova redação e revisão independente",
+        "failure": {
+          "code": "VALIDATION_FAILED",
+          "retryable": false,
+          "stage": "editorial-quarantine",
+          "message": "Artigo integral de fallback determinístico reprovado pelo gate de qualidade editorial",
+          "recordedAt": "2026-08-22T04:47:18.904Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-20T15:57:05.302Z",
+        "aiReview": {
+          "score": null,
+          "finalScore": null,
+          "finalBlockers": 1,
+          "premiumEditUsed": false,
+          "providers": {
+            "factSheet": "groq",
+            "draft": "gemini",
+            "critique": "gemini",
+            "final": "gemini",
+            "finalAudit": "groq",
+            "deterministicFallback": "grounded-deterministic"
+          },
+          "generatedAt": "2026-08-20T15:57:05.302Z",
+          "contentHash": "sha256:aaab0bc8b4f012240609eeb089456e513cb3854d1f88d741b3dce627de6116e4",
+          "sourceHash": "7a340544a6cede78a625218e568b31b42beea74a5d2a615dcdfd9dd1dfa31e77",
+          "deterministicFullArticleFallbackUsed": true,
+          "deterministicFullArticleFallbackTrigger": "repair-fallback"
+        }
+      },
+      "replacement": {
+        "id": "reserva-limpeza-transmissao-metodo",
+        "title": "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação"
+      },
+      "reason": "[VALIDATION_FAILED] Quarentena: artigo integral de fallback determinístico exige nova redação e revisão independente"
+    },
+    {
+      "recordedAt": "2026-08-25T17:37:07.983Z",
+      "campaignId": "thebiker-rolling-2026-08-21",
+      "replacedItem": {
+        "day": 5,
+        "publishDate": "2026-08-25",
+        "id": "reserva-limpeza-transmissao-metodo",
+        "title": "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação",
+        "summary": "Procedimento técnico baseado em orientações oficiais para remover contaminantes, verificar danos e devolver a corrente ao uso seguro.",
+        "category": "manutencao-ajustes",
+        "freshness": "evergreen",
+        "status": "blocked",
+        "productIds": [
+          "corrente-sram-nx-eagle"
+        ],
+        "heroImage": {
+          "mode": "real-context",
+          "productId": "corrente-sram-nx-eagle",
+          "relationship": "category-example",
+          "rationale": "Fotografia real do catálogo TheBiker usada apenas como exemplo visual da categoria técnica abordada."
+        },
+        "imageAssetIds": [],
+        "blockReason": "[RESEARCH_INSUFFICIENT] Rascunho bloqueado após 2 reparos: Artigo bloqueado por integridade de claims: inferencias tecnicas ausentes dos fatos confirmados: a contaminacao por lama nao apenas compromete a eficiencia da troca de marchas, mas tambem acelera a corrosao de componentes metalicos e a degradacao de vedacoes. | alem disso, a umidade residual em areas de dificil acesso, como o movimento central e os cubos, pode comprometer a graxa interna, reduzindo a eficiencia de rolagem e aumentando a resistencia mecanica do sistema. | a pressao excessiva forca a entrada de agua e contaminantes para o interior das vedacoes e rolamentos, causando danos internos irreversivei",
+        "failure": {
+          "code": "RESEARCH_INSUFFICIENT",
+          "retryable": false,
+          "stage": "production",
+          "message": "Rascunho bloqueado após 2 reparos: Artigo bloqueado por integridade de claims: inferencias tecnicas ausentes dos fatos confirmados: a contaminacao por lama nao apenas compromete a eficiencia da troca de marchas, mas tambem acelera a corrosao de componentes metalicos e a degradacao de vedacoes. | alem disso, a umidade residual em areas de dificil acesso, como o movimento central e os cubos, pode comprometer a graxa interna, reduzindo a eficiencia de rolagem e aumentando a resistencia mecanica do sistema. | a pressao excessiva forca a entrada de agua e contaminantes para o interior das vedacoes e rolamentos, causando danos internos irreversivei",
+          "recordedAt": "2026-08-25T17:36:05.825Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-25T17:36:05.825Z"
+      },
+      "replacement": {
+        "id": "reserva-scale-940-980-comparativo",
+        "title": "Scott Scale 940 e 980: diferenças verificáveis de quadro, suspensão e componentes"
+      },
+      "reason": "[RESEARCH_INSUFFICIENT] Rascunho bloqueado após 2 reparos: Artigo bloqueado por integridade de claims: inferencias tecnicas ausentes dos fatos confirmados: a contaminacao por lama nao apenas compromete a eficiencia da troca de marchas, mas tambem acelera a corrosao de componentes metalicos e a degradacao de vedacoes. | alem disso, a umidade residual em areas de dificil acesso, como o movimento central e os cubos, pode comprometer a graxa interna, reduzindo a eficiencia de rolagem e aumentando a resistencia mecanica do sistema. | a pressao excessiva forca a entrada de agua e contaminantes para o interior das vedacoes e rolamentos, causando danos internos irreversivei"
+    },
+    {
+      "recordedAt": "2026-08-27T19:41:54.806Z",
+      "campaignId": "thebiker-rolling-2026-08-21",
+      "replacedItem": {
+        "day": 7,
+        "publishDate": "2026-08-27",
+        "id": "contingencia-scale-980-variantes",
+        "title": "Scott Scale 980 Black e Blue: o que muda entre as duas versões",
+        "summary": "Comparação de quadro, suspensão, transmissão, freios, rodas, pneus, tamanhos e cores das duas configurações.",
+        "category": "comparativo",
+        "freshness": "revalidate-24h",
+        "status": "blocked",
+        "productIds": [
+          "bicicleta-scott-scale-980-black",
+          "bicicleta-scott-scale-980-blue"
+        ],
+        "heroImage": {
+          "mode": "conceptual"
+        },
+        "imageAssetIds": [],
+        "blockReason": "[VALIDATION_FAILED] Quarentena: artigo integral de fallback determinístico exige nova redação e revisão independente",
+        "failure": {
+          "code": "VALIDATION_FAILED",
+          "retryable": false,
+          "stage": "editorial-quarantine",
+          "message": "Artigo integral de fallback determinístico reprovado pelo gate de qualidade editorial",
+          "recordedAt": "2026-08-22T04:47:18.904Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-20T16:13:24.231Z",
+        "aiReview": {
+          "score": null,
+          "finalScore": null,
+          "finalBlockers": 1,
+          "premiumEditUsed": false,
+          "providers": {
+            "factSheet": "groq",
+            "draft": "gemini",
+            "critique": "gemini",
+            "final": "gemini",
+            "finalAudit": "groq",
+            "deterministicFallback": "grounded-deterministic"
+          },
+          "generatedAt": "2026-08-20T16:13:24.231Z",
+          "contentHash": "sha256:b672458f4333737a32bfd184c9e7d805abd474fa447a5793047c198477d06f68",
+          "sourceHash": "d0fcda8896900e9fdf9c1b004d3d0155e24096e0a11ad5e55deb057ca6e5eb79",
+          "deterministicFullArticleFallbackUsed": true,
+          "deterministicFullArticleFallbackTrigger": "repair-fallback"
+        }
+      },
+      "replacement": {
+        "id": "reserva-limpeza-transmissao-metodo",
+        "title": "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação"
+      },
+      "reason": "[VALIDATION_FAILED] Quarentena: artigo integral de fallback determinístico exige nova redação e revisão independente"
+    },
+    {
+      "recordedAt": "2026-08-27T19:42:54.785Z",
+      "campaignId": "thebiker-rolling-2026-08-21",
+      "replacedItem": {
+        "day": 7,
+        "publishDate": "2026-08-27",
+        "id": "reserva-limpeza-transmissao-metodo",
+        "title": "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação",
+        "summary": "Procedimento técnico baseado em orientações oficiais para remover contaminantes, verificar danos e devolver a corrente ao uso seguro.",
+        "category": "manutencao-ajustes",
+        "freshness": "evergreen",
+        "status": "blocked",
+        "productIds": [
+          "corrente-sram-nx-eagle"
+        ],
+        "heroImage": {
+          "mode": "real-context",
+          "productId": "corrente-sram-nx-eagle",
+          "relationship": "category-example",
+          "rationale": "Fotografia real do catálogo TheBiker usada apenas como exemplo visual da categoria técnica abordada."
+        },
+        "imageAssetIds": [],
+        "blockReason": "[VALIDATION_FAILED] Rascunho bloqueado após 2 reparos: Artigo inválido:\ncontext_only_brands: Marcas concorrentes só podem ser mencionadas como contexto factual em cobertura de corridas.",
+        "failure": {
+          "code": "VALIDATION_FAILED",
+          "retryable": false,
+          "stage": "production",
+          "message": "Rascunho bloqueado após 2 reparos: Artigo inválido:\ncontext_only_brands: Marcas concorrentes só podem ser mencionadas como contexto factual em cobertura de corridas.",
+          "recordedAt": "2026-08-27T19:41:55.475Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-27T19:41:55.475Z"
+      },
+      "replacement": {
+        "id": "reserva-scale-940-980-comparativo",
+        "title": "Scott Scale 940 e 980: diferenças verificáveis de quadro, suspensão e componentes"
+      },
+      "reason": "[VALIDATION_FAILED] Rascunho bloqueado após 2 reparos: Artigo inválido:\ncontext_only_brands: Marcas concorrentes só podem ser mencionadas como contexto factual em cobertura de corridas."
+    },
+    {
+      "recordedAt": "2026-08-28T20:47:13.231Z",
+      "campaignId": "thebiker-rolling-2026-08-21",
+      "replacedItem": {
+        "day": 8,
+        "publishDate": "2026-08-28",
+        "id": "contingencia-spark-rc-expert-documentacao",
+        "title": "Scott Spark RC Expert: suspensão integrada, transmissão e montagem 2027",
+        "summary": "Análise do quadro, dos 120 mm de curso, do sistema de suspensão, da transmissão, dos freios, das rodas e do peso.",
+        "category": "review",
+        "freshness": "revalidate-24h",
+        "status": "blocked",
+        "productIds": [
+          "botao-de-ajuste-suspensao-fox",
+          "bicicleta-scott-spark-rc-expert-2027"
+        ],
+        "heroImage": {
+          "mode": "real-context",
+          "productId": "bicicleta-scott-spark-rc-expert-2027",
+          "relationship": "category-example",
+          "rationale": "Fotografia real do catálogo TheBiker selecionada deterministicamente como exemplo visual da categoria técnica abordada."
+        },
+        "imageAssetIds": [],
+        "blockReason": "[VALIDATION_FAILED] Quarentena: artigo integral de fallback determinístico exige nova redação e revisão independente",
+        "failure": {
+          "code": "VALIDATION_FAILED",
+          "retryable": false,
+          "stage": "editorial-quarantine",
+          "message": "Artigo integral de fallback determinístico reprovado pelo gate de qualidade editorial",
+          "recordedAt": "2026-08-22T04:47:18.904Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-20T16:13:24.231Z",
+        "aiReview": {
+          "score": null,
+          "finalScore": null,
+          "finalBlockers": 1,
+          "premiumEditUsed": false,
+          "providers": {
+            "deterministicFallback": "grounded-deterministic"
+          },
+          "generatedAt": "2026-08-20T16:13:24.231Z",
+          "contentHash": "sha256:9ef3628cff376ac8497bc4cd5002d7d238dbc59a93cbb169cd8132df010cf7a7",
+          "deterministicFullArticleFallbackUsed": true,
+          "deterministicFullArticleFallbackTrigger": "pipeline-failure"
+        }
+      },
+      "replacement": {
+        "id": "reserva-limpeza-transmissao-metodo",
+        "title": "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação"
+      },
+      "reason": "[VALIDATION_FAILED] Quarentena: artigo integral de fallback determinístico exige nova redação e revisão independente"
+    },
+    {
+      "recordedAt": "2026-08-28T20:48:10.376Z",
+      "campaignId": "thebiker-rolling-2026-08-21",
+      "replacedItem": {
+        "day": 8,
+        "publishDate": "2026-08-28",
+        "id": "reserva-limpeza-transmissao-metodo",
+        "title": "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação",
+        "summary": "Procedimento técnico baseado em orientações oficiais para remover contaminantes, verificar danos e devolver a corrente ao uso seguro.",
+        "category": "manutencao-ajustes",
+        "freshness": "evergreen",
+        "status": "blocked",
+        "productIds": [
+          "corrente-sram-nx-eagle"
+        ],
+        "heroImage": {
+          "mode": "real-context",
+          "productId": "corrente-sram-nx-eagle",
+          "relationship": "category-example",
+          "rationale": "Fotografia real do catálogo TheBiker usada apenas como exemplo visual da categoria técnica abordada."
+        },
+        "imageAssetIds": [],
+        "blockReason": "[RESEARCH_INSUFFICIENT] Rascunho bloqueado após 2 reparos: Artigo bloqueado por integridade de claims: inferencias tecnicas ausentes dos fatos confirmados: a negligencia na remocao desses residuos compromete a eficiencia da transmissao e reduz a vida util dos componentes. | estabelecer um protocolo de limpeza e inspecao e a medida tecnica fundamental para manter a precisao das trocas e a integridade estrutural do sistema. | a negligencia prolongada pode resultar em corrosao galvanica em pontos de contato entre metais distintos, tornando a remocao de componentes para manutencao futura uma tarefa complexa e potencialmente destrutiva.",
+        "failure": {
+          "code": "RESEARCH_INSUFFICIENT",
+          "retryable": false,
+          "stage": "production",
+          "message": "Rascunho bloqueado após 2 reparos: Artigo bloqueado por integridade de claims: inferencias tecnicas ausentes dos fatos confirmados: a negligencia na remocao desses residuos compromete a eficiencia da transmissao e reduz a vida util dos componentes. | estabelecer um protocolo de limpeza e inspecao e a medida tecnica fundamental para manter a precisao das trocas e a integridade estrutural do sistema. | a negligencia prolongada pode resultar em corrosao galvanica em pontos de contato entre metais distintos, tornando a remocao de componentes para manutencao futura uma tarefa complexa e potencialmente destrutiva.",
+          "recordedAt": "2026-08-28T20:47:13.897Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-28T20:47:13.897Z"
+      },
+      "replacement": {
+        "id": "reserva-scale-940-980-comparativo",
+        "title": "Scott Scale 940 e 980: diferenças verificáveis de quadro, suspensão e componentes"
+      },
+      "reason": "[RESEARCH_INSUFFICIENT] Rascunho bloqueado após 2 reparos: Artigo bloqueado por integridade de claims: inferencias tecnicas ausentes dos fatos confirmados: a negligencia na remocao desses residuos compromete a eficiencia da transmissao e reduz a vida util dos componentes. | estabelecer um protocolo de limpeza e inspecao e a medida tecnica fundamental para manter a precisao das trocas e a integridade estrutural do sistema. | a negligencia prolongada pode resultar em corrosao galvanica em pontos de contato entre metais distintos, tornando a remocao de componentes para manutencao futura uma tarefa complexa e potencialmente destrutiva."
+    },
+    {
+      "recordedAt": "2026-08-30T14:20:55.172Z",
+      "campaignId": "thebiker-rolling-2026-08-21",
+      "replacedItem": {
+        "day": 10,
+        "publishDate": "2026-08-30",
+        "id": "contingencia-spark-world-cup-documentacao",
+        "title": "Scott Spark RC World Cup: quadro, suspensão e montagem 2027",
+        "summary": "Análise da plataforma de cross-country, dos componentes, dos ajustes, do peso e do perfil de ciclista atendido pela configuração.",
+        "category": "review",
+        "freshness": "revalidate-24h",
+        "status": "blocked",
+        "productIds": [
+          "quadro-suspensao-spark-rc-world-cup-hmx-2026-flight-attendant",
+          "bicicleta-scott-spark-rc-world-cup-2027"
+        ],
+        "heroImage": {
+          "mode": "real-context",
+          "productId": "quadro-suspensao-spark-rc-world-cup-hmx-2026-flight-attendant",
+          "relationship": "category-example",
+          "rationale": "Fotografia real do catálogo TheBiker selecionada deterministicamente como exemplo visual da categoria técnica abordada."
+        },
+        "imageAssetIds": [],
+        "blockReason": "[VALIDATION_FAILED] Quarentena: artigo integral de fallback determinístico exige nova redação e revisão independente",
+        "failure": {
+          "code": "VALIDATION_FAILED",
+          "retryable": false,
+          "stage": "editorial-quarantine",
+          "message": "Artigo integral de fallback determinístico reprovado pelo gate de qualidade editorial",
+          "recordedAt": "2026-08-22T04:47:18.904Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-20T16:13:24.231Z",
+        "aiReview": {
+          "score": null,
+          "finalScore": null,
+          "finalBlockers": 1,
+          "premiumEditUsed": false,
+          "providers": {
+            "factSheet": "groq",
+            "draft": "gemini",
+            "critique": "groq",
+            "final": "gemini",
+            "finalAudit": "groq",
+            "deterministicFallback": "grounded-deterministic"
+          },
+          "generatedAt": "2026-08-20T16:13:24.231Z",
+          "contentHash": "sha256:ad39545e593baa7a5334e21b40701bf190a766e2989c798f8121ff087b034c31",
+          "sourceHash": "2c870e73b476c90cac086abe4a3e304c26d879e0ca4969ea3404e459e920fb43",
+          "deterministicFullArticleFallbackUsed": true,
+          "deterministicFullArticleFallbackTrigger": "repair-fallback"
+        }
+      },
+      "replacement": {
+        "id": "reserva-limpeza-transmissao-metodo",
+        "title": "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação"
+      },
+      "reason": "[VALIDATION_FAILED] Quarentena: artigo integral de fallback determinístico exige nova redação e revisão independente"
+    },
+    {
+      "recordedAt": "2026-08-30T19:41:09.398Z",
+      "campaignId": "thebiker-rolling-2026-08-21",
+      "replacedItem": {
+        "day": 10,
+        "publishDate": "2026-08-30",
+        "id": "contingencia-spark-world-cup-documentacao",
+        "title": "Scott Spark RC World Cup: quadro, suspensão e montagem 2027",
+        "summary": "Análise da plataforma de cross-country, dos componentes, dos ajustes, do peso e do perfil de ciclista atendido pela configuração.",
+        "category": "review",
+        "freshness": "revalidate-24h",
+        "status": "blocked",
+        "productIds": [
+          "quadro-suspensao-spark-rc-world-cup-hmx-2026-flight-attendant",
+          "bicicleta-scott-spark-rc-world-cup-2027"
+        ],
+        "heroImage": {
+          "mode": "real-context",
+          "productId": "quadro-suspensao-spark-rc-world-cup-hmx-2026-flight-attendant",
+          "relationship": "category-example",
+          "rationale": "Fotografia real do catálogo TheBiker selecionada deterministicamente como exemplo visual da categoria técnica abordada."
+        },
+        "imageAssetIds": [],
+        "blockReason": "[VALIDATION_FAILED] Quarentena: artigo integral de fallback determinístico exige nova redação e revisão independente",
+        "failure": {
+          "code": "VALIDATION_FAILED",
+          "retryable": false,
+          "stage": "editorial-quarantine",
+          "message": "Artigo integral de fallback determinístico reprovado pelo gate de qualidade editorial",
+          "recordedAt": "2026-08-22T04:47:18.904Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-20T16:13:24.231Z",
+        "aiReview": {
+          "score": null,
+          "finalScore": null,
+          "finalBlockers": 1,
+          "premiumEditUsed": false,
+          "providers": {
+            "factSheet": "groq",
+            "draft": "gemini",
+            "critique": "groq",
+            "final": "gemini",
+            "finalAudit": "groq",
+            "deterministicFallback": "grounded-deterministic"
+          },
+          "generatedAt": "2026-08-20T16:13:24.231Z",
+          "contentHash": "sha256:ad39545e593baa7a5334e21b40701bf190a766e2989c798f8121ff087b034c31",
+          "sourceHash": "2c870e73b476c90cac086abe4a3e304c26d879e0ca4969ea3404e459e920fb43",
+          "deterministicFullArticleFallbackUsed": true,
+          "deterministicFullArticleFallbackTrigger": "repair-fallback"
+        }
+      },
+      "replacement": {
+        "id": "reserva-limpeza-transmissao-metodo",
+        "title": "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação"
+      },
+      "reason": "[VALIDATION_FAILED] Quarentena: artigo integral de fallback determinístico exige nova redação e revisão independente"
+    },
+    {
+      "recordedAt": "2026-08-31T16:53:25.490Z",
+      "campaignId": "thebiker-rolling-2026-08-21",
+      "replacedItem": {
+        "day": 11,
+        "publishDate": "2026-08-31",
+        "id": "contingencia-scale-rc-team-quadro",
+        "title": "Quadro Scott Scale RC Team HMF: interfaces, padrões e verificações antes da montagem",
+        "summary": "Análise das medidas, dos padrões de montagem, das interfaces e dos componentes compatíveis com o quadro.",
+        "category": "review",
+        "freshness": "revalidate-24h",
+        "status": "blocked",
+        "productIds": [
+          "quadro-scott-scale-rc-team-hmf-2026"
+        ],
+        "heroImage": {
+          "mode": "real-context",
+          "productId": "quadro-scott-scale-rc-team-hmf-2026",
+          "relationship": "category-example",
+          "rationale": "Fotografia real do catálogo TheBiker selecionada deterministicamente como exemplo visual da categoria técnica abordada."
+        },
+        "imageAssetIds": [],
+        "blockReason": "[VALIDATION_FAILED] Quarentena: artigo integral de fallback determinístico exige nova redação e revisão independente",
+        "failure": {
+          "code": "VALIDATION_FAILED",
+          "retryable": false,
+          "stage": "editorial-quarantine",
+          "message": "Artigo integral de fallback determinístico reprovado pelo gate de qualidade editorial",
+          "recordedAt": "2026-08-22T04:47:18.904Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-20T17:33:41.925Z",
+        "aiReview": {
+          "score": null,
+          "finalScore": null,
+          "finalBlockers": 1,
+          "premiumEditUsed": false,
+          "providers": {
+            "deterministicFallback": "grounded-deterministic"
+          },
+          "generatedAt": "2026-08-20T17:33:41.925Z",
+          "contentHash": "sha256:31ec2ba3b3c3fe984b82bed36874b21cf7d10865956ab4ccf693a250e6f4992a",
+          "deterministicFullArticleFallbackUsed": true,
+          "deterministicFullArticleFallbackTrigger": "pipeline-failure"
+        }
+      },
+      "replacement": {
+        "id": "reserva-limpeza-transmissao-metodo",
+        "title": "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação"
+      },
+      "reason": "[VALIDATION_FAILED] Quarentena: artigo integral de fallback determinístico exige nova redação e revisão independente"
+    },
+    {
+      "recordedAt": "2026-08-31T16:54:33.743Z",
+      "campaignId": "thebiker-rolling-2026-08-21",
+      "replacedItem": {
+        "day": 11,
+        "publishDate": "2026-08-31",
+        "id": "reserva-limpeza-transmissao-metodo",
+        "title": "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação",
+        "summary": "Procedimento técnico baseado em orientações oficiais para remover contaminantes, verificar danos e devolver a corrente ao uso seguro.",
+        "category": "manutencao-ajustes",
+        "freshness": "evergreen",
+        "status": "blocked",
+        "productIds": [
+          "corrente-sram-nx-eagle"
+        ],
+        "heroImage": {
+          "mode": "real-context",
+          "productId": "corrente-sram-nx-eagle",
+          "relationship": "category-example",
+          "rationale": "Fotografia real do catálogo TheBiker usada apenas como exemplo visual da categoria técnica abordada."
+        },
+        "imageAssetIds": [],
+        "blockReason": "[RESEARCH_INSUFFICIENT] Rascunho bloqueado após 2 reparos: Artigo bloqueado por integridade de claims: inferencias tecnicas ausentes dos fatos confirmados: a contaminacao por detritos abrasivos, quando nao removida, atua como um agente de friccao constante, comprometendo a eficiencia da transmissao e a precisao das trocas. | no sistema de freios, a contaminacao por lama pode criar uma camada vitrea nas pastilhas, reduzindo drasticamente o coeficiente de atrito entre a pastilha e o rotor. | a negligencia na remocao desses residuos apos o pedal resulta em uma degradacao acelerada dos componentes, forcando o sistema a operar sob estresse mecanico constante e reduzindo ",
+        "failure": {
+          "code": "RESEARCH_INSUFFICIENT",
+          "retryable": false,
+          "stage": "production",
+          "message": "Rascunho bloqueado após 2 reparos: Artigo bloqueado por integridade de claims: inferencias tecnicas ausentes dos fatos confirmados: a contaminacao por detritos abrasivos, quando nao removida, atua como um agente de friccao constante, comprometendo a eficiencia da transmissao e a precisao das trocas. | no sistema de freios, a contaminacao por lama pode criar uma camada vitrea nas pastilhas, reduzindo drasticamente o coeficiente de atrito entre a pastilha e o rotor. | a negligencia na remocao desses residuos apos o pedal resulta em uma degradacao acelerada dos componentes, forcando o sistema a operar sob estresse mecanico constante e reduzindo ",
+          "recordedAt": "2026-08-31T16:53:26.186Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-31T16:53:26.186Z"
+      },
+      "replacement": {
+        "id": "reserva-scale-940-980-comparativo",
+        "title": "Scott Scale 940 e 980: diferenças verificáveis de quadro, suspensão e componentes"
+      },
+      "reason": "[RESEARCH_INSUFFICIENT] Rascunho bloqueado após 2 reparos: Artigo bloqueado por integridade de claims: inferencias tecnicas ausentes dos fatos confirmados: a contaminacao por detritos abrasivos, quando nao removida, atua como um agente de friccao constante, comprometendo a eficiencia da transmissao e a precisao das trocas. | no sistema de freios, a contaminacao por lama pode criar uma camada vitrea nas pastilhas, reduzindo drasticamente o coeficiente de atrito entre a pastilha e o rotor. | a negligencia na remocao desses residuos apos o pedal resulta em uma degradacao acelerada dos componentes, forcando o sistema a operar sob estresse mecanico constante e reduzindo "
+    },
+    {
+      "recordedAt": "2026-08-31T21:49:04.855Z",
+      "campaignId": "thebiker-rolling-2026-08-21",
+      "replacedItem": {
+        "day": 11,
+        "publishDate": "2026-08-31",
+        "id": "contingencia-scale-rc-team-quadro",
+        "title": "Quadro Scott Scale RC Team HMF: interfaces, padrões e verificações antes da montagem",
+        "summary": "Análise das medidas, dos padrões de montagem, das interfaces e dos componentes compatíveis com o quadro.",
+        "category": "review",
+        "freshness": "revalidate-24h",
+        "status": "blocked",
+        "productIds": [
+          "quadro-scott-scale-rc-team-hmf-2026"
+        ],
+        "heroImage": {
+          "mode": "real-context",
+          "productId": "quadro-scott-scale-rc-team-hmf-2026",
+          "relationship": "category-example",
+          "rationale": "Fotografia real do catálogo TheBiker selecionada deterministicamente como exemplo visual da categoria técnica abordada."
+        },
+        "imageAssetIds": [],
+        "blockReason": "[VALIDATION_FAILED] Quarentena: artigo integral de fallback determinístico exige nova redação e revisão independente",
+        "failure": {
+          "code": "VALIDATION_FAILED",
+          "retryable": false,
+          "stage": "editorial-quarantine",
+          "message": "Artigo integral de fallback determinístico reprovado pelo gate de qualidade editorial",
+          "recordedAt": "2026-08-22T04:47:18.904Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-20T17:33:41.925Z",
+        "aiReview": {
+          "score": null,
+          "finalScore": null,
+          "finalBlockers": 1,
+          "premiumEditUsed": false,
+          "providers": {
+            "deterministicFallback": "grounded-deterministic"
+          },
+          "generatedAt": "2026-08-20T17:33:41.925Z",
+          "contentHash": "sha256:31ec2ba3b3c3fe984b82bed36874b21cf7d10865956ab4ccf693a250e6f4992a",
+          "deterministicFullArticleFallbackUsed": true,
+          "deterministicFullArticleFallbackTrigger": "pipeline-failure"
+        }
+      },
+      "replacement": {
+        "id": "reserva-limpeza-transmissao-metodo",
+        "title": "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação"
+      },
+      "reason": "[VALIDATION_FAILED] Quarentena: artigo integral de fallback determinístico exige nova redação e revisão independente"
+    },
+    {
+      "recordedAt": "2026-08-31T21:50:57.501Z",
+      "campaignId": "thebiker-rolling-2026-08-21",
+      "replacedItem": {
+        "day": 11,
+        "publishDate": "2026-08-31",
+        "id": "reserva-limpeza-transmissao-metodo",
+        "title": "Limpeza da transmissão depois de chuva e lama: método, inspeção e lubrificação",
+        "summary": "Procedimento técnico baseado em orientações oficiais para remover contaminantes, verificar danos e devolver a corrente ao uso seguro.",
+        "category": "manutencao-ajustes",
+        "freshness": "evergreen",
+        "status": "blocked",
+        "productIds": [
+          "corrente-sram-nx-eagle"
+        ],
+        "heroImage": {
+          "mode": "real-context",
+          "productId": "corrente-sram-nx-eagle",
+          "relationship": "category-example",
+          "rationale": "Fotografia real do catálogo TheBiker usada apenas como exemplo visual da categoria técnica abordada."
+        },
+        "imageAssetIds": [],
+        "blockReason": "[RESEARCH_INSUFFICIENT] Rascunho bloqueado após 2 reparos: Artigo bloqueado por integridade de claims: alegações numéricas ausentes dos fatos confirmados: 0.9mm; inferencias tecnicas ausentes dos fatos confirmados: o protocolo de limpeza pos-pedal nao e apenas uma questao estetica, mas uma medida tecnica necessaria para manter a precisao das trocas e a eficiencia do sistema de transmissao. | alem disso, a precisao do indexamento das marchas e diretamente prejudicada, pois a folga excessiva entre os elos impede que as trocas ocorram no tempo e na posicao exatos projetados pelo fabricante. | em sistemas eletronicos ou mecanicos de alta precisao, essa variacao milimetr",
+        "failure": {
+          "code": "RESEARCH_INSUFFICIENT",
+          "retryable": false,
+          "stage": "production",
+          "message": "Rascunho bloqueado após 2 reparos: Artigo bloqueado por integridade de claims: alegações numéricas ausentes dos fatos confirmados: 0.9mm; inferencias tecnicas ausentes dos fatos confirmados: o protocolo de limpeza pos-pedal nao e apenas uma questao estetica, mas uma medida tecnica necessaria para manter a precisao das trocas e a eficiencia do sistema de transmissao. | alem disso, a precisao do indexamento das marchas e diretamente prejudicada, pois a folga excessiva entre os elos impede que as trocas ocorram no tempo e na posicao exatos projetados pelo fabricante. | em sistemas eletronicos ou mecanicos de alta precisao, essa variacao milimetr",
+          "recordedAt": "2026-08-31T21:49:05.551Z"
+        },
+        "attempts": 1,
+        "lastAttemptAt": "2026-08-31T21:49:05.551Z"
+      },
+      "replacement": {
+        "id": "reserva-scale-940-980-comparativo",
+        "title": "Scott Scale 940 e 980: diferenças verificáveis de quadro, suspensão e componentes"
+      },
+      "reason": "[RESEARCH_INSUFFICIENT] Rascunho bloqueado após 2 reparos: Artigo bloqueado por integridade de claims: alegações numéricas ausentes dos fatos confirmados: 0.9mm; inferencias tecnicas ausentes dos fatos confirmados: o protocolo de limpeza pos-pedal nao e apenas uma questao estetica, mas uma medida tecnica necessaria para manter a precisao das trocas e a eficiencia do sistema de transmissao. | alem disso, a precisao do indexamento das marchas e diretamente prejudicada, pois a folga excessiva entre os elos impede que as trocas ocorram no tempo e na posicao exatos projetados pelo fabricante. | em sistemas eletronicos ou mecanicos de alta precisao, essa variacao milimetr"
     }
   ]
 }

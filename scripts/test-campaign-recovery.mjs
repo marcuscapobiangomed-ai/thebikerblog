@@ -4,6 +4,7 @@ import os from 'node:os'
 import path from 'node:path'
 import campaignFixture from '../bot/editorial-campaign.json' with { type: 'json' }
 import { recoverBlockedCampaign, recoverBlockedCampaignFiles } from '../bot/src/automation/recover-blocked.js'
+import { CampaignSchema } from '../bot/src/automation/campaign.js'
 
 const transient = structuredClone(campaignFixture)
 for (const item of transient.items) if (item.status === 'blocked') { item.status = 'planned'; delete item.blockReason; delete item.failure }
@@ -18,6 +19,35 @@ function addIsolatedReserve(campaign, id) {
     heroImage: { mode: 'exact-product', productId: 'corrente-sram-nx-eagle' },
   })
   return campaign
+}
+function makeNonRaceFixture(item) {
+  item.category = 'manutencao-ajustes'
+  delete item.race
+  item.productIds = []
+  item.heroImage = { mode: 'conceptual' }
+  return item
+}
+function makeProducedFixture(campaign) {
+  const item = campaign.items.find((candidate) => candidate.status === 'planned') || campaign.items[0]
+  item.status = 'planned'
+  item.category = 'engenharia'
+  delete item.race
+  item.productIds = []
+  item.heroImage = { mode: 'conceptual' }
+  item.postPath = `_posts/drafts/${item.publishDate}-${item.id}.md`
+  item.aiReview = {
+    score: 95,
+    finalScore: 95,
+    finalBlockers: 0,
+    premiumEditUsed: false,
+    providers: { fixture: 'fixture' },
+    generatedAt: '2026-08-13T15:00:00.000Z',
+    contentHash: `sha256:${'a'.repeat(64)}`,
+  }
+  delete item.publishedAt
+  delete item.blockReason
+  delete item.failure
+  return item
 }
 const timeout = transient.items.find((item) => item.status === 'planned')
 assert.ok(timeout, 'A campanha precisa ter ao menos uma pauta planejada para o teste transitório')
@@ -53,6 +83,7 @@ groundingFailure.reserves.unshift({
   productIds: ['corrente-sram-nx-eagle'],
 })
 const ungrounded = groundingFailure.items.find((item) => item.status === 'planned')
+makeNonRaceFixture(ungrounded)
 ungrounded.status = 'blocked'
 ungrounded.attempts = 1
 ungrounded.postPath = `_posts/drafts/${ungrounded.publishDate}-${ungrounded.id}.md`
@@ -104,6 +135,7 @@ const rejectedArticleCampaign = structuredClone(campaignFixture)
 for (const item of rejectedArticleCampaign.items) if (item.status === 'blocked') { item.status = 'planned'; delete item.blockReason; delete item.failure }
 addIsolatedReserve(rejectedArticleCampaign, 'reserva-recovery-fixture-rejected-article')
 const rejectedArticle = rejectedArticleCampaign.items.find((item) => item.status === 'planned')
+makeNonRaceFixture(rejectedArticle)
 rejectedArticle.status = 'blocked'
 rejectedArticle.attempts = 1
 rejectedArticle.failure = { code: 'RESEARCH_INSUFFICIENT', retryable: false, stage: 'production', message: 'Rascunho bloqueado após 2 reparos: Artigo bloqueado por integridade de claims', recordedAt: '2026-08-13T15:09:00.000Z' }
@@ -127,8 +159,7 @@ assert.equal(structureRetry.campaign.items.find((item) => item.id === malformedD
 const finalization = structuredClone(campaignFixture)
 for (const item of finalization.items) if (item.status === 'blocked') { item.status = 'planned'; delete item.blockReason; delete item.failure }
 addIsolatedReserve(finalization, 'reserva-recovery-fixture-finalization')
-const finalizable = finalization.items.find((item) => item.status === 'published' && item.postPath && item.aiReview?.contentHash)
-assert.ok(finalizable, 'A campanha precisa ter uma pauta produzida para testar retomada de finalização')
+const finalizable = makeProducedFixture(finalization)
 finalizable.status = 'blocked'
 delete finalizable.publishedAt
 finalizable.blockReason = 'Validação final: imagem oficial ainda sem variante publicável'
@@ -185,8 +216,7 @@ if (repairedReserveItem.productIds.length > 0) {
 
 const deterministicReviewCampaign = structuredClone(campaignFixture)
 for (const item of deterministicReviewCampaign.items) if (item.status === 'blocked') { item.status = 'planned'; delete item.blockReason; delete item.failure }
-const deterministicReviewItem = deterministicReviewCampaign.items.find((item) => item.status === 'published' && item.publishDate >= '2026-08-13' && item.postPath && item.aiReview?.contentHash)
-assert.ok(deterministicReviewItem, 'A campanha precisa de um item para testar a retomada do fallback deterministico')
+const deterministicReviewItem = makeProducedFixture(deterministicReviewCampaign)
 deterministicReviewItem.status = 'blocked'
 deterministicReviewItem.attempts = 1
 deterministicReviewItem.aiReview = {
@@ -214,6 +244,7 @@ conceptualFinalization.reserves = conceptualFinalization.reserves.filter((item) 
 const conceptual = conceptualFinalization.items.find((item) => item.id === conceptualPolicyId)
   || conceptualFinalization.items.find((item) => item.id === finalizable.id)
 assert.ok(conceptual, 'A campanha precisa conter uma pauta produzida para testar o reparo visual')
+makeNonRaceFixture(conceptual)
 conceptual.id = conceptualPolicyId
 conceptual.postPath = finalizable.postPath
 conceptual.aiReview = structuredClone(finalizable.aiReview)
@@ -267,6 +298,10 @@ assert.equal(policyRetried.campaign.items.find((item) => item.id === aliasBlocke
 
 const nearMiss = structuredClone(campaignFixture)
 for (const item of nearMiss.items) if (item.status === 'blocked') { item.status = 'planned'; delete item.blockReason; delete item.failure }
+// The workflow runs this suite after producing content, so the live campaign
+// may already have consumed most of its reserve pool. Keep this recovery test
+// independent from that mutable production state.
+for (let index = 1; index <= 4; index += 1) addIsolatedReserve(nearMiss, `reserva-recovery-fixture-near-miss-${index}`)
 const shortItem = nearMiss.items.find((item) => item.id === conceptualPolicyId) || nearMiss.items.find((item) => item.status === 'planned')
 shortItem.status = 'blocked'
 shortItem.attempts = 2
@@ -374,6 +409,7 @@ addIsolatedReserve(permanent, 'reserva-recovery-fixture-permanent')
 addIsolatedReserve(permanent, 'reserva-recovery-fixture-permanent-remaining')
 const unsupported = permanent.items.find((item) => item.status === 'planned')
 assert.ok(unsupported, 'A campanha precisa ter ao menos uma pauta planejada para o teste permanente')
+makeNonRaceFixture(unsupported)
 unsupported.status = 'blocked'
 unsupported.blockReason = 'Falha editorial permanente sem estratégia segura de recuperação'
 const replaced = recoverBlockedCampaign(permanent, { now: new Date('2026-08-07T12:00:00Z') })
@@ -405,6 +441,10 @@ const legacyBlocked = legacyReserveFallback.items.find((item) => item.day === 13
 // suite runs. Give the blocked fixture its own id so the reserve selection is
 // deterministic and independent from persisted campaign state.
 legacyBlocked.id = 'legacy-research-failure-fixture'
+legacyBlocked.category = 'manutencao-ajustes'
+delete legacyBlocked.race
+legacyBlocked.productIds = []
+legacyBlocked.heroImage = { mode: 'conceptual' }
 legacyBlocked.status = 'blocked'
 legacyBlocked.attempts = 2
 legacyBlocked.blockReason = '[IMAGE_NOT_PUBLISHABLE] Fallback interno bloqueado: nenhuma fonte oficial permitida (Groq 429)'
@@ -418,11 +458,12 @@ const legacyRecovered = recoverBlockedCampaign(legacyReserveFallback, {
   maximumResearchAttempts: 2,
 })
 assert.equal(legacyRecovered.result.status, 'replaced')
-assert.equal(legacyRecovered.result.replacementId, 'reserva-diagnostico-ruidos-bike')
 const legacyReplacement = legacyRecovered.campaign.items[legacyBlocked.day - 1]
-assert.ok(legacyReplacement.productIds.includes('bicicleta-scott-scale-940-black'))
+assert.notEqual(legacyReplacement.category, 'competicoes')
+assert.ok(legacyReplacement.productIds.length > 0)
 assert.equal(legacyReplacement.heroImage.mode, 'real-context')
-assert.ok(legacyRecovered.campaign.reserves.length >= 3)
+assert.doesNotThrow(() => CampaignSchema.parse(legacyRecovered.campaign),
+  'consumir uma reserva legítima não pode tornar a campanha inválida')
 assert.ok(executableReplacement.productIds.length > 0, 'reserva comum precisa carregar evidência de produto recuperável')
 assert.ok(['exact-product', 'real-context'].includes(executableReplacement.heroImage.mode), 'reserva comum precisa carregar política visual publicável')
 assert.ok(replaced.campaign.reserves.some((reserve) => reserve.productIds.length > 0), 'reposição precisa manter ao menos uma reserva executável')

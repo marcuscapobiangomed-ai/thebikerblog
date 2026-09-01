@@ -10,6 +10,7 @@ on:
       - "TheBiker — Renovação mensal de 30 dias"
       - "TheBiker — Inteligência SEO e YouTube"
       - "TheBiker — Watchdog editorial diário"
+      - "TheBiker — Recomposição automática do buffer editorial"
       - "TheBiker — Atualização diária de corridas"
       - "Deploy Blog"
     types: [completed]
@@ -18,18 +19,144 @@ permissions:
   issues: write
   actions: read
 
+concurrency:
+  group: thebiker-operational-alerts-${{ github.event.workflow_run.id }}
+  cancel-in-progress: false
+
 jobs:
   alert:
-    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/github-script@v9
         with:
+          retries: 3
+          retry-exempt-status-codes: 400,401,403,404,422
           script: |
+            const { createHash } = require('node:crypto');
             const run = context.payload.workflow_run;
-            const title = '[AUTO] Falha operacional no blog TheBiker';
-            const body = `Falha em **${run.name}** (${run.head_sha.slice(0, 7)}). [Abrir execucao](${run.html_url}).`;
-            const { data } = await github.rest.issues.listForRepo({ ...context.repo, state: 'open', per_page: 100 });
-            const issue = data.find((entry) => entry.title === title);
-            if (issue) await github.rest.issues.createComment({ ...context.repo, issue_number: issue.number, body });
-            else await github.rest.issues.create({ ...context.repo, title, body });
+            const alertConclusions = new Set(['failure', 'timed_out', 'action_required', 'cancelled']);
+            const causeRules = [
+              ['authentication', /\b(?:invalid_grant|unauthori[sz]ed|forbidden|authentication|credential|401|403)\b/i],
+              ['rate-limit', /\b(?:rate[ -]?limit|quota|too many requests|429)\b/i],
+              ['timeout', /\b(?:timed?[ -]?out|timeout|deadline|etimedout|504)\b/i],
+              ['validation', /\b(?:validation|validate|invalid|schema|gate|bloquead[oa]|reprovad[oa])\b/i],
+              ['persistence', /\b(?:git push|rebase|persist|commit|conflict|non-fast-forward)\b/i],
+              ['dependency', /\b(?:npm err|dependency|module not found|lockfile|install)\b/i],
+              ['capacity', /\b(?:insuficiente|buffer|no progress|sem progresso|capacity)\b/i],
+            ];
+            const causeSummaries = Object.freeze({
+              authentication: 'Autenticação ou credencial rejeitada',
+              'rate-limit': 'Limite ou quota do provedor atingido',
+              timeout: 'Tempo limite excedido',
+              validation: 'Gate de validação bloqueou a execução',
+              persistence: 'Falha ao persistir ou sincronizar estado',
+              dependency: 'Falha de dependência ou instalação',
+              capacity: 'Buffer insuficiente ou sem progresso',
+              approval: 'Execução requer aprovação',
+              cancelled: 'Execução cancelada',
+              'workflow-failure': 'Falha operacional não classificada',
+            });
+            const redactSensitive = (value) => String(value || '')
+              .replace(/\b(?:bearer|basic)\s+[A-Za-z0-9._~+/=-]+/gi, '[REDACTED_AUTH]')
+              .replace(/\b(authorization|proxy-authorization|password|passwd|pwd|token|access[_-]?token|refresh[_-]?token|api[_-]?key|secret|client[_-]?secret|cookie|set-cookie|session)\b\s*[:=]\s*(?:"[^"]*"|'[^']*'|[^\s,;]+)/gi, '$1=[REDACTED]')
+              .replace(/([?&](?:key|token|access_token|api_key|signature|sig)=)[^&\s]+/gi, '$1[REDACTED]')
+              .replace(/\b(?:github_pat_|gh[pousr]_|sk-|gsk_|AIza)[A-Za-z0-9_-]{8,}\b/g, '[REDACTED_TOKEN]')
+              .replace(/\b[A-Za-z0-9+/_=-]{40,}\b/g, '[REDACTED_BLOB]');
+            const safeLabel = (value, fallback) => redactSensitive(value || fallback)
+              .replace(/[\r\n\t`<>{}\[\]]/g, ' ')
+              .replace(/\s+/g, ' ')
+              .trim()
+              .slice(0, 160) || fallback;
+
+            const expectedCancellation = run.conclusion === 'cancelled' && run.name === 'Deploy Blog';
+            if (!alertConclusions.has(run.conclusion) || expectedCancellation) {
+              core.notice(`Conclusão ${run.conclusion} não requer alerta.`);
+              return;
+            }
+            const jobs = await github.paginate(github.rest.actions.listJobsForWorkflowRun, {
+              ...context.repo,
+              run_id: run.id,
+              filter: 'latest',
+              per_page: 100,
+            });
+            const failedJobs = jobs.filter((job) => alertConclusions.has(job.conclusion));
+            const failedJob = failedJobs[0];
+            const failedStep = failedJob?.steps?.find((step) => alertConclusions.has(step.conclusion));
+            const jobName = safeLabel(failedJob?.name, 'job não identificado');
+            const stepName = safeLabel(failedStep?.name, 'step não identificado');
+            let category = run.conclusion === 'timed_out'
+              ? 'timeout'
+              : run.conclusion === 'action_required'
+                ? 'approval'
+                : run.conclusion === 'cancelled'
+                  ? 'cancelled'
+                  : 'workflow-failure';
+            let httpStatus = null;
+            let classificationText = `${jobName} ${stepName}`;
+
+            if (failedJob) {
+              try {
+                const response = await github.rest.actions.downloadJobLogsForWorkflowRun({
+                  ...context.repo,
+                  job_id: failedJob.id,
+                });
+                const log = Buffer.isBuffer(response.data)
+                  ? response.data.toString('utf8')
+                  : typeof response.data === 'string'
+                    ? response.data
+                    : Buffer.from(response.data).toString('utf8');
+                const signalLine = log.split(/\r?\n/).reverse().find((line) =>
+                  /##\[error\]|\b(?:error|falha|bloquead[oa]|insuficiente|invalid_grant|timeout|rate[ -]?limit|HTTP)\b/i.test(line),
+                );
+                if (signalLine) classificationText += ` ${redactSensitive(signalLine)}`;
+              } catch (error) {
+                core.warning(`Não foi possível classificar o log do job ${failedJob.id}; status ${error.status || 'indisponível'}.`);
+              }
+            }
+
+            const httpMatch = classificationText.match(/\b(?:HTTP(?:\/\d(?:\.\d)?)?\s*|status(?: code)?\s*[:=]?\s*)([1-5]\d{2})\b/i);
+            if (httpMatch) httpStatus = httpMatch[1];
+            const matchedCause = causeRules.find(([, pattern]) => pattern.test(classificationText));
+            if (matchedCause && !['approval', 'cancelled'].includes(category)) category = matchedCause[0];
+            const cause = `${causeSummaries[category]}${httpStatus ? ` (HTTP ${httpStatus})` : ''}`;
+            const workflowName = safeLabel(run.name, 'workflow não identificado');
+            const fingerprint = createHash('sha256')
+              .update([workflowName, jobName, stepName, run.conclusion, category, httpStatus || 'no-http'].join('|').toLowerCase())
+              .digest('hex')
+              .slice(0, 12);
+            const marker = `<!-- thebiker-failure:${fingerprint} -->`;
+            const issues = await github.paginate(github.rest.issues.listForRepo, {
+              ...context.repo,
+              state: 'open',
+              per_page: 100,
+            });
+            const issue = issues.find((entry) => entry.body?.includes(marker));
+            const previousOccurrences = Number(issue?.body?.match(/<!-- occurrences:(\d+) -->/)?.[1] || 0);
+            const occurrences = previousOccurrences + 1;
+            const firstSeen = issue?.body?.match(/<!-- first-seen:(.*?) -->/)?.[1] || run.created_at;
+            const title = `[AUTO][${fingerprint}] ${workflowName}`.slice(0, 256);
+            const body = [
+              marker,
+              `<!-- occurrences:${occurrences} -->`,
+              `<!-- first-seen:${firstSeen} -->`,
+              `Falha recorrente em **${workflowName}**.`,
+              '',
+              `- **Conclusão:** ${run.conclusion}`,
+              `- **Job:** ${jobName}`,
+              `- **Step:** ${stepName}`,
+              `- **Causa classificada:** ${cause}`,
+              `- **Fingerprint:** \`${fingerprint}\``,
+              `- **Ocorrências:** ${occurrences}`,
+              `- **Primeira ocorrência:** ${firstSeen}`,
+              `- **Última ocorrência:** ${run.updated_at || run.created_at}`,
+              `- **SHA:** \`${(run.head_sha || 'unknown').slice(0, 7)}\``,
+              `- **Execução:** [abrir logs](${run.html_url})`,
+              '',
+              'A issue é atualizada no lugar de receber um comentário por execução.',
+            ].join('\n');
+
+            if (issue) {
+              await github.rest.issues.update({ ...context.repo, issue_number: issue.number, title, body });
+            } else {
+              await github.rest.issues.create({ ...context.repo, title, body });
+            }

@@ -75,7 +75,7 @@ async function loadCampaignResearchCache({ item, today, contentType, env }) {
       cached = JSON.parse(await fs.readFile(path.join(directory, filename), 'utf8'))
       break
     } catch {
-      // O cache Ã© opcional; a pesquisa interna continua sendo a prÃ³xima camada.
+      // O cache é opcional; a pesquisa interna continua sendo a próxima camada.
     }
   }
   if (!cached || (cached.slug && cached.slug !== item.id)) return null
@@ -136,7 +136,7 @@ async function loadCampaignResearchCache({ item, today, contentType, env }) {
     sources,
     limitations: [
       ...(Array.isArray(cached.limitations) ? cached.limitations : []),
-      'Pesquisa de rede indisponÃ­vel; esta execuÃ§Ã£o reutilizou somente a ficha editorial oficial previamente validada.',
+      'Pesquisa de rede indisponível; esta execução reutilizou somente a ficha editorial oficial previamente validada.',
     ],
     grounding: {
       ...(cached.grounding || {}),
@@ -330,7 +330,7 @@ async function internalResearch({ item, internalEvidence, today, contentType, re
         sources: curatedSources,
         limitations: [
           ...(Array.isArray(research.limitations) ? research.limitations : []),
-          'Trechos oficiais mantidos em cache curado; a revalidaÃ§Ã£o HTTP foi indisponÃ­vel nesta execuÃ§Ã£o.',
+          'Trechos oficiais mantidos em cache curado; a revalidação HTTP foi indisponível nesta execução.',
         ],
         grounding: {
           ...(research.grounding || {}),

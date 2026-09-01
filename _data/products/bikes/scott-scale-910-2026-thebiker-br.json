@@ -11,7 +11,7 @@
   "storeProductUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-scale-910-2026-pre-venda1/",
   "image": "/assets/img/products/comparator/scott-scale-910-2026.webp",
   "portfolioStatus": "verified",
-  "portfolioVerifiedAt": "2026-08-14",
+  "portfolioVerifiedAt": "2026-08-21",
   "theBikerPrice": 23999,
   "frame": {
     "material": "carbon"
@@ -34,7 +34,7 @@
   "tires": {},
   "testedByTheBikerBlog": false,
   "createdAt": "2026-08-05",
-  "updatedAt": "2026-08-14",
+  "updatedAt": "2026-08-21",
   "reviewStatus": "verified",
   "sourceId": "thebiker-scott-scale-910-2026"
 }

@@ -1,0 +1,159 @@
+{
+  "slug": "reserva-addict-rc-pro-ficha-oficial",
+  "title": "Scott Addict RC Pro 2026: especificações confirmadas, preço e divergências",
+  "content_type": "review",
+  "review_method": "desk-research",
+  "tested_by_thebikerblog": false,
+  "market": "Brasil",
+  "generated_at": "2026-08-21",
+  "status": "pesquisa_concluida",
+  "sources": [
+    {
+      "name": "Scott — Addict RC Pro Bike",
+      "url": "https://www.scott-sports.com/global/en/product/scott-addict-rc-pro-bike",
+      "accessed": "2026-08-21",
+      "id": "scott-addict-rc-pro-425683",
+      "type": "manufacturer"
+    },
+    {
+      "name": "TheBiker — Bicicleta Scott Addict RC Pró Di2 2026",
+      "url": "https://thebikershop.com.br/produtos/bicicleta-scott-addict-rc-pro-di2-2026-pre-venda/",
+      "accessed": "2026-08-21",
+      "id": "thebiker-addict-rc-pro-2026",
+      "type": "store"
+    }
+  ],
+  "editorialPriority": "P1",
+  "confirmed_facts": [
+    {
+      "fact": "identity.model: Scott Addict RC Pro Bike; manufacturerModelCode: 425683",
+      "source_ids": ["scott-addict-rc-pro-425683"],
+      "evidence_quote": "Scott Addict RC Pro Bike. Model: 425683."
+    },
+    {
+      "fact": "identity.color: cumulus white/carbon black; sizes: XXS, XS, S, M, L, XL, XXL",
+      "source_ids": ["scott-addict-rc-pro-425683"],
+      "evidence_quote": "Color: cumulus white/carbon black. Size XXS XS S M L XL XXL."
+    },
+    {
+      "fact": "frame: Addict RC HMX; Road Race geometry; replaceable derailleur hanger; internal cable routing",
+      "source_ids": ["scott-addict-rc-pro-425683"],
+      "evidence_quote": "Addict RC HMX. Road Race geometry, Replaceable Derailleur Hanger. Internal cable routing."
+    },
+    {
+      "fact": "fork: Addict RC HMX Flatmount Disc; 27.2 mm eccentric carbon steerer",
+      "source_ids": ["scott-addict-rc-pro-425683"],
+      "evidence_quote": "Addict RC HMX Flatmount Disc. 27.2mm Eccentric Carbon steerer."
+    },
+    {
+      "fact": "drivetrain.rearDerailleur: Shimano Dura-Ace RD-R9250; 24 speed electronic shift system",
+      "source_ids": ["scott-addict-rc-pro-425683"],
+      "evidence_quote": "Shimano Dura-Ace RD-R9250. 24 Speed Electronic Shift System."
+    },
+    {
+      "fact": "drivetrain.frontDerailleur: Shimano Dura-Ace FD-R9250 electronic shift system",
+      "source_ids": ["scott-addict-rc-pro-425683"],
+      "evidence_quote": "Shimano Dura-Ace FD-R9250 Electronic Shift System."
+    },
+    {
+      "fact": "drivetrain.shifters: Shimano Dura-Ace ST-R9270; dual control; 24 speed electronic shift system",
+      "source_ids": ["scott-addict-rc-pro-425683"],
+      "evidence_quote": "Shimano Dura-Ace ST-R9270. Dual control 24 Speed Electronic Shift System."
+    },
+    {
+      "fact": "drivetrain.crankset: Shimano Dura-Ace FC-R9200 Hollowtech II, 52x36",
+      "source_ids": ["scott-addict-rc-pro-425683"],
+      "evidence_quote": "Shimano Dura-Ace FC-R9200. Hollowtech II 52x36."
+    },
+    {
+      "fact": "drivetrain.cassette: Shimano Dura-Ace CS-R9200-12, 11-34",
+      "source_ids": ["scott-addict-rc-pro-425683"],
+      "evidence_quote": "Shimano Dura Ace CS-R9200-12. 11-34."
+    },
+    {
+      "fact": "brakes: Shimano BR-R9270 hydraulic disc; rotors Shimano RT-CL900, 160 mm front and 140 mm rear",
+      "source_ids": ["scott-addict-rc-pro-425683"],
+      "evidence_quote": "Shimano BR-R9270 Hyd.Disc. Shimano RT-CL900 rotor 160/F and 140/R."
+    },
+    {
+      "fact": "cockpit.handlebar: Syncros IC-R100-SL carbon combo",
+      "source_ids": ["scott-addict-rc-pro-425683"],
+      "evidence_quote": "Syncros IC-R100-SL. Carbon combo."
+    },
+    {
+      "fact": "cockpit.seatpost: Syncros SP-R100-SL",
+      "source_ids": ["scott-addict-rc-pro-425683"],
+      "evidence_quote": "Seatpost. Syncros SP-R100-SL."
+    },
+    {
+      "fact": "saddle: Syncros Belcarra Regular 1.0",
+      "source_ids": ["scott-addict-rc-pro-425683"],
+      "evidence_quote": "Seat. Syncros Belcarra Regular 1.0."
+    },
+    {
+      "fact": "wheelset: Syncros Capital 1.0S 40 mm; 24 front and 24 rear; Syncros SL axle",
+      "source_ids": ["scott-addict-rc-pro-425683"],
+      "evidence_quote": "Syncros Capital 1.0S 40mm. 24 Front, 24 Rear. Syncros SL Axle."
+    },
+    {
+      "fact": "tires: Schwalbe PRO ONE TL-Easy Fold, 700x30C, Schwalbe Aerothan Tube",
+      "source_ids": ["scott-addict-rc-pro-425683"],
+      "evidence_quote": "Schwalbe PRO ONE, TL-Easy, Fold, 700x30C Schwalbe Aerothan Tube."
+    },
+    {
+      "fact": "weight.approximate: 6.7 kg; weight.maxSystemManufacturer: 120 kg including bike, rider, equipment and luggage",
+      "source_ids": ["scott-addict-rc-pro-425683"],
+      "evidence_quote": "Approx weight in KG 6.7 kg. Max. System Weight 120kg."
+    },
+    {
+      "fact": "manufacturerNotice: specifications may change without prior notice",
+      "source_ids": ["scott-addict-rc-pro-425683"],
+      "evidence_quote": "Please note that bike specifications are subject to change without prior notice."
+    },
+    {
+      "fact": "commercial.productName: Bicicleta Scott Addict RC Pró Di2 2026 - Pré Venda",
+      "source_ids": ["thebiker-addict-rc-pro-2026"],
+      "evidence_quote": "Bicicleta Scott Addict RC Pró Di2 2026 - Pré Venda."
+    },
+    {
+      "fact": "commercial.price: R$ 94.990,00; referencePrice: R$ 109.990,00; checkedAt: 2026-08-21",
+      "source_ids": ["thebiker-addict-rc-pro-2026"],
+      "evidence_quote": "R$94.990,00. R$109.990,00."
+    },
+    {
+      "fact": "commercial.stockSnapshot: page displayed 'Última peça disponível' and '1 em estoque' on 2026-08-21",
+      "source_ids": ["thebiker-addict-rc-pro-2026"],
+      "evidence_quote": "Última peça disponível! 1 em estoque."
+    },
+    {
+      "fact": "sourceConflict.maxSystemWeight: Scott manufacturer 120 kg; TheBiker store description 128 kg",
+      "source_ids": ["scott-addict-rc-pro-425683", "thebiker-addict-rc-pro-2026"],
+      "evidence_quote": "Scott: Max. System Weight 120kg. TheBiker: Peso máximo do sistema: 128 kg."
+    },
+    {
+      "fact": "sourceConflict.SP-R100-SL: Scott identifies it as seatpost; TheBiker description labels it as avanço",
+      "source_ids": ["scott-addict-rc-pro-425683", "thebiker-addict-rc-pro-2026"],
+      "evidence_quote": "Scott: Seatpost Syncros SP-R100-SL. TheBiker: Avanço Syncros SP-R100-SL."
+    }
+  ],
+  "limitations": [
+    "A equipe não realizou teste de campo nem pesagem independente desta unidade.",
+    "Preço, desconto e estoque são registros voláteis da página comercial e devem ser reconfirmados no momento da compra.",
+    "Nos conflitos identificados, a publicação usa a especificação técnica do fabricante; os detalhes permanecem restritos à auditoria interna.",
+    "A Scott informa que as especificações podem mudar sem aviso prévio."
+  ],
+  "grounding": {
+    "queries": [
+      "Scott Addict RC Pro Bike 425683 official specifications",
+      "TheBiker Scott Addict RC Pró Di2 2026"
+    ],
+    "sourceCount": 2,
+    "claimContract": "explicit-units-v1",
+    "evidenceContract": "retrieved-excerpt-v1",
+    "verificationMethod": "manual-primary-source-review",
+    "verifiedAt": "2026-08-21T22:40:05.3166530-03:00"
+  },
+  "portfolio_evidence_url": "https://thebikershop.com.br/produtos/bicicleta-scott-addict-rc-pro-di2-2026-pre-venda/",
+  "portfolio_verified_at": "2026-08-21",
+  "portfolio_evidence_scope": "exact-product"
+}

@@ -1,14 +1,14 @@
 ---
+editorial_hold_reason: "Revisão de fontes, precisão e concisão pendente"
 image_subject_id: "grupo-shimano-105-di2"
 layout: post
-published: true
+published: false
 title: "Câmbio eletrônico sob carga: ajuste e diagnóstico do Shimano Di2"
 slug: "cambio-eletronico-ajuste-diagnostico"
 date: 2026-08-08
 last_modified_at: 2026-08-09
 author: "Equipe TheBiker"
 reviewed_by: ""
-ai_reviewed_by: "TheBiker AI Editorial Gate"
 content_type: "guia-tecnico"
 audience_segment: "core_technical_cyclists"
 audience_intent: "solve_problem"
@@ -46,8 +46,8 @@ promoted_brands: ["Shimano"]
 context_only_brands: []
 portfolio_evidence_url: "https://www.thebiker.com.br/categoria/cambio-eletronico"
 portfolio_verified_at: "2026-08-05"
-editorial_status: "published"
-status: "published"
+editorial_status: "draft"
+status: "draft"
 sources:
   - name: "Shimano Di2 Rear Derailleur Dealer's Manual (PDF)"
     type: "manufacturer"
@@ -66,8 +66,6 @@ sources:
 ## Ajuste fino não é luxo: é a diferença entre uma troca limpa e uma corrente que pula
 
 O ajuste fino do <a href="https://thebikershop.com.br/componentes/cambio-traseiro/" class="thebiker-product-link" target="_blank" rel="noopener">câmbio traseiro</a> Di2 vai além do básico: ele corrige a indexação eletrônica para que cada pinhão seja engatado com a mesma suavidade, independentemente da combinação de marchas. No modo de ajuste (LED amarelo), cada toque no shifter move o câmbio em incrementos mínimos, permitindo alinhar a roldana superior exatamente sob o pinhão selecionado. Esse processo deve ser feito começando pelo segundo pinhão menor e progredindo até o maior, verificando se a <a href="https://thebikershop.com.br/componentes/corrente/" class="thebiker-product-link" target="_blank" rel="noopener">corrente</a> não hesita ao subir ou descer. Um erro comum é ajustar apenas no cavalete e não testar sob carga moderada em rotação; a tensão da corrente pode revelar desalinhamentos imperceptíveis em estático. Além disso, o parafuso B (B-screw) é crítico: com a corrente na menor coroa e maior pinhão, ele deve ser apertado até eliminar a interferência entre a gaiola e o pinhão, mas sem criar uma distância excessiva que prejudique a troca. A Shimano recomenda uma folga de sobrecarga no limite alto: após posicionar o câmbio no menor pinhão, gire o parafuso de limite alto no sentido anti-horário uma volta completa, garantindo que o câmbio não force contra o batente. Esse pequeno detalhe evita que o motor trabalhe contra um limite rígido, preservando a durabilidade do sistema. O ajuste fino é, portanto, uma combinação de precisão mecânica e eletrônica que, quando negligenciada, transforma uma troca potencialmente silenciosa em uma fonte de frustração. A indexação eletrônica do Di2 é notavelmente estável, mas não é imune a variações causadas por desgaste de componentes ou pequenos impactos. Por isso, revisitar o ajuste periodicamente é uma prática recomendada, especialmente após a troca de corrente ou pinhões. O E-TUBE PROJECT permite atualizar firmware, configurar parâmetros e diagnosticar códigos de erro, mas a ferramenta não substitui a verificação física: é preciso sentir a resposta do sistema sob carga para confirmar que a indexação está realmente correta. Muitos ciclistas subestimam a influência do parafuso B na qualidade da troca, mas uma distância inadequada entre a roldana e o pinhão pode causar desde ruídos até falhas completas na engrenagem. A recomendação da Shimano é clara e deve ser seguida sem adaptações criativas: a folga correta é aquela que elimina a interferência sem sacrificar a rapidez da troca. Esse equilíbrio é o que separa um ajuste medíocre de um ajuste de fábrica.
-
-Leia também: [Rolamentos sob carga: diagnóstico de folga e contaminação](/2026/08/reserva-rolamentos-diagnostico/) ajuda a separar falha de transmissão de ruído mecânico; [alinhamento de pinça e rotor](/2026/08/alinhamento-pinca-rotores/) cobre outro diagnóstico que não deve ser confundido com problema eletrônico.
 
 ## Decifrando os sinais: o que o LED do câmbio está tentando dizer
 

@@ -11,7 +11,7 @@
   "storeProductUrl": "https://thebikershop.com.br/produtos/bicicleta-scott-addict-50-2026-pre-venda-cumulus-white/",
   "image": "/assets/img/products/comparator/scott-addict-50-2026.webp",
   "portfolioStatus": "verified",
-  "portfolioVerifiedAt": "2026-08-14",
+  "portfolioVerifiedAt": "2026-08-21",
   "theBikerPrice": 28999,
   "frame": {
     "material": "carbon",
@@ -64,7 +64,7 @@
   "knowledgeRecord": "_data/product-knowledge/bikes/scott-addict-50-2026-thebiker-br.json",
   "testedByTheBikerBlog": false,
   "createdAt": "2026-08-04",
-  "updatedAt": "2026-08-14",
+  "updatedAt": "2026-08-21",
   "reviewStatus": "verified",
   "sourceId": "thebiker-scott-addict-50-2026"
 }
