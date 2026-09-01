@@ -20,7 +20,7 @@ assets/img/system/covers/<tipo>/
 ```
 
 O manifesto v2 registra arquivos, origem, licença, fidelidade factual, uso de IA,
-marcas e produtos retratados, ponto focal e aprovação humana.
+marcas e produtos retratados, ponto focal e aprovação pelo gate automatizado.
 
 ## Requisitos
 

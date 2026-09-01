@@ -7,7 +7,7 @@ Garantir que todo artigo publicado atenda aos padrões editoriais de transparên
 Pauta aprovada, artigo concluído para revisão, ou prazo de revisão periódica vencido.
 
 ## Responsável
-Editorial (EDI). Aprovação: Editor responsável.
+Gate editorial automatizado. O pipeline registra a decisão, os bloqueadores, o score e o hash do conteúdo.
 
 ## Entradas necessárias
 - Rascunho do artigo
@@ -22,20 +22,20 @@ Editorial (EDI). Aprovação: Editor responsável.
 4. Verificar separação entre análise documental e teste próprio
 5. Confirmar que links afiliados têm aviso ao leitor
 6. Revisar clareza, coesão e precisão
-7. Aprovar ou solicitar correções ao autor
+7. Aprovar automaticamente ou devolver para correção/repesquisa
 8. Atualizar `reviewStatus` do artigo e registrar data da revisão
 
-## Critérios de aprovação
+## Critérios de aprovação automatizada
 - Toda afirmação tem fonte rastreável
 - Preços e specs batem com o catálogo
 - Método de análise declarado
 - Aviso de afiliado presente
-- Revisão humana concluída
+- Gate automatizado sem bloqueadores, score mínimo e recibo editorial emitido
 
 ## Evidências
-- Checklist de revisão preenchido
+- Resultado das validações determinísticas e da crítica automatizada
 - Ficha de pesquisa anexada
-- Data da revisão registrada
+- Data, score, hash e fontes da decisão registrados
 
 ## Prazo
 Artigo novo: até 5 dias úteis. Revisão periódica: conforme frequência definida (30 a 180 dias).
@@ -45,7 +45,7 @@ Artigo novo: até 5 dias úteis. Revisão periódica: conforme frequência defin
 - Correções urgentes: seguir política de correções
 
 ## Forma de registrar
-Checklist no PR ou issue do artigo. Registro de revisão no metadado do conteúdo.
+Resultado no registro da campanha e no metadado do conteúdo: `ai_reviewed_by`, score final, hashes e recibo editorial.
 
 ## Resultado esperado
-Artigo publicado ou atualizado dentro dos padrões editoriais, com revisão registrada.
+Artigo publicado ou atualizado dentro dos padrões editoriais, com decisão automatizada registrada.

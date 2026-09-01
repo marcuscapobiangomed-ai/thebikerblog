@@ -6,7 +6,7 @@ description: "Guia atualizado com as bikes e componentes usados pelas equipes do
 date: 2026-07-10
 last_modified_at: 2026-07-19
 author: "Equipe The Biker Blog"
-reviewed_by: "Equipe The Biker Blog"
+reviewed_by: ""
 content_type: "noticia"
 audience_segment: "core_technical_cyclists"
 audience_intent: "follow_market_competition"

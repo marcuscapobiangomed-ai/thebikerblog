@@ -2,6 +2,16 @@ import { createHash } from "node:crypto";
 
 export const EDITORIAL_POLICY_VERSION = "thebiker-editorial-2026-08-v3";
 
+export const AUTOMATED_REVIEWER = "TheBiker AI Editorial Gate";
+
+export function assertAutomatedReviewer(article) {
+  const reviewer = String(article?.ai_reviewed_by || "").trim();
+  if (reviewer !== AUTOMATED_REVIEWER) {
+    throw new Error(`Publicação automatizada exige ai_reviewed_by: "${AUTOMATED_REVIEWER}".`);
+  }
+  return reviewer;
+}
+
 export function hashEditorialText(value) {
   const normalized = String(value ?? "").replace(/\r\n/g, "\n");
   return `sha256:${createHash("sha256").update(normalized, "utf8").digest("hex")}`;

@@ -64,7 +64,7 @@ Publicação é bloqueada quando:
 6. produto retratado não é o produto declarado;
 7. IA tenta representar produto, atleta ou evento real;
 8. há marca concorrente em destaque;
-9. aprovação humana está ausente.
+9. aprovação automatizada ou recibo do gate está ausente.
 
 ## Direção visual dos fallbacks
 

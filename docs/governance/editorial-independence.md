@@ -15,7 +15,7 @@ O blog não reivindica independência comercial em relação à TheBiker. Sua in
 - Não simular teste físico.
 - Registrar fontes, versão, mercado e data de consulta.
 - Declarar limitações técnicas relevantes mesmo em conteúdo favorável ao produto.
-- Exigir revisão humana antes da publicação.
+- Exigir que o gate automatizado confirme fontes, método, limites e ausência de bloqueadores antes da publicação.
 
 ## Transparência
 

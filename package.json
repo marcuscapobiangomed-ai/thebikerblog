@@ -22,6 +22,7 @@
     "hold:published-quality": "node scripts/enforce-published-editorial-quality.mjs --write",
     "check:published-quality": "node scripts/enforce-published-editorial-quality.mjs",
     "audit:seo": "node scripts/audit-seo.mjs",
+    "audit:citability": "node scripts/audit-citability.mjs",
     "test": "npm --prefix bot test && node scripts/test-calculators.mjs && node scripts/test-homepage-recent.mjs && node scripts/test-editorial-intelligence.mjs && node scripts/test-monthly-campaign.mjs && node scripts/test-campaign-recovery.mjs && node scripts/test-campaign-replenishment.mjs && node scripts/test-editorial-governance.mjs && node scripts/test-audience-strategy.mjs && node scripts/test-primary-navigation.mjs && node scripts/test-public-catalog.mjs && node scripts/test-workflow-resilience.mjs",
     "test:analytics": "node scripts/test-analytics-tracking.mjs",
     "intelligence:run": "node scripts/run-editorial-intelligence.mjs",

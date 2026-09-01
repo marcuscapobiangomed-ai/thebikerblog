@@ -17,7 +17,7 @@ import { buildRepairPrompt } from "./src/editorial-prompt.js";
 import { produceCampaignVisual } from "./src/campaign_finalize.js";
 import { markdownPublicationErrors, neutralizeMarkdownPolicyPhrases } from "./src/validation/markdown-publication-gates.js";
 import { orphanedCampaignDraftErrors, scheduledDraftErrors } from "./src/validation/validate-scheduled-publications.js";
-import { assertScheduledReceipt, hashEditorialText } from "./src/validation/editorial-receipt.js";
+import { assertAutomatedReviewer, assertScheduledReceipt, hashEditorialText } from "./src/validation/editorial-receipt.js";
 import { assertArticleResearchGrounding } from "./src/validation/article-research-grounding.js";
 import { assertResearchEvidenceContract } from "./src/validation/research-grounding.js";
 import { researchForPublication } from "./src/validation/publication-research.js";
@@ -106,6 +106,13 @@ assert.equal(publicationResearch.grounding.publicationPolicy, "manufacturer-prec
 assert.equal(publicationResearch.title, "Scott Addict RC Pro: preço");
 assert.equal("notes" in publicationResearch, false);
 
+assert.equal(assertAutomatedReviewer({ ai_reviewed_by: "TheBiker AI Editorial Gate" }), "TheBiker AI Editorial Gate");
+assert.throws(
+  () => assertAutomatedReviewer({ reviewed_by: "Editor humano" }),
+  /ai_reviewed_by/,
+  "A publicação não pode depender de reviewed_by humano",
+);
+
 const minimalResearch = {
   confirmed_facts: [{ fact: "frame.material: Spark RC Carbon HMX" }, { fact: "suspension.frontTravel: 120 mm" }],
   sources: [],
@@ -161,7 +168,7 @@ Texto técnico que cita o fabricante como fonte.`, {
   heroImage: { mode: "real-context", relationship: "category-example", productId: "bicicleta-eletrica-oggi" },
 });
 assert.equal(matter(neutralCategoryExample).data.brand, "");
-assert.deepEqual(matter(neutralCategoryExample).data.promoted_brands, []);
+assert.deepEqual(matter(neutralCategoryExample).data.promoted_brands, ["TheBiker"]);
 assert.match(neutralCategoryExample, /cita o fabricante como fonte/);
 const exactPromotion = normalizeCategoryExamplePromotion(`---
 brand: "Shimano"
@@ -692,7 +699,11 @@ await fs.writeFile(path.join(finalizeRoot, "content/research/campaign", `${final
 }));
 const sections = Array.from({ length: 5 }, (_, index) => `## Seção técnica ${index + 1}\n\nConteúdo técnico sustentado pelas fontes editoriais.`).join("\n\n");
 await fs.writeFile(path.join(finalizeRoot, finalizeCampaign.items[0].postPath), `---\nlayout: post\npublished: false\ndate: 2026-08-04\nlast_modified_at: 2026-08-04\ndirect_answer: "Este guia apresenta um diagnóstico técnico verificável, baseado nas fontes declaradas, para orientar ajustes sem transformar hipótese em constatação."\nimage: "/assets/img/system/covers/guia-tecnico-v2/hero-1600.webp"\nimage_mobile: "/assets/img/system/covers/guia-tecnico-v2/hero-800.webp"\nthumbnail: "/assets/img/system/covers/guia-tecnico-v2/card-640.webp"\nimage_asset_type: "system-fallback"\nimage_status: "draft"\nimage_alt: "Capa"\nimage_caption: "Capa"\nimage_credit: "TheBiker"\nimage_license: "Interno"\nreviewed_by: ""\neditorial_status: "draft"\nstatus: "draft"\nsources:\n  - name: "Scott"\n    url: "https://www.scott-sports.com/"\n---\n\n${sections}\n`);
-finalizeCampaign.items[0].aiReview.contentHash = hashEditorialText(await fs.readFile(path.join(finalizeRoot, finalizeCampaign.items[0].postPath), "utf8"));
+const automatedReviewedDraftPath = path.join(finalizeRoot, finalizeCampaign.items[0].postPath);
+const automatedReviewedDraft = (await fs.readFile(automatedReviewedDraftPath, "utf8"))
+  .replace('reviewed_by: ""', 'reviewed_by: ""\nai_reviewed_by: "TheBiker AI Editorial Gate"');
+await fs.writeFile(automatedReviewedDraftPath, automatedReviewedDraft);
+finalizeCampaign.items[0].aiReview.contentHash = hashEditorialText(automatedReviewedDraft);
 await fs.writeFile(path.join(finalizeRoot, "bot/editorial-campaign.json"), JSON.stringify(finalizeCampaign));
 const originalDraft = await fs.readFile(path.join(finalizeRoot, finalizeCampaign.items[0].postPath), "utf8");
 await assert.rejects(finalizeCampaignItem({

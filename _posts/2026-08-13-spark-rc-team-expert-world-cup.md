@@ -2,14 +2,15 @@
 image_subject_id: "bicicleta-scott-spark-rc-world-cup-20271"
 layout: post
 published: true
-title: "Spark RC Team, Expert e World Cup: três montagens, três decisões técnicas"
+title: "Spark RC Team, Expert e World Cup: comparativo técnico"
 slug: "spark-rc-team-expert-world-cup"
 date: 2026-08-13
 last_modified_at: 2026-08-13
 author: "Equipe TheBiker"
-reviewed_by: "TheBiker AI Editorial Gate"
+reviewed_by: ""
+ai_reviewed_by: "TheBiker AI Editorial Gate"
 content_type: "comparativo"
-editorial_format: "full-article-v1"
+editorial_format: "full-article-v2"
 audience_segment: "core_technical_cyclists"
 audience_intent: "compare_products"
 experience_level_target: "intermediate_advanced"
@@ -49,27 +50,33 @@ portfolio_verified_at: "2026-08-13"
 editorial_status: "published"
 status: "published"
 sources:
-  - name: "TheBiker — Bicicleta Scott Spark RC Expert 2027"
+  - id: "internal-src-1"
+    name: "TheBiker — Bicicleta Scott Spark RC Expert 2027"
     type: "store"
     url: "https://thebikershop.com.br/produtos/bicicleta-scott-spark-rc-expert-2027/"
     accessed_at: "2026-08-04"
-  - name: "Scott — página oficial da Spark RC Expert"
+  - id: "internal-src-2"
+    name: "Scott — página oficial da Spark RC Expert"
     type: "manufacturer"
     url: "https://www.scott-sports.com/global/en/product/scott-spark-rc-expert-bike"
     accessed_at: "2026-08-04"
-  - name: "TheBiker — Bicicleta Scott Spark RC Team 2027"
+  - id: "internal-src-3"
+    name: "TheBiker — Bicicleta Scott Spark RC Team 2027"
     type: "store"
     url: "https://thebikershop.com.br/produtos/bicicleta-scott-spark-rc-world-cup-2027/"
     accessed_at: "2026-08-04"
-  - name: "Scott — página oficial da Spark RC Team"
+  - id: "internal-src-4"
+    name: "Scott — página oficial da Spark RC Team"
     type: "manufacturer"
     url: "https://www.scott-sports.com/global/en/product/scott-spark-rc-team-bike"
     accessed_at: "2026-08-04"
-  - name: "TheBiker — Bicicleta Scott Spark RC World Cup 2027"
+  - id: "internal-src-5"
+    name: "TheBiker — Bicicleta Scott Spark RC World Cup 2027"
     type: "store"
     url: "https://thebikershop.com.br/produtos/bicicleta-scott-spark-rc-world-cup-20271/"
     accessed_at: "2026-08-04"
-  - name: "Scott — página oficial da Spark RC World Cup"
+  - id: "internal-src-6"
+    name: "Scott — página oficial da Spark RC World Cup"
     type: "manufacturer"
     url: "https://www.scott-sports.com/global/en/product/scott-spark-rc-world-cup-bike"
     accessed_at: "2026-08-04"
@@ -77,6 +84,8 @@ sources:
 As três Scott Spark RC deste comparativo pertencem à mesma família, mas adotam montagens distintas. A Expert reúne quadro Spark RC HMF Carbon Gen5, <a href="https://thebikershop.com.br/componentes/suspensao/" class="thebiker-product-link" target="_blank" rel="noopener">suspensão</a> Fox Factory e transmissão Shimano XT Di2. A Team combina quadro Spark RC Carbon HMF, conjunto RockShox e SRAM S1000 Eagle AXS Transmission. A World Cup traz quadro Spark RC Carbon HMX, suspensão RockShox e SRAM X01 Eagle AXS.
 
 O ponto comum está no curso: as três usam **120 mm na dianteira e 120 mm na traseira**. A escolha, portanto, passa pelo material do quadro, pelo conjunto de suspensão, pela transmissão e pelos freios de cada configuração.
+
+Leia também: [Review da Spark RC Team 2027](/2026/08/review-spark-rc-team-2027/) apresenta a montagem Team em mais detalhe; [HMF ou HMX](/2026/08/hmp-hmx-carbono-scott/) explica o material declarado nos quadros Scott.
 
 ## Spark RC Expert: HMF Carbon Gen5, Fox Factory e Shimano XT Di2
 
@@ -86,6 +95,14 @@ Na dianteira, a Expert usa **Fox 34SL Factory Grip SL, Kashima, 3P**. Na traseir
 
 A transmissão da Expert inclui **Shimano XT Di2 RD-M8250**, acionamento eletrônico sem fio e **12 velocidades**. O <a href="https://thebikershop.com.br/componentes/pedivela/" class="thebiker-product-link" target="_blank" rel="noopener">pedivela</a> é o **Shimano XT FC-M8200 com 34T**, acompanhado do <a href="https://thebikershop.com.br/componentes/cassetes/" class="thebiker-product-link" target="_blank" rel="noopener">cassete</a> **Shimano Deore CS-M7200, 10-51T**. Nos freios, a montagem usa **Shimano Deore BR-M6220 de quatro pistões**.
 
+<aside class="section-evidence" aria-label="Base documental da seção Expert">
+<p><strong>Base documental:</strong></p>
+<ul>
+<li><a href="https://www.scott-sports.com/global/en/product/scott-spark-rc-expert-bike" target="_blank" rel="noopener noreferrer">Scott — Spark RC Expert</a> — registra o quadro Spark RC HMF Carbon Gen5, o curso de 120 mm e os componentes Fox e Shimano descritos acima.</li>
+<li><a href="https://thebikershop.com.br/produtos/bicicleta-scott-spark-rc-expert-2027/" target="_blank" rel="noopener noreferrer">TheBiker — Spark RC Expert 2027</a> — confirma a identificação comercial e a montagem consultada.</li>
+</ul>
+</aside>
+
 ## Spark RC Team: quadro HMF e conjunto eletrônico SRAM
 
 A Scott Spark RC Team 2027 tem código de fabricante **425328**, cor **carbon black** e tamanhos **S, M, L e XL**. O quadro é o **Spark RC Carbon HMF**.
@@ -94,6 +111,14 @@ Assim como na Expert, a Team tem **120 mm de curso dianteiro e 120 mm de curso t
 
 Na transmissão, a Team usa **SRAM S1000 Eagle AXS Transmission**, sistema eletrônico sem fio e **12 velocidades**. Os freios são **SRAM DB6 de quatro pistões**. A combinação separa claramente a Team da Expert com Shimano e da World Cup com SRAM X01 Eagle AXS.
 
+<aside class="section-evidence" aria-label="Base documental da seção Team">
+<p><strong>Base documental:</strong></p>
+<ul>
+<li><a href="https://www.scott-sports.com/global/en/product/scott-spark-rc-team-bike" target="_blank" rel="noopener noreferrer">Scott — Spark RC Team</a> — registra o código 425328, o quadro HMF, os tamanhos, o curso, o conjunto RockShox, a transmissão SRAM S1000 e os freios DB6.</li>
+<li><a href="https://thebikershop.com.br/produtos/bicicleta-scott-spark-rc-world-cup-2027/" target="_blank" rel="noopener noreferrer">TheBiker — Spark RC Team 2027</a> — é a ficha comercial usada para identificar o conjunto e o limite de 130 kg.</li>
+</ul>
+</aside>
+
 ## Spark RC World Cup: quadro HMX e SRAM X01 Eagle AXS
 
 A Scott Spark RC World Cup 2027 tem código de fabricante **290103**, tamanhos **S, M, L e XL** e quadro **Spark RC Carbon HMX**. Expert e Team usam denominações HMF em seus respectivos quadros.
@@ -101,6 +126,14 @@ A Scott Spark RC World Cup 2027 tem código de fabricante **290103**, tamanhos *
 O curso continua em **120 mm na dianteira e 120 mm na traseira**. O garfo é o **RockShox SID Select+ RL3 Air**; o amortecedor traseiro é o **RockShox NUDE 5 RL3 Trunnion**. Team e World Cup compartilham o nome do amortecedor, mas usam garfos diferentes.
 
 A transmissão usa **SRAM X01 Eagle AXS**, com acionamento eletrônico sem fio. Os freios são **SRAM Level TLM Disc**. Em relação à Team, a World Cup muda o nível da transmissão e o conjunto de freios, embora mantenha a arquitetura de suspensão com 120 mm nos dois eixos.
+
+<aside class="section-evidence" aria-label="Base documental da seção World Cup">
+<p><strong>Base documental:</strong></p>
+<ul>
+<li><a href="https://www.scott-sports.com/global/en/product/scott-spark-rc-world-cup-bike" target="_blank" rel="noopener noreferrer">Scott — Spark RC World Cup</a> — registra o código 290103, o quadro HMX, os componentes RockShox, a transmissão SRAM X01 e os freios Level TLM.</li>
+<li><a href="https://thebikershop.com.br/produtos/bicicleta-scott-spark-rc-world-cup-20271/" target="_blank" rel="noopener noreferrer">TheBiker — Spark RC World Cup 2027</a> — confirma a ficha comercial consultada.</li>
+</ul>
+</aside>
 
 ## Comparação direta das especificações confirmadas
 
@@ -116,6 +149,15 @@ A transmissão usa **SRAM X01 Eagle AXS**, com acionamento eletrônico sem fio. 
 | Freios | Shimano Deore BR-M6220, quatro pistões | SRAM DB6, quatro pistões | SRAM Level TLM Disc |
 
 A tabela mostra três montagens com a mesma medida de curso, mas com diferenças de quadro, garfo, amortecedor, transmissão e freios. A Expert se destaca pelo conjunto Fox Factory e Shimano XT Di2; Team e World Cup seguem com RockShox e SRAM em níveis distintos.
+
+<aside class="section-evidence" aria-label="Base documental da comparação">
+<p><strong>Base documental:</strong></p>
+<ul>
+<li><a href="https://www.scott-sports.com/global/en/product/scott-spark-rc-expert-bike" target="_blank" rel="noopener noreferrer">Ficha oficial da Spark RC Expert</a> — base dos campos da coluna Expert.</li>
+<li><a href="https://www.scott-sports.com/global/en/product/scott-spark-rc-team-bike" target="_blank" rel="noopener noreferrer">Ficha oficial da Spark RC Team</a> — base dos campos da coluna Team.</li>
+<li><a href="https://www.scott-sports.com/global/en/product/scott-spark-rc-world-cup-bike" target="_blank" rel="noopener noreferrer">Ficha oficial da Spark RC World Cup</a> — base dos campos da coluna World Cup.</li>
+</ul>
+</aside>
 
 ## O que considerar antes de comparar as três versões
 

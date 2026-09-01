@@ -25,7 +25,7 @@
     "ai:doctor": "node src/ai/doctor.js",
     "images:prepare": "node src/images/prepare-variants.js",
     "automation:doctor": "node src/automation/doctor.js",
-    "automation:run": "node src/cron_post.js",
+    "automation:run": "node src/campaign_producer.js",
     "publish:scheduled": "node src/publish_scheduled.js",
     "campaign:produce": "node src/campaign_producer.js",
     "campaign:finalize": "node src/campaign_finalize.js",

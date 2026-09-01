@@ -13,7 +13,7 @@ Cada publicação precisa responder a uma demanda real melhor do que o resultado
 3. **Atualidade com vida útil:** lançamentos e competições devem explicar impacto técnico; não publicar notícia commodity sem análise própria.
 4. **Ferramentas:** calculadoras e tabelas precisam mostrar metodologia, unidade, limites e referências, além de apontar para os guias correspondentes.
 
-O primeiro mercado é pt-BR. Inglês e espanhol só entram como conteúdo realmente localizado em subdiretórios próprios, com revisão humana e `hreflang`; tradução automática em massa fica bloqueada.
+O primeiro mercado é pt-BR. Inglês e espanhol só entram como conteúdo realmente localizado em subdiretórios próprios, com validação automatizada nativa e `hreflang`; tradução automática em massa fica bloqueada.
 
 ## Contrato de uma página excelente
 
@@ -24,13 +24,14 @@ Todo artigo indexável deve conter:
 - método declarado: teste de campo, pesquisa documental, análise de dados ou combinação;
 - evidência original quando possível: medições, fotos próprias, tabelas, protocolos e limitações;
 - fontes primárias próximas das afirmações técnicas;
+- cada seção factual preserva a pergunta respondida, a afirmação, o `source_id` e um trecho de evidência da fonte;
 - imagens úteis com dimensões, texto alternativo e licença/crédito;
 - links internos para o pilar, a entidade/produto e o próximo passo do leitor;
 - CTA comercial apenas para item exato com disponibilidade verificada na TheBiker;
 - dados estruturados coerentes com o conteúdo visível;
 - revisão de atualização para preço, estoque, especificação e calendário.
 
-IA pode apoiar pesquisa, estrutura e revisão, mas nunca substituir confirmação de fatos, experiência declarada ou aprovação editorial.
+IA pode apoiar pesquisa e estrutura, mas o pipeline só aprova automaticamente quando confirma fatos, método declarado, evidência e limites; falhas retornam para correção ou nova pesquisa.
 
 ## Distribuição para busca e assistentes de IA
 
@@ -51,6 +52,8 @@ Nenhum arquivo especial garante citação por uma IA. A condição durável é p
 - `/llms.txt` funciona como mapa curto de prioridades recentes, limitado a 20 artigos;
 - `/api/content-index.json` é o catálogo completo e escalável, com resposta direta, fontes e estado de prontidão para citação;
 - o artefato Jekyll compilado é validado antes do deploy, incluindo JSON, JSON-LD e coerência entre FAQ visível e estruturada;
+- artigos novos usam `editorial_format: full-article-v2`, com contrato de evidência por seção e links internos contextuais quando houver destino relevante;
+- `ai_reviewed_by` identifica a automação; `reviewed_by` permanece opcional e não é usado como bloqueio;
 - referências conhecidas de ChatGPT, Perplexity, Claude, Gemini, Copilot, Meta AI e Poe são classificadas sem armazenar a consulta do usuário.
 
 ### Política de rastreamento
@@ -103,9 +106,9 @@ Bots de busca e recuperação usados para descoberta e respostas podem acessar o
 ### Dias 61–90 — escala controlada
 
 - atualizar vencedores, consolidar páginas fracas e expandir apenas clusters com sinal;
-- automatizar briefing, checagens e distribuição, mantendo aprovação humana;
-- decidir internacionalização com base em demanda e capacidade de revisão nativa.
+- automatizar briefing, checagens, correções e distribuição, bloqueando apenas falhas que o próprio pipeline não consegue resolver;
+- decidir internacionalização com base em demanda e capacidade de validação nativa automatizada.
 
 ## Gate antes de publicar
 
-`npm run audit:seo` deve passar junto ao gate geral. O editor ainda precisa confirmar intenção, precisão, originalidade, links internos, representação fiel do método e valor para um ciclista experiente.
+`npm run audit:seo` e `npm run audit:citability` devem passar junto ao gate geral. O primeiro verifica a superfície técnica; o segundo simula blocos de recuperação de aproximadamente 250–400 tokens e aponta dependência de contexto, entidade implícita e afirmação quantificada sem evidência local. É um preflight heurístico, não uma reprodução do algoritmo de Google ou de um chatbot. O gate automatizado confirma intenção, precisão, originalidade, evidência próxima das afirmações, links internos, representação fiel do método e valor para um ciclista experiente. O comprimento é um limite operacional, não um objetivo editorial.

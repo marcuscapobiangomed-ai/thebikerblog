@@ -7,11 +7,11 @@
       "icon": "✓",
       "color": "green",
       "minScore": 90,
-      "description": "Dados verificados em fontes oficiais e revisados pela equipe.",
+      "description": "Dados verificados em fontes oficiais e aprovados pelo gate editorial automatizado.",
       "requirements": [
         "Fonte oficial do fabricante registrada",
         "Preço atualizado nos últimos 15 dias",
-        "Revisão humana concluída",
+        "Gate editorial automatizado concluído",
         "Especificações completas"
       ]
     },
@@ -25,7 +25,7 @@
       "requirements": [
         "Fonte oficial registrada",
         "Preço pode estar desatualizado",
-        "Revisão humana pendente ou parcial"
+        "Gate editorial automatizado pendente ou parcial"
       ]
     },
     {

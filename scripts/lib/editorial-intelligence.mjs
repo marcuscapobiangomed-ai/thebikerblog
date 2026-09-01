@@ -397,7 +397,7 @@ function briefFrom(opportunity, articles, config) {
       'fontes primárias verificadas',
       'nenhuma experiência ou especificação inventada',
       'produto e CTA somente com inventário TheBiker verificado',
-      'gates determinísticos obrigatórios; revisão humana apenas para exceções',
+      'gates determinísticos e crítica automatizada obrigatórios; exceções retornam para correção automática',
     ],
     allowedBrands: config.portfolioBrands || [],
   };

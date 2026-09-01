@@ -25,8 +25,17 @@ export async function auditCampaignShadow({ root = defaultRoot, now = new Date()
   const horizon = addDays(today, horizonDays);
   const draftsRoot = path.resolve(root, "_posts/drafts");
   const findings = [];
+  // A blocked item without a draft has no editorial artifact for this gate to
+  // inspect. Its failure and retry state remain in the campaign record; only
+  // blocked items that still have a draft are actionable here.
+  const shadowCandidates = campaign.items.filter((candidate) => (
+    ACTIVE_WITH_DRAFT.has(candidate.status)
+    && candidate.publishDate >= today
+    && candidate.publishDate <= horizon
+    && (candidate.status !== "blocked" || Boolean(candidate.postPath))
+  ));
 
-  for (const item of campaign.items.filter((candidate) => ACTIVE_WITH_DRAFT.has(candidate.status) && candidate.publishDate >= today && candidate.publishDate <= horizon)) {
+  for (const item of shadowCandidates) {
     const severity = item.status === "blocked" ? "warning" : "error";
     if (!item.postPath) {
       findings.push({ itemId: item.id, status: item.status, severity, ...classifyEditorialFailure("Pauta ativa sem postPath", { stage: "shadow-gate", now }) });
@@ -59,7 +68,7 @@ export async function auditCampaignShadow({ root = defaultRoot, now = new Date()
   return {
     today,
     horizon,
-    checked: campaign.items.filter((item) => ACTIVE_WITH_DRAFT.has(item.status) && item.publishDate >= today && item.publishDate <= horizon).length,
+    checked: shadowCandidates.length,
     errors: findings.filter((finding) => finding.severity === "error").length,
     warnings: findings.filter((finding) => finding.severity === "warning").length,
     findings,

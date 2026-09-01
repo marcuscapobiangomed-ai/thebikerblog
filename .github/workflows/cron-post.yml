@@ -37,6 +37,9 @@ jobs:
       - run: npm ci
       - run: npm ci
         working-directory: bot
+      - name: Reconciliar estado editorial antes dos gates
+        run: npm run campaign:recover
+        working-directory: bot
       - name: Validar fila e configuração estrutural
         run: npm run automation:doctor
         working-directory: bot
@@ -64,6 +67,9 @@ jobs:
             bot/package-lock.json
       - run: npm ci
       - run: npm ci
+        working-directory: bot
+      - name: Reconciliar estado editorial antes dos gates
+        run: npm run campaign:recover
         working-directory: bot
       - name: Revalidar disponibilidade do catálogo TheBiker
         run: npm run catalog:revalidate

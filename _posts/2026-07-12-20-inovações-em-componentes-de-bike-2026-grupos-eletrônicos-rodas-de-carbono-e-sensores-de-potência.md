@@ -6,7 +6,7 @@ description: "Panorama 2026 dos componentes de bike: grupos eletrônicos Shimano
 date: 2026-07-12
 last_modified_at: 2026-07-19
 author: "Equipe The Biker Blog"
-reviewed_by: "Equipe The Biker Blog"
+reviewed_by: ""
 content_type: "noticia"
 audience_segment: "core_technical_cyclists"
 audience_intent: "follow_market_competition"

@@ -131,6 +131,34 @@ assert.match(generatedMarkdown, /direct_answer:/);
 assert.match(generatedMarkdown, /faq:/);
 assert.match(generatedMarkdown, /## Fontes/);
 assert.doesNotMatch(generatedMarkdown, /Como este artigo foi produzido|Análise documental baseada em especificações/);
+
+const v2Article = {
+  ...validArticle,
+  editorial_format: "full-article-v2",
+  sources: [{ ...validArticle.sources[0], id: "src-1" }],
+  sections: Array.from({ length: 5 }, (_, index) => ({
+    heading: `Critério técnico ${index + 1}`,
+    target_question: `Qual decisão o critério técnico ${index + 1} ajuda a tomar?`,
+    content: `A seção ${index + 1} registra o fato com contexto suficiente para uma decisão editorial.`,
+    claims: [{
+      statement: `A especificação documental do critério ${index + 1} está registrada na fonte.`,
+      source_ids: ["src-1"],
+      evidence_quote: "Trecho literal da fonte oficial consultada.",
+      confidence: "high",
+    }],
+    internal_links: index === 0 ? [{
+      url: "/guias/exemplo/",
+      anchor: "guia técnico relacionado",
+      reason: "Aprofunda a decisão descrita nesta seção.",
+    }] : [],
+  })),
+};
+assert.doesNotThrow(() => validateArticle(v2Article));
+assert.doesNotThrow(() => assertEditorialPublicationGates(v2Article, { AI_MIN_ARTICLE_WORDS: "1" }));
+const v2Markdown = generateMarkdown(v2Article);
+assert.match(v2Markdown, /id: "src-1"/);
+assert.match(v2Markdown, /section-evidence/);
+assert.match(v2Markdown, /guias\/exemplo/);
 assert.throws(
   () => validateArticle({
     ...validArticle,

@@ -58,7 +58,7 @@ const postFiles = fs.readdirSync(path.join(ROOT, '_posts')).filter((name) => /\.
 let publishedPosts = 0
 for (const name of postFiles) {
   const file = `_posts/${name}`
-  const { data } = frontmatter(file)
+  const { data, body } = frontmatter(file)
   if (data.published === false || data.status === 'draft' || data.editorial_status === 'draft') continue
   publishedPosts++
   requireFields(file, data, ['title', 'description', 'direct_answer', 'date', 'last_modified_at', 'author', 'content_type', 'review_method', 'image', 'image_alt'])
@@ -76,6 +76,12 @@ for (const name of postFiles) {
   if (new Date(data.last_modified_at) < new Date(data.date)) failures.push(`${file}: última modificação anterior à publicação`)
   if (/\b(o|a|de|do|da|e)$/i.test(String(data.direct_answer || '').trim())) failures.push(`${file}: resposta direta aparenta estar truncada`)
   if (!Array.isArray(data.sources) || data.sources.length === 0) failures.push(`${file}: nenhuma fonte estruturada`)
+  if (data.ai_assisted === true && String(data.ai_reviewed_by || "").trim() !== "TheBiker AI Editorial Gate") {
+    warnings.push(`${file}: ai_reviewed_by ausente ou incompatível com o gate automatizado`)
+  }
+  if (!/(?:href=["']|\]\()\/(?!\/)/i.test(body)) {
+    warnings.push(`${file}: nenhum link interno contextual detectado no corpo editorial`)
+  }
 }
 
 const productFiles = []

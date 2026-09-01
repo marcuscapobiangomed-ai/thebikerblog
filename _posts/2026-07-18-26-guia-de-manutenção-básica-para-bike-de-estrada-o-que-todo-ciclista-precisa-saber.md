@@ -1,6 +1,8 @@
 ---
 image_subject_id: "kit-de-escovas-muc-off"
 layout: post
+published: false
+status: "draft"
 title: "Manutenção Básica da Bike de Estrada: guia do ciclista"
 description: "Guia completo de manutenção básica para bikes de estrada: limpeza, lubrificação, pneus, freios a disco e transmissão. Periodicidade e ferramentas recomendadas."
 direct_answer: "A manutenção básica combina inspeção antes de cada pedal, limpeza sem jato de alta pressão, lubrificação correta da corrente e controle de pneus, freios e transmissão. Ruído persistente, folga, dano ou frenagem irregular exigem avaliação técnica antes de continuar rodando."
@@ -9,7 +11,7 @@ redirect_from:
   - /2026/07/guia-de-manutencao-basica-para-bike-de-estrada-o-que-todo-ciclista-precisa-saber/
 last_modified_at: 2026-07-19
 author: "Equipe The Biker Blog"
-reviewed_by: "Equipe The Biker Blog"
+reviewed_by: ""
 content_type: "guia-tecnico"
 audience_segment: "core_technical_cyclists"
 audience_intent: "solve_problem"
@@ -47,7 +49,7 @@ sources:
     url: "https://www.sram.com"
     accessed_at: "2026-07-19"
 affiliate_links: false
-editorial_status: "published"
+editorial_status: "draft"
 thumbnail: "/assets/img/posts/guia-manutencao-basica/card-640.webp"
 image_mobile: "/assets/img/posts/guia-manutencao-basica/hero-800.webp"
 image_manifest_version: 2
@@ -57,6 +59,8 @@ image_status: "approved"
 ## Introdução
 
 Manter sua <a href="https://thebikershop.com.br/bikes/bicicletas-estrada/" class="thebiker-product-link" target="_blank" rel="noopener">bike de estrada</a> em boas condições não exige ser mecânico — mas exige consistência. Uma manutenção preventiva simples, feita a cada 200-300 km, aumenta a vida útil dos componentes, melhora o desempenho e, acima de tudo, garante sua segurança.
+
+Para sintomas específicos, este guia deve ser combinado com o [diagnóstico do câmbio eletrônico](/2026/08/cambio-eletronico-ajuste-diagnostico/) e com o [roteiro para localizar folga em rolamentos](/2026/08/rolamentos-sob-carga-diagnostico/); eles tratam sinais que não cabem em uma inspeção genérica.
 
 Este guia cobre o essencial: limpeza, lubrificação, <a href="https://thebikershop.com.br/componentes/pneus-para-ciclismo/" class="thebiker-product-link" target="_blank" rel="noopener">pneus</a>, freios e transmissão.
 

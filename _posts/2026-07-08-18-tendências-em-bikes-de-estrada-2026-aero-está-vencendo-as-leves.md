@@ -6,7 +6,7 @@ description: "Análise da tendência de bikes aerodinâmicas vs leves em 2026, c
 date: 2026-07-08
 last_modified_at: 2026-07-19
 author: "Equipe The Biker Blog"
-reviewed_by: "Equipe The Biker Blog"
+reviewed_by: ""
 content_type: "noticia"
 audience_segment: "core_technical_cyclists"
 audience_intent: "follow_market_competition"

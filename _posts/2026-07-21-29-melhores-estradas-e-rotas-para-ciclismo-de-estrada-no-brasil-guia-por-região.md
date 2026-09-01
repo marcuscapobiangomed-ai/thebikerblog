@@ -57,6 +57,8 @@ image_status: "approved"
 
 O Brasil oferece uma diversidade incrível de rotas para ciclismo de estrada. Das serras do Sul às estradas litorâneas do Nordeste, cada região tem experiências únicas para ciclistas de todos os níveis. Este guia reúne as rotas mais emblemáticas do país.
 
+Antes de escolher uma rota longa, compare também a configuração do equipamento: o [review documental da Scott Addict RC 20](/2026/08/review-addict-rc-20/) ajuda a separar especificações confirmadas de impressões que dependeriam de teste presencial.
+
 ## Região Norte
 
 **Transamazônica (BR-230) — PA/AM**
