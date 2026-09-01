@@ -2,7 +2,7 @@
 image_subject_id: "bicicleta-scott-addict-50-2026-pre-venda-1bxzy"
 layout: post
 published: false
-title: "Scott Addict 50 vs Addict RC 20: diferenças"
+title: "Scott Addict 50 e Addict RC 20: duas propostas de estrada confrontadas pelas fichas oficiais"
 slug: "scott-addict-50-e-addict-rc-20-duas-propostas-de-estrada-confrontadas-pelas-fichas-oficiais"
 date: 2026-08-20
 last_modified_at: 2026-08-20
@@ -28,7 +28,7 @@ price_currency: "BRL"
 price_checked_at: "2026-08-14"
 category: "comparativos"
 tags: ["ciclismo", "dados", "ficha-tecnica"]
-description: "Comparativo documental da Scott Addict 50 e Addict RC 20, baseado em fichas oficiais, limites e lacunas verificáveis."
+description: "Leitura documental de Scott Addict 50 e Addict RC 20: duas propostas de estrada confrontadas pelas fichas oficiais, organizada por registros oficiais, limites e lacunas que precisam permanecer"
 direct_answer: "Use esta ficha como roteiro documental: confronte cada dado com a fonte oficial, registre lacunas e nao trate a leitura como teste presencial ou promessa de desempenho."
 faq:
   - question: "Como usar esta ficha técnica sem extrapolar os dados?"
@@ -75,7 +75,7 @@ Como este artigo foi produzido: leitura documental de fontes oficiais e registro
 
 ## Escopo e identificacao dos modelos
 
-Este comparativo parte de duas identificacoes documentais: <a href="https://thebikershop.com.br/produtos/bicicleta-scott-addict-50-2026-pre-venda-cumulus-white/" class="thebiker-product-link" target="_blank" rel="noopener">Bicicleta Scott Addict 50 2026 - Pré Venda</a> e <a href="https://thebikershop.com.br/produtos/bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9/" class="thebiker-product-link" target="_blank" rel="noopener">Bicicleta Scott Addict RC 20 Di2 2026 - Pré Venda</a>. A pesquisa nao trata a leitura como teste de campo; cada afirmacao permanece ligada ao registro recuperado e ao limite declarado pela fonte.
+Este comparativo parte de duas identificacoes documentais: <a href="https://thebikershop.com.br/produtos/bicicleta-scott-addict-50-2026-pre-venda-flame-orange/" class="thebiker-product-link" target="_blank" rel="noopener">Bicicleta Scott Addict 50 2026 - Pré Venda</a> e <a href="https://thebikershop.com.br/produtos/bicicleta-scott-addict-rc-20-di2-2026-pre-venda-vzvx9/" class="thebiker-product-link" target="_blank" rel="noopener">Bicicleta Scott Addict RC 20 Di2 2026 - Pré Venda</a>. A pesquisa nao trata a leitura como teste de campo; cada afirmacao permanece ligada ao registro recuperado e ao limite declarado pela fonte.
 
 Comece pela pagina oficial de cada modelo e registre o nome exatamente como aparece. Em seguida, anote qual fonte corresponde a cada conjunto, para que uma especificacao nao seja transferida de um item para outro.
 
@@ -91,7 +91,7 @@ A regra vale tambem para uma nova versao.
 
 ## Como separar as fichas consultadas
 
-A primeira ficha nomeia <a href="https://thebikershop.com.br/produtos/bicicleta-scott-addict-50-2026-pre-venda-flame-orange/" class="thebiker-product-link" target="_blank" rel="noopener">Bicicleta Scott Addict 50 2026 - Pré Venda</a>; a segunda registra Bicicleta Scott Addict RC 20 Di2 2026 - Pré Venda. Essa separacao e importante porque nomes comerciais parecidos podem reunir montagens diferentes, e o artigo so usa a descricao associada a cada fonte.
+A primeira ficha nomeia <a href="https://thebikershop.com.br/produtos/bicicleta-scott-addict-50-2026-pre-venda-1bxzy/" class="thebiker-product-link" target="_blank" rel="noopener">Bicicleta Scott Addict 50 2026 - Pré Venda</a>; a segunda registra Bicicleta Scott Addict RC 20 Di2 2026 - Pré Venda. Essa separacao e importante porque nomes comerciais parecidos podem reunir montagens diferentes, e o artigo so usa a descricao associada a cada fonte.
 
 Abra o registro de identidade, confira modelo, cor e codigo quando houver, e copie a grafia para a planilha de consulta. Marque como pendente qualquer campo que apareca somente em uma das paginas.
 
@@ -171,7 +171,7 @@ A unidade acompanha o valor em qualquer revisao.
 
 ## Campos comuns e campos exclusivos
 
-Alguns campos se repetem entre os produtos; outros aparecem somente uma vez. O registro de referencia para esta leitura e <a href="https://thebikershop.com.br/produtos/bicicleta-scott-addict-50-2026-pre-venda-1bxzy/" class="thebiker-product-link" target="_blank" rel="noopener">Bicicleta Scott Addict 50 2026 - Pré Venda</a>, e ele serve para demonstrar como o artigo distingue dado comum de campo exclusivo.
+Alguns campos se repetem entre os produtos; outros aparecem somente uma vez. O registro de referencia para esta leitura e <a href="https://thebikershop.com.br/produtos/bicicleta-scott-addict-50-2026-pre-venda-cumulus-white/" class="thebiker-product-link" target="_blank" rel="noopener">Bicicleta Scott Addict 50 2026 - Pré Venda</a>, e ele serve para demonstrar como o artigo distingue dado comum de campo exclusivo.
 
 Crie duas listas: caracteristicas presentes nos dois registros e caracteristicas localizadas em apenas um. Inclua tamanho, cor, padrao e codigo quando estiverem escritos na fonte, sem harmonizar grafias diferentes.
 

@@ -6,7 +6,6 @@ import { CampaignSchema, publicCampaignSummary, selectProductionCandidate } from
 import { GroundedResearcher } from './automation/grounded-research.js'
 import { hashEditorialText } from './validation/editorial-receipt.js'
 import { classifyEditorialFailure } from './validation/editorial-failures.js'
-import { RaceProgramSchema, selectRaceEventsForEditorialItem, validateRaceEditorialStructure } from './automation/race-program.js'
 import { linkTheBikerProducts, loadTheBikerLinkData } from './editorial/product-linker.js'
 import { assertResearchGrounding } from './validation/research-grounding.js'
 import { assertArticleResearchGrounding } from './validation/article-research-grounding.js'
@@ -67,14 +66,7 @@ export async function runCampaignProducer({ root = defaultRoot, env = process.en
   if (env.AUTOMATION_DRY_RUN === 'true') return { status: 'ready', itemId: item.id }
   const today = now.toISOString().slice(0, 10)
   try {
-    let raceEvents = []
-    if (item.race) {
-      const raceProgram = RaceProgramSchema.parse(JSON.parse(await fs.readFile(path.join(root, '_data/race-events.json'), 'utf8')))
-      raceEvents = selectRaceEventsForEditorialItem(item, raceProgram)
-      if (item.race.eventIds.length === 0 && raceEvents.length > 0) item.race.eventIds = raceEvents.map((event) => event.id)
-      validateRaceEditorialStructure(campaign, raceProgram)
-      if (raceEvents.length !== item.race.eventIds.length || raceEvents.length === 0) throw new Error('Pauta de corrida sem evento oficial completo no registro editorial')
-    }
+    if (item.race) item.race = undefined
     const knowledge = await knowledgeEvidence(root, item)
     if (item.productIds.length === 0 && knowledge.inferredProductIds.length > 0) item.productIds = knowledge.inferredProductIds
     item.attempts = (item.attempts || 0) + 1
@@ -84,13 +76,8 @@ export async function runCampaignProducer({ root = defaultRoot, env = process.en
     if (['exact-product', 'real-context'].includes(item.heroImage?.mode)) {
       await assertCampaignVisualAvailable({ root, item, approvedAt: today })
     }
-    const research = await researcher.research({ item, internalEvidence: knowledge.evidence, raceEvents, today })
+    const research = await researcher.research({ item, internalEvidence: knowledge.evidence, today })
     assertResearchGrounding(research, { requireFactReferences: true })
-    if (item.race) {
-      if (!Array.isArray(research.sources) || research.sources.length === 0) throw new Error('Pesquisa de corrida sem fontes oficiais rastreáveis')
-      item.race.sourceStatus = 'verified'
-      item.race.sourceVerifiedAt = now.toISOString()
-    }
     const researchDir = path.join(root, 'content/research/campaign')
     await fs.mkdir(researchDir, { recursive: true })
     await fs.writeFile(path.join(researchDir, `${item.id}.json`), JSON.stringify(research, null, 2) + '\n')

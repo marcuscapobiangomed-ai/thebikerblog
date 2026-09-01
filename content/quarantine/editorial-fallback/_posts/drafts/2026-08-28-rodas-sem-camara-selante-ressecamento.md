@@ -1,13 +1,13 @@
 ---
-image_subject_id: "pedivela-sram-gx-eagle-carbon-dub-175mm"
+image_subject_id: "selante-muc-off-mtb-puncture-hassle-500ml"
 layout: post
 published: false
-title: "Movimento central: rosca, press-fit e instalação cuidadosa"
-slug: "movimento-central-rosca-press-fit-e-instalacao-cuidadosa"
-date: 2026-08-27
+title: "Rodas sem câmara: volume de selante e sinais de ressecamento"
+slug: "rodas-sem-camara-volume-de-selante-e-sinais-de-ressecamento"
+date: 2026-08-28
 last_modified_at: 2026-08-17
 author: "Equipe TheBiker"
-reviewed_by: "TheBiker AI Editorial Gate"
+reviewed_by: ""
 content_type: "guia-tecnico"
 editorial_format: "full-article-v1"
 audience_segment: "core_technical_cyclists"
@@ -28,21 +28,21 @@ price_currency: "BRL"
 price_checked_at: "2026-08-17"
 category: "guia-tecnico"
 tags: ["ciclismo", "dados", "ficha-tecnica"]
-description: "Leitura documental de Movimento central: rosca, press-fit e instalação cuidadosa, organizada por registros oficiais, limites e lacunas que precisam permanecer visiveis."
+description: "Leitura documental de Rodas sem câmara: volume de selante e sinais de ressecamento, organizada por registros oficiais, limites e lacunas que precisam permanecer visiveis."
 direct_answer: "Use esta ficha como roteiro documental: confronte cada dado com a fonte oficial, registre lacunas e nao trate a leitura como teste presencial ou promessa de desempenho."
 faq:
   - question: "Como usar esta ficha técnica sem extrapolar os dados?"
     answer: "Leia cada registro junto da fonte oficial, confirme a identificação do item e mantenha como lacuna tudo o que não estiver explicitamente documentado."
   - question: "A leitura documental substitui um teste presencial?"
     answer: "Não. O artigo organiza dados rastreáveis e limites de consulta; a decisão final deve considerar a documentação específica e a avaliação apropriada."
-image: "/assets/img/posts/movimento-central-rosca-pressfit/hero-1600.webp"
-image_mobile: "/assets/img/posts/movimento-central-rosca-pressfit/hero-800.webp"
-thumbnail: "/assets/img/posts/movimento-central-rosca-pressfit/card-640.webp"
+image: "/assets/img/posts/rodas-sem-camara-selante-ressecamento/hero-1600.webp"
+image_mobile: "/assets/img/posts/rodas-sem-camara-selante-ressecamento/hero-800.webp"
+thumbnail: "/assets/img/posts/rodas-sem-camara-selante-ressecamento/card-640.webp"
 image_manifest_version: 2
 image_asset_type: "official-product-photo"
 image_status: "approved"
-image_alt: "Pedivela Sram GX Eagle Carbon Dub 175mm em fotografia oficial de TheBiker Shop"
-image_caption: "Pedivela Sram GX Eagle Carbon Dub 175mm, em fotografia oficial de TheBiker Shop."
+image_alt: "Selante Muc Off MTB Puncture Hassle 500ml em fotografia oficial de TheBiker Shop"
+image_caption: "Selante Muc Off MTB Puncture Hassle 500ml, em fotografia oficial de TheBiker Shop."
 image_credit: "TheBiker Shop"
 image_license: "Uso editorial no blog oficial TheBiker"
 affiliate_links: false
@@ -51,23 +51,23 @@ promoted_brands: []
 context_only_brands: []
 portfolio_evidence_url: "https://thebikershop.com.br/componentes/"
 portfolio_verified_at: "2026-08-17"
-editorial_status: "reviewed"
-status: "scheduled"
+editorial_status: "draft"
+status: "draft"
 sources:
-  - name: "SRAM — Road AXS and XPLR AXS User Manual"
+  - name: "Zipp — Ride Essentials"
     type: "manufacturer"
-    url: "https://docs.sram.com/s/RoadAXSandXPLRAXSUserManual.html"
+    url: "https://www.sram.com/en/zipp/learn/zipp-wheels-welcome-guide/ride-essentials"
     accessed_at: "2026-08-17"
-  - name: "SRAM — DUB PressFit Bottom Bracket"
+  - name: "Zipp — Wheel Care and Maintenance"
     type: "manufacturer"
-    url: "https://www.sram.com/en/service/models/bb-dub-pf-a1"
+    url: "https://www.sram.com/en/zipp/learn/wheel-care-and-maintenance"
     accessed_at: "2026-08-17"
 ---
 Como este artigo foi produzido: leitura documental de fontes oficiais e registros rastreáveis. A equipe não realizou teste presencial.
 
 ## Identidade e escopo da ficha
 
-Este ficha editorial parte de duas identificacoes documentais: <a href="https://thebikershop.com.br/componentes/movimento-central/" class="thebiker-product-link" target="_blank" rel="noopener">Movimento central</a>: rosca, press-fit e instalação cuidadosa e o segundo modelo listado na pesquisa. A pesquisa nao trata a leitura como teste de campo; cada afirmacao permanece ligada ao registro recuperado e ao limite declarado pela fonte.
+Este ficha editorial parte de duas identificacoes documentais: Rodas sem câmara: volume de selante e sinais de ressecamento e o segundo modelo listado na pesquisa. A pesquisa nao trata a leitura como teste de campo; cada afirmacao permanece ligada ao registro recuperado e ao limite declarado pela fonte.
 
 Comece pela pagina oficial de cada modelo e registre o nome exatamente como aparece. Em seguida, anote qual fonte corresponde a cada conjunto, para que uma especificacao nao seja transferida de um item para outro.
 
@@ -83,7 +83,7 @@ A regra vale tambem para uma nova versao.
 
 ## Como conferir o modelo consultado
 
-A primeira ficha nomeia Movimento central: rosca, press-fit e instalação cuidadosa; a segunda registra o segundo modelo listado na pesquisa. Essa separacao e importante porque nomes comerciais parecidos podem reunir montagens diferentes, e o artigo so usa a descricao associada a cada fonte.
+A primeira ficha nomeia Rodas sem câmara: volume de selante e sinais de ressecamento; a segunda registra o segundo modelo listado na pesquisa. Essa separacao e importante porque nomes comerciais parecidos podem reunir montagens diferentes, e o artigo so usa a descricao associada a cada fonte.
 
 Abra o registro de identidade, confira modelo, cor e codigo quando houver, e copie a grafia para a planilha de consulta. Marque como pendente qualquer campo que apareca somente em uma das paginas.
 
@@ -99,7 +99,7 @@ O registro fica pronto para a proxima checagem.
 
 ## Quadro e materiais localizados
 
-No quadro e na geometria, a evidencia localizada registra: No procedimento SRAM para BSA, a cúpula do lado direito usa rosca reversa.. O comparativo apresenta esse campo como dado de especificacao, sem converter material ou nome de tubo em promessa de resposta observada.
+No quadro e na geometria, a evidencia localizada registra: O selante ajuda a manter a vedação entre <a href="https://thebikershop.com.br/componentes/pneus-para-ciclismo/" class="thebiker-product-link" target="_blank" rel="noopener">pneu</a>, aro e válvula e a selar pequenos furos.. O comparativo apresenta esse campo como dado de especificacao, sem converter material ou nome de tubo em promessa de resposta observada.
 
 Leia a linha completa da ficha, incluindo qualificadores como material, serie, tecnologia ou padrao de montagem. Registre a frase inteira antes de resumir, pois o qualificativo pode ser parte da identificacao do quadro.
 
@@ -115,7 +115,7 @@ A frase completa conserva o contexto original.
 
 ## Suspensao e componentes descritos
 
-A parte de suspensao aparece na fonte como Na instalação PressFit, a SRAM orienta usar uma prensa de <a href="https://thebikershop.com.br/componentes/rolamentos/" class="thebiker-product-link" target="_blank" rel="noopener">rolamentos</a> ou de direção e manter o tubo central paralelo.. A frase e mantida em seu contexto para diferenciar modelo, curso, sistema e componente, sem inferir sensacoes ou desempenho a partir de uma unica linha.
+A parte de suspensao aparece na fonte como A quantidade deve seguir a recomendação do fabricante do selante para o tamanho do pneu.. A frase e mantida em seu contexto para diferenciar modelo, curso, sistema e componente, sem inferir sensacoes ou desempenho a partir de uma unica linha.
 
 Separe garfo, amortecedor, curso, trava e ajuste em linhas distintas quando esses campos existirem. Depois, associe cada linha ao modelo correto e preserve a unidade exatamente como foi publicada.
 
@@ -131,7 +131,7 @@ O manual continua sendo a referencia do conjunto.
 
 ## Transmissao e montagem registrada
 
-Na transmissao, a base recuperada e: A página do DUB PressFit lista diferentes tipos de caixa, incluindo PF 86.5, PF 89.5 e PF 92.. O dado entra na comparacao como identificacao de montagem e nao como classificacao automatica de troca, durabilidade ou faixa de uso.
+Na transmissao, a base recuperada e: O nível de selante diminui com o tempo, pode secar e deve ser reabastecido conforme a condição do sistema e a orientação do fabricante.. O dado entra na comparacao como identificacao de montagem e nao como classificacao automatica de troca, durabilidade ou faixa de uso.
 
 Confira cambio, <a href="https://thebikershop.com.br/componentes/cassetes/" class="thebiker-product-link" target="_blank" rel="noopener">cassete</a>, <a href="https://thebikershop.com.br/componentes/pedivela/" class="thebiker-product-link" target="_blank" rel="noopener">pedivela</a>, <a href="https://thebikershop.com.br/componentes/corrente/" class="thebiker-product-link" target="_blank" rel="noopener">corrente</a> e quantidade de velocidades em campos separados. Para cada componente, mantenha a fonte e a data de acesso ao lado do valor, mesmo quando a pagina de loja resuma a montagem.
 
@@ -147,7 +147,7 @@ A fonte comercial nao substitui a fonte tecnica.
 
 ## Freios, rodas e pneus informados
 
-Freios, rodas e <a href="https://thebikershop.com.br/componentes/pneus-para-ciclismo/" class="thebiker-product-link" target="_blank" rel="noopener">pneus</a> aparecem nos registros como No procedimento SRAM para BSA, a cúpula do lado direito usa rosca reversa.. O texto organiza esses dados para leitura lado a lado, sem usar o nome do componente como atalho para potencia, aderencia ou seguranca.
+Freios, rodas e pneus aparecem nos registros como O selante ajuda a manter a vedação entre pneu, aro e válvula e a selar pequenos furos.. O texto organiza esses dados para leitura lado a lado, sem usar o nome do componente como atalho para potencia, aderencia ou seguranca.
 
 Anote tipo de freio, rotor, aro, medida e carcaca apenas quando cada item estiver explicito. A unidade e o sufixo fazem parte do dado e nao devem ser removidos durante a transcricao.
 
@@ -163,7 +163,7 @@ A unidade acompanha o valor em qualquer revisao.
 
 ## Tamanhos, cores e campos comuns
 
-Alguns campos se repetem entre os produtos; outros aparecem somente uma vez. O registro de referencia para esta leitura e Na instalação PressFit, a SRAM orienta usar uma prensa de rolamentos ou de direção e manter o tubo central paralelo., e ele serve para demonstrar como o artigo distingue dado comum de campo exclusivo.
+Alguns campos se repetem entre os produtos; outros aparecem somente uma vez. O registro de referencia para esta leitura e A quantidade deve seguir a recomendação do fabricante do selante para o tamanho do pneu., e ele serve para demonstrar como o artigo distingue dado comum de campo exclusivo.
 
 Crie duas listas: caracteristicas presentes nos dois registros e caracteristicas localizadas em apenas um. Inclua tamanho, cor, padrao e codigo quando estiverem escritos na fonte, sem harmonizar grafias diferentes.
 
@@ -179,7 +179,7 @@ A leitura final deve manter essa separacao.
 
 ## O que a documentacao nao responde
 
-As diferencas confirmadas sao apresentadas por campo, nao por adjetivo. Neste conjunto, a pesquisa tambem registra A página do DUB PressFit lista diferentes tipos de caixa, incluindo PF 86.5, PF 89.5 e PF 92., enquanto os demais pontos dependem das linhas tecnicas ja descritas nas secoes anteriores.
+As diferencas confirmadas sao apresentadas por campo, nao por adjetivo. Neste conjunto, a pesquisa tambem registra O nível de selante diminui com o tempo, pode secar e deve ser reabastecido conforme a condição do sistema e a orientação do fabricante., enquanto os demais pontos dependem das linhas tecnicas ja descritas nas secoes anteriores.
 
 Ao redigir a tabela final, use uma coluna para cada modelo e uma coluna de fonte. Escreva "nao localizado" quando o dado nao aparecer; essa expressao e mais fiel do que estimar ou importar uma especificacao vizinha.
 
@@ -227,6 +227,6 @@ O historico ajuda a explicar futuras alteracoes.
 
 ## De onde vêm os dados desta análise
 
-- **SRAM — Road AXS and XPLR AXS User Manual** (manufacturer) — https://docs.sram.com/s/RoadAXSandXPLRAXSUserManual.html — acessado em 2026-08-17
-- **SRAM — DUB PressFit Bottom Bracket** (manufacturer) — https://www.sram.com/en/service/models/bb-dub-pf-a1 — acessado em 2026-08-17
+- **Zipp — Ride Essentials** (manufacturer) — https://www.sram.com/en/zipp/learn/zipp-wheels-welcome-guide/ride-essentials — acessado em 2026-08-17
+- **Zipp — Wheel Care and Maintenance** (manufacturer) — https://www.sram.com/en/zipp/learn/wheel-care-and-maintenance — acessado em 2026-08-17
 

@@ -101,8 +101,6 @@ const mimeTypes = {
 
 const homeHtml = await renderHome();
 const pageRoutes = new Map([
-  ["/corridas/", await renderPage("corridas.md", "/corridas/")],
-  ["/corridas/detalhes/", await renderPage("corridas-detalhes.md", "/corridas/detalhes/")],
   ["/calculadoras/", await renderPage("calculadoras.html", "/calculadoras/")],
   ["/calculadoras/tamanho-road-bike/", await renderPage("calculadora-tamanho.html", "/calculadoras/tamanho-road-bike/")],
   ["/calculadoras/relacao-marchas/", await renderPage("calculadora-marchas.html", "/calculadoras/relacao-marchas/")],

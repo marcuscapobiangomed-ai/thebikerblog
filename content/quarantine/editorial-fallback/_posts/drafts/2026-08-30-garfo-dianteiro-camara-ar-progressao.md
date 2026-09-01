@@ -7,7 +7,7 @@ slug: "garfo-dianteiro-camara-de-ar-progressao-e-ajuste-da-compressao"
 date: 2026-08-30
 last_modified_at: 2026-08-17
 author: "Equipe TheBiker"
-reviewed_by: "TheBiker AI Editorial Gate"
+reviewed_by: ""
 content_type: "guia-tecnico"
 editorial_format: "full-article-v1"
 audience_segment: "core_technical_cyclists"
@@ -51,8 +51,8 @@ promoted_brands: []
 context_only_brands: []
 portfolio_evidence_url: "https://thebikershop.com.br/componentes/"
 portfolio_verified_at: "2026-08-17"
-editorial_status: "reviewed"
-status: "scheduled"
+editorial_status: "draft"
+status: "draft"
 sources:
   - name: "RockShox — Suspension Fine Tuning"
     type: "manufacturer"

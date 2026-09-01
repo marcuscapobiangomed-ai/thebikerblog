@@ -1,13 +1,13 @@
 ---
-image_subject_id: "kit-reparo-suspensao-rock-shox-sid-flight-attendant"
+image_subject_id: "fita-de-guidao-supacaz-super-sticky-preta"
 layout: post
 published: false
-title: "Suspensão traseira com link: como a alavancagem altera a curva de resposta"
-slug: "suspensao-traseira-com-link-como-a-alavancagem-altera-a-curva-de-resposta"
-date: 2026-08-25
+title: "Checklist de montagem do cockpit: fita, comandos e torque"
+slug: "checklist-de-montagem-do-cockpit-fita-comandos-e-torque"
+date: 2026-08-23
 last_modified_at: 2026-08-17
 author: "Equipe TheBiker"
-reviewed_by: "TheBiker AI Editorial Gate"
+reviewed_by: ""
 content_type: "guia-tecnico"
 editorial_format: "full-article-v1"
 audience_segment: "core_technical_cyclists"
@@ -28,46 +28,46 @@ price_currency: "BRL"
 price_checked_at: "2026-08-17"
 category: "guia-tecnico"
 tags: ["ciclismo", "dados", "ficha-tecnica"]
-description: "Leitura documental de Suspensão traseira com link: como a alavancagem altera a curva de resposta, organizada por registros oficiais, limites e lacunas que precisam permanecer visiveis."
+description: "Leitura documental de Checklist de montagem do cockpit: fita, comandos e torque, organizada por registros oficiais, limites e lacunas que precisam permanecer visiveis."
 direct_answer: "Use esta ficha como roteiro documental: confronte cada dado com a fonte oficial, registre lacunas e nao trate a leitura como teste presencial ou promessa de desempenho."
 faq:
   - question: "Como usar esta ficha técnica sem extrapolar os dados?"
     answer: "Leia cada registro junto da fonte oficial, confirme a identificação do item e mantenha como lacuna tudo o que não estiver explicitamente documentado."
   - question: "A leitura documental substitui um teste presencial?"
     answer: "Não. O artigo organiza dados rastreáveis e limites de consulta; a decisão final deve considerar a documentação específica e a avaliação apropriada."
-image: "/assets/img/posts/suspensao-traseira-link-progressao/hero-1600.webp"
-image_mobile: "/assets/img/posts/suspensao-traseira-link-progressao/hero-800.webp"
-thumbnail: "/assets/img/posts/suspensao-traseira-link-progressao/card-640.webp"
+image: "/assets/img/posts/reserva-checklist-montagem-cockpit/hero-1600.webp"
+image_mobile: "/assets/img/posts/reserva-checklist-montagem-cockpit/hero-800.webp"
+thumbnail: "/assets/img/posts/reserva-checklist-montagem-cockpit/card-640.webp"
 image_manifest_version: 2
 image_asset_type: "official-product-photo"
 image_status: "approved"
-image_alt: "Kit Reparo Suspensão RockShox SID SL 32 Flight Attendant 2026+ em fotografia oficial de TheBiker Shop"
-image_caption: "Kit Reparo Suspensão RockShox SID SL 32 Flight Attendant 2026+, em fotografia oficial de TheBiker Shop."
+image_alt: "Fita de Guidão Supacaz Super Sticky - Preta em fotografia oficial de TheBiker Shop"
+image_caption: "Fita de Guidão Supacaz Super Sticky - Preta, em fotografia oficial de TheBiker Shop."
 image_credit: "TheBiker Shop"
 image_license: "Uso editorial no blog oficial TheBiker"
 affiliate_links: false
 editorial_scope: "portfolio"
 promoted_brands: []
 context_only_brands: []
-portfolio_evidence_url: "https://thebikershop.com.br/bikes/"
+portfolio_evidence_url: "https://thebikershop.com.br/componentes/"
 portfolio_verified_at: "2026-08-17"
-editorial_status: "reviewed"
-status: "scheduled"
+editorial_status: "draft"
+status: "draft"
 sources:
-  - name: "RockShox — Rear Shock DebonAir+"
+  - name: "Zipp — Stems and Drop Handlebars User Manual"
     type: "manufacturer"
-    url: "https://www.sram.com/en/rockshox/learn/shock-deep-dives/rear-shock-debonair"
+    url: "https://www.sram.com/globalassets/document-hierarchy/user-manuals/zipp/stems-and-bars/zipp-stems-and-drop-handlebars-user-manual.pdf"
     accessed_at: "2026-08-17"
-  - name: "RockShox — Suspension Welcome Guide"
+  - name: "Zipp — Service Course SL-70"
     type: "manufacturer"
-    url: "https://www.sram.com/en/rockshox/learn/suspension-welcome-guide"
+    url: "https://www.sram.com/es/zipp/models/hb-dbsc-sl70-b2"
     accessed_at: "2026-08-17"
 ---
 Como este artigo foi produzido: leitura documental de fontes oficiais e registros rastreáveis. A equipe não realizou teste presencial.
 
 ## Identidade e escopo da ficha
 
-Este ficha editorial parte de duas identificacoes documentais: <a href="https://thebikershop.com.br/componentes/suspensao/" class="thebiker-product-link" target="_blank" rel="noopener">Suspensão</a> traseira com link: como a alavancagem altera a curva de resposta e o segundo modelo listado na pesquisa. A pesquisa nao trata a leitura como teste de campo; cada afirmacao permanece ligada ao registro recuperado e ao limite declarado pela fonte.
+Este ficha editorial parte de duas identificacoes documentais: Checklist de montagem do cockpit: fita, comandos e torque e o segundo modelo listado na pesquisa. A pesquisa nao trata a leitura como teste de campo; cada afirmacao permanece ligada ao registro recuperado e ao limite declarado pela fonte.
 
 Comece pela pagina oficial de cada modelo e registre o nome exatamente como aparece. Em seguida, anote qual fonte corresponde a cada conjunto, para que uma especificacao nao seja transferida de um item para outro.
 
@@ -83,7 +83,7 @@ A regra vale tambem para uma nova versao.
 
 ## Como conferir o modelo consultado
 
-A primeira ficha nomeia Suspensão traseira com link: como a alavancagem altera a curva de resposta; a segunda registra o segundo modelo listado na pesquisa. Essa separacao e importante porque nomes comerciais parecidos podem reunir montagens diferentes, e o artigo so usa a descricao associada a cada fonte.
+A primeira ficha nomeia Checklist de montagem do cockpit: fita, comandos e torque; a segunda registra o segundo modelo listado na pesquisa. Essa separacao e importante porque nomes comerciais parecidos podem reunir montagens diferentes, e o artigo so usa a descricao associada a cada fonte.
 
 Abra o registro de identidade, confira modelo, cor e codigo quando houver, e copie a grafia para a planilha de consulta. Marque como pendente qualquer campo que apareca somente em uma das paginas.
 
@@ -99,7 +99,7 @@ O registro fica pronto para a proxima checagem.
 
 ## Quadro e materiais localizados
 
-No quadro e na geometria, a evidencia localizada registra: A RockShox recomenda combinar uma lata Linear com um quadro de taxa de alavancagem e descrito no registro para permitir o uso do curso completo.. O comparativo apresenta esse campo como dado de especificacao, sem converter material ou nome de tubo em promessa de resposta observada.
+No quadro e na geometria, a evidencia localizada registra: O manual Zipp orienta usar as marcas-guia do <a href="https://thebikershop.com.br/componentes/guidao/" class="thebiker-product-link" target="_blank" rel="noopener">guidão</a> para alinhar os comandos.. O comparativo apresenta esse campo como dado de especificacao, sem converter material ou nome de tubo em promessa de resposta observada.
 
 Leia a linha completa da ficha, incluindo qualificadores como material, serie, tecnologia ou padrao de montagem. Registre a frase inteira antes de resumir, pois o qualificativo pode ser parte da identificacao do quadro.
 
@@ -115,7 +115,7 @@ A frase completa conserva o contexto original.
 
 ## Suspensao e componentes descritos
 
-A parte de suspensao aparece na fonte como A lata Progressive torna a progressão final mais forte e dificulta o bottom-out, segundo a explicação técnica da RockShox.. A frase e mantida em seu contexto para diferenciar modelo, curso, sistema e componente, sem inferir sensacoes ou desempenho a partir de uma unica linha.
+A parte de suspensao aparece na fonte como O manual Zipp limita o aperto dos comandos a 9 N·m quando a instrução do fabricante não indicar outro procedimento.. A frase e mantida em seu contexto para diferenciar modelo, curso, sistema e componente, sem inferir sensacoes ou desempenho a partir de uma unica linha.
 
 Separe garfo, amortecedor, curso, trava e ajuste em linhas distintas quando esses campos existirem. Depois, associe cada linha ao modelo correto e preserve a unidade exatamente como foi publicada.
 
@@ -131,7 +131,7 @@ O manual continua sendo a referencia do conjunto.
 
 ## Transmissao e montagem registrada
 
-Na transmissao, a base recuperada e: A configuração da suspensão depende do ciclista, do estilo e do terreno onde ele pedala.. O dado entra na comparacao como identificacao de montagem e nao como classificacao automatica de troca, durabilidade ou faixa de uso.
+Na transmissao, a base recuperada e: A página do Service Course SL-70 informa reach de 70 mm para esse modelo.. O dado entra na comparacao como identificacao de montagem e nao como classificacao automatica de troca, durabilidade ou faixa de uso.
 
 Confira cambio, <a href="https://thebikershop.com.br/componentes/cassetes/" class="thebiker-product-link" target="_blank" rel="noopener">cassete</a>, <a href="https://thebikershop.com.br/componentes/pedivela/" class="thebiker-product-link" target="_blank" rel="noopener">pedivela</a>, <a href="https://thebikershop.com.br/componentes/corrente/" class="thebiker-product-link" target="_blank" rel="noopener">corrente</a> e quantidade de velocidades em campos separados. Para cada componente, mantenha a fonte e a data de acesso ao lado do valor, mesmo quando a pagina de loja resuma a montagem.
 
@@ -147,7 +147,7 @@ A fonte comercial nao substitui a fonte tecnica.
 
 ## Freios, rodas e pneus informados
 
-Freios, rodas e <a href="https://thebikershop.com.br/componentes/pneus-para-ciclismo/" class="thebiker-product-link" target="_blank" rel="noopener">pneus</a> aparecem nos registros como A RockShox recomenda combinar uma lata Linear com um quadro de taxa de alavancagem e descrito no registro para permitir o uso do curso completo.. O texto organiza esses dados para leitura lado a lado, sem usar o nome do componente como atalho para potencia, aderencia ou seguranca.
+Freios, rodas e <a href="https://thebikershop.com.br/componentes/pneus-para-ciclismo/" class="thebiker-product-link" target="_blank" rel="noopener">pneus</a> aparecem nos registros como O manual Zipp orienta usar as marcas-guia do guidão para alinhar os comandos.. O texto organiza esses dados para leitura lado a lado, sem usar o nome do componente como atalho para potencia, aderencia ou seguranca.
 
 Anote tipo de freio, rotor, aro, medida e carcaca apenas quando cada item estiver explicito. A unidade e o sufixo fazem parte do dado e nao devem ser removidos durante a transcricao.
 
@@ -163,7 +163,7 @@ A unidade acompanha o valor em qualquer revisao.
 
 ## Tamanhos, cores e campos comuns
 
-Alguns campos se repetem entre os produtos; outros aparecem somente uma vez. O registro de referencia para esta leitura e A lata Progressive torna a progressão final mais forte e dificulta o bottom-out, segundo a explicação técnica da RockShox., e ele serve para demonstrar como o artigo distingue dado comum de campo exclusivo.
+Alguns campos se repetem entre os produtos; outros aparecem somente uma vez. O registro de referencia para esta leitura e O manual Zipp limita o aperto dos comandos a 9 N·m quando a instrução do fabricante não indicar outro procedimento., e ele serve para demonstrar como o artigo distingue dado comum de campo exclusivo.
 
 Crie duas listas: caracteristicas presentes nos dois registros e caracteristicas localizadas em apenas um. Inclua tamanho, cor, padrao e codigo quando estiverem escritos na fonte, sem harmonizar grafias diferentes.
 
@@ -179,7 +179,7 @@ A leitura final deve manter essa separacao.
 
 ## O que a documentacao nao responde
 
-As diferencas confirmadas sao apresentadas por campo, nao por adjetivo. Neste conjunto, a pesquisa tambem registra A configuração da suspensão depende do ciclista, do estilo e do terreno onde ele pedala., enquanto os demais pontos dependem das linhas tecnicas ja descritas nas secoes anteriores.
+As diferencas confirmadas sao apresentadas por campo, nao por adjetivo. Neste conjunto, a pesquisa tambem registra A página do Service Course SL-70 informa reach de 70 mm para esse modelo., enquanto os demais pontos dependem das linhas tecnicas ja descritas nas secoes anteriores.
 
 Ao redigir a tabela final, use uma coluna para cada modelo e uma coluna de fonte. Escreva "nao localizado" quando o dado nao aparecer; essa expressao e mais fiel do que estimar ou importar uma especificacao vizinha.
 
@@ -227,6 +227,6 @@ O historico ajuda a explicar futuras alteracoes.
 
 ## De onde vêm os dados desta análise
 
-- **RockShox — Rear Shock DebonAir+** (manufacturer) — https://www.sram.com/en/rockshox/learn/shock-deep-dives/rear-shock-debonair — acessado em 2026-08-17
-- **RockShox — Suspension Welcome Guide** (manufacturer) — https://www.sram.com/en/rockshox/learn/suspension-welcome-guide — acessado em 2026-08-17
+- **Zipp — Stems and Drop Handlebars User Manual** (manufacturer) — https://www.sram.com/globalassets/document-hierarchy/user-manuals/zipp/stems-and-bars/zipp-stems-and-drop-handlebars-user-manual.pdf — acessado em 2026-08-17
+- **Zipp — Service Course SL-70** (manufacturer) — https://www.sram.com/es/zipp/models/hb-dbsc-sl70-b2 — acessado em 2026-08-17
 

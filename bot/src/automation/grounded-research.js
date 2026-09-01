@@ -202,7 +202,7 @@ const RETRYABLE_STATUS = new Set([408, 409, 425, 429, 500, 502, 503, 504])
 const wait = (milliseconds) => new Promise((resolve) => setTimeout(resolve, milliseconds))
 
 async function fetchGrounded(fetchImpl, url, init, env) {
-  const attempts = Math.max(1, Number(env.AI_HTTP_RETRY_ATTEMPTS || 2))
+  const attempts = Math.max(1, Number(env.AI_HTTP_RETRY_ATTEMPTS || 3))
   const timeoutMs = Math.max(1000, Number(env.AI_HTTP_TIMEOUT_MS || 120000))
   let lastError
   for (let attempt = 1; attempt <= attempts; attempt += 1) {
@@ -215,8 +215,8 @@ async function fetchGrounded(fetchImpl, url, init, env) {
       const retryDelay = Number.isFinite(retryAfter)
         ? Math.min(retryAfter * 1000, 30000)
         : response.status === 429
-          ? Math.max(0, Number(env.GROQ_RETRY_AFTER_DEFAULT_MS || 5000))
-          : 750 * (2 ** (attempt - 1))
+          ? Math.max(0, Number(env.GROQ_RETRY_AFTER_DEFAULT_MS || 15000))
+          : 1000 * (2 ** (attempt - 1))
       await wait(retryDelay)
     } catch (error) {
       lastError = error
@@ -227,30 +227,6 @@ async function fetchGrounded(fetchImpl, url, init, env) {
   throw lastError || new Error('Pesquisa oficial sem resposta')
 }
 
-async function fetchGeminiGrounded(fetchImpl, prompt, env) {
-  const model = env.GEMINI_RESEARCH_MODEL || env.GEMINI_MODEL || 'gemini-3.5-flash-lite'
-  const response = await fetchGrounded(fetchImpl, `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent`, {
-    method: 'POST',
-    headers: { 'x-goog-api-key': env.GEMINI_API_KEY, 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      contents: [{ parts: [{ text: prompt }] }],
-      tools: [{ google_search: {} }],
-      generationConfig: { temperature: 0, maxOutputTokens: 2500 },
-    }),
-  }, env)
-  if (!response.ok) {
-    const detail = (await response.text()).slice(0, 300)
-    throw new Error(`Gemini grounded research: ${response.status} - ${detail}`)
-  }
-  const payload = await response.json()
-  const candidate = payload.candidates?.[0]
-  const text = (candidate?.content?.parts || []).map((part) => part.text || '').join('\n')
-  return {
-    research: extractJson(text),
-    model,
-    queries: candidate?.groundingMetadata?.webSearchQueries || [],
-  }
-}
 
 async function internalResearch({ item, internalEvidence, today, contentType, reason, raceCoverage = false, fetchImpl = fetch, env = process.env }) {
   const curated = curatedEvidence(item, today)
@@ -447,20 +423,7 @@ export class GroundedResearcher {
       const outputParseFailed = response.status === 400 && /output_parse_failed|parsing failed/i.test(detail)
       const contextLengthExceeded = response.status === 400 && /context_length_exceeded|reduce the length of the messages or completion/i.test(detail)
       const retryableResearchFailure = outputParseFailed || contextLengthExceeded || [403, 404, 408, 409, 425, 429, 500, 502, 503, 504].includes(response.status)
-      if (retryableResearchFailure && this.env.GEMINI_API_KEY) {
-        try {
-          const gemini = await fetchGeminiGrounded(this.fetch, prompt, this.env)
-          research = gemini.research
-          groundingProvider = 'gemini-google-search'
-          groundingModel = gemini.model
-          groundingQueries = gemini.queries
-        } catch (geminiError) {
-          if (!raceCoverage) {
-            return fallbackResearch(`Groq ${response.status}; ${geminiError.message}`)
-          }
-          throw geminiError
-        }
-      } else if (!raceCoverage && retryableResearchFailure) {
+      if (!raceCoverage && retryableResearchFailure) {
         const reason = outputParseFailed
           ? 'Groq 400 output_parse_failed'
           : contextLengthExceeded
@@ -476,20 +439,7 @@ export class GroundedResearcher {
       try {
         research = extractJson(text)
       } catch (error) {
-        if (this.env.GEMINI_API_KEY) {
-          try {
-            const gemini = await fetchGeminiGrounded(this.fetch, prompt, this.env)
-            research = gemini.research
-            groundingProvider = 'gemini-google-search'
-            groundingModel = gemini.model
-            groundingQueries = gemini.queries
-          } catch (geminiError) {
-            if (!raceCoverage) {
-              return fallbackResearch(`Groq retornou JSON inválido; ${geminiError.message}`)
-            }
-            throw geminiError
-          }
-        } else if (!raceCoverage) {
+        if (!raceCoverage) {
           return fallbackResearch(`Groq retornou JSON inválido: ${error.message}`)
         } else throw error
       }
@@ -527,19 +477,6 @@ export class GroundedResearcher {
     try {
       return await verifyCandidate(research, { providerName: groundingProvider, modelName: groundingModel, queries: groundingQueries })
     } catch (primaryError) {
-      if (groundingProvider !== 'gemini-google-search' && this.env.GEMINI_API_KEY) {
-        try {
-          const gemini = await fetchGeminiGrounded(this.fetch, prompt, this.env)
-          return await verifyCandidate(gemini.research, {
-            providerName: 'gemini-google-search',
-            modelName: gemini.model,
-            queries: gemini.queries,
-          })
-        } catch (fallbackError) {
-          if (!raceCoverage) return fallbackResearch(`Groq sem evidência: ${primaryError.message}; Gemini sem evidência: ${fallbackError.message}`)
-          throw new Error(`Pesquisa bloqueada após verificação em Groq e Gemini: Groq: ${primaryError.message}; Gemini: ${fallbackError.message}`)
-        }
-      }
       if (!raceCoverage) return fallbackResearch(primaryError.message)
       throw new Error(`Pesquisa bloqueada após verificação documental: ${primaryError.message}`)
     }

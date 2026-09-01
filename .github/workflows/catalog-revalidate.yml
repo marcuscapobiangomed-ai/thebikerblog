@@ -1,0 +1,53 @@
+name: TheBiker — Revalidação do catálogo público
+
+on:
+  schedule:
+    # 05:10 UTC, antes das janelas de produção editorial (07:35, 08:20, 13:45)
+    # e de publicação (14:55), para que o catálogo já esteja fresco quando
+    # o resto do pipeline rodar no dia. Independente da geração por IA:
+    # nunca deve ficar bloqueada por indisponibilidade de provedor.
+    - cron: "10 5 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: thebiker-catalog-revalidate
+  cancel-in-progress: false
+
+jobs:
+  revalidate:
+    if: ${{ vars.AUTOMATION_ENABLED == 'true' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: package-lock.json
+      - run: npm ci
+      - name: Revalidar links de produtos e reconstruir catálogo
+        id: revalidate
+        continue-on-error: true
+        run: npm run catalog:revalidate && npm run catalog:public
+      - name: Validar integralmente antes de persistir
+        id: validation
+        if: steps.revalidate.outcome == 'success'
+        run: npm run validate
+      - name: Persistir somente catálogo validado
+        if: steps.revalidate.outcome == 'success' && steps.validation.outcome == 'success'
+        run: |
+          git config user.name "thebiker-editorial-bot"
+          git config user.email "thebiker-editorial-bot@users.noreply.github.com"
+          git add _data/products/bikes _data/catalog-public.json api/products.json
+          git diff --cached --quiet || git commit -m "state: revalidar catálogo público de produtos"
+          git pull --rebase origin main
+          git push
+      - name: Propagar resultado
+        if: steps.revalidate.outcome == 'failure'
+        run: exit 1

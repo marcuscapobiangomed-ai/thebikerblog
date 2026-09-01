@@ -2,7 +2,7 @@
 image_subject_id: "bicicleta-scott-scale-940-black"
 layout: post
 published: false
-title: "Scott Scale 940 vs 980: diferenças verificáveis"
+title: "Scott Scale 940 e 980: diferenças verificáveis de quadro, suspensão e componentes"
 slug: "scott-scale-940-e-980-diferencas-verificaveis-de-quadro-suspensao-e-componentes"
 date: 2026-08-20
 last_modified_at: 2026-08-20
@@ -28,7 +28,7 @@ price_currency: "BRL"
 price_checked_at: "2026-08-14"
 category: "comparativos"
 tags: ["ciclismo", "dados", "ficha-tecnica"]
-description: "Comparativo documental da Scott Scale 940 e 980, com diferenças verificáveis de quadro, suspensão e componentes."
+description: "Leitura documental de Scott Scale 940 e 980: diferenças verificáveis de quadro, suspensão e componentes, organizada por registros oficiais, limites e lacunas que precisam permanecer visiveis."
 direct_answer: "Use esta ficha como roteiro documental: confronte cada dado com a fonte oficial, registre lacunas e nao trate a leitura como teste presencial ou promessa de desempenho."
 faq:
   - question: "Como usar esta ficha técnica sem extrapolar os dados?"
