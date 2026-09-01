@@ -64,7 +64,6 @@ faq:
   - question: "Como sei se o sensor é compatível com minha bike?"
     answer: "Sensores em pedal (Favero, Garmin) funcionam em qualquer bike — é a opção mais segura. Sensores de spider (Quarq) precisam de pedivela compatível."
 ---
-> **Este artigo foi produzido com pesquisa em sites oficiais dos fabricantes e lojas brasileiras em julho/2026. O conteúdo foi elaborado com auxílio de IA e revisado editorialmente.
 
 ## Introdução
 

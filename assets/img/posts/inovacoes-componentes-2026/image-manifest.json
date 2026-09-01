@@ -55,7 +55,7 @@
     }
   },
   "approval": {
-    "reviewedBy": "Revisão editorial manual (sessão Claude Code)",
+    "reviewedBy": "Revisão manual (sessão Claude Code)",
     "approvedAt": "2026-09-01",
     "method": "human",
     "checks": [
